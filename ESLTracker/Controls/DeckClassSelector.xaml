@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="ESLTracker.Controls.DeckClassSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ESLTracker.Controls"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
+             mc:Ignorable="d" Height="30">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="DeckClassEnum" MethodName="GetValues"
+                                ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="Enums:DeckClass"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources><StackPanel Orientation="Horizontal">
+        <ComboBox x:Name="comboBox" Width="120" ItemsSource="{Binding Source={StaticResource DeckClassEnum}}"/>
+        <ToggleButton Tag="Strength" Click="btnStrength_Click">
+            <StackPanel>
+                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/strength.png" />
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Tag="Intelligence" Click="btnStrength_Click">
+            <StackPanel>
+                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/intelligence.png" />
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Tag="Agility" Click="btnStrength_Click">
+            <StackPanel>
+                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/agility.png" />
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Tag="Willpower" Click="btnStrength_Click">
+            <StackPanel>
+                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/willpower.png" />
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Tag="Endurance" Click="btnStrength_Click">
+            <StackPanel>
+                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/endurance.png" />
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Tag="Neutral" Click="btnStrength_Click">
+            <StackPanel>
+                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/neutral.png" />
+            </StackPanel>
+        </ToggleButton>
+    </StackPanel>
+</UserControl>

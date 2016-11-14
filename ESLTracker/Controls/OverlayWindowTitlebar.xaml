@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="ESLTracker.Controls.OverlayWindowTitlebar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ESLTracker.Controls"
+             mc:Ignorable="d">
+    <StackPanel  FlowDirection="RightToLeft" Orientation="Horizontal" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        <Button x:Name="btnClose" HorizontalAlignment="Right" Width="15" Click="btnClose_Click">
+            <Image Source="/Resources/WindowIcons/close.png"/>
+        </Button>
+        <ToggleButton x:Name="btnCollapse" HorizontalAlignment="Right" Width="15" Click="btnCollapse_Click">
+            <Image>
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=btnCollapse,Path=IsChecked}" Value="true">
+                                <Setter Property="Source" Value="pack://application:,,,/Resources/WindowIcons/expand.png"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=btnCollapse,Path=IsChecked}" Value="false">
+                                <Setter Property="Source" Value="pack://application:,,,/Resources/WindowIcons/collapse.png"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </ToggleButton>
+    </StackPanel>
+</UserControl>
