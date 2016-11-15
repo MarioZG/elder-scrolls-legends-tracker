@@ -33,6 +33,7 @@ namespace ESLTracker.DataModel.Tests
         }
 
         [TestMethod()]
+        [Ignore()]
         public void LargeFilesSerialiseDeserialiseSpeedtest()
         {
             //we have to fix up dec ref for each game after load

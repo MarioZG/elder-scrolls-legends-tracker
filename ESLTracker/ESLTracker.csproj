@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
     <Compile Include="Controls\DeckClassSelector.xaml.cs">
       <DependentUpon>DeckClassSelector.xaml</DependentUpon>
     </Compile>
@@ -102,6 +103,8 @@
     <Compile Include="Utils\FileManager.cs" />
     <Compile Include="Utils\Converters\HasSelectedValueToVisibilityConverter.cs" />
     <Compile Include="Utils\WindowExtensions.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="WindowsUtils.cs" />
     <Page Include="Controls\DeckClassSelector.xaml">
       <SubType>Designer</SubType>

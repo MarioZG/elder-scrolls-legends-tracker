@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ESLTracker.Controls"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
+             xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
              mc:Ignorable="d" Height="30">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="DeckClassEnum" MethodName="GetValues"
@@ -14,34 +15,64 @@
                 <x:Type TypeName="Enums:DeckClass"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-    </UserControl.Resources><StackPanel Orientation="Horizontal">
-        <ComboBox x:Name="comboBox" Width="120" ItemsSource="{Binding Source={StaticResource DeckClassEnum}}"/>
-        <ToggleButton Tag="Strength" Click="btnStrength_Click">
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <ViewModels:DeckClassSelectorViewModel/>
+    </UserControl.DataContext>
+    <StackPanel Orientation="Horizontal">
+        <ComboBox x:Name="comboBox" Width="120" 
+                  ItemsSource="{Binding FilteredClasses}"
+                  SelectedItem="{Binding SelectedClass}"/>
+        <ToggleButton
+                      Command="{Binding CommandFilterButtonPressed}"
+                      CommandParameter="Strength"
+                      IsChecked="{Binding Filter[DeckAttribute.Strength]}"
+            >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/strength.png" />
             </StackPanel>
         </ToggleButton>
-        <ToggleButton Tag="Intelligence" Click="btnStrength_Click">
+        <ToggleButton Tag="Intelligence"                       
+                      Command="{Binding CommandFilterButtonPressed}"
+                      CommandParameter="Intelligence"
+                      IsChecked="{Binding Filter[DeckAttribute.Intelligence]}"
+            >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/intelligence.png" />
             </StackPanel>
         </ToggleButton>
-        <ToggleButton Tag="Agility" Click="btnStrength_Click">
+        <ToggleButton Tag="Agility"                        
+                      Command="{Binding CommandFilterButtonPressed}"
+                      CommandParameter="Agility"
+                      IsChecked="{Binding Filter[DeckAttribute.Agility]}"
+            >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/agility.png" />
             </StackPanel>
         </ToggleButton>
-        <ToggleButton Tag="Willpower" Click="btnStrength_Click">
+        <ToggleButton Tag="Willpower"                        
+                      Command="{Binding CommandFilterButtonPressed}"
+                      CommandParameter="Willpower"
+                      IsChecked="{Binding Filter[DeckAttribute.Willpower]}"
+            >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/willpower.png" />
             </StackPanel>
         </ToggleButton>
-        <ToggleButton Tag="Endurance" Click="btnStrength_Click">
+        <ToggleButton Tag="Endurance"                        
+                      Command="{Binding CommandFilterButtonPressed}"
+                      CommandParameter="Endurance"
+                      IsChecked="{Binding Filter[DeckAttribute.Endurance]}"
+            >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/endurance.png" />
             </StackPanel>
         </ToggleButton>
-        <ToggleButton Tag="Neutral" Click="btnStrength_Click">
+        <ToggleButton Tag="Neutral"                        
+                      Command="{Binding CommandFilterButtonPressed}"
+                      CommandParameter="Neutral"
+                      IsChecked="{Binding Filter[DeckAttribute.Neutral]}"
+            >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/neutral.png" />
             </StackPanel>

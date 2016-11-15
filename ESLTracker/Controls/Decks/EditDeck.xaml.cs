@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.ViewModels;
 
 namespace ESLTracker.Controls.Decks
 {
@@ -27,15 +28,20 @@ namespace ESLTracker.Controls.Decks
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            if (! deckClass.DataContext.SelectedClass.HasValue)
+            {
+                return;
+            }
+
             DataModel.Deck deck = new DataModel.Deck()
             {
                 Name = this.txtName.Text,
-                Class = deckClass.SelectedClass,
+                Class = deckClass.DataContext.SelectedClass.Value,
                 Attributes = new DataModel.DeckAttributes(),
                 Type = (DataModel.Enums.DeckType)this.cbDeckType.SelectedItem 
                 
             };
-            deck.Attributes.AddRange(deckClass.SelectedClassAttributes);
+            deck.Attributes.AddRange(deckClass.DataContext.SelectedClassAttributes);
             DataModel.Tracker.Instance.Decks.Add(deck);
             this.Visibility = Visibility.Collapsed;
         }

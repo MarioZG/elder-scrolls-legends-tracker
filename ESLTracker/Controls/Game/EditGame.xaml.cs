@@ -49,18 +49,23 @@ namespace ESLTracker.Controls.Game
 
         private void btnVicotry_Click(object sender, RoutedEventArgs e)
         {
+            if (!opponentClass.DataContext.SelectedClass.HasValue)
+            {
+                return;
+            }
+
             DataModel.Game game = new DataModel.Game()
             {
                 Deck = this.selectedDeck.DataContext as DataModel.Deck,
                 BonusRound = null,
-                OpponentClass = this.opponentClass.SelectedClass,
+                OpponentClass = this.opponentClass.DataContext.SelectedClass.Value,
                 OrderOfPlay = (OrderOfPlay)this.cbOrderOfPlay.SelectedItem,
                 Outcome = Utils.EnumManager.ParseEnumString<GameOutcome>(((Button)sender).CommandParameter.ToString()),
                 Type = (GameType)this.cbGameType.SelectedItem,
                 OpponentName = this.txtOpponentName.Text
             };
 
-            game.OpponentAttributes.AddRange(opponentClass.SelectedClassAttributes);
+            game.OpponentAttributes.AddRange(opponentClass.DataContext.SelectedClassAttributes);
 
             if (game.Type == GameType.PlayRanked)
             {
@@ -69,12 +74,9 @@ namespace ESLTracker.Controls.Game
                 game.PlayerRank = (DataModel.Enums.PlayerRank)this.cbPlayerRank.SelectedItem;
             }
 
-            // game.OpponentAttributes.Add(DeckAttribute.Inteligence);
-            //   game.OpponentAttributes.Add(DeckAttribute.Agility);
-
             DataModel.Tracker.Instance.Games.Add(game);
 
-            this.opponentClass.Reset();
+            this.opponentClass.DataContext.Reset();
             this.txtOpponentName.Text = "";
             this.cbOrderOfPlay.SelectedItem = null;
             this.cbOpponentRank.SelectedItem = null;

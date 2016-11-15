@@ -42,7 +42,7 @@ namespace ESLTracker.Utils.Tests
             };
             DeckClass expected = DeckClass.Battlemage;
 
-            List<DeckClass> result = ClassAttributesHelper.FindClassByAttribute(filter);
+            IEnumerable<DeckClass> result = ClassAttributesHelper.FindClassByAttribute(filter);
 
             TestContext.WriteLine("Result:");
             foreach(DeckClass dc in result)
@@ -50,8 +50,8 @@ namespace ESLTracker.Utils.Tests
                 TestContext.WriteLine(dc+",");
             }
 
-            Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(expected, result[0]);
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual(expected, result.ElementAt(0));
         }
 
         [TestMethod()]
@@ -69,7 +69,7 @@ namespace ESLTracker.Utils.Tests
                 DeckClass.Strength
             };
 
-            List<DeckClass> result = ClassAttributesHelper.FindClassByAttribute(filter);
+            IEnumerable<DeckClass> result = ClassAttributesHelper.FindClassByAttribute(filter);
 
             TestContext.WriteLine("Result:");
             foreach (DeckClass dc in result)
@@ -77,13 +77,13 @@ namespace ESLTracker.Utils.Tests
                 TestContext.WriteLine(dc + ",");
             }
 
-            Assert.AreEqual(5, result.Count);
+            Assert.AreEqual(5, result.Count());
             int i = 0;
-            Assert.IsTrue(expected.Contains(result[i++]));
-            Assert.IsTrue(expected.Contains(result[i++]));
-            Assert.IsTrue(expected.Contains(result[i++]));
-            Assert.IsTrue(expected.Contains(result[i++]));
-            Assert.IsTrue(expected.Contains(result[i++]));
+            Assert.IsTrue(expected.Contains(result.ElementAt(i++)));
+            Assert.IsTrue(expected.Contains(result.ElementAt(i++)));
+            Assert.IsTrue(expected.Contains(result.ElementAt(i++)));
+            Assert.IsTrue(expected.Contains(result.ElementAt(i++)));
+            Assert.IsTrue(expected.Contains(result.ElementAt(i++)));
 
         }
     }
