@@ -22,10 +22,15 @@ namespace ESLTracker.DataModel
                     try
                     {
                         _instance = Utils.FileManager.LoadDatabase<DataModel.Tracker>("./data.xml");
-                        //fix up ref to decks
+                        //fix up ref to decks in games
                         foreach (Game g in _instance.Games)
                         {
                             g.Deck = _instance.Decks.Where(d => d.DeckId == g.DeckId).FirstOrDefault();
+                        }
+                        //fix up ref to decks in rewards
+                        foreach (Reward r in _instance.Rewards)
+                        {
+                            r.ArenaDeck = _instance.Decks.Where(d => d.DeckId == r.ArenaDeckId).FirstOrDefault();
                         }
                     }
                     catch

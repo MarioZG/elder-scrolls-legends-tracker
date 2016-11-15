@@ -38,10 +38,47 @@ namespace ESLTracker.ViewModels.Rewards
             {
                 rewardReason = value;
                 RaisePropertyChangedEvent("RewardReason");
-                ResetRewardsGrid();
+                RaisePropertyChangedEvent("ArenaDeckVisible");
+                RewardReasonChanged();
+            }
+        }
+        
+        Deck arenaDeck;
+        public Deck ArenaDeck
+        {
+            get
+            {
+                return arenaDeck;
+            }
+            set
+            {
+                arenaDeck = value;
+                RaisePropertyChangedEvent("ArenaDeck");
             }
         }
 
+        Visibility arenaDeckVisible;
+        public Visibility ArenaDeckVisible
+        {
+            get
+            {
+                return LinkRewardToDeck() ? Visibility.Visible : Visibility.Collapsed;
+            }
+            set
+            {
+                arenaDeckVisible = value;
+                RaisePropertyChangedEvent("ArenaDeckVisible"); 
+            }
+        }
+
+        private bool LinkRewardToDeck()
+        {
+            bool matchVersus = (Tracker.Instance.ActiveDeck.Type == DeckType.VesrusArena)
+                && (this.RewardReason == DataModel.Enums.RewardReason.VersusArena);
+            bool matchSolo = (Tracker.Instance.ActiveDeck.Type == DeckType.SoloArena)
+                && (this.RewardReason == DataModel.Enums.RewardReason.SoloArena);
+            return matchSolo || matchVersus ;
+        }
 
         public RewardSetViewModel()
         {
@@ -88,12 +125,21 @@ namespace ESLTracker.ViewModels.Rewards
         }
         //end of managing single reward controls
 
-        public void ResetRewardsGrid()
+        public void RewardReasonChanged()
         {
             foreach (AddSingleRewardViewModel asr in rewardControls)
             {
                 asr.Reset();
                 asr.Visibility = Visibility.Visible;
+            }
+
+            if (! LinkRewardToDeck())
+            {
+                this.ArenaDeck = null;
+                this.ArenaDeckVisible = Visibility.Collapsed;
+            }
+            else {
+                this.ArenaDeck = Tracker.Instance.ActiveDeck;
             }
         }
 
@@ -102,6 +148,7 @@ namespace ESLTracker.ViewModels.Rewards
             if (reward != null)
             {
                 reward.Reason = this.RewardReason.Value;
+                reward.ArenaDeck = ArenaDeck;
                 Rewards.Add(reward);
             }
         }

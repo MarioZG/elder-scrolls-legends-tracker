@@ -8,6 +8,7 @@
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Rewards"
+             xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks"  
              mc:Ignorable="d">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="RewardReasonEnum" MethodName="GetValues"
@@ -29,6 +30,11 @@
                 ItemsSource="{Binding Source={StaticResource RewardReasonEnum}}"
                 SelectedItem="{Binding RewardReason}"
             />
+        <StackPanel Visibility="{Binding ArenaDeckVisible}">            
+        <Decks:DeckItem x:Name="arenaDeck" 
+                        DataContext="{Binding ArenaDeck}"
+            />
+        </StackPanel>
         <Grid  x:Name="grid"
               Visibility="{Binding ElementName=cbReason, Path=SelectedItem, Converter={StaticResource HasSelectedValueToVisibilityConverter}}">
             <Grid.ColumnDefinitions>

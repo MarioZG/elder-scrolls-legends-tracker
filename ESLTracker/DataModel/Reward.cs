@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.DataModel
@@ -20,6 +21,20 @@ namespace ESLTracker.DataModel
         public Guild? RewardQuestGuild {get;set;}
 
         //arena reward
+        [XmlIgnore]
         public Deck ArenaDeck { get; set; }
+
+        private Guid? arenaDeckId = null;
+        public Guid? ArenaDeckId
+        {
+            get
+            {
+                return (ArenaDeck != null) ? ArenaDeck.DeckId : arenaDeckId;
+            }
+            set
+            {
+                arenaDeckId = value;
+            }
+        }
     }
 }
