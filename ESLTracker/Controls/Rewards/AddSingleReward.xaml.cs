@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.ViewModels.Rewards;
 
 namespace ESLTracker.Controls.Rewards
 {
@@ -22,15 +23,36 @@ namespace ESLTracker.Controls.Rewards
     /// </summary>
     public partial class AddSingleReward : UserControl
     {
-        public RewardType type;
-        public RewardType Type {
-            get { return type; }
+
+        new public AddSingleRewardViewModel DataContext
+        {
+            get
+            {
+                return (AddSingleRewardViewModel)base.DataContext;
+            }
             set
             {
-                this.type = value;
-                InitTypeSpecifics(value);
+                base.DataContext = value;
             }
         }
+
+        public AddSingleReward()
+        {
+            InitializeComponent();
+        }
+
+       
+        public RewardType Type {
+            get { return this.DataContext.type; }
+            set
+            {
+                this.DataContext.Type = value;
+            }
+        }
+
+        /*
+        public event EventHandler ControlClicked;
+        public event EventHandler<NewRewardEventArgs> NewReward;
 
         private bool selectGuild = false;
 
@@ -62,30 +84,12 @@ namespace ESLTracker.Controls.Rewards
         public event EventHandler ControlClicked;
         public event EventHandler<NewRewardEventArgs> NewReward;
 
-        public AddSingleReward()
-        {
-            InitializeComponent();
-        }
+
 
         private void image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ShowControls();
             ControlClicked?.Invoke(this, new EventArgs());
-        }
-
-        private void ShowControls()
-        {
-            SetControlsVisibility(Visibility.Visible);
-        }
-
-        private void SetControlsVisibility(Visibility v)
-        {
-            txtComment.Visibility = v;
-            txtQuantity.Visibility = v;
-            btnAdd.Visibility = v;
-            cbGuild.Visibility = v;
-            imageClose.Visibility = v;
-            //this.chil
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -131,5 +135,7 @@ namespace ESLTracker.Controls.Rewards
         {
             NewReward?.Invoke(this, new NewRewardEventArgs(null));
         }
+
+        */
     }
 }

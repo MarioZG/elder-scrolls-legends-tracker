@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Rewards"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+             xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Rewards"
              mc:Ignorable="d" >
     <UserControl.Resources>
         <ObjectDataProvider x:Key="GuildEnum" MethodName="GetValues"
@@ -14,15 +16,43 @@
                 <x:Type TypeName="Enums:Guild"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <Converters:BoolToVisibiltyConverter x:Key="BoolToVisibiltyConverter" />
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <ViewModels:AddSingleRewardViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        <Image x:Name="imageClose" HorizontalAlignment="Right" VerticalAlignment="Top" Height="14" Width="14" Source="pack://application:,,,/Resources/closeicon.png" MouseDown="close_MouseDown" Panel.ZIndex="100" />
-        <Image x:Name="image" Height="100" Width="100" Source="pack://application:,,,/Resources/RewardType/gold.png" MouseDown="image_MouseDown"/>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="60">
-            <TextBox x:Name="txtQuantity" Text="qty" Visibility="Hidden" HorizontalAlignment="Stretch"/>
-            <TextBox x:Name="txtComment" Text="comments" Visibility="Hidden" HorizontalAlignment="Stretch"/>
-            <ComboBox x:Name="cbGuild" Visibility="Hidden" HorizontalAlignment="Stretch" ItemsSource="{Binding Source={StaticResource GuildEnum}}"/>
-            <Button x:Name="btnAdd" Content="Add" Visibility="Hidden" Click="btnAdd_Click"/>
+        <Image x:Name="imageClose" HorizontalAlignment="Right" VerticalAlignment="Top" Height="14" Width="14" 
+               Source="pack://application:,,,/Resources/closeicon.png" 
+               Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"
+               Panel.ZIndex="100">
+            <Image.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding CommandCloseClicked}"/>
+            </Image.InputBindings>
+        </Image>
+        <Image x:Name="image" Height="100" Width="100" 
+               Source="{Binding BackgroundImagePath}"
+              >
+            <Image.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding CommandControlClicked}"/>
+            </Image.InputBindings>
+        </Image>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="60"
+                    Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"
+               >
+            <TextBox x:Name="txtQuantity"  HorizontalAlignment="Stretch"
+                     Text="{Binding Quantity}"
+                     Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
+            <TextBox x:Name="txtComment" HorizontalAlignment="Stretch"
+                     Text="{Binding Comment}"
+                     Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
+            <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
+                      SelectedItem="{Binding Guild}"
+                      ItemsSource="{Binding Source={StaticResource GuildEnum}}"
+                      Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyConverter}}"/>
+            <Button x:Name="btnAdd" Content="Add" 
+                    Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"
+                    Command="{Binding CommandAddButtonPressed}"/>
         </StackPanel>
     </Grid>
 </UserControl>

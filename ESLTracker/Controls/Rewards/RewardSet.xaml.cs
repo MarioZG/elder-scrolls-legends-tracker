@@ -55,14 +55,14 @@ namespace ESLTracker.Controls.Rewards
                 if (sender != asr)
                 {
                     asr.Visibility = Visibility.Hidden;
-                    asr.Reset();
+                    asr.DataContext.Reset();
                 }
                 else
                 {
-                    asr.SetGuildSelection(
-                        ((asr.Type == RewardType.Gold) &&
-                        ((RewardReason)this.cbReason.SelectedItem == RewardReason.Quest))
-                        ? Visibility.Visible : Visibility.Hidden);
+                    //asr.DataContext.SetGuildSelection(
+                    //    ((asr.DataContext.Type == RewardType.Gold) &&
+                    //    ((RewardReason)this.cbReason.SelectedItem == RewardReason.Quest))
+                    //    ? Visibility.Visible : Visibility.Hidden);
 
                     asr.Margin = new Thickness(asr.ActualWidth/2, asr.ActualHeight/2, asr.ActualWidth / 2, asr.ActualHeight / 2);
                     int col = (int)asr.GetValue(Grid.ColumnProperty);
@@ -102,7 +102,7 @@ namespace ESLTracker.Controls.Rewards
             foreach (AddSingleReward asr in rewardControls)
             {
                 asr.Visibility = Visibility.Visible;
-                asr.Reset();
+                asr.DataContext.Reset();
             }
             this.grid.ColumnDefinitions[0].Width = new GridLength(5, GridUnitType.Star);
             this.grid.ColumnDefinitions[1].Width = new GridLength(5, GridUnitType.Star);

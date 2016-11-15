@@ -18,5 +18,8 @@ namespace ESLTracker.DataModel
 
         //quest rewards
         public Guild? RewardQuestGuild {get;set;}
+
+        //arena reward
+        public Deck ArenaDeck { get; set; }
     }
 }
