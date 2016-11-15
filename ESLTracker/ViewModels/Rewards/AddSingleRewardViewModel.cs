@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ESLTracker.Controls.Rewards;
+using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.ViewModels.Rewards
@@ -32,6 +33,7 @@ namespace ESLTracker.ViewModels.Rewards
             get { return guild; }
             set { guild = value; RaisePropertyChangedEvent("Guild"); }
         }
+
         private bool guildSelectionVisible;
         public bool GuildSelectionVisible
         {
@@ -63,37 +65,73 @@ namespace ESLTracker.ViewModels.Rewards
         }
 
         private bool isInEditMode;
-
         public bool IsInEditMode
         {
             get { return isInEditMode; }
             set { isInEditMode = value;
+                Visibility = Visibility.Visible;
                 RaisePropertyChangedEvent("IsInEditMode");
                 RaisePropertyChangedEvent("GuildSelectionVisible");
             }
         }
 
-        //events for RewadSet
-        public event EventHandler ControlClicked;
-        public event EventHandler<NewRewardEventArgs> NewReward;
-
-
-        //command for filter toggle button pressed
+        //command for add button
         public ICommand CommandAddButtonPressed
         {
             get { return new RelayCommand(new Action<object>(AddClicked)); }
         }
 
-        //command for filter toggle button pressed
+        //command when control is cliked
         public ICommand CommandControlClicked
         {
             get { return new RelayCommand(new Action<object>(ControlActivated)); }
         }
 
-        //command for filter toggle button pressed
+        //command command for close icon
         public ICommand CommandCloseClicked
         {
             get { return new RelayCommand(new Action<object>(CloseClicked)); }
+        }
+
+        RewardSetViewModel parentDataContext;
+        public RewardSetViewModel ParentDataContext
+        {
+            get { return parentDataContext; }
+            set
+            {
+                parentDataContext = value;
+                parentDataContext.RegisterControl(this);
+            }
+        }
+
+        private Visibility visibility;
+        public Visibility Visibility
+        {
+            get { return visibility; }
+            set
+            {
+                visibility = value;
+                RaisePropertyChangedEvent("Visibility");
+            }
+        }
+
+        private Thickness margin;
+        public Thickness Margin
+        {
+            get { return margin; }
+            set
+            {
+                margin = value;
+                RaisePropertyChangedEvent("Margin");
+            }
+        }
+
+        public int ActualWidth { get; set; }
+        public int ActualHeight { get; set; }
+
+        public AddSingleRewardViewModel()
+        {
+
         }
 
         internal void Reset()
@@ -103,7 +141,7 @@ namespace ESLTracker.ViewModels.Rewards
             this.Comment = String.Empty;
             this.Guild = null;
             InitTypeSpecifics(this.type);
-            //this.Margin = new Thickness(0, 0, 0, 0);
+            this.Margin = new Thickness(0, 0, 0, 0);
         }
 
         private void InitTypeSpecifics(RewardType value)
@@ -131,17 +169,29 @@ namespace ESLTracker.ViewModels.Rewards
 
         public void AddClicked(object param)
         {
+            Reward reward = new Reward()
+            {
+                Comment = this.Comment,
+                Quantity = this.Quantity,
+                Type = this.type,
+                RewardQuestGuild = this.Guild
+            };
 
+            ParentDataContext.AddReward(reward);
+            this.ParentDataContext.SetActiveControl(null);
+            Reset();
         }
 
         public void ControlActivated(object param)
         {
             this.IsInEditMode = true;
+            this.ParentDataContext.SetActiveControl(this);
         }
 
         public void CloseClicked(object param)
         {
             Reset();
+            this.ParentDataContext.SetActiveControl(null);
         }
 
 

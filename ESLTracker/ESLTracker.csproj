@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\Behaviors\SizeObserver.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyConverter.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
     <Compile Include="Controls\DeckClassSelector.xaml.cs">
@@ -106,6 +107,7 @@
     <Compile Include="Utils\WindowExtensions.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\Rewards\AddSingleRewardViewModel.cs" />
+    <Compile Include="ViewModels\Rewards\RewardSetViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="WindowsUtils.cs" />
     <Page Include="Controls\DeckClassSelector.xaml">

@@ -8,7 +8,12 @@
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Rewards"
-             mc:Ignorable="d" >
+             xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
+             mc:Ignorable="d" 
+             Margin="{Binding Margin}"
+             Behaviors:SizeObserver.Observe="True"
+             Behaviors:SizeObserver.ObservedWidth="{Binding ActualWidth, Mode=OneWayToSource}"
+             Behaviors:SizeObserver.ObservedHeight="{Binding ActualHeight, Mode=OneWayToSource}">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="GuildEnum" MethodName="GetValues"
                                 ObjectType="{x:Type System:Enum}">
@@ -21,7 +26,7 @@
     <UserControl.DataContext>
         <ViewModels:AddSingleRewardViewModel/>
     </UserControl.DataContext>
-    <Grid>
+    <Grid Visibility="{Binding Visibility}">
         <Image x:Name="imageClose" HorizontalAlignment="Right" VerticalAlignment="Top" Height="14" Width="14" 
                Source="pack://application:,,,/Resources/closeicon.png" 
                Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"

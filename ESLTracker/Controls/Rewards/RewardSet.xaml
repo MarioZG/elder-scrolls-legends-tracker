@@ -7,6 +7,7 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+             xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Rewards"
              mc:Ignorable="d">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="RewardReasonEnum" MethodName="GetValues"
@@ -17,15 +18,19 @@
         </ObjectDataProvider>
         <Converters:HasSelectedValueToVisibilityConverter x:Key="HasSelectedValueToVisibilityConverter" />
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <ViewModels:RewardSetViewModel/>
+    </UserControl.DataContext>
     <StackPanel Orientation="Vertical">
         <ComboBox 
                 x:Name="cbReason" 
                 HorizontalAlignment="Stretch"
                 Margin="10,10,10,10"
                 ItemsSource="{Binding Source={StaticResource RewardReasonEnum}}"
-            SelectionChanged="cbReason_SelectionChanged"
+                SelectedItem="{Binding RewardReason}"
             />
-        <Grid x:Name="grid" Visibility="{Binding ElementName=cbReason, Path=SelectedItem, Converter={StaticResource HasSelectedValueToVisibilityConverter}}">
+        <Grid  x:Name="grid"
+              Visibility="{Binding ElementName=cbReason, Path=SelectedItem, Converter={StaticResource HasSelectedValueToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="5*"/>
@@ -34,17 +39,15 @@
                 <RowDefinition Height="5*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <local:AddSingleReward Grid.Column="0" Grid.Row="0" x:Name="rewardGold" Type="Gold" ControlClicked="AddSingleReward_ControlClicked" NewReward="rewardGold_NewReward"/>
-            <local:AddSingleReward Grid.Column="1" Grid.Row="0" x:Name="rewardSoulGem" Type="SoulGem" ControlClicked="AddSingleReward_ControlClicked" NewReward="rewardGold_NewReward"/>
-            <local:AddSingleReward Grid.Column="0" Grid.Row="1" x:Name="rewardPack" Type="Pack" ControlClicked="AddSingleReward_ControlClicked" NewReward="rewardGold_NewReward"/>
-            <local:AddSingleReward Grid.Column="1" Grid.Row="1" x:Name="rewardCard" Type="Card" ControlClicked="AddSingleReward_ControlClicked" NewReward="rewardGold_NewReward"/>
-
+            <local:AddSingleReward Grid.Column="0" Grid.Row="0" x:Name="rewardGold" Type="Gold"/>
+            <local:AddSingleReward Grid.Column="1" Grid.Row="0" x:Name="rewardSoulGem" Type="SoulGem"/>
+            <local:AddSingleReward Grid.Column="0" Grid.Row="1" x:Name="rewardPack" Type="Pack" />
+            <local:AddSingleReward Grid.Column="1" Grid.Row="1" x:Name="rewardCard" Type="Card" />
         </Grid>
         <DataGrid 
             x:Name="dataGrid" 
             Grid.Row="1" 
             ItemsSource="{Binding Path=Rewards,Mode=TwoWay}"
-            DataContext="Rewards"
             CanUserAddRows="True"
             Width="100"
             Visibility="{Binding ElementName=cbReason, Path=SelectedItem, Converter={StaticResource HasSelectedValueToVisibilityConverter}}"
@@ -53,7 +56,7 @@
         <Button 
             x:Name="button" 
             Content="Done" 
-            Click="button_Click" 
+            Command="{Binding CommandDoneButtonPressed}" 
             Grid.Row="2" 
             Visibility="{Binding ElementName=cbReason, Path=SelectedItem, Converter={StaticResource HasSelectedValueToVisibilityConverter}}"
             />
