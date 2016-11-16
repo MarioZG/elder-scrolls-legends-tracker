@@ -206,7 +206,7 @@ namespace ESLTracker.ViewModels.Rewards
 
         public void ControlActivated(object param)
         {
-            this.IsInEditMode = true;
+            //do not set any props here, use SetActiveControl() of RewardsSet, for better testing!
             this.ParentDataContext.SetActiveControl(this);
 
             this.QtyFocus = Type == RewardType.Gold || Type == RewardType.SoulGem;

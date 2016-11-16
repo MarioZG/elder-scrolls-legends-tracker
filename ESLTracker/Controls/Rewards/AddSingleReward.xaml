@@ -22,6 +22,7 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <Converters:BoolToVisibiltyConverter x:Key="BoolToVisibiltyConverter" />
+        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:AddSingleRewardViewModel/>
@@ -58,7 +59,7 @@
             <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
                       SelectedItem="{Binding Guild}"
                       ItemsSource="{Binding Source={StaticResource GuildEnum}}"
-                      Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyConverter}}"/>
+                      Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
             <Button x:Name="btnAdd" Content="Add" 
                     Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"
                     Command="{Binding CommandAddButtonPressed}"/>

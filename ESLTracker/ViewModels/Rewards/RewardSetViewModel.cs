@@ -117,20 +117,23 @@ namespace ESLTracker.ViewModels.Rewards
             rewardControls.Add(c);
         }
 
-        public void SetActiveControl(AddSingleRewardViewModel c)
+        public void SetActiveControl(AddSingleRewardViewModel activeControl)
         {
-            activeControl = c;
-            foreach (AddSingleRewardViewModel asr in rewardControls)
+
+            if (activeControl != null)
             {
-                if (c != asr)
-                {
+                activeControl.IsInEditMode = true;
+                activeControl.Margin = new Thickness(activeControl.ActualWidth / 2, activeControl.ActualHeight / 2, activeControl.ActualWidth / 2, activeControl.ActualHeight / 2);
+                activeControl.GuildSelectionVisible = this.RewardReason == DataModel.Enums.RewardReason.Quest;
+            }
+
+            //reset other controls
+            foreach (AddSingleRewardViewModel asr in rewardControls.Where( c=> c != activeControl))
+            {
                     asr.Reset();
-                    asr.Visibility = c == null ? Visibility.Visible : Visibility.Collapsed;
-                }
-                else
-                {
-                    asr.Margin = new Thickness(asr.ActualWidth / 2, asr.ActualHeight / 2, asr.ActualWidth / 2, asr.ActualHeight / 2);
-              }
+
+                    //when no controls active set visible, when one active, set other to collapsed
+                    asr.Visibility = activeControl == null ? Visibility.Visible : Visibility.Collapsed;
             }
         }
         //end of managing single reward controls
