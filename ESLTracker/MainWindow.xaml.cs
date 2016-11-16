@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.Utils;
+using ESLTracker.ViewModels;
 
 namespace ESLTracker
 {
@@ -21,7 +22,20 @@ namespace ESLTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static bool UpdateOverlay { get; private set; }
+
+        new public MainWindowViewModel DataContext
+        {
+            get
+            {
+                return (MainWindowViewModel)base.DataContext;
+            }
+            set
+            {
+                base.DataContext = value;
+            }
+        }
+
+        public static bool UpdateOverlay { get; internal set; }
 
         public MainWindow()
         {
@@ -32,8 +46,6 @@ namespace ESLTracker
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.deckList.DataContext = DataModel.Tracker.Instance.Decks;
-
-
         }
 
         private static async void UpdateOverlayAsync(Window mainWindow)
@@ -53,22 +65,12 @@ namespace ESLTracker
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Utils.FileManager.SaveDatabase<DataModel.Tracker>("./data.xml", DataModel.Tracker.Instance);
-
-            UpdateOverlay = false;
+            this.WindowState = WindowState.Minimized;
+            this.ShowInTaskbar = false;
+            e.Cancel = true;
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            new RewardsSummary().Show();
-        }
-
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.deckEdit.Visibility = Visibility.Visible;
-        }
-
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        internal void RestoreOverlay()
         {
             if (!UpdateOverlay)
             {

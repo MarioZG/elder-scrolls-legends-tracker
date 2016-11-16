@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainWindowCommands.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyCollapsedConverter.cs" />
@@ -107,6 +112,7 @@
     <Compile Include="Utils\FileManager.cs" />
     <Compile Include="Utils\Converters\HasSelectedValueToVisibilityConverter.cs" />
     <Compile Include="Utils\WindowExtensions.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\Rewards\AddSingleRewardViewModel.cs" />
     <Compile Include="ViewModels\Rewards\IRewardSetViewModel.cs" />
@@ -196,6 +202,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -212,9 +219,6 @@
     <Resource Include="Resources\RewardType\Card.png" />
     <Resource Include="Resources\RewardType\Pack.png" />
     <Resource Include="Resources\RewardType\Soulgem.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\closeicon.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\closeicon.png" />
@@ -235,6 +239,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WindowIcons\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TrayIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

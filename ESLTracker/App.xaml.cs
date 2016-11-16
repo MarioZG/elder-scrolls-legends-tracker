@@ -13,5 +13,9 @@ namespace ESLTracker
     /// </summary>
     public partial class App : Application
     {
+        public void Exit()
+        {
+            this.Shutdown();
+        }
     }
 }

@@ -3,19 +3,53 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:local="clr-namespace:ESLTracker"
         xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks" x:Class="ESLTracker.MainWindow"
+        xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
+        xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         mc:Ignorable="d"
+        x:Name="mainWindow"
         Title="MainWindow" Height="497.707" Width="280.045" Background="Transparent" 
         BorderThickness="2" 
         BorderBrush="Black" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Window.Resources>
+        <local:NotifyIconLeftClickCommand x:Key="NotifyIconLeftClickCommand" />
+        <local:ExitCommand x:Key="ExitCommand" />
+        <local:ShowRewardsCommand x:Key="ShowRewardsCommand" />
+        <local:NewDeckCommand x:Key="NewDeckCommand" />
+        <local:ShowOverlayCommand x:Key="ShowOverlayCommand" />
+        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
+    </Window.Resources>
+    <Window.DataContext>
+        <ViewModels:MainWindowViewModel/>
+    </Window.DataContext>
     <StackPanel>
         <Menu x:Name="menu" VerticalAlignment="Top">
-            <MenuItem Header="New Deck" Click="MenuItem_Click_1" />
-            <MenuItem Header="Rewards" Click="MenuItem_Click" />
-            <MenuItem Header="Restore overlay window" Click="MenuItem_Click_2" />
+            <MenuItem Header="New Deck" Command="{StaticResource NewDeckCommand}" />
+            <MenuItem Header="Rewards" Command="{StaticResource ShowRewardsCommand}" />
+            <MenuItem Header="Restore overlay window" Command="{StaticResource ShowOverlayCommand}"/>
         </Menu>
-        <WrapPanel x:Name="deckEdit" Visibility="Collapsed"><Decks:EditDeck /></WrapPanel> 
-        <Decks:DeckList x:Name="deckList"/>
+        <WrapPanel x:Name="deckEdit"             
+                   Visibility="{Binding DeckEditVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+        >
+            <Decks:EditDeck />
+        </WrapPanel> 
+        <Decks:DeckList x:Name="deckList"
+        />
+        <tb:TaskbarIcon 
+            x:Name="taskBarIcon"
+            IconSource="/Resources/TrayIcon.ico"
+            LeftClickCommand="{StaticResource NotifyIconLeftClickCommand}"
+            LeftClickCommandParameter="{Binding ElementName=mainWindow}"
+        >
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Test" />
+                    <MenuItem Header="Exit" Command="{StaticResource ExitCommand}" />
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
     </StackPanel>
+    
 </Window>
