@@ -73,6 +73,10 @@ namespace ESLTracker.ViewModels.Rewards
 
         private bool LinkRewardToDeck()
         {
+            if (Tracker.Instance.ActiveDeck == null)
+            {
+                return false;
+            }
             bool matchVersus = (Tracker.Instance.ActiveDeck.Type == DeckType.VesrusArena)
                 && (this.RewardReason == DataModel.Enums.RewardReason.VersusArena);
             bool matchSolo = (Tracker.Instance.ActiveDeck.Type == DeckType.SoloArena)
@@ -94,6 +98,12 @@ namespace ESLTracker.ViewModels.Rewards
         public void DoneClicked(object param)
         {
             var newRewards = Rewards.Where(r => !DataModel.Tracker.Instance.Rewards.Contains(r));
+            //fix up excaly same date
+            DateTime date = DateTime.Now;
+            foreach (Reward r in newRewards)
+            {
+                r.Date = date;
+            }
             Tracker.Instance.Rewards.AddRange(newRewards);
             Rewards.Clear();
             RewardReason = null;

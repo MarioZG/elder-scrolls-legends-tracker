@@ -53,10 +53,13 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DataModel\DeckTests.cs" />
+    <Compile Include="DataModel\GameTests.cs" />
+    <Compile Include="DataModel\RewardTests.cs" />
     <Compile Include="DataModel\TrackerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ClassAttributesHelperTests.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModelTests.cs" />
+    <Compile Include="ViewModels\Rewards\RewardSetViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ESLTracker\ESLTracker.csproj">

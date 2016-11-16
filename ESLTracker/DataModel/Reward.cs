@@ -15,7 +15,7 @@ namespace ESLTracker.DataModel
         public RewardType Type { get; set; }
         public int Quantity { get; set; }
         public string Comment { get; set; }
-        public DateTime Date { get; }
+        public DateTime Date { get; set; }
 
         //quest rewards
         public Guild? RewardQuestGuild {get;set;}

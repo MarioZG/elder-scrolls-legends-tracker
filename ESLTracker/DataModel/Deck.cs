@@ -13,11 +13,13 @@ namespace ESLTracker.DataModel
         public DeckAttributes Attributes { get; set; }
         public DeckClass Class { get; set; }
         public string Notes { get; set; }
+        public DateTime CreatedDate { get; set; }
 
 
         public Deck()
         {
             DeckId = Guid.NewGuid(); //if deserialise, will be overriten!, if new generate!
+            CreatedDate = DateTime.Now;
         }
 
         public int Victories {

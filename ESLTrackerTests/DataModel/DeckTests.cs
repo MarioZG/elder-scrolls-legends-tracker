@@ -55,5 +55,14 @@ namespace ESLTracker.DataModel.Tests
 
             Assert.AreEqual(original, deckDeserialise.DeckId);
         }
+
+        [TestMethod()]
+        public void DeckTest002_CheckDateTimeAdded()
+        {
+            Deck d = new Deck();
+
+            Assert.IsTrue(d.CreatedDate.Year > 1999);
+
+        }
     }
 }

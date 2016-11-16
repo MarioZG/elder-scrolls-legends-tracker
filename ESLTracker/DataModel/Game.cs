@@ -25,6 +25,7 @@ namespace ESLTracker.DataModel
             }
         }
 
+        public DateTime Date;
         public GameType Type;
         public bool? BonusRound;
         public OrderOfPlay OrderOfPlay;
@@ -41,7 +42,10 @@ namespace ESLTracker.DataModel
         public PlayerRank? OpponentRank;
         public int? OpponentLegendRank;
 
-
+        public Game()
+        {
+            Date = DateTime.Now;
+        }
 
     }
 }
