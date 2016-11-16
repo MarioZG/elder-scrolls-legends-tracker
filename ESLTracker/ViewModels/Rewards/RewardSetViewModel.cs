@@ -11,7 +11,7 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.ViewModels.Rewards
 {
-    public class RewardSetViewModel : ViewModelBase
+    public class RewardSetViewModel : ViewModelBase, IRewardSetViewModel
     {
         ObservableCollection<Reward> rewards;
         public ObservableCollection<Reward> Rewards

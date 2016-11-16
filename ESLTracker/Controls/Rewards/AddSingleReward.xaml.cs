@@ -50,7 +50,7 @@ namespace ESLTracker.Controls.Rewards
             }
         }
 
-        public RewardSetViewModel ParentDataContext
+        public IRewardSetViewModel ParentDataContext
         {
             get { return this.DataContext.ParentDataContext; }
             set

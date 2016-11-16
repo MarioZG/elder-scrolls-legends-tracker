@@ -28,7 +28,7 @@ namespace ESLTracker.ViewModels
             }
             else
             {
-                _action("Hello World");
+                _action(null);
             }
         }
         #endregion

@@ -47,9 +47,13 @@
                >
             <TextBox x:Name="txtQuantity"  HorizontalAlignment="Stretch"
                      Text="{Binding Quantity}"
+                     Behaviors:FocusExtension.IsFocused="{Binding QtyFocus, Mode=TwoWay}"
+                     Behaviors:FocusExtension.SelectAllOnFocus="True"
                      Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
             <TextBox x:Name="txtComment" HorizontalAlignment="Stretch"
                      Text="{Binding Comment}"
+                     Behaviors:FocusExtension.IsFocused="{Binding CommentsFocus, Mode=TwoWay}"
+                     Behaviors:FocusExtension.SelectAllOnFocus="True"
                      Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
             <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
                       SelectedItem="{Binding Guild}"

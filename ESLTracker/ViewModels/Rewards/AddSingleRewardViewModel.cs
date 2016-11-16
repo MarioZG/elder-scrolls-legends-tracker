@@ -75,6 +75,28 @@ namespace ESLTracker.ViewModels.Rewards
             }
         }
 
+        private bool qtyFocus;
+        public bool QtyFocus
+        {
+            get { return qtyFocus; }
+            set
+            {
+                qtyFocus = value;
+                RaisePropertyChangedEvent("QtyFocus");
+            }
+        }
+
+        private bool commentsFocus;
+        public bool CommentsFocus
+        {
+            get { return commentsFocus; }
+            set
+            {
+                commentsFocus = value;
+                RaisePropertyChangedEvent("CommentsFocus");
+            }
+        }
+
         //command for add button
         public ICommand CommandAddButtonPressed
         {
@@ -93,8 +115,8 @@ namespace ESLTracker.ViewModels.Rewards
             get { return new RelayCommand(new Action<object>(CloseClicked)); }
         }
 
-        RewardSetViewModel parentDataContext;
-        public RewardSetViewModel ParentDataContext
+        IRewardSetViewModel parentDataContext;
+        public IRewardSetViewModel ParentDataContext
         {
             get { return parentDataContext; }
             set
@@ -186,6 +208,9 @@ namespace ESLTracker.ViewModels.Rewards
         {
             this.IsInEditMode = true;
             this.ParentDataContext.SetActiveControl(this);
+
+            this.QtyFocus = Type == RewardType.Gold || Type == RewardType.SoulGem;
+            this.CommentsFocus = Type == RewardType.Pack || Type == RewardType.Card;
         }
 
         public void CloseClicked(object param)
