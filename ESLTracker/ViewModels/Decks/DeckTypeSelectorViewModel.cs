@@ -9,14 +9,14 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.ViewModels.Decks
 {
-    public class DeckTypeSelectorViewModel : IDeckTypeSelectorViewModel
+    public class DeckTypeSelectorViewModel : ViewModelBase, IDeckTypeSelectorViewModel
     {
         /// <summary>
         /// fiter of attributes, 
         /// bool value binded to isenabled property of trigger button
         /// </summary>
-        public Dictionary<DeckType, bool> Filter { get; set; }
-        
+        public Dictionary<DeckType, bool> FilterButtonState { get; set; }
+
 
         public ObservableCollection<DeckType> FilteredTypes { get; set; } = new ObservableCollection<DeckType>(Enum.GetValues(typeof(DeckType)).OfType<DeckType>());
 
@@ -29,10 +29,10 @@ namespace ESLTracker.ViewModels.Decks
 
         public DeckTypeSelectorViewModel()
         {
-            Filter = new Dictionary<DeckType, bool>();
+            FilterButtonState = new Dictionary<DeckType, bool>();
             foreach (DeckType a in Enum.GetValues(typeof(DeckType)))
             {
-                Filter.Add(a, false);
+                FilterButtonState.Add(a, false);
             }
         }
 
@@ -45,19 +45,19 @@ namespace ESLTracker.ViewModels.Decks
             }
 
             //toggle filter value
-            Filter[attrib] = !Filter[attrib];
+            FilterButtonState[attrib] = !FilterButtonState[attrib];
 
             //fires to many events on colection, will filter once for reset, and then for every selected attrib
             FilteredTypes.Clear();
 
             //if all unslected - show all
-            if (Filter.All(f => !f.Value))
+            if (FilterButtonState.All(f => !f.Value))
             {
                 Enum.GetValues(typeof(DeckType)).OfType<DeckType>().All(t => { FilteredTypes.Add(t); return true; });
             }
             else
             {
-                foreach (DeckType type in Filter.Where(f => f.Value).Select(f => f.Key))
+                foreach (DeckType type in FilterButtonState.Where(f => f.Value).Select(f => f.Key))
                 {
                     FilteredTypes.Add(type);
                 }
@@ -70,12 +70,13 @@ namespace ESLTracker.ViewModels.Decks
             foreach (DeckType a in Enum.GetValues(typeof(DeckType)))
             {
                 //unselct all in UI
-                Filter[a] = false;
+                FilterButtonState[a] = false;
 
                 //reset filter collection
                 FilteredTypes.Clear();
                 Enum.GetValues(typeof(DeckType)).OfType<DeckType>().All(t => { FilteredTypes.Add(t); return true; });
             }
+            RaisePropertyChangedEvent("FilterButtonState");
         }
     }
 }

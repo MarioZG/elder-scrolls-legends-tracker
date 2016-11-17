@@ -26,7 +26,7 @@
         <ToggleButton
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Strength"
-                      IsChecked="{Binding Filter[DeckAttribute.Strength]}"
+                      IsChecked="{Binding FilterButtonState[DeckAttribute.Strength]}"
             >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/strength.png" />
@@ -35,7 +35,7 @@
         <ToggleButton Tag="Intelligence"                       
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Intelligence"
-                      IsChecked="{Binding Filter[DeckAttribute.Intelligence]}"
+                      IsChecked="{Binding FilterButtonState[DeckAttribute.Intelligence]}"
             >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/intelligence.png" />
@@ -44,7 +44,7 @@
         <ToggleButton Tag="Agility"                        
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Agility"
-                      IsChecked="{Binding Filter[DeckAttribute.Agility]}"
+                      IsChecked="{Binding FilterButtonState[DeckAttribute.Agility]}"
             >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/agility.png" />
@@ -53,7 +53,7 @@
         <ToggleButton Tag="Willpower"                        
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Willpower"
-                      IsChecked="{Binding Filter[DeckAttribute.Willpower]}"
+                      IsChecked="{Binding FilterButtonState[DeckAttribute.Willpower]}"
             >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/willpower.png" />
@@ -62,7 +62,7 @@
         <ToggleButton Tag="Endurance"                        
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Endurance"
-                      IsChecked="{Binding Filter[DeckAttribute.Endurance]}"
+                      IsChecked="{Binding FilterButtonState[DeckAttribute.Endurance]}"
             >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/endurance.png" />
@@ -71,7 +71,7 @@
         <ToggleButton Tag="Neutral"                        
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Neutral"
-                      IsChecked="{Binding Filter[DeckAttribute.Neutral]}"
+                      IsChecked="{Binding FilterButtonState[DeckAttribute.Neutral]}"
             >
             <StackPanel>
                 <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/neutral.png" />

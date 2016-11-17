@@ -92,16 +92,16 @@ namespace ESLTracker.ViewModels.Decks.Tests
             int expectedCount = model.FilteredTypes.Count;
 
             model.FilteredTypes.RemoveAt(1);
-            model.Filter[DeckType.SoloArena] = true;
+            model.FilterButtonState[DeckType.SoloArena] = true;
 
             //assure filter modified
             Assert.AreNotEqual(expectedCount, model.FilteredTypes.Count);
-            Assert.AreNotEqual(false, model.Filter[DeckType.SoloArena]);
+            Assert.AreNotEqual(false, model.FilterButtonState[DeckType.SoloArena]);
 
             model.Reset();
 
             Assert.AreEqual(expectedCount, model.FilteredTypes.Count);
-            Assert.AreEqual(false, model.Filter[DeckType.SoloArena]);
+            Assert.AreEqual(false, model.FilterButtonState[DeckType.SoloArena]);
 
             //all nclued in filter?
             Assert.IsTrue(Enum.GetValues(typeof(DeckType)).OfType<DeckType>().All(r => { return model.FilteredTypes.Contains(r); }));

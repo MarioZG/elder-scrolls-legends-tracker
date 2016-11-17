@@ -10,7 +10,7 @@ namespace ESLTracker.ViewModels
     public interface IDeckClassSelectorViewModel : INotifyPropertyChanged
     {
         ICommand CommandFilterButtonPressed { get; }
-        Dictionary<DeckAttribute, bool> Filter { get; set; }
+        Dictionary<DeckAttribute, bool> FilterButtonState { get; set; }
         ObservableCollection<DeckClass> FilteredClasses { get; set; }
         DeckClass? SelectedClass { get; set; }
         DeckAttributes SelectedClassAttributes { get; }

@@ -18,7 +18,7 @@ namespace ESLTracker.ViewModels
         /// fiter of attributes, 
         /// bool value binded to isenabled property of trigger button
         /// </summary>
-        public Dictionary<DeckAttribute, bool> Filter { get; set; }
+        public Dictionary<DeckAttribute, bool> FilterButtonState { get; set; }
 
         /// <summary>
         /// source for drop down , list of classes that match current filter
@@ -61,10 +61,10 @@ namespace ESLTracker.ViewModels
 
         public DeckClassSelectorViewModel()
         {
-            Filter = new Dictionary<DeckAttribute, bool>();
+            FilterButtonState = new Dictionary<DeckAttribute, bool>();
             foreach (DeckAttribute a in Enum.GetValues(typeof(DeckAttribute)))
             {
-                Filter.Add(a, false);
+                FilterButtonState.Add(a, false);
             }
 
             FilteredClasses = new ObservableCollection<DeckClass>();
@@ -80,14 +80,14 @@ namespace ESLTracker.ViewModels
             }
 
             //toggle filter value
-            Filter[attrib] = ! Filter[attrib];
+            FilterButtonState[attrib] = ! FilterButtonState[attrib];
 
             FilterCombo();
         }
 
         private void FilterCombo()
         {
-            var filteredClasses = Utils.ClassAttributesHelper.FindClassByAttribute(Filter.Where(f => f.Value).Select(f => f.Key));
+            var filteredClasses = Utils.ClassAttributesHelper.FindClassByAttribute(FilterButtonState.Where(f => f.Value).Select(f => f.Key));
             FilteredClasses.Clear();
             foreach(DeckClass dc in filteredClasses)
             {
@@ -107,9 +107,10 @@ namespace ESLTracker.ViewModels
         {
             foreach (DeckAttribute a in Enum.GetValues(typeof(DeckAttribute)))
             {
-                Filter[a] = false;
+                FilterButtonState[a] = false;
             }
             FilterCombo();
+            RaisePropertyChangedEvent("FilterButtonState");
         }
     }
 }

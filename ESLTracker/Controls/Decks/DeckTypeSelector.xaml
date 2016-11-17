@@ -13,14 +13,14 @@
         <ToggleButton x:Name="btnConstructed" Content="Constructed"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Constructed"
-                      IsChecked="{Binding Filter[DeckAttribute.Constructed]}"/>
+                      IsChecked="{Binding FilterButtonState[DeckAttribute.Constructed]}"/>
         <ToggleButton x:Name="btnVersusArena" Content="Versus Arena"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="VersusArena"
-                      IsChecked="{Binding Filter[DeckAttribute.VersusArena]}"/>
+                      IsChecked="{Binding FilterButtonState[DeckAttribute.VersusArena]}"/>
         <ToggleButton x:Name="btnSoloArena" Content="Solo arena"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="SoloArena"
-                      IsChecked="{Binding Filter[DeckAttribute.SoloArena]}"/>
+                      IsChecked="{Binding FilterButtonState[DeckAttribute.SoloArena]}"/>
     </StackPanel>
 </UserControl>
