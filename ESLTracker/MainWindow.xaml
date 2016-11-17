@@ -24,18 +24,22 @@
     <Window.DataContext>
         <ViewModels:MainWindowViewModel/>
     </Window.DataContext>
-    <StackPanel>
-        <Menu x:Name="menu" VerticalAlignment="Top">
+    <DockPanel>
+        <Menu x:Name="menu" VerticalAlignment="Top"  DockPanel.Dock="Top" >
             <MenuItem Header="New Deck" Command="{StaticResource NewDeckCommand}" />
             <MenuItem Header="Rewards" Command="{StaticResource ShowRewardsCommand}" />
             <MenuItem Header="Restore overlay window" Command="{StaticResource ShowOverlayCommand}"/>
         </Menu>
-        <WrapPanel x:Name="deckEdit"             
+        <WrapPanel x:Name="deckEdit"  DockPanel.Dock="Top"         
                    Visibility="{Binding DeckEditVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
         >
             <Decks:EditDeck x:Name="editDeck" />
         </WrapPanel>
-        <Decks:DeckList x:Name="deckList" HorizontalAlignment="Stretch"/>
+        <WrapPanel
+                    Visibility="{Binding DeckListVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+            >
+            <Decks:DeckList x:Name="deckList" HorizontalAlignment="Stretch"/>
+        </WrapPanel>
         <tb:TaskbarIcon 
             x:Name="taskBarIcon"
             IconSource="/Resources/TrayIcon.ico"
@@ -49,6 +53,6 @@
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
-    </StackPanel>
+    </DockPanel>
 
 </Window>

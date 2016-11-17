@@ -12,9 +12,10 @@
     <UserControl.DataContext>
         <ViewModels:DeckListViewModel/>
     </UserControl.DataContext>
-    <StackPanel>
-        <local:DeckFilter x:Name="deckFilter" HorizontalAlignment="Stretch"/>
+    <DockPanel>
+        <local:DeckFilter x:Name="deckFilter" HorizontalAlignment="Stretch" DockPanel.Dock="Top"/>
         <ListBox x:Name="listBox"
+                 ScrollViewer.VerticalScrollBarVisibility="Visible"
                  SelectedItem="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}"
                  ItemsSource="{Binding FilteredDecks, Mode=TwoWay}"
                  >
@@ -25,5 +26,5 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-    </StackPanel>
+    </DockPanel>
 </UserControl>
