@@ -14,7 +14,7 @@
     </UserControl.DataContext>
     <StackPanel>
         <Controls:DeckClassSelector x:Name="deckClassFilter" />
-        
+        <local:DeckTypeSelector x:Name="deckTypeFilter" />
         <ListBox x:Name="listBox"
                  SelectedItem="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}"
                  ItemsSource="{Binding FilteredDecks, Mode=TwoWay}"

@@ -28,7 +28,7 @@ namespace ESLTracker.ViewModels.Decks
         public ObservableCollection<Deck> FilteredDecks { get; set; }
 
         private IDeckClassSelectorViewModel classFilterViewModel;
-        private IDeckTypeSelector typeFilterViewModel;
+        private IDeckTypeSelectorViewModel typeFilterViewModel;
 
         public void SetClassFilterViewModel(IDeckClassSelectorViewModel cfvm)
         {
@@ -36,9 +36,10 @@ namespace ESLTracker.ViewModels.Decks
             classFilterViewModel.PropertyChanged += DeckListViewModel_PropertyChanged;
         }
 
-        public void SetTypeFilterViewModel(IDeckTypeSelector dts)
+        public void SetTypeFilterViewModel(IDeckTypeSelectorViewModel dts)
         {
             typeFilterViewModel = dts;
+            typeFilterViewModel.FilteredTypes.CollectionChanged += FilteredTypes_CollectionChanged;
         }
 
         public DeckListViewModel()
@@ -60,6 +61,11 @@ namespace ESLTracker.ViewModels.Decks
             {
                 ApplyFilter();
             }
+        }
+
+        private void FilteredTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            ApplyFilter();
         }
 
         private void ApplyFilter()

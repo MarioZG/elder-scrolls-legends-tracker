@@ -37,7 +37,7 @@ namespace ESLTracker.Controls.Game
             this.selectedDeck.DataContext = DataModel.Tracker.Instance.ActiveDeck;
             if (this.selectedDeck.DataContext != null)
             {
-                if (DataModel.Tracker.Instance.ActiveDeck.Type == DeckType.VesrusArena)
+                if (DataModel.Tracker.Instance.ActiveDeck.Type == DeckType.VersusArena)
                 {
                     this.cbGameType.SelectedItem = DataModel.Enums.GameType.VersusArena;
                 }

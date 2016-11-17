@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="ESLTracker.Controls.Decks.DeckTypeSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
+             xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <ViewModels:DeckTypeSelectorViewModel/>
+    </UserControl.DataContext>
+    <StackPanel Orientation="Horizontal">
+        <ToggleButton x:Name="btnConstructed" Content="Constructed"
+                      Command="{Binding CommandFilterButtonPressed}"
+                      CommandParameter="Constructed"
+                      IsChecked="{Binding Filter[DeckAttribute.Constructed]}"/>
+        <ToggleButton x:Name="btnVersusArena" Content="Versus Arena"
+                      Command="{Binding CommandFilterButtonPressed}"
+                      CommandParameter="VersusArena"
+                      IsChecked="{Binding Filter[DeckAttribute.VersusArena]}"/>
+        <ToggleButton x:Name="btnSoloArena" Content="Solo arena"
+                      Command="{Binding CommandFilterButtonPressed}"
+                      CommandParameter="SoloArena"
+                      IsChecked="{Binding Filter[DeckAttribute.SoloArena]}"/>
+    </StackPanel>
+</UserControl>

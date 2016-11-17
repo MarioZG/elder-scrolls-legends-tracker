@@ -34,11 +34,11 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 new Deck() {Type = DeckType.SoloArena, Class = DeckClass.Monk },
                 new Deck() {Type = DeckType.SoloArena, Class = DeckClass.Mage },
                 new Deck() {Type = DeckType.SoloArena, Class = DeckClass.Mage },
-                new Deck() {Type = DeckType.VesrusArena, Class = DeckClass.Neutral },
-                new Deck() {Type = DeckType.VesrusArena, Class = DeckClass.Neutral },
-                new Deck() {Type = DeckType.VesrusArena, Class = DeckClass.Spellsword },
-                new Deck() {Type = DeckType.VesrusArena, Class = DeckClass.Strength },
-                new Deck() {Type = DeckType.VesrusArena, Class = DeckClass.Willpower }
+                new Deck() {Type = DeckType.VersusArena, Class = DeckClass.Neutral },
+                new Deck() {Type = DeckType.VersusArena, Class = DeckClass.Neutral },
+                new Deck() {Type = DeckType.VersusArena, Class = DeckClass.Spellsword },
+                new Deck() {Type = DeckType.VersusArena, Class = DeckClass.Strength },
+                new Deck() {Type = DeckType.VersusArena, Class = DeckClass.Willpower }
             };
 
             //add each class once
@@ -48,10 +48,10 @@ namespace ESLTracker.ViewModels.Decks.Tests
             }
         }
 
-        private static Mock<IDeckTypeSelector> GetFullTypeFilter()
+        private static Mock<IDeckTypeSelectorViewModel> GetFullTypeFilter()
         {
             List<DeckType> typeFilter = new List<DeckType>(Enum.GetValues(typeof(DeckType)).OfType<DeckType>());
-            Mock<IDeckTypeSelector> typeSelector = new Mock<IDeckTypeSelector>();
+            Mock<IDeckTypeSelectorViewModel> typeSelector = new Mock<IDeckTypeSelectorViewModel>();
             typeSelector.Setup(ts => ts.FilteredTypes).Returns(
                 new ObservableCollection<DeckType>(typeFilter));
             return typeSelector;
@@ -76,7 +76,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             classSelector.Setup(cs => cs.SelectedClass).Returns(filter);
             classSelector.Setup(cs => cs.FilteredClasses).Returns(new ObservableCollection<DeckClass>(new List<DeckClass>() { filter }));
 
-            Mock<IDeckTypeSelector> typeSelector = GetFullTypeFilter();
+            Mock<IDeckTypeSelectorViewModel> typeSelector = GetFullTypeFilter();
 
             int expectedCount = 3;
 
@@ -106,7 +106,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                     Utils.ClassAttributesHelper.FindClassByAttribute(filterAttrib)
                     ));
 
-            Mock<IDeckTypeSelector> typeSelector = GetFullTypeFilter();
+            Mock<IDeckTypeSelectorViewModel> typeSelector = GetFullTypeFilter();
 
             int expectedCount = 3 +//random data - archer i battlemage y strength
                 5; //one for every class
@@ -134,7 +134,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                     Utils.ClassAttributesHelper.FindClassByAttribute(filterAttrib)
                     ));
 
-            Mock<IDeckTypeSelector> typeSelector = GetFullTypeFilter();
+            Mock<IDeckTypeSelectorViewModel> typeSelector = GetFullTypeFilter();
 
             int expectedCount = 0 +//none inrandom data
                 1; //one for every class
@@ -161,7 +161,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                     Utils.ClassAttributesHelper.FindClassByAttribute(DeckAttribute.Neutral)
                     ));
 
-            Mock<IDeckTypeSelector> typeSelector = GetFullTypeFilter();
+            Mock<IDeckTypeSelectorViewModel> typeSelector = GetFullTypeFilter();
 
             int expectedCount = DeckBase.Count;
 
@@ -193,7 +193,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Mock<IDeckClassSelectorViewModel> classSelector = GetFullClassFilter();
 
             List<DeckType> typeFilter = new List<DeckType>() { DeckType.SoloArena };
-            Mock<IDeckTypeSelector> typeSelector = new Mock<IDeckTypeSelector>();
+            Mock<IDeckTypeSelectorViewModel> typeSelector = new Mock<IDeckTypeSelectorViewModel>();
             typeSelector.Setup(ts => ts.FilteredTypes).Returns(
                 new ObservableCollection<DeckType>(typeFilter));
 
@@ -218,7 +218,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             classSelector.Setup(cs => cs.FilteredClasses).Returns(new ObservableCollection<DeckClass>(new List<DeckClass>() { classFilter }));
 
             List<DeckType> typeFilter = new List<DeckType>() { DeckType.SoloArena };
-            Mock<IDeckTypeSelector> typeSelector = new Mock<IDeckTypeSelector>();
+            Mock<IDeckTypeSelectorViewModel> typeSelector = new Mock<IDeckTypeSelectorViewModel>();
             typeSelector.Setup(ts => ts.FilteredTypes).Returns(
                 new ObservableCollection<DeckType>(typeFilter));
 

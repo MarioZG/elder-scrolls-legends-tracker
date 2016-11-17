@@ -17,15 +17,15 @@ using ESLTracker.ViewModels.Decks;
 namespace ESLTracker.Controls.Decks
 {
     /// <summary>
-    /// Interaction logic for DeckList.xaml
+    /// Interaction logic for DeckTypeSelector.xaml
     /// </summary>
-    public partial class DeckList : UserControl
+    public partial class DeckTypeSelector : UserControl
     {
-        new public DeckListViewModel DataContext
+        new public DeckTypeSelectorViewModel DataContext
         {
             get
             {
-                return (DeckListViewModel)base.DataContext;
+                return (DeckTypeSelectorViewModel)base.DataContext;
             }
             set
             {
@@ -33,12 +33,9 @@ namespace ESLTracker.Controls.Decks
             }
         }
 
-        public DeckList()
+        public DeckTypeSelector()
         {
             InitializeComponent();
-            this.DataContext.SetClassFilterViewModel(this.deckClassFilter.DataContext);
-            this.DataContext.SetTypeFilterViewModel(this.deckTypeFilter.DataContext);
         }
-
     }
 }

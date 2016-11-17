@@ -9,7 +9,7 @@ namespace ESLTracker.DataModel.Enums
     public enum DeckType
     {
         Constructed,
-        VesrusArena,
+        VersusArena,
         SoloArena
     }
 }

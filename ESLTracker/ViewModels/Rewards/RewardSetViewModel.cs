@@ -77,7 +77,7 @@ namespace ESLTracker.ViewModels.Rewards
             {
                 return false;
             }
-            bool matchVersus = (Tracker.Instance.ActiveDeck.Type == DeckType.VesrusArena)
+            bool matchVersus = (Tracker.Instance.ActiveDeck.Type == DeckType.VersusArena)
                 && (this.RewardReason == DataModel.Enums.RewardReason.VersusArena);
             bool matchSolo = (Tracker.Instance.ActiveDeck.Type == DeckType.SoloArena)
                 && (this.RewardReason == DataModel.Enums.RewardReason.SoloArena);

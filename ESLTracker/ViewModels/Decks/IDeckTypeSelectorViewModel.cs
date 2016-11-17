@@ -8,9 +8,8 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.ViewModels.Decks
 {
-    public class DeckTypeSelector : IDeckTypeSelector
+    public interface IDeckTypeSelectorViewModel
     {
-        public ObservableCollection<DeckType> FilteredTypes { get; set; } = new ObservableCollection<DeckType>(Enum.GetValues(typeof(DeckType)).OfType<DeckType>());
-        
+        ObservableCollection<DeckType> FilteredTypes { get; set; }
     }
 }

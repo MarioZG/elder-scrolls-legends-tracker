@@ -59,6 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Decks\DeckTypeSelector.xaml.cs">
+      <DependentUpon>DeckTypeSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindowCommands.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
@@ -113,8 +116,8 @@
     <Compile Include="Utils\Converters\HasSelectedValueToVisibilityConverter.cs" />
     <Compile Include="Utils\WindowExtensions.cs" />
     <Compile Include="ViewModels\Decks\DeckListViewModel.cs" />
-    <Compile Include="ViewModels\Decks\DeckTypeSelector.cs" />
-    <Compile Include="ViewModels\Decks\IDeckTypeSelector.cs" />
+    <Compile Include="ViewModels\Decks\DeckTypeSelectorViewModel.cs" />
+    <Compile Include="ViewModels\Decks\IDeckTypeSelectorViewModel.cs" />
     <Compile Include="ViewModels\IDeckClassSelectorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
@@ -132,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Decks\DeckList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Decks\DeckTypeSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
