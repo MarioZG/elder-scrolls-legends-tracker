@@ -16,6 +16,7 @@ namespace ESLTracker.ViewModels.Decks
         /// bool value binded to isenabled property of trigger button
         /// </summary>
         public Dictionary<DeckType, bool> Filter { get; set; }
+        
 
         public ObservableCollection<DeckType> FilteredTypes { get; set; } = new ObservableCollection<DeckType>(Enum.GetValues(typeof(DeckType)).OfType<DeckType>());
 
@@ -62,6 +63,19 @@ namespace ESLTracker.ViewModels.Decks
                 }
             }
 
+        }
+
+        public void Reset()
+        {
+            foreach (DeckType a in Enum.GetValues(typeof(DeckType)))
+            {
+                //unselct all in UI
+                Filter[a] = false;
+
+                //reset filter collection
+                FilteredTypes.Clear();
+                Enum.GetValues(typeof(DeckType)).OfType<DeckType>().All(t => { FilteredTypes.Add(t); return true; });
+            }
         }
     }
 }

@@ -42,7 +42,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             };
 
             //add each class once
-            foreach(DeckClass dc in Enum.GetValues(typeof(DeckClass)))
+            foreach (DeckClass dc in Enum.GetValues(typeof(DeckClass)))
             {
                 DeckBase.Add(new Deck() { Class = dc });
             }
@@ -235,6 +235,23 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Assert.AreEqual(classFilter, result.ToList()[1].Class);
             Assert.AreEqual(typeFilter[0], result.ToList()[0].Type);
             Assert.AreEqual(typeFilter[0], result.ToList()[1].Type);
+        }
+
+        [TestMethod()]
+        public void ResetFiltersTest001()
+        {
+            Mock<IDeckClassSelectorViewModel> classSelectorFullFilter = GetFullClassFilter();
+            Mock<IDeckTypeSelectorViewModel> typeSelectorFullFilter = GetFullTypeFilter();
+
+            DeckListViewModel model = new DeckListViewModel();
+            model.SetClassFilterViewModel(classSelectorFullFilter.Object);
+            model.SetTypeFilterViewModel(typeSelectorFullFilter.Object);
+
+            model.ResetFilters(null);
+
+            //assure filter has been removed
+            typeSelectorFullFilter.Verify(t => t.Reset());
+            classSelectorFullFilter.Verify(t => t.Reset());
         }
     }
 }

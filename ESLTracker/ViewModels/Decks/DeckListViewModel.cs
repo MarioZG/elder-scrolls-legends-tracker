@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 
@@ -26,6 +27,13 @@ namespace ESLTracker.ViewModels.Decks
         }
 
         public ObservableCollection<Deck> FilteredDecks { get; set; }
+
+        //command for filter toggle button pressed
+        public ICommand CommandResetFilterButtonPressed
+        {
+            get { return new RelayCommand(new Action<object>(ResetFilters)); }
+        }
+
 
         private IDeckClassSelectorViewModel classFilterViewModel;
         private IDeckTypeSelectorViewModel typeFilterViewModel;
@@ -108,6 +116,14 @@ namespace ESLTracker.ViewModels.Decks
             }
 
 
+        }
+
+
+        public void ResetFilters(object param)
+        {
+            this.classFilterViewModel.Reset();
+            this.typeFilterViewModel.Reset();
+            ApplyFilter();
         }
     }
 }

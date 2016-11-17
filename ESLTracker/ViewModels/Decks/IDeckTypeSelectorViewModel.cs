@@ -11,5 +11,7 @@ namespace ESLTracker.ViewModels.Decks
     public interface IDeckTypeSelectorViewModel
     {
         ObservableCollection<DeckType> FilteredTypes { get; set; }
+
+        void Reset();
     }
 }
