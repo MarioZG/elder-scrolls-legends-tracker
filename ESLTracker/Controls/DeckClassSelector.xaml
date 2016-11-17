@@ -7,7 +7,7 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
-             mc:Ignorable="d" Height="30">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="DeckClassEnum" MethodName="GetValues"
                                 ObjectType="{x:Type System:Enum}">
@@ -20,62 +20,74 @@
         <ViewModels:DeckClassSelectorViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Horizontal">
-        <ComboBox x:Name="comboBox" Width="120" 
-                  ItemsSource="{Binding FilteredClasses}"
-                  SelectedItem="{Binding SelectedClass}"/>
         <ToggleButton
+                      Style="{DynamicResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Strength"
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Strength]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/strength.png" />
+                <Image Height="23" Width="23" Margin="8,3,8,3"
+                       Source="pack://application:,,,/Resources/DeckAttribute/strength.png" />
             </StackPanel>
         </ToggleButton>
         <ToggleButton Tag="Intelligence"                       
+                      Style="{StaticResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Intelligence"
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Intelligence]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/intelligence.png" />
+                <Image Height="23" Width="23"  Margin="8,3,8,3"
+                       Source="pack://application:,,,/Resources/DeckAttribute/intelligence.png" />
             </StackPanel>
         </ToggleButton>
         <ToggleButton Tag="Agility"                        
+                      Style="{StaticResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Agility"
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Agility]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/agility.png" />
+                <Image Height="23" Width="23"  Margin="8,3,8,3"
+                       Source="pack://application:,,,/Resources/DeckAttribute/agility.png" />
             </StackPanel>
         </ToggleButton>
         <ToggleButton Tag="Willpower"                        
+                      Style="{StaticResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Willpower"
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Willpower]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/willpower.png" />
+                <Image Height="23" Width="23"  Margin="8,3,8,3"
+                       Source="pack://application:,,,/Resources/DeckAttribute/willpower.png" />
             </StackPanel>
         </ToggleButton>
         <ToggleButton Tag="Endurance"                        
+                      Style="{StaticResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Endurance"
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Endurance]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/endurance.png" />
+                <Image Height="23" Width="23"  Margin="8,3,8,3"
+                       Source="pack://application:,,,/Resources/DeckAttribute/endurance.png" />
             </StackPanel>
         </ToggleButton>
         <ToggleButton Tag="Neutral"                        
+                      Style="{StaticResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Neutral"
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Neutral]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23" Source="pack://application:,,,/Resources/DeckAttribute/neutral.png" />
+                <Image Height="23" Width="23"  Margin="8,3,8,3"
+                       Source="pack://application:,,,/Resources/DeckAttribute/neutral.png" />
             </StackPanel>
         </ToggleButton>
+        <ComboBox x:Name="comboBox" Width="150" VerticalContentAlignment="Center"
+                  ItemsSource="{Binding FilteredClasses}"
+                  SelectedItem="{Binding SelectedClass}"/>
     </StackPanel>
 </UserControl>

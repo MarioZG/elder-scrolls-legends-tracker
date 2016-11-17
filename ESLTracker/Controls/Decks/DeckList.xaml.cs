@@ -36,8 +36,8 @@ namespace ESLTracker.Controls.Decks
         public DeckList()
         {
             InitializeComponent();
-            this.DataContext.SetClassFilterViewModel(this.deckClassFilter.DataContext);
-            this.DataContext.SetTypeFilterViewModel(this.deckTypeFilter.DataContext);
+            this.DataContext.SetClassFilterViewModel(this.deckFilter.deckClassFilter.DataContext);
+            this.DataContext.SetTypeFilterViewModel(this.deckFilter.deckTypeFilter.DataContext);
         }
 
     }

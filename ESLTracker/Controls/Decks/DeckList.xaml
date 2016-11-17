@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:Controls="clr-namespace:ESLTracker.Controls"  x:Class="ESLTracker.Controls.Decks.DeckList"
+﻿<UserControl x:Class="ESLTracker.Controls.Decks.DeckList"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,15 +7,13 @@
              xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:Controls="clr-namespace:ESLTracker.Controls"  
+             mc:Ignorable="d">
     <UserControl.DataContext>
         <ViewModels:DeckListViewModel/>
     </UserControl.DataContext>
     <StackPanel>
-        <Controls:DeckClassSelector x:Name="deckClassFilter" />
-        <local:DeckTypeSelector x:Name="deckTypeFilter" />
-        <Button x:Name="btnResetFilters" Content="Reset filters" Command="{Binding CommandResetFilterButtonPressed}"/>
+        <local:DeckFilter x:Name="deckFilter" HorizontalAlignment="Stretch"/>
         <ListBox x:Name="listBox"
                  SelectedItem="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}"
                  ItemsSource="{Binding FilteredDecks, Mode=TwoWay}"

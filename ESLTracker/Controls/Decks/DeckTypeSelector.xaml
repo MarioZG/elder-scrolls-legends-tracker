@@ -9,18 +9,23 @@
     <UserControl.DataContext>
         <ViewModels:DeckTypeSelectorViewModel/>
     </UserControl.DataContext>
-    <StackPanel Orientation="Horizontal">
-        <ToggleButton x:Name="btnConstructed" Content="Constructed"
+    <UniformGrid Columns="3">
+        <ToggleButton x:Name="btnConstructed" 
+                      Style="{DynamicResource ToggleButtonStyle}"
+                      HorizontalAlignment="Stretch"
+                      Content="Constructed"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Constructed"
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Constructed]}"/>
         <ToggleButton x:Name="btnVersusArena" Content="Versus Arena"
+                      Style="{DynamicResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="VersusArena"
                       IsChecked="{Binding FilterButtonState[DeckAttribute.VersusArena]}"/>
         <ToggleButton x:Name="btnSoloArena" Content="Solo arena"
+                      Style="{DynamicResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="SoloArena"
                       IsChecked="{Binding FilterButtonState[DeckAttribute.SoloArena]}"/>
-    </StackPanel>
+    </UniformGrid>
 </UserControl>

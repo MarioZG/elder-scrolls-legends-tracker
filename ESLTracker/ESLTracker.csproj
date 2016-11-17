@@ -59,6 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Decks\DeckFilter.xaml.cs">
+      <DependentUpon>DeckFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Decks\DeckTypeSelector.xaml.cs">
       <DependentUpon>DeckTypeSelector.xaml</DependentUpon>
     </Compile>
@@ -126,7 +129,15 @@
     <Compile Include="ViewModels\Rewards\RewardSetViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="WindowsUtils.cs" />
+    <Page Include="ControlStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\DeckClassSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Decks\DeckFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

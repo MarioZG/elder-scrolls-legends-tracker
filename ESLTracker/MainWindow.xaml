@@ -10,9 +10,9 @@
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         mc:Ignorable="d"
         x:Name="mainWindow"
-        Title="MainWindow" Height="497.707" Width="280.045" Background="Transparent" 
+        Title="MainWindow" Height="553.805" Width="612.719"
         BorderThickness="2" 
-        BorderBrush="Black" Closing="Window_Closing">
+        Closing="Window_Closing">
     <Window.Resources>
         <local:NotifyIconLeftClickCommand x:Key="NotifyIconLeftClickCommand" />
         <local:ExitCommand x:Key="ExitCommand" />
@@ -34,9 +34,8 @@
                    Visibility="{Binding DeckEditVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
         >
             <Decks:EditDeck />
-        </WrapPanel> 
-        <Decks:DeckList x:Name="deckList"
-        />
+        </WrapPanel>
+        <Decks:DeckList x:Name="deckList" HorizontalAlignment="Stretch"/>
         <tb:TaskbarIcon 
             x:Name="taskBarIcon"
             IconSource="/Resources/TrayIcon.ico"
@@ -51,5 +50,5 @@
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
     </StackPanel>
-    
+
 </Window>

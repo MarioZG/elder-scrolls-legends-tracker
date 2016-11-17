@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:ESLTracker"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary x:Key="ControlStyles">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ControlStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
