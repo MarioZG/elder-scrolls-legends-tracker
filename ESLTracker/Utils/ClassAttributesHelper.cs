@@ -39,6 +39,11 @@ namespace ESLTracker.Utils
             }
         }
 
+        public static IEnumerable<DeckClass> FindClassByAttribute(DeckAttribute filter)
+        {
+            return FindClassByAttribute(new List<DeckAttribute>() { filter });
+        }
+
         public static IEnumerable<DeckClass> FindClassByAttribute(IEnumerable<DeckAttribute> filter)
         {
             List<DeckClass> ret;

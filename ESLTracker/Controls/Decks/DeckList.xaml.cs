@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.ViewModels.Decks;
 
 namespace ESLTracker.Controls.Decks
 {
@@ -20,21 +21,24 @@ namespace ESLTracker.Controls.Decks
     /// </summary>
     public partial class DeckList : UserControl
     {
+        new public DeckListViewModel DataContext
+        {
+            get
+            {
+                return (DeckListViewModel)base.DataContext;
+            }
+            set
+            {
+                base.DataContext = value;
+            }
+        }
+
         public DeckList()
         {
             InitializeComponent();
-            this.listBox.ItemsSource = DataModel.Tracker.Instance.Decks;
-            DataModel.Tracker.Instance.Games.CollectionChanged += Games_CollectionChanged;
+            this.DataContext.SetClassFilterViewModel(this.deckClassFilter.DataContext);
+            this.DataContext.SetTypeFilterViewModel(new DeckTypeSelector());
         }
 
-        private void Games_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            this.listBox.Items.Refresh();
-        }
-
-        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DataModel.Tracker.Instance.ActiveDeck = (DataModel.Deck)((ListBox)e.Source).SelectedItem;
-        }
     }
 }

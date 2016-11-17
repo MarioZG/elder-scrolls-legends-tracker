@@ -43,11 +43,6 @@ namespace ESLTracker
             UpdateOverlayAsync(this);
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.deckList.DataContext = DataModel.Tracker.Instance.Decks;
-        }
-
         private static async void UpdateOverlayAsync(Window mainWindow)
         {
             OverlayToolbar ot = new OverlayToolbar();

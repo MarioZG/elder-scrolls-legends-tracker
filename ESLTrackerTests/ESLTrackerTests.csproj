@@ -68,6 +68,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ClassAttributesHelperTests.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModelTests.cs" />
+    <Compile Include="ViewModels\Decks\DeckListViewModelTests.cs" />
     <Compile Include="ViewModels\Rewards\AddSingleRewardViewModelTests.cs" />
     <Compile Include="ViewModels\Rewards\RewardSetViewModelTests.cs" />
   </ItemGroup>

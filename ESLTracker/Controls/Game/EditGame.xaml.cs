@@ -35,11 +35,13 @@ namespace ESLTracker.Controls.Game
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             this.selectedDeck.DataContext = DataModel.Tracker.Instance.ActiveDeck;
-            if (DataModel.Tracker.Instance.ActiveDeck.Type == DeckType.VesrusArena)
+            if (this.selectedDeck.DataContext != null)
             {
-                this.cbGameType.SelectedItem = DataModel.Enums.GameType.VersusArena;
+                if (DataModel.Tracker.Instance.ActiveDeck.Type == DeckType.VesrusArena)
+                {
+                    this.cbGameType.SelectedItem = DataModel.Enums.GameType.VersusArena;
+                }
             }
-
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)

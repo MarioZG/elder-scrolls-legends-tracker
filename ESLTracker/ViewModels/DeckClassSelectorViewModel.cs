@@ -12,7 +12,7 @@ using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels
 {
-    public class DeckClassSelectorViewModel : ViewModelBase
+    public class DeckClassSelectorViewModel : ViewModelBase, IDeckClassSelectorViewModel
     {
         /// <summary>
         /// fiter of attributes, 

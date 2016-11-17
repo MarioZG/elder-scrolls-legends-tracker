@@ -12,7 +12,7 @@
         x:Name="mainWindow"
         Title="MainWindow" Height="497.707" Width="280.045" Background="Transparent" 
         BorderThickness="2" 
-        BorderBrush="Black" Loaded="Window_Loaded" Closing="Window_Closing">
+        BorderBrush="Black" Closing="Window_Closing">
     <Window.Resources>
         <local:NotifyIconLeftClickCommand x:Key="NotifyIconLeftClickCommand" />
         <local:ExitCommand x:Key="ExitCommand" />
