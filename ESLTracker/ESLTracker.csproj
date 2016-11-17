@@ -70,6 +70,7 @@
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyCollapsedConverter.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyConverter.cs" />
+    <Compile Include="Utils\Converters\CommandMultipleParamaters.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
     <Compile Include="Controls\DeckClassSelector.xaml.cs">
       <DependentUpon>DeckClassSelector.xaml</DependentUpon>
@@ -120,6 +121,8 @@
     <Compile Include="Utils\WindowExtensions.cs" />
     <Compile Include="ViewModels\Decks\DeckListViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckTypeSelectorViewModel.cs" />
+    <Compile Include="ViewModels\Decks\EditDeckCommands.cs" />
+    <Compile Include="ViewModels\Decks\EditDeckViewModel.cs" />
     <Compile Include="ViewModels\Decks\IDeckTypeSelectorViewModel.cs" />
     <Compile Include="ViewModels\IDeckClassSelectorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

@@ -41,6 +41,8 @@ namespace ESLTracker
         {
             InitializeComponent();
             UpdateOverlayAsync(this);
+
+            this.editDeck.DataContext.mainWindowViewModel = this.DataContext;
         }
 
         private static async void UpdateOverlayAsync(Window mainWindow)

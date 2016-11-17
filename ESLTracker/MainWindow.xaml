@@ -31,9 +31,9 @@
             <MenuItem Header="Restore overlay window" Command="{StaticResource ShowOverlayCommand}"/>
         </Menu>
         <WrapPanel x:Name="deckEdit"             
-                   Visibility="{Binding DeckEditVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                   Visibility="{Binding DeckEditVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
         >
-            <Decks:EditDeck />
+            <Decks:EditDeck x:Name="editDeck" />
         </WrapPanel>
         <Decks:DeckList x:Name="deckList" HorizontalAlignment="Stretch"/>
         <tb:TaskbarIcon 

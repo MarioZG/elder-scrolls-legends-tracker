@@ -10,7 +10,7 @@ namespace ESLTracker.DataModel
         public Guid DeckId { get; set; }
         public DeckType Type { get; set; }
         public string Name { get; set; }
-        public DeckAttributes Attributes { get; set; }
+        public DeckAttributes Attributes { get; set; } = new DeckAttributes();
         public DeckClass Class { get; set; }
         public string Notes { get; set; }
         public DateTime CreatedDate { get; set; }

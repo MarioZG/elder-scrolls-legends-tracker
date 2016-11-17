@@ -58,9 +58,14 @@ namespace ESLTracker.ViewModels.Decks
                 DeckTypeFilter.Add(a, false);
             }
 
-
+            Tracker.Instance.Decks.CollectionChanged += Decks_CollectionChanged;
             FilteredDecks = new ObservableCollection<Deck>(Tracker.Instance.Decks);
 
+        }
+
+        private void Decks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            ApplyFilter();
         }
 
         private void DeckListViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
