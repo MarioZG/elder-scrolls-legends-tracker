@@ -27,7 +27,7 @@
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Strength]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23" Margin="8,3,8,3"
+                <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
                        Source="pack://application:,,,/Resources/DeckAttribute/strength.png" />
             </StackPanel>
         </ToggleButton>
@@ -38,7 +38,7 @@
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Intelligence]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23"  Margin="8,3,8,3"
+                <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
                        Source="pack://application:,,,/Resources/DeckAttribute/intelligence.png" />
             </StackPanel>
         </ToggleButton>
@@ -49,7 +49,7 @@
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Agility]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23"  Margin="8,3,8,3"
+                <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
                        Source="pack://application:,,,/Resources/DeckAttribute/agility.png" />
             </StackPanel>
         </ToggleButton>
@@ -60,7 +60,7 @@
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Willpower]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23"  Margin="8,3,8,3"
+                <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
                        Source="pack://application:,,,/Resources/DeckAttribute/willpower.png" />
             </StackPanel>
         </ToggleButton>
@@ -71,7 +71,7 @@
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Endurance]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23"  Margin="8,3,8,3"
+                <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
                        Source="pack://application:,,,/Resources/DeckAttribute/endurance.png" />
             </StackPanel>
         </ToggleButton>
@@ -82,7 +82,7 @@
                       IsChecked="{Binding FilterButtonState[DeckAttribute.Neutral]}"
             >
             <StackPanel>
-                <Image Height="23" Width="23"  Margin="8,3,8,3"
+                <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
                        Source="pack://application:,,,/Resources/DeckAttribute/neutral.png" />
             </StackPanel>
         </ToggleButton>
