@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ESLTracker.Controls"
              mc:Ignorable="d">
     <StackPanel  FlowDirection="RightToLeft" Orientation="Horizontal" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        <!-- Controls must be in reverse order with HorizontalAlignment="Right"-->
         <Button x:Name="btnClose" HorizontalAlignment="Right" Width="15" Click="btnClose_Click">
             <Image Source="/Resources/WindowIcons/close.png"/>
         </Button>
@@ -25,5 +26,8 @@
                 </Image.Style>
             </Image>
         </ToggleButton>
+        <Button x:Name="btnScreenShot" HorizontalAlignment="Right" Width="15" Click="btnScreenShot_Click">
+            <Image Source="/Resources/WindowIcons/printScreen.png"/>
+        </Button>
     </StackPanel>
 </UserControl>

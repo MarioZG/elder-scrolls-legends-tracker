@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Drawing=System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,32 @@ namespace ESLTracker.Controls
                     tb.IsChecked.Value ? null : SystemColors.ControlBrush;
             }
             e.Handled = false;
+        }
+
+        private void btnScreenShot_Click(object sender, RoutedEventArgs e)
+        {
+            IntPtr? eslHandle = WindowsUtils.GetEslProcess()?.MainWindowHandle;
+            if (eslHandle.HasValue)
+            {
+                var rect = new WindowsUtils.Rect();
+                WindowsUtils.GetWindowRect(eslHandle.Value, ref rect);
+
+                int width = rect.right - rect.left;
+                int height = rect.bottom - rect.top;
+
+                var bmp = new Drawing.Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                Drawing.Graphics gfxBmp = Drawing.Graphics.FromImage(bmp);
+
+                gfxBmp.CopyFromScreen(rect.left, rect.top, 0, 0, new Drawing.Size(width, height), Drawing.CopyPixelOperation.SourceCopy);
+                //IntPtr hdcBitmap = gfxBmp.GetHdc();
+
+                //WindowsUtils.PrintWindow(eslHandle.Value, hdcBitmap, 0);
+                bmp.Save("./screenshot"+ DateTime.Now.ToString("yyyyMMddHHmmss") + ".png", System.Drawing.Imaging.ImageFormat.Png);
+
+                //gfxBmp.ReleaseHdc(hdcBitmap);
+                gfxBmp.Dispose();
+
+            }
         }
     }
 }

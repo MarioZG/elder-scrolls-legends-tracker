@@ -10,15 +10,35 @@ namespace ESLTracker
 {
     public class WindowsUtils
     {
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Rect
+        {
+            public int left;
+            public int top;
+            public int right;
+            public int bottom;
+        }
+
         [DllImport("user32.dll")]
         public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetWindowRect(IntPtr hWnd, ref Rect rect);
+
+        [DllImport("user32.dll")]
+        public static extern bool PrintWindow(IntPtr hWnd, IntPtr hdcBlt, int nFlags);
 
         public static bool IsGameActive()
         {
             IntPtr fw = GetForegroundWindow();
-            Process eslProcess = Process.GetProcesses().Where(p => p.MainWindowTitle == "The Elder Scrolls: Legends").FirstOrDefault();
-            IntPtr eslw = eslProcess == null ? IntPtr.Zero : eslProcess.MainWindowHandle ;
+            Process eslProcess = GetEslProcess();
+            IntPtr eslw = eslProcess == null ? IntPtr.Zero : eslProcess.MainWindowHandle;
             return fw == eslw;
+        }
+
+        public static Process GetEslProcess()
+        {
+            return Process.GetProcesses().Where(p => p.MainWindowTitle == "The Elder Scrolls: Legends").FirstOrDefault();
         }
     }
 }
