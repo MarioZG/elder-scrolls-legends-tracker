@@ -19,7 +19,8 @@
     <UserControl.DataContext>
         <ViewModels:DeckClassSelectorViewModel/>
     </UserControl.DataContext>
-    <StackPanel Orientation="Horizontal">
+    <DockPanel>
+    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
         <ToggleButton
                       Style="{DynamicResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
@@ -86,8 +87,9 @@
                        Source="pack://application:,,,/Resources/DeckAttribute/neutral.png" />
             </StackPanel>
         </ToggleButton>
-        <ComboBox x:Name="comboBox" Width="150" VerticalContentAlignment="Center"
-                  ItemsSource="{Binding FilteredClasses}"
-                  SelectedItem="{Binding SelectedClass}"/>
     </StackPanel>
+        <ComboBox x:Name="comboBox" MinWidth="100" VerticalContentAlignment="Center"
+                  ItemsSource="{Binding FilteredClasses}"
+                  SelectedItem="{Binding SelectedClass}"/> 
+    </DockPanel>
 </UserControl>

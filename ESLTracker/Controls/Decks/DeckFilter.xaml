@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:Controls="clr-namespace:ESLTracker.Controls"  
              mc:Ignorable="d">
-    <StackPanel Orientation="Horizontal">
-        <Button x:Name="btnResetFilters" 
+    <DockPanel>
+        <Button x:Name="btnResetFilters"  DockPanel.Dock="Left"
                 BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
                 Content="Reset filters" 
                 Command="{Binding CommandResetFilterButtonPressed}"/>
@@ -16,5 +16,5 @@
             <Controls:DeckClassSelector x:Name="deckClassFilter" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"  HorizontalAlignment="Stretch" />
         </StackPanel>
 
-    </StackPanel>
+    </DockPanel>
 </UserControl>

@@ -60,7 +60,7 @@
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="70*"/>
         </Grid.ColumnDefinitions>
         <Decks:DeckItem x:Name="selectedDeck" DataContext="{Binding DataModel.Tracker.Instance.ActiveDeck}" Grid.ColumnSpan="2"/>
