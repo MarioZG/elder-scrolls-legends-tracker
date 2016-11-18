@@ -10,7 +10,7 @@
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         mc:Ignorable="d"
         x:Name="mainWindow"
-        Title="MainWindow" Height="553.805" Width="612.719"
+        Title="MainWindow" Height="553.805" SizeToContent="Width"
         BorderThickness="2" 
         Closing="Window_Closing">
     <Window.Resources>
@@ -25,26 +25,28 @@
         <ViewModels:MainWindowViewModel/>
     </Window.DataContext>
     <DockPanel>
-        <Menu x:Name="menu" VerticalAlignment="Top"  DockPanel.Dock="Top" >
+        <Menu x:Name="menu"  DockPanel.Dock="Top">
             <MenuItem Header="New Deck" Command="{StaticResource NewDeckCommand}" />
             <MenuItem Header="Rewards" Command="{StaticResource ShowRewardsCommand}" />
             <MenuItem Header="Restore overlay window" Command="{StaticResource ShowOverlayCommand}"/>
         </Menu>
-        <WrapPanel x:Name="deckEdit"  DockPanel.Dock="Top"         
+        
+        <WrapPanel x:Name="deckEdit"  DockPanel.Dock="Top"    
                    Visibility="{Binding DeckEditVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
         >
             <Decks:EditDeck x:Name="editDeck" />
-        </WrapPanel>
+        </WrapPanel>        
         <WrapPanel
                     Visibility="{Binding DeckListVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
             >
             <Decks:DeckList x:Name="deckList" HorizontalAlignment="Stretch"/>
         </WrapPanel>
-        <tb:TaskbarIcon 
+        <tb:TaskbarIcon
             x:Name="taskBarIcon"
             IconSource="/Resources/TrayIcon.ico"
             LeftClickCommand="{StaticResource NotifyIconLeftClickCommand}"
             LeftClickCommandParameter="{Binding ElementName=mainWindow}"
+            DockPanel.Dock="Bottom"
         >
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
@@ -54,5 +56,4 @@
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
     </DockPanel>
-
 </Window>
