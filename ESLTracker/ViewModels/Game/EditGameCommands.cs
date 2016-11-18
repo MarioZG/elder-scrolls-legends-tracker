@@ -54,6 +54,9 @@ namespace ESLTracker.ViewModels.Game
                 model.Game.PlayerLegendRank = addedGame.PlayerLegendRank;
                 model.UpdateBindings();
 
+                //clear opp class
+                opponentClass.SelectedClass = null;
+
             }
         }
 
