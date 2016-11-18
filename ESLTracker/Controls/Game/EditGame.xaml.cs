@@ -44,48 +44,6 @@ namespace ESLTracker.Controls.Game
             }
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void btnVicotry_Click(object sender, RoutedEventArgs e)
-        {
-            if (!opponentClass.DataContext.SelectedClass.HasValue)
-            {
-                return;
-            }
-
-            DataModel.Game game = new DataModel.Game()
-            {
-                Deck = this.selectedDeck.DataContext as DataModel.Deck,
-                BonusRound = null,
-                OpponentClass = this.opponentClass.DataContext.SelectedClass.Value,
-                OrderOfPlay = (OrderOfPlay)this.cbOrderOfPlay.SelectedItem,
-                Outcome = Utils.EnumManager.ParseEnumString<GameOutcome>(((Button)sender).CommandParameter.ToString()),
-                Type = (GameType)this.cbGameType.SelectedItem,
-                OpponentName = this.txtOpponentName.Text
-            };
-
-            game.OpponentAttributes.AddRange(opponentClass.DataContext.SelectedClassAttributes);
-
-            if (game.Type == GameType.PlayRanked)
-            {
-                game.BonusRound = cbBonusRound.IsChecked;
-                game.OpponentRank = (DataModel.Enums.PlayerRank)this.cbOpponentRank.SelectedItem;
-                game.PlayerRank = (DataModel.Enums.PlayerRank)this.cbPlayerRank.SelectedItem;
-            }
-
-            DataModel.Tracker.Instance.Games.Add(game);
-
-            this.opponentClass.DataContext.Reset();
-            this.txtOpponentName.Text = "";
-            this.cbOrderOfPlay.SelectedItem = null;
-            this.cbOpponentRank.SelectedItem = null;
-            this.cbBonusRound.IsChecked = false;
-
-            this.selectedDeck.DataContext = null;
-            this.selectedDeck.DataContext = DataModel.Tracker.Instance.ActiveDeck;
-        }
+      
     }
 }

@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Game"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
-             xmlns:Controls="clr-namespace:ESLTracker.Controls" xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks" x:Class="ESLTracker.Controls.Game.EditGame"
+             xmlns:Controls="clr-namespace:ESLTracker.Controls" 
+             xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks" 
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+             xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Game" 
+             x:Class="ESLTracker.Controls.Game.EditGame"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -36,46 +39,87 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <Converters:PlayRankedSelected x:Key="PlayRankedSelected" />
+        <Converters:CommandMultipleParamaters x:Key="CommandMultipleParamatersConverter" />
+        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
+        <ViewModels:CreateNewGameCommand x:Key="CreateNewGameCommand" />
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <ViewModels:EditGameViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="31*"/>
-            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="70*"/>
         </Grid.ColumnDefinitions>
         <Decks:DeckItem x:Name="selectedDeck" DataContext="{Binding DataModel.Tracker.Instance.ActiveDeck}" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnAdd" Content="Create" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" Grid.Row="9" Height="20"/>
-        <ComboBox x:Name="cbGameType" ItemsSource="{Binding Source={StaticResource GameTypeEnum}}"  Grid.Row="2" Grid.ColumnSpan="2" Margin="93,0,0,0"/>
-        <ComboBox x:Name="cbOrderOfPlay" ItemsSource="{Binding Source={StaticResource OrderOfPlayEnum}}" Grid.Row="3" Grid.ColumnSpan="2" Margin="93,0,0,0.333"/>
-        <ComboBox x:Name="cbOutcome" ItemsSource="{Binding Source={StaticResource GameOutcomeEnum}}" Grid.Row="4" Grid.Column="1"  />
-        <Controls:PlayerRank Visibility="{Binding ElementName=cbGameType, Path=SelectedItem, Converter={StaticResource PlayRankedSelected}}" 
-                   x:Name="cbOpponentRank"  Grid.Row="6" Grid.Column="1"  />
-        <Controls:PlayerRank Visibility="{Binding ElementName=cbGameType, Path=SelectedItem, Converter={StaticResource PlayRankedSelected}}" 
-                   x:Name="cbPlayerRank" Grid.Row="7" Grid.Column="1">
-            
-        </Controls:PlayerRank>
+        <Controls:DeckClassSelector x:Name="opponentClass" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Label Content="Game type" Grid.Row="2"/>
+        <ComboBox x:Name="cbGameType" Grid.Row="2" Grid.Column="1"
+                  ItemsSource="{Binding Source={StaticResource GameTypeEnum}}"  
+                  SelectedItem="{Binding Game.Type}"/>
+        <Label Content="Order of play" Grid.Row="3"/>
+        <ComboBox x:Name="cbOrderOfPlay" Grid.Row="3" Grid.Column="1"
+                  ItemsSource="{Binding Source={StaticResource OrderOfPlayEnum}}" 
+                  SelectedItem="{Binding Game.OrderOfPlay}"
+                   />
+        <Label x:Name="label" Content="Opponent name" Grid.Row="4"/>
+        <TextBox x:Name="txtOpponentName" Grid.Row="4" Grid.Column="1"
+                 Text="{Binding Game.OpponentName}"/>
+        <Label x:Name="label1" Content="Opponent Rank" Grid.Row="5"
+                Visibility="{Binding DisplayPlayerRank, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+               />
+        <Controls:PlayerRank x:Name="cbOpponentRank"  Grid.Row="5" Grid.Column="1"
+                Visibility="{Binding DisplayPlayerRank, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                />
+        <Label x:Name="label2" Content="Player Rank" Grid.Row="6"
+                Visibility="{Binding DisplayPlayerRank, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+               />
+        <Controls:PlayerRank x:Name="cbPlayerRank" Grid.Row="6" Grid.Column="1"
+                Visibility="{Binding DisplayPlayerRank, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                             />
 
-        <Controls:DeckClassSelector x:Name="opponentClass" Grid.ColumnSpan="2" Grid.Row="1" Height="Auto"/>
-        <TextBox x:Name="txtOpponentName" TextWrapping="Wrap" Text="TextBox" Grid.Row="5" Grid.ColumnSpan="2" Margin="93,0.333,0,0.333"/>
-        <Button x:Name="btnVicotry" Content="Victory" HorizontalAlignment="Left" Margin="110.667,22.667,0,0" VerticalAlignment="Top" Width="75" CommandParameter="Victory" Click="btnVicotry_Click" Grid.Column="1" Grid.Row="9" Height="20"/>
-        <Button x:Name="btnDefeat" Content="Defeat" HorizontalAlignment="Left" Margin="9.667,22.667,0,0" VerticalAlignment="Top" Width="75" CommandParameter="Defeat" Click="btnVicotry_Click" Grid.Column="1" Grid.Row="9" Height="20"/>
-        <Label x:Name="label" Content="Opponent name" Grid.Row="5"/>
-        <Label x:Name="label1" Content="Opponent Rank" Grid.Row="6"/>
-        <Label x:Name="label2" Content="Player Rank" Grid.Row="7"/>
-        <CheckBox Visibility="{Binding ElementName=cbGameType, Path=SelectedItem, Converter={StaticResource PlayRankedSelected}}" 
-                   x:Name="cbBonusRound" Content="Bonus round" Grid.Column="1" Grid.Row="8"/>
-
-
+        <CheckBox x:Name="cbBonusRound" Content="Bonus round" Grid.Column="1" Grid.Row="7"
+                  IsThreeState="False"
+                  Visibility="{Binding DisplayBonusRound, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                  IsChecked="{Binding Game.BonusRound}"
+                  />
+        <UniformGrid Rows="1" Grid.Column="1" Grid.Row="9">
+            <Button x:Name="btnVicotry" Content="Victory"
+                    Command="{StaticResource CreateNewGameCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource CommandMultipleParamatersConverter}">
+                        <Binding Source="Victory"/>
+                        <Binding Path=""/>
+                        <Binding Path="DataContext" ElementName="opponentClass"/>
+                        <Binding Path="" ElementName="cbOpponentRank"/>
+                        <Binding Path="" ElementName="cbPlayerRank"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button x:Name="btnDefeat" Content="Defeat"
+                Command="{StaticResource CreateNewGameCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource CommandMultipleParamatersConverter}">
+                        <Binding Source="Victory"/>
+                        <Binding Path=""/>
+                        <Binding Path="DataContext" ElementName="opponentClass"/>
+                        <Binding Path="" ElementName="cbOpponentRank"/>
+                        <Binding Path="" ElementName="cbPlayerRank"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+        </UniformGrid>
     </Grid>
 </UserControl>

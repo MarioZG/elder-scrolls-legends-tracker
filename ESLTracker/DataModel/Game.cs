@@ -8,10 +8,10 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.DataModel
 {
-    public class Game
+    public class Game : ViewModels.ViewModelBase
     {
         [XmlIgnore]
-        public Deck Deck;
+        public Deck Deck { get; set; }
 
         private Guid deckId = Guid.Empty;
         public Guid DeckId {
@@ -25,22 +25,42 @@ namespace ESLTracker.DataModel
             }
         }
 
-        public DateTime Date;
-        public GameType Type;
-        public bool? BonusRound;
-        public OrderOfPlay OrderOfPlay;
-        public GameOutcome Outcome;
+        public DateTime Date { get; set; }
 
-        public DeckAttributes OpponentAttributes = new DeckAttributes();
-        public DeckClass OpponentClass;
-        public string OpponentName;
+        GameType? type;
+        public GameType? Type {
+            get { return type; }
+            set
+            {
+                type = value;
+                RaisePropertyChangedEvent("Type");
+            }
+        }
+
+        bool? bonusRound;
+        public bool? BonusRound
+        {
+            get { return bonusRound; }
+            set
+            {
+                bonusRound = value;
+                RaisePropertyChangedEvent("BonusRound");
+            }
+        }
+
+        public OrderOfPlay? OrderOfPlay { get; set; }
+        public GameOutcome Outcome { get; set; }
+
+        public DeckAttributes OpponentAttributes { get; set; } = new DeckAttributes();
+        public DeckClass OpponentClass { get; set; }
+        public string OpponentName { get; set; }
 
         //ranked info
-        public PlayerRank? PlayerRank;
-        public int? PlayerLegendRank;
+        public PlayerRank? PlayerRank { get; set; }
+        public int? PlayerLegendRank { get; set; }
 
-        public PlayerRank? OpponentRank;
-        public int? OpponentLegendRank;
+        public PlayerRank? OpponentRank { get; set; }
+        public int? OpponentLegendRank { get; set; }
 
         public Game()
         {

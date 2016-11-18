@@ -10,13 +10,13 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.Converters
 {
-    class PlayRankedSelected : IValueConverter
+    class PlayerRankLegendToVisibiltyCollapsed : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((value != null) && (value is GameType))
+            if ((value != null) && (value is PlayerRank))
             {
-                return (((GameType)value) == GameType.PlayRanked) ? Visibility.Visible : Visibility.Collapsed;
+                return (((PlayerRank)value) == PlayerRank.TheLegend) ? Visibility.Visible : Visibility.Collapsed;
             }
             return Visibility.Collapsed;
         }

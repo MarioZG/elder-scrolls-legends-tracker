@@ -71,6 +71,7 @@
     <Compile Include="Utils\Converters\BoolToVisibiltyCollapsedConverter.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyConverter.cs" />
     <Compile Include="Utils\Converters\CommandMultipleParamaters.cs" />
+    <Compile Include="Utils\Converters\PlayerRankLegendToVisibiltyCollapsed.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
     <Compile Include="Controls\DeckClassSelector.xaml.cs">
       <DependentUpon>DeckClassSelector.xaml</DependentUpon>
@@ -124,6 +125,8 @@
     <Compile Include="ViewModels\Decks\EditDeckCommands.cs" />
     <Compile Include="ViewModels\Decks\EditDeckViewModel.cs" />
     <Compile Include="ViewModels\Decks\IDeckTypeSelectorViewModel.cs" />
+    <Compile Include="ViewModels\Game\EditGameCommands.cs" />
+    <Compile Include="ViewModels\Game\EditGameViewModel.cs" />
     <Compile Include="ViewModels\IDeckClassSelectorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />

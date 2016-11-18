@@ -33,6 +33,23 @@ namespace ESLTracker.Controls
             }
         }
 
+        public int? LegendRank
+        {
+            get
+            {
+                if (SelectedItem != DataModel.Enums.PlayerRank.TheLegend)
+                {
+                    return null;
+                }
+                int retValue;
+                return int.TryParse(this.txtPlayerLegendRank.Text, out retValue) ? (int?)retValue : null;
+            }
+            set
+            {
+                this.txtPlayerLegendRank.Text = value.HasValue ? value.ToString() : null;
+            }
+        }
+
         public PlayerRank()
         {
             InitializeComponent();
