@@ -112,7 +112,7 @@
                 Command="{StaticResource CreateNewGameCommand}">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource CommandMultipleParamatersConverter}">
-                        <Binding Source="Victory"/>
+                        <Binding Source="Defeat"/>
                         <Binding Path=""/>
                         <Binding Path="DataContext" ElementName="opponentClass"/>
                         <Binding Path="" ElementName="cbOpponentRank"/>
