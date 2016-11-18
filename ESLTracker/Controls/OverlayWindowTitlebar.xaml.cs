@@ -61,13 +61,12 @@ namespace ESLTracker.Controls
                 var bmp = new Drawing.Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 Drawing.Graphics gfxBmp = Drawing.Graphics.FromImage(bmp);
 
+                Window.GetWindow(this).Hide();
                 gfxBmp.CopyFromScreen(rect.left, rect.top, 0, 0, new Drawing.Size(width, height), Drawing.CopyPixelOperation.SourceCopy);
-                //IntPtr hdcBitmap = gfxBmp.GetHdc();
+                Window.GetWindow(this).Show();
 
-                //WindowsUtils.PrintWindow(eslHandle.Value, hdcBitmap, 0);
                 bmp.Save("./screenshot"+ DateTime.Now.ToString("yyyyMMddHHmmss") + ".png", System.Drawing.Imaging.ImageFormat.Png);
 
-                //gfxBmp.ReleaseHdc(hdcBitmap);
                 gfxBmp.Dispose();
 
             }
