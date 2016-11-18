@@ -56,7 +56,7 @@
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -95,6 +95,8 @@
                   Visibility="{Binding DisplayBonusRound, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
                   IsChecked="{Binding Game.BonusRound}"
                   />
+        <Label Content="Notes" Grid.Row="8"/>
+        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Game.Notes}" Grid.Column="1" Grid.Row="8"></TextBox>
         <UniformGrid Rows="1" Grid.Column="1" Grid.Row="9">
             <Button x:Name="btnVicotry" Content="Victory"
                     Command="{StaticResource CreateNewGameCommand}">

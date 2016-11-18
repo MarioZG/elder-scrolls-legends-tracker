@@ -62,6 +62,8 @@ namespace ESLTracker.DataModel
         public PlayerRank? OpponentRank { get; set; }
         public int? OpponentLegendRank { get; set; }
 
+        public string Notes { get; set; }
+
         public Game()
         {
             Date = DateTime.Now;
