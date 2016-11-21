@@ -36,6 +36,22 @@ namespace ESLTracker.DataModel
             }
         }
 
+        public string WinRatio
+        {
+            get
+            {
+                int gamesTotal = GetDeckGames().Count();
+                if (gamesTotal != 0)
+                {
+                    return Math.Round((double)Victories / (double)GetDeckGames().Count() * 100, 0).ToString();
+                }
+                else
+                {
+                    return "-";
+                }
+            }
+        }
+
         public IEnumerable<Game> GetDeckGames()
         {
             return Tracker.Instance.Games.Where(g => g.Deck.DeckId == this.DeckId);

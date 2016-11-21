@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              mc:Ignorable="d" 
              d:DesignHeight="70" d:DesignWidth="200">
-    <StackPanel Orientation="Horizontal">
-        <ItemsControl ItemsSource="{Binding Path=Attributes.ImageSources}" BorderThickness="0">
+    <DockPanel HorizontalAlignment="Stretch">
+        <ItemsControl ItemsSource="{Binding Path=Attributes.ImageSources}" BorderThickness="0"
+                      ToolTip="{Binding Class}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel IsItemsHost="True" />
@@ -15,15 +16,21 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Image Width="20" Source="{Binding}"></Image>
+                    <Image Width="15" Source="{Binding}"></Image>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <TextBlock Text="{Binding Class}" />
-        <TextBlock Text="{Binding Name}" />
-        <TextBlock Text="{Binding Path=Type}" />
-        <TextBlock Text="{Binding Path=Victories}" />
-        <TextBlock Text="-" />
-        <TextBlock Text="{Binding Path=Defeats}" />
-    </StackPanel>
+        <StackPanel Margin="10,0,0,0">
+            <TextBlock FontWeight="SemiBold" FontSize="16" Text="{Binding Name}" />
+            <TextBlock Text="{Binding Path=Type}" />
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Right" Text="{Binding Path=Victories}" />
+                <TextBlock Text="-" />
+                <TextBlock Text="{Binding Path=Defeats}" />
+            </StackPanel>
+            <TextBlock Text="{Binding Path=WinRatio, StringFormat={}{0} %}" />
+        </StackPanel>
+    </DockPanel>
 </UserControl>
