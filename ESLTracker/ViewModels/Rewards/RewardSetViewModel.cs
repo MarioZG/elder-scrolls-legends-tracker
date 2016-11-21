@@ -90,9 +90,9 @@ namespace ESLTracker.ViewModels.Rewards
         }
 
         //command for done  button - add grid values to xml file
-        public ICommand CommandDoneButtonPressed
+        public RelayCommand CommandDoneButtonPressed
         {
-            get { return new RelayCommand(new Action<object>(DoneClicked)); }
+            get { return new RelayCommand(new Action<object>(DoneClicked), new Func<object, bool>(CanExecuteDone)); }
         }
 
         public void DoneClicked(object param)
@@ -110,8 +110,16 @@ namespace ESLTracker.ViewModels.Rewards
             RewardReason = null;
         }
 
+        public bool CanExecuteDone(object param)
+        {
+            //return false;
+            //null passd when control deactivaed, control view model when activated
+            return this.activeControl == null;
+        }
+
         //managing AddSingleReward Controls
         List<AddSingleRewardViewModel> rewardControls = new List<AddSingleRewardViewModel>();
+
         AddSingleRewardViewModel activeControl;
         public void RegisterControl(AddSingleRewardViewModel c)
         {
@@ -120,7 +128,8 @@ namespace ESLTracker.ViewModels.Rewards
 
         public void SetActiveControl(AddSingleRewardViewModel activeControl)
         {
-
+            this.activeControl = activeControl;
+            CommandManager.InvalidateRequerySuggested();
             if (activeControl != null)
             {
                 activeControl.IsInEditMode = true;

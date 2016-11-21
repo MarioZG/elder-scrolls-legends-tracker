@@ -7,30 +7,67 @@ using System.Windows.Input;
 
 namespace ESLTracker.ViewModels
 {
-    class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
-        private Action<object> _action;
-        public RelayCommand(Action<object> action)
+        Action<object> action;
+        Func<object, bool> canExecute;
+
+        public RelayCommand(Action<object> action) : this (action, null)
         {
-            _action = action;
         }
+
+        public RelayCommand(Action<object> action, Func<object, bool> canExecute)
+        {
+            this.action = action;
+            this.canExecute = canExecute;
+        }
+
         #region ICommand Members
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (canExecute != null)
+            {
+                return canExecute(parameter);
+            }
+            else
+            {
+                return true;
+            }
         }
-        public event EventHandler CanExecuteChanged;
+
+        public event EventHandler CanExecuteChanged
+        { 
+            // wire the CanExecutedChanged event only if the canExecute func
+            // is defined (that improves perf when canExecute is not used)
+            add
+            {
+                if (this.canExecute != null)
+                {
+                    CommandManager.RequerySuggested += value;
+                }
+            }
+            remove
+            {
+
+                if (this.canExecute != null)
+                {
+                    CommandManager.RequerySuggested -= value;
+                }
+            }
+        }
+
         public void Execute(object parameter)
         {
             if (parameter != null)
             {
-                _action(parameter);
+                action(parameter);
             }
             else
             {
-                _action(null);
+                action(null);
             }
         }
+
         #endregion
     }
 }
