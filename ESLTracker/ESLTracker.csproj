@@ -73,6 +73,15 @@
     <Compile Include="Utils\Converters\BoolToVisibiltyConverter.cs" />
     <Compile Include="Utils\Converters\CommandMultipleParamaters.cs" />
     <Compile Include="Utils\Converters\PlayerRankLegendToVisibiltyCollapsed.cs" />
+    <Compile Include="Utils\IOWrappers\DirectoryWrapper.cs" />
+    <Compile Include="Utils\IOWrappers\FileWrapper.cs" />
+    <Compile Include="Utils\IOWrappers\IDirectoryWrapper.cs" />
+    <Compile Include="Utils\IOWrappers\IFileWrapper.cs" />
+    <Compile Include="Utils\IOWrappers\IPathWrapper.cs" />
+    <Compile Include="Utils\IOWrappers\IWrapperProvider.cs" />
+    <Compile Include="Utils\IOWrappers\PathWrapper.cs" />
+    <Compile Include="Utils\IOWrappers\WrapperProvider.cs" />
+    <Compile Include="Utils\SerializableVersion.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
     <Compile Include="Controls\DeckClassSelector.xaml.cs">
       <DependentUpon>DeckClassSelector.xaml</DependentUpon>

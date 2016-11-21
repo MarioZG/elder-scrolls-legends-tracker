@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel
 {
@@ -47,8 +48,9 @@ namespace ESLTracker.DataModel
 
         public List<Reward> Rewards = new List<Reward>();
 
-
-        //aaaa binding!!!
+        public SerializableVersion Version = new SerializableVersion(1,0);
+        
+        // binding!!!
 
         //Deck selected in applications
         private Deck activeDeck;
