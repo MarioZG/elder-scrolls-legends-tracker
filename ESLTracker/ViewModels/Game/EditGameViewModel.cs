@@ -147,6 +147,10 @@ namespace ESLTracker.ViewModels.Game
                 //clear opp class
                 opponentClass.Reset();
 
+                //clear opp rank
+                opponentRank.SelectedItem = null;
+                opponentRank.LegendRank = null; 
+
             }
 
         }
