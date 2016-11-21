@@ -36,33 +36,56 @@
                 <MouseBinding MouseAction="LeftClick" Command="{Binding CommandCloseClicked}"/>
             </Image.InputBindings>
         </Image>
-        <Image x:Name="image" Height="100" Width="100" 
+        <StackPanel>
+            <Image x:Name="image" Height="100" Width="100" 
                Source="{Binding BackgroundImagePath}"
               >
-            <Image.InputBindings>
-                <MouseBinding MouseAction="LeftClick" Command="{Binding CommandControlClicked}"/>
-            </Image.InputBindings>
-        </Image>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="60"
-                    Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"
+                <Image.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding CommandControlClicked}"/>
+                </Image.InputBindings>
+            </Image>
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Opacity="60"
+                    Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
                >
-            <TextBox x:Name="txtQuantity"  HorizontalAlignment="Stretch"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Quantity" Grid.Row="0"/>
+                <TextBox x:Name="txtQuantity"  HorizontalAlignment="Stretch"
+                     Grid.Row="0" Grid.Column="1"
                      Text="{Binding Quantity}"
                      Behaviors:FocusExtension.IsFocused="{Binding QtyFocus, Mode=TwoWay}"
                      Behaviors:FocusExtension.SelectAllOnFocus="True"
                      Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
-            <TextBox x:Name="txtComment" HorizontalAlignment="Stretch"
+                <Label Content="Comment" Grid.Row="1"/>
+                <TextBox x:Name="txtComment" HorizontalAlignment="Stretch"
+                     Grid.Row="2" Grid.ColumnSpan="2"
+                     AcceptsReturn="True" MaxWidth="100"
                      Text="{Binding Comment}"
                      Behaviors:FocusExtension.IsFocused="{Binding CommentsFocus, Mode=TwoWay}"
                      Behaviors:FocusExtension.SelectAllOnFocus="True"
                      Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
-            <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
+                <Label Content="Guild" Grid.Row="3"
+                       Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                />
+                <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
+                      Grid.Row="3" Grid.Column="1"
                       SelectedItem="{Binding Guild}"
                       ItemsSource="{Binding Source={StaticResource GuildEnum}}"
                       Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
-            <Button x:Name="btnAdd" Content="Add" 
+                <Button x:Name="btnAdd" Content="Add" 
+                    Grid.Row="4" Grid.ColumnSpan="2"
                     Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"
                     Command="{Binding CommandAddButtonPressed}"/>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

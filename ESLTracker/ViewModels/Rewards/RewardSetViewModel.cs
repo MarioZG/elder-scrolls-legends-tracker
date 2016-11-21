@@ -133,7 +133,7 @@ namespace ESLTracker.ViewModels.Rewards
             if (activeControl != null)
             {
                 activeControl.IsInEditMode = true;
-                activeControl.Margin = new Thickness(activeControl.ActualWidth / 2, activeControl.ActualHeight / 2, activeControl.ActualWidth / 2, activeControl.ActualHeight / 2);
+                activeControl.Margin = new Thickness(activeControl.ActualWidth / 3, 0, activeControl.ActualWidth / 3, 0);
                 activeControl.GuildSelectionVisible = this.RewardReason == DataModel.Enums.RewardReason.Quest;
             }
 
