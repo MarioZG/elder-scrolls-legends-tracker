@@ -18,6 +18,12 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <Converters:HasSelectedValueToVisibilityConverter x:Key="HasSelectedValueToVisibilityConverter" />
+        <CollectionViewSource x:Key="RewardsGroup"                               
+                      Source="{Binding Path=Rewards}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Reason" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:RewardSetViewModel/>
@@ -50,15 +56,37 @@
             <local:AddSingleReward Grid.Column="0" Grid.Row="1" x:Name="rewardPack" Type="Pack" />
             <local:AddSingleReward Grid.Column="1" Grid.Row="1" x:Name="rewardCard" Type="Card" />
         </Grid>
-        <DataGrid 
+        <ListView  
             x:Name="dataGrid" 
             Grid.Row="1" 
-            ItemsSource="{Binding Path=Rewards,Mode=TwoWay}"
-            CanUserAddRows="True"
-            Width="100"
+            
+            DataContext="{StaticResource RewardsGroup}"
+            ItemsSource="{Binding}"
+            
             Visibility="{Binding ElementName=cbReason, Path=SelectedItem, Converter={StaticResource HasSelectedValueToVisibilityConverter}}"
             >
-        </DataGrid>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="SemiBold" Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="25" Source="{Binding TypeIcon}" />
+                        <TextBlock Margin="5,0,5,0" FontSize="16" FontWeight="SemiBold" Text="{Binding Quantity}" />
+                        <StackPanel>                            
+                            <TextBlock Text="{Binding Comment}" />
+                            <TextBlock Text="{Binding RewardQuestGuild}" />
+                        </StackPanel>                       
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button 
             x:Name="button" 
             Content="Done" 

@@ -36,5 +36,15 @@ namespace ESLTracker.DataModel
                 arenaDeckId = value;
             }
         }
+
+        [XmlIgnore]
+        public System.Windows.Media.ImageSource TypeIcon
+        {
+            get
+            {
+                return new System.Windows.Media.Imaging.BitmapImage(new Uri(@"pack://application:,,,/"
+                 + "Resources/RewardType/" + Type.ToString() + ".png"));
+            }
+        }
     }
 }
