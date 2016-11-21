@@ -41,7 +41,6 @@
         <Converters:PlayRankedSelected x:Key="PlayRankedSelected" />
         <Converters:CommandMultipleParamaters x:Key="CommandMultipleParamatersConverter" />
         <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
-        <ViewModels:CreateNewGameCommand x:Key="CreateNewGameCommand" />
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:EditGameViewModel/>
@@ -99,7 +98,7 @@
         <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Game.Notes}" Grid.Column="1" Grid.Row="8"></TextBox>
         <UniformGrid Rows="1" Grid.Column="1" Grid.Row="9">
             <Button x:Name="btnVicotry" Content="Victory"
-                    Command="{StaticResource CreateNewGameCommand}">
+                    Command="{Binding CommandButtonCreate}">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource CommandMultipleParamatersConverter}">
                         <Binding Source="Victory"/>
@@ -111,7 +110,7 @@
                 </Button.CommandParameter>
             </Button>
             <Button x:Name="btnDefeat" Content="Defeat"
-                Command="{StaticResource CreateNewGameCommand}">
+                Command="{Binding CommandButtonCreate}">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource CommandMultipleParamatersConverter}">
                         <Binding Source="Defeat"/>

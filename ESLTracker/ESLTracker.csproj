@@ -134,7 +134,6 @@
     <Compile Include="ViewModels\Decks\DeckTypeSelectorViewModel.cs" />
     <Compile Include="ViewModels\Decks\EditDeckViewModel.cs" />
     <Compile Include="ViewModels\Decks\IDeckTypeSelectorViewModel.cs" />
-    <Compile Include="ViewModels\Game\EditGameCommands.cs" />
     <Compile Include="ViewModels\Game\EditGameViewModel.cs" />
     <Compile Include="ViewModels\IDeckClassSelectorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
