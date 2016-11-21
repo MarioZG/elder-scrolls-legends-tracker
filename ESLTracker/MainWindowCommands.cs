@@ -34,7 +34,7 @@ namespace ESLTracker
     {
         public void Execute(object parameter)
         {
-            Utils.FileManager.SaveDatabase<DataModel.Tracker>("./data.xml", DataModel.Tracker.Instance);
+            Utils.FileManager.SaveDatabase();
             MainWindow.UpdateOverlay = false;
             ((App)Application.Current).Exit();
         }

@@ -22,6 +22,7 @@ namespace ESLTracker.ViewModels.Decks
                 model.Deck.Class = selectedClassModel.SelectedClass.Value;
                 model.Deck.Attributes.AddRange(Utils.ClassAttributesHelper.Classes[model.Deck.Class]);
                 DataModel.Tracker.Instance.Decks.Add(model.Deck);
+                Utils.FileManager.SaveDatabase();
                 model.Deck = new Deck();
                 model.mainWindowViewModel.DeckEditVisible = false;
             }

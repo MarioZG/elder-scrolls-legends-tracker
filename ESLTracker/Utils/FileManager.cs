@@ -25,6 +25,11 @@ namespace ESLTracker.Utils
             return tracker;
         }
 
+        public static void SaveDatabase()
+        {
+            SaveDatabase<DataModel.Tracker>("./data.xml", DataModel.Tracker.Instance);
+        }
+
         public static void SaveDatabase<T>(string path, T tracker)
         {
             IWrapperProvider wrapperProvider = new WrapperProvider();

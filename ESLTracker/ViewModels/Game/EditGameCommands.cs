@@ -42,6 +42,8 @@ namespace ESLTracker.ViewModels.Game
                 DataModel.Game addedGame = model.Game;
                 DataModel.Tracker.Instance.Games.Add(model.Game);
 
+                Utils.FileManager.SaveDatabase();
+
                 DataModel.Deck active = DataModel.Tracker.Instance.ActiveDeck;
                 DataModel.Tracker.Instance.ActiveDeck = null;
                 DataModel.Tracker.Instance.ActiveDeck = active;
@@ -58,6 +60,7 @@ namespace ESLTracker.ViewModels.Game
                 opponentClass.SelectedClass = null;
 
             }
+
         }
 
         public bool CanExecute(object parameter)
