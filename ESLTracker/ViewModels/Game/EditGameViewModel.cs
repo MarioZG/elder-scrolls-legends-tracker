@@ -39,6 +39,17 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
+        public IEnumerable<GameType> AllowedGameTypes
+        {
+            get
+            {
+                return GetAllowedGameTypes();
+
+            }
+        }
+
+       
+
         public RelayCommand CommandButtonCreate
         {
             get
@@ -53,6 +64,16 @@ namespace ESLTracker.ViewModels.Game
         public EditGameViewModel()
         {
             Game.PropertyChanged += Game_PropertyChanged;
+            Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
+        }
+
+        private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "ActiveDeck")
+            {
+                RaisePropertyChangedEvent("AllowedGameTypes");
+            }
+            //throw new NotImplementedException();
         }
 
         private void Game_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -135,7 +156,29 @@ namespace ESLTracker.ViewModels.Game
             return true;
         }
 
-
+        private IEnumerable<GameType> GetAllowedGameTypes()
+        {
+            if (Tracker.Instance.ActiveDeck != null)
+            {
+                switch (Tracker.Instance.ActiveDeck.Type)
+                {
+                    case DeckType.Constructed:
+                        return new List<GameType>() { GameType.PlayCasual, GameType.PlayRanked };
+                        break;
+                    case DeckType.VersusArena:
+                        return new List<GameType>() { GameType.VersusArena };
+                        this.Game.Type = GameType.VersusArena;
+                        break;
+                    case DeckType.SoloArena:
+                        return new List<GameType>() { GameType.SoloArena };
+                        this.Game.Type = GameType.SoloArena;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return Enum.GetValues(typeof(GameType)).Cast<GameType>();
+        }
 
 
     }
