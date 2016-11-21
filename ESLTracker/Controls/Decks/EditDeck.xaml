@@ -22,7 +22,6 @@
                 <x:Type TypeName="Enums:DeckType"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-        <ViewModels:CreateNewDeckCommand x:Key="CreateNewDeckCommand" />
         <Converters:CommandMultipleParamaters x:Key="CommandMultipleParamatersConverter" />
     </UserControl.Resources>
     <Grid>
@@ -31,7 +30,7 @@
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
                  Text="{Binding Deck.Name}"/>
         <Button x:Name="btnSave" Content="Button" HorizontalAlignment="Left" Margin="85,109,0,0" VerticalAlignment="Top" Width="75"
-                Command="{StaticResource CreateNewDeckCommand}"
+                Command="{Binding CommandButtonSave}"
                 >
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource CommandMultipleParamatersConverter}">

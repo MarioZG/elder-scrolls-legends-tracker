@@ -132,7 +132,6 @@
     <Compile Include="Utils\WindowExtensions.cs" />
     <Compile Include="ViewModels\Decks\DeckListViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckTypeSelectorViewModel.cs" />
-    <Compile Include="ViewModels\Decks\EditDeckCommands.cs" />
     <Compile Include="ViewModels\Decks\EditDeckViewModel.cs" />
     <Compile Include="ViewModels\Decks\IDeckTypeSelectorViewModel.cs" />
     <Compile Include="ViewModels\Game\EditGameCommands.cs" />
