@@ -128,13 +128,13 @@ namespace ESLTracker.ViewModels.Game
                 }
 
                 DataModel.Game addedGame = model.Game;
-                DataModel.Tracker.Instance.Games.Add(model.Game);
+                Tracker.Instance.Games.Add(model.Game);
 
-                Utils.FileManager.SaveDatabase();
+                FileManager.SaveDatabase();
 
-                DataModel.Deck active = DataModel.Tracker.Instance.ActiveDeck;
-                DataModel.Tracker.Instance.ActiveDeck = null;
-                DataModel.Tracker.Instance.ActiveDeck = active;
+                Deck active = Tracker.Instance.ActiveDeck;
+                Tracker.Instance.ActiveDeck = null;
+                Tracker.Instance.ActiveDeck = active;
 
                 model.Game = new DataModel.Game();
 
@@ -145,7 +145,7 @@ namespace ESLTracker.ViewModels.Game
                 model.UpdateBindings();
 
                 //clear opp class
-                opponentClass.SelectedClass = null;
+                opponentClass.Reset();
 
             }
 
