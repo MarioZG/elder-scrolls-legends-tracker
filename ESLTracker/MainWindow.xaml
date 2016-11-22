@@ -30,7 +30,7 @@
             
             <MenuItem Header="Rewards" Command="{StaticResource ShowRewardsCommand}" />
             <MenuItem Header="Restore overlay window" Command="{StaticResource ShowOverlayCommand}"/>
-            <CheckBox Content="Show deck stats" IsChecked="{Binding DeckStatsVisible}"/>
+            <ToggleButton Content="Show deck stats" IsChecked="{Binding DeckStatsVisible}"/>
         </Menu>
         
         <WrapPanel x:Name="deckEdit"  DockPanel.Dock="Top"    
