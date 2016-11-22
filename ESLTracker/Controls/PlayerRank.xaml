@@ -30,8 +30,10 @@
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Value}" />
                         <TextBlock Text="{Binding}" />
+                        <TextBlock Text="{Binding StringFormat={} ({0:D})}" 
+                            Visibility="{Binding Converter={StaticResource PlayerRankLegendToVisibiltyCollapsed}, ConverterParameter=Not}"
+                            />
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
