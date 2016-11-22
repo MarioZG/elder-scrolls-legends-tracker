@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel
 {
@@ -55,6 +57,27 @@ namespace ESLTracker.DataModel
         public IEnumerable<Game> GetDeckGames()
         {
             return Tracker.Instance.Games.Where(g => g.Deck.DeckId == this.DeckId);
+        }
+
+        public IEnumerable GetDeckVsClass()
+        {
+            return GetDeckVsClass(null);
+        }
+
+        public IEnumerable GetDeckVsClass(DeckClass? opponentClass)
+        {
+            return this.GetDeckGames()
+                        .Where(g=> g.OpponentClass == opponentClass || opponentClass == null)
+                        .GroupBy(d => d.OpponentClass)
+                        .Select(d => new
+                        {
+                            Class = d.Key,
+                            Attributes = ClassAttributesHelper.Classes[d.Key],
+                            Total = d.Count(),
+                            Victory = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count(),
+                            Defeat = d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
+                            WinPercent = d.Count() > 0 ? Math.Round((decimal)d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() / (decimal)d.Count() * 100, 0).ToString() : "-"
+                        });
         }
 
         

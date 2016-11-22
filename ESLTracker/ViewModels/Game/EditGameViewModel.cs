@@ -48,6 +48,19 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
+        string opponentClassWins = "Select opponent class";
+        public string OpponentClassWins
+        {
+            get
+            {
+                return opponentClassWins;
+            }
+            set
+            {
+                opponentClassWins = value;
+                RaisePropertyChangedEvent("OpponentClassWins");
+            }
+        }
        
 
         public RelayCommand CommandButtonCreate
@@ -65,6 +78,7 @@ namespace ESLTracker.ViewModels.Game
         {
             Game.PropertyChanged += Game_PropertyChanged;
             Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
+            
         }
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -182,6 +196,28 @@ namespace ESLTracker.ViewModels.Game
                 }
             }
             return Enum.GetValues(typeof(GameType)).Cast<GameType>();
+        }
+
+        public void ShowWinsVsClass(DeckClass? deckClass)
+        {
+            if (deckClass != null)
+            {
+                var res = Tracker.Instance.ActiveDeck.GetDeckVsClass(deckClass);
+                dynamic data = (res as System.Collections.IEnumerable).Cast<object>().FirstOrDefault();
+                if (data == null)
+                {
+                    data = new { Class = deckClass, Victory = 0, Defeat = 0, WinPercent = "-" };
+                }
+                this.OpponentClassWins = string.Format("vs {0}: {1}-{2} ({3}%)",
+                    data.Class,
+                    data.Victory,
+                    data.Defeat,
+                    data.WinPercent);
+            }
+            else
+            {
+                this.OpponentClassWins = "Select opponent class";
+            }
         }
 
 

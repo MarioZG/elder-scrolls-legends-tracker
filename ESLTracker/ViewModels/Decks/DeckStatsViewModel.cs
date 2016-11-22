@@ -70,15 +70,7 @@ namespace ESLTracker.ViewModels.Decks
             if ((e.PropertyName == "ActiveDeck")
                 && (Tracker.Instance.ActiveDeck != null))
             {
-                WinRatioVsClass = Tracker.Instance.ActiveDeck.GetDeckGames()
-                    .GroupBy(d => d.OpponentClass)
-                    .Select(d => new { Class = d.Key,
-                        Attributes = ClassAttributesHelper.Classes[d.Key],
-                        Total = d.Count(),
-                        Victory = d.Where(d2=>d2.Outcome == GameOutcome.Victory).Count(),
-                        Defeat = d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-                        WinPercent = d.Count() > 0 ? Math.Round((decimal)d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() / (decimal)d.Count() * 100,0).ToString() : "-"
-                    });
+                WinRatioVsClass = Tracker.Instance.ActiveDeck.GetDeckVsClass();
                 ActiveDeckGames = new ObservableCollection<DataModel.Game>(Tracker.Instance.ActiveDeck.GetDeckGames());
                 ActiveDeckRewards = new ObservableCollection<Reward>(Tracker.Instance.Rewards.Where(r => r.ArenaDeckId == Tracker.Instance.ActiveDeck.DeckId));
                 RaisePropertyChangedEvent("WinRatioVsClass");

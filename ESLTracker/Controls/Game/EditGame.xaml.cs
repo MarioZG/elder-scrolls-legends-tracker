@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.ViewModels.Game;
 
 namespace ESLTracker.Controls.Game
 {
@@ -22,13 +23,33 @@ namespace ESLTracker.Controls.Game
     /// </summary>
     public partial class EditGame : UserControl
     {
+        new public EditGameViewModel DataContext
+        {
+            get
+            {
+                return (EditGameViewModel)base.DataContext;
+            }
+            set
+            {
+                base.DataContext = value;
+            }
+        }
 
         public EditGame()
         {
             InitializeComponent();
 
             DataModel.Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
+            opponentClass.DataContext.PropertyChanged += DataContext_PropertyChanged;
 
+        }
+
+        private void DataContext_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "SelectedClass")
+            {
+                this.DataContext.ShowWinsVsClass(opponentClass.DataContext.SelectedClass);
+            }
         }
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
