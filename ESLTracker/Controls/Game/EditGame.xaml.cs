@@ -26,7 +26,6 @@ namespace ESLTracker.Controls.Game
         public EditGame()
         {
             InitializeComponent();
-            this.selectedDeck.DataContext = DataModel.Tracker.Instance.ActiveDeck;
 
             DataModel.Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
 
@@ -34,7 +33,6 @@ namespace ESLTracker.Controls.Game
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            this.selectedDeck.DataContext = DataModel.Tracker.Instance.ActiveDeck;
             if (this.selectedDeck.DataContext != null)
             {
                 if (DataModel.Tracker.Instance.ActiveDeck.Type == DeckType.VersusArena)

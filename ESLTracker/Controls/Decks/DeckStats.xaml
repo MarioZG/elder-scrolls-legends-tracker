@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
+             xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -12,7 +13,7 @@
     </UserControl.DataContext>
     <DockPanel>
         <local:DeckItem DockPanel.Dock="Top"
-            DataContext="{Binding DataModel.Tracker.Instance.ActiveDeck}" />
+            DataContext="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}" />
         <Rewards:RewardItemList DockPanel.Dock="Top"
             PanelOrientation="Horizontal"
             DataContext="{Binding ActiveDeckRewards}" />
