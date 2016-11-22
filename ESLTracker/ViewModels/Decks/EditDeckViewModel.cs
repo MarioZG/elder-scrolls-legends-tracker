@@ -9,7 +9,13 @@ namespace ESLTracker.ViewModels.Decks
 {
     public class EditDeckViewModel : ViewModelBase
     {
-        public Deck deck = new Deck() { Name = "New deck" };
+        public Deck deck = CreateDefaultDeck();
+
+        private static Deck CreateDefaultDeck()
+        {
+            return new Deck() { Name = "New deck" };
+        }
+
         public Deck Deck
         {
             get { return deck; }
@@ -25,10 +31,23 @@ namespace ESLTracker.ViewModels.Decks
         //command for add deck button 
         public RelayCommand CommandButtonSave
         {
-            get {
+            get
+            {
                 return new RelayCommand(
-                    new Action<object>(CommandButtonSaveExecute), 
+                    new Action<object>(CommandButtonSaveExecute),
                     new Func<object, bool>(CommandButtonSaveCanExecute)
+                    );
+            }
+        }
+
+        //command for add deck button 
+        public RelayCommand CommandButtonCancel
+        {
+            get
+            {
+                return new RelayCommand(
+                    new Action<object>(CommandButtonCancelExecute),
+                    new Func<object, bool>(CommandButtonCancelCanExecute)
                     );
             }
         }
@@ -47,12 +66,37 @@ namespace ESLTracker.ViewModels.Decks
                 model.Deck.Attributes.AddRange(Utils.ClassAttributesHelper.Classes[model.Deck.Class]);
                 DataModel.Tracker.Instance.Decks.Add(model.Deck);
                 Utils.FileManager.SaveDatabase();
-                model.Deck = new Deck();
+                model.Deck = CreateDefaultDeck();
                 model.mainWindowViewModel.DeckEditVisible = false;
+                if (selectedClassModel != null)
+                {
+                    selectedClassModel.Reset();
+                }
             }
         }
 
         public bool CommandButtonSaveCanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void CommandButtonCancelExecute(object parameter)
+        {
+            object[] args = parameter as object[];
+            EditDeckViewModel model = args[0] as EditDeckViewModel;
+            DeckClassSelectorViewModel selectedClassModel = args[1] as DeckClassSelectorViewModel;
+            if (model != null)
+            {
+                model.Deck = CreateDefaultDeck();
+                model.mainWindowViewModel.DeckEditVisible = false;
+                if (selectedClassModel != null)
+                {
+                    selectedClassModel.Reset();
+                }
+            }
+        }
+
+        public bool CommandButtonCancelCanExecute(object parameter)
         {
             return true;
         }

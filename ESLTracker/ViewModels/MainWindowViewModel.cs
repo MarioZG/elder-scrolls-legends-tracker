@@ -15,7 +15,7 @@ namespace ESLTracker.ViewModels
             get { return deckEditVisible; }
             set {
                 deckEditVisible = value;
-                DeckListVisible = ! value;
+                //DeckListVisible = ! value;
                 RaisePropertyChangedEvent("DeckEditVisible");
             }
         }

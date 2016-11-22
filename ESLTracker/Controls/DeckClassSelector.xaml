@@ -20,7 +20,7 @@
         <ViewModels:DeckClassSelectorViewModel/>
     </UserControl.DataContext>
     <DockPanel>
-    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" ToolTip="Select attributes to filter available classes.">
         <ToggleButton
                       Style="{DynamicResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
