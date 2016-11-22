@@ -63,8 +63,17 @@
     <Compile Include="Controls\Decks\DeckFilter.xaml.cs">
       <DependentUpon>DeckFilter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Decks\DeckStats.xaml.cs">
+      <DependentUpon>DeckStats.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Decks\DeckTypeSelector.xaml.cs">
       <DependentUpon>DeckTypeSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Game\GameListItem.xaml.cs">
+      <DependentUpon>GameListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Rewards\RewardItemList.xaml.cs">
+      <DependentUpon>RewardItemList.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindowCommands.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
@@ -130,6 +139,7 @@
     <Compile Include="Utils\FileManager.cs" />
     <Compile Include="Utils\Converters\HasSelectedValueToVisibilityConverter.cs" />
     <Compile Include="Utils\WindowExtensions.cs" />
+    <Compile Include="ViewModels\Decks\DeckStatsViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckListViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckTypeSelectorViewModel.cs" />
     <Compile Include="ViewModels\Decks\EditDeckViewModel.cs" />
@@ -163,6 +173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Decks\DeckStats.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Decks\DeckTypeSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +189,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Game\GameListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\OverlayWindowTitlebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -184,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Rewards\AddSingleReward.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Rewards\RewardItemList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

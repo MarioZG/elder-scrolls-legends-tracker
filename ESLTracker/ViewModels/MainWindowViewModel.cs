@@ -28,5 +28,13 @@ namespace ESLTracker.ViewModels
             set { deckListVisible = value; RaisePropertyChangedEvent("DeckListVisible"); }
         }
 
+        private bool deckStatsVisible = false;
+
+        public bool DeckStatsVisible
+        {
+            get { return deckStatsVisible; }
+            set { deckStatsVisible = value; RaisePropertyChangedEvent("DeckStatsVisible"); }
+        }
+
     }
 }

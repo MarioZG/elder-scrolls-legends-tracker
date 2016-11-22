@@ -27,8 +27,10 @@
     <DockPanel>
         <Menu x:Name="menu"  DockPanel.Dock="Top">
             <MenuItem Header="New Deck" Command="{StaticResource NewDeckCommand}" />
+            
             <MenuItem Header="Rewards" Command="{StaticResource ShowRewardsCommand}" />
             <MenuItem Header="Restore overlay window" Command="{StaticResource ShowOverlayCommand}"/>
+            <CheckBox Content="Show deck stats" IsChecked="{Binding DeckStatsVisible}"/>
         </Menu>
         
         <WrapPanel x:Name="deckEdit"  DockPanel.Dock="Top"    
@@ -37,9 +39,15 @@
             <Decks:EditDeck x:Name="editDeck" />
         </WrapPanel>        
         <WrapPanel
-                    Visibility="{Binding DeckListVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+            Visibility="{Binding DeckListVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
             >
             <Decks:DeckList x:Name="deckList" HorizontalAlignment="Stretch"/>
+        </WrapPanel>
+        <WrapPanel 
+                Visibility="{Binding DeckStatsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+        >
+        <Decks:DeckStats
+        />
         </WrapPanel>
         <tb:TaskbarIcon
             x:Name="taskBarIcon"
