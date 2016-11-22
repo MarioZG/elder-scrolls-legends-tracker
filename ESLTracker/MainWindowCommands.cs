@@ -92,4 +92,23 @@ namespace ESLTracker
 
         public event EventHandler CanExecuteChanged;
     }
+
+    class RunGameCommand : ICommand
+    {
+        public void Execute(object parameter)
+        {
+            if (WindowsUtils.GetEslProcess() == null)
+            { 
+                System.Diagnostics.Process.Start("bethesdanet://run/5");
+            }
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return WindowsUtils.GetEslProcess() == null;
+        }
+
+        public event EventHandler CanExecuteChanged;
+    }
+
 }

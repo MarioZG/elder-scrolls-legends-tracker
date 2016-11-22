@@ -19,6 +19,7 @@
         <local:ShowRewardsCommand x:Key="ShowRewardsCommand" />
         <local:NewDeckCommand x:Key="NewDeckCommand" />
         <local:ShowOverlayCommand x:Key="ShowOverlayCommand" />
+        <local:RunGameCommand x:Key="RunGameCommand" />
         <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
     </Window.Resources>
     <Window.DataContext>
@@ -30,6 +31,7 @@
             
             <MenuItem Header="Rewards" Command="{StaticResource ShowRewardsCommand}" />
             <MenuItem Header="Restore overlay window" Command="{StaticResource ShowOverlayCommand}"/>
+            <MenuItem Header="Run game" Command="{StaticResource RunGameCommand}"/>
             <ToggleButton Content="Show deck stats" IsChecked="{Binding DeckStatsVisible}"/>
         </Menu>
         
