@@ -23,7 +23,7 @@ namespace ESLTracker.DataModel
                 {
                     try
                     {
-                        _instance = Utils.FileManager.LoadDatabase<DataModel.Tracker>("./data.xml");
+                        _instance = Utils.FileManager.LoadDatabase();
                         //fix up ref to decks in games
                         foreach (Game g in _instance.Games)
                         {

@@ -13,5 +13,6 @@ namespace ESLTracker.Properties
         double OverlayWindowPositionY { get; set; }
         PlayerRank PlayerRank { get; set; }
         bool ShowDeckStats { get; set; }
+        string DataPath { get; set; }
     }
 }

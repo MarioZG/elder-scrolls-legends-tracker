@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Drawing=System.Drawing;
+using Drawing = System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.Utils;
 
 namespace ESLTracker.Controls
 {
@@ -49,27 +50,8 @@ namespace ESLTracker.Controls
 
         private void btnScreenShot_Click(object sender, RoutedEventArgs e)
         {
-            IntPtr? eslHandle = WindowsUtils.GetEslProcess()?.MainWindowHandle;
-            if (eslHandle.HasValue)
-            {
-                var rect = new WindowsUtils.Rect();
-                WindowsUtils.GetWindowRect(eslHandle.Value, ref rect);
-
-                int width = rect.right - rect.left;
-                int height = rect.bottom - rect.top;
-
-                var bmp = new Drawing.Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                Drawing.Graphics gfxBmp = Drawing.Graphics.FromImage(bmp);
-
-                Window.GetWindow(this).Hide();
-                gfxBmp.CopyFromScreen(rect.left, rect.top, 0, 0, new Drawing.Size(width, height), Drawing.CopyPixelOperation.SourceCopy);
-                Window.GetWindow(this).Show();
-
-                bmp.Save("./screenshot"+ DateTime.Now.ToString("yyyyMMddHHmmss") + ".png", System.Drawing.Imaging.ImageFormat.Png);
-
-                gfxBmp.Dispose();
-
-            }
+            FileManager.SaveScreenShot(this);
         }
+
     }
 }

@@ -16,6 +16,9 @@
                   IsChecked="{Binding Path=MinimiseOnClose, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                   />
         <Button Command="{Binding CommandSaveButtonPressed}" Content="Button" HorizontalAlignment="Left" Margin="163,175,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="txtDataPath" 
+                 Text="{Binding Path=DataPath, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                 HorizontalAlignment="Left" Height="23" Margin="87,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </UserControl>

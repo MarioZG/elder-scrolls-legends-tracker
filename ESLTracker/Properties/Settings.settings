@@ -26,5 +26,8 @@
     <Setting Name="PlayerRank" Type="ESLTracker.DataModel.Enums.PlayerRank" Scope="User">
       <Value Profile="(Default)">TheRitual</Value>
     </Setting>
+    <Setting Name="DataPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -7,11 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using ESLTracker.Utils.IOWrappers;
+using ESLTracker.DataModel;
+using ESLTrackerTests;
 
 namespace ESLTracker.Utils.Tests
 {
     [TestClass()]
-    public class FileManagerTests
+    public class FileManagerTests : BaseTest
     {
         [TestMethod()]
         public void ManageBackupsTest001_OneBackup()
@@ -28,7 +30,7 @@ namespace ESLTracker.Utils.Tests
             FileManager.ManageBackups(path, pathWrapper.Object, directoryWrapper.Object, fileWrapper.Object);
 
             fileWrapper.Verify(fw => fw.Delete(It.IsAny<string>()), Times.Never);
- 
+
         }
 
         [TestMethod()]
@@ -81,8 +83,14 @@ namespace ESLTracker.Utils.Tests
             FileManager.ManageBackups(path, pathWrapper.Object, directoryWrapper.Object, fileWrapper.Object);
 
             fileWrapper.Verify(fw => fw.Delete(It.IsAny<string>()), Times.Once);
-            fileWrapper.Verify(fw => fw.Delete(It.Is<string>( s=> s == "data8.xml")), Times.Once);
+            fileWrapper.Verify(fw => fw.Delete(It.Is<string>(s => s == "data8.xml")), Times.Once);
 
+        }
+
+        [TestMethod()]
+        public void SaveDatabaseTest001_NonExitingPath()
+        {
+            FileManager.SaveDatabase<Tracker>(TestContext.TestDeploymentDir+"./somerandomfolder/ss.xml", new Tracker());
         }
     }
 }
