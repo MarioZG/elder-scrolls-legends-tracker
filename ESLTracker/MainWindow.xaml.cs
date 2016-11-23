@@ -43,6 +43,7 @@ namespace ESLTracker
             UpdateOverlayAsync(this);
 
             this.editDeck.DataContext.mainWindowViewModel = this.DataContext;
+            this.settingsPanel.DataContext.MainWindowViewModel = this.DataContext;
         }
 
         private static async void UpdateOverlayAsync(Window mainWindow)
@@ -62,9 +63,16 @@ namespace ESLTracker
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
-            this.ShowInTaskbar = false;
-            e.Cancel = true;
+            if (Properties.Settings.Default.MinimiseOnClose)
+            {
+                this.WindowState = WindowState.Minimized;
+                this.ShowInTaskbar = false;
+                e.Cancel = true;
+            }
+            else
+            {
+                new ExitCommand().Execute(null);
+            }
         }
 
         internal void RestoreOverlay()

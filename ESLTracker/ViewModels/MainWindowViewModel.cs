@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ESLTracker.ViewModels
 {
@@ -36,5 +37,25 @@ namespace ESLTracker.ViewModels
             set { deckStatsVisible = value; RaisePropertyChangedEvent("DeckStatsVisible"); }
         }
 
+        private bool settingsVisible = false;
+
+        public bool SettingsVisible
+        {
+            get { return settingsVisible; }
+            set { settingsVisible = value; RaisePropertyChangedEvent("SettingsVisible"); }
+        }
+
+        public ICommand CommandEditSettings
+        {
+            get { return new RelayCommand(new Action<object>(EditSettings)); }
+        }
+
+
+        public void EditSettings(object parameter)
+        {
+            this.DeckStatsVisible = false;
+            this.SettingsVisible = true;
+
+        }
     }
 }

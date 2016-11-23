@@ -63,13 +63,14 @@ namespace ESLTracker.ViewModels.Game
         }
        
 
-        public RelayCommand CommandButtonCreate
+        public RelayCommandWithSettings CommandButtonCreate
         {
             get
             {
-                return new RelayCommand(
-                    new Action<object>(CommandButtonCreateExecute),
-                    new Func<object, bool>(CommandButtonCreateCanExecute)
+                return new RelayCommandWithSettings(
+                    new Action<object, Properties.ISettings>(CommandButtonCreateExecute),
+                    new Func<object, Properties.ISettings, bool>(CommandButtonCreateCanExecute),
+                    Properties.Settings.Default
                     );
             }
         }
@@ -113,7 +114,7 @@ namespace ESLTracker.ViewModels.Game
             RaisePropertyChangedEvent("Game");
         }
 
-        public void CommandButtonCreateExecute(object parameter)
+        public void CommandButtonCreateExecute(object parameter, Properties.ISettings settings)
         {
             object[] args = parameter as object[];
             GameOutcome? outcome = EnumManager.ParseEnumString<GameOutcome>(args[0] as string);
@@ -126,7 +127,7 @@ namespace ESLTracker.ViewModels.Game
                 && (opponentClass != null)
                 && opponentClass.SelectedClass.HasValue)
             {
-                model.Game.Deck = DataModel.Tracker.Instance.ActiveDeck;
+                model.Game.Deck = Tracker.Instance.ActiveDeck;
                 model.Game.OpponentClass = opponentClass.SelectedClass.Value;
                 model.Game.OpponentAttributes.AddRange(opponentClass.SelectedClassAttributes);
                 model.Game.Outcome = outcome.Value;
@@ -136,9 +137,13 @@ namespace ESLTracker.ViewModels.Game
                     model.Game.OpponentRank = opponentRank.SelectedItem;
                     model.Game.OpponentLegendRank = opponentRank.LegendRank;
 
-                    model.Game.PlayerRank = playerRank.SelectedItem;
-                    model.Game.PlayerLegendRank = playerRank.LegendRank;
+                    if (playerRank.SelectedItem.HasValue)
+                    {
+                        model.Game.PlayerRank = playerRank.SelectedItem;
+                        model.Game.PlayerLegendRank = playerRank.LegendRank;
 
+                        settings.PlayerRank = playerRank.SelectedItem.Value;
+                    }
                 }
 
                 DataModel.Game addedGame = model.Game;
@@ -169,7 +174,7 @@ namespace ESLTracker.ViewModels.Game
 
         }
 
-        public bool CommandButtonCreateCanExecute(object parameter)
+        public bool CommandButtonCreateCanExecute(object parameter, Properties.ISettings settings)
         {
             return true;
         }

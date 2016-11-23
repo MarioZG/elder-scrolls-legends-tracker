@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel
@@ -32,6 +33,13 @@ namespace ESLTracker.DataModel
                         foreach (Reward r in _instance.Rewards)
                         {
                             r.ArenaDeck = _instance.Decks.Where(d => d.DeckId == r.ArenaDeckId).FirstOrDefault();
+                        }
+                        //restore active deck
+                        Guid? activeDeckFromSettings = Settings.Default.LastActiveDeckId;
+                        if ((activeDeckFromSettings != null)
+                            && (activeDeckFromSettings != Guid.Empty))
+                        {
+                            _instance.ActiveDeck = _instance.Decks.Where(d => d.DeckId == activeDeckFromSettings).FirstOrDefault();
                         }
                     }
                     catch

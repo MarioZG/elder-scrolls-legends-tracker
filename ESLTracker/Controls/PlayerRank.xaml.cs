@@ -25,7 +25,7 @@ namespace ESLTracker.Controls
         {
             get
             {
-                return (DataModel.Enums.PlayerRank)this.cbPlayerRank.SelectedItem;
+                return (DataModel.Enums.PlayerRank?)this.cbPlayerRank.SelectedItem;
             }
             set
             {
@@ -37,7 +37,8 @@ namespace ESLTracker.Controls
         {
             get
             {
-                if (SelectedItem != DataModel.Enums.PlayerRank.TheLegend)
+                if ((! SelectedItem.HasValue) 
+                    || (SelectedItem != DataModel.Enums.PlayerRank.TheLegend))
                 {
                     return null;
                 }

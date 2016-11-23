@@ -12,6 +12,11 @@ namespace ESLTracker.ViewModels
         Action<object> action;
         Func<object, bool> canExecute;
 
+        protected RelayCommand()
+        {
+
+        }
+
         public RelayCommand(Action<object> action) : this (action, null)
         {
         }
@@ -56,7 +61,7 @@ namespace ESLTracker.ViewModels
             }
         }
 
-        public void Execute(object parameter)
+        public virtual void Execute(object parameter)
         {
             if (parameter != null)
             {

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using ESLTracker.DataModel;
+using ESLTracker.Properties;
 
 namespace ESLTracker
 {
@@ -36,6 +38,8 @@ namespace ESLTracker
         {
             Utils.FileManager.SaveDatabase();
             MainWindow.UpdateOverlay = false;
+            Settings.Default.LastActiveDeckId = Tracker.Instance.ActiveDeck?.DeckId;
+            Settings.Default.Save();
             ((App)Application.Current).Exit();
         }
 

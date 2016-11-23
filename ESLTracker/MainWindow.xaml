@@ -1,4 +1,4 @@
-﻿<Window
+﻿<Window xmlns:Settings="clr-namespace:ESLTracker.Controls.Settings" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,11 +8,15 @@
         xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks" x:Class="ESLTracker.MainWindow"
         xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+        xmlns:Properties="clr-namespace:ESLTracker.Properties" 
         mc:Ignorable="d"
         x:Name="mainWindow"
         Title="MainWindow" Height="553.805" SizeToContent="Width"
         BorderThickness="2" 
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        Left="{Binding Path=MainWindowPositionX, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+        Top="{Binding Path=MainWindowPositionY, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+    >
     <Window.Resources>
         <local:NotifyIconLeftClickCommand x:Key="NotifyIconLeftClickCommand" />
         <local:ExitCommand x:Key="ExitCommand" />
@@ -33,6 +37,7 @@
             <MenuItem Header="Restore overlay window" Command="{StaticResource ShowOverlayCommand}"/>
             <MenuItem Header="Run game" Command="{StaticResource RunGameCommand}"/>
             <ToggleButton Content="Show deck stats" IsChecked="{Binding DeckStatsVisible}"/>
+            <MenuItem Header="Settings" Command="{Binding CommandEditSettings}"/>
         </Menu>
         
         <WrapPanel x:Name="deckEdit"  DockPanel.Dock="Top"    
@@ -50,6 +55,11 @@
         >
         <Decks:DeckStats
         />
+        </WrapPanel>
+        <WrapPanel 
+                Visibility="{Binding SettingsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+        >
+            <Settings:SettingsPanel x:Name="settingsPanel" />
         </WrapPanel>
         <tb:TaskbarIcon
             x:Name="taskBarIcon"

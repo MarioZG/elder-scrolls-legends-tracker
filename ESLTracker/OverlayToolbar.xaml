@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ESLTracker"
+        xmlns:Properties="clr-namespace:ESLTracker.Properties"
         mc:Ignorable="d"
-        SizeToContent="WidthAndHeight"  Title="Game" Height="322.805" Width="308.65" Topmost="True" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="False">
-
+        SizeToContent="WidthAndHeight"  Title="Game" 
+        Height="322.805" Width="308.65" Topmost="True" 
+        Background="{x:Null}" AllowsTransparency="True" 
+        WindowStyle="None" ShowInTaskbar="False"
+        Left="{Binding Path=OverlayWindowPositionX, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+        Top="{Binding Path=OverlayWindowPositionY, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+        >
     <StackPanel Orientation="Vertical" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Controls:OverlayWindowTitlebar />
         <TabControl x:Name="tabControl">

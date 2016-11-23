@@ -73,6 +73,7 @@
     <Compile Include="ViewModels\DeckClassSelectorViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\DeckListViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\DeckTypeSelectorViewModelTests.cs" />
+    <Compile Include="ViewModels\Game\EditGameViewModelTests.cs" />
     <Compile Include="ViewModels\Rewards\AddSingleRewardViewModelTests.cs" />
     <Compile Include="ViewModels\Rewards\RewardSetViewModelTests.cs" />
   </ItemGroup>

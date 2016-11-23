@@ -13,7 +13,7 @@
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Game" 
              x:Class="ESLTracker.Controls.Game.EditGame"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Initialized="UserControl_Initialized">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="GameOutcomeEnum" MethodName="GetValues"
                             ObjectType="{x:Type System:Enum}">

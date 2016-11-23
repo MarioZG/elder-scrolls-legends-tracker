@@ -23,8 +23,12 @@ namespace ESLTracker
         {
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.Manual;
-            this.Left = System.Windows.SystemParameters.PrimaryScreenWidth - this.Width;
-            this.Top = System.Windows.SystemParameters.PrimaryScreenHeight / 4;
+            if (this.Left == -1 || this.Top == -1)
+            {
+                //first run with clear settings
+                this.Left = System.Windows.SystemParameters.PrimaryScreenWidth - this.Width;
+                this.Top = System.Windows.SystemParameters.PrimaryScreenHeight / 4;
+            }
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

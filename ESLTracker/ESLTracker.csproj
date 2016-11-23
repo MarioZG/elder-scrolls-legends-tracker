@@ -75,7 +75,12 @@
     <Compile Include="Controls\Rewards\RewardItemList.xaml.cs">
       <DependentUpon>RewardItemList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Settings\SettingsPanel.xaml.cs">
+      <DependentUpon>SettingsPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindowCommands.cs" />
+    <Compile Include="Properties\ISettings.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyCollapsedConverter.cs" />
@@ -148,9 +153,11 @@
     <Compile Include="ViewModels\IDeckClassSelectorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\RelayCommandWithSettings.cs" />
     <Compile Include="ViewModels\Rewards\AddSingleRewardViewModel.cs" />
     <Compile Include="ViewModels\Rewards\IRewardSetViewModel.cs" />
     <Compile Include="ViewModels\Rewards\RewardSetViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsPanelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="WindowsUtils.cs" />
     <Page Include="ControlStyle.xaml">
@@ -209,6 +216,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Settings\SettingsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OverlayToolbar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -264,6 +275,7 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
@@ -304,6 +316,7 @@
   <ItemGroup>
     <Resource Include="Resources\WindowIcons\printScreen.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
