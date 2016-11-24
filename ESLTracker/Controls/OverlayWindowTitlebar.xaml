@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls"
-             mc:Ignorable="d">
-    <StackPanel  FlowDirection="RightToLeft" Orientation="Horizontal" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+             mc:Ignorable="d"
+             x:Name="titleBar">
+    <DockPanel  FlowDirection="RightToLeft"  Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <!-- Controls must be in reverse order with HorizontalAlignment="Right"-->
         <Button x:Name="btnClose" HorizontalAlignment="Right" Width="15" Click="btnClose_Click">
             <Image Source="/Resources/WindowIcons/close.png"/>
@@ -29,5 +30,7 @@
         <Button x:Name="btnScreenShot" HorizontalAlignment="Right" Width="15" Click="btnScreenShot_Click">
             <Image Source="/Resources/WindowIcons/printScreen.png"/>
         </Button>
-    </StackPanel>
+        <TextBlock FontWeight="Medium" Margin="10,2,10,2" FlowDirection="LeftToRight" HorizontalAlignment="Stretch"
+                   Text="{Binding Title, ElementName=titleBar}" />
+    </DockPanel>
 </UserControl>

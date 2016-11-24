@@ -62,6 +62,20 @@ namespace ESLTracker.ViewModels.Game
             }
         }
        
+        public string SummaryText
+        {
+            get
+            {
+                if (! String.IsNullOrWhiteSpace(game.OpponentName))
+                {
+                    return string.Format("Game vs {0} ({1})", game.OpponentName, game.OpponentClass);
+                }
+                else
+                {
+                    return "Waitng for game details...";
+                }
+            }
+        }
 
         public RelayCommandWithSettings CommandButtonCreate
         {
@@ -77,9 +91,18 @@ namespace ESLTracker.ViewModels.Game
 
         public EditGameViewModel()
         {
+            this.PropertyChanged += EditGameViewModel_PropertyChanged;
             Game.PropertyChanged += Game_PropertyChanged;
             Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
             
+        }
+
+        private void EditGameViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != "SummaryText")
+            {
+                RaisePropertyChangedEvent("SummaryText");
+            }
         }
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

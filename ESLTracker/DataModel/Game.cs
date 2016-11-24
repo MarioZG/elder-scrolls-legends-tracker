@@ -53,7 +53,13 @@ namespace ESLTracker.DataModel
 
         public DeckAttributes OpponentAttributes { get; set; } = new DeckAttributes();
         public DeckClass OpponentClass { get; set; }
-        public string OpponentName { get; set; }
+
+        string opponentName;
+        public string OpponentName
+        {
+            get { return opponentName; }
+            set { opponentName = value; RaisePropertyChangedEvent("OpponentName"); }
+        }
 
         //ranked info
         public PlayerRank? PlayerRank { get; set; }
