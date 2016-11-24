@@ -66,7 +66,8 @@ namespace ESLTracker.ViewModels.Game
         {
             get
             {
-                if (! String.IsNullOrWhiteSpace(game.OpponentName))
+                if (! String.IsNullOrWhiteSpace(game.OpponentName)
+                    && game.OpponentClass.HasValue)
                 {
                     return string.Format("Game vs {0} ({1})", game.OpponentName, game.OpponentClass);
                 }
@@ -91,19 +92,19 @@ namespace ESLTracker.ViewModels.Game
 
         public EditGameViewModel()
         {
-            this.PropertyChanged += EditGameViewModel_PropertyChanged;
+            //this.PropertyChanged += EditGameViewModel_PropertyChanged;
             Game.PropertyChanged += Game_PropertyChanged;
             Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
             
         }
 
-        private void EditGameViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName != "SummaryText")
-            {
-                RaisePropertyChangedEvent("SummaryText");
-            }
-        }
+        //private void EditGameViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        //{
+        //    if (e.PropertyName != "SummaryText")
+        //    {
+        //        RaisePropertyChangedEvent("SummaryText");
+        //    }
+        //}
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -129,6 +130,11 @@ namespace ESLTracker.ViewModels.Game
                 {
                     this.Game.BonusRound = null;
                 }
+            }
+            else if ((e.PropertyName == "OpponentName")
+                || (e.PropertyName == "OpponentClass"))
+            {
+                  RaisePropertyChangedEvent("SummaryText");
             }
         }
 
@@ -228,6 +234,7 @@ namespace ESLTracker.ViewModels.Game
 
         public void ShowWinsVsClass(DeckClass? deckClass)
         {
+            this.Game.OpponentClass = deckClass; //ugly hack until class slectro can be bound in xaml
             if (deckClass != null)
             {
                 var res = Tracker.Instance.ActiveDeck.GetDeckVsClass(deckClass);

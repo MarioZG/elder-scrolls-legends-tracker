@@ -67,8 +67,9 @@ namespace ESLTracker.DataModel
         public IEnumerable GetDeckVsClass(DeckClass? opponentClass)
         {
             return this.GetDeckGames()
-                        .Where(g=> g.OpponentClass == opponentClass || opponentClass == null)
-                        .GroupBy(d => d.OpponentClass)
+                        .Where(g=> (g.OpponentClass.HasValue)  //filter out all game where calss is not set (if we include in show all, crash below as here is no nul key in classes.attibutes)
+                                && ((g.OpponentClass == opponentClass) || (opponentClass == null))) //class = param, or oaram is null - show all"
+                        .GroupBy(d => d.OpponentClass.Value)
                         .Select(d => new
                         {
                             Class = d.Key,

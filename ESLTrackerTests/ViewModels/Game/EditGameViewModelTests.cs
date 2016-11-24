@@ -28,7 +28,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             PlayerRank selectedPlayerRank = PlayerRank.TheLord;
             model.Game.Type = GameType.PlayRanked;
 
-            object[] args = 
+            object[] args =
             {
                 "Victory",
                 model,
@@ -40,7 +40,34 @@ namespace ESLTracker.ViewModels.Game.Tests
             model.CommandButtonCreateExecute(args, settingsMock.Object);
 
             settingsMock.VerifySet(s => s.PlayerRank = selectedPlayerRank, Times.Once);
-            
+
         }
+
+        [TestMethod()]
+        public void SummaryText001_ChangeEventRaisedWhenNameChanges()
+        {
+            EditGameViewModel model = new EditGameViewModel();
+            bool raised = false;
+            model.PropertyChanged += delegate { raised = true; }; 
+
+            model.Game.OpponentName = "some name";
+
+            Assert.AreEqual(true, raised);
+        }
+
+
+        [TestMethod()]
+        public void SummaryText002_ChangeEventRaisedWhenOpponentClassChanges()
+        {
+            EditGameViewModel model = new EditGameViewModel();
+            bool raised = false;
+            model.PropertyChanged += delegate { raised = true; };
+
+            model.Game.OpponentClass = DeckClass.Endurance;
+
+            Assert.AreEqual(true, raised);
+        }
+
+
     }
 }
