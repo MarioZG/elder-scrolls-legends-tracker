@@ -23,6 +23,7 @@
         <ViewModels:RewardSetViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical">
+        <TextBlock TextWrapping="Wrap" Text="Select reward reason"></TextBlock>
         <ComboBox 
                 x:Name="cbReason" 
                 HorizontalAlignment="Stretch"
@@ -45,10 +46,10 @@
                 <RowDefinition Height="5*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <local:AddSingleReward Grid.Column="0" Grid.Row="0" x:Name="rewardGold" Type="Gold"/>
-            <local:AddSingleReward Grid.Column="1" Grid.Row="0" x:Name="rewardSoulGem" Type="SoulGem"/>
-            <local:AddSingleReward Grid.Column="0" Grid.Row="1" x:Name="rewardPack" Type="Pack" />
-            <local:AddSingleReward Grid.Column="1" Grid.Row="1" x:Name="rewardCard" Type="Card" />
+            <local:AddSingleReward ToolTip="Click to add gold" Grid.Column="0" Grid.Row="0" x:Name="rewardGold" Type="Gold"/>
+            <local:AddSingleReward ToolTip="Click to add soul gems" Grid.Column="1" Grid.Row="0" x:Name="rewardSoulGem" Type="SoulGem"/>
+            <local:AddSingleReward ToolTip="Click to add pack" Grid.Column="0" Grid.Row="1" x:Name="rewardPack" Type="Pack" />
+            <local:AddSingleReward ToolTip="Click to add card" Grid.Column="1" Grid.Row="1" x:Name="rewardCard" Type="Card" />
         </Grid>
         <local:RewardItemList DataContext="{Binding Rewards}" />
         <Button 
