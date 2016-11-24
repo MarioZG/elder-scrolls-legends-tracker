@@ -20,15 +20,15 @@ namespace ESLTracker.Utils
             { DeckClass.Endurance, new DeckAttributes() { DeckAttribute.Endurance } },
             { DeckClass.Archer, new DeckAttributes() { DeckAttribute.Agility, DeckAttribute.Strength } },
 
-            { DeckClass.Assassin, new DeckAttributes() { DeckAttribute.Agility, DeckAttribute.Intelligence}},
-            { DeckClass.Battlemage, new DeckAttributes() { DeckAttribute.Intelligence, DeckAttribute.Strength}},
+            { DeckClass.Assassin, new DeckAttributes() { DeckAttribute.Intelligence, DeckAttribute.Agility}},
+            { DeckClass.Battlemage, new DeckAttributes() { DeckAttribute.Strength, DeckAttribute.Intelligence}},
             { DeckClass.Crusader, new DeckAttributes() { DeckAttribute.Strength, DeckAttribute.Willpower}},
             { DeckClass.Mage, new DeckAttributes() { DeckAttribute.Intelligence, DeckAttribute.Willpower}},
-            { DeckClass.Monk, new DeckAttributes() { DeckAttribute.Agility, DeckAttribute.Willpower}},
+            { DeckClass.Monk, new DeckAttributes() { DeckAttribute.Willpower, DeckAttribute.Agility}},
             { DeckClass.Scout, new DeckAttributes() { DeckAttribute.Agility, DeckAttribute.Endurance}},
-            { DeckClass.Sorcerer, new DeckAttributes() { DeckAttribute.Endurance, DeckAttribute.Intelligence}},
-            { DeckClass.Spellsword, new DeckAttributes() { DeckAttribute.Endurance, DeckAttribute.Willpower}},
-            { DeckClass.Warrior, new DeckAttributes() { DeckAttribute.Endurance, DeckAttribute.Strength}}
+            { DeckClass.Sorcerer, new DeckAttributes() { DeckAttribute.Intelligence, DeckAttribute.Endurance}},
+            { DeckClass.Spellsword, new DeckAttributes() { DeckAttribute.Willpower, DeckAttribute.Endurance}},
+            { DeckClass.Warrior, new DeckAttributes() { DeckAttribute.Strength, DeckAttribute.Endurance}}
         };
 
         public static Dictionary<DeckClass, DeckAttributes> Classes
