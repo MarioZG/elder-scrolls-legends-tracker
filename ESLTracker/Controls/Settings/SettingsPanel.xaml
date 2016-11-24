@@ -11,15 +11,23 @@
     <UserControl.DataContext>
         <ViewModel:SettingsPanelViewModel/>
     </UserControl.DataContext>
-    <Grid>
-        <CheckBox x:Name="checkBox" Content="Minimise on close" HorizontalAlignment="Left" Margin="48,34,0,0" VerticalAlignment="Top"
+    <StackPanel>
+        <Expander x:Name="expander" Header="Settings" IsExpanded="True">
+            <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+                <CheckBox x:Name="checkBox" Content="Minimise on close" HorizontalAlignment="Left" 
                   IsChecked="{Binding Path=MinimiseOnClose, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                   />
-        <Button Command="{Binding CommandSaveButtonPressed}" Content="Button" HorizontalAlignment="Left" Margin="163,175,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="txtDataPath"  IsReadOnly="True"
-                 Text="{Binding Path=DataPath, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
-                 HorizontalAlignment="Left" Height="23" Margin="87,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="215,80,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-
-    </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox IsReadOnly="True"
+                     Text="{Binding Path=DataPath, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                     />
+                    <Button Content="Open Data Folder" Command="{Binding CommandOpenDataFolder}"/>
+                </StackPanel>
+            </StackPanel>
+        </Expander>
+        <UniformGrid>
+            <Button Command="{Binding CommandCancelButtonPressed}" Content="Cancel" />
+            <Button Command="{Binding CommandSaveButtonPressed}" Content="Save settings" />
+        </UniformGrid>
+    </StackPanel>
 </UserControl>

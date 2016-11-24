@@ -16,10 +16,31 @@ namespace ESLTracker.ViewModels.Settings
             get { return new RelayCommand(new Action<object>(SaveClicked)); }
         }
 
+        public ICommand CommandCancelButtonPressed
+        {
+            get { return new RelayCommand(new Action<object>(CancelButtonPressed)); }
+        }
+
+        public ICommand CommandOpenDataFolder
+        {
+            get { return new RelayCommand(new Action<object>(OpenDataFolder)); }
+        }
+
         private void SaveClicked(object param)
         {
             Properties.Settings.Default.Save();
             MainWindowViewModel.SettingsVisible = false;
+        }
+
+        private void CancelButtonPressed(object obj)
+        {
+            MainWindowViewModel.SettingsVisible = false;
+            Properties.Settings.Default.Reload();
+        }
+
+        private void OpenDataFolder(object param)
+        {
+            System.Diagnostics.Process.Start(Properties.Settings.Default.DataPath);
         }
     }
 }
