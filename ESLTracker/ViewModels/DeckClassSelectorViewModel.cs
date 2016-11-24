@@ -85,7 +85,7 @@ namespace ESLTracker.ViewModels
             FilterCombo();
         }
 
-        private void FilterCombo()
+        public void FilterCombo()
         {
             var filteredClasses = Utils.ClassAttributesHelper.FindClassByAttribute(FilterButtonState.Where(f => f.Value).Select(f => f.Key));
             FilteredClasses.Clear();
@@ -93,7 +93,8 @@ namespace ESLTracker.ViewModels
             {
                 FilteredClasses.Add(dc);
             }
-            if (FilteredClasses.Count == 1)
+            if ((FilteredClasses.Count >= 1)
+                && (FilterButtonState.Any(f => f.Value)))
             {
                 SelectedClass = FilteredClasses[0];
             }
