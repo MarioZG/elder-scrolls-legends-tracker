@@ -8,10 +8,10 @@
              x:Name="titleBar">
     <DockPanel  FlowDirection="RightToLeft"  Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <!-- Controls must be in reverse order with HorizontalAlignment="Right"-->
-        <Button x:Name="btnClose" HorizontalAlignment="Right" Width="15" Click="btnClose_Click">
+        <Button x:Name="btnClose" ToolTip="Close this window (It can be restored from main application menu)" HorizontalAlignment="Right" Width="15" Click="btnClose_Click">
             <Image Source="/Resources/WindowIcons/close.png"/>
         </Button>
-        <ToggleButton x:Name="btnCollapse" HorizontalAlignment="Right" Width="15" Click="btnCollapse_Click">
+        <ToggleButton x:Name="btnCollapse" ToolTip="Collapse/expand this window" HorizontalAlignment="Right" Width="15" Click="btnCollapse_Click">
             <Image>
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
@@ -27,8 +27,11 @@
                 </Image.Style>
             </Image>
         </ToggleButton>
-        <Button x:Name="btnScreenShot" HorizontalAlignment="Right" Width="15" Click="btnScreenShot_Click">
+        <Button x:Name="btnScreenShot" ToolTip="Make screenshot (Saved in data folder. Open from application settings.)" HorizontalAlignment="Right" Width="15" Click="btnScreenShot_Click">
             <Image Source="/Resources/WindowIcons/printScreen.png"/>
+        </Button>
+        <Button x:Name="btnShowMainWindow" ToolTip="Show main window" HorizontalAlignment="Right" Width="15" Click="btnShowMainWindow_Click">
+            <Image Source="/Resources/WindowIcons/mainForm.png"/>
         </Button>
         <TextBlock FontWeight="Medium" Margin="10,2,10,2" FlowDirection="LeftToRight" HorizontalAlignment="Stretch"
                    Text="{Binding Title, ElementName=titleBar}" />

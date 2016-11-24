@@ -67,5 +67,9 @@ namespace ESLTracker.Controls
             FileManager.SaveScreenShot(this);
         }
 
+        private void btnShowMainWindow_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).Focus();
+        }
     }
 }
