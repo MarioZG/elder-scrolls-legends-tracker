@@ -14,5 +14,7 @@ namespace ESLTracker.Properties
         PlayerRank PlayerRank { get; set; }
         bool ShowDeckStats { get; set; }
         string DataPath { get; set; }
+
+        void Save();
     }
 }

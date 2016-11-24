@@ -18,12 +18,6 @@
         Top="{Binding Path=MainWindowPositionY, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
     >
     <Window.Resources>
-        <local:NotifyIconLeftClickCommand x:Key="NotifyIconLeftClickCommand" />
-        <local:ExitCommand x:Key="ExitCommand" />
-        <local:ShowRewardsCommand x:Key="ShowRewardsCommand" />
-        <local:NewDeckCommand x:Key="NewDeckCommand" />
-        <local:ShowOverlayCommand x:Key="ShowOverlayCommand" />
-        <local:RunGameCommand x:Key="RunGameCommand" />
         <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
     </Window.Resources>
     <Window.DataContext>
@@ -31,11 +25,11 @@
     </Window.DataContext>
     <DockPanel>
         <Menu x:Name="menu"  DockPanel.Dock="Top">
-            <MenuItem Header="New Deck" Command="{StaticResource NewDeckCommand}" />
+            <MenuItem Header="New Deck" Command="{Binding CommandNewDeck}" />
             
-            <MenuItem Header="Rewards" Command="{StaticResource ShowRewardsCommand}" />
-            <MenuItem Header="Restore overlay window" Command="{StaticResource ShowOverlayCommand}"/>
-            <MenuItem Header="Run game" Command="{StaticResource RunGameCommand}"/>
+            <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
+            <MenuItem Header="Restore overlay window" Command="{Binding CommandShowOverlay}"/>
+            <MenuItem Header="Run game" Command="{Binding CommandRunGame}"/>
             <ToggleButton Content="Show deck stats" IsChecked="{Binding DeckStatsVisible}"/>
             <MenuItem Header="Settings" Command="{Binding CommandEditSettings}"/>
         </Menu>
@@ -64,14 +58,13 @@
         <tb:TaskbarIcon
             x:Name="taskBarIcon"
             IconSource="/Resources/TrayIcon.ico"
-            LeftClickCommand="{StaticResource NotifyIconLeftClickCommand}"
+            LeftClickCommand="{Binding CommandNotifyIconLeftClick}"
             LeftClickCommandParameter="{Binding ElementName=mainWindow}"
             DockPanel.Dock="Bottom"
         >
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Test" />
-                    <MenuItem Header="Exit" Command="{StaticResource ExitCommand}" />
+                    <MenuItem Header="Exit" Command="{Binding CommandExit}" />
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>

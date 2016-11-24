@@ -71,7 +71,7 @@ namespace ESLTracker
             }
             else
             {
-                new ExitCommand().Execute(null);
+                this.DataContext.Exit(null, Properties.Settings.Default);
             }
         }
 

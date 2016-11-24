@@ -96,7 +96,6 @@
     <Compile Include="Controls\Settings\SettingsPanel.xaml.cs">
       <DependentUpon>SettingsPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindowCommands.cs" />
     <Compile Include="Properties\ISettings.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
