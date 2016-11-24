@@ -37,5 +37,10 @@ namespace ESLTracker.Controls.Settings
         {
             InitializeComponent();
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Properties.Settings.Default.DataPath);
+        }
     }
 }
