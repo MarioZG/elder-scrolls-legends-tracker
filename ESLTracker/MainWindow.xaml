@@ -30,7 +30,6 @@
             <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
             <MenuItem Header="Restore overlay window" Command="{Binding CommandShowOverlay}"/>
             <MenuItem Header="Run game" Command="{Binding CommandRunGame}"/>
-            <ToggleButton Content="Show deck stats" IsChecked="{Binding DeckStatsVisible}"/>
             <MenuItem Header="Settings" Command="{Binding CommandEditSettings}"/>
         </Menu>
         

@@ -6,12 +6,16 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
         <ViewModels:DeckStatsViewModel/>
     </UserControl.DataContext>
-    <DockPanel>
+    <UserControl.Resources>
+        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
+    </UserControl.Resources>
+    <DockPanel Visibility="{Binding ShowControl, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}">
         <local:DeckItem DockPanel.Dock="Top"
             DataContext="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}" />
         <Rewards:RewardItemList DockPanel.Dock="Top"

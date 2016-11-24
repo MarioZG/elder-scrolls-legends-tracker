@@ -35,6 +35,7 @@ namespace ESLTracker.ViewModels.Settings
         private void CancelButtonPressed(object obj)
         {
             MainWindowViewModel.SettingsVisible = false;
+            MainWindowViewModel.DeckStatsVisible = true;
             Properties.Settings.Default.Reload();
         }
 

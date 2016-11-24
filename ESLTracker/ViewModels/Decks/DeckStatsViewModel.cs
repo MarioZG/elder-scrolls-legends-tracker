@@ -60,9 +60,21 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        public bool showControl = true;
+        public bool ShowControl
+        {
+            get { return showControl; }
+            set { showControl = value; RaisePropertyChangedEvent("ShowControl"); }
+        }
+
         public DeckStatsViewModel()
         {
             Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
+            if (Tracker.Instance.ActiveDeck != null)
+            {
+                //load data for active deck from settigs
+                RefreshData();
+            }
         }
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -70,11 +82,19 @@ namespace ESLTracker.ViewModels.Decks
             if ((e.PropertyName == "ActiveDeck")
                 && (Tracker.Instance.ActiveDeck != null))
             {
-                WinRatioVsClass = Tracker.Instance.ActiveDeck.GetDeckVsClass();
-                ActiveDeckGames = new ObservableCollection<DataModel.Game>(Tracker.Instance.ActiveDeck.GetDeckGames());
-                ActiveDeckRewards = new ObservableCollection<Reward>(Tracker.Instance.Rewards.Where(r => r.ArenaDeckId == Tracker.Instance.ActiveDeck.DeckId));
-                RaisePropertyChangedEvent("WinRatioVsClass");
+                RefreshData();
             }
+        }
+
+        private void RefreshData()
+        {
+            WinRatioVsClass = Tracker.Instance.ActiveDeck.GetDeckVsClass();
+            ActiveDeckGames = new ObservableCollection<DataModel.Game>(Tracker.Instance.ActiveDeck.GetDeckGames());
+            ActiveDeckRewards = new ObservableCollection<Reward>(Tracker.Instance.Rewards.Where(r => r.ArenaDeckId == Tracker.Instance.ActiveDeck.DeckId));
+            RaisePropertyChangedEvent("WinRatioVsClass");
+
+            //hide if no games
+            ShowControl = ActiveDeckGames.Count > 0;
         }
     }
 }
