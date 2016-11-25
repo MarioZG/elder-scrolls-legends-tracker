@@ -117,8 +117,7 @@ namespace ESLTracker.ViewModels
             else
             {
                 selectedClass = null;
-            }
-            RaisePropertyChangedEvent("SelectedClass");
+            }           
             //remove classes not in use.Clear() will trigger binding, as SelectedClass will be set to null by framework
             foreach (DeckClass dc in FilteredClasses.ToList())
             {
@@ -140,6 +139,7 @@ namespace ESLTracker.ViewModels
                     FilteredClasses.Insert(i, dc);
                 }
             }
+            RaisePropertyChangedEvent("SelectedClass");
         }
 
         public void Reset()
