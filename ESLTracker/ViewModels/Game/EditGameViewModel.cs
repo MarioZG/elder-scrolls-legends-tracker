@@ -240,7 +240,7 @@ namespace ESLTracker.ViewModels.Game
         public void ShowWinsVsClass(DeckClass? deckClass)
         {
             this.Game.OpponentClass = deckClass; //ugly hack until class slectro can be bound in xaml
-            if (deckClass != null)
+            if ((deckClass != null) && (Tracker.Instance.ActiveDeck != null))
             {
                 var res = Tracker.Instance.ActiveDeck.GetDeckVsClass(deckClass);
                 dynamic data = (res as System.Collections.IEnumerable).Cast<object>().FirstOrDefault();

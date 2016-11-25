@@ -112,11 +112,11 @@ namespace ESLTracker.ViewModels
             if ((filteredClasses.Count >= 1)
                 && (FilterButtonState.Any(f => f.Value)))
             {
-                selectedClass = filteredClasses.OrderBy( fc=> ClassAttributesHelper.Classes[fc].Count).First();
+                SelectedClass = filteredClasses.OrderBy( fc=> ClassAttributesHelper.Classes[fc].Count).First();
             }
             else
             {
-                selectedClass = null;
+                SelectedClass = null;
             }           
             //remove classes not in use.Clear() will trigger binding, as SelectedClass will be set to null by framework
             foreach (DeckClass dc in FilteredClasses.ToList())
