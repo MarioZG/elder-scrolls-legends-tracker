@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -31,9 +32,13 @@ namespace ESLTracker.ViewModels.Decks
         //command for filter toggle button pressed
         public ICommand CommandResetFilterButtonPressed
         {
-            get { return new RelayCommand(new Action<object>(ResetFilters)); }
+            get { return new RelayCommand(new Action<object>(CommandResetFiltersExecute)); }
         }
 
+        public ICommand CommandEditDeck
+        {
+            get { return new RelayCommand(new Action<object>(CommandEditDeckExecute)); }
+        }
 
         private IDeckClassSelectorViewModel classFilterViewModel;
         private IDeckTypeSelectorViewModel typeFilterViewModel;
@@ -60,7 +65,6 @@ namespace ESLTracker.ViewModels.Decks
 
             Tracker.Instance.Decks.CollectionChanged += Decks_CollectionChanged;
             FilteredDecks = new ObservableCollection<Deck>(Tracker.Instance.Decks);
-
         }
 
         private void Decks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -123,12 +127,19 @@ namespace ESLTracker.ViewModels.Decks
 
         }
 
-
-        public void ResetFilters(object param)
+        public void CommandResetFiltersExecute(object param)
         {
             this.classFilterViewModel.Reset();
             this.typeFilterViewModel.Reset();
             ApplyFilter();
+        }
+
+        private void CommandEditDeckExecute(object param)
+        {
+            //inform other views that we are about to edit deck
+            Utils.Messenger.Default.Send(
+                new EditDeck() { Deck = Tracker.Instance.ActiveDeck }, 
+                EditDeck.Context.StartEdit );
         }
     }
 }

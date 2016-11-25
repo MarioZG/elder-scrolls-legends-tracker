@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
+using ESLTracker.ViewModels.Decks;
 
 namespace ESLTracker.ViewModels
 {
@@ -84,6 +85,13 @@ namespace ESLTracker.ViewModels
             get { return new RelayCommand(new Action<object>(RunGame)); }
         }
 
+        public MainWindowViewModel()
+        {
+            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeck, Utils.Messages.EditDeck.Context.StartEdit);
+            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeck, Utils.Messages.EditDeck.Context.Saved);
+            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeck, Utils.Messages.EditDeck.Context.Cancel);
+        }
+
         public void NotifyIconLeftClick(object parameter)
         {
             if (parameter is Window)
@@ -112,7 +120,10 @@ namespace ESLTracker.ViewModels
 
         public void NewDeck(object parameter)
         {
-            this.DeckEditVisible = true;
+            Utils.Messenger.Default.Send(
+                new Utils.Messages.EditDeck() { Deck = EditDeckViewModel.CreateDefaultDeck() },
+                Utils.Messages.EditDeck.Context.StartEdit
+                );
         }
 
         public void ShowOverlay(object parameter)
@@ -133,6 +144,11 @@ namespace ESLTracker.ViewModels
             this.DeckStatsVisible = false;
             this.SettingsVisible = true;
 
+        }
+
+        private void EditDeck(Utils.Messages.EditDeck obj)
+        {
+            this.DeckEditVisible = !this.DeckEditVisible;
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
+using ESLTracker.Utils;
+using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -11,7 +13,7 @@ namespace ESLTracker.ViewModels.Decks
     {
         public Deck deck = CreateDefaultDeck();
 
-        private static Deck CreateDefaultDeck()
+        public static Deck CreateDefaultDeck()
         {
             return new Deck() { Name = "New deck" };
         }
@@ -25,8 +27,6 @@ namespace ESLTracker.ViewModels.Decks
                 RaisePropertyChangedEvent("Deck");
             }
         }
-
-        public MainWindowViewModel mainWindowViewModel { get; set; }
 
         //command for add deck button 
         public RelayCommand CommandButtonSave
@@ -52,6 +52,15 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        public EditDeckViewModel()
+        {
+            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeck, Utils.Messages.EditDeck.Context.StartEdit);
+        }
+
+        private void EditDeck(EditDeck obj)
+        {
+            this.Deck = obj.Deck;
+        }
 
         public void CommandButtonSaveExecute(object parameter)
         {
@@ -62,16 +71,28 @@ namespace ESLTracker.ViewModels.Decks
                 && (selectedClassModel != null)
                 && selectedClassModel.SelectedClass.HasValue)
             {
-                model.Deck.Class = selectedClassModel.SelectedClass.Value;
-                model.Deck.Attributes.AddRange(Utils.ClassAttributesHelper.Classes[model.Deck.Class]);
-                DataModel.Tracker.Instance.Decks.Add(model.Deck);
-                Utils.FileManager.SaveDatabase();
-                model.Deck = CreateDefaultDeck();
-                model.mainWindowViewModel.DeckEditVisible = false;
-                if (selectedClassModel != null)
-                {
-                    selectedClassModel.Reset();
-                }
+                SaveDeck( selectedClassModel, Tracker.Instance);
+            }
+        }
+
+        public void SaveDeck(
+            IDeckClassSelectorViewModel selectedClassModel,
+            ITracker tracker)
+        {
+            this.Deck.Class = selectedClassModel.SelectedClass.Value;
+            this.Deck.Attributes.Clear();
+            this.Deck.Attributes.AddRange(Utils.ClassAttributesHelper.Classes[this.Deck.Class]);
+            if (! tracker.Decks.Contains(this.Deck))
+            {
+                tracker.Decks.Add(this.Deck);
+            }
+            Utils.FileManager.SaveDatabase();
+            Messenger.Default.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.Saved);
+
+            this.Deck = CreateDefaultDeck();
+            if (selectedClassModel != null)
+            {
+                selectedClassModel.Reset();
             }
         }
 
@@ -87,8 +108,8 @@ namespace ESLTracker.ViewModels.Decks
             DeckClassSelectorViewModel selectedClassModel = args[1] as DeckClassSelectorViewModel;
             if (model != null)
             {
+                Messenger.Default.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.Cancel);
                 model.Deck = CreateDefaultDeck();
-                model.mainWindowViewModel.DeckEditVisible = false;
                 if (selectedClassModel != null)
                 {
                     selectedClassModel.Reset();

@@ -96,6 +96,7 @@
     <Compile Include="Controls\Settings\SettingsPanel.xaml.cs">
       <DependentUpon>SettingsPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModel\ITracker.cs" />
     <Compile Include="Properties\ISettings.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Utils\IOWrappers\IWrapperProvider.cs" />
     <Compile Include="Utils\IOWrappers\PathWrapper.cs" />
     <Compile Include="Utils\IOWrappers\WrapperProvider.cs" />
+    <Compile Include="Utils\Messages\EditDeck.cs" />
     <Compile Include="Utils\Messenger.cs" />
     <Compile Include="Utils\SerializableVersion.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />

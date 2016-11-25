@@ -12,7 +12,7 @@ using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel
 {
-    public class Tracker : INotifyPropertyChanged
+    public class Tracker : INotifyPropertyChanged, ITracker
     {
         private static Tracker _instance = null;
         public static Tracker Instance
@@ -51,10 +51,10 @@ namespace ESLTracker.DataModel
             }
         }
 
-        public ObservableCollection<Game> Games = new ObservableCollection<Game>();
-        public ObservableCollection<Deck> Decks = new ObservableCollection<Deck>();
+        public ObservableCollection<Game> Games { get; set; } = new ObservableCollection<Game>();
+        public ObservableCollection<Deck> Decks { get; set; } = new ObservableCollection<Deck>();
 
-        public List<Reward> Rewards = new List<Reward>();
+        public List<Reward> Rewards { get; set; } = new List<Reward>();
 
         public SerializableVersion Version = new SerializableVersion(1,0);
         

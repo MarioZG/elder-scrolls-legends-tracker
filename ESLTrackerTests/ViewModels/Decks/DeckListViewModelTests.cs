@@ -247,7 +247,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             model.SetClassFilterViewModel(classSelectorFullFilter.Object);
             model.SetTypeFilterViewModel(typeSelectorFullFilter.Object);
 
-            model.ResetFilters(null);
+            model.CommandResetFiltersExecute(null);
 
             //assure filter has been removed
             typeSelectorFullFilter.Verify(t => t.Reset());
