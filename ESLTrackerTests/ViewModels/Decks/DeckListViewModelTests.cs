@@ -118,7 +118,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             IEnumerable<Deck> result = model.FilterDeckList(DeckBase);
 
             Assert.AreEqual(expectedCount, result.Count());
-            Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class].Contains(filterAttrib); }));
+            Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class.Value].Contains(filterAttrib); }));
         }
 
         [TestMethod()]
@@ -146,7 +146,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             IEnumerable<Deck> result = model.FilterDeckList(DeckBase);
 
             Assert.AreEqual(expectedCount, result.Count());
-            Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class].Contains(filterAttrib[0]); }));
+            Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class.Value].Contains(filterAttrib[0]); }));
 
         }
 

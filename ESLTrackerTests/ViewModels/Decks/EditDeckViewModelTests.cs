@@ -32,8 +32,10 @@ namespace ESLTracker.ViewModels.Decks.Tests
             deckClass.Setup(d => d.SelectedClass).Returns(deckClassValue);
 
             EditDeckViewModel model = new EditDeckViewModel();
+            model.DeckClassModel = deckClass.Object;
             model.Deck.Name = deckName;
             model.Deck.Type = deckType;
+
 
             model.SaveDeck(
                 deckClass.Object, 
@@ -82,8 +84,10 @@ namespace ESLTracker.ViewModels.Decks.Tests
             deckClass.Setup(d => d.SelectedClass).Returns(deckClassValue);
 
             EditDeckViewModel model = new EditDeckViewModel();
+            model.DeckClassModel = deckClass.Object;
             model.Deck = editedDeck;
             model.Deck.Name = deckNameAfterChange;
+
 
             model.SaveDeck(
                 deckClass.Object,

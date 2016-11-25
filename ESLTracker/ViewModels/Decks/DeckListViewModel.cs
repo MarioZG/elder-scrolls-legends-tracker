@@ -117,8 +117,9 @@ namespace ESLTracker.ViewModels.Decks
             else
             {
                 //filter by attributes
-                filteredList = deckBase.Where(d => 
-                    (this.classFilterViewModel.FilteredClasses.Contains(d.Class))
+                filteredList = deckBase.Where(d =>
+                    d.Class.HasValue
+                    && (this.classFilterViewModel.FilteredClasses.Contains(d.Class.Value))
                     && (this.typeFilterViewModel.FilteredTypes.Contains(d.Type))
                     );
                 return filteredList;

@@ -62,7 +62,7 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        public DeckClassSelectorViewModel DeckClassModel { get; internal set; }
+        public IDeckClassSelectorViewModel DeckClassModel { get; set; }
 
         public EditDeckViewModel()
         {
@@ -93,7 +93,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             this.Deck.Class = selectedClassModel.SelectedClass.Value;
             this.Deck.Attributes.Clear();
-            this.Deck.Attributes.AddRange(Utils.ClassAttributesHelper.Classes[this.Deck.Class]);
+            this.Deck.Attributes.AddRange(Utils.ClassAttributesHelper.Classes[this.Deck.Class.Value]);
             if (! tracker.Decks.Contains(this.Deck))
             {
                 tracker.Decks.Add(this.Deck);
