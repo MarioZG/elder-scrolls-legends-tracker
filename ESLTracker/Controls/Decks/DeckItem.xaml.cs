@@ -28,7 +28,7 @@ namespace ESLTracker.Controls.Decks
             InitializeComponent();
             
             //need to keep this for refreshing attributes icons - until class have correct binding!
-            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.Saved);
+            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.EditFinished);
             Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.StatsUpdated);
 
         }
@@ -37,7 +37,7 @@ namespace ESLTracker.Controls.Decks
         {
            if (this.DataContext != null && this.DataContext is Deck && obj.Deck.DeckId == ((DataModel.Deck)this.DataContext).DeckId)
             {
-                ((Deck)this.DataContext).UpdateStatsBindings();
+                ((Deck)this.DataContext).UpdateAllBindings();
             }
         }
     }

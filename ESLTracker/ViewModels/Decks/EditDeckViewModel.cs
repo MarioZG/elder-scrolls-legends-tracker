@@ -72,6 +72,7 @@ namespace ESLTracker.ViewModels.Decks
         private void EditDeck(EditDeck obj)
         {
             this.Deck = obj.Deck;
+            
         }
 
         public void CommandButtonSaveExecute(object parameter)
@@ -99,7 +100,7 @@ namespace ESLTracker.ViewModels.Decks
                 tracker.Decks.Add(this.Deck);
             }
             Utils.FileManager.SaveDatabase();
-            Messenger.Default.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.Saved);
+            Messenger.Default.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
 
             this.Deck = CreateDefaultDeck();
             if (selectedClassModel != null)
@@ -120,7 +121,7 @@ namespace ESLTracker.ViewModels.Decks
             DeckClassSelectorViewModel selectedClassModel = args[1] as DeckClassSelectorViewModel;
             if (model != null)
             {
-                Messenger.Default.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.Cancel);
+                Messenger.Default.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
                 model.Deck = CreateDefaultDeck();
                 if (selectedClassModel != null)
                 {

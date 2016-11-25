@@ -81,11 +81,9 @@ namespace ESLTracker.DataModel
                         });
         }
 
-        public void UpdateStatsBindings()
+        public void UpdateAllBindings()
         {
-            RaisePropertyChangedEvent("WinRatio");
-            RaisePropertyChangedEvent("Defeats");
-            RaisePropertyChangedEvent("Victories");
+            RaisePropertyChangedEvent("");
         }
 
         

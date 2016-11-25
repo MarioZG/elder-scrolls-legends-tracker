@@ -13,8 +13,7 @@ namespace ESLTracker.Utils.Messages
         public enum Context
         {
             StartEdit,
-            Saved,
-            Cancel,
+            EditFinished,
             StatsUpdated
         }
 

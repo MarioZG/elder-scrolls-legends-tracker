@@ -89,8 +89,7 @@ namespace ESLTracker.ViewModels
         public MainWindowViewModel()
         {
             Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckStart, Utils.Messages.EditDeck.Context.StartEdit);
-            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.Saved);
-            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.Cancel);
+            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
         }
 
         public void NotifyIconLeftClick(object parameter)
