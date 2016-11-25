@@ -21,5 +21,10 @@ namespace ESLTracker.DataModel
             }
         }
 
+        public override string ToString()
+        {
+            return String.Join(",", this);
+        }
+
     }
 }
