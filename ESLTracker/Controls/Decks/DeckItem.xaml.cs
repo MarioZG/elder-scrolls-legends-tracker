@@ -29,6 +29,7 @@ namespace ESLTracker.Controls.Decks
             
             //need to keep this for refreshing attributes icons - until class have correct binding!
             Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.Saved);
+            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.StatsUpdated);
 
         }
 

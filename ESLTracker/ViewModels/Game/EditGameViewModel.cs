@@ -178,7 +178,12 @@ namespace ESLTracker.ViewModels.Game
                 DataModel.Game addedGame = model.Game;
                 Tracker.Instance.Games.Add(model.Game);
 
+                Utils.Messenger.Default.Send(
+                    new Utils.Messages.EditDeck() { Deck = game.Deck },
+                    Utils.Messages.EditDeck.Context.StatsUpdated);
+
                 FileManager.SaveDatabase();
+
 
                 Deck active = Tracker.Instance.ActiveDeck;
                 Tracker.Instance.ActiveDeck = null;

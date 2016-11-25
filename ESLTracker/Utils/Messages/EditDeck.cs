@@ -14,7 +14,8 @@ namespace ESLTracker.Utils.Messages
         {
             StartEdit,
             Saved,
-            Cancel
+            Cancel,
+            StatsUpdated
         }
 
         public Deck Deck { get; set; }
