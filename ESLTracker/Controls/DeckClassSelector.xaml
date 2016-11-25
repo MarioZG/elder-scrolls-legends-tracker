@@ -7,6 +7,7 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="DeckClassEnum" MethodName="GetValues"
@@ -15,6 +16,7 @@
                 <x:Type TypeName="Enums:DeckClass"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <Converters:IsInCollectionToBool x:Key="IsInCollectionToBool"/>
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:DeckClassSelectorViewModel/>
@@ -25,7 +27,7 @@
                       Style="{DynamicResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Strength"
-                      IsChecked="{Binding FilterButtonState[DeckAttribute.Strength]}"
+                      IsChecked="{Binding FilterButtonStateCollection, Mode=OneWay, Converter={StaticResource IsInCollectionToBool}, ConverterParameter=Strength}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
@@ -36,7 +38,10 @@
                       Style="{StaticResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Intelligence"
-                      IsChecked="{Binding FilterButtonState[DeckAttribute.Intelligence]}"
+                      IsChecked="{Binding FilterButtonStateCollection, 
+                                Mode=OneWay, 
+                                Converter={StaticResource IsInCollectionToBool}, 
+                                ConverterParameter=Intelligence}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
@@ -47,7 +52,10 @@
                       Style="{StaticResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Agility"
-                      IsChecked="{Binding FilterButtonState[DeckAttribute.Agility]}"
+                      IsChecked="{Binding FilterButtonStateCollection, 
+                                Mode=OneWay, 
+                                Converter={StaticResource IsInCollectionToBool}, 
+                                ConverterParameter=Agility}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
@@ -58,7 +66,10 @@
                       Style="{StaticResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Willpower"
-                      IsChecked="{Binding FilterButtonState[DeckAttribute.Willpower]}"
+                      IsChecked="{Binding FilterButtonStateCollection, 
+                                Mode=OneWay, 
+                                Converter={StaticResource IsInCollectionToBool}, 
+                                ConverterParameter=Willpower}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
@@ -69,7 +80,10 @@
                       Style="{StaticResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Endurance"
-                      IsChecked="{Binding FilterButtonState[DeckAttribute.Endurance]}"
+                      IsChecked="{Binding FilterButtonStateCollection, 
+                                Mode=OneWay, 
+                                Converter={StaticResource IsInCollectionToBool}, 
+                                ConverterParameter=Endurance}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
@@ -80,7 +94,10 @@
                       Style="{StaticResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Neutral"
-                      IsChecked="{Binding FilterButtonState[DeckAttribute.Neutral]}"
+                      IsChecked="{Binding FilterButtonStateCollection, 
+                                Mode=OneWay, 
+                                Converter={StaticResource IsInCollectionToBool}, 
+                                ConverterParameter=Neutral}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"

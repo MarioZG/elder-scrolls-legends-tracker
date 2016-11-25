@@ -24,6 +24,7 @@ namespace ESLTracker.ViewModels.Decks
             set
             {
                 deck = value;
+                this.DeckClassModel.SelectedClass = value.Class;
                 RaisePropertyChangedEvent("Deck");
             }
         }
@@ -51,6 +52,8 @@ namespace ESLTracker.ViewModels.Decks
                     );
             }
         }
+
+        public DeckClassSelectorViewModel DeckClassModel { get; internal set; }
 
         public EditDeckViewModel()
         {

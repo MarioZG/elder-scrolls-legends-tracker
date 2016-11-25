@@ -104,6 +104,7 @@
     <Compile Include="Utils\Converters\BoolToVisibiltyCollapsedConverter.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyConverter.cs" />
     <Compile Include="Utils\Converters\CommandMultipleParamaters.cs" />
+    <Compile Include="Utils\Converters\IsInCollectionToBool.cs" />
     <Compile Include="Utils\Converters\PlayerRankLegendToVisibiltyCollapsed.cs" />
     <Compile Include="Utils\IOWrappers\DirectoryWrapper.cs" />
     <Compile Include="Utils\IOWrappers\FileWrapper.cs" />

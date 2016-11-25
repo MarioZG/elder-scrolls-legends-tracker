@@ -38,6 +38,8 @@ namespace ESLTracker.Controls.Decks
         public EditDeck()
         {
             InitializeComponent();
+
+            this.DataContext.DeckClassModel = this.deckClass.DataContext;
         }
 
     }

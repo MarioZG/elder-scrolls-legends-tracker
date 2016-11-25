@@ -20,6 +20,13 @@ namespace ESLTracker.ViewModels
         /// </summary>
         public Dictionary<DeckAttribute, bool> FilterButtonState { get; set; }
 
+        public ObservableCollection<DeckAttribute> FilterButtonStateCollection
+        {
+            get { return new ObservableCollection<DeckAttribute>(
+                FilterButtonState.Where(kvp => kvp.Value).Select(kvp => kvp.Key).ToList()
+                ); }
+        }
+
         /// <summary>
         /// source for drop down , list of classes that match current filter
         /// </summary>
@@ -34,6 +41,19 @@ namespace ESLTracker.ViewModels
             set
             {
                 selectedClass = value;
+                if (value != null)
+                {
+                    ResetToggleButtons();
+                    //toggle attributes buttons
+                    if (selectedClass != null)
+                    {
+                        foreach (DeckAttribute da in SelectedClassAttributes)
+                        {
+                            FilterButtonState[da] = true;
+                        }
+                    }
+                }
+                RaisePropertyChangedEvent("FilterButtonStateCollection");
                 RaisePropertyChangedEvent("SelectedClass");
             }
         }
@@ -87,31 +107,54 @@ namespace ESLTracker.ViewModels
 
         public void FilterCombo()
         {
-            var filteredClasses = Utils.ClassAttributesHelper.FindClassByAttribute(FilterButtonState.Where(f => f.Value).Select(f => f.Key));
-            FilteredClasses.Clear();
-            foreach(DeckClass dc in filteredClasses)
-            {
-                FilteredClasses.Add(dc);
-            }
-            if ((FilteredClasses.Count >= 1)
+            var filteredClasses = Utils.ClassAttributesHelper.FindClassByAttribute(FilterButtonState.Where(f => f.Value).Select(f => f.Key)).ToList();
+          
+            if ((filteredClasses.Count >= 1)
                 && (FilterButtonState.Any(f => f.Value)))
             {
-                SelectedClass = FilteredClasses[0];
+                selectedClass = filteredClasses.OrderBy( fc=> ClassAttributesHelper.Classes[fc].Count).First();
             }
             else
             {
-                SelectedClass = null;
+                selectedClass = null;
+            }
+            RaisePropertyChangedEvent("SelectedClass");
+            //remove classes not in use.Clear() will trigger binding, as SelectedClass will be set to null by framework
+            foreach (DeckClass dc in FilteredClasses.ToList())
+            {
+                if (!filteredClasses.Contains(dc))
+                {
+                    FilteredClasses.Remove(dc);
+                }
+            }
+            // FilteredClasses.Clear();
+            foreach (DeckClass dc in filteredClasses)
+            {
+                if (!FilteredClasses.Contains(dc))
+                {
+                    int i = 0;
+                    IComparer<DeckClass> comparer = Comparer<DeckClass>.Default;
+                    while (i < FilteredClasses.Count && comparer.Compare(FilteredClasses[i], dc) < 0)
+                        i++;
+
+                    FilteredClasses.Insert(i, dc);
+                }
             }
         }
-                
+
         public void Reset()
+        {
+            ResetToggleButtons();
+            FilterCombo();
+            RaisePropertyChangedEvent("FilterButtonStateCollection");
+        }
+
+        private void ResetToggleButtons()
         {
             foreach (DeckAttribute a in Enum.GetValues(typeof(DeckAttribute)))
             {
                 FilterButtonState[a] = false;
             }
-            FilterCombo();
-            RaisePropertyChangedEvent("FilterButtonState");
         }
     }
 }
