@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
+using ESLTracker.Utils.Messages;
 using ESLTracker.ViewModels.Decks;
 
 namespace ESLTracker.ViewModels
@@ -87,9 +88,9 @@ namespace ESLTracker.ViewModels
 
         public MainWindowViewModel()
         {
-            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeck, Utils.Messages.EditDeck.Context.StartEdit);
-            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeck, Utils.Messages.EditDeck.Context.Saved);
-            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeck, Utils.Messages.EditDeck.Context.Cancel);
+            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckStart, Utils.Messages.EditDeck.Context.StartEdit);
+            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.Saved);
+            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.Cancel);
         }
 
         public void NotifyIconLeftClick(object parameter)
@@ -146,9 +147,14 @@ namespace ESLTracker.ViewModels
 
         }
 
-        private void EditDeck(Utils.Messages.EditDeck obj)
+        private void EditDeckStart(Utils.Messages.EditDeck obj)
         {
-            this.DeckEditVisible = !this.DeckEditVisible;
+            this.DeckEditVisible = true;
+        }
+
+        private void EditDeckFinished(EditDeck obj)
+        {
+            this.DeckEditVisible = false;
         }
     }
 }
