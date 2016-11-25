@@ -35,11 +35,9 @@ namespace ESLTracker.Controls.Decks
 
         private void EditDeckEvent(Utils.Messages.EditDeck obj)
         {
-
            if (this.DataContext != null && this.DataContext is Deck && obj.Deck.DeckId == ((DataModel.Deck)this.DataContext).DeckId)
-            {         
-                this.DataContext = null;
-                this.DataContext = obj.Deck;
+            {
+                ((Deck)this.DataContext).UpdateStatsBindings();
             }
         }
     }

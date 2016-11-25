@@ -184,11 +184,6 @@ namespace ESLTracker.ViewModels.Game
 
                 FileManager.SaveDatabase();
 
-
-                Deck active = Tracker.Instance.ActiveDeck;
-                Tracker.Instance.ActiveDeck = null;
-                Tracker.Instance.ActiveDeck = active;
-
                 model.Game = new DataModel.Game();
 
                 //restore values that are likely the same,  like game type, player rank etc

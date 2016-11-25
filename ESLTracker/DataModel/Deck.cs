@@ -7,7 +7,7 @@ using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel
 {
-    public class Deck
+    public class Deck : ViewModels.ViewModelBase
     {
         public Guid DeckId { get; set; }
         public DeckType Type { get; set; }
@@ -79,6 +79,13 @@ namespace ESLTracker.DataModel
                             Defeat = d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
                             WinPercent = d.Count() > 0 ? Math.Round((decimal)d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() / (decimal)d.Count() * 100, 0).ToString() : "-"
                         });
+        }
+
+        public void UpdateStatsBindings()
+        {
+            RaisePropertyChangedEvent("WinRatio");
+            RaisePropertyChangedEvent("Defeats");
+            RaisePropertyChangedEvent("Victories");
         }
 
         
