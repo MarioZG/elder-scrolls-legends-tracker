@@ -26,6 +26,15 @@ namespace ESLTracker.ViewModels.Decks
                 deck = value;
                 this.DeckClassModel.SelectedClass = value.Class;
                 RaisePropertyChangedEvent("Deck");
+                RaisePropertyChangedEvent("CanChangeType");
+            }
+        }
+
+        public bool CanChangeType
+        {
+            get
+            {
+                return Deck.GetDeckGames().Count() == 0;
             }
         }
 

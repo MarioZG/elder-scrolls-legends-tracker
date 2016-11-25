@@ -54,7 +54,8 @@ namespace ESLTracker.Controls.Game
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (this.selectedDeck.DataContext != null)
+            if ((this.selectedDeck.DataContext != null) 
+                && (DataModel.Tracker.Instance.ActiveDeck != null))
             {
                 if (DataModel.Tracker.Instance.ActiveDeck.Type == DeckType.VersusArena)
                 {

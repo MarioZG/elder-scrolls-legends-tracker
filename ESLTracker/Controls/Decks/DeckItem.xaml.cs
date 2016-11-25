@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.DataModel;
 using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.Controls.Decks
@@ -34,7 +35,7 @@ namespace ESLTracker.Controls.Decks
         private void EditDeckEvent(Utils.Messages.EditDeck obj)
         {
 
-           if (this.DataContext != null && obj.Deck.DeckId == ((DataModel.Deck)this.DataContext).DeckId)
+           if (this.DataContext != null && this.DataContext is Deck && obj.Deck.DeckId == ((DataModel.Deck)this.DataContext).DeckId)
             {         
                 this.DataContext = null;
                 this.DataContext = obj.Deck;

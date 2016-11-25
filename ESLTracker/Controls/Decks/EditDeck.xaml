@@ -56,7 +56,8 @@
         </StackPanel>
         <ComboBox x:Name="cbDeckType" 
                   ItemsSource="{Binding Source={StaticResource DeckTypeEnum}}" 
-                  SelectedItem="{Binding Deck.Type}" Grid.Row="2" Grid.Column="1"/>
+                  SelectedItem="{Binding Deck.Type}" Grid.Row="2" Grid.Column="1"
+                  IsEnabled="{Binding CanChangeType}"/>
         <Label Content="Deck name"/>
         <Label Content="Type" Grid.Row="2"/>
         <UniformGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
