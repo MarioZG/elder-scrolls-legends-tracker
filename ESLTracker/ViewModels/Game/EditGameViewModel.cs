@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Game
 {
@@ -78,6 +79,12 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
+        public bool isEditControl = false;
+        public bool IsEditControl {
+            get { return isEditControl; }
+            set { isEditControl = value; RaisePropertyChangedEvent("IsEditControl"); }
+        }
+
         public RelayCommandWithSettings CommandButtonCreate
         {
             get
@@ -90,21 +97,24 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
+        public RelayCommand CommandButtonSaveChanges
+        {
+            get
+            {
+                return new RelayCommand(
+                    new Action<object>(CommandButtonSaveChangesExecute)
+                    );
+            }
+        }
+
         public EditGameViewModel()
         {
             //this.PropertyChanged += EditGameViewModel_PropertyChanged;
             Game.PropertyChanged += Game_PropertyChanged;
             Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
-            
-        }
+            Utils.Messenger.Default.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
 
-        //private void EditGameViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    if (e.PropertyName != "SummaryText")
-        //    {
-        //        RaisePropertyChangedEvent("SummaryText");
-        //    }
-        //}
+        }
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -112,8 +122,7 @@ namespace ESLTracker.ViewModels.Game
             {
                 RaisePropertyChangedEvent("AllowedGameTypes");
             }
-            //throw new NotImplementedException();
-        }
+       }
 
         private void Game_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -253,6 +262,50 @@ namespace ESLTracker.ViewModels.Game
             {
                 this.OpponentClassWins = "Select opponent class";
             }
+        }
+
+        private void EditGameStart(EditGame obj)
+        {
+            if (IsEditControl)
+            {
+                this.Game = obj.Game;
+                Game.UpdateAllBindings();
+                RaisePropertyChangedEvent("");
+            }
+        }
+
+        private void CommandButtonSaveChangesExecute(object parameter)
+        {
+            object[] args = parameter as object[];
+            DeckClassSelectorViewModel opponentClass = args[0] as DeckClassSelectorViewModel;
+            Controls.PlayerRank opponentRank = args[1] as Controls.PlayerRank;
+            Controls.PlayerRank playerRank = args[2] as Controls.PlayerRank;
+            if ((opponentClass != null)
+                && opponentClass.SelectedClass.HasValue)
+            {
+                this.Game.OpponentClass = opponentClass.SelectedClass.Value;
+                this.Game.OpponentAttributes.AddRange(opponentClass.SelectedClassAttributes);
+
+                if (this.Game.Type == GameType.PlayRanked)
+                {
+                    this.Game.OpponentRank = opponentRank.SelectedItem;
+                    this.Game.OpponentLegendRank = opponentRank.LegendRank;
+
+                    this.Game.PlayerRank = playerRank.SelectedItem;
+                    this.Game.PlayerLegendRank = playerRank.LegendRank;
+                }
+
+                Utils.Messenger.Default.Send(
+                    new Utils.Messages.EditDeck() { Deck = game.Deck },
+                    Utils.Messages.EditDeck.Context.StatsUpdated);
+
+                FileManager.SaveDatabase();
+            }
+
+            Messenger.Default.Send(
+                new EditGame(Game),
+                EditGame.Context.EditFinished);
+            Game.UpdateAllBindings();
         }
 
 

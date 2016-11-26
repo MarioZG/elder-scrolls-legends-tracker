@@ -81,5 +81,9 @@ namespace ESLTracker.DataModel
             Date = DateTime.Now;
         }
 
+        public void UpdateAllBindings()
+        {
+            RaisePropertyChangedEvent("");
+        }
     }
 }

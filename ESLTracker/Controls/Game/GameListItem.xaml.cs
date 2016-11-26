@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.ViewModels;
 
 namespace ESLTracker.Controls.Game
 {
@@ -20,9 +21,22 @@ namespace ESLTracker.Controls.Game
     /// </summary>
     public partial class GameListItem : UserControl
     {
+        public ICommand CommandEditGame
+        {
+            get { return new RelayCommand(new Action<object>(EditGameExecute)); }
+        }
+
         public GameListItem()
         {
             InitializeComponent();
         }
+
+        private void EditGameExecute(object obj)
+        {
+            Utils.Messenger.Default.Send(
+                new Utils.Messages.EditGame(this.DataContext as DataModel.Game),
+                Utils.Messages.EditGame.Context.StartEdit);
+        }
+        
     }
 }

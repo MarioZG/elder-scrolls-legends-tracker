@@ -5,12 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Game"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             x:Name="gameListItem">
     <UserControl.Resources>
         <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
         <Converters:PlayerRankLegendToVisibiltyCollapsed x:Key="PlayerRankLegendToVisibiltyCollapsed" />
     </UserControl.Resources>
-    <DockPanel>
+    <DockPanel Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+        <DockPanel.ContextMenu>
+            <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                <MenuItem Header="Edit" Command="{Binding CommandEditGame}"/>
+            </ContextMenu>
+        </DockPanel.ContextMenu>
         <TextBlock DockPanel.Dock="Left" Text="{Binding Date,StringFormat=yyyy-MM-dd}" />
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <TextBlock Margin="5,0,0,0" Text="{Binding Type}" />

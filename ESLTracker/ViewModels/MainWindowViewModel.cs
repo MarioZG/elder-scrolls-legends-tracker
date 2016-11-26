@@ -51,6 +51,14 @@ namespace ESLTracker.ViewModels
             set { settingsVisible = value; RaisePropertyChangedEvent("SettingsVisible"); }
         }
 
+        private bool editGameVisible = false;
+
+        public bool EditGameVisible
+        {
+            get { return editGameVisible; }
+            set { editGameVisible = value; RaisePropertyChangedEvent("EditGameVisible"); }
+        }
+
         public ICommand CommandEditSettings
         {
             get { return new RelayCommand(new Action<object>(EditSettings)); }
@@ -90,6 +98,8 @@ namespace ESLTracker.ViewModels
         {
             Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckStart, Utils.Messages.EditDeck.Context.StartEdit);
             Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
+            Utils.Messenger.Default.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
+            Utils.Messenger.Default.Register<Utils.Messages.EditGame>(this, EditGameFinished, Utils.Messages.EditGame.Context.EditFinished);
         }
 
         public void NotifyIconLeftClick(object parameter)
@@ -154,6 +164,16 @@ namespace ESLTracker.ViewModels
         private void EditDeckFinished(EditDeck obj)
         {
             this.DeckEditVisible = false;
+        }
+
+        private void EditGameStart(EditGame obj)
+        {
+            this.EditGameVisible = true;
+        }
+
+        private void EditGameFinished(EditGame obj)
+        {
+            this.EditGameVisible = false;
         }
     }
 }

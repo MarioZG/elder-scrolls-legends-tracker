@@ -35,6 +35,22 @@ namespace ESLTracker.Controls.Game
             }
         }
 
+
+        public bool IsEditControl
+        {
+            get { return (bool)GetValue(IsEditControlProperty); }
+            set { SetValue(IsEditControlProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsEditControl.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsEditControlProperty =
+            DependencyProperty.Register(
+                "IsEditControl", 
+                typeof(bool), 
+                typeof(EditGame), 
+                new PropertyMetadata(false));
+
+
         public EditGame()
         {
             InitializeComponent();
@@ -42,6 +58,10 @@ namespace ESLTracker.Controls.Game
             DataModel.Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
             opponentClass.DataContext.PropertyChanged += DataContext_PropertyChanged;
 
+            //TODO: Find a way to move it to xaml!
+            var nameOfPropertyInVm = "IsEditControl";
+            var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
+            this.SetBinding(IsEditControlProperty, binding);
         }
 
         private void DataContext_PropertyChanged(object sender, PropertyChangedEventArgs e)

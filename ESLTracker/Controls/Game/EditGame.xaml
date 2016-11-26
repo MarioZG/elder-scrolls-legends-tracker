@@ -13,6 +13,7 @@
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Game" 
              x:Class="ESLTracker.Controls.Game.EditGame"
              mc:Ignorable="d" 
+             x:Name="editGame"
              d:DesignHeight="300" d:DesignWidth="300" Initialized="UserControl_Initialized">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="GameOutcomeEnum" MethodName="GetValues"
@@ -57,6 +58,7 @@
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="70"/>
+            <RowDefinition Height="25*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -100,7 +102,27 @@
                   />
         <Label Content="Notes" Grid.Row="8"/>
         <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Game.Notes}" Grid.Column="1" Grid.Row="8"></TextBox>
-        <UniformGrid Rows="1" Grid.Column="1" Grid.Row="9">
+        <Label Content="Game outcome" Grid.Row="9"
+                  Visibility="{Binding IsEditControl, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+               />
+        <ComboBox x:Name="cbOutcome" Grid.Row="9" Grid.Column="1"
+                  Visibility="{Binding IsEditControl, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                  ItemsSource="{Binding Source={StaticResource GameOutcomeEnum}}" 
+                  SelectedItem="{Binding Game.Outcome}"
+                   />
+        <Button x:Name="btnSaveChanges" Grid.Row="11" Grid.Column="2" 
+                Content="Save changes"
+                Command="{Binding CommandButtonSaveChanges}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource CommandMultipleParamatersConverter}">
+                    <Binding Path="DataContext" ElementName="opponentClass"/>
+                    <Binding Path="" ElementName="cbOpponentRank"/>
+                    <Binding Path="" ElementName="cbPlayerRank"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <UniformGrid Rows="1" Grid.Column="1" Grid.Row="10"
+                     Visibility="{Binding IsEditControl, Converter={StaticResource BoolToVisibiltyCollapsedConverter}, ConverterParameter=not}">
             <Button x:Name="btnVicotry" Content="Victory"
                     Command="{Binding CommandButtonCreate}">
                 <Button.CommandParameter>
