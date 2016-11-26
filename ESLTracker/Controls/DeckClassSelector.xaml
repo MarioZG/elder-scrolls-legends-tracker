@@ -8,7 +8,8 @@
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             x:Name="deckClassSelector">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="DeckClassEnum" MethodName="GetValues"
                                 ObjectType="{x:Type System:Enum}">
@@ -107,6 +108,6 @@
     </StackPanel>
         <ComboBox x:Name="comboBox" MinWidth="100" VerticalContentAlignment="Center"
                   ItemsSource="{Binding FilteredClasses}"
-                  SelectedItem="{Binding SelectedClass}"/> 
+                  SelectedItem="{Binding ElementName=deckClassSelector, Path=SelectedClass, Mode=TwoWay}"/> 
     </DockPanel>
 </UserControl>

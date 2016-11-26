@@ -21,39 +21,57 @@ namespace ESLTracker.Controls
     public partial class PlayerRank : UserControl
     {
 
-        public DataModel.Enums.PlayerRank? SelectedItem
+        public DataModel.Enums.PlayerRank? SelectedRank
         {
-            get
-            {
-                return (DataModel.Enums.PlayerRank?)this.cbPlayerRank.SelectedItem;
-            }
-            set
-            {
-                this.cbPlayerRank.SelectedItem = value;
-            }
+            get { return (DataModel.Enums.PlayerRank?)GetValue(SelectedItemProperty); }
+            set { SetValue(SelectedItemProperty, value); }
         }
+
+        // Using a DependencyProperty as the backing store for PlayerRank.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedItemProperty =
+            DependencyProperty.Register("SelectedRank", typeof(DataModel.Enums.PlayerRank?), typeof(PlayerRank), new PropertyMetadata(null));
+
 
         public int? LegendRank
         {
-            get
+            get { return (SelectedRank == DataModel.Enums.PlayerRank.TheLegend) ?
+                        (int?)GetValue(LegendRankProperty) : null; }
+            set { SetValue(LegendRankProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for LegendRank.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LegendRankProperty =
+            DependencyProperty.Register("LegendRank", typeof(int?), typeof(PlayerRank), new PropertyMetadata(null));
+
+        public string DataContextPath
+        {
+            get { return (string)GetValue(DataContextPropertyProperty); }
+            set { SetValue(DataContextPropertyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for DataContextProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DataContextPropertyProperty =
+            DependencyProperty.Register("DataContextPath", typeof(string), typeof(PlayerRank), new PropertyMetadata(null, Changed));
+
+        private static void Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            //TODO: Find a way to move it to xaml!
+            if (((PlayerRank)d).DataContextPath != null)
             {
-                if ((! SelectedItem.HasValue) 
-                    || (SelectedItem != DataModel.Enums.PlayerRank.TheLegend))
-                {
-                    return null;
-                }
-                int retValue;
-                return int.TryParse(this.txtPlayerLegendRank.Text, out retValue) ? (int?)retValue : null;
-            }
-            set
-            {
-                this.txtPlayerLegendRank.Text = value.HasValue ? value.ToString() : null;
+                var nameOfPropertyInVm = ((PlayerRank)d).DataContextPath.Split(new char[] { ',' })[0];
+                var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
+                ((PlayerRank)d).SetBinding(SelectedItemProperty, binding);
+
+                nameOfPropertyInVm = ((PlayerRank)d).DataContextPath.Split(new char[] { ',' })[1];
+                binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
+                ((PlayerRank)d).SetBinding(LegendRankProperty, binding);
             }
         }
 
         public PlayerRank()
         {
             InitializeComponent();
+
         }
     }
 }

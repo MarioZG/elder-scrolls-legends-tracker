@@ -166,22 +166,21 @@ namespace ESLTracker.ViewModels.Game
                 && opponentClass.SelectedClass.HasValue)
             {
                 model.Game.Deck = Tracker.Instance.ActiveDeck;
-                model.Game.OpponentClass = opponentClass.SelectedClass.Value;
                 model.Game.OpponentAttributes.AddRange(opponentClass.SelectedClassAttributes);
                 model.Game.Outcome = outcome.Value;
 
                 if (model.Game.Type == GameType.PlayRanked)
                 {
-                    model.Game.OpponentRank = opponentRank.SelectedItem;
-                    model.Game.OpponentLegendRank = opponentRank.LegendRank;
-
-                    if (playerRank.SelectedItem.HasValue)
+                    if (Game.OpponentRank != PlayerRank.TheLegend)
                     {
-                        model.Game.PlayerRank = playerRank.SelectedItem;
-                        model.Game.PlayerLegendRank = playerRank.LegendRank;
-
-                        settings.PlayerRank = playerRank.SelectedItem.Value;
+                        this.Game.OpponentLegendRank = null;
                     }
+
+                    if (this.Game.PlayerRank != PlayerRank.TheLegend)
+                    {
+                        this.Game.PlayerLegendRank = null;
+                    }
+                    settings.PlayerRank = this.Game.PlayerRank.Value;
                 }
 
                 DataModel.Game addedGame = model.Game;
@@ -205,8 +204,10 @@ namespace ESLTracker.ViewModels.Game
                 opponentClass.Reset();
 
                 //clear opp rank
-                opponentRank.SelectedItem = null;
-                opponentRank.LegendRank = null; 
+                opponentRank.SelectedRank = null;
+                opponentRank.LegendRank = null;
+
+                RaisePropertyChangedEvent("");
 
             }
 
@@ -243,7 +244,7 @@ namespace ESLTracker.ViewModels.Game
 
         public void ShowWinsVsClass(DeckClass? deckClass)
         {
-            this.Game.OpponentClass = deckClass; //ugly hack until class slectro can be bound in xaml
+            //this.Game.OpponentClass = deckClass; //ugly hack until class slectro can be bound in xaml
             if ((deckClass != null) && (Tracker.Instance.ActiveDeck != null))
             {
                 var res = Tracker.Instance.ActiveDeck.GetDeckVsClass(deckClass);
@@ -269,7 +270,7 @@ namespace ESLTracker.ViewModels.Game
             if (IsEditControl)
             {
                 this.Game = obj.Game;
-                Game.UpdateAllBindings();
+                //Game.UpdateAllBindings();
                 RaisePropertyChangedEvent("");
             }
         }
@@ -288,13 +289,24 @@ namespace ESLTracker.ViewModels.Game
 
                 if (this.Game.Type == GameType.PlayRanked)
                 {
-                    this.Game.OpponentRank = opponentRank.SelectedItem;
-                    this.Game.OpponentLegendRank = opponentRank.LegendRank;
+                    if (Game.OpponentRank != PlayerRank.TheLegend)
+                    {
+                        this.Game.OpponentLegendRank = null;
+                    }
 
-                    this.Game.PlayerRank = playerRank.SelectedItem;
-                    this.Game.PlayerLegendRank = playerRank.LegendRank;
+                    if (this.Game.PlayerRank != PlayerRank.TheLegend)
+                    {
+                        this.Game.PlayerLegendRank = null;
+                    }
                 }
-
+                else
+                {
+                    Game.OpponentRank = null;
+                    Game.OpponentLegendRank = null;
+                    Game.PlayerLegendRank = null;
+                    Game.PlayerRank = null;
+                    Game.BonusRound = null;
+                }
                 Utils.Messenger.Default.Send(
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
                     Utils.Messages.EditDeck.Context.StatsUpdated);

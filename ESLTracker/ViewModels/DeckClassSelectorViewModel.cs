@@ -41,19 +41,7 @@ namespace ESLTracker.ViewModels
             set
             {
                 selectedClass = value;
-                if (value != null)
-                {
-                    ResetToggleButtons();
-                    //toggle attributes buttons
-                    if (selectedClass != null)
-                    {
-                        foreach (DeckAttribute da in SelectedClassAttributes)
-                        {
-                            FilterButtonState[da] = true;
-                        }
-                    }
-                }
-                RaisePropertyChangedEvent("FilterButtonStateCollection");
+                SyncToggleButtons(value);
                 RaisePropertyChangedEvent("SelectedClass");
             }
         }
@@ -154,6 +142,23 @@ namespace ESLTracker.ViewModels
             foreach (DeckAttribute a in Enum.GetValues(typeof(DeckAttribute)))
             {
                 FilterButtonState[a] = false;
+            }
+        }
+
+        internal void SyncToggleButtons(DeckClass? value)
+        {
+            if (value != null)
+            {
+                ResetToggleButtons();
+                //toggle attributes buttons
+                //    if (selectedClass != null)
+                {
+                    foreach (DeckAttribute da in ClassAttributesHelper.Classes[value.Value])
+                    {
+                        FilterButtonState[da] = true;
+                    }
+                }
+                RaisePropertyChangedEvent("FilterButtonStateCollection");
             }
         }
     }

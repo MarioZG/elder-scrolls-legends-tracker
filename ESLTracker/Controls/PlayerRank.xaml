@@ -22,11 +22,12 @@
     <DockPanel>       
         <TextBox x:Name="txtPlayerLegendRank" Grid.Row="6" Grid.Column="1" Width="40" 
                  DockPanel.Dock="Right"
-                 Text=""
+                 Text="{Binding ElementName=rankControl, Path=LegendRank, Mode=TwoWay}"
                  Visibility="{Binding Path=SelectedItem, ElementName=cbPlayerRank ,Converter={StaticResource PlayerRankLegendToVisibiltyCollapsed}}"
                  />
         <ComboBox x:Name="cbPlayerRank" 
-              ItemsSource="{Binding Source={StaticResource PlayerRankEnum}}">
+              ItemsSource="{Binding Source={StaticResource PlayerRankEnum}}"
+                  SelectedItem="{Binding ElementName=rankControl, Path=SelectedRank, Mode=TwoWay}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
