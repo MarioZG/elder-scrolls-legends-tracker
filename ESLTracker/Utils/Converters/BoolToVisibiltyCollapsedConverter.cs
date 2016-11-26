@@ -13,9 +13,14 @@ namespace ESLTracker.Utils.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            bool not = false;
+            if ((parameter != null) && (parameter.ToString().ToUpper() == "NOT"))
+            {
+                not = true;
+            }
             if (value != null && value is bool)
             {
-                return (bool)value ? Visibility.Visible : Visibility.Collapsed;
+                return not ^ (bool)value ? Visibility.Visible : Visibility.Collapsed;
             }
             return Visibility.Collapsed;
         }
