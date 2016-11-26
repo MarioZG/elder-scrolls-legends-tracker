@@ -7,7 +7,7 @@ using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel
 {
-    public class Deck : ViewModels.ViewModelBase
+    public class Deck : ViewModels.ViewModelBase, ICloneable
     {
         public Guid DeckId { get; set; }
         public DeckType Type { get; set; }
@@ -86,6 +86,9 @@ namespace ESLTracker.DataModel
             RaisePropertyChangedEvent("");
         }
 
-        
+        public object Clone()
+        {
+            return this.MemberwiseClone() as Deck;
+        }
     }
 }

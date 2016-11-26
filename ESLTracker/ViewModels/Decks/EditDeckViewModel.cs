@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Decks
 {
-    public class EditDeckViewModel : ViewModelBase
+    public class EditDeckViewModel : ViewModelBase, IEditableObject
     {
         public Deck deck = CreateDefaultDeck();
 
@@ -72,6 +73,7 @@ namespace ESLTracker.ViewModels.Decks
         private void EditDeck(EditDeck obj)
         {
             this.Deck = obj.Deck;
+            this.BeginEdit();
             
         }
 
@@ -100,6 +102,7 @@ namespace ESLTracker.ViewModels.Decks
                 tracker.Decks.Add(this.Deck);
             }
             Utils.FileManager.SaveDatabase();
+            this.EndEdit();
             Messenger.Default.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
 
             this.Deck = CreateDefaultDeck();
@@ -121,6 +124,7 @@ namespace ESLTracker.ViewModels.Decks
             DeckClassSelectorViewModel selectedClassModel = args[1] as DeckClassSelectorViewModel;
             if (model != null)
             {
+                this.CancelEdit();
                 Messenger.Default.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
                 model.Deck = CreateDefaultDeck();
                 if (selectedClassModel != null)
@@ -135,6 +139,29 @@ namespace ESLTracker.ViewModels.Decks
             return true;
         }
 
+        Deck savedState;
 
+        public void BeginEdit()
+        {
+            savedState = Deck.Clone() as Deck;
+        }
+
+        public void EndEdit()
+        {
+            savedState = Deck;
+        }
+
+        public void CancelEdit()
+        {
+            //cannot asign to Deck - it wiil break databinding and display modified value anyway!
+            Deck.Name = savedState.Name;
+            Deck.Class = savedState.Class;
+            Deck.Type = savedState.Type;
+            Deck.DeckId = savedState.DeckId;
+            Deck.Attributes = savedState.Attributes;
+            Deck.Notes = savedState.Notes;
+            Deck.CreatedDate = savedState.CreatedDate;
+            RaisePropertyChangedEvent("Deck");
+        }
     }
 }
