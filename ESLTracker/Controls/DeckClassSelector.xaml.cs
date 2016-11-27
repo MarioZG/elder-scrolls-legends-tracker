@@ -53,6 +53,8 @@ namespace ESLTracker.Controls
 
         private static void InternalSelectedClassChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            //DeckClassSelectorViewModel model = ((DeckClassSelector)d).DataContext;
+            //model.SyncToggleButtons(e.NewValue as DataModel.Enums.DeckClass?);
             ((DeckClassSelector)d).SelectedClass = e.NewValue as DataModel.Enums.DeckClass?;
         }
 

@@ -27,18 +27,12 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             PlayerRank selectedPlayerRank = PlayerRank.TheLord;
             model.Game.Type = GameType.PlayRanked;
+            model.Game.OpponentClass = DeckClass.Crusader;
             model.Game.PlayerRank = selectedPlayerRank;
 
-            object[] args =
-            {
-                "Victory",
-                model,
-                new DeckClassSelectorViewModel() { SelectedClass = DeckClass.Crusader},
-                new Controls.PlayerRank(),
-                new Controls.PlayerRank() {SelectedRank =  selectedPlayerRank}
-            };
+            object param = "Victory";
 
-            model.CommandButtonCreateExecute(args, settingsMock.Object);
+            model.CommandButtonCreateExecute(param, settingsMock.Object);
 
             settingsMock.VerifySet(s => s.PlayerRank = selectedPlayerRank, Times.Once);
 

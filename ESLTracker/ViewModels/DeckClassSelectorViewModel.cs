@@ -40,9 +40,12 @@ namespace ESLTracker.ViewModels
             }
             set
             {
-                selectedClass = value;
-                SyncToggleButtons(value);
-                RaisePropertyChangedEvent("SelectedClass");
+                if (selectedClass != value)
+                {
+                    selectedClass = value;
+                    SyncToggleButtons(value);
+                    RaisePropertyChangedEvent("SelectedClass");
+                }
             }
         }
 
@@ -100,12 +103,13 @@ namespace ESLTracker.ViewModels
             if ((filteredClasses.Count >= 1)
                 && (FilterButtonState.Any(f => f.Value)))
             {
-                SelectedClass = filteredClasses.OrderBy( fc=> ClassAttributesHelper.Classes[fc].Count).First();
+                selectedClass = filteredClasses.OrderBy( fc=> ClassAttributesHelper.Classes[fc].Count).First();
             }
-            else
+            else 
             {
-                SelectedClass = null;
-            }           
+                selectedClass = null;
+            }
+            RaisePropertyChangedEvent("SelectedClass");
             //remove classes not in use.Clear() will trigger binding, as SelectedClass will be set to null by framework
             foreach (DeckClass dc in FilteredClasses.ToList())
             {
@@ -127,7 +131,6 @@ namespace ESLTracker.ViewModels
                     FilteredClasses.Insert(i, dc);
                 }
             }
-            RaisePropertyChangedEvent("SelectedClass");
         }
 
         public void Reset()
@@ -147,17 +150,18 @@ namespace ESLTracker.ViewModels
 
         internal void SyncToggleButtons(DeckClass? value)
         {
-            if (value != null)
+            //if (value != null)
             {
                 ResetToggleButtons();
                 //toggle attributes buttons
-                //    if (selectedClass != null)
+                if (value!= null)
                 {
                     foreach (DeckAttribute da in ClassAttributesHelper.Classes[value.Value])
                     {
                         FilterButtonState[da] = true;
                     }
                 }
+                FilterCombo();
                 RaisePropertyChangedEvent("FilterButtonStateCollection");
             }
         }

@@ -154,22 +154,16 @@ namespace ESLTracker.ViewModels.Game
 
         public void CommandButtonCreateExecute(object parameter, Properties.ISettings settings)
         {
-            object[] args = parameter as object[];
-            GameOutcome? outcome = EnumManager.ParseEnumString<GameOutcome>(args[0] as string);
-            EditGameViewModel model = args[1] as EditGameViewModel;
-            DeckClassSelectorViewModel opponentClass = args[2] as DeckClassSelectorViewModel;
-            Controls.PlayerRank opponentRank = args[3] as Controls.PlayerRank;
-            Controls.PlayerRank playerRank = args[4] as Controls.PlayerRank;
-            if ((model != null)
-                && (outcome.HasValue)
-                && (opponentClass != null)
-                && opponentClass.SelectedClass.HasValue)
+            //object[] args = parameter as object[];
+            GameOutcome? outcome = EnumManager.ParseEnumString<GameOutcome>(parameter as string);
+            if ((outcome.HasValue)
+                && this.Game.OpponentClass.HasValue)
             {
-                model.Game.Deck = Tracker.Instance.ActiveDeck;
-                model.Game.OpponentAttributes.AddRange(opponentClass.SelectedClassAttributes);
-                model.Game.Outcome = outcome.Value;
+                this.Game.Deck = Tracker.Instance.ActiveDeck;
+                this.Game.OpponentAttributes.AddRange(Utils.ClassAttributesHelper.Classes[this.game.OpponentClass.Value]);
+                this.Game.Outcome = outcome.Value;
 
-                if (model.Game.Type == GameType.PlayRanked)
+                if (this.Game.Type == GameType.PlayRanked)
                 {
                     if (Game.OpponentRank != PlayerRank.TheLegend)
                     {
@@ -183,8 +177,8 @@ namespace ESLTracker.ViewModels.Game
                     settings.PlayerRank = this.Game.PlayerRank.Value;
                 }
 
-                DataModel.Game addedGame = model.Game;
-                Tracker.Instance.Games.Add(model.Game);
+                DataModel.Game addedGame = this.Game;
+                Tracker.Instance.Games.Add(this.Game);
 
                 Utils.Messenger.Default.Send(
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
@@ -192,20 +186,20 @@ namespace ESLTracker.ViewModels.Game
 
                 FileManager.SaveDatabase();
 
-                model.Game = new DataModel.Game();
+                this.Game = new DataModel.Game();
 
                 //restore values that are likely the same,  like game type, player rank etc
-                model.Game.Type = addedGame.Type;
-                model.Game.PlayerRank = addedGame.PlayerRank;
-                model.Game.PlayerLegendRank = addedGame.PlayerLegendRank;
-                model.UpdateBindings();
+                this.Game.Type = addedGame.Type;
+                this.Game.PlayerRank = addedGame.PlayerRank;
+                this.Game.PlayerLegendRank = addedGame.PlayerLegendRank;
+                this.UpdateBindings();
 
                 //clear opp class
-                opponentClass.Reset();
+                //opponentClass.Reset();
 
                 //clear opp rank
-                opponentRank.SelectedRank = null;
-                opponentRank.LegendRank = null;
+                //opponentRank.SelectedRank = null;
+                //opponentRank.LegendRank = null;
 
                 RaisePropertyChangedEvent("");
 
@@ -277,15 +271,9 @@ namespace ESLTracker.ViewModels.Game
 
         private void CommandButtonSaveChangesExecute(object parameter)
         {
-            object[] args = parameter as object[];
-            DeckClassSelectorViewModel opponentClass = args[0] as DeckClassSelectorViewModel;
-            Controls.PlayerRank opponentRank = args[1] as Controls.PlayerRank;
-            Controls.PlayerRank playerRank = args[2] as Controls.PlayerRank;
-            if ((opponentClass != null)
-                && opponentClass.SelectedClass.HasValue)
+            if (this.Game.OpponentClass.HasValue)
             {
-                this.Game.OpponentClass = opponentClass.SelectedClass.Value;
-                this.Game.OpponentAttributes.AddRange(opponentClass.SelectedClassAttributes);
+                this.Game.OpponentAttributes.AddRange(Utils.ClassAttributesHelper.Classes[this.Game.OpponentClass.Value]);
 
                 if (this.Game.Type == GameType.PlayRanked)
                 {
