@@ -169,11 +169,13 @@ namespace ESLTracker.ViewModels
         private void EditGameStart(EditGame obj)
         {
             this.EditGameVisible = true;
+            this.DeckStatsVisible = false;
         }
 
         private void EditGameFinished(EditGame obj)
         {
             this.EditGameVisible = false;
+            this.DeckStatsVisible = true;
         }
     }
 }
