@@ -110,27 +110,6 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod]
         public void IEditableObjectImplementation001_CancelEdit()
         {
-            Dictionary<Type, object> startProp = new Dictionary<Type, object>()
-            {
-                { typeof(Guid), Guid.NewGuid() },
-                { typeof(string), "start value" },
-                { typeof(DeckType), DeckType.SoloArena },
-                { typeof(DeckAttributes), new DeckAttributes() { DeckAttribute.Intelligence } },
-                { typeof(DeckClass?), DeckClass.Crusader },
-                { typeof(DateTime), DateTime.Now },
-                { typeof(object), new object()}
-            };
-            Dictionary<Type, object> editProp = new Dictionary<Type, object>()
-            {
-                { typeof(Guid), Guid.NewGuid() },
-                { typeof(string), "modified value" },
-                { typeof(DeckType), DeckType.VersusArena },
-                { typeof(DeckAttributes), new DeckAttributes() { DeckAttribute.Endurance, DeckAttribute.Strength } },
-                { typeof(DeckClass?), DeckClass.Monk },
-                { typeof(DateTime), DateTime.Now.AddDays(-4) }
-             //   { typeof(object), new object()}
-            };
-
             Mock<IDeckClassSelectorViewModel> deckClassSelector = new Mock<IDeckClassSelectorViewModel>();
 
             EditDeckViewModel model = new EditDeckViewModel();
@@ -139,26 +118,12 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             model.Deck = deck;
 
-            foreach (PropertyInfo p in deck.GetType().GetProperties())
-            {
-                if (p.CanWrite)
-                {
-                    TestContext.WriteLine("Setting prop {0} of type {1}", p.Name, p.PropertyType);
-                    p.SetValue(deck, startProp[p.PropertyType]);
-                }
-            }
+            PopulateObject(deck, StartProp);
 
             TestContext.WriteLine("Begin Edit");
             model.BeginEdit();
 
-            foreach (PropertyInfo p in deck.GetType().GetProperties())
-            {
-                if (p.CanWrite)
-                {
-                    TestContext.WriteLine("Setting prop {0} of type {1}", p.Name, p.PropertyType);
-                    p.SetValue(deck, editProp[p.PropertyType]);
-                }
-            }
+            PopulateObject(deck, EditProp);
 
             TestContext.WriteLine("Cancel Edit");
             model.CancelEdit();
@@ -167,7 +132,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             {
                 if (p.CanWrite)
                 {
-                    Assert.AreEqual(startProp[p.PropertyType], p.GetValue(deck), "Failed validation of prop {0} of type {1}", p.Name, p.PropertyType);
+                    Assert.AreEqual(StartProp[p.PropertyType], p.GetValue(deck), "Failed validation of prop {0} of type {1}", p.Name, p.PropertyType);
                 }
             }
 

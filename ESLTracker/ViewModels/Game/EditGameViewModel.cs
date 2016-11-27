@@ -137,7 +137,11 @@ namespace ESLTracker.ViewModels.Game
                 }
                 else
                 {
-                    this.Game.BonusRound = null;
+                    Game.OpponentRank = null;
+                    Game.OpponentLegendRank = null;
+                    Game.PlayerLegendRank = null;
+                    Game.PlayerRank = null;
+                    Game.BonusRound = null;
                 }
             }
             else if ((e.PropertyName == "OpponentName")
@@ -269,7 +273,7 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
-        private void CommandButtonSaveChangesExecute(object parameter)
+        public void CommandButtonSaveChangesExecute(object parameter)
         {
             if (this.Game.OpponentClass.HasValue)
             {
@@ -287,14 +291,7 @@ namespace ESLTracker.ViewModels.Game
                         this.Game.PlayerLegendRank = null;
                     }
                 }
-                else
-                {
-                    Game.OpponentRank = null;
-                    Game.OpponentLegendRank = null;
-                    Game.PlayerLegendRank = null;
-                    Game.PlayerRank = null;
-                    Game.BonusRound = null;
-                }
+
                 Utils.Messenger.Default.Send(
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
                     Utils.Messages.EditDeck.Context.StatsUpdated);

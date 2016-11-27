@@ -9,11 +9,12 @@ using Moq;
 using System.ComponentModel;
 using ESLTracker.Properties;
 using ESLTracker.DataModel.Enums;
+using ESLTrackerTests;
 
 namespace ESLTracker.ViewModels.Game.Tests
 {
     [TestClass()]
-    public class EditGameViewModelTests
+    public class EditGameViewModelTests : BaseTest
     {
         /// <summary>
         /// verify if last rank selected by player is saved in settings
@@ -37,6 +38,66 @@ namespace ESLTracker.ViewModels.Game.Tests
             settingsMock.VerifySet(s => s.PlayerRank = selectedPlayerRank, Times.Once);
 
         }
+
+        /// <summary>
+        /// verify if last rank selected by player is saved in settings
+        /// </summary>
+        [TestMethod()]
+        public void CommandButtonCreateExecuteTest002_RankedFieldsNullForNonRankedGame()
+        {
+            Mock<ISettings> settingsMock = new Mock<ISettings>();
+
+            EditGameViewModel model = new EditGameViewModel();
+
+            string param = "Victory";
+
+            PopulateObject(model.Game, StartProp);
+
+            Assert.IsNotNull(model.Game.PlayerLegendRank);
+            Assert.IsNotNull(model.Game.PlayerRank);
+            Assert.IsNotNull(model.Game.OpponentLegendRank);
+            Assert.IsNotNull(model.Game.OpponentRank);
+            Assert.IsNotNull(model.Game.BonusRound);
+
+            //set type to other than ranked value
+            model.Game.Type = GameType.SoloArena;
+
+            model.CommandButtonCreateExecute(param, settingsMock.Object);
+
+            Assert.IsNull(model.Game.PlayerLegendRank);
+            Assert.IsNull(model.Game.PlayerRank);
+            Assert.IsNull(model.Game.OpponentLegendRank);
+            Assert.IsNull(model.Game.OpponentRank);
+            Assert.IsNull(model.Game.BonusRound);
+        }
+
+        [TestMethod()]
+        public void CommandButtonSaveChangesExecuteTest001_RankedFieldsNullForNonRankedGame()
+        {
+            Mock<ISettings> settingsMock = new Mock<ISettings>();
+
+            EditGameViewModel model = new EditGameViewModel();
+
+            PopulateObject(model.Game, StartProp);
+
+            Assert.IsNotNull(model.Game.PlayerLegendRank);
+            Assert.IsNotNull(model.Game.PlayerRank);
+            Assert.IsNotNull(model.Game.OpponentLegendRank);
+            Assert.IsNotNull(model.Game.OpponentRank);
+            Assert.IsNotNull(model.Game.BonusRound);
+
+            //set type to other than ranked value
+            model.Game.Type = GameType.SoloArena;
+
+            model.CommandButtonSaveChangesExecute(null);
+
+            Assert.IsNull(model.Game.PlayerLegendRank);
+            Assert.IsNull(model.Game.PlayerRank);
+            Assert.IsNull(model.Game.OpponentLegendRank);
+            Assert.IsNull(model.Game.OpponentRank);
+            Assert.IsNull(model.Game.BonusRound);
+        }
+
 
         [TestMethod()]
         public void SummaryText001_ChangeEventRaisedWhenNameChanges()
