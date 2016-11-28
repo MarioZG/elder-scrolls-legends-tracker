@@ -10,12 +10,20 @@ namespace ESLTracker.DataModel
     public class Deck : ViewModels.ViewModelBase, ICloneable
     {
         public Guid DeckId { get; set; }
-        public DeckType Type { get; set; }
+
+        private DeckType type;
+        public DeckType Type
+        {
+            get { return type; }
+            set { type = value; RaisePropertyChangedEvent("Type"); }
+        }
+
         public string Name { get; set; }
         public DeckAttributes Attributes { get; set; } = new DeckAttributes();
         public DeckClass? Class { get; set; }
         public string Notes { get; set; }
         public DateTime CreatedDate { get; set; }
+        public ArenaRank? ArenaRank { get; set; }
 
 
         public Deck()

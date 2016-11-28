@@ -161,6 +161,7 @@ namespace ESLTracker.ViewModels.Decks
             Deck.Attributes = savedState.Attributes;
             Deck.Notes = savedState.Notes;
             Deck.CreatedDate = savedState.CreatedDate;
+            Deck.ArenaRank = savedState.ArenaRank;
             RaisePropertyChangedEvent("Deck");
         }
     }

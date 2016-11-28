@@ -87,6 +87,9 @@
     <Compile Include="Controls\Decks\DeckTypeSelector.xaml.cs">
       <DependentUpon>DeckTypeSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Decks\ArenaRank.xaml.cs">
+      <DependentUpon>ArenaRank.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Game\GameListItem.xaml.cs">
       <DependentUpon>GameListItem.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,7 @@
     <Compile Include="Controls\Settings\SettingsPanel.xaml.cs">
       <DependentUpon>SettingsPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModel\Enums\ArenaRank.cs" />
     <Compile Include="DataModel\ITracker.cs" />
     <Compile Include="Properties\ISettings.cs" />
     <Compile Include="Settings.cs" />
@@ -104,6 +108,7 @@
     <Compile Include="Utils\Converters\BoolToVisibiltyCollapsedConverter.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyConverter.cs" />
     <Compile Include="Utils\Converters\CommandMultipleParamaters.cs" />
+    <Compile Include="Utils\Converters\DeckTypeToArenaRankVisibiltyCollapsed.cs" />
     <Compile Include="Utils\Converters\IsInCollectionToBool.cs" />
     <Compile Include="Utils\Converters\PlayerRankLegendToVisibiltyCollapsed.cs" />
     <Compile Include="Utils\IOWrappers\DirectoryWrapper.cs" />
@@ -213,6 +218,10 @@
     <Page Include="Controls\Decks\EditDeck.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Decks\ArenaRank.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Game\EditGame.xaml">
       <SubType>Designer</SubType>

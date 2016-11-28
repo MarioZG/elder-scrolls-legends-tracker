@@ -44,6 +44,7 @@ namespace ESLTrackerTests
                 { typeof(GameOutcome), GameOutcome.Disconnect},
                 { typeof(PlayerRank?), PlayerRank.TheMage},
                 { typeof(int?), 234},
+                { typeof(ArenaRank?), ArenaRank.Level5},
                 { typeof(object), new object()}
             };
 
@@ -54,7 +55,8 @@ namespace ESLTrackerTests
                 { typeof(DeckType), DeckType.VersusArena },
                 { typeof(DeckAttributes), new DeckAttributes() { DeckAttribute.Endurance, DeckAttribute.Strength } },
                 { typeof(DeckClass?), DeckClass.Monk },
-                { typeof(DateTime), DateTime.Now.AddDays(-4) }
+                { typeof(DateTime), DateTime.Now.AddDays(-4) },
+                { typeof(ArenaRank?), ArenaRank.Level7 },
              //   { typeof(object), new object()}
             };
 

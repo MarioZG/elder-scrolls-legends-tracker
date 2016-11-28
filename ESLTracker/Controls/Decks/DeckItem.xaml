@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="70" d:DesignWidth="200">
+    <UserControl.Resources>
+        <Converters:DeckTypeToArenaRankVisibiltyCollapsed x:Key="DeckTypeToArenaRankVisibiltyCollapsedConverter"/>
+    </UserControl.Resources>
     <DockPanel HorizontalAlignment="Stretch">
         <ItemsControl ItemsSource="{Binding Path=Attributes.ImageSources}" BorderThickness="0"
                       ToolTip="{Binding Class}">
@@ -22,7 +26,12 @@
         </ItemsControl>
         <StackPanel Margin="10,0,0,0">
             <TextBlock FontWeight="SemiBold" FontSize="16" Text="{Binding Name}" />
-            <TextBlock Text="{Binding Path=Type}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=Type}" />
+                <TextBlock Text="{Binding Path=ArenaRank, StringFormat={} (Rank {0} ({0:D}))}" 
+                           Visibility="{Binding Type, Converter={StaticResource DeckTypeToArenaRankVisibiltyCollapsedConverter}}"
+                       />
+            </StackPanel>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right">
             <StackPanel Orientation="Horizontal">

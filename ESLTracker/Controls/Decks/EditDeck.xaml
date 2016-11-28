@@ -23,9 +23,11 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <Converters:CommandMultipleParamaters x:Key="CommandMultipleParamatersConverter" />
+        <Converters:DeckTypeToArenaRankVisibiltyCollapsed x:Key="DeckTypeToArenaRankVisibiltyCollapsedConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
@@ -60,7 +62,13 @@
                   IsEnabled="{Binding CanChangeType}"/>
         <Label Content="Deck name"/>
         <Label Content="Type" Grid.Row="2"/>
-        <UniformGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+        <Label Content="Arena rank" Grid.Row="3"
+               Visibility="{Binding Deck.Type, Converter={StaticResource DeckTypeToArenaRankVisibiltyCollapsedConverter}}"/>
+        <local:ArenaRank Grid.Row="3" Grid.Column="1"
+                         SelectedRank="{Binding Deck.ArenaRank, Mode=TwoWay}" 
+                         Visibility="{Binding Deck.Type, Converter={StaticResource DeckTypeToArenaRankVisibiltyCollapsedConverter}}"
+        />
+        <UniformGrid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
             <Button Content="Cancel" HorizontalAlignment="Center" 
                     Grid.Column="1" Grid.Row="3"
                     Command="{Binding CommandButtonCancel}"
