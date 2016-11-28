@@ -98,5 +98,10 @@ namespace ESLTracker.DataModel
         {
             return this.MemberwiseClone() as Deck;
         }
+
+        public static bool IsArenaDeck(DeckType type)
+        {
+            return type == DeckType.SoloArena || type == DeckType.VersusArena;
+        }
     }
 }

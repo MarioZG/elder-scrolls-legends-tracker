@@ -6,11 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.Converters
 {
-    class DeckTypeToArenaRankVisibiltyCollapsed : IValueConverter
+    public class DeckTypeToArenaRankVisibiltyCollapsed : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -21,8 +22,7 @@ namespace ESLTracker.Utils.Converters
             }
             if (value != null && value is DeckType)
             {
-                bool isArenaDeck = (DeckType)value == DeckType.SoloArena || (DeckType)value == DeckType.VersusArena;
-                return not ^ isArenaDeck ? Visibility.Visible : Visibility.Collapsed;
+                return not ^ Deck.IsArenaDeck((DeckType)value) ? Visibility.Visible : Visibility.Collapsed;
             }
             return Visibility.Collapsed;
         }
