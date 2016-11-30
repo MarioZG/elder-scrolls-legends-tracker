@@ -46,10 +46,65 @@ namespace ESLTracker.Utils
         static string ScreenShotFolder = "Screenshot";
 
 
-        public static ESLTracker.DataModel.Tracker LoadDatabase()
+        public static Tracker LoadDatabase()
         {
-            return LoadDatabase<DataModel.Tracker>(
-                FullDataFilePath);
+            Tracker tracker = null;
+            try
+            {
+                tracker = LoadDatabase<DataModel.Tracker>(FullDataFilePath);
+                //fix up ref to decks in games
+                foreach (Game g in tracker.Games)
+                {
+                    g.Deck = tracker.Decks.Where(d => d.DeckId == g.DeckId).FirstOrDefault();
+                }
+                //fix up ref to decks in rewards
+                foreach (Reward r in tracker.Rewards)
+                {
+                    r.ArenaDeck = tracker.Decks.Where(d => d.DeckId == r.ArenaDeckId).FirstOrDefault();
+                }
+                //restore active deck
+                Guid? activeDeckFromSettings = Properties.Settings.Default.LastActiveDeckId;
+                if ((activeDeckFromSettings != null)
+                    && (activeDeckFromSettings != Guid.Empty))
+                {
+                    tracker.ActiveDeck = tracker.Decks.Where(d => d.DeckId == activeDeckFromSettings).FirstOrDefault();
+                }
+            }
+            catch
+            {
+                if (tracker != null)
+                {
+                    if (tracker.Version != Tracker.CurrentFileVersion)
+                    {
+                        if (FileManager.UpdateFile(tracker.Version))
+                        {
+                            //reload after update
+                            tracker = LoadDatabase();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                else
+                {
+                    if (FileManager.UpdateFile())
+                    {
+                        //reload after update
+                        tracker = LoadDatabase();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+            return tracker;
         }
 
         public static T LoadDatabase<T>(string path)

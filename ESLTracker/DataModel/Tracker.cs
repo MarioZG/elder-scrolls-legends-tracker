@@ -19,63 +19,9 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                if(_instance == null)
+                if (_instance == null)
                 {
-                    try
-                    {
-                        _instance = Utils.FileManager.LoadDatabase();
-                        //fix up ref to decks in games
-                        foreach (Game g in _instance.Games)
-                        {
-                            g.Deck = _instance.Decks.Where(d => d.DeckId == g.DeckId).FirstOrDefault();
-                        }
-                        //fix up ref to decks in rewards
-                        foreach (Reward r in _instance.Rewards)
-                        {
-                            r.ArenaDeck = _instance.Decks.Where(d => d.DeckId == r.ArenaDeckId).FirstOrDefault();
-                        }
-                        //restore active deck
-                        Guid? activeDeckFromSettings = Settings.Default.LastActiveDeckId;
-                        if ((activeDeckFromSettings != null)
-                            && (activeDeckFromSettings != Guid.Empty))
-                        {
-                            _instance.ActiveDeck = _instance.Decks.Where(d => d.DeckId == activeDeckFromSettings).FirstOrDefault();
-                        }
-                    }
-                    catch
-                    {
-                        if (_instance != null)
-                        {
-                            if (_instance.Version != CurrentFileVersion)
-                            {
-                                if (FileManager.UpdateFile(_instance.Version))
-                                {
-                                    //reload after update
-                                    _instance = Instance; 
-                                }
-                                else
-                                {
-                                    throw;
-                                }
-                            }
-                            else
-                            {
-                                throw;
-                            }
-                        }
-                        else
-                        {
-                            if (FileManager.UpdateFile())
-                            {
-                                //reload after update
-                                _instance = Instance;
-                            }
-                            else
-                            {
-                                throw;
-                            }
-                        }
-                    }                   
+                    _instance = FileManager.LoadDatabase();
                 }
                 return _instance;
             }
