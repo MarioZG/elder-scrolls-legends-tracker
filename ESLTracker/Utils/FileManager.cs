@@ -52,6 +52,19 @@ namespace ESLTracker.Utils
             try
             {
                 tracker = LoadDatabase<DataModel.Tracker>(FullDataFilePath);
+                //check for data update
+                if (tracker.Version < Tracker.CurrentFileVersion)
+                {
+                    if (FileManager.UpdateFile(tracker.Version))
+                    {
+                        //reload after update
+                        tracker = LoadDatabase();
+                    }
+                    else
+                    {
+                        throw new InvalidDataException("You are using old file format version");
+                    }
+                }
                 //fix up ref to decks in games
                 foreach (Game g in tracker.Games)
                 {

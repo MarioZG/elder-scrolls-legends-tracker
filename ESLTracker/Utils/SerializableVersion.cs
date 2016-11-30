@@ -115,6 +115,17 @@ namespace ESLTracker.Utils
             return !(a == b);
         }
 
+        public static bool operator <(SerializableVersion a, SerializableVersion b)
+        {
+            return a.CompareTo(b) < 0;
+        }
+
+        public static bool operator >(SerializableVersion a, SerializableVersion b)
+        {
+            return a.CompareTo(b) > 0;
+        }
+
+
         public static SerializableVersion Parse(string verionString)
         {
             try
