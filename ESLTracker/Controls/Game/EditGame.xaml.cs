@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils.Messages;
 using ESLTracker.ViewModels.Game;
 
 namespace ESLTracker.Controls.Game
@@ -62,6 +63,14 @@ namespace ESLTracker.Controls.Game
             var nameOfPropertyInVm = "IsEditControl";
             var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
             this.SetBinding(IsEditControlProperty, binding);
+
+            Utils.Messenger.Default.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
+
+        }
+
+        private void EditGameStart(Utils.Messages.EditGame obj)
+        {
+            this.selectedDeck.DataContext = obj.Game.Deck;
         }
 
         private void DataContext_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -74,12 +83,18 @@ namespace ESLTracker.Controls.Game
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if ((this.selectedDeck.DataContext != null) 
+            if (! IsEditControl
+                && (this.selectedDeck.DataContext != null) 
                 && (DataModel.Tracker.Instance.ActiveDeck != null))
             {
+                this.DataContext.Game.Deck = DataModel.Tracker.Instance.ActiveDeck;
                 if (DataModel.Tracker.Instance.ActiveDeck.Type == DeckType.VersusArena)
                 {
                     this.cbGameType.SelectedItem = DataModel.Enums.GameType.VersusArena;
+                }
+                else if (DataModel.Tracker.Instance.ActiveDeck.Type == DeckType.SoloArena)
+                {
+                    this.cbGameType.SelectedItem = DataModel.Enums.GameType.SoloArena;
                 }
             }
         }

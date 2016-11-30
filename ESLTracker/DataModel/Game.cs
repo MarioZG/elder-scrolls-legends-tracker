@@ -10,8 +10,15 @@ namespace ESLTracker.DataModel
 {
     public class Game : ViewModels.ViewModelBase
     {
+        private Deck deck;
+
         [XmlIgnore]
-        public Deck Deck { get; set; }
+        public Deck Deck
+        {
+            get { return deck; }
+            set { deck = value; RaisePropertyChangedEvent("Deck"); }
+        }
+
 
         private Guid deckId = Guid.Empty;
         public Guid DeckId {
