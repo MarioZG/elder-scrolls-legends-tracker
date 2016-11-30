@@ -8,7 +8,7 @@
              x:Name="rewardItemList"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <CollectionViewSource x:Key="RewardsGroup"                               
+        <CollectionViewSource x:Key="RewardsGroup"                              
                       Source="{Binding}">
             <CollectionViewSource.GroupDescriptions>
                 <PropertyGroupDescription PropertyName="Reason" />

@@ -30,12 +30,29 @@ namespace ESLTracker.Controls.Rewards
         // Using a DependencyProperty as the backing store for PanelOrientation.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PanelOrientationProperty =
             DependencyProperty.Register("PanelOrientation", typeof(Orientation), typeof(RewardItemList), new PropertyMetadata(Orientation.Vertical));
-            
 
+
+
+        public string GroupBy
+        {
+            get { return (string)GetValue(GroupByProperty); }
+            set { SetValue(GroupByProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for GroupBy.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty GroupByProperty =
+            DependencyProperty.Register("GroupBy", typeof(string), typeof(RewardItemList), new PropertyMetadata("Reason", GroupByChanged));
+
+        private static void GroupByChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            UserControl uc = d as UserControl;
+            ((PropertyGroupDescription)((CollectionViewSource)uc.Resources["RewardsGroup"]).GroupDescriptions[0]).PropertyName = e.NewValue as string;
+        }
 
         public RewardItemList()
         {
             InitializeComponent();
+            //this.Resources
         }
     }
 }

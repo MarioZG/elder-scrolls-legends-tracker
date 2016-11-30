@@ -51,7 +51,7 @@
             <local:AddSingleReward ToolTip="Click to add pack" Grid.Column="0" Grid.Row="1" x:Name="rewardPack" Type="Pack" />
             <local:AddSingleReward ToolTip="Click to add card" Grid.Column="1" Grid.Row="1" x:Name="rewardCard" Type="Card" />
         </Grid>
-        <local:RewardItemList DataContext="{Binding Rewards}" />
+        <local:RewardItemList DataContext="{Binding Rewards}" GroupBy="Reason" />
         <Button 
             x:Name="button" 
             Content="Done" 

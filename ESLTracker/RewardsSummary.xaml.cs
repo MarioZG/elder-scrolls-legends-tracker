@@ -57,7 +57,13 @@ namespace ESLTracker
             if (tab != null)
             {
                 // this tab is selected!
-                this.rewardsList.ItemsSource = DataModel.Tracker.Instance.Rewards;
+                this.rewardsList.DataContext = DataModel.Tracker.Instance.Rewards
+                    .GroupBy(r=> new { r.Date.Date, r.Type })
+                    .Select(rs=> new DataModel.Reward() {
+                        Type = rs.Key.Type,
+                        Date = rs.Key.Date,
+                        Quantity = rs.Where(r=> r.Type == rs.Key.Type).Sum(r=> r.Quantity)
+                    });
             }
         }
     }
