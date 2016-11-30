@@ -111,6 +111,8 @@
     <Compile Include="Utils\Converters\DeckTypeToArenaRankVisibiltyCollapsed.cs" />
     <Compile Include="Utils\Converters\IsInCollectionToBool.cs" />
     <Compile Include="Utils\Converters\PlayerRankLegendToVisibiltyCollapsed.cs" />
+    <Compile Include="Utils\FileUpdaters\IFileUpdater.cs" />
+    <Compile Include="Utils\FileUpdaters\Update_1_0_To_1_1.cs" />
     <Compile Include="Utils\IOWrappers\DirectoryWrapper.cs" />
     <Compile Include="Utils\IOWrappers\FileWrapper.cs" />
     <Compile Include="Utils\IOWrappers\IDirectoryWrapper.cs" />

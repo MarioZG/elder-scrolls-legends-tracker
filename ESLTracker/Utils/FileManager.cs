@@ -8,6 +8,10 @@ using System.Xml.Serialization;
 using ESLTracker.Utils.IOWrappers;
 using System.Drawing;
 using System.Windows;
+using ESLTracker.DataModel;
+using System.Reflection;
+using ESLTracker.Utils.FileUpdaters;
+using System.Xml;
 
 namespace ESLTracker.Utils
 {
@@ -30,7 +34,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        static string FullDataFilePath
+        public static string FullDataFilePath
         {
             get
             {
@@ -87,7 +91,7 @@ namespace ESLTracker.Utils
                 var xml = new XmlSerializer(typeof(T));
                 xml.Serialize(writer, tracker);
             }
-        }        
+        }
 
         public static void BackupDatabase(IWrapperProvider wrapperProvider, string path)
         {
@@ -174,6 +178,90 @@ namespace ESLTracker.Utils
                 gfxBmp.Dispose();
 
             }
+        }
+
+        internal static bool UpdateFile()
+        {
+            return UpdateFile(ReadCurrentFileVersionFromXML());
+        }
+
+        internal static bool UpdateFile(SerializableVersion fromVersion)
+        {
+            if (fromVersion == null)
+            {
+                return false;
+            }
+            IEnumerable<Type> updaterTypes = FindUpdateClass(fromVersion);
+            if (updaterTypes.Count() != 1)
+            {
+                //no updater found, or too many
+                return false;
+            }
+            IFileUpdater updater = (IFileUpdater)Activator.CreateInstance(updaterTypes.First());
+            return updater.UpdateFile();
+        }
+
+
+        private static SerializableVersion ReadCurrentFileVersionFromXML()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(FileManager.FullDataFilePath);
+            XmlNode versionNode = doc.SelectSingleNode("/Tracker/Version");
+
+            return ParseCurrentFileVersion(versionNode);
+        }
+
+        public static SerializableVersion ParseCurrentFileVersion(XmlNode versionNode)
+        {
+            if (versionNode == null)
+            {
+                return null;
+            }
+
+            bool allOK = true;
+            SerializableVersion ret = new SerializableVersion();
+            allOK &= Int32.TryParse(versionNode.SelectSingleNode("Build")?.InnerText, out ret.Build);
+            allOK &= Int32.TryParse(versionNode.SelectSingleNode("Major")?.InnerText, out ret.Major);
+            allOK &= Int32.TryParse(versionNode.SelectSingleNode("Minor")?.InnerText, out ret.Minor);
+            allOK &= Int32.TryParse(versionNode.SelectSingleNode("Revision")?.InnerText, out ret.Revision);
+
+            if (!allOK)
+            {
+                //parse failed
+                return null;
+            }
+            return ret;
+        }
+
+
+        private static IEnumerable<Type> FindUpdateClass(SerializableVersion currentFileVersion)
+        {
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                foreach (Type type in assembly.GetTypes())
+                {
+                    SerializableVersion upgradeFrom = type.GetCustomAttributes(typeof(SerializableVersion), true).FirstOrDefault() as SerializableVersion;
+                    if (upgradeFrom == currentFileVersion)
+                    {
+                        yield return type;
+                    }
+                }
+            }
+        }
+
+        internal static string CreateNewVersionXML(SerializableVersion TargetVersion)
+        {
+            StringBuilder serialisedVersion = new StringBuilder();
+            using (TextWriter writer = new StringWriter(serialisedVersion))
+            {
+                var xml = new XmlSerializer(typeof(SerializableVersion), String.Empty);
+                xml.Serialize(writer, TargetVersion);
+            }
+
+            XmlDocument newVersionDoc = new XmlDocument();
+            newVersionDoc.LoadXml(serialisedVersion.ToString());
+
+            return newVersionDoc.DocumentElement.InnerXml;
         }
     }
 }

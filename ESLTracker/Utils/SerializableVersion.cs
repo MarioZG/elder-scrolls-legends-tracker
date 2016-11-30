@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace ESLTracker.Utils
 {
     [XmlRoot("Version")]
-    public class SerializableVersion : IComparable
+    public class SerializableVersion : Attribute, IComparable
     {
         public int Build;
         public int Major;

@@ -44,7 +44,37 @@ namespace ESLTracker.DataModel
                     }
                     catch
                     {
-                        _instance = new Tracker();
+                        if (_instance != null)
+                        {
+                            if (_instance.Version != CurrentFileVersion)
+                            {
+                                if (FileManager.UpdateFile(_instance.Version))
+                                {
+                                    //reload after update
+                                    _instance = Instance; 
+                                }
+                                else
+                                {
+                                    throw;
+                                }
+                            }
+                            else
+                            {
+                                throw;
+                            }
+                        }
+                        else
+                        {
+                            if (FileManager.UpdateFile())
+                            {
+                                //reload after update
+                                _instance = Instance;
+                            }
+                            else
+                            {
+                                throw;
+                            }
+                        }
                     }                   
                 }
                 return _instance;
@@ -56,8 +86,12 @@ namespace ESLTracker.DataModel
 
         public List<Reward> Rewards { get; set; } = new List<Reward>();
 
-        public SerializableVersion Version = new SerializableVersion(1,0);
-        
+        public SerializableVersion Version { get; set; } = new SerializableVersion(0, 0);
+  
+
+        [XmlIgnore]
+        public static SerializableVersion CurrentFileVersion = new SerializableVersion(1, 1);
+
         // binding!!!
 
         //Deck selected in applications
