@@ -150,7 +150,7 @@ namespace ESLTracker.ViewModels
 
         internal void SyncToggleButtons(DeckClass? value)
         {
-            //if (value != null)
+            if (value != null)
             {
                 ResetToggleButtons();
                 //toggle attributes buttons
