@@ -11,7 +11,7 @@
         xmlns:Properties="clr-namespace:ESLTracker.Properties" 
         mc:Ignorable="d"
         x:Name="mainWindow"
-        Title="MainWindow" Height="553.805" SizeToContent="Width"
+        Title="ELS Tracker" Height="553.805" SizeToContent="Width"
         BorderThickness="2" 
         Closing="Window_Closing"
         Left="{Binding Path=MainWindowPositionX, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
