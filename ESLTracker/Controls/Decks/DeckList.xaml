@@ -22,7 +22,6 @@
             <ListBox.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Edit" Command="{Binding CommandEditDeck}" />
-                    <MenuItem Header="Delete"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
             <ListBox.ItemContainerStyle>
