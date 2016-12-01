@@ -24,8 +24,6 @@ namespace ESLTracker.Controls
             }
         }
 
-
-
         public DataModel.Enums.DeckClass? SelectedClass
         {
             get { return (DataModel.Enums.DeckClass?)GetValue(SelectedClassProperty); }
@@ -38,42 +36,37 @@ namespace ESLTracker.Controls
                 "SelectedClass", 
                 typeof(DataModel.Enums.DeckClass?), 
                 typeof(DeckClassSelector), 
-                new PropertyMetadata(null, ExternalSelectedClassChanged));
+                new PropertyMetadata(null, SelectedClassChanged));
 
-
-        internal DataModel.Enums.DeckClass? InternalSelectedClass
+        /// <summary>
+        /// used to update viewModel, as cannot bind to viewmodel and external properry at once
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="e"></param>
+        private static void SelectedClassChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            get { return (DataModel.Enums.DeckClass?)GetValue(InternalSelectedClassProperty); }
-            set { SetValue(InternalSelectedClassProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for InternalSelectedClass.  This enables animation, styling, binding, etc...
-        internal static readonly DependencyProperty InternalSelectedClassProperty =
-            DependencyProperty.Register("InternalSelectedClass", typeof(DataModel.Enums.DeckClass?), typeof(DeckClassSelector), new PropertyMetadata(null, InternalSelectedClassChanged));
-
-        private static void InternalSelectedClassChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            //DeckClassSelectorViewModel model = ((DeckClassSelector)d).DataContext;
-            //model.SyncToggleButtons(e.NewValue as DataModel.Enums.DeckClass?);
-            ((DeckClassSelector)d).SelectedClass = e.NewValue as DataModel.Enums.DeckClass?;
-        }
-
-        private static void ExternalSelectedClassChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            DeckClassSelectorViewModel model = ((DeckClassSelector)d).DataContext;
-            model.SyncToggleButtons(e.NewValue as DataModel.Enums.DeckClass?);
-            ((DeckClassSelector)d).InternalSelectedClass = e.NewValue as DataModel.Enums.DeckClass?;
+            ((DeckClassSelector)d).DataContext.SelectedClass = e.NewValue as DataModel.Enums.DeckClass?;
         }
 
         public DeckClassSelector()
         {
             InitializeComponent();
 
-            var nameOfPropertyInVm = "SelectedClass";
-            var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
-            this.SetBinding(InternalSelectedClassProperty, binding);
-
+            this.DataContext.PropertyChanged += DataContext_PropertyChanged;
         }
 
+
+        /// <summary>
+        /// if viewModel updates selected class (due filter click), update dependency property
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataContext_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "SelectedClass")
+            {
+                this.SelectedClass = this.DataContext.SelectedClass;
+            }
+        }
     }
 }

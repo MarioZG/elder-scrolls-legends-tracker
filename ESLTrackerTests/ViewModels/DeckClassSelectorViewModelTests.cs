@@ -100,5 +100,42 @@ namespace ESLTracker.ViewModels.Tests
             //none selcted
             Assert.AreEqual(expected, model.SelectedClass);
         }
+
+        [TestMethod()]
+        public void DeckClassSelectorViewModelTest001_SelectThreeAttributes()
+        {
+            DeckClassSelectorViewModel model = new DeckClassSelectorViewModel();
+
+            model.FilterClicked(DeckAttribute.Intelligence);
+            model.FilterClicked(DeckAttribute.Strength);
+            model.FilterClicked(DeckAttribute.Agility);
+
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Intelligence]);
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Strength]);
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Agility]);
+            Assert.AreEqual(3, model.FilterButtonStateCollection.Count);
+            Assert.IsNull(model.SelectedClass);
+        }
+
+        [TestMethod()]
+        public void DeckClassSelectorViewModelTest002_SelectAttributesAndSetNull()
+        {
+            DeckClassSelectorViewModel model = new DeckClassSelectorViewModel();
+
+            model.FilterClicked(DeckAttribute.Intelligence);
+            model.FilterClicked(DeckAttribute.Strength);
+
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Intelligence]);
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Strength]);
+
+            Assert.IsNotNull(model.SelectedClass);
+
+            //assign selected class null from external control (after game add)
+            model.SelectedClass = null;
+
+            Assert.AreEqual(0, model.FilterButtonStateCollection.Count);
+
+
+        }
     }
 }

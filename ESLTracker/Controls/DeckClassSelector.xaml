@@ -108,6 +108,7 @@
     </StackPanel>
         <ComboBox x:Name="comboBox" MinWidth="100" VerticalContentAlignment="Center"
                   ItemsSource="{Binding FilteredClasses}"
-                  SelectedItem="{Binding ElementName=deckClassSelector, Path=SelectedClass, Mode=TwoWay}"/> 
+                  SelectedItem="{Binding SelectedClass, Mode=TwoWay}">
+        </ComboBox>
     </DockPanel>
 </UserControl>
