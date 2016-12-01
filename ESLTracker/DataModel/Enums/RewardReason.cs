@@ -12,6 +12,7 @@ namespace ESLTracker.DataModel.Enums
         Quest,
         VersusArena,
         SoloArena,
+        SeasonRewards,
         LevelUp
     }
 }
