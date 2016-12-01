@@ -6,18 +6,33 @@
         xmlns:local="clr-namespace:ESLTracker"
         xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
         mc:Ignorable="d"
-        Title="RewardsSummary" Height="300" Width="300">
+        Title="RewardsSummary" Height="500" Width="400">
     <Grid>
         <TabControl x:Name="tabControl">
             <TabItem Header="Summary" Selector.Selected="OnTabSelected">
-                <Grid Background="#FFE5E5E5">
-                    <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="TextBlock"/>
-                </Grid>
+                <DockPanel Background="#FFE5E5E5">
+                    <TextBlock DockPanel.Dock="Top" Background="LightYellow" Padding="5,5,5,5" TextWrapping="WrapWithOverflow">Summary of rewards grouped by reason. More options to be added in later versions. Now you can copy and paste data from list tab to excel for more analysis.</TextBlock>
+                    <Rewards:RewardItemList x:Name="rewardsSummary"
+                    GroupBy="Reason"
+                    PanelOrientation="Horizontal"
+                    DataContext="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=Rewards}" />
+                </DockPanel>
             </TabItem>
             <TabItem Header="List">
-                <Rewards:RewardItemList x:Name="rewardsList"
-                    GroupBy="Date"
-                    DataContext="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=Rewards}" />
+                <DataGrid x:Name="rewardsList"
+                    ItemsSource="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=Rewards}"
+                    DataContext="Rewards"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat={}g}" />
+                        <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" />
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
+                        <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" />
+                        <DataGridTextColumn Header="Guild" Binding="{Binding RewardQuestGuild}" />                        
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
         </TabControl>
 

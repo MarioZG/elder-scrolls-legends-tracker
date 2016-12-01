@@ -23,32 +23,6 @@ namespace ESLTracker
         public RewardsSummary()
         {
             InitializeComponent();
-
-            StringBuilder summary = new StringBuilder();
-            DataModel.Tracker t = DataModel.Tracker.Instance;
-
-            summary.AppendFormat("Gold: {0} in {1} rewards"+Environment.NewLine, 
-                t.GetRewardsSummaryByType(RewardType.Gold).Sum(r=> r.Quantity),
-                t.GetRewardsSummaryByType(RewardType.Gold).Count()
-                );
-
-            summary.AppendFormat("SoulGems: {0} in {1} rewards" + Environment.NewLine,
-    t.GetRewardsSummaryByType(RewardType.SoulGem).Sum(r => r.Quantity),
-    t.GetRewardsSummaryByType(RewardType.SoulGem).Count()
-    );
-
-            summary.AppendFormat("Cards: {0} in {1} rewards" + Environment.NewLine,
-    t.GetRewardsSummaryByType(RewardType.Card).Sum(r => r.Quantity),
-    t.GetRewardsSummaryByType(RewardType.Card).Count()
-    );
-
-            summary.AppendFormat("Packs: {0} in {1} rewards" + Environment.NewLine,
-    t.GetRewardsSummaryByType(RewardType.Pack).Sum(r => r.Quantity),
-    t.GetRewardsSummaryByType(RewardType.Pack).Count()
-    );
-
-
-            this.textBlock.Text = summary.ToString();
         }
 
         private void OnTabSelected(object sender, RoutedEventArgs e)
@@ -57,13 +31,14 @@ namespace ESLTracker
             if (tab != null)
             {
                 // this tab is selected!
-                this.rewardsList.DataContext = DataModel.Tracker.Instance.Rewards
-                    .GroupBy(r=> new { r.Date.Date, r.Type })
+                this.rewardsSummary.DataContext = DataModel.Tracker.Instance.Rewards
+                    .GroupBy(r=> new { r.Type, r.Reason })
                     .Select(rs=> new DataModel.Reward() {
                         Type = rs.Key.Type,
-                        Date = rs.Key.Date,
+                        Reason = rs.Key.Reason,
                         Quantity = rs.Where(r=> r.Type == rs.Key.Type).Sum(r=> r.Quantity)
-                    });
+                    })
+                    .OrderBy(rs=> rs.Type);
             }
         }
     }
