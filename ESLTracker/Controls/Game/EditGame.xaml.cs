@@ -70,7 +70,10 @@ namespace ESLTracker.Controls.Game
 
         private void EditGameStart(Utils.Messages.EditGame obj)
         {
-            this.selectedDeck.DataContext = obj.Game.Deck;
+            if (IsEditControl)
+            {
+                this.selectedDeck.DataContext = obj.Game.Deck;
+            }
         }
 
         private void DataContext_PropertyChanged(object sender, PropertyChangedEventArgs e)
