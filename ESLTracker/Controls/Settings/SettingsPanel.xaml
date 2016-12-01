@@ -12,12 +12,14 @@
         <ViewModel:SettingsPanelViewModel/>
     </UserControl.DataContext>
     <StackPanel>
-        <Expander x:Name="expander" Header="Settings" IsExpanded="True">
+        <Expander x:Name="expander" Header="General settings" IsExpanded="True">
             <StackPanel Orientation="Vertical" Margin="10,10,10,10">
                 <CheckBox x:Name="checkBox" Content="Minimise on close" HorizontalAlignment="Left" 
-                  IsChecked="{Binding Path=MinimiseOnClose, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                        Margin="5,5,5,5"
+                        ToolTip="When checked, close window button on main form will minimise application"
+                        IsChecked="{Binding Path=MinimiseOnClose, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                   />
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="5,5,5,5" ToolTip="Folder where application data is stored">
                     <TextBox IsReadOnly="True"
                      Text="{Binding Path=DataPath, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                      />
@@ -26,8 +28,8 @@
             </StackPanel>
         </Expander>
         <UniformGrid>
-            <Button Command="{Binding CommandCancelButtonPressed}" Content="Cancel" />
-            <Button Command="{Binding CommandSaveButtonPressed}" Content="Save settings" />
+            <Button Command="{Binding CommandCancelButtonPressed}" Content="Cancel" Margin="25,5,25,5" />
+            <Button Command="{Binding CommandSaveButtonPressed}" Content="Save settings" Margin="25,5,25,5"/>
         </UniformGrid>
     </StackPanel>
 </UserControl>
