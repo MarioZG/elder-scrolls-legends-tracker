@@ -28,5 +28,11 @@ namespace ESLTracker
         {
             this.Shutdown();
         }
+
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            System.IO.File.WriteAllText("./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt", e.Exception.ToString());
+            e.Handled = true;
+        }
     }
 }
