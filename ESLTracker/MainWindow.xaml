@@ -28,7 +28,7 @@
             <MenuItem Header="New Deck" Command="{Binding CommandNewDeck}" />
             
             <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
-            <MenuItem Header="Restore overlay window" Command="{Binding CommandShowOverlay}"/>
+            <MenuItem Header="Show add game window" Command="{Binding CommandShowOverlay}"/>
             <MenuItem Header="Run game" Command="{Binding CommandRunGame}"/>
             <MenuItem Header="Settings" Command="{Binding CommandEditSettings}"/>
         </Menu>

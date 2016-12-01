@@ -18,7 +18,7 @@
             </ContextMenu>
         </DockPanel.ContextMenu>
         <StackPanel DockPanel.Dock="Left" Margin="0,0,5,0">
-            <TextBlock Text="{Binding Date,StringFormat=MM/dd}" />
+            <TextBlock Text="{Binding Date,StringFormat=M}" />
             <TextBlock Text="{Binding Date,StringFormat=HH:mm}" />
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">

@@ -32,7 +32,7 @@ namespace ESLTracker.ViewModels.Decks
                 if (selectedClassFilter != null)
                 {
                     dynamic d = selectedClassFilter;
-                    return new ObservableCollection<DataModel.Game>(activeDeckGames.Where(g => g.OpponentClass == d.Class).ToList());
+                    return new ObservableCollection<DataModel.Game>(activeDeckGames.Where(g => g.OpponentClass == d.Class).OrderByDescending(g=> g.Date).ToList());
                 }
                 else
                 {
@@ -89,7 +89,7 @@ namespace ESLTracker.ViewModels.Decks
         private void RefreshData()
         {
             WinRatioVsClass = Tracker.Instance.ActiveDeck.GetDeckVsClass();
-            ActiveDeckGames = new ObservableCollection<DataModel.Game>(Tracker.Instance.ActiveDeck.GetDeckGames());
+            ActiveDeckGames = new ObservableCollection<DataModel.Game>(Tracker.Instance.ActiveDeck.GetDeckGames().OrderByDescending(g=> g.Date));
             ActiveDeckRewards = new ObservableCollection<Reward>(Tracker.Instance.Rewards.Where(r => r.ArenaDeckId == Tracker.Instance.ActiveDeck.DeckId));
             RaisePropertyChangedEvent("WinRatioVsClass");
 
