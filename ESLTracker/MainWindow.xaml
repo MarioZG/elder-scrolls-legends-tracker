@@ -25,12 +25,35 @@
     </Window.DataContext>
     <DockPanel>
         <Menu x:Name="menu"  DockPanel.Dock="Top">
-            <MenuItem Header="New Deck" Command="{Binding CommandNewDeck}" />
-            
+            <MenuItem 
+                      Command="{Binding CommandNewDeck}" 
+                      VerticalAlignment="Center"
+                      >
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="16" Source="/Resources/MenuIcons/newDeck.png" />
+                        <ContentPresenter Content="New Deck" Margin="5,0,0,0" />
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
             <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
-            <MenuItem Header="Show add game window" Command="{Binding CommandShowOverlay}"/>
-            <MenuItem Header="Run game" Command="{Binding CommandRunGame}"/>
-            <MenuItem Header="Settings" Command="{Binding CommandEditSettings}"/>
+            <MenuItem Header="Show overlay window" Command="{Binding CommandShowOverlay}"/>
+            <MenuItem Command="{Binding CommandRunGame}">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="16" Source="/Resources/MenuIcons/runESL.png" />
+                        <ContentPresenter Content="Run game" Margin="5,0,0,0" />
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="{Binding CommandEditSettings}">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="16" Source="/Resources/MenuIcons/settings.png" />
+                        <ContentPresenter Content="Settings" Margin="5,0,0,0" />
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
         </Menu>
         
         <WrapPanel x:Name="deckEdit"  DockPanel.Dock="Top"    
@@ -68,7 +91,11 @@
         >
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Exit" Command="{Binding CommandExit}" />
+                    <MenuItem Header="Exit" Command="{Binding CommandExit}">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/exit.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>

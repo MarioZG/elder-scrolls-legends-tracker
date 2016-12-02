@@ -370,6 +370,18 @@
   <ItemGroup>
     <Resource Include="Resources\WindowIcons\mainForm.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\newDeck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\runESL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\settings.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
