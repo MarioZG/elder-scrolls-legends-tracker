@@ -91,7 +91,10 @@ namespace ESLTracker.ViewModels
 
         public ICommand CommandRunGame
         {
-            get { return new RelayCommand(new Action<object>(RunGame)); }
+            get { return new RelayCommand(
+                                new Action<object>(CommandRunGameExecute), 
+                                new Func<object, bool>(CommandRunGameCanExecute)
+                                ); }
         }
 
         public MainWindowViewModel()
@@ -141,12 +144,17 @@ namespace ESLTracker.ViewModels
             ((MainWindow)Application.Current.MainWindow).RestoreOverlay();
         }
 
-        public void RunGame(object parameter)
+        public void CommandRunGameExecute(object parameter)
         {
             if (WindowsUtils.GetEslProcess() == null)
             {
                 System.Diagnostics.Process.Start("bethesdanet://run/5");
             }
+        }
+
+        private bool CommandRunGameCanExecute(object arg)
+        {
+            return WindowsUtils.GetEslProcess() == null;
         }
 
         public void EditSettings(object parameter)
