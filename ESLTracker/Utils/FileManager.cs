@@ -51,36 +51,45 @@ namespace ESLTracker.Utils
             Tracker tracker = null;
             try
             {
-                tracker = LoadDatabase<DataModel.Tracker>(FullDataFilePath);
-                //check for data update
-                if (tracker.Version < Tracker.CurrentFileVersion)
+                if (File.Exists(FullDataFilePath))
                 {
-                    if (FileManager.UpdateFile(tracker.Version))
+                    tracker = LoadDatabase<DataModel.Tracker>(FullDataFilePath);
+
+                    //check for data update
+                    if (tracker.Version < Tracker.CurrentFileVersion)
                     {
-                        //reload after update
-                        tracker = LoadDatabase();
+                        if (FileManager.UpdateFile(tracker.Version))
+                        {
+                            //reload after update
+                            tracker = LoadDatabase();
+                        }
+                        else
+                        {
+                            throw new InvalidDataException("You are using old file format version");
+                        }
                     }
-                    else
+                    //fix up ref to decks in games
+                    foreach (Game g in tracker.Games)
                     {
-                        throw new InvalidDataException("You are using old file format version");
+                        g.Deck = tracker.Decks.Where(d => d.DeckId == g.DeckId).FirstOrDefault();
+                    }
+                    //fix up ref to decks in rewards
+                    foreach (Reward r in tracker.Rewards)
+                    {
+                        r.ArenaDeck = tracker.Decks.Where(d => d.DeckId == r.ArenaDeckId).FirstOrDefault();
+                    }
+                    //restore active deck
+                    Guid? activeDeckFromSettings = Properties.Settings.Default.LastActiveDeckId;
+                    if ((activeDeckFromSettings != null)
+                        && (activeDeckFromSettings != Guid.Empty))
+                    {
+                        tracker.ActiveDeck = tracker.Decks.Where(d => d.DeckId == activeDeckFromSettings).FirstOrDefault();
                     }
                 }
-                //fix up ref to decks in games
-                foreach (Game g in tracker.Games)
+                else
                 {
-                    g.Deck = tracker.Decks.Where(d => d.DeckId == g.DeckId).FirstOrDefault();
-                }
-                //fix up ref to decks in rewards
-                foreach (Reward r in tracker.Rewards)
-                {
-                    r.ArenaDeck = tracker.Decks.Where(d => d.DeckId == r.ArenaDeckId).FirstOrDefault();
-                }
-                //restore active deck
-                Guid? activeDeckFromSettings = Properties.Settings.Default.LastActiveDeckId;
-                if ((activeDeckFromSettings != null)
-                    && (activeDeckFromSettings != Guid.Empty))
-                {
-                    tracker.ActiveDeck = tracker.Decks.Where(d => d.DeckId == activeDeckFromSettings).FirstOrDefault();
+                    tracker = new Tracker();
+                    tracker.Version = Tracker.CurrentFileVersion;
                 }
             }
             catch
