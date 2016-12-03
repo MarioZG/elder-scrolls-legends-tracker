@@ -117,10 +117,10 @@
                   ItemsSource="{Binding Source={StaticResource GameOutcomeEnum}}" 
                   SelectedItem="{Binding Game.Outcome}"
                    />
-        <UniformGrid Rows="1" Grid.Column="1" Grid.Row="10">
+        <UniformGrid Rows="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="10" Margin="5,15,5,10">
             <Button x:Name="btnCancelChanges" 
                     Content="Cancel"
-                    Command="{Binding CommandButtonCancelChanges}">
+                    Command="{Binding CommandButtonCancelChanges}" Margin="0,0,10,0">
             </Button>
             <Button x:Name="btnSaveChanges"
                     Content="Save changes"
