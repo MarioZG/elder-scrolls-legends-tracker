@@ -11,8 +11,19 @@
     <UserControl.DataContext>
         <ViewModel:SettingsPanelViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <DataTemplate x:Key="expanderHeader">
+            <Border BorderThickness="0,0,0,0" BorderBrush="Black" HorizontalAlignment="Stretch">
+            <TextBlock Text="{Binding}"   
+               FontWeight="Bold" 
+               TextWrapping="Wrap"
+               Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}, Path=Width}"/>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
     <StackPanel>
-        <Expander x:Name="expander" Header="General settings" IsExpanded="True">
+        <Expander x:Name="expander" Header="General settings" IsExpanded="True" 
+                  HeaderTemplate="{StaticResource expanderHeader}" >
             <StackPanel Orientation="Vertical" Margin="10,10,10,10">
                 <CheckBox x:Name="checkBox" Content="Minimise on close" HorizontalAlignment="Left" 
                         Margin="5,5,5,5"
