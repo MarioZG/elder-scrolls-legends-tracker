@@ -10,6 +10,7 @@ using System.ComponentModel;
 using ESLTracker.Properties;
 using ESLTracker.DataModel.Enums;
 using ESLTrackerTests;
+using System.Reflection;
 
 namespace ESLTracker.ViewModels.Game.Tests
 {
@@ -122,6 +123,47 @@ namespace ESLTracker.ViewModels.Game.Tests
             model.Game.OpponentClass = DeckClass.Endurance;
 
             Assert.AreEqual(true, raised);
+        }
+
+        [TestMethod]
+        public void IEditableObjectImplementation001_CancelEdit()
+        {
+            Mock<IDeckClassSelectorViewModel> deckClassSelector = new Mock<IDeckClassSelectorViewModel>();
+
+            EditGameViewModel model = new EditGameViewModel();
+            DataModel.Game game = new DataModel.Game();
+
+            model.Game = game;
+
+            model.Game.ClearEventInvocations("PropertyChanged");
+
+            PopulateObject(game, StartProp);
+
+            TestContext.WriteLine("Begin Edit");
+            model.BeginEdit();
+
+            PopulateObject(game, EditProp);
+
+            TestContext.WriteLine("Cancel Edit");
+            model.CancelEdit();
+
+            foreach (PropertyInfo p in game.GetType().GetProperties())
+            {
+                if (p.CanWrite)
+                {
+                    if (p.Name == "DeckId")
+                    {
+                        //deck id is handled different way, depends on Deck
+                        DataModel.Deck staringDeck = (DataModel.Deck)StartProp[typeof(DataModel.Deck)];
+                        Assert.AreEqual(staringDeck.DeckId, p.GetValue(game), "Failed validation of prop {0} of type {1}", p.Name, p.PropertyType);
+                    }
+                    else
+                    {
+                        Assert.AreEqual(StartProp[p.PropertyType], p.GetValue(game), "Failed validation of prop {0} of type {1}", p.Name, p.PropertyType);
+                    }
+                }
+            }
+
         }
 
 

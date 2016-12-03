@@ -56,7 +56,14 @@ namespace ESLTrackerTests
                 { typeof(DeckAttributes), new DeckAttributes() { DeckAttribute.Endurance, DeckAttribute.Strength } },
                 { typeof(DeckClass?), DeckClass.Monk },
                 { typeof(DateTime), DateTime.Now.AddDays(-4) },
-                { typeof(ArenaRank?), ArenaRank.Level7 },
+                { typeof(Deck), new Deck()},
+                { typeof(GameType?), GameType.PlayCasual},
+                { typeof(bool?), false},
+                { typeof(OrderOfPlay?), OrderOfPlay.First},
+                { typeof(GameOutcome), GameOutcome.Draw},
+                { typeof(PlayerRank?), PlayerRank.TheLover},
+                { typeof(int?), 567},
+                { typeof(ArenaRank?), ArenaRank.Gladiator },
              //   { typeof(object), new object()}
             };
 

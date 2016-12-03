@@ -8,7 +8,7 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.DataModel
 {
-    public class Game : ViewModels.ViewModelBase
+    public class Game : ViewModels.ViewModelBase, ICloneable
     {
         private Deck deck;
 
@@ -91,6 +91,11 @@ namespace ESLTracker.DataModel
         public void UpdateAllBindings()
         {
             RaisePropertyChangedEvent("");
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone() as Game;
         }
     }
 }

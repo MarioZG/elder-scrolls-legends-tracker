@@ -117,10 +117,16 @@
                   ItemsSource="{Binding Source={StaticResource GameOutcomeEnum}}" 
                   SelectedItem="{Binding Game.Outcome}"
                    />
-        <Button x:Name="btnSaveChanges" Grid.Row="11" Grid.Column="2" 
-                Content="Save changes"
-                Command="{Binding CommandButtonSaveChanges}">
-        </Button>
+        <UniformGrid Rows="1" Grid.Column="1" Grid.Row="10">
+            <Button x:Name="btnCancelChanges" 
+                    Content="Cancel"
+                    Command="{Binding CommandButtonCancelChanges}">
+            </Button>
+            <Button x:Name="btnSaveChanges"
+                    Content="Save changes"
+                    Command="{Binding CommandButtonSaveChanges}">
+            </Button>
+        </UniformGrid>
         <UniformGrid Rows="1" Grid.Column="1" Grid.Row="10"
                      Visibility="{Binding IsEditControl, Converter={StaticResource BoolToVisibiltyCollapsedConverter}, ConverterParameter=not}">
             <Button x:Name="btnVicotry" Content="Victory"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Game
 {
-    public class EditGameViewModel : ViewModelBase
+    public class EditGameViewModel : ViewModelBase, IEditableObject
     {
         public DataModel.Game game = new DataModel.Game();
         public DataModel.Game Game
@@ -103,6 +104,16 @@ namespace ESLTracker.ViewModels.Game
             {
                 return new RelayCommand(
                     new Action<object>(CommandButtonSaveChangesExecute)
+                    );
+            }
+        }
+
+        public RelayCommand CommandButtonCancelChanges
+        {
+            get
+            {
+                return new RelayCommand(
+                    new Action<object>(CommandButtonCancelChangesExecute)
                     );
             }
         }
@@ -268,7 +279,7 @@ namespace ESLTracker.ViewModels.Game
             if (IsEditControl)
             {
                 this.Game = obj.Game;
-                //Game.UpdateAllBindings();
+                this.BeginEdit();
                 RaisePropertyChangedEvent("");
             }
         }
@@ -299,12 +310,51 @@ namespace ESLTracker.ViewModels.Game
                 FileManager.SaveDatabase();
             }
 
+            this.EndEdit();
             Messenger.Default.Send(
                 new EditGame(Game),
                 EditGame.Context.EditFinished);
             Game.UpdateAllBindings();
         }
 
+        private void CommandButtonCancelChangesExecute(object obj)
+        {
+            this.CancelEdit();
+            Messenger.Default.Send(
+                new EditGame(Game),
+                EditGame.Context.EditFinished);
+            Game.UpdateAllBindings();
+        }
 
+        DataModel.Game savedState;
+
+        public void BeginEdit()
+        {
+            savedState = Game.Clone() as DataModel.Game;
+        }
+
+        public void EndEdit()
+        {
+            savedState = Game;
+        }
+
+        public void CancelEdit()
+        {
+            Game.BonusRound = savedState.BonusRound;
+            Game.Date = savedState.Date;
+            Game.Deck = savedState.Deck;
+            Game.DeckId = savedState.DeckId;
+            Game.Notes = savedState.Notes;
+            Game.OpponentAttributes = savedState.OpponentAttributes;
+            Game.OpponentClass = savedState.OpponentClass;
+            Game.OpponentLegendRank = savedState.OpponentLegendRank;
+            Game.OpponentName = savedState.OpponentName;
+            Game.OpponentRank = savedState.OpponentRank;
+            Game.OrderOfPlay = savedState.OrderOfPlay;
+            Game.Outcome = savedState.Outcome;
+            Game.PlayerLegendRank = savedState.PlayerLegendRank;
+            Game.PlayerRank = savedState.PlayerRank;
+            Game.Type = savedState.Type;
+        }
     }
 }
