@@ -17,9 +17,15 @@ This is early beta version, any feedback is very welcome!
  - advanced statistics
  - log opening new packs
 
+
+## Game view 
+![In game view](https://github.com/MarioZG/elder-scrolls-legends-tracker/blob/master/Readme/expanded.png?raw=true)
+
 ## Application screen
+![Main window](https://github.com/MarioZG/elder-scrolls-legends-tracker/blob/master/Readme/appwindow.png?raw=true)
 
 ## Overlay window 
+![Overlay](https://github.com/MarioZG/elder-scrolls-legends-tracker/blob/master/Readme/overlaywindow.png?raw=true)
 
 Options in titlebar:
  - Open main application
@@ -29,13 +35,19 @@ Options in titlebar:
 
 ## Adding new game
 
+![Add game](https://github.com/MarioZG/elder-scrolls-legends-tracker/blob/master/Readme/addingnewgame.png?raw=true)
+
 Select opponent class, other fields are optional. Opponent class can be selected  from dropdown, or by clicking colors of deck.
 
 ## Adding new rewards
 
+![Add rewards](https://github.com/MarioZG/elder-scrolls-legends-tracker/blob/master/Readme/addingnewrewards.png?raw=true)
+
 Select reward and type in quantity. For quest rewards you can also select Guild.
 
 ## Collapsed overlay
+
+![Overlay collapsed](https://github.com/MarioZG/elder-scrolls-legends-tracker/blob/master/Readme/collapsed.png?raw=true)
 
 You can collapse overlay during the game
 
