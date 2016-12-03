@@ -11,7 +11,7 @@
         <TabControl x:Name="tabControl">
             <TabItem Header="Summary" Selector.Selected="OnTabSelected">
                 <DockPanel Background="#FFE5E5E5">
-                    <TextBlock DockPanel.Dock="Top" Background="LightYellow" Padding="5,5,5,5" TextWrapping="WrapWithOverflow">Summary of rewards grouped by reason. More options to be added in later versions. Now you can copy and paste data from list tab to excel for more analysis.</TextBlock>
+                    <TextBlock DockPanel.Dock="Top" Background="LightYellow" Padding="5,5,5,5" TextWrapping="WrapWithOverflow">Summary of rewards grouped by reason. More options will be added in next versions. You can always copy data from list tab and paste it to excel for more analysis.</TextBlock>
                     <Rewards:RewardItemList x:Name="rewardsSummary"
                     GroupBy="Reason"
                     PanelOrientation="Horizontal"

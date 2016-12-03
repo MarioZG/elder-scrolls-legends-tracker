@@ -29,7 +29,7 @@
         </Expander>
         <UniformGrid>
             <Button Command="{Binding CommandCancelButtonPressed}" Content="Cancel" Margin="25,5,25,5" />
-            <Button Command="{Binding CommandSaveButtonPressed}" Content="Save settings" Margin="25,5,25,5"/>
+            <Button Command="{Binding CommandSaveButtonPressed}" Content="Save settings" Margin="25,5,25,5" Style="{DynamicResource SaveButton}"/>
         </UniformGrid>
     </StackPanel>
 </UserControl>

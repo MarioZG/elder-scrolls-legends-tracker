@@ -22,7 +22,6 @@ namespace ESLTracker.ViewModels
             set
             {
                 deckEditVisible = value;
-                //DeckListVisible = ! value;
                 RaisePropertyChangedEvent("DeckEditVisible");
             }
         }
@@ -58,6 +57,15 @@ namespace ESLTracker.ViewModels
             get { return editGameVisible; }
             set { editGameVisible = value; RaisePropertyChangedEvent("EditGameVisible"); }
         }
+
+        private bool allowCommands = true;
+
+        public bool AllowCommands
+        {
+            get { return allowCommands; }
+            set { allowCommands = value; RaisePropertyChangedEvent("AllowCommands"); }
+        }
+
 
         public ICommand CommandEditSettings
         {
@@ -159,31 +167,36 @@ namespace ESLTracker.ViewModels
 
         public void EditSettings(object parameter)
         {
-            this.DeckStatsVisible = false;
+           // this.DeckStatsVisible = false;
             this.SettingsVisible = true;
+            this.AllowCommands = false;
 
         }
 
         private void EditDeckStart(Utils.Messages.EditDeck obj)
         {
             this.DeckEditVisible = true;
+            this.AllowCommands = false;
         }
 
         private void EditDeckFinished(EditDeck obj)
         {
             this.DeckEditVisible = false;
+            this.AllowCommands = true;
         }
 
         private void EditGameStart(EditGame obj)
         {
             this.EditGameVisible = true;
             this.DeckStatsVisible = false;
+            this.AllowCommands = false;
         }
 
         private void EditGameFinished(EditGame obj)
         {
             this.EditGameVisible = false;
             this.DeckStatsVisible = true;
+            this.AllowCommands = true;
         }
     }
 }

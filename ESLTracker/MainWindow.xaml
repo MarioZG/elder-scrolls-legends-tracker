@@ -23,72 +23,70 @@
     <Window.DataContext>
         <ViewModels:MainWindowViewModel/>
     </Window.DataContext>
-    <DockPanel>
-        <Menu x:Name="menu"  DockPanel.Dock="Top">
-            <MenuItem 
+    <Grid>
+        <DockPanel>
+            <Menu IsEnabled="{Binding AllowCommands}" x:Name="menu"  VerticalAlignment="Top" DockPanel.Dock="Top">
+                <MenuItem 
                       Command="{Binding CommandNewDeck}" 
                       VerticalAlignment="Center"
                       >
-                <MenuItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Height="16" Source="/Resources/MenuIcons/newDeck.png" />
-                        <ContentPresenter Content="New Deck" Margin="5,0,0,0" />
-                    </StackPanel>
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
-            <MenuItem Header="Show overlay window" Command="{Binding CommandShowOverlay}"/>
-            <MenuItem Command="{Binding CommandRunGame}">
-                <MenuItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Height="16" Source="/Resources/MenuIcons/runESL.png" />
-                        <ContentPresenter Content="Run game" Margin="5,0,0,0" />
-                    </StackPanel>
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem Command="{Binding CommandEditSettings}">
-                <MenuItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Height="16" Source="/Resources/MenuIcons/settings.png" />
-                        <ContentPresenter Content="Settings" Margin="5,0,0,0" />
-                    </StackPanel>
-                </MenuItem.Header>
-            </MenuItem>
-        </Menu>
-        
-        <WrapPanel x:Name="deckEdit"  DockPanel.Dock="Top"    
-                   Visibility="{Binding DeckEditVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
-        >
-            <Decks:EditDeck x:Name="editDeck" />
-        </WrapPanel>        
-        <WrapPanel
-            Visibility="{Binding DeckListVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
-            >
-            <Decks:DeckList x:Name="deckList" HorizontalAlignment="Stretch"/>
-        </WrapPanel>
-        <WrapPanel 
-                Visibility="{Binding DeckStatsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
-        >
-        <Decks:DeckStats
-        />
-        </WrapPanel>
-        <WrapPanel 
-                Visibility="{Binding SettingsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
-        >
-            <Settings:SettingsPanel x:Name="settingsPanel" />
-        </WrapPanel>
-        <WrapPanel 
-                Visibility="{Binding EditGameVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
-        >
-          <Game:EditGame IsEditControl="True" />  
-        </WrapPanel>
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Source="/Resources/MenuIcons/newDeck.png" />
+                            <ContentPresenter Content="New Deck" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
+                <MenuItem Header="Show overlay window" Command="{Binding CommandShowOverlay}"/>
+                <MenuItem Command="{Binding CommandRunGame}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Source="/Resources/MenuIcons/runESL.png" />
+                            <ContentPresenter Content="Run game" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="{Binding CommandEditSettings}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Source="/Resources/MenuIcons/settings.png" />
+                            <ContentPresenter Content="Settings" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+            </Menu>
+            <Grid>
+                <Grid VerticalAlignment="Top" Panel.ZIndex="2"
+                           x:Name="deckEdit"  
+                           Visibility="{Binding DeckEditVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}">
+                    <Decks:EditDeck x:Name="editDeck" Style="{DynamicResource ModalControlInWindow}" />
+                </Grid>
+                <Grid VerticalAlignment="Top" Panel.ZIndex="2"
+                        Visibility="{Binding SettingsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}">
+                    <Settings:SettingsPanel x:Name="settingsPanel" Style="{DynamicResource ModalControlInWindow}" />
+                </Grid>
+                <WrapPanel>
+                    <WrapPanel IsEnabled="{Binding AllowCommands}"
+                            Visibility="{Binding DeckListVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}">
+                        <Decks:DeckList x:Name="deckList"/>
+                    </WrapPanel>
+                    <WrapPanel 
+                        Visibility="{Binding DeckStatsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}">
+                            <Decks:DeckStats/>
+                        </WrapPanel>
+                    <WrapPanel 
+                        Visibility="{Binding EditGameVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}">
+                        <Game:EditGame IsEditControl="True" />
+                    </WrapPanel>
+                </WrapPanel>
+            </Grid>
+        </DockPanel>
         <tb:TaskbarIcon
-            x:Name="taskBarIcon"
-            IconSource="/Resources/TrayIcon.ico"
-            LeftClickCommand="{Binding CommandNotifyIconLeftClick}"
-            LeftClickCommandParameter="{Binding ElementName=mainWindow}"
-            DockPanel.Dock="Bottom"
-        >
+                x:Name="taskBarIcon"
+                IconSource="/Resources/TrayIcon.ico"
+                LeftClickCommand="{Binding CommandNotifyIconLeftClick}"
+                LeftClickCommandParameter="{Binding ElementName=mainWindow}">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Exit" Command="{Binding CommandExit}">
@@ -99,5 +97,5 @@
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
-    </DockPanel>
+    </Grid>
 </Window>

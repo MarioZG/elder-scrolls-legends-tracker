@@ -11,7 +11,7 @@
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks" 
              x:Class="ESLTracker.Controls.Decks.EditDeck"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="200">
+             >
     <UserControl.DataContext>
         <ViewModels:EditDeckViewModel/>
     </UserControl.DataContext>
@@ -39,7 +39,7 @@
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <Style TargetType="{x:Type Button}">
-                <Setter Property="Margin" Value="0,5,0,5" />
+                <Setter Property="Margin" Value="10,20,10,0" />
             </Style>
             <Style TargetType="{x:Type Controls:DeckClassSelector}">
                 <Setter Property="Margin" Value="0,5,0,5" />
@@ -48,19 +48,17 @@
                 <Setter Property="Margin" Value="0,5,0,5" />
             </Style>
         </Grid.Resources>
-
-
-        <TextBox x:Name="txtName" TextWrapping="Wrap"
+        <Label Content="Deck name" Margin="0,20,5,5"/>
+        <TextBox x:Name="txtName" TextWrapping="Wrap"  Margin="5,20,5,5"
                  Text="{Binding Deck.Name}" Grid.Column="1" />
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-        <Label Content="Deck attributes and class" />
+        <Label Content="Deck attributes and class"/>
         <Controls:DeckClassSelector x:Name="deckClass" Grid.ColumnSpan="2" Grid.Row="1"/>
         </StackPanel>
         <ComboBox x:Name="cbDeckType" 
                   ItemsSource="{Binding Source={StaticResource DeckTypeEnum}}" 
                   SelectedItem="{Binding Deck.Type}" Grid.Row="2" Grid.Column="1"
                   IsEnabled="{Binding CanChangeType}"/>
-        <Label Content="Deck name"/>
         <Label Content="Type" Grid.Row="2"/>
         <Label Content="Arena rank" Grid.Row="3"
                Visibility="{Binding Deck.Type, Converter={StaticResource DeckTypeToArenaRankVisibiltyCollapsedConverter}}"/>
@@ -69,8 +67,7 @@
                          Visibility="{Binding Deck.Type, Converter={StaticResource DeckTypeToArenaRankVisibiltyCollapsedConverter}}"
         />
         <UniformGrid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
-            <Button Content="Cancel" HorizontalAlignment="Center" 
-                    Grid.Column="1" Grid.Row="3"
+            <Button Content="Cancel" HorizontalAlignment="Stretch" 
                     Command="{Binding CommandButtonCancel}"
                     >
                 <Button.CommandParameter>
@@ -80,7 +77,7 @@
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>
-            <Button x:Name="btnSave" Content="Save" 
+            <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Stretch" Margin="10,20,10,0" Style="{DynamicResource SaveButton}"
                     Command="{Binding CommandButtonSave}" 
                     >
                 <Button.CommandParameter>
@@ -91,6 +88,5 @@
                 </Button.CommandParameter>
             </Button>
         </UniformGrid>
-
     </Grid>
 </UserControl>

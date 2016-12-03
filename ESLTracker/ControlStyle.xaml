@@ -13,7 +13,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"></Setter>
+        <Setter Property="Background" Value="{x:Null}"></Setter>
         <Setter Property="Margin" Value="1,0,1,0"/>
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
@@ -25,5 +25,11 @@
         <Setter Property="Height" Value="23"></Setter>
         <Setter Property="Width" Value="23"/>
         <Setter Property="Margin" Value="2,3,2,3"/>
+    </Style>
+    <Style x:Key="ModalControlInWindow" TargetType="{x:Type UserControl}">
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"></Setter>
+    </Style>
+    <Style x:Key="SaveButton" TargetType="{x:Type Button}">
+        <Setter Property="FontWeight" Value="Medium"></Setter>
     </Style>
 </ResourceDictionary>

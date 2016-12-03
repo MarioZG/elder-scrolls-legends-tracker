@@ -30,12 +30,13 @@ namespace ESLTracker.ViewModels.Settings
         {
             Properties.Settings.Default.Save();
             MainWindowViewModel.SettingsVisible = false;
+            MainWindowViewModel.AllowCommands = true;
         }
 
         private void CancelButtonPressed(object obj)
         {
             MainWindowViewModel.SettingsVisible = false;
-            MainWindowViewModel.DeckStatsVisible = true;
+            MainWindowViewModel.AllowCommands = true;
             Properties.Settings.Default.Reload();
         }
 
