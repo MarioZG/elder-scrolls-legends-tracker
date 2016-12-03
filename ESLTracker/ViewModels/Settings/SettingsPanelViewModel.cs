@@ -9,8 +9,6 @@ namespace ESLTracker.ViewModels.Settings
 {
     public class SettingsPanelViewModel
     {
-        internal MainWindowViewModel MainWindowViewModel { get; set; }
-
         public ICommand CommandSaveButtonPressed
         {
             get { return new RelayCommand(new Action<object>(SaveClicked)); }
@@ -29,15 +27,13 @@ namespace ESLTracker.ViewModels.Settings
         private void SaveClicked(object param)
         {
             Properties.Settings.Default.Save();
-            MainWindowViewModel.SettingsVisible = false;
-            MainWindowViewModel.AllowCommands = true;
+            Utils.Messenger.Default.Send(new Utils.Messages.EditSettings(), Utils.Messages.EditSettings.Context.EditFinished);
         }
 
         private void CancelButtonPressed(object obj)
         {
-            MainWindowViewModel.SettingsVisible = false;
-            MainWindowViewModel.AllowCommands = true;
             Properties.Settings.Default.Reload();
+            Utils.Messenger.Default.Send(new Utils.Messages.EditSettings(), Utils.Messages.EditSettings.Context.EditFinished);
         }
 
         private void OpenDataFolder(object param)

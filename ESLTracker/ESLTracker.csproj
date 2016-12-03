@@ -121,6 +121,7 @@
     <Compile Include="Utils\IOWrappers\IWrapperProvider.cs" />
     <Compile Include="Utils\IOWrappers\PathWrapper.cs" />
     <Compile Include="Utils\IOWrappers\WrapperProvider.cs" />
+    <Compile Include="Utils\Messages\EditSettings.cs" />
     <Compile Include="Utils\Messages\EditDeck.cs" />
     <Compile Include="Utils\Messages\EditGame.cs" />
     <Compile Include="Utils\Messenger.cs" />

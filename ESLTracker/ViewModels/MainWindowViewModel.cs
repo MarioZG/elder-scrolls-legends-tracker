@@ -67,6 +67,7 @@ namespace ESLTracker.ViewModels
         }
 
 
+        #region Commands
         public ICommand CommandEditSettings
         {
             get { return new RelayCommand(new Action<object>(EditSettings)); }
@@ -99,11 +100,15 @@ namespace ESLTracker.ViewModels
 
         public ICommand CommandRunGame
         {
-            get { return new RelayCommand(
-                                new Action<object>(CommandRunGameExecute), 
-                                new Func<object, bool>(CommandRunGameCanExecute)
-                                ); }
-        }
+            get
+            {
+                return new RelayCommand(
+                              new Action<object>(CommandRunGameExecute),
+                              new Func<object, bool>(CommandRunGameCanExecute)
+                              );
+            }
+        } 
+        #endregion
 
         public MainWindowViewModel()
         {
@@ -111,6 +116,7 @@ namespace ESLTracker.ViewModels
             Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
             Utils.Messenger.Default.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
             Utils.Messenger.Default.Register<Utils.Messages.EditGame>(this, EditGameFinished, Utils.Messages.EditGame.Context.EditFinished);
+            Utils.Messenger.Default.Register<Utils.Messages.EditSettings>(this, EditSettingsFinished, Utils.Messages.EditSettings.Context.EditFinished);
         }
 
         public void NotifyIconLeftClick(object parameter)
@@ -171,6 +177,13 @@ namespace ESLTracker.ViewModels
             this.SettingsVisible = true;
             this.AllowCommands = false;
 
+        }
+
+
+        private void EditSettingsFinished(EditSettings obj)
+        {
+            this.SettingsVisible = false;
+            this.AllowCommands = true;
         }
 
         private void EditDeckStart(Utils.Messages.EditDeck obj)
