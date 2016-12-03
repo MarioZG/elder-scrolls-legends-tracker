@@ -62,8 +62,9 @@ namespace ESLTracker
         {
             if (Properties.Settings.Default.MinimiseOnClose)
             {
-                this.WindowState = WindowState.Minimized;
-                this.ShowInTaskbar = false;
+                this.DataContext.WindowState = WindowState.Minimized;
+                this.DataContext.ShowInTaskBar = false;
+
                 e.Cancel = true;
             }
             else
@@ -77,6 +78,15 @@ namespace ESLTracker
             if (!UpdateOverlay)
             {
                 UpdateOverlayAsync(this);
+            }
+        }
+
+        private void mainWindow_StateChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+            {
+                this.Activate();
+                this.Focus();
             }
         }
     }

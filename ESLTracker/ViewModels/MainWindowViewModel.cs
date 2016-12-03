@@ -66,6 +66,25 @@ namespace ESLTracker.ViewModels
             set { allowCommands = value; RaisePropertyChangedEvent("AllowCommands"); }
         }
 
+        private bool showInTaskBar;
+
+        public bool ShowInTaskBar
+        {
+            get { return showInTaskBar; }
+            set { showInTaskBar = value; RaisePropertyChangedEvent("ShowInTaskBar"); }
+        }
+
+        private WindowState windowState;
+
+        public WindowState WindowState
+        {
+            get { return windowState; }
+            set { windowState = value; RaisePropertyChangedEvent("WindowState"); }
+        }
+
+
+        //w.WindowState = WindowState.Normal;
+        //        w.ShowInTaskbar = true;
 
         #region Commands
         public ICommand CommandEditSettings
@@ -121,13 +140,20 @@ namespace ESLTracker.ViewModels
 
         public void NotifyIconLeftClick(object parameter)
         {
-            if (parameter is Window)
+            if ((WindowState == WindowState.Normal) && (parameter as string != "show"))
             {
-                Window w = parameter as Window;
-                w.WindowState = WindowState.Normal;
-                w.ShowInTaskbar = true;
-                w.Activate();
-                w.Focus();
+                WindowState = WindowState.Minimized;
+                ShowInTaskBar = false;
+            }
+            else
+            {
+                if (WindowState == WindowState.Normal)
+                {
+                    //force change for context menu option
+                    WindowState = WindowState.Minimized;
+                }
+                ShowInTaskBar = true;
+                WindowState = WindowState.Normal;
             }
         }
 
