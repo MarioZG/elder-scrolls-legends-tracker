@@ -54,6 +54,9 @@ namespace ESLTracker.ViewModels.Decks
                 FilterButtonState.Add(a, false);
             }
             messanger.Register<DeckListFilterChanged>(this, ResetFilter, DeckListFilterChanged.Context.ResetAllFilters);
+
+            //init filters (so checkbox for hiding completed arena runs is applied
+            messanger.Send(new DeckListFilterChanged(this), DeckListFilterChanged.Context.TypeFilterChanged);
         }
 
         public void FilterClicked(object param)

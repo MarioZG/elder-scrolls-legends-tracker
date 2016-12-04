@@ -92,7 +92,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null, false, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(filter, result.ToList()[0].Class);
@@ -122,7 +122,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null, false, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class.Value].Contains(filterAttrib); }));
@@ -149,7 +149,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null, false, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class.Value].Contains(filterAttrib[0]); }));
@@ -176,7 +176,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
 
             //do first filter - not intrested
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null, false, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
 
             //model is norw filyred
             Assert.AreNotEqual(expectedCount, result.Count());
@@ -187,7 +187,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                         Utils.ClassAttributesHelper.Classes.Keys
                         ));
 
-            result = model.FilterDeckList(DeckBase, null);
+            result = model.FilterDeckList(DeckBase, null, false, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
         }
@@ -207,7 +207,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, typeSelector.Object);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, typeSelector.Object.FilteredTypes, typeSelector.Object.ShowCompletedArenaRuns, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return typeFilter.Contains(r.Type); }));
@@ -231,7 +231,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, typeSelector.Object);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, typeSelector.Object.FilteredTypes, typeSelector.Object.ShowCompletedArenaRuns, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(classFilter, result.ToList()[0].Class);
@@ -253,7 +253,6 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             DeckListViewModel model = new DeckListViewModel(trackerFactory.Object);
             model.SetClassFilterViewModel(classSelectorFullFilter.Object);
-
             model.CommandResetFiltersExecute(null);
 
             //assure filter has been removed
@@ -295,7 +294,10 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             IEnumerable<Deck> result = model.FilterDeckList( 
                 new Deck[] { deckToShow, deckToHide },
-                typeSelector.Object);
+                typeSelector.Object.FilteredTypes, 
+                typeSelector.Object.ShowCompletedArenaRuns,
+                classSelector.Object.SelectedClass, 
+                classSelector.Object.FilteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(deckToShow.DeckId, result.First().DeckId);
@@ -337,7 +339,10 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             IEnumerable<Deck> result = model.FilterDeckList(
                 new Deck[] { deckToShow, deckToHide },
-                typeSelector.Object);
+                typeSelector.Object.FilteredTypes, 
+                typeSelector.Object.ShowCompletedArenaRuns,
+                classSelector.Object.SelectedClass, 
+                classSelector.Object.FilteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(deckToShow.DeckId, result.First().DeckId);
