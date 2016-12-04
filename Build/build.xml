@@ -1,0 +1,54 @@
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<RootDir>$(MSBuildProjectDirectory)\..</RootDir>
+		<BuildDir>$(MSBuildProjectDirectory)\Bin</BuildDir>
+		<LibrariesPathFiles>$(RootDir)\packages\**\*.dll</LibrariesPathFiles>
+		<ApplicationName>ESLTracker</ApplicationName>
+		<Version>LatestMaster</Version>
+		<GitBranchName>master</GitBranchName>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectToBuild Include="$(RootDir)\ESLTracker\ESLTracker.csproj">
+			<AdditionalProperties>OutputPath=$(BuildDir)\ESLTracker</AdditionalProperties>
+		</ProjectToBuild>
+		<ProjectToBuild Include="$(RootDir)\ESLTrackerTests\ESLTrackerTests.csproj">
+			<AdditionalProperties>OutputPath=$(BuildDir)\ESLTrackerTests</AdditionalProperties>
+		</ProjectToBuild>
+	</ItemGroup>
+	<Target Name="Build">
+		<Message Text="MSBuildProjectDirectoryr=$(MSBuildProjectDirectory)"/>
+		<CallTarget Targets="Compile"/>
+		<CallTarget Targets="ExecuteTests"/>
+		<CallTarget Targets="CopyBinaries"/>
+		<CallTarget Targets="CleanUp"/>
+		<!--prepare out dir out and test-->
+		<!--compile to out and test dir -->
+		<!--run test -->
+		<!--generate installer-->
+	</Target>
+	<Target Name="PrepareOutDir">
+		<RemoveDir Directories="$(BuildDir)"/>
+		<MakeDir Directories="$(BuildDir)"/>
+	</Target>
+	<Target Name="CheckoutBranch" DependsOnTargets="PrepareOutDir">
+		<Exec Command='"C:\Program Files\Git\cmd\git.exe" clone -b $(GitBranchName) $(RootDir) $(BuildDir)\Src"'/>
+	</Target>
+	<Target Name="Compile" DependsOnTargets="CheckoutBranch">
+		<Message Text="Compiling projects @(ProjectToBuild)"/>
+		<MSBuild Projects="@(ProjectToBuild)" Properties="Configuration=Release"/>
+	</Target>
+	<Target Name="ExecuteTests" DependsOnTargets="Compile">
+		<Exec Command='"c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe"  /resultsfile:$(BuildDir)\tests.trx /testcontainer:$(BuildDir)\ESLTrackerTests\ESLTrackerTests.dll' />
+	</Target>
+	<Target Name='CopyBinaries' DependsOnTargets='ExecuteTests'>
+		<RemoveDir Directories="$(RootDir)\Bin\$(Version)"/>
+		<MakeDir Directories="$(RootDir)\Bin\$(Version)"/>
+		<ItemGroup>
+			<OutputFiles Include="$(BuildDir)\ESLTracker\*.*" />
+		</ItemGroup>
+		<Copy SourceFiles='@(OutputFiles)' DestinationFolder='$(RootDir)\Bin\$(Version)' />
+	</Target>
+	<Target Name="CleanUp">
+		<RemoveDir Directories="$(BuildDir)"/>
+	</Target>
+</Project>
