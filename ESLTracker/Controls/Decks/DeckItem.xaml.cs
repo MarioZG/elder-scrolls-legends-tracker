@@ -26,10 +26,11 @@ namespace ESLTracker.Controls.Decks
         public DeckItem()
         {
             InitializeComponent();
-            
+            var messanger = new Utils.TrackerFactory().GetMessanger();
+
             //need to keep this for refreshing attributes icons - until class have correct binding!
-            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.EditFinished);
-            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.StatsUpdated);
+            messanger.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.EditFinished);
+            messanger.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.StatsUpdated);
 
         }
 

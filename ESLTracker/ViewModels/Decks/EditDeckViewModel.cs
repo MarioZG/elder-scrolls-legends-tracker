@@ -65,9 +65,12 @@ namespace ESLTracker.ViewModels.Decks
 
         public IDeckClassSelectorViewModel DeckClassModel { get; set; }
 
+        IMessenger messanger;
+
         public EditDeckViewModel()
         {
-            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeck, Utils.Messages.EditDeck.Context.StartEdit);
+            messanger = new TrackerFactory().GetMessanger();
+            messanger.Register<Utils.Messages.EditDeck>(this, EditDeck, Utils.Messages.EditDeck.Context.StartEdit);
         }
 
         private void EditDeck(EditDeck obj)
@@ -103,7 +106,7 @@ namespace ESLTracker.ViewModels.Decks
             }
             Utils.FileManager.SaveDatabase();
             this.EndEdit();
-            Messenger.Default.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
+            messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
 
             this.Deck = CreateDefaultDeck();
             if (selectedClassModel != null)
@@ -125,7 +128,7 @@ namespace ESLTracker.ViewModels.Decks
             if (model != null)
             {
                 this.CancelEdit();
-                Messenger.Default.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
+                messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
                 model.Deck = CreateDefaultDeck();
                 if (selectedClassModel != null)
                 {

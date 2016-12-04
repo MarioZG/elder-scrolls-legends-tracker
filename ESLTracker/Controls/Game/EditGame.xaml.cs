@@ -64,7 +64,8 @@ namespace ESLTracker.Controls.Game
             var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
             this.SetBinding(IsEditControlProperty, binding);
 
-            Utils.Messenger.Default.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
+            var messanger = new Utils.TrackerFactory().GetMessanger();
+            messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
 
         }
 

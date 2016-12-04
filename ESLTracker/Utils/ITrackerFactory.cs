@@ -10,5 +10,6 @@ namespace ESLTracker.Utils
     public interface ITrackerFactory
     {
         ITracker GetTracker();
+        IMessenger GetMessanger();
     }
 }

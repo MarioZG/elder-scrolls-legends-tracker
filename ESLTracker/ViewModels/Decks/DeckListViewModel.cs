@@ -18,6 +18,8 @@ namespace ESLTracker.ViewModels.Decks
 
         IDeckTypeSelectorViewModel lastDeckTypeFilter;
 
+        IMessenger messanger;
+
         //command for filter toggle button pressed
         public ICommand CommandResetFilterButtonPressed
         {
@@ -37,9 +39,15 @@ namespace ESLTracker.ViewModels.Decks
             classFilterViewModel.PropertyChanged += DeckListViewModel_PropertyChanged;
         }
 
-        public DeckListViewModel()
+
+        public DeckListViewModel() : this (new TrackerFactory())
         {
-            Messenger.Default.Register<DeckListFilterChanged>(this, DeckTypeFilterChanged, DeckListFilterChanged.Context.TypeFilterChanged);
+        }
+
+        public DeckListViewModel(ITrackerFactory factory)
+        {
+            this.messanger = factory.GetMessanger();
+            messanger.Register<DeckListFilterChanged>(this, DeckTypeFilterChanged, DeckListFilterChanged.Context.TypeFilterChanged);
 
             FilteredDecks = new ObservableCollection<Deck>(Tracker.Instance.Decks);
         }
@@ -108,7 +116,7 @@ namespace ESLTracker.ViewModels.Decks
         public void CommandResetFiltersExecute(object param)
         {
             this.classFilterViewModel.Reset();
-            Messenger.Default.Send<DeckListFilterChanged>(null, DeckListFilterChanged.Context.ResetAllFilters);
+            messanger.Send<DeckListFilterChanged>(null, DeckListFilterChanged.Context.ResetAllFilters);
             lastDeckTypeFilter = null;
             ApplyFilter(lastDeckTypeFilter);
         }
@@ -116,7 +124,7 @@ namespace ESLTracker.ViewModels.Decks
         private void CommandEditDeckExecute(object param)
         {
             //inform other views that we are about to edit deck
-            Utils.Messenger.Default.Send(
+            messanger.Send(
                 new EditDeck() { Deck = Tracker.Instance.ActiveDeck }, 
                 EditDeck.Context.StartEdit );
         }

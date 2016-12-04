@@ -13,5 +13,10 @@ namespace ESLTracker.Utils
         {
             return Tracker.Instance;
         }
+
+        public IMessenger GetMessanger()
+        {
+            return Messenger.Default;
+        }
     }
 }

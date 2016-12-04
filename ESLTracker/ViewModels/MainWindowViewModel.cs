@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
+using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.ViewModels.Decks;
 
@@ -83,9 +84,6 @@ namespace ESLTracker.ViewModels
         }
 
 
-        //w.WindowState = WindowState.Normal;
-        //        w.ShowInTaskbar = true;
-
         #region Commands
         public ICommand CommandEditSettings
         {
@@ -129,13 +127,16 @@ namespace ESLTracker.ViewModels
         } 
         #endregion
 
+        IMessenger messanger;
+
         public MainWindowViewModel()
         {
-            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckStart, Utils.Messages.EditDeck.Context.StartEdit);
-            Utils.Messenger.Default.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
-            Utils.Messenger.Default.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
-            Utils.Messenger.Default.Register<Utils.Messages.EditGame>(this, EditGameFinished, Utils.Messages.EditGame.Context.EditFinished);
-            Utils.Messenger.Default.Register<Utils.Messages.EditSettings>(this, EditSettingsFinished, Utils.Messages.EditSettings.Context.EditFinished);
+            messanger = new TrackerFactory().GetMessanger();
+            messanger.Register<Utils.Messages.EditDeck>(this, EditDeckStart, Utils.Messages.EditDeck.Context.StartEdit);
+            messanger.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
+            messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
+            messanger.Register<Utils.Messages.EditGame>(this, EditGameFinished, Utils.Messages.EditGame.Context.EditFinished);
+            messanger.Register<Utils.Messages.EditSettings>(this, EditSettingsFinished, Utils.Messages.EditSettings.Context.EditFinished);
         }
 
         public void NotifyIconLeftClick(object parameter)
@@ -173,7 +174,7 @@ namespace ESLTracker.ViewModels
 
         public void NewDeck(object parameter)
         {
-            Utils.Messenger.Default.Send(
+            messanger.Send(
                 new Utils.Messages.EditDeck() { Deck = EditDeckViewModel.CreateDefaultDeck() },
                 Utils.Messages.EditDeck.Context.StartEdit
                 );

@@ -30,11 +30,13 @@ namespace ESLTracker.ViewModels.Decks
             set {
                 showCompletedArenaRuns = value;
                 RaisePropertyChangedEvent("ShowCompletedArenaRuns");
-                Messenger.Default.Send(
+                messanger.Send(
                     new DeckListFilterChanged(this),
                     DeckListFilterChanged.Context.TypeFilterChanged);
             }
         }
+
+        IMessenger messanger;
 
 
         //command for filter toggle button pressed
@@ -45,12 +47,13 @@ namespace ESLTracker.ViewModels.Decks
 
         public DeckTypeSelectorViewModel()
         {
+            messanger = new TrackerFactory().GetMessanger();
             FilterButtonState = new Dictionary<DeckType, bool>();
             foreach (DeckType a in Enum.GetValues(typeof(DeckType)))
             {
                 FilterButtonState.Add(a, false);
             }
-            Messenger.Default.Register<DeckListFilterChanged>(this, ResetFilter, DeckListFilterChanged.Context.ResetAllFilters);
+            messanger.Register<DeckListFilterChanged>(this, ResetFilter, DeckListFilterChanged.Context.ResetAllFilters);
         }
 
         public void FilterClicked(object param)
@@ -80,7 +83,7 @@ namespace ESLTracker.ViewModels.Decks
                 }
             }
 
-            Messenger.Default.Send(
+            messanger.Send(
                 new DeckListFilterChanged(this),
                 DeckListFilterChanged.Context.TypeFilterChanged);
 

@@ -14,7 +14,7 @@ namespace ESLTracker.Utils
     /// My profile: http://stackoverflow.com/users/4871837/yeah69
     /// Improvement: I made the the MessageKey sensitive to the message type. Thus, several different message types with no context object can be registered to the same receiver object.
     /// </summary>
-    public class Messenger
+    public class Messenger : IMessenger
     {
         private static readonly object CreationLock = new object();
 
@@ -23,12 +23,12 @@ namespace ESLTracker.Utils
 
         #region Default property
 
-        private static Messenger _instance;
+        private static IMessenger _instance;
 
         /// <summary>
         /// Gets the single instance of the Messenger.
         /// </summary>
-        public static Messenger Default
+        public static IMessenger Default
         {
             get
             {

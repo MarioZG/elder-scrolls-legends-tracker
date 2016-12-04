@@ -33,7 +33,8 @@ namespace ESLTracker.Controls.Game
 
         private void EditGameExecute(object obj)
         {
-            Utils.Messenger.Default.Send(
+            var messanger = new Utils.TrackerFactory().GetMessanger();
+            messanger.Send(
                 new Utils.Messages.EditGame(this.DataContext as DataModel.Game),
                 Utils.Messages.EditGame.Context.StartEdit);
         }

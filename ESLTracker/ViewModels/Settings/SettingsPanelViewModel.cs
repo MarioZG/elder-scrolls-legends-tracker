@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Settings
 {
@@ -24,16 +25,22 @@ namespace ESLTracker.ViewModels.Settings
             get { return new RelayCommand(new Action<object>(OpenDataFolder)); }
         }
 
+        IMessenger messanger;
+
+        public SettingsPanelViewModel()
+        {
+            messanger = new TrackerFactory().GetMessanger();
+        }
         private void SaveClicked(object param)
         {
             Properties.Settings.Default.Save();
-            Utils.Messenger.Default.Send(new Utils.Messages.EditSettings(), Utils.Messages.EditSettings.Context.EditFinished);
+            messanger.Send(new Utils.Messages.EditSettings(), Utils.Messages.EditSettings.Context.EditFinished);
         }
 
         private void CancelButtonPressed(object obj)
         {
             Properties.Settings.Default.Reload();
-            Utils.Messenger.Default.Send(new Utils.Messages.EditSettings(), Utils.Messages.EditSettings.Context.EditFinished);
+            messanger.Send(new Utils.Messages.EditSettings(), Utils.Messages.EditSettings.Context.EditFinished);
         }
 
         private void OpenDataFolder(object param)

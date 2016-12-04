@@ -118,12 +118,15 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
+        IMessenger messanger;
+
         public EditGameViewModel()
         {
+            messanger = new TrackerFactory().GetMessanger();
             //this.PropertyChanged += EditGameViewModel_PropertyChanged;
             Game.PropertyChanged += Game_PropertyChanged;
             Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
-            Utils.Messenger.Default.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
+            messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
 
         }
 
@@ -195,7 +198,7 @@ namespace ESLTracker.ViewModels.Game
                 DataModel.Game addedGame = this.Game;
                 Tracker.Instance.Games.Add(this.Game);
 
-                Utils.Messenger.Default.Send(
+                messanger.Send(
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
                     Utils.Messages.EditDeck.Context.StatsUpdated);
 
@@ -303,7 +306,7 @@ namespace ESLTracker.ViewModels.Game
                     }
                 }
 
-                Utils.Messenger.Default.Send(
+                messanger.Send(
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
                     Utils.Messages.EditDeck.Context.StatsUpdated);
 
@@ -311,7 +314,7 @@ namespace ESLTracker.ViewModels.Game
             }
 
             this.EndEdit();
-            Messenger.Default.Send(
+            messanger.Send(
                 new EditGame(Game),
                 EditGame.Context.EditFinished);
             Game.UpdateAllBindings();
@@ -320,7 +323,7 @@ namespace ESLTracker.ViewModels.Game
         private void CommandButtonCancelChangesExecute(object obj)
         {
             this.CancelEdit();
-            Messenger.Default.Send(
+            messanger.Send(
                 new EditGame(Game),
                 EditGame.Context.EditFinished);
             Game.UpdateAllBindings();

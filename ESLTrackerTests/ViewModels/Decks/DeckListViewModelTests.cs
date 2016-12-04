@@ -11,6 +11,7 @@ using ESLTracker.DataModel.Enums;
 using Moq;
 using System.Collections.ObjectModel;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Decks.Tests
 {
@@ -19,13 +20,11 @@ namespace ESLTracker.ViewModels.Decks.Tests
     {
         static IList<Deck> DeckBase;
 
-        static Mock<ITracker> tracker = new Mock<ITracker>();
-        static Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-        
-
         [ClassInitialize()]
         public static void InitTestClass(TestContext tc)
         {
+            Mock<ITracker> tracker = new Mock<ITracker>();
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
 
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
@@ -242,19 +241,23 @@ namespace ESLTracker.ViewModels.Decks.Tests
         }
 
         [TestMethod()]
-        [Ignore()]
         public void ResetFiltersTest001()
         {
             Mock<IDeckClassSelectorViewModel> classSelectorFullFilter = GetFullClassFilter();
             Mock<IDeckTypeSelectorViewModel> typeSelectorFullFilter = GetFullTypeFilter();
 
-            DeckListViewModel model = new DeckListViewModel();
+            Mock<IMessenger> messanger = new Mock<IMessenger>();
+
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
+
+            DeckListViewModel model = new DeckListViewModel(trackerFactory.Object);
             model.SetClassFilterViewModel(classSelectorFullFilter.Object);
 
             model.CommandResetFiltersExecute(null);
 
             //assure filter has been removed
-            typeSelectorFullFilter.Verify(t => t.Reset());
+            messanger.Verify(m => m.Send<DeckListFilterChanged>(It.IsAny<DeckListFilterChanged>(), It.Is< DeckListFilterChanged.Context>( c=> c== DeckListFilterChanged.Context.ResetAllFilters)));
             classSelectorFullFilter.Verify(t => t.Reset());
         }
 
