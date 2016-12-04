@@ -31,7 +31,7 @@ namespace ESLTracker.ViewModels.Decks
                 showCompletedArenaRuns = value;
                 RaisePropertyChangedEvent("ShowCompletedArenaRuns");
                 messanger.Send(
-                    new DeckListFilterChanged(DeckListFilterChanged.Source.TypeFilter, null, showCompletedArenaRuns, null, null),
+                    new DeckListFilterChanged(DeckListFilterChanged.Source.TypeFilter, FilteredTypes, showCompletedArenaRuns, null, null),
                     ControlMessangerContext.DeckList_DeckFilterControl);
             }
         }
@@ -56,7 +56,7 @@ namespace ESLTracker.ViewModels.Decks
             messanger.Register<DeckListResetFilters>(this, ResetFilter, ControlMessangerContext.DeckList_DeckFilterControl);
 
             //init filters (so checkbox for hiding completed arena runs is applied
-            messanger.Send(new DeckListFilterChanged(DeckListFilterChanged.Source.TypeFilter, null, showCompletedArenaRuns, null, null), ControlMessangerContext.DeckList_DeckFilterControl);
+            messanger.Send(new DeckListFilterChanged(DeckListFilterChanged.Source.TypeFilter, FilteredTypes, showCompletedArenaRuns, null, null), ControlMessangerContext.DeckList_DeckFilterControl);
         }
 
         public void FilterClicked(object param)
