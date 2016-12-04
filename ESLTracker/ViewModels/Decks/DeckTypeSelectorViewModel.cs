@@ -31,8 +31,8 @@ namespace ESLTracker.ViewModels.Decks
                 showCompletedArenaRuns = value;
                 RaisePropertyChangedEvent("ShowCompletedArenaRuns");
                 messanger.Send(
-                    new DeckListFilterChanged(this),
-                    DeckListFilterChanged.Context.TypeFilterChanged);
+                    new DeckListFilterChanged(DeckListFilterChanged.Source.TypeFilter, null, showCompletedArenaRuns, null, null),
+                    ControlMessangerContext.DeckList_DeckFilterControl);
             }
         }
 
@@ -53,10 +53,10 @@ namespace ESLTracker.ViewModels.Decks
             {
                 FilterButtonState.Add(a, false);
             }
-            messanger.Register<DeckListFilterChanged>(this, ResetFilter, DeckListFilterChanged.Context.ResetAllFilters);
+            messanger.Register<DeckListResetFilters>(this, ResetFilter, ControlMessangerContext.DeckList_DeckFilterControl);
 
             //init filters (so checkbox for hiding completed arena runs is applied
-            messanger.Send(new DeckListFilterChanged(this), DeckListFilterChanged.Context.TypeFilterChanged);
+            messanger.Send(new DeckListFilterChanged(DeckListFilterChanged.Source.TypeFilter, null, showCompletedArenaRuns, null, null), ControlMessangerContext.DeckList_DeckFilterControl);
         }
 
         public void FilterClicked(object param)
@@ -87,8 +87,8 @@ namespace ESLTracker.ViewModels.Decks
             }
 
             messanger.Send(
-                new DeckListFilterChanged(this),
-                DeckListFilterChanged.Context.TypeFilterChanged);
+                new DeckListFilterChanged(DeckListFilterChanged.Source.TypeFilter, FilteredTypes, showCompletedArenaRuns, null, null),
+                ControlMessangerContext.DeckList_DeckFilterControl);
 
         }
 
@@ -106,7 +106,7 @@ namespace ESLTracker.ViewModels.Decks
             RaisePropertyChangedEvent("FilterButtonState");
         }
 
-        private void ResetFilter(DeckListFilterChanged obj)
+        private void ResetFilter(DeckListResetFilters obj)
         {
             Reset();
         }

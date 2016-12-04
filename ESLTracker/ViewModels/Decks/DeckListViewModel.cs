@@ -16,7 +16,12 @@ namespace ESLTracker.ViewModels.Decks
     {
         public ObservableCollection<Deck> FilteredDecks { get; set; }
 
-        IDeckTypeSelectorViewModel lastDeckTypeFilter;
+        DeckListFilterChanged lastDeckFilter = new DeckListFilterChanged(
+            DeckListFilterChanged.Source.Unknown, 
+            null, 
+            false, 
+            null,
+            ClassAttributesHelper.Classes.Keys.ToList()); //default to all classes
 
         IMessenger messanger;
 
@@ -31,15 +36,6 @@ namespace ESLTracker.ViewModels.Decks
             get { return new RelayCommand(new Action<object>(CommandEditDeckExecute)); }
         }
 
-        private IDeckClassSelectorViewModel classFilterViewModel;
-
-        public void SetClassFilterViewModel(IDeckClassSelectorViewModel cfvm)
-        {
-            classFilterViewModel = cfvm;
-            classFilterViewModel.PropertyChanged += DeckListViewModel_PropertyChanged;
-        }
-
-
         public DeckListViewModel() : this (new TrackerFactory())
         {
         }
@@ -47,38 +43,36 @@ namespace ESLTracker.ViewModels.Decks
         public DeckListViewModel(ITrackerFactory factory)
         {
             this.messanger = factory.GetMessanger();
-            messanger.Register<DeckListFilterChanged>(this, DeckTypeFilterChanged, DeckListFilterChanged.Context.TypeFilterChanged);
+            messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
+            messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
 
             FilteredDecks = new ObservableCollection<Deck>(Tracker.Instance.Decks);
         }
 
-        private void DeckTypeFilterChanged(DeckListFilterChanged obj)
+        private void DeckFilterChanged(DeckListFilterChanged obj)
         {
-            lastDeckTypeFilter = obj.Filter;
-            ApplyFilter(obj.Filter.FilteredTypes, obj.Filter.ShowCompletedArenaRuns);
+            //new filters object, that merges current values if != null
+            lastDeckFilter = new DeckListFilterChanged(
+                DeckListFilterChanged.Source.Unknown,
+                obj.ChangeSource ==  DeckListFilterChanged.Source.TypeFilter ? obj.FilteredTypes :  lastDeckFilter.FilteredTypes,
+                obj.ChangeSource == DeckListFilterChanged.Source.TypeFilter ? obj.ShowFInishedArenaRuns: lastDeckFilter.ShowFInishedArenaRuns,
+                obj.ChangeSource == DeckListFilterChanged.Source.ClassFilter ? obj.SelectedClass : lastDeckFilter.SelectedClass, 
+                obj.ChangeSource == DeckListFilterChanged.Source.ClassFilter ? obj.FilteredClasses : lastDeckFilter.FilteredClasses);
+
+            ApplyFilter();
         }
 
-        private void DeckListViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "SelectedClass")
-            {
-                ApplyFilter(lastDeckTypeFilter.FilteredTypes, lastDeckTypeFilter.ShowCompletedArenaRuns);
-            }
-        }
-
-        private void ApplyFilter(
-            IEnumerable<DeckType> filteredTypes, 
-            bool showCompletedArenaRuns)
+        private void ApplyFilter()
         {
             Deck activeDeck = Tracker.Instance.ActiveDeck; //we loose it when FilteredDecks.Clear();
             FilteredDecks.Clear();
 
             FilterDeckList(
-                    Tracker.Instance.Decks, 
-                    filteredTypes, 
-                    showCompletedArenaRuns,
-                    this.classFilterViewModel != null ? this.classFilterViewModel.SelectedClass : null,
-                    this.classFilterViewModel != null ? this.classFilterViewModel.FilteredClasses.ToList() : ClassAttributesHelper.Classes.Keys.ToList())
+                    Tracker.Instance.Decks,
+                    this.lastDeckFilter.FilteredTypes,
+                    this.lastDeckFilter.ShowFInishedArenaRuns,
+                    this.lastDeckFilter.SelectedClass,
+                    this.lastDeckFilter.FilteredClasses)
                 .All(d => { FilteredDecks.Add(d); return true; });
 
             if (!FilteredDecks.Contains(activeDeck))
@@ -96,7 +90,7 @@ namespace ESLTracker.ViewModels.Decks
             IEnumerable<DeckType> filteredTypes,
             bool showCompletedArenaRuns,
             DeckClass? selectedClass,
-            IEnumerable<DeckClass> filteredClassed)
+            IEnumerable<DeckClass> filteredClasses)
         {
             IEnumerable<Deck> filteredList;
             if (selectedClass.HasValue)
@@ -114,7 +108,7 @@ namespace ESLTracker.ViewModels.Decks
                 //filter by attributes
                 filteredList = deckBase.Where(d =>
                     d.Class.HasValue
-                    && (filteredClassed == null || filteredClassed.Contains(d.Class.Value))
+                    && (filteredClasses == null || filteredClasses.Contains(d.Class.Value))
                     && ((filteredTypes == null) || (filteredTypes.Contains(d.Type)))
                     && ((showCompletedArenaRuns) || (!d.IsArenaRunFinished()))
                     );
@@ -126,9 +120,8 @@ namespace ESLTracker.ViewModels.Decks
 
         public void CommandResetFiltersExecute(object param)
         {
-            this.classFilterViewModel.Reset();
-            messanger.Send<DeckListFilterChanged>(null, DeckListFilterChanged.Context.ResetAllFilters);
-            ApplyFilter(null, lastDeckTypeFilter != null ? lastDeckTypeFilter.ShowCompletedArenaRuns : false);
+            messanger.Send<DeckListResetFilters>(new DeckListResetFilters(), ControlMessangerContext.DeckList_DeckFilterControl);
+            ApplyFilter();
         }
 
         private void CommandEditDeckExecute(object param)

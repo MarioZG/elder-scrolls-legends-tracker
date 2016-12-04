@@ -123,7 +123,9 @@
     <Compile Include="Utils\IOWrappers\PathWrapper.cs" />
     <Compile Include="Utils\IOWrappers\WrapperProvider.cs" />
     <Compile Include="Utils\ITrackerFactory.cs" />
+    <Compile Include="Utils\Messages\ControlMessangerContext.cs" />
     <Compile Include="Utils\Messages\DeckListFilterChanged.cs" />
+    <Compile Include="Utils\Messages\DeckListResetFilters.cs" />
     <Compile Include="Utils\Messages\EditSettings.cs" />
     <Compile Include="Utils\Messages\EditDeck.cs" />
     <Compile Include="Utils\Messages\EditGame.cs" />

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels
 {
@@ -64,14 +65,33 @@ namespace ESLTracker.ViewModels
             }
         }
 
+        IMessenger messenger;
+        object messangerContext;
+        public object MessangerContext {
+            get { return messangerContext; }
+            set
+            {
+                messenger.Unregister<DeckListResetFilters>(this, MessangerContext);
+                messangerContext = value;
+                messenger.Register<DeckListResetFilters>(this, ResetFiltersMessage, MessangerContext);
+            }
+        }
+
         //command for filter toggle button pressed
         public ICommand CommandFilterButtonPressed
         {
             get { return new RelayCommand(new Action<object>(FilterClicked)); }
         }
 
-        public DeckClassSelectorViewModel()
+
+
+        public DeckClassSelectorViewModel() : this(new TrackerFactory())
         {
+
+        }
+        public DeckClassSelectorViewModel(ITrackerFactory factory)
+        {
+            messenger = factory.GetMessanger();
             FilterButtonState = new Dictionary<DeckAttribute, bool>();
             foreach (DeckAttribute a in Enum.GetValues(typeof(DeckAttribute)))
             {
@@ -131,6 +151,7 @@ namespace ESLTracker.ViewModels
                     FilteredClasses.Insert(i, dc);
                 }
             }
+            messenger.Send(new DeckListFilterChanged(DeckListFilterChanged.Source.ClassFilter, null, null, SelectedClass, FilteredClasses), MessangerContext);
         }
 
         public void Reset()
@@ -139,6 +160,12 @@ namespace ESLTracker.ViewModels
             FilterCombo();
             RaisePropertyChangedEvent("FilterButtonStateCollection");
         }
+
+        private void ResetFiltersMessage(object obj)
+        {
+            Reset();
+        }
+
 
         private void ResetToggleButtons()
         {

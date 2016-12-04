@@ -80,24 +80,24 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void FilterDeckListTest001_FilterByClass()
         {
-            DeckClass filter = DeckClass.Mage;
-            Mock<IDeckClassSelectorViewModel> classSelector = new Mock<IDeckClassSelectorViewModel>();
-            classSelector.Setup(cs => cs.SelectedClass).Returns(filter);
-            classSelector.Setup(cs => cs.FilteredClasses).Returns(new ObservableCollection<DeckClass>(new List<DeckClass>() { filter }));
-
-            Mock<IDeckTypeSelectorViewModel> typeSelector = GetFullTypeFilter();
+            DeckClass selectedClass = DeckClass.Mage;
+            var filteredClasses = new ObservableCollection<DeckClass>(new List<DeckClass>() { selectedClass });
 
             int expectedCount = 3;
 
             DeckListViewModel model = new DeckListViewModel();
-            model.SetClassFilterViewModel(classSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null, false, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
+            IEnumerable<Deck> result = model.FilterDeckList(
+                DeckBase, 
+                null, 
+                false, 
+                selectedClass, 
+                filteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
-            Assert.AreEqual(filter, result.ToList()[0].Class);
-            Assert.AreEqual(filter, result.ToList()[1].Class);
-            Assert.AreEqual(filter, result.ToList()[2].Class);
+            Assert.AreEqual(selectedClass, result.ToList()[0].Class);
+            Assert.AreEqual(selectedClass, result.ToList()[1].Class);
+            Assert.AreEqual(selectedClass, result.ToList()[2].Class);
         }
 
 
@@ -106,13 +106,10 @@ namespace ESLTracker.ViewModels.Decks.Tests
         public void FilterDeckListTest002_FilterByOneAttribute()
         {
             DeckAttribute filterAttrib = DeckAttribute.Strength;
-            //DeckClass filter = DeckClass.Mage;
-            Mock<IDeckClassSelectorViewModel> classSelector = new Mock<IDeckClassSelectorViewModel>();
-            classSelector.Setup(cs => cs.SelectedClass).Returns<DeckClass?>(null);
-            classSelector.Setup(cs => cs.FilteredClasses).Returns(
-                new ObservableCollection<DeckClass>(
-                    Utils.ClassAttributesHelper.FindClassByAttribute(filterAttrib)
-                    ));
+            DeckClass? selectedClass = null;
+            var filteredClasses =new ObservableCollection<DeckClass>(
+                    ClassAttributesHelper.FindClassByAttribute(filterAttrib)
+                    );
 
             Mock<IDeckTypeSelectorViewModel> typeSelector = GetFullTypeFilter();
 
@@ -120,9 +117,13 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 5; //one for every class
 
             DeckListViewModel model = new DeckListViewModel();
-            model.SetClassFilterViewModel(classSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null, false, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
+            IEnumerable<Deck> result = model.FilterDeckList(
+                DeckBase,
+                null,
+                false,
+                selectedClass,
+                filteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class.Value].Contains(filterAttrib); }));
@@ -132,14 +133,12 @@ namespace ESLTracker.ViewModels.Decks.Tests
         public void FilterDeckListTest003_FilterByTwoAttributes()
         {
             List<DeckAttribute> filterAttrib = new List<DeckAttribute>()
-            { DeckAttribute.Strength, DeckAttribute.Endurance };
-            //DeckClass filter = DeckClass.Mage;
-            Mock<IDeckClassSelectorViewModel> classSelector = new Mock<IDeckClassSelectorViewModel>();
-            classSelector.Setup(cs => cs.SelectedClass).Returns<DeckClass?>(null);
-            classSelector.Setup(cs => cs.FilteredClasses).Returns(
-                new ObservableCollection<DeckClass>(
+                { DeckAttribute.Strength, DeckAttribute.Endurance };
+
+            DeckClass? selectedClass = null;
+            var filteredClasses = new ObservableCollection<DeckClass>(
                     Utils.ClassAttributesHelper.FindClassByAttribute(filterAttrib)
-                    ));
+                    );
 
             Mock<IDeckTypeSelectorViewModel> typeSelector = GetFullTypeFilter();
 
@@ -147,9 +146,13 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 1; //one for every class
 
             DeckListViewModel model = new DeckListViewModel();
-            model.SetClassFilterViewModel(classSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null, false, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
+            IEnumerable<Deck> result = model.FilterDeckList(
+                DeckBase,
+                null,
+                false,
+                selectedClass,
+                filteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class.Value].Contains(filterAttrib[0]); }));
@@ -160,34 +163,40 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void FilterDeckListTest004_ClearFilters()
         {
-            Mock<IDeckClassSelectorViewModel> classSelector = new Mock<IDeckClassSelectorViewModel>();
-            classSelector.Setup(cs => cs.SelectedClass).Returns<DeckClass?>(null);
-            classSelector.Setup(cs => cs.FilteredClasses).Returns(
-                new ObservableCollection<DeckClass>(
+            DeckClass? selectedClass = null;
+            var filteredClasses = new ObservableCollection<DeckClass>(
                     Utils.ClassAttributesHelper.FindClassByAttribute(DeckAttribute.Neutral)
-                    ));
+                    );
 
             Mock<IDeckTypeSelectorViewModel> typeSelector = GetFullTypeFilter();
 
             int expectedCount = DeckBase.Count;
 
             DeckListViewModel model = new DeckListViewModel();
-            model.SetClassFilterViewModel(classSelector.Object);
 
 
             //do first filter - not intrested
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null, false, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
+            IEnumerable<Deck> result = model.FilterDeckList(
+                DeckBase,
+                null,
+                false,
+                selectedClass,
+                filteredClasses);
 
             //model is norw filyred
             Assert.AreNotEqual(expectedCount, result.Count());
 
             //reset filters - class selector returns all clases
-            classSelector.Setup(cs => cs.FilteredClasses).Returns(
-                    new ObservableCollection<DeckClass>(
+            filteredClasses = new ObservableCollection<DeckClass>(
                         Utils.ClassAttributesHelper.Classes.Keys
-                        ));
+                        );
 
-            result = model.FilterDeckList(DeckBase, null, false, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
+            result = model.FilterDeckList(
+                DeckBase,
+                null,
+                false,
+                selectedClass,
+                filteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
         }
@@ -195,19 +204,19 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void FilterDeckListTest005_FilterByDeckType()
         {
-            Mock<IDeckClassSelectorViewModel> classSelector = GetFullClassFilter();
-
             List<DeckType> typeFilter = new List<DeckType>() { DeckType.SoloArena };
-            Mock<IDeckTypeSelectorViewModel> typeSelector = new Mock<IDeckTypeSelectorViewModel>();
-            typeSelector.Setup(ts => ts.FilteredTypes).Returns(
-                new ObservableCollection<DeckType>(typeFilter));
+            var filteredTypes = new ObservableCollection<DeckType>(typeFilter);
 
             int expectedCount = 3; //only in random data
 
             DeckListViewModel model = new DeckListViewModel();
-            model.SetClassFilterViewModel(classSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, typeSelector.Object.FilteredTypes, typeSelector.Object.ShowCompletedArenaRuns, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
+            IEnumerable<Deck> result = model.FilterDeckList(
+                DeckBase, 
+                filteredTypes,
+                false, 
+                null,
+                Utils.ClassAttributesHelper.Classes.Keys);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return typeFilter.Contains(r.Type); }));
@@ -217,21 +226,21 @@ namespace ESLTracker.ViewModels.Decks.Tests
         public void FilterDeckListTest006_FilterByClassAndDeckType()
         {
             DeckClass classFilter = DeckClass.Mage;
-            Mock<IDeckClassSelectorViewModel> classSelector = new Mock<IDeckClassSelectorViewModel>();
-            classSelector.Setup(cs => cs.SelectedClass).Returns(classFilter);
-            classSelector.Setup(cs => cs.FilteredClasses).Returns(new ObservableCollection<DeckClass>(new List<DeckClass>() { classFilter }));
+            var filteredClasses = new ObservableCollection<DeckClass>(new List<DeckClass>() { classFilter });
 
             List<DeckType> typeFilter = new List<DeckType>() { DeckType.SoloArena };
-            Mock<IDeckTypeSelectorViewModel> typeSelector = new Mock<IDeckTypeSelectorViewModel>();
-            typeSelector.Setup(ts => ts.FilteredTypes).Returns(
-                new ObservableCollection<DeckType>(typeFilter));
+            var filteredTypes= new ObservableCollection<DeckType>(typeFilter);
 
             int expectedCount = 2;
 
             DeckListViewModel model = new DeckListViewModel();
-            model.SetClassFilterViewModel(classSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, typeSelector.Object.FilteredTypes, typeSelector.Object.ShowCompletedArenaRuns, classSelector.Object.SelectedClass, classSelector.Object.FilteredClasses);
+            IEnumerable<Deck> result = model.FilterDeckList(
+                DeckBase, 
+                filteredTypes, 
+                false, 
+                classFilter, 
+                filteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(classFilter, result.ToList()[0].Class);
@@ -252,26 +261,23 @@ namespace ESLTracker.ViewModels.Decks.Tests
             trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
 
             DeckListViewModel model = new DeckListViewModel(trackerFactory.Object);
-            model.SetClassFilterViewModel(classSelectorFullFilter.Object);
+
             model.CommandResetFiltersExecute(null);
 
             //assure filter has been removed
-            messanger.Verify(m => m.Send<DeckListFilterChanged>(It.IsAny<DeckListFilterChanged>(), It.Is< DeckListFilterChanged.Context>( c=> c== DeckListFilterChanged.Context.ResetAllFilters)));
-            classSelectorFullFilter.Verify(t => t.Reset());
+            messanger.Verify(m => m.Send<DeckListResetFilters>(It.IsAny<DeckListResetFilters>(), It.Is<ControlMessangerContext>( c=> c== ControlMessangerContext.DeckList_DeckFilterControl)));
         }
 
         [TestMethod()]
         public void FilterDeckListTest007_HideCompletedVersusArenaRuns()
         {
             DeckClass classFilter = DeckClass.Mage;
-            Mock<IDeckClassSelectorViewModel> classSelector = new Mock<IDeckClassSelectorViewModel>();
-            classSelector.Setup(cs => cs.SelectedClass).Returns(classFilter);
-            classSelector.Setup(cs => cs.FilteredClasses).Returns(new ObservableCollection<DeckClass>(new List<DeckClass>() { classFilter }));
+            var selectedClass = classFilter;
+            var filteredClasses = new ObservableCollection<DeckClass>(new List<DeckClass>() { classFilter });
 
             List<DeckType> typeFilter = new List<DeckType>() { DeckType.VersusArena };
-            Mock<IDeckTypeSelectorViewModel> typeSelector = new Mock<IDeckTypeSelectorViewModel>();
-            typeSelector.Setup(ts => ts.FilteredTypes).Returns(new ObservableCollection<DeckType>(typeFilter));
-            typeSelector.Setup(ts => ts.ShowCompletedArenaRuns).Returns(false);
+            var filteredTypes = new ObservableCollection<DeckType>(typeFilter);
+            var showCompletedArenaRuns = false;
 
             Mock<ITracker> tracker = new Mock<ITracker>();
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
@@ -288,16 +294,13 @@ namespace ESLTracker.ViewModels.Decks.Tests
             int expectedCount = 1;
 
             DeckListViewModel model = new DeckListViewModel();
-            model.SetClassFilterViewModel(classSelector.Object);
-
-
 
             IEnumerable<Deck> result = model.FilterDeckList( 
                 new Deck[] { deckToShow, deckToHide },
-                typeSelector.Object.FilteredTypes, 
-                typeSelector.Object.ShowCompletedArenaRuns,
-                classSelector.Object.SelectedClass, 
-                classSelector.Object.FilteredClasses);
+                filteredTypes, 
+                showCompletedArenaRuns,
+                selectedClass, 
+                filteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(deckToShow.DeckId, result.First().DeckId);
@@ -308,15 +311,12 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void FilterDeckListTest008_HideCompletedVersusArenaRunsNoClassFilter()
         {
-            DeckClass? classFilter = null;
-            Mock<IDeckClassSelectorViewModel> classSelector = new Mock<IDeckClassSelectorViewModel>();
-            classSelector.Setup(cs => cs.SelectedClass).Returns(classFilter);
-            classSelector.Setup(cs => cs.FilteredClasses).Returns(new ObservableCollection<DeckClass>(ClassAttributesHelper.Classes.Keys));
+            DeckClass? selectedClass = null;
+            var filteredClasses = new ObservableCollection<DeckClass>(ClassAttributesHelper.Classes.Keys);
 
             List<DeckType> typeFilter = new List<DeckType>() { DeckType.VersusArena };
-            Mock<IDeckTypeSelectorViewModel> typeSelector = new Mock<IDeckTypeSelectorViewModel>();
-            typeSelector.Setup(ts => ts.FilteredTypes).Returns(new ObservableCollection<DeckType>(typeFilter));
-            typeSelector.Setup(ts => ts.ShowCompletedArenaRuns).Returns(false);
+            var filteredTypes = new ObservableCollection<DeckType>(typeFilter);
+            var showCompletedArenaRuns = false;
 
             Mock<ITracker> tracker = new Mock<ITracker>();
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
@@ -333,16 +333,13 @@ namespace ESLTracker.ViewModels.Decks.Tests
             int expectedCount = 1;
 
             DeckListViewModel model = new DeckListViewModel();
-            model.SetClassFilterViewModel(classSelector.Object);
-
-
 
             IEnumerable<Deck> result = model.FilterDeckList(
                 new Deck[] { deckToShow, deckToHide },
-                typeSelector.Object.FilteredTypes, 
-                typeSelector.Object.ShowCompletedArenaRuns,
-                classSelector.Object.SelectedClass, 
-                classSelector.Object.FilteredClasses);
+                filteredTypes,
+                showCompletedArenaRuns,
+                selectedClass,
+                filteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(deckToShow.DeckId, result.First().DeckId);

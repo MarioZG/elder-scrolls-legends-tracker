@@ -48,9 +48,26 @@ namespace ESLTracker.Controls
             ((DeckClassSelector)d).DataContext.SelectedClass = e.NewValue as DataModel.Enums.DeckClass?;
         }
 
+
+
+        public object MessangerContext
+        {
+            get { return (object)GetValue(MessangerContextProperty); }
+            set { SetValue(MessangerContextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MessangerContext.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MessangerContextProperty =
+            DependencyProperty.Register("MessangerContext", typeof(object), typeof(DeckClassSelector), new PropertyMetadata(null));
+
         public DeckClassSelector()
         {
             InitializeComponent();
+
+            var nameOfPropertyInVm = "MessangerContext";
+            var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
+            this.SetBinding(MessangerContextProperty, binding);
+
 
             this.DataContext.PropertyChanged += DataContext_PropertyChanged;
         }

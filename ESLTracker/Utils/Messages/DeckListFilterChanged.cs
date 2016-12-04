@@ -6,24 +6,39 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.ViewModels;
 using ESLTracker.ViewModels.Decks;
 
 namespace ESLTracker.Utils.Messages
 {
     public class DeckListFilterChanged
     {
-        public enum Context
+        public enum Source
         {
-            TypeFilterChanged,
-            ResetAllFilters
+            TypeFilter,
+            ClassFilter,
+            Unknown
         }
 
-        public DeckListFilterChanged(DeckTypeSelectorViewModel deckTypeSelectorViewModel)
-        {
-            this.Filter = deckTypeSelectorViewModel;
-        }
+        public Source ChangeSource { get; private set; }
+        public IEnumerable<DeckType> FilteredTypes { get; private set; }
+        public bool ShowFInishedArenaRuns { get; private set; }
+        public DeckClass? SelectedClass { get; private set; }
+        public IEnumerable<DeckClass> FilteredClasses { get; private set; }
 
-        public IDeckTypeSelectorViewModel Filter { get; set; }
+        public DeckListFilterChanged(
+            Source source,
+            IEnumerable<DeckType> filteredTypes,
+            bool? showFinishedArenaRuns,
+            DeckClass? selectedClass,
+            IEnumerable<DeckClass> filteredClasses)
+        {
+            this.ChangeSource = source;
+            this.FilteredTypes = filteredTypes;
+            this.ShowFInishedArenaRuns = showFinishedArenaRuns.HasValue ? showFinishedArenaRuns.Value : false;
+            this.SelectedClass = selectedClass;
+            this.FilteredClasses = filteredClasses;
+        }
 
     }
 }
