@@ -25,11 +25,17 @@ namespace ESLTracker.DataModel
         public DateTime CreatedDate { get; set; }
         public ArenaRank? ArenaRank { get; set; }
 
+        private ITrackerFactory tracker; //cannot be ITracker, as we need to load it first - stack overflow when database is loading
 
-        public Deck()
+        public Deck() : this(new TrackerFactory())
+        {
+        }
+
+        public Deck(ITrackerFactory tracker)
         {
             DeckId = Guid.NewGuid(); //if deserialise, will be overriten!, if new generate!
             CreatedDate = DateTime.Now;
+            this.tracker = tracker;
         }
 
         public int Victories {
@@ -45,6 +51,21 @@ namespace ESLTracker.DataModel
                 return GetDeckGames().Where(g => g.Outcome == GameOutcome.Defeat).Count();
             }
         }
+
+        public int Disconnects {
+            get
+            {
+                return GetDeckGames().Where(g => g.Outcome == GameOutcome.Disconnect).Count();
+            }
+        }
+        public int Draws
+        {
+            get
+            {
+                return GetDeckGames().Where(g => g.Outcome == GameOutcome.Draw).Count();
+            }
+        }
+
 
         public string WinRatio
         {
@@ -64,7 +85,7 @@ namespace ESLTracker.DataModel
 
         public IEnumerable<Game> GetDeckGames()
         {
-            return Tracker.Instance.Games.Where(g => g.Deck.DeckId == this.DeckId);
+            return tracker.GetTracker().Games.Where(g => g.Deck.DeckId == this.DeckId);
         }
 
         public IEnumerable GetDeckVsClass()
@@ -102,6 +123,25 @@ namespace ESLTracker.DataModel
         public static bool IsArenaDeck(DeckType type)
         {
             return type == DeckType.SoloArena || type == DeckType.VersusArena;
+        }
+
+        public bool IsArenaRunFinished()
+        {
+            switch (this.Type)
+            {
+                case DeckType.Constructed:
+                    return false;
+                case DeckType.VersusArena:
+                    return
+                        this.Victories == 7
+                        || this.Defeats + this.Disconnects == 3; 
+                case DeckType.SoloArena:
+                    return
+                        this.Victories == 9
+                        || this.Defeats + this.Disconnects == 3;
+                default:
+                    throw new NotImplementedException("Is arena run finished not dfined for type {" + Type + "}");
+            }
         }
     }
 }

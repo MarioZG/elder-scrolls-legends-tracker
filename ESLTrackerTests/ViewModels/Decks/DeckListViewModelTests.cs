@@ -10,6 +10,7 @@ using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using Moq;
 using System.Collections.ObjectModel;
+using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Decks.Tests
 {
@@ -18,27 +19,35 @@ namespace ESLTracker.ViewModels.Decks.Tests
     {
         static IList<Deck> DeckBase;
 
+        static Mock<ITracker> tracker = new Mock<ITracker>();
+        static Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+        
+
         [ClassInitialize()]
         public static void InitTestClass(TestContext tc)
         {
+
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
+
             //init some random classes
             DeckBase = new List<Deck>()
             {
-                new Deck() {Type = DeckType.Constructed, Class = DeckClass.Agility },
-                new Deck() {Type = DeckType.Constructed, Class = DeckClass.Archer },
-                new Deck() {Type = DeckType.Constructed, Class = DeckClass.Assassin },
-                new Deck() {Type = DeckType.Constructed, Class = DeckClass.Assassin },
-                new Deck() {Type = DeckType.Constructed, Class = DeckClass.Assassin },
-                new Deck() {Type = DeckType.Constructed, Class = DeckClass.Battlemage},
-                new Deck() {Type = DeckType.Constructed, Class = DeckClass.Endurance },
-                new Deck() {Type = DeckType.SoloArena, Class = DeckClass.Monk },
-                new Deck() {Type = DeckType.SoloArena, Class = DeckClass.Mage },
-                new Deck() {Type = DeckType.SoloArena, Class = DeckClass.Mage },
-                new Deck() {Type = DeckType.VersusArena, Class = DeckClass.Neutral },
-                new Deck() {Type = DeckType.VersusArena, Class = DeckClass.Neutral },
-                new Deck() {Type = DeckType.VersusArena, Class = DeckClass.Spellsword },
-                new Deck() {Type = DeckType.VersusArena, Class = DeckClass.Strength },
-                new Deck() {Type = DeckType.VersusArena, Class = DeckClass.Willpower }
+                new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Agility },
+                new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Archer },
+                new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Assassin },
+                new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Assassin },
+                new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Assassin },
+                new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Battlemage},
+                new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Endurance },
+                new Deck(trackerFactory.Object) {Type = DeckType.SoloArena, Class = DeckClass.Monk },
+                new Deck(trackerFactory.Object) {Type = DeckType.SoloArena, Class = DeckClass.Mage },
+                new Deck(trackerFactory.Object) {Type = DeckType.SoloArena, Class = DeckClass.Mage },
+                new Deck(trackerFactory.Object) {Type = DeckType.VersusArena, Class = DeckClass.Neutral },
+                new Deck(trackerFactory.Object) {Type = DeckType.VersusArena, Class = DeckClass.Neutral },
+                new Deck(trackerFactory.Object) {Type = DeckType.VersusArena, Class = DeckClass.Spellsword },
+                new Deck(trackerFactory.Object) {Type = DeckType.VersusArena, Class = DeckClass.Strength },
+                new Deck(trackerFactory.Object) {Type = DeckType.VersusArena, Class = DeckClass.Willpower }
             };
 
             //add each class once
@@ -54,6 +63,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Mock<IDeckTypeSelectorViewModel> typeSelector = new Mock<IDeckTypeSelectorViewModel>();
             typeSelector.Setup(ts => ts.FilteredTypes).Returns(
                 new ObservableCollection<DeckType>(typeFilter));
+            typeSelector.Setup(ts => ts.ShowCompletedArenaRuns).Returns(true);
             return typeSelector;
         }
 
@@ -82,9 +92,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelector.Object);
-            model.SetTypeFilterViewModel(typeSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(filter, result.ToList()[0].Class);
@@ -113,9 +122,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelector.Object);
-            model.SetTypeFilterViewModel(typeSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class.Value].Contains(filterAttrib); }));
@@ -141,9 +149,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelector.Object);
-            model.SetTypeFilterViewModel(typeSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class.Value].Contains(filterAttrib[0]); }));
@@ -167,11 +174,10 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelector.Object);
-            model.SetTypeFilterViewModel(typeSelector.Object);
 
 
             //do first filter - not intrested
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, null);
 
             //model is norw filyred
             Assert.AreNotEqual(expectedCount, result.Count());
@@ -182,7 +188,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                         Utils.ClassAttributesHelper.Classes.Keys
                         ));
 
-            result = model.FilterDeckList(DeckBase);
+            result = model.FilterDeckList(DeckBase, null);
 
             Assert.AreEqual(expectedCount, result.Count());
         }
@@ -201,9 +207,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelector.Object);
-            model.SetTypeFilterViewModel(typeSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, typeSelector.Object);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return typeFilter.Contains(r.Type); }));
@@ -226,9 +231,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelector.Object);
-            model.SetTypeFilterViewModel(typeSelector.Object);
 
-            IEnumerable<Deck> result = model.FilterDeckList(DeckBase);
+            IEnumerable<Deck> result = model.FilterDeckList(DeckBase, typeSelector.Object);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(classFilter, result.ToList()[0].Class);
@@ -238,6 +242,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
         }
 
         [TestMethod()]
+        [Ignore()]
         public void ResetFiltersTest001()
         {
             Mock<IDeckClassSelectorViewModel> classSelectorFullFilter = GetFullClassFilter();
@@ -245,13 +250,95 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             DeckListViewModel model = new DeckListViewModel();
             model.SetClassFilterViewModel(classSelectorFullFilter.Object);
-            model.SetTypeFilterViewModel(typeSelectorFullFilter.Object);
 
             model.CommandResetFiltersExecute(null);
 
             //assure filter has been removed
             typeSelectorFullFilter.Verify(t => t.Reset());
             classSelectorFullFilter.Verify(t => t.Reset());
+        }
+
+        [TestMethod()]
+        public void FilterDeckListTest007_HideCompletedVersusArenaRuns()
+        {
+            DeckClass classFilter = DeckClass.Mage;
+            Mock<IDeckClassSelectorViewModel> classSelector = new Mock<IDeckClassSelectorViewModel>();
+            classSelector.Setup(cs => cs.SelectedClass).Returns(classFilter);
+            classSelector.Setup(cs => cs.FilteredClasses).Returns(new ObservableCollection<DeckClass>(new List<DeckClass>() { classFilter }));
+
+            List<DeckType> typeFilter = new List<DeckType>() { DeckType.VersusArena };
+            Mock<IDeckTypeSelectorViewModel> typeSelector = new Mock<IDeckTypeSelectorViewModel>();
+            typeSelector.Setup(ts => ts.FilteredTypes).Returns(new ObservableCollection<DeckType>(typeFilter));
+            typeSelector.Setup(ts => ts.ShowCompletedArenaRuns).Returns(false);
+
+            Mock<ITracker> tracker = new Mock<ITracker>();
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+
+            Deck deckToShow = new Deck(trackerFactory.Object) { Type = DeckType.VersusArena, Class = classFilter } ;
+            Deck deckToHide = new Deck(trackerFactory.Object) { Type = DeckType.VersusArena, Class = classFilter } ;
+
+            tracker.Setup(t => t.Games).Returns(
+                new ObservableCollection<DataModel.Game>(
+                    GenerateGamesList(deckToShow, 2, 2).Union(GenerateGamesList(deckToHide, 7, 2))
+                ));
+
+            int expectedCount = 1;
+
+            DeckListViewModel model = new DeckListViewModel();
+            model.SetClassFilterViewModel(classSelector.Object);
+
+
+
+            IEnumerable<Deck> result = model.FilterDeckList( 
+                new Deck[] { deckToShow, deckToHide },
+                typeSelector.Object);
+
+            Assert.AreEqual(expectedCount, result.Count());
+            Assert.AreEqual(deckToShow.DeckId, result.First().DeckId);
+
+        }
+
+
+        [TestMethod()]
+        public void FilterDeckListTest008_HideCompletedVersusArenaRunsNoClassFilter()
+        {
+            DeckClass? classFilter = null;
+            Mock<IDeckClassSelectorViewModel> classSelector = new Mock<IDeckClassSelectorViewModel>();
+            classSelector.Setup(cs => cs.SelectedClass).Returns(classFilter);
+            classSelector.Setup(cs => cs.FilteredClasses).Returns(new ObservableCollection<DeckClass>(ClassAttributesHelper.Classes.Keys));
+
+            List<DeckType> typeFilter = new List<DeckType>() { DeckType.VersusArena };
+            Mock<IDeckTypeSelectorViewModel> typeSelector = new Mock<IDeckTypeSelectorViewModel>();
+            typeSelector.Setup(ts => ts.FilteredTypes).Returns(new ObservableCollection<DeckType>(typeFilter));
+            typeSelector.Setup(ts => ts.ShowCompletedArenaRuns).Returns(false);
+
+            Mock<ITracker> tracker = new Mock<ITracker>();
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+
+            Deck deckToShow = new Deck(trackerFactory.Object) { Type = DeckType.VersusArena, Class = DeckClass.Assassin };
+            Deck deckToHide = new Deck(trackerFactory.Object) { Type = DeckType.VersusArena, Class = DeckClass.Inteligence };
+
+            tracker.Setup(t => t.Games).Returns(
+                new ObservableCollection<DataModel.Game>(
+                    GenerateGamesList(deckToShow, 2, 2).Union(GenerateGamesList(deckToHide, 7, 2))
+                ));
+
+            int expectedCount = 1;
+
+            DeckListViewModel model = new DeckListViewModel();
+            model.SetClassFilterViewModel(classSelector.Object);
+
+
+
+            IEnumerable<Deck> result = model.FilterDeckList(
+                new Deck[] { deckToShow, deckToHide },
+                typeSelector.Object);
+
+            Assert.AreEqual(expectedCount, result.Count());
+            Assert.AreEqual(deckToShow.DeckId, result.First().DeckId);
+
         }
     }
 }

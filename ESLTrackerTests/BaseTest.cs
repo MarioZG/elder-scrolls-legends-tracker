@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -78,6 +79,23 @@ namespace ESLTrackerTests
                 }
             }
         }
+
+        protected ObservableCollection<Game> GenerateGamesList(
+            Deck deck, 
+            int victories = 0, 
+            int defeats = 0, 
+            int draws = 0, 
+            int disconnects = 0)
+        {
+            return new System.Collections.ObjectModel.ObservableCollection<Game>(
+                    Enumerable.Range(0, disconnects).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Disconnect }).Union(
+                    Enumerable.Range(0, defeats).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Defeat }).Union(
+                    Enumerable.Range(0, draws).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Draw }).Union(
+                    Enumerable.Range(0, victories).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Victory })
+                    )))
+                );
+        }
+
 
     }
 }

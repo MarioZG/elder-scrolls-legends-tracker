@@ -9,6 +9,7 @@
     <UserControl.DataContext>
         <ViewModels:DeckTypeSelectorViewModel/>
     </UserControl.DataContext>
+    <StackPanel>
     <UniformGrid Columns="3">
         <ToggleButton x:Name="btnConstructed" 
                       Style="{DynamicResource ToggleButtonStyle}"
@@ -28,4 +29,12 @@
                       CommandParameter="SoloArena"
                       IsChecked="{Binding FilterButtonState[DeckAttribute.SoloArena]}"/>
     </UniformGrid>
+        <CheckBox HorizontalAlignment="Right" Content="Show completed arena runs"
+                  IsChecked="{Binding ShowCompletedArenaRuns}">
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+    </StackPanel>
+
 </UserControl>

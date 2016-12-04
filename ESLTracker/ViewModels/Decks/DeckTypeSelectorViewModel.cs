@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
+using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -19,6 +21,20 @@ namespace ESLTracker.ViewModels.Decks
 
 
         public ObservableCollection<DeckType> FilteredTypes { get; set; } = new ObservableCollection<DeckType>(Enum.GetValues(typeof(DeckType)).OfType<DeckType>());
+
+        private bool showCompletedArenaRuns;
+
+        public bool ShowCompletedArenaRuns
+        {
+            get { return showCompletedArenaRuns; }
+            set {
+                showCompletedArenaRuns = value;
+                RaisePropertyChangedEvent("ShowCompletedArenaRuns");
+                Messenger.Default.Send(
+                    new DeckListFilterChanged(this),
+                    DeckListFilterChanged.Context.TypeFilterChanged);
+            }
+        }
 
 
         //command for filter toggle button pressed
@@ -34,6 +50,7 @@ namespace ESLTracker.ViewModels.Decks
             {
                 FilterButtonState.Add(a, false);
             }
+            Messenger.Default.Register<DeckListFilterChanged>(this, ResetFilter, DeckListFilterChanged.Context.ResetAllFilters);
         }
 
         public void FilterClicked(object param)
@@ -63,6 +80,10 @@ namespace ESLTracker.ViewModels.Decks
                 }
             }
 
+            Messenger.Default.Send(
+                new DeckListFilterChanged(this),
+                DeckListFilterChanged.Context.TypeFilterChanged);
+
         }
 
         public void Reset()
@@ -77,6 +98,11 @@ namespace ESLTracker.ViewModels.Decks
                 Enum.GetValues(typeof(DeckType)).OfType<DeckType>().All(t => { FilteredTypes.Add(t); return true; });
             }
             RaisePropertyChangedEvent("FilterButtonState");
+        }
+
+        private void ResetFilter(DeckListFilterChanged obj)
+        {
+            Reset();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace ESLTracker.ViewModels.Decks
     public interface IDeckTypeSelectorViewModel
     {
         ObservableCollection<DeckType> FilteredTypes { get; set; }
+        bool ShowCompletedArenaRuns { get; set; }
 
         void Reset();
     }
