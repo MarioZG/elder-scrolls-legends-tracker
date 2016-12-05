@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -67,14 +68,26 @@ namespace ESLTracker.ViewModels.Decks
             set { showControl = value; RaisePropertyChangedEvent("ShowControl"); }
         }
 
-        public DeckStatsViewModel()
+        private IMessenger messagnger;
+
+
+        public DeckStatsViewModel() : this(new TrackerFactory())
         {
+
+        }
+
+        public DeckStatsViewModel(ITrackerFactory trackerFactory)
+        {
+            this.messagnger = trackerFactory.GetMessanger();
+
             Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
             if (Tracker.Instance.ActiveDeck != null)
             {
                 //load data for active deck from settigs
                 RefreshData();
             }
+
+            messagnger.Register<Utils.Messages.EditDeck>(this, GameAdded, Utils.Messages.EditDeck.Context.StatsUpdated);
         }
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -95,6 +108,11 @@ namespace ESLTracker.ViewModels.Decks
 
             //hide if no games
             ShowControl = ActiveDeckGames.Count > 0;
+        }
+
+        private void GameAdded(EditDeck obj)
+        {
+            RefreshData();
         }
     }
 }
