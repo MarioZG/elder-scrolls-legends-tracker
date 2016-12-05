@@ -95,6 +95,16 @@ namespace ESLTracker.ViewModels.Rewards
             get { return new RelayCommand(new Action<object>(DoneClicked), new Func<object, bool>(CanExecuteDone)); }
         }
 
+        public RelayCommand CommandEditReward
+        {
+            get { return new RelayCommand(new Action<object>(EditReward)); }
+        }
+
+        public RelayCommand CommandDeleteReward
+        {
+            get { return new RelayCommand(new Action<object>(DeleteReward)); }
+        }
+
         public void DoneClicked(object param)
         {
             var newRewards = Rewards.Where(r => !DataModel.Tracker.Instance.Rewards.Contains(r));
@@ -172,8 +182,29 @@ namespace ESLTracker.ViewModels.Rewards
             {
                 reward.Reason = this.RewardReason.Value;
                 reward.ArenaDeck = ArenaDeck;
-                Rewards.Add(reward);
+                if (!Rewards.Contains(reward))
+                {
+                    Rewards.Add(reward);
+                }
             }
+        }
+
+        private void DeleteReward(object obj)
+        {
+            if (obj is Reward)
+            {
+                this.Rewards.Remove(obj as Reward);
+            }
+        }
+
+        private void EditReward(object obj)
+        {
+            Reward reward = (Reward)obj;
+            foreach (AddSingleRewardViewModel asr in rewardControls.Where(c => c.Reward.Type == reward.Type))
+            {
+                asr.Reward = reward;
+                SetActiveControl(asr);
+            }                
         }
     }
 }

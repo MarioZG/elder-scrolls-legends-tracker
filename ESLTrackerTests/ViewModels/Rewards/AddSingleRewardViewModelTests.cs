@@ -42,7 +42,7 @@ namespace ESLTracker.ViewModels.Rewards.Tests
 
                 AddSingleRewardViewModel model = new AddSingleRewardViewModel();
                 model.ParentDataContext = rewardSetModel.Object;
-                model.Type = type;
+                model.Reward.Type = type;
 
                 model.ControlActivated(null);
 

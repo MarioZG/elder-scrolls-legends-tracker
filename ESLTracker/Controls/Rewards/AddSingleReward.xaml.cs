@@ -43,10 +43,10 @@ namespace ESLTracker.Controls.Rewards
 
        //use to be able to pass type from xaml - research better way!
         public RewardType Type {
-            get { return this.DataContext.type; }
+            get { return this.DataContext.Reward.Type; }
             set
             {
-                this.DataContext.Type = value;
+                this.DataContext.SetRewardType(value);
             }
         }
 

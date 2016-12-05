@@ -61,7 +61,7 @@
                 <Label Content="Quantity" Grid.Row="0"/>
                 <TextBox x:Name="txtQuantity"  HorizontalAlignment="Stretch"
                      Grid.Row="0" Grid.Column="1"
-                     Text="{Binding Quantity}"
+                     Text="{Binding Reward.Quantity}"
                      Behaviors:FocusExtension.IsFocused="{Binding QtyFocus, Mode=TwoWay}"
                      Behaviors:FocusExtension.SelectAllOnFocus="True"
                      Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
@@ -69,7 +69,7 @@
                 <TextBox x:Name="txtComment" HorizontalAlignment="Stretch"
                      Grid.Row="2" Grid.ColumnSpan="2"
                      AcceptsReturn="True" MaxWidth="100"
-                     Text="{Binding Comment}"
+                     Text="{Binding Reward.Comment}"
                      Behaviors:FocusExtension.IsFocused="{Binding CommentsFocus, Mode=TwoWay}"
                      Behaviors:FocusExtension.SelectAllOnFocus="True"
                      Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
@@ -78,7 +78,7 @@
                 />
                 <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
                       Grid.Row="3" Grid.Column="1"
-                      SelectedItem="{Binding Guild}"
+                      SelectedItem="{Binding Reward.RewardQuestGuild}"
                       ItemsSource="{Binding Source={StaticResource GuildEnum}}"
                       Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
                 <Button x:Name="btnAdd" Content="Add" 

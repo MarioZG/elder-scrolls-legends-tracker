@@ -80,11 +80,11 @@ namespace ESLTracker.ViewModels.Rewards.Tests
                     RewardSetViewModel model = new RewardSetViewModel();
                     model.RewardReason = reason;
                     AddSingleRewardViewModel singleRewardModel = new AddSingleRewardViewModel();
-                    singleRewardModel.Type = type;
+                    singleRewardModel.Reward.Type = type;
 
                     model.SetActiveControl(singleRewardModel);
 
-                    Assert.AreEqual(expected, singleRewardModel.GuildSelectionVisible, "RewardReason={0}; RewardType={1}", model.RewardReason, singleRewardModel.Type);
+                    Assert.AreEqual(expected, singleRewardModel.GuildSelectionVisible, "RewardReason={0}; RewardType={1}", model.RewardReason, singleRewardModel.Reward.Type);
 
                 }
             }

@@ -13,46 +13,19 @@ namespace ESLTracker.ViewModels.Rewards
 {
     public class AddSingleRewardViewModel : ViewModelBase
     {
-        private int quantity;
-        public int Quantity
+        private Reward reward = new Reward();
+        public Reward Reward
         {
-            get { return quantity; }
-            set { quantity = value; RaisePropertyChangedEvent("Quantity"); }
+            get { return reward; }
+            set { reward = value; RaisePropertyChangedEvent("Reward"); }
         }
 
-        private string comment;
-        public string Comment
-        {
-            get { return comment; }
-            set { comment = value; RaisePropertyChangedEvent("Comment"); }
-        }
-
-        private Guild? guild;
-        public Guild? Guild
-        {
-            get { return guild; }
-            set { guild = value; RaisePropertyChangedEvent("Guild"); }
-        }
 
         private bool guildSelectionVisible;
         public bool GuildSelectionVisible
         {
-            get { return guildSelectionVisible && isInEditMode && type == RewardType.Gold; }
+            get { return guildSelectionVisible && isInEditMode && reward.Type == RewardType.Gold; }
             set { guildSelectionVisible = value; RaisePropertyChangedEvent("GuildSelectionVisible"); }
-        }
-
-        public RewardType type;
-        public RewardType Type
-        {
-            get { return type; }
-            set
-            {
-                this.type = value;
-                InitTypeSpecifics(value);
-                RaisePropertyChangedEvent("Type");
-                RaisePropertyChangedEvent("BackgroundImagePath");
-                RaisePropertyChangedEvent("GuildSelectionVisible");
-            }
         }
 
         public string BackgroundImagePath
@@ -60,7 +33,7 @@ namespace ESLTracker.ViewModels.Rewards
             get
             {
                 return @"pack://application:,,,/"
-                 + "Resources/RewardType/" + Type.ToString() + ".png";
+                 + "Resources/RewardType/" + reward.Type.ToString() + ".png";
             }
         }
 
@@ -159,16 +132,20 @@ namespace ESLTracker.ViewModels.Rewards
         internal void Reset()
         {
             this.IsInEditMode = false;
-            this.Quantity = 0;
-            this.Comment = String.Empty;
-            this.Guild = null;
-            InitTypeSpecifics(this.type);
+            this.Reward = new Reward()
+            {
+                Quantity = 0,
+                Comment = String.Empty,
+                RewardQuestGuild = null,
+                Type = reward.Type
+            };
+            InitTypeSpecifics(this.reward.Type);
             this.Margin = new Thickness(0, 0, 0, 0);
         }
 
         private void InitTypeSpecifics(RewardType value)
         {
-            switch (type)
+            switch (reward.Type)
             {
                 case RewardType.Gold:
                     GuildSelectionVisible = true;
@@ -177,11 +154,11 @@ namespace ESLTracker.ViewModels.Rewards
                     GuildSelectionVisible = false;
                     break;
                 case RewardType.Pack:
-                    this.Quantity = 1;
+                    this.reward.Quantity = 1;
                     GuildSelectionVisible = false;
                     break;
                 case RewardType.Card:
-                    this.Quantity = 1;
+                    this.reward.Quantity = 1;
                     GuildSelectionVisible = false;
                     break;
                 default:
@@ -191,14 +168,6 @@ namespace ESLTracker.ViewModels.Rewards
 
         public void AddClicked(object param)
         {
-            Reward reward = new Reward()
-            {
-                Comment = this.Comment,
-                Quantity = this.Quantity,
-                Type = this.type,
-                RewardQuestGuild = this.Guild
-            };
-
             ParentDataContext.AddReward(reward);
             this.ParentDataContext.SetActiveControl(null);
             Reset();
@@ -209,8 +178,8 @@ namespace ESLTracker.ViewModels.Rewards
             //do not set any props here, use SetActiveControl() of RewardsSet, for better testing!
             this.ParentDataContext.SetActiveControl(this);
 
-            this.QtyFocus = Type == RewardType.Gold || Type == RewardType.SoulGem;
-            this.CommentsFocus = Type == RewardType.Pack || Type == RewardType.Card;
+            this.QtyFocus = reward.Type == RewardType.Gold || reward.Type == RewardType.SoulGem;
+            this.CommentsFocus = reward.Type == RewardType.Pack || reward.Type == RewardType.Card;
         }
 
         public void CloseClicked(object param)
@@ -219,6 +188,11 @@ namespace ESLTracker.ViewModels.Rewards
             this.ParentDataContext.SetActiveControl(null);
         }
 
+        internal void SetRewardType(RewardType value)
+        {
+            this.Reward.Type = value;
+            RaisePropertyChangedEvent("BackgroundImagePath");
+        }
 
     }
 }

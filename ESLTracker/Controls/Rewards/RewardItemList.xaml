@@ -20,6 +20,7 @@
             Grid.Row="1" 
             DataContext="{StaticResource RewardsGroup}"
             ItemsSource="{Binding}"
+            Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:RewardSet}}}"
             >
         <ListView.GroupStyle>
             <GroupStyle>
@@ -47,5 +48,23 @@
                 </StackPanel>
             </DataTemplate>
         </ListView.ItemTemplate>
+        <ListView.ContextMenu>
+            <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag.DataContext, RelativeSource={RelativeSource Self}}">
+                <MenuItem Header="Edit" 
+                          Command="{Binding CommandEditReward}"
+                          CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/MenuIcons/edit.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Delete" 
+                          Command="{Binding CommandDeleteReward}"
+                          CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/MenuIcons/delete.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </ContextMenu>
+        </ListView.ContextMenu>
     </ListView>
 </UserControl>
