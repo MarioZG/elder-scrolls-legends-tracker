@@ -45,6 +45,7 @@ namespace ESLTracker.ViewModels.Decks
             this.messanger = factory.GetMessanger();
             messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
             messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
+            messanger.Register<EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
 
             FilteredDecks = new ObservableCollection<Deck>(Tracker.Instance.Decks);
         }
@@ -130,6 +131,11 @@ namespace ESLTracker.ViewModels.Decks
             messanger.Send(
                 new EditDeck() { Deck = Tracker.Instance.ActiveDeck }, 
                 EditDeck.Context.StartEdit );
+        }
+
+        private void EditDeckFinished(EditDeck obj)
+        {
+            ApplyFilter();
         }
     }
 }
