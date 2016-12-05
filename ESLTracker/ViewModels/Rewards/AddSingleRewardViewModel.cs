@@ -164,6 +164,7 @@ namespace ESLTracker.ViewModels.Rewards
                 default:
                     break;
             }
+            RaisePropertyChangedEvent("Reward");
         }
 
         public void AddClicked(object param)
