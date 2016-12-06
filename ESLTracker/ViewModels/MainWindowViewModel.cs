@@ -124,14 +124,22 @@ namespace ESLTracker.ViewModels
                               new Func<object, bool>(CommandRunGameCanExecute)
                               );
             }
-        } 
+        }
         #endregion
 
+        ITrackerFactory trackerFactory;
         IMessenger messanger;
+        ITracker tracker;
 
-        public MainWindowViewModel()
+        public MainWindowViewModel() : this(new TrackerFactory())
         {
-            messanger = new TrackerFactory().GetMessanger();
+        }
+
+        internal MainWindowViewModel(TrackerFactory trackerFactory)
+        {
+            this.trackerFactory = trackerFactory;
+            tracker = trackerFactory.GetTracker();
+            messanger = trackerFactory.GetMessanger();
             messanger.Register<Utils.Messages.EditDeck>(this, EditDeckStart, Utils.Messages.EditDeck.Context.StartEdit);
             messanger.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
             messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
@@ -162,7 +170,7 @@ namespace ESLTracker.ViewModels
         {
             Utils.FileManager.SaveDatabase();
             MainWindow.UpdateOverlay = false;
-            settings.LastActiveDeckId = Tracker.Instance.ActiveDeck?.DeckId;
+            settings.LastActiveDeckId = tracker.ActiveDeck?.DeckId;
             settings.Save();
             ((App)Application.Current).Exit();
         }

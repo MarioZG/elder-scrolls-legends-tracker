@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Rewards
 {
@@ -73,19 +74,29 @@ namespace ESLTracker.ViewModels.Rewards
 
         private bool LinkRewardToDeck()
         {
-            if (Tracker.Instance.ActiveDeck == null)
+            if (tracker.ActiveDeck == null)
             {
                 return false;
             }
-            bool matchVersus = (Tracker.Instance.ActiveDeck.Type == DeckType.VersusArena)
+            bool matchVersus = (tracker.ActiveDeck.Type == DeckType.VersusArena)
                 && (this.RewardReason == DataModel.Enums.RewardReason.VersusArena);
-            bool matchSolo = (Tracker.Instance.ActiveDeck.Type == DeckType.SoloArena)
+            bool matchSolo = (tracker.ActiveDeck.Type == DeckType.SoloArena)
                 && (this.RewardReason == DataModel.Enums.RewardReason.SoloArena);
             return matchSolo || matchVersus ;
         }
 
-        public RewardSetViewModel()
+        private TrackerFactory trackerFactory;
+        ITracker tracker;
+
+        public RewardSetViewModel() : this(new TrackerFactory())
         {
+            
+        }
+
+        internal RewardSetViewModel(TrackerFactory trackerFactory)
+        {
+            this.trackerFactory = trackerFactory;
+            tracker = trackerFactory.GetTracker();
             Rewards = new ObservableCollection<Reward>();
         }
 
@@ -107,14 +118,14 @@ namespace ESLTracker.ViewModels.Rewards
 
         public void DoneClicked(object param)
         {
-            var newRewards = Rewards.Where(r => !DataModel.Tracker.Instance.Rewards.Contains(r));
+            var newRewards = Rewards.Where(r => !tracker.Rewards.Contains(r));
             //fix up excaly same date
-            DateTime date = DateTime.Now;
+            DateTime date = trackerFactory.GetDateTimeNow();
             foreach (Reward r in newRewards)
             {
                 r.Date = date;
             }
-            Tracker.Instance.Rewards.AddRange(newRewards);
+            trackerFactory.GetTracker().Rewards.AddRange(newRewards);
             Utils.FileManager.SaveDatabase();
             Rewards.Clear();
             RewardReason = null;
@@ -131,6 +142,7 @@ namespace ESLTracker.ViewModels.Rewards
         List<AddSingleRewardViewModel> rewardControls = new List<AddSingleRewardViewModel>();
 
         AddSingleRewardViewModel activeControl;
+
         public void RegisterControl(AddSingleRewardViewModel c)
         {
             rewardControls.Add(c);
@@ -172,7 +184,7 @@ namespace ESLTracker.ViewModels.Rewards
                 this.ArenaDeckVisible = Visibility.Collapsed;
             }
             else {
-                this.ArenaDeck = Tracker.Instance.ActiveDeck;
+                this.ArenaDeck = tracker.ActiveDeck;
             }
         }
 

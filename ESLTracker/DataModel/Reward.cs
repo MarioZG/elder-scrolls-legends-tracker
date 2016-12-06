@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel
 {
     public class Reward
     {
-        public Reward()
+        public Reward() : this(new TrackerFactory())
         {
-            Date = DateTime.Now;
+        }
+
+        internal Reward(ITrackerFactory factory)
+        {
+            Date = factory.GetDateTimeNow();
         }
 
         public RewardReason Reason { get; set; }

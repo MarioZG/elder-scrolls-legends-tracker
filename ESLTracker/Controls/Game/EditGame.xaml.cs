@@ -13,7 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.ViewModels.Game;
 
@@ -51,12 +53,24 @@ namespace ESLTracker.Controls.Game
                 typeof(EditGame), 
                 new PropertyMetadata(false));
 
+        private ITrackerFactory trackerFactory;
+        private IMessenger messanger;
+        private ITracker tracker;
 
-        public EditGame()
+        public EditGame() : this(new TrackerFactory())
+        {
+
+        }
+
+        public EditGame(ITrackerFactory trackerFactory)
         {
             InitializeComponent();
 
-            DataModel.Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
+            this.trackerFactory = trackerFactory;
+            this.messanger = trackerFactory.GetMessanger();
+            this.tracker = trackerFactory.GetTracker();
+
+            tracker.PropertyChanged += Instance_PropertyChanged;
             opponentClass.DataContext.PropertyChanged += DataContext_PropertyChanged;
 
             //TODO: Find a way to move it to xaml!
@@ -64,7 +78,6 @@ namespace ESLTracker.Controls.Game
             var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
             this.SetBinding(IsEditControlProperty, binding);
 
-            var messanger = new Utils.TrackerFactory().GetMessanger();
             messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
 
         }
@@ -89,14 +102,14 @@ namespace ESLTracker.Controls.Game
         {
             if (! IsEditControl
                 && (this.selectedDeck.DataContext != null) 
-                && (DataModel.Tracker.Instance.ActiveDeck != null))
+                && (tracker.ActiveDeck != null))
             {
-                this.DataContext.Game.Deck = DataModel.Tracker.Instance.ActiveDeck;
-                if (DataModel.Tracker.Instance.ActiveDeck.Type == DeckType.VersusArena)
+                this.DataContext.Game.Deck = tracker.ActiveDeck;
+                if (tracker.ActiveDeck.Type == DeckType.VersusArena)
                 {
                     this.cbGameType.SelectedItem = DataModel.Enums.GameType.VersusArena;
                 }
-                else if (DataModel.Tracker.Instance.ActiveDeck.Type == DeckType.SoloArena)
+                else if (tracker.ActiveDeck.Type == DeckType.SoloArena)
                 {
                     this.cbGameType.SelectedItem = DataModel.Enums.GameType.SoloArena;
                 }

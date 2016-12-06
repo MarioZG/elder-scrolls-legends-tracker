@@ -24,6 +24,7 @@ namespace ESLTracker.ViewModels.Decks
             ClassAttributesHelper.Classes.Keys.ToList()); //default to all classes
 
         IMessenger messanger;
+        ITracker tracker;
 
         //command for filter toggle button pressed
         public ICommand CommandResetFilterButtonPressed
@@ -47,7 +48,8 @@ namespace ESLTracker.ViewModels.Decks
             messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
             messanger.Register<EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
 
-            FilteredDecks = new ObservableCollection<Deck>(Tracker.Instance.Decks);
+            tracker = factory.GetTracker();
+            FilteredDecks = new ObservableCollection<Deck>(tracker.Decks);
         }
 
         private void DeckFilterChanged(DeckListFilterChanged obj)
@@ -65,11 +67,11 @@ namespace ESLTracker.ViewModels.Decks
 
         private void ApplyFilter()
         {
-            Deck activeDeck = Tracker.Instance.ActiveDeck; //we loose it when FilteredDecks.Clear();
+            Deck activeDeck = tracker.ActiveDeck; //we loose it when FilteredDecks.Clear();
             FilteredDecks.Clear();
 
             FilterDeckList(
-                    Tracker.Instance.Decks,
+                    tracker.Decks,
                     this.lastDeckFilter.FilteredTypes,
                     this.lastDeckFilter.ShowFInishedArenaRuns,
                     this.lastDeckFilter.SelectedClass,
@@ -78,11 +80,11 @@ namespace ESLTracker.ViewModels.Decks
 
             if (!FilteredDecks.Contains(activeDeck))
             {
-                Tracker.Instance.ActiveDeck = null;
+                tracker.ActiveDeck = null;
             }
             else
             {
-                Tracker.Instance.ActiveDeck = activeDeck;
+                tracker.ActiveDeck = activeDeck;
             }
         }
 
@@ -129,7 +131,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             //inform other views that we are about to edit deck
             messanger.Send(
-                new EditDeck() { Deck = Tracker.Instance.ActiveDeck }, 
+                new EditDeck() { Deck = tracker.ActiveDeck }, 
                 EditDeck.Context.StartEdit );
         }
 

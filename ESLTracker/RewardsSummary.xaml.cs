@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
 
 namespace ESLTracker
 {
@@ -20,8 +21,16 @@ namespace ESLTracker
     /// </summary>
     public partial class RewardsSummary : Window
     {
-        public RewardsSummary()
+        private TrackerFactory trackerFactory;
+
+        public RewardsSummary() : this(new TrackerFactory())
         {
+            
+        }
+
+        internal RewardsSummary(TrackerFactory trackerFactory)
+        {
+            this.trackerFactory = trackerFactory;
             InitializeComponent();
         }
 
@@ -31,7 +40,7 @@ namespace ESLTracker
             if (tab != null)
             {
                 // this tab is selected!
-                this.rewardsSummary.DataContext = DataModel.Tracker.Instance.Rewards
+                this.rewardsSummary.DataContext = trackerFactory.GetTracker().Rewards
                     .GroupBy(r=> new { r.Type, r.Reason })
                     .Select(rs=> new DataModel.Reward() {
                         Type = rs.Key.Type,

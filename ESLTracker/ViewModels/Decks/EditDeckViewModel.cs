@@ -66,10 +66,18 @@ namespace ESLTracker.ViewModels.Decks
         public IDeckClassSelectorViewModel DeckClassModel { get; set; }
 
         IMessenger messanger;
+        ITracker tracker;
+        private TrackerFactory trackerFactory;
 
-        public EditDeckViewModel()
+        public EditDeckViewModel() : this(new TrackerFactory())
         {
-            messanger = new TrackerFactory().GetMessanger();
+        }
+
+        internal EditDeckViewModel(TrackerFactory trackerFactory)
+        {
+            this.trackerFactory = trackerFactory;
+            tracker = trackerFactory.GetTracker();
+            messanger = trackerFactory.GetMessanger();
             messanger.Register<Utils.Messages.EditDeck>(this, EditDeck, Utils.Messages.EditDeck.Context.StartEdit);
         }
 
@@ -89,7 +97,7 @@ namespace ESLTracker.ViewModels.Decks
                 && (selectedClassModel != null)
                 && selectedClassModel.SelectedClass.HasValue)
             {
-                SaveDeck( selectedClassModel, Tracker.Instance);
+                SaveDeck( selectedClassModel, tracker);
             }
         }
 

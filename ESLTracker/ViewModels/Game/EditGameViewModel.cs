@@ -118,14 +118,23 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
+        ITrackerFactory trackerFactory;
         IMessenger messanger;
+        ITracker tracker;
 
-        public EditGameViewModel()
+        public EditGameViewModel() : this(new TrackerFactory())
         {
-            messanger = new TrackerFactory().GetMessanger();
-            //this.PropertyChanged += EditGameViewModel_PropertyChanged;
+
+        }
+
+        internal EditGameViewModel(TrackerFactory trackerFactory)
+        {
+            this.trackerFactory = trackerFactory;
+
+            messanger = trackerFactory.GetMessanger();
+            tracker = trackerFactory.GetTracker();
             Game.PropertyChanged += Game_PropertyChanged;
-            Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
+            tracker.PropertyChanged += Instance_PropertyChanged;
             messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
 
         }
@@ -177,7 +186,7 @@ namespace ESLTracker.ViewModels.Game
             if ((outcome.HasValue)
                 && this.Game.OpponentClass.HasValue)
             {
-                this.Game.Deck = Tracker.Instance.ActiveDeck;
+                this.Game.Deck = tracker.ActiveDeck;
                 this.Game.OpponentAttributes.AddRange(Utils.ClassAttributesHelper.Classes[this.game.OpponentClass.Value]);
                 this.Game.Outcome = outcome.Value;
 
@@ -196,7 +205,7 @@ namespace ESLTracker.ViewModels.Game
                 }
 
                 DataModel.Game addedGame = this.Game;
-                Tracker.Instance.Games.Add(this.Game);
+                tracker.Games.Add(this.Game);
 
                 messanger.Send(
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
@@ -235,9 +244,9 @@ namespace ESLTracker.ViewModels.Game
 
         private IEnumerable<GameType> GetAllowedGameTypes()
         {
-            if (Tracker.Instance.ActiveDeck != null)
+            if (tracker.ActiveDeck != null)
             {
-                switch (Tracker.Instance.ActiveDeck.Type)
+                switch (tracker.ActiveDeck.Type)
                 {
                     case DeckType.Constructed:
                         return new List<GameType>() { GameType.PlayCasual, GameType.PlayRanked };
@@ -260,9 +269,9 @@ namespace ESLTracker.ViewModels.Game
         public void ShowWinsVsClass(DeckClass? deckClass)
         {
             //this.Game.OpponentClass = deckClass; //ugly hack until class slectro can be bound in xaml
-            if ((deckClass != null) && (Tracker.Instance.ActiveDeck != null))
+            if ((deckClass != null) && (tracker.ActiveDeck != null))
             {
-                var res = Tracker.Instance.ActiveDeck.GetDeckVsClass(deckClass);
+                var res = tracker.ActiveDeck.GetDeckVsClass(deckClass);
                 dynamic data = (res as System.Collections.IEnumerable).Cast<object>().FirstOrDefault();
                 if (data == null)
                 {

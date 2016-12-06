@@ -69,6 +69,7 @@ namespace ESLTracker.ViewModels.Decks
         }
 
         private IMessenger messagnger;
+        ITracker tracker;
 
 
         public DeckStatsViewModel() : this(new TrackerFactory())
@@ -79,21 +80,22 @@ namespace ESLTracker.ViewModels.Decks
         public DeckStatsViewModel(ITrackerFactory trackerFactory)
         {
             this.messagnger = trackerFactory.GetMessanger();
+            tracker = trackerFactory.GetTracker();
 
-            Tracker.Instance.PropertyChanged += Instance_PropertyChanged;
-            if (Tracker.Instance.ActiveDeck != null)
+            tracker.PropertyChanged += Instance_PropertyChanged;
+            if (tracker.ActiveDeck != null)
             {
                 //load data for active deck from settigs
                 RefreshData();
             }
 
-            messagnger.Register<Utils.Messages.EditDeck>(this, GameAdded, Utils.Messages.EditDeck.Context.StatsUpdated);
+            messagnger.Register<EditDeck>(this, GameAdded, EditDeck.Context.StatsUpdated);
         }
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if ((e.PropertyName == "ActiveDeck")
-                && (Tracker.Instance.ActiveDeck != null))
+                && (tracker.ActiveDeck != null))
             {
                 RefreshData();
             }
@@ -101,9 +103,9 @@ namespace ESLTracker.ViewModels.Decks
 
         private void RefreshData()
         {
-            WinRatioVsClass = Tracker.Instance.ActiveDeck.GetDeckVsClass();
-            ActiveDeckGames = new ObservableCollection<DataModel.Game>(Tracker.Instance.ActiveDeck.GetDeckGames().OrderByDescending(g=> g.Date));
-            ActiveDeckRewards = new ObservableCollection<Reward>(Tracker.Instance.Rewards.Where(r => r.ArenaDeckId == Tracker.Instance.ActiveDeck.DeckId));
+            WinRatioVsClass = tracker.ActiveDeck.GetDeckVsClass();
+            ActiveDeckGames = new ObservableCollection<DataModel.Game>(tracker.ActiveDeck.GetDeckGames().OrderByDescending(g=> g.Date));
+            ActiveDeckRewards = new ObservableCollection<Reward>(tracker.Rewards.Where(r => r.ArenaDeckId == tracker.ActiveDeck.DeckId));
             RaisePropertyChangedEvent("WinRatioVsClass");
 
             //hide if no games

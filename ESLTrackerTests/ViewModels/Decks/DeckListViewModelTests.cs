@@ -255,10 +255,14 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Mock<IDeckClassSelectorViewModel> classSelectorFullFilter = GetFullClassFilter();
             Mock<IDeckTypeSelectorViewModel> typeSelectorFullFilter = GetFullTypeFilter();
 
+            Mock<ITracker> tracker = new Mock<ITracker>();
+            tracker.Setup(t => t.Decks).Returns(new ObservableCollection<Deck>());
+
             Mock<IMessenger> messanger = new Mock<IMessenger>();
 
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
             DeckListViewModel model = new DeckListViewModel(trackerFactory.Object);
 

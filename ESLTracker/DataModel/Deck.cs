@@ -31,10 +31,10 @@ namespace ESLTracker.DataModel
         {
         }
 
-        public Deck(ITrackerFactory tracker)
+        internal Deck(ITrackerFactory tracker)
         {
             DeckId = Guid.NewGuid(); //if deserialise, will be overriten!, if new generate!
-            CreatedDate = DateTime.Now;
+            CreatedDate = tracker.GetDateTimeNow();
             this.tracker = tracker;
         }
 
