@@ -39,28 +39,9 @@ namespace ESLTracker
             this.DragMove();
         }
 
-        private void btnMove_Click(object sender, RoutedEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-             //this.DragMove(); 
+
         }
-
-        private void btnMove_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //this.DragMove();
-        }
-
-        private void btnGame_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void ToolBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-           // base.OnMouseLeftButtonDown(e);
-
-            // Begin dragging the window
-            this.DragMove();
-        }
-
     }
 }
