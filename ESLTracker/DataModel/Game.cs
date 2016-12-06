@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel
 {
@@ -83,9 +84,13 @@ namespace ESLTracker.DataModel
 
         public string Notes { get; set; }
 
-        public Game()
+        public Game() : this(new TrackerFactory())
         {
-            Date = DateTime.Now;
+        }
+
+        public Game(ITrackerFactory factory)
+        {
+            Date = factory.GetDateTimeNow();
         }
 
         public void UpdateAllBindings()
@@ -96,6 +101,43 @@ namespace ESLTracker.DataModel
         public object Clone()
         {
             return this.MemberwiseClone() as Game;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            // If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+
+            // If parameter cannot be cast to Point return false.
+            Game g = obj as Game;
+            if ((System.Object)g == null)
+            {
+                return false;
+            }
+
+            return (this.BonusRound == g.BonusRound
+                 && this.Date == g.Date
+                 && this.Deck == g.Deck
+                 && this.DeckId == g.DeckId
+                 && this.Notes == g.Notes
+                // && this.OpponentAttributes == g.OpponentAttributes
+                 && this.OpponentClass == g.OpponentClass
+                 && this.OpponentLegendRank == g.OpponentLegendRank
+                 && this.OpponentName == g.OpponentName
+                 && this.OpponentRank == g.OpponentRank
+                 && this.OrderOfPlay == g.OrderOfPlay
+                 && this.Outcome == g.Outcome
+                 && this.PlayerLegendRank == g.PlayerLegendRank
+                 && this.PlayerRank == g.PlayerRank
+                 && this.Type == g.Type);
         }
     }
 }

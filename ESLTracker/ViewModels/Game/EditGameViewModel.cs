@@ -63,7 +63,7 @@ namespace ESLTracker.ViewModels.Game
                 RaisePropertyChangedEvent("OpponentClassWins");
             }
         }
-       
+
         public string SummaryText
         {
             get
@@ -210,6 +210,9 @@ namespace ESLTracker.ViewModels.Game
                 this.Game.Type = addedGame.Type;
                 this.Game.PlayerRank = addedGame.PlayerRank;
                 this.Game.PlayerLegendRank = addedGame.PlayerLegendRank;
+
+                this.BeginEdit();
+
                 this.UpdateBindings();
 
                 //clear opp class
@@ -358,6 +361,11 @@ namespace ESLTracker.ViewModels.Game
             Game.PlayerLegendRank = savedState.PlayerLegendRank;
             Game.PlayerRank = savedState.PlayerRank;
             Game.Type = savedState.Type;
+        }
+
+        internal bool IsDirty()
+        {
+            return !Game.Equals(savedState);
         }
     }
 }

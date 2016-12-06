@@ -11,5 +11,6 @@ namespace ESLTracker.Utils
     {
         ITracker GetTracker();
         IMessenger GetMessanger();
+        DateTime GetDateTimeNow();
     }
 }

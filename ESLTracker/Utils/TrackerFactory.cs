@@ -18,5 +18,10 @@ namespace ESLTracker.Utils
         {
             return Messenger.Default;
         }
+
+        public DateTime GetDateTimeNow()
+        {
+            return DateTime.Now;
+        }
     }
 }

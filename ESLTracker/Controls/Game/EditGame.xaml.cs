@@ -107,6 +107,7 @@ namespace ESLTracker.Controls.Game
         {
             //TODO: once pkayer rank is correct control, move this to data model
             this.cbPlayerRank.SelectedRank = Properties.Settings.Default.PlayerRank;
+            this.DataContext.BeginEdit();
         }
     }
 }

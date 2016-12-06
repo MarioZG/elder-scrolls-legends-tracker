@@ -41,7 +41,14 @@ namespace ESLTracker
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (this.editGame.DataContext.IsDirty())
+            {
+                MessageBoxResult dialogResult = MessageBox.Show("There is unsaved game, do you want to close add game window?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel);
+                if (dialogResult == MessageBoxResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }
