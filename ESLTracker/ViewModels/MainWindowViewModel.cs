@@ -170,6 +170,7 @@ namespace ESLTracker.ViewModels
         {
             Utils.FileManager.SaveDatabase();
             MainWindow.UpdateOverlay = false;
+            MainWindow.ot.Close();
             settings.LastActiveDeckId = tracker.ActiveDeck?.DeckId;
             settings.Save();
             ((App)Application.Current).Exit();
