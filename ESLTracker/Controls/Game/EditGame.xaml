@@ -67,7 +67,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="70*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal"  Background="Red" Grid.ColumnSpan="2"
+        <StackPanel Orientation="Horizontal"  Background="DarkRed" Grid.ColumnSpan="2"
                     Visibility="{Binding ErrorMessage,Converter={StaticResource StringNonEmptyToVisibiltyCollapsedConverter}}"
                     >
             <TextBlock  Foreground="White" Text="{Binding ErrorMessage}" Grid.ColumnSpan="2"/>
