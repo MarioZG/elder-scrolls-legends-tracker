@@ -64,7 +64,7 @@ namespace ESLTracker.Controls
 
         private void btnScreenShot_Click(object sender, RoutedEventArgs e)
         {
-            FileManager.SaveScreenShot(this);
+            new FileManager(new TrackerFactory()).SaveScreenShot(this);
         }
 
         private void btnShowMainWindow_Click(object sender, RoutedEventArgs e)

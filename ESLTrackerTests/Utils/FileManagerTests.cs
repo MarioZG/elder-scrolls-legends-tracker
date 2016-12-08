@@ -10,6 +10,7 @@ using ESLTracker.Utils.IOWrappers;
 using ESLTracker.DataModel;
 using ESLTrackerTests;
 using System.Xml;
+using ESLTracker.Properties;
 
 namespace ESLTracker.Utils.Tests
 {
@@ -19,6 +20,13 @@ namespace ESLTracker.Utils.Tests
         [TestMethod()]
         public void ManageBackupsTest001_OneBackup()
         {
+            Mock<ISettings> settings = new Mock<ISettings>();
+            settings.Setup(s => s.DataPath).Returns("c:\\some path\\f1\\f2\\");
+
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+
+
             Mock<IPathWrapper> pathWrapper = new Mock<IPathWrapper>();
             Mock<IDirectoryWrapper> directoryWrapper = new Mock<IDirectoryWrapper>();
             Mock<IFileWrapper> fileWrapper = new Mock<IFileWrapper>();
@@ -28,70 +36,84 @@ namespace ESLTracker.Utils.Tests
 
             string path = "./data.xml";
 
-            FileManager.ManageBackups(path, pathWrapper.Object, directoryWrapper.Object, fileWrapper.Object);
+            new FileManager(trackerFactory.Object).ManageBackups(path, pathWrapper.Object, directoryWrapper.Object, fileWrapper.Object);
 
             fileWrapper.Verify(fw => fw.Delete(It.IsAny<string>()), Times.Never);
 
         }
 
         [TestMethod()]
-        public void ManageBackupsTest001_7BackupFiles()
+        public void ManageBackupsTest002_7BackupFiles()
         {
+            Mock<ISettings> settings = new Mock<ISettings>();
+            settings.Setup(s => s.DataPath).Returns("c:\\some path\\f1\\f2\\");
+
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+
             Mock<IPathWrapper> pathWrapper = new Mock<IPathWrapper>();
             Mock<IDirectoryWrapper> directoryWrapper = new Mock<IDirectoryWrapper>();
             Mock<IFileWrapper> fileWrapper = new Mock<IFileWrapper>();
             directoryWrapper
                 .Setup(dw => dw.EnumerateFiles(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(new string[] { "data.xml",
-                    "data1.xml",
-                    "data2.xml",
-                    "data3.xml",
-                    "data4.xml",
-                    "data5.xml",
-                    "data6.xml",
-                    "data7.xml"
+                .Returns(new string[] { settings.Object.DataPath + "data.xml",
+                    settings.Object.DataPath + "data1.xml",
+                    settings.Object.DataPath + "data2.xml",
+                    settings.Object.DataPath + "data3.xml",
+                    settings.Object.DataPath + "data4.xml",
+                    settings.Object.DataPath + "data5.xml",
+                    settings.Object.DataPath + "data6.xml",
+                    settings.Object.DataPath + "data7.xml"
                 });
 
             string path = "./data.xml";
 
-            FileManager.ManageBackups(path, pathWrapper.Object, directoryWrapper.Object, fileWrapper.Object);
+            new FileManager(trackerFactory.Object).ManageBackups(path, pathWrapper.Object, directoryWrapper.Object, fileWrapper.Object);
 
             fileWrapper.Verify(fw => fw.Delete(It.IsAny<string>()), Times.Never);
 
         }
 
         [TestMethod()]
-        public void ManageBackupsTest001_8BackupFiles()
+        public void ManageBackupsTest003_8BackupFiles()
         {
+            Mock<ISettings> settings = new Mock<ISettings>();
+            settings.Setup(s => s.DataPath).Returns("c:\\some path\\f1\\f2\\");
+
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+
             Mock<IPathWrapper> pathWrapper = new Mock<IPathWrapper>();
             Mock<IDirectoryWrapper> directoryWrapper = new Mock<IDirectoryWrapper>();
             Mock<IFileWrapper> fileWrapper = new Mock<IFileWrapper>();
+
             directoryWrapper
                 .Setup(dw => dw.EnumerateFiles(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(new string[] { "data.xml",
-                    "data8.xml",
-                    "data7.xml",
-                    "data6.xml",
-                    "data5.xml",
-                    "data4.xml",
-                    "data3.xml",
-                    "data2.xml",
-                    "data1.xml"
+                .Returns(new string[] { settings.Object.DataPath + "data.xml",
+                    settings.Object.DataPath + "data4.xml",
+                    settings.Object.DataPath + "data3.xml",
+                    settings.Object.DataPath + "data6.xml",
+                    settings.Object.DataPath + "data5.xml",
+                    settings.Object.DataPath + "data8.xml",
+                    settings.Object.DataPath + "data2.xml",
+                    settings.Object.DataPath + "data1.xml",
+                    settings.Object.DataPath + "data7.xml"
                 });
 
             string path = "./data.xml";
 
-            FileManager.ManageBackups(path, pathWrapper.Object, directoryWrapper.Object, fileWrapper.Object);
+            new FileManager(trackerFactory.Object).ManageBackups(path, pathWrapper.Object, directoryWrapper.Object, fileWrapper.Object);
 
             fileWrapper.Verify(fw => fw.Delete(It.IsAny<string>()), Times.Once);
-            fileWrapper.Verify(fw => fw.Delete(It.Is<string>(s => s == "data8.xml")), Times.Once);
+            //ensure oldest backup has been deleted
+            fileWrapper.Verify(fw => fw.Delete(It.Is<string>(s => s == settings.Object.DataPath + "data1.xml")), Times.Once);
 
         }
 
         [TestMethod()]
         public void SaveDatabaseTest001_NonExitingPath()
         {
-            FileManager.SaveDatabase<Tracker>(TestContext.TestDeploymentDir + "./somerandomfolder/ss.xml", new Tracker());
+            new FileManager(null).SaveDatabase<Tracker>(TestContext.TestDeploymentDir + "./somerandomfolder/ss.xml", new Tracker());
         }
 
         [TestMethod()]

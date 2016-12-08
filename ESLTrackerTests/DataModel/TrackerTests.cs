@@ -57,11 +57,6 @@ namespace ESLTracker.DataModel.Tests
                     Name = "test" + i.ToString("00000"),
                     Class = Enums.DeckClass.Agility,
                     Type = Enums.DeckType.Constructed,
-                    Attributes = new DeckAttributes()
-                    {
-                       DeckAttribute.Endurance,
-                       DeckAttribute.Neutral
-                    }
                 });
             }
 
@@ -71,7 +66,6 @@ namespace ESLTracker.DataModel.Tests
                 {
                     BonusRound = false,
                     Deck = tracker.Decks[new Random().Next(MAX_DECKS)],
-                    OpponentAttributes = new DeckAttributes() { DeckAttribute.Agility, DeckAttribute.Willpower },
                     OpponentClass = DeckClass.Spellsword,
                     OpponentLegendRank = 1,
                     OpponentName = "Game" + i.ToString("0000000000"),
@@ -86,7 +80,7 @@ namespace ESLTracker.DataModel.Tests
 
             //data ready, lets save!
 
-            Utils.FileManager.SaveDatabase<Tracker>(dataFileName, tracker);
+            new Utils.FileManager(null).SaveDatabase<Tracker>(dataFileName, tracker);
 
             //and let's load!
 
@@ -94,7 +88,7 @@ namespace ESLTracker.DataModel.Tests
 
             TestContext.WriteLine("Start deserialise....");
             sw.Start();
-            Tracker loadedTracker = Utils.FileManager.LoadDatabase<Tracker>(dataFileName);
+            Tracker loadedTracker = new Utils.FileManager(null).LoadDatabase<Tracker>(dataFileName);
 
             Assert.AreEqual(MAX_GAMES, loadedTracker.Games.Count);
             Assert.AreEqual(MAX_DECKS, loadedTracker.Decks.Count);

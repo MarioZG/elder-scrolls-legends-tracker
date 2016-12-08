@@ -9,6 +9,6 @@ namespace ESLTracker.Utils.FileUpdaters
     public interface IFileUpdater
     {
         SerializableVersion TargetVersion { get; }
-        bool UpdateFile();
+        bool UpdateFile(FileManager fileManager);
     }
 }

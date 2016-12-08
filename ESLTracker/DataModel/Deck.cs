@@ -19,7 +19,6 @@ namespace ESLTracker.DataModel
         }
 
         public string Name { get; set; }
-        public DeckAttributes Attributes { get; set; } = new DeckAttributes();
         public DeckClass? Class { get; set; }
         public string Notes { get; set; }
         public DateTime CreatedDate { get; set; }

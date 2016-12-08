@@ -17,24 +17,23 @@ namespace ESLTracker.Utils
 {
     public class FileManager
     {
-
-        static string DataPath
+        string DataPath
         {
             get
             {
-                string dp = Properties.Settings.Default.DataPath;
+                string dp = trackerfactory.GetSettings().DataPath;
                 if(String.IsNullOrWhiteSpace(dp))
                 {
                     dp = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                     dp = Path.Combine(dp, Path.GetFileNameWithoutExtension(AppDomain.CurrentDomain.FriendlyName));
-                    Properties.Settings.Default.DataPath = dp;
-                    Properties.Settings.Default.Save();
+                    trackerfactory.GetSettings().DataPath = dp;
+                    trackerfactory.GetSettings().Save();
                 }
                 return dp;
             }
         }
 
-        public static string FullDataFilePath
+        public string FullDataFilePath
         {
             get
             {
@@ -42,11 +41,18 @@ namespace ESLTracker.Utils
             }
         }
 
-        static string DataFile = "data.xml";
-        static string ScreenShotFolder = "Screenshot";
+        string DataFile = "data.xml";
+        string ScreenShotFolder = "Screenshot";
+
+        ITrackerFactory trackerfactory;
+
+        public FileManager(ITrackerFactory trackerfactory)
+        {
+            this.trackerfactory = trackerfactory;
+        }
 
 
-        public static Tracker LoadDatabase()
+        public Tracker LoadDatabase()
         {
             Tracker tracker = null;
             try
@@ -58,7 +64,7 @@ namespace ESLTracker.Utils
                     //check for data update
                     if (tracker.Version < Tracker.CurrentFileVersion)
                     {
-                        if (FileManager.UpdateFile(tracker.Version))
+                        if (UpdateFile(tracker.Version))
                         {
                             //reload after update
                             tracker = LoadDatabase();
@@ -79,7 +85,7 @@ namespace ESLTracker.Utils
                         r.ArenaDeck = tracker.Decks.Where(d => d.DeckId == r.ArenaDeckId).FirstOrDefault();
                     }
                     //restore active deck
-                    Guid? activeDeckFromSettings = Properties.Settings.Default.LastActiveDeckId;
+                    Guid? activeDeckFromSettings = trackerfactory.GetSettings().LastActiveDeckId;
                     if ((activeDeckFromSettings != null)
                         && (activeDeckFromSettings != Guid.Empty))
                     {
@@ -98,7 +104,7 @@ namespace ESLTracker.Utils
                 {
                     if (tracker.Version != Tracker.CurrentFileVersion)
                     {
-                        if (FileManager.UpdateFile(tracker.Version))
+                        if (UpdateFile(tracker.Version))
                         {
                             //reload after update
                             tracker = LoadDatabase();
@@ -115,7 +121,7 @@ namespace ESLTracker.Utils
                 }
                 else
                 {
-                    if (FileManager.UpdateFile())
+                    if (UpdateFile())
                     {
                         //reload after update
                         tracker = LoadDatabase();
@@ -129,7 +135,7 @@ namespace ESLTracker.Utils
             return tracker;
         }
 
-        public static T LoadDatabase<T>(string path)
+        public T LoadDatabase<T>(string path)
         {
             T tracker;
             //standard serialization
@@ -142,14 +148,14 @@ namespace ESLTracker.Utils
             return tracker;
         }
 
-        public static void SaveDatabase()
+        public void SaveDatabase()
         {
-            SaveDatabase<DataModel.Tracker>(
+            SaveDatabase<Tracker>(
                 FullDataFilePath, 
-                DataModel.Tracker.Instance);
+                trackerfactory.GetTracker() as Tracker);
         }
 
-        public static void SaveDatabase<T>(string path, T tracker)
+        public void SaveDatabase<T>(string path, T tracker)
         {
             IWrapperProvider wrapperProvider = new WrapperProvider();
             //check if path exist
@@ -170,7 +176,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        public static void BackupDatabase(IWrapperProvider wrapperProvider, string path)
+        public void BackupDatabase(IWrapperProvider wrapperProvider, string path)
         {
             IPathWrapper pathWrapper = wrapperProvider.GetWrapper(typeof(IPathWrapper)) as IPathWrapper;
             IDirectoryWrapper directoryWrapper = wrapperProvider.GetWrapper(typeof(IDirectoryWrapper)) as IDirectoryWrapper;
@@ -193,7 +199,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        public static void ManageBackups(
+        public void ManageBackups(
             string path, 
             IPathWrapper pathWrapper, 
             IDirectoryWrapper directoryWrapper,
@@ -204,11 +210,11 @@ namespace ESLTracker.Utils
                 Path.GetExtension(DataFile));
             var backupFiles = directoryWrapper.EnumerateFiles(
                             pathWrapper.GetDirectoryName(path),
-                            dataFileFilter).OrderBy(f => f);
+                            dataFileFilter).Where(f=> f != FullDataFilePath).OrderByDescending(f => f);
             //first save of day - delete old backups
             int backupcount = backupFiles.Count();
-            int skipfiles = 8; //backups to preserve + data file
-            if (backupcount > skipfiles) //7+1 for actual data.xml file
+            int skipfiles = 7; //backups to keep
+            if (backupcount > skipfiles) 
             {
                 foreach (string s in backupFiles.Skip(skipfiles))
                 {
@@ -217,7 +223,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        internal static void SaveScreenShot(DependencyObject control)
+        internal void SaveScreenShot(DependencyObject control)
         {
             IntPtr? eslHandle = WindowsUtils.GetEslProcess()?.MainWindowHandle;
             if (eslHandle.HasValue)
@@ -257,12 +263,12 @@ namespace ESLTracker.Utils
             }
         }
 
-        internal static bool UpdateFile()
+        internal bool UpdateFile()
         {
             return UpdateFile(ReadCurrentFileVersionFromXML());
         }
 
-        internal static bool UpdateFile(SerializableVersion fromVersion)
+        internal bool UpdateFile(SerializableVersion fromVersion)
         {
             if (fromVersion == null)
             {
@@ -275,14 +281,14 @@ namespace ESLTracker.Utils
                 return false;
             }
             IFileUpdater updater = (IFileUpdater)Activator.CreateInstance(updaterTypes.First());
-            return updater.UpdateFile();
+            return updater.UpdateFile(this);
         }
 
 
-        private static SerializableVersion ReadCurrentFileVersionFromXML()
+        private SerializableVersion ReadCurrentFileVersionFromXML()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(FileManager.FullDataFilePath);
+            doc.Load(FullDataFilePath);
             XmlNode versionNode = doc.SelectSingleNode("/Tracker/Version");
 
             return ParseCurrentFileVersion(versionNode);
@@ -311,7 +317,7 @@ namespace ESLTracker.Utils
         }
 
 
-        private static IEnumerable<Type> FindUpdateClass(SerializableVersion currentFileVersion)
+        private IEnumerable<Type> FindUpdateClass(SerializableVersion currentFileVersion)
         {
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
@@ -326,7 +332,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        internal static string CreateNewVersionXML(SerializableVersion TargetVersion)
+        internal string CreateNewVersionXML(SerializableVersion TargetVersion)
         {
             StringBuilder serialisedVersion = new StringBuilder();
             using (TextWriter writer = new StringWriter(serialisedVersion))

@@ -74,7 +74,6 @@ namespace ESLTracker.ViewModels.Decks.Tests
             {
                 Name = deckName,
                 Class = deckClassValue,
-                Attributes = ClassAttributesHelper.Classes[DeckClass.Spellsword], //add some random attribs, to ensure change is handled properly
                 Type = deckType
             };
             decks.Add(editedDeck);
@@ -104,7 +103,6 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Assert.AreEqual(deckClassValue, editedDeckInTracker.Class);
             Assert.AreEqual(deckNameAfterChange, editedDeckInTracker.Name);
             Assert.AreEqual(deckType, editedDeckInTracker.Type);
-            CollectionAssert.AreEqual(ClassAttributesHelper.Classes[deckClassValue], editedDeckInTracker.Attributes);
         }
 
         [TestMethod]

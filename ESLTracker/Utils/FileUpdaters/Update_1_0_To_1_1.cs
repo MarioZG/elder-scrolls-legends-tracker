@@ -15,13 +15,13 @@ namespace ESLTracker.Utils.FileUpdaters
     {
         public SerializableVersion TargetVersion { get; } = new SerializableVersion(1, 1);
 
-        public bool UpdateFile()
+        public bool UpdateFile(FileManager fileManager)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(FileManager.FullDataFilePath);
+            doc.Load(fileManager.FullDataFilePath);
             XmlNode versionNode = doc.SelectSingleNode("/Tracker/Version");
 
-            versionNode.InnerXml = FileManager.CreateNewVersionXML(TargetVersion);
+            versionNode.InnerXml = fileManager.CreateNewVersionXML(TargetVersion);
 
             foreach (XmlNode dataNode in doc.SelectNodes("/Tracker/Decks/Deck/ArenaRank"))
             {
@@ -32,8 +32,8 @@ namespace ESLTracker.Utils.FileUpdaters
                 }
             }
 
-            File.Copy(FileManager.FullDataFilePath, FileManager.FullDataFilePath + ".upgrade", true);
-            doc.Save(FileManager.FullDataFilePath);
+            File.Copy(fileManager.FullDataFilePath, fileManager.FullDataFilePath + ".upgrade", true);
+            doc.Save(fileManager.FullDataFilePath);
 
             return true;
         }

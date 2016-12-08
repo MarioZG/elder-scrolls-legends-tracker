@@ -106,13 +106,11 @@ namespace ESLTracker.ViewModels.Decks
             ITracker tracker)
         {
             this.Deck.Class = selectedClassModel.SelectedClass.Value;
-            this.Deck.Attributes.Clear();
-            this.Deck.Attributes.AddRange(Utils.ClassAttributesHelper.Classes[this.Deck.Class.Value]);
             if (! tracker.Decks.Contains(this.Deck))
             {
                 tracker.Decks.Add(this.Deck);
             }
-            Utils.FileManager.SaveDatabase();
+            new FileManager(trackerFactory).SaveDatabase();
             this.EndEdit();
             messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
 
@@ -169,7 +167,6 @@ namespace ESLTracker.ViewModels.Decks
             Deck.Class = savedState.Class;
             Deck.Type = savedState.Type;
             Deck.DeckId = savedState.DeckId;
-            Deck.Attributes = savedState.Attributes;
             Deck.Notes = savedState.Notes;
             Deck.CreatedDate = savedState.CreatedDate;
             Deck.ArenaRank = savedState.ArenaRank;

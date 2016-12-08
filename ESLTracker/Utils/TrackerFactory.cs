@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
+using ESLTracker.Properties;
 
 namespace ESLTracker.Utils
 {
@@ -22,6 +23,11 @@ namespace ESLTracker.Utils
         public DateTime GetDateTimeNow()
         {
             return DateTime.Now;
+        }
+
+        public ISettings GetSettings()
+        {
+            return Properties.Settings.Default;
         }
     }
 }

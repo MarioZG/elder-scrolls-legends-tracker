@@ -174,7 +174,7 @@ namespace ESLTracker.ViewModels
             }
             if (!checkIfCanClose || (checkIfCanClose && MainWindow.ot.CanClose(CommandExit)))
             {
-                Utils.FileManager.SaveDatabase();
+                new FileManager(trackerFactory).SaveDatabase();
                 MainWindow.UpdateOverlay = false;
                 MainWindow.ot.Close();
                 settings.LastActiveDeckId = tracker.ActiveDeck?.DeckId;

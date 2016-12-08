@@ -216,7 +216,6 @@ namespace ESLTracker.ViewModels.Game
                 && this.Game.OpponentClass.HasValue)
             {
                 this.Game.Deck = tracker.ActiveDeck;
-                this.Game.OpponentAttributes.AddRange(Utils.ClassAttributesHelper.Classes[this.game.OpponentClass.Value]);
                 this.Game.Outcome = outcome.Value;
 
                 if (this.Game.Type == GameType.PlayRanked)
@@ -240,7 +239,7 @@ namespace ESLTracker.ViewModels.Game
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
                     Utils.Messages.EditDeck.Context.StatsUpdated);
 
-                FileManager.SaveDatabase();
+                new FileManager(trackerFactory).SaveDatabase();
 
                 this.Game = new DataModel.Game();
 
@@ -332,8 +331,6 @@ namespace ESLTracker.ViewModels.Game
         {
             if (this.Game.OpponentClass.HasValue)
             {
-                this.Game.OpponentAttributes.AddRange(Utils.ClassAttributesHelper.Classes[this.Game.OpponentClass.Value]);
-
                 if (this.Game.Type == GameType.PlayRanked)
                 {
                     if (Game.OpponentRank != PlayerRank.TheLegend)
@@ -351,7 +348,7 @@ namespace ESLTracker.ViewModels.Game
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
                     Utils.Messages.EditDeck.Context.StatsUpdated);
 
-                FileManager.SaveDatabase();
+                new FileManager(trackerFactory).SaveDatabase();
             }
 
             this.EndEdit();
@@ -389,7 +386,6 @@ namespace ESLTracker.ViewModels.Game
             Game.Deck = savedState.Deck;
             Game.DeckId = savedState.DeckId;
             Game.Notes = savedState.Notes;
-            Game.OpponentAttributes = savedState.OpponentAttributes;
             Game.OpponentClass = savedState.OpponentClass;
             Game.OpponentLegendRank = savedState.OpponentLegendRank;
             Game.OpponentName = savedState.OpponentName;

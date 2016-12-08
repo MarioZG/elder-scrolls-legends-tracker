@@ -59,8 +59,6 @@ namespace ESLTracker.DataModel
         public OrderOfPlay? OrderOfPlay { get; set; }
         public GameOutcome Outcome { get; set; }
 
-        public DeckAttributes OpponentAttributes { get; set; } = new DeckAttributes();
-
         DeckClass? opponentClass;
         public DeckClass? OpponentClass
         {
