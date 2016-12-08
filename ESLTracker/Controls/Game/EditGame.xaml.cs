@@ -115,12 +115,5 @@ namespace ESLTracker.Controls.Game
                 }
             }
         }
-
-        private void UserControl_Initialized(object sender, EventArgs e)
-        {
-            //TODO: once pkayer rank is correct control, move this to data model
-            this.cbPlayerRank.SelectedRank = Properties.Settings.Default.PlayerRank;
-            this.DataContext.BeginEdit();
-        }
     }
 }

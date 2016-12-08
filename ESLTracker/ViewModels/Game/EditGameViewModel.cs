@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
@@ -86,6 +87,15 @@ namespace ESLTracker.ViewModels.Game
             set { isEditControl = value; RaisePropertyChangedEvent("IsEditControl"); }
         }
 
+        private string errorMessage;
+
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set { errorMessage = value; RaisePropertyChangedEvent("ErrorMessage"); }
+        }
+
+
         public RelayCommandWithSettings CommandButtonCreate
         {
             get
@@ -118,6 +128,19 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
+
+        public RelayCommand CommandButtonResetAllChanges
+        {
+            get
+            {
+                return new RelayCommand(
+                    new Action<object>(CommandButtonResetAllChangesExecute)
+                    );
+            }
+        }
+
+        public ICommand CommandExecuteWhenContinueOnError { get; set; }
+
         ITrackerFactory trackerFactory;
         IMessenger messanger;
         ITracker tracker;
@@ -137,6 +160,7 @@ namespace ESLTracker.ViewModels.Game
             tracker.PropertyChanged += Instance_PropertyChanged;
             messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
 
+            this.BeginEdit();
         }
 
         private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -158,9 +182,10 @@ namespace ESLTracker.ViewModels.Game
                 RaisePropertyChangedEvent("DisplayPlayerRank");
                 RaisePropertyChangedEvent("DisplayBonusRound");
 
-                if (this.Game.Type == DataModel.Enums.GameType.PlayRanked)
+                if (this.Game.Type == GameType.PlayRanked)
                 {
                     this.Game.BonusRound = false;
+                    this.Game.PlayerRank = Properties.Settings.Default.PlayerRank;
                 }
                 else
                 {
@@ -379,6 +404,12 @@ namespace ESLTracker.ViewModels.Game
         internal bool IsDirty()
         {
             return !Game.Equals(savedState);
+        }
+
+        private void CommandButtonResetAllChangesExecute(object obj)
+        {
+            CommandExecuteWhenContinueOnError.Execute(null);
+            this.ErrorMessage = String.Empty;
         }
     }
 }

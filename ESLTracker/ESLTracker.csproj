@@ -105,6 +105,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
+    <Compile Include="Utils\Converters\StringNonEmptyToVisibiltyCollapsedConverter.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyCollapsedConverter.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyConverter.cs" />
     <Compile Include="Utils\Converters\CommandMultipleParamaters.cs" />

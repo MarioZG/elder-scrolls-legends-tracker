@@ -62,16 +62,26 @@ namespace ESLTracker
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (Properties.Settings.Default.MinimiseOnClose)
+            if (! ((App)Application.Current).IsApplicationClosing)
             {
-                this.DataContext.WindowState = WindowState.Minimized;
-                this.DataContext.ShowInTaskBar = false;
+                if (Properties.Settings.Default.MinimiseOnClose)
+                {
+                    this.DataContext.WindowState = WindowState.Minimized;
+                    this.DataContext.ShowInTaskBar = false;
 
-                e.Cancel = true;
-            }
-            else
-            {
-                this.DataContext.Exit(null, Properties.Settings.Default);
+                    e.Cancel = true;
+                }
+                else
+                {
+                    if (MainWindow.ot.CanClose(this.DataContext.CommandExit))
+                    {
+                        this.DataContext.Exit(true, Properties.Settings.Default);
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+                }
             }
         }
 

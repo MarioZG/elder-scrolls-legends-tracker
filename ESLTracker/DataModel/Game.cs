@@ -76,7 +76,13 @@ namespace ESLTracker.DataModel
         }
 
         //ranked info
-        public PlayerRank? PlayerRank { get; set; }
+        private PlayerRank? playerRank;
+        public PlayerRank? PlayerRank
+        {
+            get { return playerRank; }
+            set { playerRank = value; RaisePropertyChangedEvent("PlayerRank"); }
+        }
+
         public int? PlayerLegendRank { get; set; }
 
         public PlayerRank? OpponentRank { get; set; }

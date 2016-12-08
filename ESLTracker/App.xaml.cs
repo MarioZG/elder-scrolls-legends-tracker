@@ -15,6 +15,7 @@ namespace ESLTracker
     /// </summary>
     public partial class App : Application
     {
+        public bool IsApplicationClosing { get; set; } = false;
 
         static App()
         {
@@ -26,6 +27,7 @@ namespace ESLTracker
 
         public void Exit()
         {
+            IsApplicationClosing = true;
             this.Shutdown();
         }
 

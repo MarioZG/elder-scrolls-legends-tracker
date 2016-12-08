@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ESLTracker.ViewModels;
 
 namespace ESLTracker
 {
@@ -39,16 +40,19 @@ namespace ESLTracker
             this.DragMove();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        internal bool CanClose(ICommand commandExit)
         {
             if (this.editGame.DataContext.IsDirty())
             {
-                MessageBoxResult dialogResult = MessageBox.Show("There is unsaved game, do you want to close add game window?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel);
-                if (dialogResult == MessageBoxResult.Cancel)
-                {
-                    e.Cancel = true;
-                }
+                this.editGame.DataContext.ErrorMessage = "There is not saved game data. Save before exit!  ";
+                this.editGame.DataContext.CommandExecuteWhenContinueOnError = commandExit;
+                //e.Cancel = true;
+                this.Show();
+                this.Activate();
+                this.Focus();
+                return false;
             }
+            return true;
         }
     }
 }

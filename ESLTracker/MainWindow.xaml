@@ -101,7 +101,7 @@
                             <Image Source="/Resources/WindowIcons/mainForm.png"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Exit" Command="{Binding CommandExit}">
+                    <MenuItem Header="Exit" Command="{Binding CommandExit}" CommandParameter="{StaticResource True}">
                         <MenuItem.Icon>
                             <Image Source="/Resources/MenuIcons/exit.png"/>
                         </MenuItem.Icon>

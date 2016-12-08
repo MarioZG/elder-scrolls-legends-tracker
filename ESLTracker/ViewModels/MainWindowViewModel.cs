@@ -83,7 +83,6 @@ namespace ESLTracker.ViewModels
             set { windowState = value; RaisePropertyChangedEvent("WindowState"); }
         }
 
-
         #region Commands
         public ICommand CommandEditSettings
         {
@@ -168,12 +167,20 @@ namespace ESLTracker.ViewModels
 
         public void Exit(object parameter, ISettings settings)
         {
-            Utils.FileManager.SaveDatabase();
-            MainWindow.UpdateOverlay = false;
-            MainWindow.ot.Close();
-            settings.LastActiveDeckId = tracker.ActiveDeck?.DeckId;
-            settings.Save();
-            ((App)Application.Current).Exit();
+            bool checkIfCanClose = false;
+            if (parameter !=null && parameter is bool)
+            {
+                checkIfCanClose = (bool)parameter;
+            }
+            if (!checkIfCanClose || (checkIfCanClose && MainWindow.ot.CanClose(CommandExit)))
+            {
+                Utils.FileManager.SaveDatabase();
+                MainWindow.UpdateOverlay = false;
+                MainWindow.ot.Close();
+                settings.LastActiveDeckId = tracker.ActiveDeck?.DeckId;
+                settings.Save();
+                ((App)Application.Current).Exit();
+            }
         }
 
         public void ShowRewards(object parameter)
