@@ -67,7 +67,7 @@ namespace ESLTracker.ViewModels
             set { allowCommands = value; RaisePropertyChangedEvent("AllowCommands"); }
         }
 
-        private bool showInTaskBar;
+        private bool showInTaskBar = true;
 
         public bool ShowInTaskBar
         {
