@@ -9,6 +9,13 @@ namespace ESLTracker.DataModel
 {
     public class DeckAttributes : List<DeckAttribute>
     {
+        public DeckAttributes()
+        {
+        }
+
+        public DeckAttributes(IEnumerable<DeckAttribute> collection) : base(collection)
+        {
+        }
 
         public IEnumerable<string> ImageSources
         {

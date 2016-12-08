@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 
@@ -19,6 +20,23 @@ namespace ESLTracker.DataModel
         }
 
         public string Name { get; set; }
+
+        [XmlIgnore]
+        public DeckAttributes Attributes
+        {
+            get
+            {
+                if (Class.HasValue)
+                {
+                    return new DeckAttributes(ClassAttributesHelper.Classes[Class.Value]);
+                }
+                else
+                {
+                    return new DeckAttributes();
+                }
+            }
+        }
+
         public DeckClass? Class { get; set; }
         public string Notes { get; set; }
         public DateTime CreatedDate { get; set; }
