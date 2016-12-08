@@ -143,6 +143,10 @@ namespace ESLTracker.ViewModels.Game
         {
             if(e.PropertyName == "ActiveDeck")
             {
+                if (savedState != null)
+                {
+                    savedState.Deck = tracker.ActiveDeck;
+                }
                 RaisePropertyChangedEvent("AllowedGameTypes");
             }
        }
