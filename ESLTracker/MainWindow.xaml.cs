@@ -50,7 +50,7 @@ namespace ESLTracker
         {            
             ot.Show();
             UpdateOverlay = true;
-            while (UpdateOverlay && ! ot.IsDisposed() && ot.IsVisible)
+            while (UpdateOverlay && ! ot.IsDisposed())
             {
                 ot.Visibility = WindowsUtils.IsGameActive() || ot.IsActive || mainWindow.IsActive ? Visibility.Visible : Visibility.Hidden;
                // ot.Topmost = WindowsUtils.IsGameActive();

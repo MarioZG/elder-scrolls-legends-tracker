@@ -45,7 +45,7 @@ namespace ESLTracker.Controls
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Window.GetWindow(this).Hide();
+            MainWindow.UpdateOverlay = false;
         }
 
         private void btnCollapse_Click(object sender, RoutedEventArgs e)
