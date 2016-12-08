@@ -8,10 +8,10 @@
 		<GitBranchName>master</GitBranchName>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectToBuild Include="$(RootDir)\ESLTracker\ESLTracker.csproj">
+		<ProjectToBuild Include="$(BuildDir)\Src\ESLTracker\ESLTracker.csproj">
 			<AdditionalProperties>OutputPath=$(BuildDir)\ESLTracker</AdditionalProperties>
 		</ProjectToBuild>
-		<ProjectToBuild Include="$(RootDir)\ESLTrackerTests\ESLTrackerTests.csproj">
+		<ProjectToBuild Include="$(BuildDir)\Src\ESLTrackerTests\ESLTrackerTests.csproj">
 			<AdditionalProperties>OutputPath=$(BuildDir)\ESLTrackerTests</AdditionalProperties>
 		</ProjectToBuild>
 	</ItemGroup>
