@@ -34,7 +34,8 @@ namespace ESLTracker
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             System.IO.File.WriteAllText("./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt", e.Exception.ToString());
-            e.Handled = true;
+            MessageBox.Show("Applicaiton encountered unhandled exception. Log fiel has been created in file " + "./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt with details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            e.Handled = false;
         }
     }
 }
