@@ -163,19 +163,8 @@ namespace ESLTracker.DataModel
 
         public IEnumerable<Reward> GetArenaRewards()
         {
-            return trackerFactory.GetTracker().Rewards.Where(r=> r.ArenaDeckId == DeckId);
+            return trackerFactory.GetTracker().Rewards
+                .Where(r=> r.ArenaDeckId == DeckId);
         }
-
-        internal object GetArenaRewardsSummary()
-        {
-            return trackerFactory.GetTracker().Rewards.Where(r => r.ArenaDeckId == DeckId)
-                .GroupBy(r => r.Type)
-                .Select(rs => new
-                {
-                    Type = rs.Key,
-                    Qty = rs.Where(r => r.Type == rs.Key).Sum(r => r.Quantity)
-                });
-        }
-
     }
 }

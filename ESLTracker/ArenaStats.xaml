@@ -3,10 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
         xmlns:local="clr-namespace:ESLTracker"
         mc:Ignorable="d"
         Title="ArenaStats" Height="300" Width="300">
+    <Window.DataContext>
+        <ViewModels:ArenaStatsViewModel/>
+    </Window.DataContext>
     <StackPanel>
-        <DataGrid x:Name="dataGrid"></DataGrid>
+        <ComboBox ItemsSource="{Binding ArenaTypeSeletorValues}" SelectedItem="{Binding DeckType, Mode=TwoWay}"/>
+        <DatePicker x:Name="dtFrom" SelectedDate="{Binding FilterDateFrom, Mode=TwoWay}"/>
+        <DatePicker x:Name="dtTo" SelectedDate="{Binding FilterDateTo, Mode=TwoWay}"/>
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding DisplayDataSource}"></DataGrid>
     </StackPanel>
 </Window>

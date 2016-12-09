@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
+using Moq;
 
 namespace ESLTracker.ViewModels.Rewards.Tests
 {
@@ -70,7 +72,7 @@ namespace ESLTracker.ViewModels.Rewards.Tests
                     if (expectedVisibilty.Keys.Contains(reason)
                         && expectedVisibilty[reason].Keys.Contains(type))
                     {
-                        expected = expectedVisibilty[reason][type]; 
+                        expected = expectedVisibilty[reason][type];
                     }
                     else
                     {
@@ -89,7 +91,39 @@ namespace ESLTracker.ViewModels.Rewards.Tests
                 }
             }
 
-          
-        }       
+
+        }
+
+        [TestMethod()]
+        public void AddRewardTest001_CanNonArenaRewardLinkedToDeck()
+        {
+            RewardSetViewModel model = new RewardSetViewModel();
+
+            model.RewardReason = RewardReason.LevelUp;
+
+            model.AddReward(new Reward() { ArenaDeck = new Deck(), Reason= RewardReason.LevelUp});
+
+            Assert.IsNull(model.Rewards[0].ArenaDeck);
+            Assert.IsNull(model.Rewards[0].ArenaDeckId);
+        }
+
+        [TestMethod()]
+        public void AddRewardTest002_ArenaRewardLinkedToDeck()
+        {
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            Mock<ITracker> tracker = new Mock<ITracker>();
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+
+            tracker.Setup(t => t.ActiveDeck).Returns(new Deck(trackerFactory.Object) { Type = DeckType.VersusArena });
+
+            RewardSetViewModel model = new RewardSetViewModel(trackerFactory.Object);
+
+            model.RewardReason = RewardReason.VersusArena;
+
+            model.AddReward(new Reward() { ArenaDeck = new Deck(), Reason = RewardReason.VersusArena });
+
+            Assert.IsNotNull(model.Rewards[0].ArenaDeck);
+            Assert.IsNotNull(model.Rewards[0].ArenaDeckId);
+        }
     }
 }
