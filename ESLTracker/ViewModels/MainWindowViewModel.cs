@@ -124,6 +124,11 @@ namespace ESLTracker.ViewModels
                               );
             }
         }
+
+        public ICommand CommandShowArenaStats
+        {
+            get { return new RelayCommand(new Action<object>(CommandShowArenaStatsExecute)); }
+        }
         #endregion
 
         ITrackerFactory trackerFactory;
@@ -253,6 +258,11 @@ namespace ESLTracker.ViewModels
             this.EditGameVisible = false;
             this.DeckStatsVisible = true;
             this.AllowCommands = true;
+        }
+
+        private void CommandShowArenaStatsExecute(object obj)
+        {
+            new ArenaStats().Show();
         }
     }
 }

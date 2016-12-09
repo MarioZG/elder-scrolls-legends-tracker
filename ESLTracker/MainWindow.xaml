@@ -41,6 +41,7 @@
                     </MenuItem.Header>
                 </MenuItem>
                 <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
+                <MenuItem Header="Arena stats" Command="{Binding CommandShowArenaStats}" />
                 <MenuItem Header="Show overlay window" Command="{Binding CommandShowOverlay}"/>
                 <MenuItem Command="{Binding CommandRunGame}">
                     <MenuItem.Header>

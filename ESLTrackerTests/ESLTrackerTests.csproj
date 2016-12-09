@@ -40,6 +40,7 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Moq, Version=4.5.28.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.5.28\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
@@ -73,6 +74,7 @@
     <Compile Include="Utils\Converters\DeckTypeToArenaRankVisibiltyCollapsedTests.cs" />
     <Compile Include="Utils\Converters\PlayerRankLegendToVisibiltyCollapsedTests.cs" />
     <Compile Include="Utils\FileManagerTests.cs" />
+    <Compile Include="ViewModels\ArenaStatsViewModelTests.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\DeckListViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\DeckTypeSelectorViewModelTests.cs" />

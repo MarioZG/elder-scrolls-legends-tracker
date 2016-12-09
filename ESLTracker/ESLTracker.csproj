@@ -80,6 +80,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ArenaStats.xaml.cs">
+      <DependentUpon>ArenaStats.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Decks\DeckFilter.xaml.cs">
       <DependentUpon>DeckFilter.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,7 @@
     <Compile Include="Utils\Messenger.cs" />
     <Compile Include="Utils\SerializableVersion.cs" />
     <Compile Include="Utils\TrackerFactory.cs" />
+    <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
     <Compile Include="Controls\DeckClassSelector.xaml.cs">
       <DependentUpon>DeckClassSelector.xaml</DependentUpon>
@@ -199,6 +203,10 @@
     <Compile Include="ViewModels\Settings\SettingsPanelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="WindowsUtils.cs" />
+    <Page Include="ArenaStats.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ControlStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
