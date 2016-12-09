@@ -4,12 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
+        xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         xmlns:local="clr-namespace:ESLTracker"
         mc:Ignorable="d"
         Title="ArenaStats" Height="300" Width="300">
     <Window.DataContext>
         <ViewModels:ArenaStatsViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <Converters:ClassToAttributesIconsConverter x:Key="ClassToAttributesIconsConverter"/>
+    </Window.Resources>
     <StackPanel>
         <DockPanel>
             <ComboBox 
@@ -22,6 +26,48 @@
             <DatePicker x:Name="dtFrom" SelectedDate="{Binding FilterDateFrom, Mode=TwoWay}"/>
             <DatePicker x:Name="dtTo" SelectedDate="{Binding FilterDateTo, Mode=TwoWay}"/>
         </DockPanel>
-        <DataGrid x:Name="dataGrid" ItemsSource="{Binding DisplayDataSource}"></DataGrid>
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding DisplayDataSource}"
+                  AutoGenerateColumns="False" GridLinesVisibility="Horizontal">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <ItemsControl ItemsSource="{Binding Path=Class, Converter={StaticResource ClassToAttributesIconsConverter}}" BorderThickness="0"
+                                                ToolTip="{Binding Class}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel IsItemsHost="True" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Width="15" Source="{Binding}"></Image>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Class" Binding="{Binding Class}">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Runs" Binding="{Binding NumberOfRuns}"/>
+                <DataGridTextColumn Header="Avg Wins" Binding="{Binding AvgWins}"/>
+                <DataGridTextColumn Header="Best run" Binding="{Binding Best}"/>
+                <DataGridTextColumn Header="Avg gold" Binding="{Binding Avg.Gold}"/>
+                <DataGridTextColumn Header="Avg gems" Binding="{Binding Avg.SoulGem}"/>
+                <DataGridTextColumn Header="Avg packs" Binding="{Binding Avg.Pack}"/>
+                <DataGridTextColumn Header="Avg cards" Binding="{Binding Avg.Card}"/>
+                <DataGridTextColumn Header="Total gold" Binding="{Binding Total.Gold}"/>
+                <DataGridTextColumn Header="Total gems" Binding="{Binding Total.SoulGem}"/>
+                <DataGridTextColumn Header="Total packs" Binding="{Binding Total.Pack}"/>
+                <DataGridTextColumn Header="Total cards" Binding="{Binding Total.Card}"/>
+                <DataGridTextColumn Header="Best gold" Binding="{Binding Max.Gold}"/>
+                <DataGridTextColumn Header="Best gems" Binding="{Binding Max.SoulGem}"/>
+                <DataGridTextColumn Header="Best packs" Binding="{Binding Max.Pack}"/>
+                <DataGridTextColumn Header="Best cards" Binding="{Binding Max.Card}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </StackPanel>
 </Window>
