@@ -42,9 +42,9 @@ namespace ESLTracker.DataModel
         public DateTime CreatedDate { get; set; }
         public ArenaRank? ArenaRank { get; set; }
 
-        private ITrackerFactory tracker; //cannot be ITracker, as we need to load it first - stack overflow when database is loading
+        private ITrackerFactory trackerFactory; //cannot be ITracker, as we need to load it first - stack overflow when database is loading
 
-        public Deck() : this(new TrackerFactory())
+        public Deck() : this(TrackerFactory.DefaultTrackerFactory)
         {
         }
 
@@ -52,7 +52,7 @@ namespace ESLTracker.DataModel
         {
             DeckId = Guid.NewGuid(); //if deserialise, will be overriten!, if new generate!
             CreatedDate = tracker.GetDateTimeNow();
-            this.tracker = tracker;
+            this.trackerFactory = tracker;
         }
 
         public int Victories {
@@ -102,7 +102,7 @@ namespace ESLTracker.DataModel
 
         public IEnumerable<Game> GetDeckGames()
         {
-            return tracker.GetTracker().Games.Where(g => g.Deck.DeckId == this.DeckId);
+            return trackerFactory.GetTracker().Games.Where(g => g.Deck.DeckId == this.DeckId);
         }
 
         public IEnumerable GetDeckVsClass()
@@ -160,5 +160,22 @@ namespace ESLTracker.DataModel
                     throw new NotImplementedException("Is arena run finished not dfined for type {" + Type + "}");
             }
         }
+
+        public IEnumerable<Reward> GetArenaRewards()
+        {
+            return trackerFactory.GetTracker().Rewards.Where(r=> r.ArenaDeckId == DeckId);
+        }
+
+        internal object GetArenaRewardsSummary()
+        {
+            return trackerFactory.GetTracker().Rewards.Where(r => r.ArenaDeckId == DeckId)
+                .GroupBy(r => r.Type)
+                .Select(rs => new
+                {
+                    Type = rs.Key,
+                    Qty = rs.Where(r => r.Type == rs.Key).Sum(r => r.Quantity)
+                });
+        }
+
     }
 }

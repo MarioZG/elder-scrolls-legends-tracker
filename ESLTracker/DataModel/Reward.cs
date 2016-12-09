@@ -7,7 +7,7 @@ namespace ESLTracker.DataModel
 {
     public class Reward
     {
-        public Reward() : this(new TrackerFactory())
+        public Reward() : this(TrackerFactory.DefaultTrackerFactory)
         {
         }
 
@@ -47,9 +47,17 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return new System.Windows.Media.Imaging.BitmapImage(new Uri(@"pack://application:,,,/"
-                 + "Resources/RewardType/" + Type.ToString() + ".png"));
+                try
+                {
+                    return new System.Windows.Media.Imaging.BitmapImage(new Uri(@"pack://application:,,,/"
+                     + "Resources/RewardType/" + Type.ToString() + ".png"));
+                }
+                catch (System.IO.IOException ex)
+                {
+                    return null;
+                }
             }
+        
         }
     }
 }

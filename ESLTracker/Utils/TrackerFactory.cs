@@ -8,8 +8,10 @@ using ESLTracker.Properties;
 
 namespace ESLTracker.Utils
 {
-    class TrackerFactory : ITrackerFactory
+    public class TrackerFactory : ITrackerFactory
     {
+        public static ITrackerFactory DefaultTrackerFactory { get; set; } = new TrackerFactory();
+
         public ITracker GetTracker()
         {
             return Tracker.Instance;

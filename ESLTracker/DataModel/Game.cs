@@ -88,7 +88,7 @@ namespace ESLTracker.DataModel
 
         public string Notes { get; set; }
 
-        public Game() : this(new TrackerFactory())
+        public Game() : this(TrackerFactory.DefaultTrackerFactory)
         {
         }
 

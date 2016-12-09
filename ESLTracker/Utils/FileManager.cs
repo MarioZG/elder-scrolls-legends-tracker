@@ -46,6 +46,10 @@ namespace ESLTracker.Utils
 
         ITrackerFactory trackerfactory;
 
+        public FileManager() : this(new TrackerFactory())
+        {
+        }
+
         public FileManager(ITrackerFactory trackerfactory)
         {
             this.trackerfactory = trackerfactory;
@@ -74,16 +78,7 @@ namespace ESLTracker.Utils
                             throw new InvalidDataException("You are using old file format version");
                         }
                     }
-                    //fix up ref to decks in games
-                    foreach (Game g in tracker.Games)
-                    {
-                        g.Deck = tracker.Decks.Where(d => d.DeckId == g.DeckId).FirstOrDefault();
-                    }
-                    //fix up ref to decks in rewards
-                    foreach (Reward r in tracker.Rewards)
-                    {
-                        r.ArenaDeck = tracker.Decks.Where(d => d.DeckId == r.ArenaDeckId).FirstOrDefault();
-                    }
+                    
                     //restore active deck
                     Guid? activeDeckFromSettings = trackerfactory.GetSettings().LastActiveDeckId;
                     if ((activeDeckFromSettings != null)
@@ -135,7 +130,7 @@ namespace ESLTracker.Utils
             return tracker;
         }
 
-        public T LoadDatabase<T>(string path)
+        public T LoadDatabase<T>(string path) where T: ITracker
         {
             T tracker;
             //standard serialization
@@ -143,6 +138,17 @@ namespace ESLTracker.Utils
             {
                 var xml = new XmlSerializer(typeof(T));
                 tracker = (T)xml.Deserialize(reader);
+            }
+
+            //fix up ref to decks in games
+            foreach (Game g in tracker.Games)
+            {
+                g.Deck = tracker.Decks.Where(d => d.DeckId == g.DeckId).FirstOrDefault();
+            }
+            //fix up ref to decks in rewards
+            foreach (Reward r in tracker.Rewards)
+            {
+                r.ArenaDeck = tracker.Decks.Where(d => d.DeckId == r.ArenaDeckId).FirstOrDefault();
             }
 
             return tracker;
