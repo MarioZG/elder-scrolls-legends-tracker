@@ -31,7 +31,7 @@ namespace ESLTracker.ViewModels.Tests
 
 
 
-            Mock< ITracker> tracker = new Mock<ITracker>();
+            Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Decks).Returns(new System.Collections.ObjectModel.ObservableCollection<Deck>()
             {
                 d1, d2, d3
@@ -105,7 +105,7 @@ namespace ESLTracker.ViewModels.Tests
             //d4 - solo arena run
             Deck d4 = new Deck(trackerfactory.Object) { Type = DataModel.Enums.DeckType.SoloArena, Class = DataModel.Enums.DeckClass.Assassin };
             //d5 some old run, out of date fulter
-            Deck d5 = new Deck(trackerfactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, CreatedDate = new DateTime(2016, 10,1), Class = DataModel.Enums.DeckClass.Assassin };
+            Deck d5 = new Deck(trackerfactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, CreatedDate = new DateTime(2016, 10, 1), Class = DataModel.Enums.DeckClass.Assassin };
 
             Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Decks).Returns(new System.Collections.ObjectModel.ObservableCollection<Deck>()
@@ -179,6 +179,71 @@ namespace ESLTracker.ViewModels.Tests
             Assert.AreEqual(2, result[0].Max.Pack);
             Assert.AreEqual(3, result[0].Max.Card);
 
+        }
+
+        [TestMethod()]
+        public void SetDateFiltersTest001_All()
+        {
+            ArenaStatsViewModel model = new ArenaStatsViewModel();
+
+            model.SetDateFilters(DateFilter.All);
+
+            Assert.IsNull(model.FilterDateFrom);
+            Assert.IsNull(model.FilterDateTo);
+        }
+
+        [TestMethod()]
+        public void SetDateFiltersTest002_PrevMonth()
+        {
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 3, 7));
+
+            DateTime expectedFrom = new DateTime(2016, 2, 1);
+            DateTime expectedTo = new DateTime(2016, 2, 29);
+
+            ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
+
+
+            model.SetDateFilters(DateFilter.PreviousMonth);
+
+            Assert.AreEqual(expectedFrom, model.FilterDateFrom);
+            Assert.AreEqual(expectedTo, model.FilterDateTo);
+        }
+
+        [TestMethod()]
+        public void SetDateFiltersTest003_ThisMonth()
+        {
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 3, 7));
+
+            DateTime expectedFrom = new DateTime(2016, 3, 1);
+            DateTime expectedTo = new DateTime(2016, 3, 31);
+
+            ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
+
+
+            model.SetDateFilters(DateFilter.ThisMonth);
+
+            Assert.AreEqual(expectedFrom, model.FilterDateFrom);
+            Assert.AreEqual(expectedTo, model.FilterDateTo);
+        }
+
+        [TestMethod()]
+        public void SetDateFiltersTest004_ThisWeek()
+        {
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 3, 7));
+
+            DateTime expectedFrom = new DateTime(2016, 3, 1);
+            DateTime expectedTo = new DateTime(2016, 3, 7);
+
+            ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
+
+
+            model.SetDateFilters(DateFilter.Last7Days);
+
+            Assert.AreEqual(expectedFrom, model.FilterDateFrom);
+            Assert.AreEqual(expectedTo, model.FilterDateTo);
         }
     }
 }

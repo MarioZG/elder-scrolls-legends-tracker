@@ -18,14 +18,14 @@ namespace ESLTracker.ViewModels
             set { filterDateFrom = value; RaisePropertyChangedEvent("DisplayDataSource"); }
         }
 
-        private DateTime? filterTo;
+        private DateTime? filterDateTo;
         public DateTime? FilterDateTo
         {
-            get { return filterTo; }
-            set { filterTo = value; RaisePropertyChangedEvent("DisplayDataSource"); }
+            get { return filterDateTo; }
+            set { filterDateTo = value; RaisePropertyChangedEvent("DisplayDataSource"); }
         }
 
-        private DeckType deckType;
+        private DeckType deckType = DeckType.VersusArena;
         public DeckType DeckType
         {
             get { return deckType; }
@@ -49,6 +49,29 @@ namespace ESLTracker.ViewModels
             }
         }
 
+        public Array FilterDateOptions
+        {
+            get
+            {
+                return Enum.GetValues(typeof(DateFilter));
+            }
+        }
+
+        private DateFilter filterDateSelectedOption;
+
+        public DateFilter FilterDateSelectedOption
+        {
+            get { return filterDateSelectedOption; }
+            set
+            {
+                filterDateSelectedOption = value;
+                SetDateFilters(value);
+                RaisePropertyChangedEvent("FilterDateFrom");
+                RaisePropertyChangedEvent("FilterDateTo");
+                RaisePropertyChangedEvent("DisplayDataSource");
+            }
+        }
+
 
         private ITrackerFactory trackerFactory;
         
@@ -60,6 +83,35 @@ namespace ESLTracker.ViewModels
         public ArenaStatsViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
+        }
+
+
+        public void SetDateFilters(DateFilter value)
+        {
+            DateTime today = trackerFactory.GetDateTimeNow().Date;
+            switch (value)
+            {
+                case DateFilter.All:
+                    filterDateFrom = null;
+                    filterDateTo = null;
+                    break;
+                case DateFilter.Last7Days:
+                    filterDateFrom = today.AddDays(-6);
+                    filterDateTo = today.Date;
+                    break;
+                case DateFilter.ThisMonth:
+                    filterDateFrom = new DateTime(today.Year, today.Month, 1);
+                    filterDateTo = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
+                    break;
+                case DateFilter.PreviousMonth:
+                    today = today.AddMonths(-1); //as we can change year in process!
+                    filterDateFrom = new DateTime(today.Year, today.Month, 1);
+                    filterDateTo = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         public dynamic GetArenaRunStatistics()
@@ -138,7 +190,7 @@ namespace ESLTracker.ViewModels
     public enum DateFilter
     {
         All,
-        ThisWeek,
+        Last7Days,
         ThisMonth,
         PreviousMonth
     }

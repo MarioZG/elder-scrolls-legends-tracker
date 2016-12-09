@@ -11,9 +11,17 @@
         <ViewModels:ArenaStatsViewModel/>
     </Window.DataContext>
     <StackPanel>
-        <ComboBox ItemsSource="{Binding ArenaTypeSeletorValues}" SelectedItem="{Binding DeckType, Mode=TwoWay}"/>
-        <DatePicker x:Name="dtFrom" SelectedDate="{Binding FilterDateFrom, Mode=TwoWay}"/>
-        <DatePicker x:Name="dtTo" SelectedDate="{Binding FilterDateTo, Mode=TwoWay}"/>
+        <DockPanel>
+            <ComboBox 
+                DockPanel.Dock="Left"
+                ItemsSource="{Binding ArenaTypeSeletorValues}" SelectedItem="{Binding DeckType, Mode=TwoWay}"/>
+            <ComboBox DockPanel.Dock="Top" 
+                      ItemsSource="{Binding FilterDateOptions}"
+                      SelectedItem="{Binding FilterDateSelectedOption}"
+                      />
+            <DatePicker x:Name="dtFrom" SelectedDate="{Binding FilterDateFrom, Mode=TwoWay}"/>
+            <DatePicker x:Name="dtTo" SelectedDate="{Binding FilterDateTo, Mode=TwoWay}"/>
+        </DockPanel>
         <DataGrid x:Name="dataGrid" ItemsSource="{Binding DisplayDataSource}"></DataGrid>
     </StackPanel>
 </Window>
