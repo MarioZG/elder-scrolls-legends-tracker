@@ -85,7 +85,7 @@ namespace ESLTracker.ViewModels.Rewards
             return matchSolo || matchVersus ;
         }
 
-        private TrackerFactory trackerFactory;
+        private ITrackerFactory trackerFactory;
         ITracker tracker;
 
         public RewardSetViewModel() : this(new TrackerFactory())
@@ -93,7 +93,7 @@ namespace ESLTracker.ViewModels.Rewards
             
         }
 
-        internal RewardSetViewModel(TrackerFactory trackerFactory)
+        internal RewardSetViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
             tracker = trackerFactory.GetTracker();
