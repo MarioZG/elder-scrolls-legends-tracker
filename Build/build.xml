@@ -6,7 +6,7 @@
 		<ApplicationName>ESLTracker</ApplicationName>
 		<Version>LatestMaster</Version>
 		<GitBranchName>master</GitBranchName>
-	</PropertyGroup>
+	</PropertyGroup>	
 	<ItemGroup>
 		<ProjectToBuild Include="$(BuildDir)\Src\ESLTracker\ESLTracker.csproj">
 			<AdditionalProperties>OutputPath=$(BuildDir)\ESLTracker</AdditionalProperties>
@@ -20,7 +20,6 @@
 		<CallTarget Targets="Compile"/>
 		<CallTarget Targets="ExecuteTests"/>
 		<CallTarget Targets="CopyBinaries"/>
-		<CallTarget Targets="CleanUp"/>
 		<!--prepare out dir out and test-->
 		<!--compile to out and test dir -->
 		<!--run test -->
@@ -49,6 +48,6 @@
 		<Copy SourceFiles='@(OutputFiles)' DestinationFolder='$(RootDir)\Bin\$(Version)' />
 	</Target>
 	<Target Name="CleanUp">
-		<RemoveDir Directories="$(BuildDir)"/>
+		<RemoveDir Directories="$(BuildDir)" />
 	</Target>
 </Project>
