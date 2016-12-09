@@ -118,7 +118,7 @@ namespace ESLTracker.ViewModels
         {
             var groupby = typeof(DataModel.Deck).GetProperty("Class");
 
-            return trackerFactory.GetTracker().Decks
+            var result = trackerFactory.GetTracker().Decks
             .Where(d => d.Type == DeckType 
                      && ((filterDateFrom== null) || (d.CreatedDate.Date >= filterDateFrom.Value.Date))
                      && ((FilterDateTo == null) || (d.CreatedDate.Date <= FilterDateTo.Value.Date)))
@@ -136,7 +136,6 @@ namespace ESLTracker.ViewModels
                         .GroupBy(r => new { r.Key.Type })
                         .Select(rg => new ESLTracker.DataModel.Reward() { Type = rg.Key.Type, Quantity = (int)rg.Average(r => r.Qty) })
                         ),
-                AvgOld = new RewardsTotal(ds.SelectMany(d => d.GetArenaRewards()).GroupBy(r => r.Type).Select(rg => new ESLTracker.DataModel.Reward { Type = rg.Key, Quantity = (int)rg.Average(r => r.Quantity) }).ToList()),
                 Max = new RewardsTotal(
                         ds.SelectMany(d => d.GetArenaRewards().GroupBy(r => new { r.Type, r.ArenaDeckId }).Select(rg => new { rg.Key, Qty = rg.Sum(r => r.Quantity) }))
                         .GroupBy(r => new { r.Key.Type })
@@ -147,15 +146,53 @@ namespace ESLTracker.ViewModels
                 //TotalPacks = ds.Sum(d => d.GetArenaRewards().Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Pack).Sum(r => r.Quantity)),
                 //TotalCards = ds.Sum(d => d.GetArenaRewards().Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Card).Sum(r => r.Quantity))
             }).ToList();
+
+            result.Add(new {
+                Class = "TOTAL" as object,
+                NumberOfRuns = result.Sum(r=> r.NumberOfRuns),
+                AvgWins = result.Average(d => d.AvgWins),
+                Best = result.Max(d => d.Best),
+                Total = result.Aggregate(new RewardsTotal { },
+                    (accumulator, it) =>
+                        new RewardsTotal
+                        {
+                            Card = accumulator.Card + it.Total.Card,
+                            Pack = accumulator.Pack + it.Total.Pack,
+                            Gold = accumulator.Gold + it.Total.Gold,
+                            SoulGem = accumulator.SoulGem + it.Total.SoulGem
+                        }
+                ),
+                Avg = new RewardsTotal
+                        {
+                            Card = result.Average( r=> r.Avg.Card),
+                            Pack = result.Average(r => r.Avg.Pack),
+                            Gold = result.Average(r => r.Avg.Gold),
+                            SoulGem = result.Average(r => r.Avg.SoulGem)
+                        },
+                Max = new RewardsTotal
+                        {
+                            Card = result.Max(r => r.Max.Card),
+                            Pack = result.Max(r => r.Max.Pack),
+                            Gold = result.Max(r => r.Max.Gold),
+                            SoulGem = result.Max(r => r.Max.SoulGem)
+                        }
+            });
+
+            return result;
         }
     }
 
     public class RewardsTotal
     {
-        public int Gold { get; set; }
-        public int SoulGem { get; set; }
-        public int Pack { get; set; }
-        public int Card { get; set; }
+        public double Gold { get; set; }
+        public double SoulGem { get; set; }
+        public double Pack { get; set; }
+        public double Card { get; set; }
+
+        public RewardsTotal()
+        {
+
+        }
 
         public RewardsTotal(IEnumerable<DataModel.Reward> rewards)
         {

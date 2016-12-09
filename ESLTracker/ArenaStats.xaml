@@ -28,6 +28,16 @@
         </DockPanel>
         <DataGrid x:Name="dataGrid" ItemsSource="{Binding DisplayDataSource}"
                   AutoGenerateColumns="False" GridLinesVisibility="Horizontal">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridCell}" >
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Class}" Value="TOTAL">
+                            <Setter Property="FontWeight" Value="ExtraBold"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
