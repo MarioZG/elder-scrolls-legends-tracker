@@ -7,7 +7,7 @@
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         xmlns:local="clr-namespace:ESLTracker"
         mc:Ignorable="d"
-        Title="ArenaStats" Height="300" Width="300">
+        Title="ArenaStats">
     <Window.DataContext>
         <ViewModels:ArenaStatsViewModel/>
     </Window.DataContext>
@@ -16,15 +16,21 @@
     </Window.Resources>
     <StackPanel>
         <DockPanel>
-            <ComboBox 
-                DockPanel.Dock="Left"
-                ItemsSource="{Binding ArenaTypeSeletorValues}" SelectedItem="{Binding DeckType, Mode=TwoWay}"/>
-            <ComboBox DockPanel.Dock="Top" 
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="5,10,5,5">
+                <Label Content="Arena type"/>
+                <ComboBox 
+                    ItemsSource="{Binding ArenaTypeSeletorValues}" SelectedItem="{Binding DeckType, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5,5,5,10">
+                <Label Content="Date filter. Select predefined:"/>
+                <ComboBox DockPanel.Dock="Top" 
                       ItemsSource="{Binding FilterDateOptions}"
                       SelectedItem="{Binding FilterDateSelectedOption}"
                       />
-            <DatePicker x:Name="dtFrom" SelectedDate="{Binding FilterDateFrom, Mode=TwoWay}"/>
-            <DatePicker x:Name="dtTo" SelectedDate="{Binding FilterDateTo, Mode=TwoWay}"/>
+                <Label Content=" or choose any range"/>
+                <DatePicker x:Name="dtFrom" SelectedDate="{Binding FilterDateFrom, Mode=TwoWay}"/>
+                <DatePicker x:Name="dtTo" SelectedDate="{Binding FilterDateTo, Mode=TwoWay}"/>
+            </StackPanel>
         </DockPanel>
         <DataGrid x:Name="dataGrid" ItemsSource="{Binding DisplayDataSource}"
                   AutoGenerateColumns="False" GridLinesVisibility="Horizontal">

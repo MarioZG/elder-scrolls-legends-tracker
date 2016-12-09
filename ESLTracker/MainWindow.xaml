@@ -40,8 +40,16 @@
                         </StackPanel>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
-                <MenuItem Header="Arena stats" Command="{Binding CommandShowArenaStats}" />
+                <MenuItem>
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Source="/Resources/MenuIcons/statistics.png" />
+                            <ContentPresenter Content="Statistics" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                    <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
+                    <MenuItem Header="Arena stats" Command="{Binding CommandShowArenaStats}" />
+                </MenuItem>
                 <MenuItem Header="Show overlay window" Command="{Binding CommandShowOverlay}"/>
                 <MenuItem Command="{Binding CommandRunGame}">
                     <MenuItem.Header>
