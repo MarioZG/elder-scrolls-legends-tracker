@@ -30,7 +30,9 @@ namespace ESLTracker.DataModel.Tests
 
             PopulateObject(g, StartProp);
 
+#pragma warning disable RECS0088 // Comparing equal expression for equality is usually useless
             Assert.IsTrue(g.Equals(g));
+#pragma warning restore RECS0088 // Comparing equal expression for equality is usually useless
         }
 
         [TestMethod()]

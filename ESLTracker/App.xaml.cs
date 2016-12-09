@@ -25,7 +25,7 @@ namespace ESLTracker
                     XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
 
-        public void Exit()
+        public void CloseApplication()
         {
             IsApplicationClosing = true;
             this.Shutdown();

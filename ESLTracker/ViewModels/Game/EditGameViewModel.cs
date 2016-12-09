@@ -274,6 +274,7 @@ namespace ESLTracker.ViewModels.Game
         {
             if (tracker.ActiveDeck != null)
             {
+#pragma warning disable CS0162 // Unreachable code detected
                 switch (tracker.ActiveDeck.Type)
                 {
                     case DeckType.Constructed:
@@ -290,6 +291,7 @@ namespace ESLTracker.ViewModels.Game
                     default:
                         break;
                 }
+#pragma warning restore CS0162 // Unreachable code detected
             }
             return Enum.GetValues(typeof(GameType)).Cast<GameType>();
         }

@@ -179,7 +179,7 @@ namespace ESLTracker.ViewModels
                 MainWindow.ot.Close();
                 settings.LastActiveDeckId = tracker.ActiveDeck?.DeckId;
                 settings.Save();
-                ((App)Application.Current).Exit();
+                ((App)Application.Current).CloseApplication();
             }
         }
 

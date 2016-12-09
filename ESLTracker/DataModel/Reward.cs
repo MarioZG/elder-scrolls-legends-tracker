@@ -52,7 +52,7 @@ namespace ESLTracker.DataModel
                     return new System.Windows.Media.Imaging.BitmapImage(new Uri(@"pack://application:,,,/"
                      + "Resources/RewardType/" + Type.ToString() + ".png"));
                 }
-                catch (System.IO.IOException ex)
+                catch (System.IO.IOException)
                 {
                     return null;
                 }
