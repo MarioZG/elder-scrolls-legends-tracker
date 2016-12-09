@@ -52,21 +52,21 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Class" Binding="{Binding Class}">
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Runs" Binding="{Binding NumberOfRuns}"/>
-                <DataGridTextColumn Header="Avg Wins" Binding="{Binding AvgWins}"/>
-                <DataGridTextColumn Header="Best run" Binding="{Binding Best}"/>
-                <DataGridTextColumn Header="Avg gold" Binding="{Binding Avg.Gold}"/>
-                <DataGridTextColumn Header="Avg gems" Binding="{Binding Avg.SoulGem}"/>
-                <DataGridTextColumn Header="Avg packs" Binding="{Binding Avg.Pack}"/>
-                <DataGridTextColumn Header="Avg cards" Binding="{Binding Avg.Card}"/>
-                <DataGridTextColumn Header="Total gold" Binding="{Binding Total.Gold}"/>
-                <DataGridTextColumn Header="Total gems" Binding="{Binding Total.SoulGem}"/>
-                <DataGridTextColumn Header="Total packs" Binding="{Binding Total.Pack}"/>
-                <DataGridTextColumn Header="Total cards" Binding="{Binding Total.Card}"/>
-                <DataGridTextColumn Header="Best gold" Binding="{Binding Max.Gold}"/>
-                <DataGridTextColumn Header="Best gems" Binding="{Binding Max.SoulGem}"/>
-                <DataGridTextColumn Header="Best packs" Binding="{Binding Max.Pack}"/>
-                <DataGridTextColumn Header="Best cards" Binding="{Binding Max.Card}"/>
+                <DataGridTextColumn Header="Runs" Binding="{Binding NumberOfRuns, StringFormat={}{0,4:N0}}"/>
+                <DataGridTextColumn Header="Avg Wins" Binding="{Binding AvgWins, StringFormat={}{0,7:N1}}"/>
+                <DataGridTextColumn Header="Best run" Binding="{Binding Best, StringFormat={}{0,6:N0}}"/>
+                <DataGridTextColumn Header="Avg gold" Binding="{Binding Avg.Gold, StringFormat={}{0,7:N1}}"/>
+                <DataGridTextColumn Header="Avg gems" Binding="{Binding Avg.SoulGem, StringFormat={}{0,7:N1}}"/>
+                <DataGridTextColumn Header="Avg packs" Binding="{Binding Avg.Pack, StringFormat={}{0,7:N1}}"/>
+                <DataGridTextColumn Header="Avg cards" Binding="{Binding Avg.Card, StringFormat={}{0,7:N1}}"/>
+                <DataGridTextColumn Header="Total gold" Binding="{Binding Total.Gold, StringFormat={}{0,7:N0}}"/>
+                <DataGridTextColumn Header="Total gems" Binding="{Binding Total.SoulGem, StringFormat={}{0,7:N0}}"/>
+                <DataGridTextColumn Header="Total packs" Binding="{Binding Total.Pack, StringFormat={}{0,7:N0}}"/>
+                <DataGridTextColumn Header="Total cards" Binding="{Binding Total.Card, StringFormat={}{0,7:N0}}"/>
+                <DataGridTextColumn Header="Best gold" Binding="{Binding Max.Gold, StringFormat={}{0,7:N0}}"/>
+                <DataGridTextColumn Header="Best gems" Binding="{Binding Max.SoulGem, StringFormat={}{0,7:N0}}"/>
+                <DataGridTextColumn Header="Best packs" Binding="{Binding Max.Pack, StringFormat={}{0,7:N0}}"/>
+                <DataGridTextColumn Header="Best cards" Binding="{Binding Max.Card, StringFormat={}{0,7:N0}}"/>
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>
