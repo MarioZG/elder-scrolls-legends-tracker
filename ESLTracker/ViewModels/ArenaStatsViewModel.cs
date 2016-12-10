@@ -147,6 +147,13 @@ namespace ESLTracker.ViewModels
                 //TotalCards = ds.Sum(d => d.GetArenaRewards().Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Card).Sum(r => r.Quantity))
             }).ToList();
 
+            //mark best averages
+            //result.Where(r => Math.Abs(r.AvgWins - result.Max(rm => rm.AvgWins)) < 0.01).All(r => { r.MarkAvgWins = true; return true; });
+            result.Where( r=> Math.Abs(r.Avg.Gold - result.Max(rm => rm.Avg.Gold)) < 0.01).All( r=> { r.Avg.MarkGold = true; return true; });
+            result.Where(r => Math.Abs(r.Avg.SoulGem - result.Max(rm => rm.Avg.SoulGem)) < 0.01).All(r => { r.Avg.MarkSoulGem = true; return true; });
+            result.Where(r => Math.Abs(r.Avg.Pack - result.Max(rm => rm.Avg.Pack)) < 0.01).All(r => { r.Avg.MarkPack = true; return true; });
+            result.Where(r => Math.Abs(r.Avg.Card - result.Max(rm => rm.Avg.Card)) < 0.01).All(r => { r.Avg.MarkCard = true; return true; });
+
             result.Add(new {
                 Class = "TOTAL" as object,
                 NumberOfRuns = result.Sum(r=> r.NumberOfRuns),
@@ -188,6 +195,11 @@ namespace ESLTracker.ViewModels
         public double SoulGem { get; set; }
         public double Pack { get; set; }
         public double Card { get; set; }
+
+        public bool MarkGold { get; set; }
+        public bool MarkSoulGem { get; set; }
+        public bool MarkPack { get; set; }
+        public bool MarkCard { get; set; }
 
         public RewardsTotal()
         {

@@ -13,9 +13,18 @@
     </Window.DataContext>
     <Window.Resources>
         <Converters:ClassToAttributesIconsConverter x:Key="ClassToAttributesIconsConverter"/>
+        <Style x:Key="bestAverage" TargetType="{x:Type TextBlock}">
+            <!-- http://stackoverflow.com/questions/13534485/same-setters-for-different-triggers -->
+            <Style.Triggers>
+                <Trigger Property="Tag" Value="1">
+                    <Setter Property="Foreground" Value="DarkGreen"/>
+                    <Setter Property="FontWeight" Value="ExtraBold"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <StackPanel>
-        <DockPanel>
+        <DockPanel Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="5,10,5,5">
                 <Label Content="Arena type"/>
                 <ComboBox 
@@ -38,9 +47,16 @@
                 <Style TargetType="{x:Type DataGridCell}" >
                     <Setter Property="FontWeight" Value="Normal"/>
                     <Style.Triggers>
+                        <!-- TOTAL row in bold-->
                         <DataTrigger Binding="{Binding Class}" Value="TOTAL">
                             <Setter Property="FontWeight" Value="ExtraBold"/>
                         </DataTrigger>
+                        <!-- change sel ted row background-->
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="AliceBlue" />
+                            <Setter Property="BorderBrush" Value="{x:Null}" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.Resources>
@@ -71,10 +87,50 @@
                 <DataGridTextColumn Header="Runs" Binding="{Binding NumberOfRuns, StringFormat={}{0,4:N0}}"/>
                 <DataGridTextColumn Header="Avg Wins" Binding="{Binding AvgWins, StringFormat={}{0,7:N1}}"/>
                 <DataGridTextColumn Header="Best run" Binding="{Binding Best, StringFormat={}{0,6:N0}}"/>
-                <DataGridTextColumn Header="Avg gold" Binding="{Binding Avg.Gold, StringFormat={}{0,7:N1}}"/>
-                <DataGridTextColumn Header="Avg gems" Binding="{Binding Avg.SoulGem, StringFormat={}{0,7:N1}}"/>
-                <DataGridTextColumn Header="Avg packs" Binding="{Binding Avg.Pack, StringFormat={}{0,7:N1}}"/>
-                <DataGridTextColumn Header="Avg cards" Binding="{Binding Avg.Card, StringFormat={}{0,7:N1}}"/>
+                <DataGridTextColumn Header="Avg gold" Binding="{Binding Avg.Gold, StringFormat={}{0,7:N1}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource bestAverage}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Avg.MarkGold}" Value="True">
+                                    <Setter Property="Tag" Value="1" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Avg gems" Binding="{Binding Avg.SoulGem, StringFormat={}{0,7:N1}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource bestAverage}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Avg.MarkSoulGem}" Value="True">
+                                    <Setter Property="Tag" Value="1" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Avg packs" Binding="{Binding Avg.Pack, StringFormat={}{0,7:N1}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource bestAverage}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Avg.MarkPack}" Value="True">
+                                    <Setter Property="Tag" Value="1" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Avg cards" Binding="{Binding Avg.Card, StringFormat={}{0,7:N1}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource bestAverage}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Avg.MarkCard}" Value="True">
+                                    <Setter Property="Tag" Value="1" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Total gold" Binding="{Binding Total.Gold, StringFormat={}{0,7:N0}}"/>
                 <DataGridTextColumn Header="Total gems" Binding="{Binding Total.SoulGem, StringFormat={}{0,7:N0}}"/>
                 <DataGridTextColumn Header="Total packs" Binding="{Binding Total.Pack, StringFormat={}{0,7:N0}}"/>
