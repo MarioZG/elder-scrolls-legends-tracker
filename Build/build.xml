@@ -1,4 +1,12 @@
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<!--
+Doc for build
+
+default target - BUILD - does compilation and puts output to latestMaster folder
+target ReleaseLatest - builds applciation, creates folder named after version puts binairies there and zips it up
+target BuildMaster
+
+-->
+<Project ToolsVersion="14.0" DefaultTargets="BuildMaster" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
 		<RootDir>$(MSBuildProjectDirectory)\..</RootDir>
 		<BuildDir>$(MSBuildProjectDirectory)\Bin</BuildDir>
@@ -14,16 +22,23 @@
 		<ProjectToBuild Include="$(BuildDir)\Src\ESLTrackerTests\ESLTrackerTests.csproj">
 			<AdditionalProperties>OutputPath=$(BuildDir)\ESLTrackerTests</AdditionalProperties>
 		</ProjectToBuild>
+		<OutputFiles Include="$(BuildDir)\ESLTracker\*.*" />
+		<OutputExeFile Include="$(BuildDir)\ESLTracker\ESLTracker.exe" />
 	</ItemGroup>
+	<Target Name="BuildMaster">
+		<CallTarget Targets="Build"/>
+		<CallTarget Targets="CopyBinaries"/>
+	</Target>
+	<Target Name="ReleaseLatest">
+		<CallTarget Targets="Build"/>
+		<CallTarget Targets="ExecuteTests"/>
+		<CallTarget Targets="UpdateVersion"/>
+		<CallTarget Targets="CopyBinaries"/>
+		<CallTarget Targets="ZipBinaries"/>
+	</Target>
 	<Target Name="Build">
 		<Message Text="MSBuildProjectDirectoryr=$(MSBuildProjectDirectory)"/>
 		<CallTarget Targets="Compile"/>
-		<CallTarget Targets="ExecuteTests"/>
-		<CallTarget Targets="CopyBinaries"/>
-		<!--prepare out dir out and test-->
-		<!--compile to out and test dir -->
-		<!--run test -->
-		<!--generate installer-->
 	</Target>
 	<Target Name="PrepareOutDir">
 		<RemoveDir Directories="$(BuildDir)"/>
@@ -39,15 +54,81 @@
 	<Target Name="ExecuteTests" DependsOnTargets="Compile">
 		<Exec Command='"c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe"  /resultsfile:$(BuildDir)\tests.trx /testcontainer:$(BuildDir)\ESLTrackerTests\ESLTrackerTests.dll' />
 	</Target>
-	<Target Name='CopyBinaries' DependsOnTargets='ExecuteTests'>
+	<Target Name='CopyBinaries' DependsOnTargets='Compile'>
+		<!-- versiopn still should be latest master-->
 		<RemoveDir Directories="$(RootDir)\Bin\$(Version)"/>
 		<MakeDir Directories="$(RootDir)\Bin\$(Version)"/>
-		<ItemGroup>
-			<OutputFiles Include="$(BuildDir)\ESLTracker\*.*" />
-		</ItemGroup>
 		<Copy SourceFiles='@(OutputFiles)' DestinationFolder='$(RootDir)\Bin\$(Version)' />
+	</Target>
+	<Target Name='ZipBinaries' DependsOnTargets='CopyBinaries'>
+		<ItemGroup>
+			<OutputFilesToZip Include="$(RootDir)\Bin\$(Version)\*.*" />
+		</ItemGroup>
+		<Zip InputFileNames="@(OutputFilesToZip)"
+			OverwriteExistingFile="true"
+			 ZIPRootFolder="ESLTracker_$(Version)"
+			OutputFileName="$(RootDir)\Bin\ESLTracker_$(Version).zip" />
+	</Target>
+	<Target Name='UpdateVersion' DependsOnTargets='Compile'>
+		<Message Text="Getting version of @(OutputExeFile)"/>
+		<GetAssemblyIdentity AssemblyFiles="@(OutputExeFile)">
+			<Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities"/>
+		</GetAssemblyIdentity>
+		<CreateProperty Condition="'$([System.Version]::Parse(%(MyAssemblyIdentities.Version)).Build)' == '0'"
+						Value="$([System.Version]::Parse(%(MyAssemblyIdentities.Version)).ToString(2))">
+			<Output TaskParameter="Value" PropertyName="Version" />
+		</CreateProperty>
+		<CreateProperty Condition="'$([System.Version]::Parse(%(MyAssemblyIdentities.Version)).Build)' != '0'"
+						Value="$([System.Version]::Parse(%(MyAssemblyIdentities.Version)).ToString(3))">
+			<Output TaskParameter="Value" PropertyName="Version" />
+		</CreateProperty>
+		<Message Text="Version updated to $(Version)"/>
 	</Target>
 	<Target Name="CleanUp">
 		<RemoveDir Directories="$(BuildDir)" />
 	</Target>
+
+	<UsingTask TaskName="Zip" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+		<ParameterGroup>
+			<InputFileNames ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+			<ZIPRootFolder ParameterType="System.String" Required="true" />
+			<OutputFileName ParameterType="System.String" Required="true" />
+			<OverwriteExistingFile ParameterType="System.Boolean" Required="false" />
+		</ParameterGroup>
+		<Task>
+			<Reference Include="System.IO.Compression" />
+			<Using Namespace="System.IO.Compression" />
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[        
+        const int BufferSize = 64 * 1024;
+
+        var buffer = new byte[BufferSize];
+        var fileMode = OverwriteExistingFile ? FileMode.Create : FileMode.CreateNew;
+
+        using (var outputFileStream = new FileStream(OutputFileName, fileMode))
+        {
+          using (var archive = new ZipArchive(outputFileStream, ZipArchiveMode.Create))
+          {
+            foreach (var inputFileName in InputFileNames.Select(f => f.ItemSpec))
+            {
+              var archiveEntry = archive.CreateEntry(ZIPRootFolder + Path.DirectorySeparatorChar + Path.GetFileName(inputFileName));
+
+              using (var fs = new FileStream(inputFileName, FileMode.Open))
+              {
+                using (var zipStream = archiveEntry.Open())
+                {
+                  int bytesRead = -1;
+                  while ((bytesRead = fs.Read(buffer, 0, BufferSize)) > 0)
+                  {
+                    zipStream.Write(buffer, 0, bytesRead);
+                  }
+                }
+              }
+            }
+          }
+        }        
+      ]]>
+			</Code>
+		</Task>
+	</UsingTask>
 </Project>
