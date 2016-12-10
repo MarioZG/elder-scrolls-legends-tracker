@@ -9,6 +9,7 @@ This is early beta version, any feedback is very welcome!
  - Create decks and log games against them. See how good deck is!
  - View winrate against different opponent classes
  - Log your rewards. View basic breakdown what you have gained, or export to spreadsheet for more advanced analysis
+ - View arena runs statistics - how much wins and rewards you got with each class
  - Create screenshots with one click (no more prinscreen, paste and save)
 
 ## Future developments
@@ -44,6 +45,12 @@ Select opponent class, other fields are optional. Opponent class can be selected
 ![Add rewards](https://github.com/MarioZG/elder-scrolls-legends-tracker/blob/master/Readme/addingnewrewards.png?raw=true)
 
 Select reward and type in quantity. For quest rewards you can also select Guild.
+
+## Arena run statistics
+
+![Add rewards](https://github.com/MarioZG/elder-scrolls-legends-tracker/blob/master/Readme/arenarunstats.png?raw=true)
+
+See which class is most profitable in arena.
 
 ## Collapsed overlay
 
