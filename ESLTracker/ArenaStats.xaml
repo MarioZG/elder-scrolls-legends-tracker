@@ -7,7 +7,7 @@
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         xmlns:local="clr-namespace:ESLTracker"
         mc:Ignorable="d"
-        Title="ArenaStats">
+        Title="Arena Runs Summary">
     <Window.DataContext>
         <ViewModels:ArenaStatsViewModel/>
     </Window.DataContext>

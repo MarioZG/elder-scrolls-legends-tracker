@@ -48,7 +48,7 @@
                         </StackPanel>
                     </MenuItem.Header>
                     <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
-                    <MenuItem Header="Arena stats" Command="{Binding CommandShowArenaStats}" />
+                    <MenuItem Header="Arena runs" Command="{Binding CommandShowArenaStats}" />
                 </MenuItem>
                 <MenuItem Header="Show overlay window" Command="{Binding CommandShowOverlay}"/>
                 <MenuItem Command="{Binding CommandRunGame}">
