@@ -69,7 +69,12 @@ namespace ESLTracker.Controls
 
         private void btnShowMainWindow_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).Focus();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            if (mainWindow.WindowState == WindowState.Minimized)
+            {
+               // mainWindow.WindowState = WindowState.Normal;
+            }
+            mainWindow.Focus();
         }
     }
 }
