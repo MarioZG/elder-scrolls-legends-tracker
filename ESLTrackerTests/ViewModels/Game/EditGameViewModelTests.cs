@@ -11,6 +11,8 @@ using ESLTracker.Properties;
 using ESLTracker.DataModel.Enums;
 using ESLTrackerTests;
 using System.Reflection;
+using ESLTracker.Utils;
+using ESLTracker.DataModel;
 
 namespace ESLTracker.ViewModels.Game.Tests
 {
@@ -105,7 +107,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         {
             EditGameViewModel model = new EditGameViewModel();
             bool raised = false;
-            model.PropertyChanged += delegate { raised = true; }; 
+            model.PropertyChanged += delegate { raised = true; };
 
             model.Game.OpponentName = "some name";
 
@@ -166,6 +168,27 @@ namespace ESLTracker.ViewModels.Game.Tests
 
         }
 
+        [TestMethod()]
+        public void UpdateGameData001_DateTimeWhenGameConcluded()
+        {
+            Mock<ISettings> settingsMock = new Mock<ISettings>();
 
+            DateTime timeConcluded = new DateTime(2016, 12, 12, 23, 45, 5);
+
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(timeConcluded);
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(new Mock<ITracker>().Object);
+            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(new Mock<IMessenger>().Object);
+
+            EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
+
+            PopulateObject(model.Game, StartProp);
+
+            Assert.AreNotEqual(timeConcluded, model.Game.Date);
+
+            model.UpdateGameData(settingsMock.Object, GameOutcome.Victory);
+
+            Assert.AreEqual(timeConcluded, model.Game.Date);
+        }
     }
 }

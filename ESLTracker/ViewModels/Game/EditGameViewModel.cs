@@ -150,7 +150,7 @@ namespace ESLTracker.ViewModels.Game
 
         }
 
-        internal EditGameViewModel(TrackerFactory trackerFactory)
+        internal EditGameViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
 
@@ -215,22 +215,7 @@ namespace ESLTracker.ViewModels.Game
             if ((outcome.HasValue)
                 && this.Game.OpponentClass.HasValue)
             {
-                this.Game.Deck = tracker.ActiveDeck;
-                this.Game.Outcome = outcome.Value;
-
-                if (this.Game.Type == GameType.PlayRanked)
-                {
-                    if (Game.OpponentRank != PlayerRank.TheLegend)
-                    {
-                        this.Game.OpponentLegendRank = null;
-                    }
-
-                    if (this.Game.PlayerRank != PlayerRank.TheLegend)
-                    {
-                        this.Game.PlayerLegendRank = null;
-                    }
-                    settings.PlayerRank = this.Game.PlayerRank.Value;
-                }
+                UpdateGameData(settings, outcome);
 
                 DataModel.Game addedGame = this.Game;
                 tracker.Games.Add(this.Game);
@@ -263,6 +248,27 @@ namespace ESLTracker.ViewModels.Game
 
             }
 
+        }
+
+        internal void UpdateGameData(Properties.ISettings settings, GameOutcome? outcome)
+        {
+            this.Game.Deck = tracker.ActiveDeck;
+            this.Game.Outcome = outcome.Value;
+            this.Game.Date = trackerFactory.GetDateTimeNow(); //game date - when it concluded (we dont know when it started)
+
+            if (this.Game.Type == GameType.PlayRanked)
+            {
+                if (Game.OpponentRank != PlayerRank.TheLegend)
+                {
+                    this.Game.OpponentLegendRank = null;
+                }
+
+                if (this.Game.PlayerRank != PlayerRank.TheLegend)
+                {
+                    this.Game.PlayerLegendRank = null;
+                }
+                settings.PlayerRank = this.Game.PlayerRank.Value;
+            }
         }
 
         public bool CommandButtonCreateCanExecute(object parameter, Properties.ISettings settings)
