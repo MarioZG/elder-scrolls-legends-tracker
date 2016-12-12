@@ -25,7 +25,32 @@ namespace ESLTracker.ViewModels.Decks
             set
             {
                 deck = value;
+                deck.PropertyChanged += Deck_PropertyChanged;
                 this.DeckClassModel.SelectedClass = value.Class;
+                RaisePropertyChangedEvent("Deck");
+                RaisePropertyChangedEvent("CanChangeType");
+            }
+        }
+
+        private void Deck_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Type")
+            {
+                Deck deckSender = (Deck)sender;
+                switch (deckSender.Type)
+                {
+                    case DataModel.Enums.DeckType.Constructed:
+                        deckSender.Name = String.Empty;
+                        break;
+                    case DataModel.Enums.DeckType.VersusArena:
+                        deckSender.Name = string.Format(trackerFactory.GetSettings().NewDeck_VersusArenaName, trackerFactory.GetDateTimeNow());
+                        break;
+                    case DataModel.Enums.DeckType.SoloArena:
+                        deckSender.Name = string.Format(trackerFactory.GetSettings().NewDeck_SoloArenaName, trackerFactory.GetDateTimeNow());
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
                 RaisePropertyChangedEvent("Deck");
                 RaisePropertyChangedEvent("CanChangeType");
             }

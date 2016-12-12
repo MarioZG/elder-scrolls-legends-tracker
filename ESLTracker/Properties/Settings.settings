@@ -29,5 +29,11 @@
     <Setting Name="DataPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="NewDeck_VersusArenaName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Vs arena {0:yy/MM/dd HH:mm}</Value>
+    </Setting>
+    <Setting Name="NewDeck_SoloArenaName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Solo arena {0:yy/MM/dd HH:mm}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

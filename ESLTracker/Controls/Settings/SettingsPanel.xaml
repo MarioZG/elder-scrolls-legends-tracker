@@ -38,7 +38,29 @@
                 </StackPanel>
             </StackPanel>
         </Expander>
-        <UniformGrid>
+        <Expander x:Name="expanderArena" Header="Arena decks" IsExpanded="False" 
+                  HeaderTemplate="{StaticResource expanderHeader}" >
+            <Grid Margin="10,10,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Content="Default name for Versus Arena deck"/>
+                <TextBox Margin="5,5,5,5" Grid.Row="0" Grid.Column="1"
+                        ToolTip="Default name for Versus arena deck"
+                        Text="{Binding NewDeck_VersusArenaName, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                  />
+                <Label Grid.Row="1" Content="Default name for Solo Arena deck"/>
+                <TextBox Margin="5,5,5,5" Grid.Row="1" Grid.Column="1"
+                        ToolTip="Default name for Versus arena deck"
+                        Text="{Binding NewDeck_SoloArenaName, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                  />
+            </Grid>
+        </Expander><UniformGrid>
             <Button Command="{Binding CommandCancelButtonPressed}" Content="Cancel" Margin="25,5,25,5" />
             <Button Command="{Binding CommandSaveButtonPressed}" Content="Save settings" Margin="25,5,25,5" Style="{DynamicResource SaveButton}"/>
         </UniformGrid>

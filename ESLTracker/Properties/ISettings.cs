@@ -15,6 +15,9 @@ namespace ESLTracker.Properties
         bool ShowDeckStats { get; set; }
         string DataPath { get; set; }
 
+        string NewDeck_SoloArenaName { get; set; }
+        string NewDeck_VersusArenaName { get; set; }
+
         void Save();
     }
 }

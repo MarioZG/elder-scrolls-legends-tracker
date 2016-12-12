@@ -13,7 +13,8 @@ namespace ESLTracker.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase, ISettings {
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase, ISettings
+    {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
@@ -128,6 +129,30 @@ namespace ESLTracker.Properties {
             }
             set {
                 this["DataPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Vs arena {0:yy/MM/dd HH:mm}")]
+        public string NewDeck_VersusArenaName {
+            get {
+                return ((string)(this["NewDeck_VersusArenaName"]));
+            }
+            set {
+                this["NewDeck_VersusArenaName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Solo arena {0:yy/MM/dd HH:mm}")]
+        public string NewDeck_SoloArenaName {
+            get {
+                return ((string)(this["NewDeck_SoloArenaName"]));
+            }
+            set {
+                this["NewDeck_SoloArenaName"] = value;
             }
         }
     }
