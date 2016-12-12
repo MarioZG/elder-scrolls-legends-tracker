@@ -51,7 +51,7 @@
         <Label Content="Type" Grid.Row="0" Margin="5,20,0,0"/>
         <ComboBox x:Name="cbDeckType" Margin="0,20,0,0"
                   ItemsSource="{Binding Source={StaticResource DeckTypeEnum}}" 
-                  SelectedItem="{Binding Deck.Type}" Grid.Row="0" Grid.Column="1"
+                  SelectedItem="{Binding DeckType}" Grid.Row="0" Grid.Column="1"
                   IsEnabled="{Binding CanChangeType}"/>
         <Label Content="Deck name" Margin="0,5,5,5" Grid.Row="1"/>
         <TextBox x:Name="txtName" TextWrapping="Wrap"  Margin="5,5,5,5"

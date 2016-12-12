@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
+using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 
@@ -25,34 +26,23 @@ namespace ESLTracker.ViewModels.Decks
             set
             {
                 deck = value;
-                deck.PropertyChanged += Deck_PropertyChanged;
                 this.DeckClassModel.SelectedClass = value.Class;
-                RaisePropertyChangedEvent("Deck");
+                RaisePropertyChangedEvent("");
                 RaisePropertyChangedEvent("CanChangeType");
             }
         }
 
-        private void Deck_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        public DeckType DeckType
         {
-            if (e.PropertyName == "Type")
+            get
             {
-                Deck deckSender = (Deck)sender;
-                switch (deckSender.Type)
-                {
-                    case DataModel.Enums.DeckType.Constructed:
-                        deckSender.Name = String.Empty;
-                        break;
-                    case DataModel.Enums.DeckType.VersusArena:
-                        deckSender.Name = string.Format(trackerFactory.GetSettings().NewDeck_VersusArenaName, trackerFactory.GetDateTimeNow());
-                        break;
-                    case DataModel.Enums.DeckType.SoloArena:
-                        deckSender.Name = string.Format(trackerFactory.GetSettings().NewDeck_SoloArenaName, trackerFactory.GetDateTimeNow());
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
+                return Deck.Type;
+            }
+            set
+            {
+                Deck.Type = value;
+                SetDeckName(value);
                 RaisePropertyChangedEvent("Deck");
-                RaisePropertyChangedEvent("CanChangeType");
             }
         }
 
@@ -110,7 +100,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             this.Deck = obj.Deck;
             this.BeginEdit();
-            
+
         }
 
         public void CommandButtonSaveExecute(object parameter)
@@ -122,7 +112,7 @@ namespace ESLTracker.ViewModels.Decks
                 && (selectedClassModel != null)
                 && selectedClassModel.SelectedClass.HasValue)
             {
-                SaveDeck( selectedClassModel, tracker);
+                SaveDeck(selectedClassModel, tracker);
             }
         }
 
@@ -131,7 +121,7 @@ namespace ESLTracker.ViewModels.Decks
             ITracker tracker)
         {
             this.Deck.Class = selectedClassModel.SelectedClass.Value;
-            if (! tracker.Decks.Contains(this.Deck))
+            if (!tracker.Decks.Contains(this.Deck))
             {
                 tracker.Decks.Add(this.Deck);
             }
@@ -195,6 +185,25 @@ namespace ESLTracker.ViewModels.Decks
             Deck.Notes = savedState.Notes;
             Deck.CreatedDate = savedState.CreatedDate;
             Deck.ArenaRank = savedState.ArenaRank;
+            RaisePropertyChangedEvent("Deck");
+        }
+
+        private void SetDeckName(DeckType newType)
+        {
+            switch (newType)
+            {
+                case DataModel.Enums.DeckType.Constructed:
+                    Deck.Name = String.Empty;
+                    break;
+                case DataModel.Enums.DeckType.VersusArena:
+                    Deck.Name = string.Format(trackerFactory.GetSettings().NewDeck_VersusArenaName, trackerFactory.GetDateTimeNow());
+                    break;
+                case DataModel.Enums.DeckType.SoloArena:
+                    Deck.Name = string.Format(trackerFactory.GetSettings().NewDeck_SoloArenaName, trackerFactory.GetDateTimeNow());
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
             RaisePropertyChangedEvent("Deck");
         }
     }
