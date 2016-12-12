@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
@@ -33,7 +34,10 @@ namespace ESLTracker
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            System.IO.File.WriteAllText("./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt", e.Exception.ToString());
+            string filename = "./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt";
+            string verInfo = String.Join(";",Assembly.GetEntryAssembly().CustomAttributes.Where(ca => ca.AttributeType == typeof(AssemblyInformationalVersionAttribute)).FirstOrDefault()?.ConstructorArguments);
+            System.IO.File.WriteAllText(filename, "APP VERSION: "+ verInfo +Environment.NewLine);
+            System.IO.File.WriteAllText(filename, e.Exception.ToString());
             MessageBox.Show("Application encountered unhandled exception. Log file has been created in " + "./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt with details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             e.Handled = false;
         }
