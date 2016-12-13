@@ -96,14 +96,13 @@ namespace ESLTracker.ViewModels.Game
         }
 
 
-        public RelayCommandWithSettings CommandButtonCreate
+        public ICommand CommandButtonCreate
         {
             get
             {
-                return new RelayCommandWithSettings(
-                    new Action<object, Properties.ISettings>(CommandButtonCreateExecute),
-                    new Func<object, Properties.ISettings, bool>(CommandButtonCreateCanExecute),
-                    Properties.Settings.Default
+                return new RelayCommand(
+                    new Action<object>(CommandButtonCreateExecute),
+                    new Func<object, bool>(CommandButtonCreateCanExecute)
                     );
             }
         }
@@ -208,14 +207,14 @@ namespace ESLTracker.ViewModels.Game
             RaisePropertyChangedEvent("Game");
         }
 
-        public void CommandButtonCreateExecute(object parameter, Properties.ISettings settings)
+        public void CommandButtonCreateExecute(object parameter)
         {
             //object[] args = parameter as object[];
             GameOutcome? outcome = EnumManager.ParseEnumString<GameOutcome>(parameter as string);
             if ((outcome.HasValue)
                 && this.Game.OpponentClass.HasValue)
             {
-                UpdateGameData(settings, outcome);
+                UpdateGameData(trackerFactory.GetSettings(), outcome);
 
                 DataModel.Game addedGame = this.Game;
                 tracker.Games.Add(this.Game);
@@ -271,9 +270,10 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
-        public bool CommandButtonCreateCanExecute(object parameter, Properties.ISettings settings)
+        public bool CommandButtonCreateCanExecute(object parameter)
         {
-            return true;
+            return ((tracker.ActiveDeck != null) 
+                && this.Game.OpponentClass.HasValue);
         }
 
         private IEnumerable<GameType> GetAllowedGameTypes()

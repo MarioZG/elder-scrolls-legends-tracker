@@ -197,7 +197,6 @@
     <Compile Include="ViewModels\IDeckClassSelectorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
-    <Compile Include="ViewModels\RelayCommandWithSettings.cs" />
     <Compile Include="ViewModels\Rewards\AddSingleRewardViewModel.cs" />
     <Compile Include="ViewModels\Rewards\IRewardSetViewModel.cs" />
     <Compile Include="ViewModels\Rewards\RewardSetViewModel.cs" />

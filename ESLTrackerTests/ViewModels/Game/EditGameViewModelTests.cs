@@ -13,6 +13,7 @@ using ESLTrackerTests;
 using System.Reflection;
 using ESLTracker.Utils;
 using ESLTracker.DataModel;
+using System.Collections.ObjectModel;
 
 namespace ESLTracker.ViewModels.Game.Tests
 {
@@ -25,9 +26,20 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod()]
         public void CommandButtonCreateExecuteTest001_SaveSettingForCurrentPlayerRank()
         {
-            Mock<ISettings> settingsMock = new Mock<ISettings>();
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            Mock<IMessenger> messanger = new Mock<IMessenger>();
+            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
 
-            EditGameViewModel model = new EditGameViewModel();
+            Mock<ISettings> settings = new Mock<ISettings>();
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+
+            Mock<ITracker> tracker = new Mock<ITracker>();
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
+            tracker.Setup(t => t.ActiveDeck).Returns(new Deck(trackerFactory.Object));
+
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+
+            EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
 
             PlayerRank selectedPlayerRank = PlayerRank.TheLord;
             model.Game.Type = GameType.PlayRanked;
@@ -36,9 +48,9 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             object param = "Victory";
 
-            model.CommandButtonCreateExecute(param, settingsMock.Object);
+            model.CommandButtonCreateExecute(param);
 
-            settingsMock.VerifySet(s => s.PlayerRank = selectedPlayerRank, Times.Once);
+            settings.VerifySet(s => s.PlayerRank = selectedPlayerRank, Times.Once);
 
         }
 
@@ -65,7 +77,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             //set type to other than ranked value
             model.Game.Type = GameType.SoloArena;
 
-            model.CommandButtonCreateExecute(param, settingsMock.Object);
+            model.CommandButtonCreateExecute(param);
 
             Assert.IsNull(model.Game.PlayerLegendRank);
             Assert.IsNull(model.Game.PlayerRank);

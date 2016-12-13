@@ -96,7 +96,7 @@ namespace ESLTracker.ViewModels
 
         public ICommand CommandExit
         {
-            get { return new RelayCommandWithSettings(new Action<object, ISettings>(Exit), Properties.Settings.Default); }
+            get { return new RelayCommand(new Action<object>(Exit)); }
         }
 
         public ICommand CommandShowRewards
@@ -170,7 +170,7 @@ namespace ESLTracker.ViewModels
             }
         }
 
-        public void Exit(object parameter, ISettings settings)
+        public void Exit(object parameter)
         {
             bool checkIfCanClose = false;
             if (parameter !=null && parameter is bool)
@@ -182,6 +182,7 @@ namespace ESLTracker.ViewModels
                 new FileManager(trackerFactory).SaveDatabase();
                 MainWindow.UpdateOverlay = false;
                 MainWindow.ot.Close();
+                ISettings settings = trackerFactory.GetSettings();
                 settings.LastActiveDeckId = tracker.ActiveDeck?.DeckId;
                 settings.Save();
                 ((App)Application.Current).CloseApplication();

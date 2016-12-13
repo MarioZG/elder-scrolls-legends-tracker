@@ -75,7 +75,7 @@ namespace ESLTracker
                 {
                     if (MainWindow.ot.CanClose(this.DataContext.CommandExit))
                     {
-                        this.DataContext.Exit(true, Properties.Settings.Default);
+                        this.DataContext.Exit(true);
                     }
                     else
                     {
