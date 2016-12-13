@@ -101,8 +101,8 @@ namespace ESLTracker.ViewModels.Game
             get
             {
                 return new RelayCommand(
-                    new Action<object>(CommandButtonCreateExecute),
-                    new Func<object, bool>(CommandButtonCreateCanExecute)
+                    new Action<object>(CommandButtonCreateExecute)//,
+                    //new Func<object, bool>(CommandButtonCreateCanExecute)
                     );
             }
         }
@@ -138,7 +138,12 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
-        public ICommand CommandExecuteWhenContinueOnError { get; set; }
+        public ICommand commandExecuteWhenContinueOnError;
+        public ICommand CommandExecuteWhenContinueOnError
+        {
+            get { return commandExecuteWhenContinueOnError; }
+            set { commandExecuteWhenContinueOnError = value; RaisePropertyChangedEvent(); }
+        }
 
         ITrackerFactory trackerFactory;
         IMessenger messanger;
@@ -211,7 +216,19 @@ namespace ESLTracker.ViewModels.Game
         {
             //object[] args = parameter as object[];
             GameOutcome? outcome = EnumManager.ParseEnumString<GameOutcome>(parameter as string);
-            if ((outcome.HasValue)
+            this.ErrorMessage = null;
+            if (tracker.ActiveDeck == null)
+            {
+                this.ErrorMessage += "Please select active deck" + Environment.NewLine;
+            }
+            if (!this.Game.OpponentClass.HasValue)
+            {
+                this.ErrorMessage += "Please select opponent class" + Environment.NewLine;
+            }
+            this.ErrorMessage = this.ErrorMessage?.Trim();
+
+            if ((tracker.ActiveDeck != null)
+                && (outcome.HasValue)
                 && this.Game.OpponentClass.HasValue)
             {
                 UpdateGameData(trackerFactory.GetSettings(), outcome);

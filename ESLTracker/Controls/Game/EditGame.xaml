@@ -44,6 +44,7 @@
         <Converters:CommandMultipleParamaters x:Key="CommandMultipleParamatersConverter" />
         <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
         <Converters:StringNonEmptyToVisibiltyCollapsedConverter x:Key="StringNonEmptyToVisibiltyCollapsedConverter" />
+        <Converters:ObjectToVisibiltyCollapsedConverter x:Key="ObjectToVisibiltyCollapsedConverter" />
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:EditGameViewModel/>
@@ -70,8 +71,9 @@
         <StackPanel Orientation="Horizontal"  Background="DarkRed" Grid.ColumnSpan="2"
                     Visibility="{Binding ErrorMessage,Converter={StaticResource StringNonEmptyToVisibiltyCollapsedConverter}}"
                     >
-            <TextBlock  Foreground="White" Text="{Binding ErrorMessage}" Grid.ColumnSpan="2"/>
-            <TextBlock><Hyperlink Foreground="White" FontWeight="Medium" 
+            <TextBlock Margin="3,3,3,3" Foreground="White" Text="{Binding ErrorMessage}" Grid.ColumnSpan="2"/>
+            <TextBlock Visibility="{Binding CommandExecuteWhenContinueOnError, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}">
+                <Hyperlink Foreground="White" FontWeight="Medium" 
                                   Command="{Binding CommandButtonResetAllChanges}">Close anyway</Hyperlink>
             </TextBlock>
         </StackPanel>

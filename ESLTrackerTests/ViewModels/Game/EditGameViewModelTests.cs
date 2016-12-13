@@ -86,6 +86,37 @@ namespace ESLTracker.ViewModels.Game.Tests
             Assert.IsNull(model.Game.BonusRound);
         }
 
+
+        /// <summary>
+        /// verify if last rank selected by player is saved in settings
+        /// </summary>
+        [TestMethod()]
+        public void CommandButtonCreateExecuteTest003_ValidateRequiredFeilds()
+        {
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            Mock<IMessenger> messanger = new Mock<IMessenger>();
+            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
+
+            Mock<ISettings> settings = new Mock<ISettings>();
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+
+            Mock<ITracker> tracker = new Mock<ITracker>();
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
+            tracker.Setup(t => t.ActiveDeck).Returns<Deck>(null);
+
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+
+            EditGameViewModel model = new EditGameViewModel();
+
+            string param = "Victory";
+
+            model.CommandButtonCreateExecute(param);
+
+            Assert.IsNotNull(model.ErrorMessage);
+
+            messanger.Verify(m => m.Send(It.IsAny<object>()), Times.Never);
+        }
+
         [TestMethod()]
         public void CommandButtonSaveChangesExecuteTest001_RankedFieldsNullForNonRankedGame()
         {
