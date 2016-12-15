@@ -95,6 +95,9 @@
     <Compile Include="Controls\Decks\ArenaRank.xaml.cs">
       <DependentUpon>ArenaRank.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Game\GameFilter.xaml.cs">
+      <DependentUpon>GameFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Game\GameListItem.xaml.cs">
       <DependentUpon>GameListItem.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,7 @@
     <Compile Include="Utils\SerializableVersion.cs" />
     <Compile Include="Utils\TrackerFactory.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
+    <Compile Include="ViewModels\Game\GameFilterViewModel.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
     <Compile Include="Controls\DeckClassSelector.xaml.cs">
       <DependentUpon>DeckClassSelector.xaml</DependentUpon>
@@ -245,6 +249,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Game\EditGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Game\GameFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

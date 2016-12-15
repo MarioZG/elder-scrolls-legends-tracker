@@ -10,6 +10,7 @@ using ESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTrackerTests;
 using System.Collections.ObjectModel;
+using ESLTracker.ViewModels.Game;
 
 namespace ESLTracker.ViewModels.Tests
 {
@@ -66,9 +67,9 @@ namespace ESLTracker.ViewModels.Tests
             trackerfactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerfactory.Object);
-            model.DeckType = DataModel.Enums.DeckType.VersusArena;
+            model.DeckType = DataModel.Enums.GameType.VersusArena;
 
-            var result = model.GetArenaRunStatistics();
+            var result = model.GetDataSet();
 
             Assert.IsNotNull(result);
             Assert.AreEqual(31, result[0].Avg.Gold);
@@ -159,9 +160,9 @@ namespace ESLTracker.ViewModels.Tests
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerfactory.Object);
             model.FilterDateFrom = new DateTime(2016, 11, 1);
             model.FilterDateTo = null;
-            model.DeckType = DataModel.Enums.DeckType.VersusArena;
+            model.DeckType = DataModel.Enums.GameType.VersusArena;
 
-            var result = model.GetArenaRunStatistics();
+            var result = model.GetDataSet();
 
             Assert.IsNotNull(result);
             Assert.AreEqual(31, result[0].Avg.Gold);

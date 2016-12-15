@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,118 +8,38 @@ using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels
 {
-    public class ArenaStatsViewModel : ViewModelBase
+    public class ArenaStatsViewModel : Game.GameFilterViewModel
     {
-        private DateTime? filterDateFrom;
-        public DateTime? FilterDateFrom
-        {
-            get { return filterDateFrom; }
-            set { filterDateFrom = value; RaisePropertyChangedEvent("DisplayDataSource"); }
-        }
-
-        private DateTime? filterDateTo;
-        public DateTime? FilterDateTo
-        {
-            get { return filterDateTo; }
-            set { filterDateTo = value; RaisePropertyChangedEvent("DisplayDataSource"); }
-        }
-
-        private DeckType deckType = DeckType.VersusArena;
-        public DeckType DeckType
-        {
-            get { return deckType; }
-            set { deckType = value; RaisePropertyChangedEvent("DisplayDataSource"); }
-        }
-
-        public dynamic DisplayDataSource
-        {
-            get { return GetArenaRunStatistics(); }
-        }
-
-        public IEnumerable<DeckType> ArenaTypeSeletorValues
+        public override IEnumerable<GameType> GameTypeSeletorValues
         {
             get
             {
-                return new List<DeckType>()
+                return new List<GameType>()
                 {
-                    DeckType.VersusArena,
-                    DeckType.SoloArena
+                    GameType.VersusArena,
+                    GameType.SoloArena
                 };
             }
         }
 
-        public Array FilterDateOptions
-        {
-            get
-            {
-                return Enum.GetValues(typeof(DateFilter));
-            }
-        }
 
-        private DateFilter filterDateSelectedOption;
-
-        public DateFilter FilterDateSelectedOption
-        {
-            get { return filterDateSelectedOption; }
-            set
-            {
-                filterDateSelectedOption = value;
-                SetDateFilters(value);
-                RaisePropertyChangedEvent("FilterDateFrom");
-                RaisePropertyChangedEvent("FilterDateTo");
-                RaisePropertyChangedEvent("DisplayDataSource");
-            }
-        }
-
-
-        private ITrackerFactory trackerFactory;
-        
         public ArenaStatsViewModel() : this(TrackerFactory.DefaultTrackerFactory)
         {
 
         }
 
-        public ArenaStatsViewModel(ITrackerFactory trackerFactory)
+        public ArenaStatsViewModel(ITrackerFactory trackerFactory) : base(trackerFactory)
         {
-            this.trackerFactory = trackerFactory;
+            this.deckType = GameType.VersusArena;
         }
 
-
-        public void SetDateFilters(DateFilter value)
-        {
-            DateTime today = trackerFactory.GetDateTimeNow().Date;
-            switch (value)
-            {
-                case DateFilter.All:
-                    filterDateFrom = null;
-                    filterDateTo = null;
-                    break;
-                case DateFilter.Last7Days:
-                    filterDateFrom = today.AddDays(-6);
-                    filterDateTo = today.Date;
-                    break;
-                case DateFilter.ThisMonth:
-                    filterDateFrom = new DateTime(today.Year, today.Month, 1);
-                    filterDateTo = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
-                    break;
-                case DateFilter.PreviousMonth:
-                    today = today.AddMonths(-1); //as we can change year in process!
-                    filterDateFrom = new DateTime(today.Year, today.Month, 1);
-                    filterDateTo = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
-        public dynamic GetArenaRunStatistics()
+        public override dynamic GetDataSet()
         {
             var groupby = typeof(DataModel.Deck).GetProperty("Class");
 
             var result = trackerFactory.GetTracker().Decks
-            .Where(d => d.Type == DeckType 
-                     && ((filterDateFrom== null) || (d.CreatedDate.Date >= filterDateFrom.Value.Date))
+            .Where(d => d.GetDeckGames().Any( g => g.Type == DeckType)
+                     && ((filterDateFrom == null) || (d.CreatedDate.Date >= filterDateFrom.Value.Date))
                      && ((FilterDateTo == null) || (d.CreatedDate.Date <= FilterDateTo.Value.Date)))
             .GroupBy(d => groupby.GetValue(d))
             .Select(ds => new
@@ -149,14 +68,15 @@ namespace ESLTracker.ViewModels
 
             //mark best averages
             //result.Where(r => Math.Abs(r.AvgWins - result.Max(rm => rm.AvgWins)) < 0.01).All(r => { r.MarkAvgWins = true; return true; });
-            result.Where( r=> Math.Abs(r.Avg.Gold - result.Max(rm => rm.Avg.Gold)) < 0.01).All( r=> { r.Avg.MarkGold = true; return true; });
+            result.Where(r => Math.Abs(r.Avg.Gold - result.Max(rm => rm.Avg.Gold)) < 0.01).All(r => { r.Avg.MarkGold = true; return true; });
             result.Where(r => Math.Abs(r.Avg.SoulGem - result.Max(rm => rm.Avg.SoulGem)) < 0.01).All(r => { r.Avg.MarkSoulGem = true; return true; });
             result.Where(r => Math.Abs(r.Avg.Pack - result.Max(rm => rm.Avg.Pack)) < 0.01).All(r => { r.Avg.MarkPack = true; return true; });
             result.Where(r => Math.Abs(r.Avg.Card - result.Max(rm => rm.Avg.Card)) < 0.01).All(r => { r.Avg.MarkCard = true; return true; });
 
-            result.Add(new {
+            result.Add(new
+            {
                 Class = "TOTAL" as object,
-                NumberOfRuns = result.Sum(r=> r.NumberOfRuns),
+                NumberOfRuns = result.Sum(r => r.NumberOfRuns),
                 AvgWins = result.Average(d => d.AvgWins),
                 Best = result.Max(d => d.Best),
                 Total = result.Aggregate(new RewardsTotal { },
@@ -170,19 +90,19 @@ namespace ESLTracker.ViewModels
                         }
                 ),
                 Avg = new RewardsTotal
-                        {
-                            Card = result.Average( r=> r.Avg.Card),
-                            Pack = result.Average(r => r.Avg.Pack),
-                            Gold = result.Average(r => r.Avg.Gold),
-                            SoulGem = result.Average(r => r.Avg.SoulGem)
-                        },
+                {
+                    Card = result.Average(r => r.Avg.Card),
+                    Pack = result.Average(r => r.Avg.Pack),
+                    Gold = result.Average(r => r.Avg.Gold),
+                    SoulGem = result.Average(r => r.Avg.SoulGem)
+                },
                 Max = new RewardsTotal
-                        {
-                            Card = result.Max(r => r.Max.Card),
-                            Pack = result.Max(r => r.Max.Pack),
-                            Gold = result.Max(r => r.Max.Gold),
-                            SoulGem = result.Max(r => r.Max.SoulGem)
-                        }
+                {
+                    Card = result.Max(r => r.Max.Card),
+                    Pack = result.Max(r => r.Max.Pack),
+                    Gold = result.Max(r => r.Max.Gold),
+                    SoulGem = result.Max(r => r.Max.SoulGem)
+                }
             });
 
             return result;
@@ -234,13 +154,5 @@ namespace ESLTracker.ViewModels
         {
             return string.Format("{0,5} / {1,5} / {2,3} / {3,3}", Gold, SoulGem, Pack, Card);
         }
-    }
-
-    public enum DateFilter
-    {
-        All,
-        Last7Days,
-        ThisMonth,
-        PreviousMonth
     }
 }
