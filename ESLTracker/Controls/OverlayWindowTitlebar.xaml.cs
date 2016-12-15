@@ -72,7 +72,7 @@ namespace ESLTracker.Controls
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             if (mainWindow.WindowState == WindowState.Minimized)
             {
-               // mainWindow.WindowState = WindowState.Normal;
+                mainWindow.WindowState = WindowState.Normal;
             }
             mainWindow.Focus();
         }
