@@ -88,6 +88,8 @@ namespace ESLTracker.DataModel
 
         public string Notes { get; set; }
 
+        public SerializableVersion ESLVersion { get; set; }
+
         public Game() : this(TrackerFactory.DefaultTrackerFactory)
         {
         }

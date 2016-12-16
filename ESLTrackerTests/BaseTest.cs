@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ESLTrackerTests
@@ -46,6 +47,7 @@ namespace ESLTrackerTests
                 { typeof(PlayerRank?), PlayerRank.TheMage},
                 { typeof(int?), 234},
                 { typeof(ArenaRank?), ArenaRank.Level5},
+                { typeof(SerializableVersion), new SerializableVersion(1,2,3,4)},
                 { typeof(object), new object()}
             };
 
@@ -65,6 +67,7 @@ namespace ESLTrackerTests
                 { typeof(PlayerRank?), PlayerRank.TheLover},
                 { typeof(int?), 567},
                 { typeof(ArenaRank?), ArenaRank.Gladiator },
+                { typeof(SerializableVersion), new SerializableVersion(1,2,3,4)},
              //   { typeof(object), new object()}
             };
 

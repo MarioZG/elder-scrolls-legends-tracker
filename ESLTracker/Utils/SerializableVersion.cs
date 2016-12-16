@@ -19,12 +19,16 @@ namespace ESLTracker.Utils
         {
         }
 
-        public SerializableVersion(int major, int minor)
+        public SerializableVersion(int major, int minor) : this(major, minor, 0,0)
+        {
+        }
+
+        public SerializableVersion(int major, int minor, int build, int revision)
         {
             Major = major;
             Minor = minor;
-            Revision = 0;
-            Build = 0;
+            Build = build;
+            Revision = revision;
         }
 
         public SerializableVersion(Version v)

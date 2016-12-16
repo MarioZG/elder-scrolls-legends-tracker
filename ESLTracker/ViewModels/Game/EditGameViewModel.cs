@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -271,7 +272,19 @@ namespace ESLTracker.ViewModels.Game
             this.Game.Deck = tracker.ActiveDeck;
             this.Game.Outcome = outcome.Value;
             this.Game.Date = trackerFactory.GetDateTimeNow(); //game date - when it concluded (we dont know when it started)
-
+            FileVersionInfo fvi = WindowsUtils.GetEslProcess()?.MainModule.FileVersionInfo;
+            if (fvi != null)
+            {
+                this.Game.ESLVersion = new SerializableVersion(fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);
+            }
+            else
+            {
+                this.Game.ESLVersion = tracker.Games
+                    .Where(g => g.ESLVersion != null)
+                    .OrderByDescending(g => g.Date)
+                    .Select(g => g.ESLVersion)
+                    .FirstOrDefault();
+            }
             if (this.Game.Type == GameType.PlayRanked)
             {
                 if (Game.OpponentRank != PlayerRank.TheLegend)
