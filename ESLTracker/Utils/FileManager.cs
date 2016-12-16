@@ -231,11 +231,11 @@ namespace ESLTracker.Utils
 
         internal void SaveScreenShot(DependencyObject control)
         {
-            IntPtr? eslHandle = WindowsUtils.GetEslProcess()?.MainWindowHandle;
+            IntPtr? eslHandle = trackerfactory.GetWinAPI().GetEslProcess()?.MainWindowHandle;
             if (eslHandle.HasValue)
             {
-                var rect = new WindowsUtils.Rect();
-                WindowsUtils.GetWindowRect(eslHandle.Value, ref rect);
+                var rect = new WinAPI.Rect();
+                WinAPI.GetWindowRect(eslHandle.Value, ref rect);
 
                 int width = rect.right - rect.left;
                 int height = rect.bottom - rect.top;

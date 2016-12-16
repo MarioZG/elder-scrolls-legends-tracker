@@ -14,5 +14,6 @@ namespace ESLTracker.Utils
         IMessenger GetMessanger();
         DateTime GetDateTimeNow();
         ISettings GetSettings();
+        IWinAPI GetWinAPI();
     }
 }

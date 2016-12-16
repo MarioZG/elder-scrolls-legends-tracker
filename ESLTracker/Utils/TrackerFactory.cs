@@ -31,5 +31,10 @@ namespace ESLTracker.Utils
         {
             return Properties.Settings.Default;
         }
+
+        public IWinAPI GetWinAPI()
+        {
+            return new WinAPI();
+        }
     }
 }

@@ -142,6 +142,7 @@
     <Compile Include="Utils\IOWrappers\PathWrapper.cs" />
     <Compile Include="Utils\IOWrappers\WrapperProvider.cs" />
     <Compile Include="Utils\ITrackerFactory.cs" />
+    <Compile Include="Utils\IWinAPI.cs" />
     <Compile Include="Utils\LinqExtensions.cs" />
     <Compile Include="Utils\Messages\ControlMessangerContext.cs" />
     <Compile Include="Utils\Messages\DeckListFilterChanged.cs" />
@@ -217,7 +218,7 @@
     <Compile Include="ViewModels\Rewards\RewardSetViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsPanelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="WindowsUtils.cs" />
+    <Compile Include="Utils\WinAPI.cs" />
     <Page Include="ArenaStats.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

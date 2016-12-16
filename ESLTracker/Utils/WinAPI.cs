@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESLTracker
+namespace ESLTracker.Utils
 {
-    public class WindowsUtils
+    public class WinAPI : IWinAPI
     {
         [StructLayout(LayoutKind.Sequential)]
         public struct Rect
@@ -25,7 +25,7 @@ namespace ESLTracker
         [DllImport("user32.dll")]
         public static extern IntPtr GetWindowRect(IntPtr hWnd, ref Rect rect);
 
-        public static bool IsGameActive()
+        public bool IsGameActive()
         {
             IntPtr fw = GetForegroundWindow();
             Process eslProcess = GetEslProcess();
@@ -33,7 +33,7 @@ namespace ESLTracker
             return fw == eslw;
         }
 
-        public static Process GetEslProcess()
+        public Process GetEslProcess()
         {
             return Process.GetProcesses().Where(p => p.MainWindowTitle == "The Elder Scrolls: Legends").FirstOrDefault();
         }

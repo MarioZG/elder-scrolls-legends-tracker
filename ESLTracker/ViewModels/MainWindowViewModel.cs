@@ -214,7 +214,7 @@ namespace ESLTracker.ViewModels
 
         public void CommandRunGameExecute(object parameter)
         {
-            if (WindowsUtils.GetEslProcess() == null)
+            if (trackerFactory.GetWinAPI().GetEslProcess() == null)
             {
                 System.Diagnostics.Process.Start("bethesdanet://run/5");
             }
@@ -222,7 +222,7 @@ namespace ESLTracker.ViewModels
 
         private bool CommandRunGameCanExecute(object arg)
         {
-            return WindowsUtils.GetEslProcess() == null;
+            return trackerFactory.GetWinAPI().GetEslProcess() == null;
         }
 
         public void EditSettings(object parameter)

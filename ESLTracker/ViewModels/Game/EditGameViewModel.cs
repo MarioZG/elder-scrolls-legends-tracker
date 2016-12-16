@@ -272,7 +272,7 @@ namespace ESLTracker.ViewModels.Game
             this.Game.Deck = tracker.ActiveDeck;
             this.Game.Outcome = outcome.Value;
             this.Game.Date = trackerFactory.GetDateTimeNow(); //game date - when it concluded (we dont know when it started)
-            FileVersionInfo fvi = WindowsUtils.GetEslProcess()?.MainModule.FileVersionInfo;
+            FileVersionInfo fvi = trackerFactory.GetWinAPI().GetEslProcess()?.MainModule.FileVersionInfo;
             if (fvi != null)
             {
                 this.Game.ESLVersion = new SerializableVersion(fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);

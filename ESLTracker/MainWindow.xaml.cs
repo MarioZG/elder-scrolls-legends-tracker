@@ -47,12 +47,13 @@ namespace ESLTracker
         internal static OverlayToolbar ot { get; set; } = new OverlayToolbar();
 
         private static async void UpdateOverlayAsync(Window mainWindow)
-        {            
+        {
+            IWinAPI winAPI = new WinAPI();     
             ot.Show();
             UpdateOverlay = true;
             while (UpdateOverlay && ! ot.IsDisposed())
             {
-                ot.Visibility = WindowsUtils.IsGameActive() || ot.IsActive || mainWindow.IsActive ? Visibility.Visible : Visibility.Hidden;
+                ot.Visibility = winAPI.IsGameActive() || ot.IsActive || mainWindow.IsActive ? Visibility.Visible : Visibility.Hidden;
                // ot.Topmost = WindowsUtils.IsGameActive();
                 await Task.Delay(1000);
             }
