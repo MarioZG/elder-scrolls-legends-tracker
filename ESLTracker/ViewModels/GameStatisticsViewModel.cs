@@ -55,6 +55,22 @@ namespace ESLTracker.ViewModels
             }
         }
 
+        private string groupBy = "Deck";
+
+        public string GroupBy
+        {
+            get { return groupBy; }
+            set { groupBy = value; RaiseDataPropertyChange(); }
+        }
+
+        private string valueToShow = "Win";
+
+        public string ValueToShow
+        {
+            get { return valueToShow; }
+            set { valueToShow = value; RaiseDataPropertyChange(); }
+        }
+
         public GameStatisticsViewModel() : this(TrackerFactory.DefaultTrackerFactory)
         {
 
@@ -100,19 +116,8 @@ namespace ESLTracker.ViewModels
             return ret;
         }
 
-        private string groupBy = "Deck";
-
-        public string GroupBy
-        {
-            get { return groupBy; }
-            set { groupBy = value; RaiseDataPropertyChange(); }
-        }
-
         public override dynamic GetDataSet()
         {
-
-            //System.Linq.Expressions.Expression<Func<object, bool>>  gropup = GetPropertyValue(g.Deck, "Deck.Class"); 
-
             var result = GamesList
                 .GroupBy(g => new { D = GetPropertyValue(g, GroupBy) , OC = g.OpponentClass })
                         .Select(d => new
@@ -121,9 +126,7 @@ namespace ESLTracker.ViewModels
                             Opp = ClassAttributesHelper.Classes[d.Key.OC.Value].ToString(),
                             Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
                                 "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-                            //WinPerc = d.Key.D.WinRatio,
-                            //WinAll = d.Key.D.Victories +//.Where(d2 => d2.Outcome == GameOutcome.Victory).Count()+
-                            //     "-" + d.Key.D.Defeats,
+                            WinPerc =  (double)d.Where( g=> g.Outcome == GameOutcome.Victory).Count()/ d.Count() * 100,
                         });
             //union totoal for deck
             result = result.Union(
@@ -135,7 +138,7 @@ namespace ESLTracker.ViewModels
                                     Opp = "Total",
                                     Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
                                         "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-
+                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory).Count() / d.Count() * 100
                                 })
                         );
 
@@ -149,6 +152,7 @@ namespace ESLTracker.ViewModels
                                     Opp = ClassAttributesHelper.Classes[d.Key.Value].ToString(),
                                     Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
                                             "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
+                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory).Count() / d.Count() * 100
                                 });
             result = result.Union(
                           total 
@@ -162,7 +166,7 @@ namespace ESLTracker.ViewModels
                                     Opp = "Total",
                                     Win = GamesList.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
                                         "-" + GamesList.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-
+                                    WinPerc = (double)GamesList.Where(g => g.Outcome == GameOutcome.Victory).Count() / GamesList.Count() * 100
                                 })
                         );
             ;
@@ -170,7 +174,9 @@ namespace ESLTracker.ViewModels
             return result.ToPivotTable(
                             item => item.Opp,
                             item =>item.Deck,
-                            items => items.Any() ? items.First().Win : "");
+                            items => items.Any() ? 
+                                    (valueToShow == "Win" ? items.First().Win : Math.Round(items.First().WinPerc,0).ToString() )
+                                 : "");
 
         }
     }

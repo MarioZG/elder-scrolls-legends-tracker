@@ -10,6 +10,8 @@
         mc:Ignorable="d">
     <Window.Resources>
         <Converters:ClassToAttributesIconsConverter x:Key="ClassToAttributesIconsConverter"/>
+        <Converters:DeckOrDeckClassToAttributes x:Key="DeckOrDeckClassToAttributes"/>
+        <Converters:DeckOrDeckClassToName x:Key="DeckOrDeckClassToName"/>
     </Window.Resources>
     <Window.DataContext>
         <ViewModels:GameStatisticsViewModel/>
@@ -21,6 +23,12 @@
             <ComboBox SelectedValue="{Binding GroupBy}" SelectedValuePath="Tag">
                 <ComboBoxItem Content="Deck" Tag="Deck"/>
                 <ComboBoxItem Content="Deck Class" Tag="Deck.Class"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel>
+            <ComboBox SelectedValue="{Binding ValueToShow}" SelectedValuePath="Tag">
+                <ComboBoxItem Content="Victory-Defeat" Tag="Win"/>
+                <ComboBoxItem Content="Victory %" Tag="WinPerc"/>
             </ComboBox>
         </StackPanel>
         <DataGrid 
@@ -53,8 +61,8 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <ItemsControl ItemsSource="{Binding Path=Deck.Class, Converter={StaticResource ClassToAttributesIconsConverter}}" BorderThickness="0"
-                                                ToolTip="{Binding Deck.Class}">
+                                <ItemsControl ItemsSource="{Binding Path=Deck, Converter={StaticResource DeckOrDeckClassToAttributes}}" BorderThickness="0"
+                                                ToolTip="{Binding Deck, Converter={StaticResource DeckOrDeckClassToName}}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <WrapPanel IsItemsHost="True" />
@@ -70,28 +78,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn CanUserReorder="False">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <ItemsControl ItemsSource="{Binding Path=Deck, Converter={StaticResource ClassToAttributesIconsConverter}}" BorderThickness="0"
-                                                ToolTip="{Binding Deck}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel IsItemsHost="True" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Image Width="15" Source="{Binding}"></Image>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn CanUserReorder="False" Binding="{Binding Deck.Name}" />
+                <DataGridTextColumn CanUserReorder="False" Binding="{Binding Deck, Converter={StaticResource DeckOrDeckClassToName}}" />
                 <DataGridTextColumn CanUserReorder="False" Binding="{Binding Total}" />
             </DataGrid.Columns>
         </DataGrid>
