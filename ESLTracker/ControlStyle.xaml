@@ -32,4 +32,30 @@
     <Style x:Key="SaveButton" TargetType="{x:Type Button}">
         <Setter Property="FontWeight" Value="Medium"></Setter>
     </Style>
+    <Style x:Key="HeaderText" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"></Setter>
+        <Setter Property="Padding" Value="5,5,5,5"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style x:Key="ExpanderHeaderText" TargetType="{x:Type Expander}">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock 
+                        Text="{Binding}" 
+                        Width="{Binding
+                            RelativeSource={RelativeSource
+                              Mode=FindAncestor,
+                              AncestorType={x:Type Expander}},
+                            Path=ActualWidth}"
+                        FontSize="14" 
+                        FontWeight="Bold"
+                        Padding="5,5,5,5"
+                        />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"/>
+    </Style>
 </ResourceDictionary>

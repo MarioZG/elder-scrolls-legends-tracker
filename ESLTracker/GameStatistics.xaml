@@ -16,81 +16,91 @@
     <Window.DataContext>
         <ViewModels:GameStatisticsViewModel/>
     </Window.DataContext>
-    <StackPanel>
-        <Game:GameFilter />
-        <Game:GamesSummary />
-        <StackPanel>
-            <ComboBox SelectedValue="{Binding GroupBy}" SelectedValuePath="Tag">
-                <ComboBoxItem Content="Deck" Tag="Deck"/>
-                <ComboBoxItem Content="Deck Class" Tag="Deck.Class"/>
-            </ComboBox>
-        </StackPanel>
-        <StackPanel>
-            <ComboBox SelectedValue="{Binding ValueToShow}" SelectedValuePath="Tag">
-                <ComboBoxItem Content="Victory-Defeat" Tag="Win"/>
-                <ComboBoxItem Content="Victory %" Tag="WinPerc"/>
-            </ComboBox>
-        </StackPanel>
-        <DataGrid 
-            x:Name="dataGrid"
-            DataContext="{Binding DisplayDataSource}" 
-            ItemsSource="{Binding}" 
-            AutoGenerateColumns="False" 
-            GridLinesVisibility="Horizontal"
-            CanUserAddRows="False"
-            CanUserDeleteRows="False">
-            <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridCell}" >
-                    <Setter Property="FontWeight" Value="Normal"/>
-                    <Style.Triggers>
-                        <!-- TOTAL row in bold-->
-                        <DataTrigger Binding="{Binding Deck.Name}" Value="TOTAL">
-                            <Setter Property="FontWeight" Value="ExtraBold"/>
-                        </DataTrigger>
-                        <!-- change sel ted row background-->
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="AliceBlue" />
-                            <Setter Property="BorderBrush" Value="{x:Null}" />
-                            <Setter Property="Foreground" Value="Black" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <DataGridTemplateColumn CanUserReorder="False">
-                    <DataGridTemplateColumn.CellTemplate>
+    <DockPanel>
+        <Expander DockPanel.Dock="Top" IsExpanded="True" Header="Games filter" Style="{DynamicResource ExpanderHeaderText}">
+            <Game:GameFilter />
+        </Expander>
+        <Expander DockPanel.Dock="Top" IsExpanded="True" Header="Games summary" Style="{DynamicResource ExpanderHeaderText}">
+            <StackPanel Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                <Game:GamesSummary Margin="5,5,5,5"/>
+                <StackPanel Margin="5,5,5,5" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="0,0,5,0" Text="Group by "/>
+                    <ComboBox SelectedValue="{Binding GroupBy}" SelectedValuePath="Tag">
+                        <ComboBoxItem Content="Deck" Tag="Deck"/>
+                        <ComboBoxItem Content="Deck Class" Tag="Deck.Class"/>
+                    </ComboBox>
+                    <TextBlock VerticalAlignment="Center" Margin="5,0,5,0" Text="Show as "/>
+                    <ComboBox SelectedValue="{Binding ValueToShow}" SelectedValuePath="Tag">
+                        <ComboBoxItem Content="Victory-Defeat" Tag="Win"/>
+                        <ComboBoxItem Content="Victory %" Tag="WinPerc"/>
+                    </ComboBox>
+                </StackPanel>
+                <DataGrid 
+                x:Name="dataGrid"
+                DataContext="{Binding DisplayDataSource}" 
+                ItemsSource="{Binding}" 
+                AutoGenerateColumns="False" 
+                GridLinesVisibility="Horizontal"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridCell}" >
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Style.Triggers>
+                                <!-- TOTAL row in bold-->
+                                <DataTrigger Binding="{Binding Deck.Name}" Value="TOTAL">
+                                    <Setter Property="FontWeight" Value="ExtraBold"/>
+                                </DataTrigger>
+                                <!-- change sel ted row background-->
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="AliceBlue" />
+                                    <Setter Property="BorderBrush" Value="{x:Null}" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn CanUserReorder="False">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ItemsControl ItemsSource="{Binding Path=Deck, Converter={StaticResource DeckOrDeckClassToAttributes}}" BorderThickness="0"
+                                                    ToolTip="{Binding Deck, Converter={StaticResource DeckOrDeckClassToName}}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel IsItemsHost="True" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Image Width="15" Source="{Binding}"></Image>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn CanUserReorder="False" Binding="{Binding Deck, Converter={StaticResource DeckOrDeckClassToName}}" />
+                        <DataGridTextColumn CanUserReorder="False" Binding="{Binding Total}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Expander>
+        <Expander DockPanel.Dock="Top" IsExpanded="True" Header="List of games" Style="{DynamicResource ExpanderHeaderText}">
+            <Grid Grid.Row="1">
+                <ListView 
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                ItemsSource="{Binding GamesList}"
+                      >
+                    <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <ItemsControl ItemsSource="{Binding Path=Deck, Converter={StaticResource DeckOrDeckClassToAttributes}}" BorderThickness="0"
-                                                ToolTip="{Binding Deck, Converter={StaticResource DeckOrDeckClassToName}}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel IsItemsHost="True" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Image Width="15" Source="{Binding}"></Image>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
+                            <Game:GameListItem DataContext="{Binding}" />
                         </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn CanUserReorder="False" Binding="{Binding Deck, Converter={StaticResource DeckOrDeckClassToName}}" />
-                <DataGridTextColumn CanUserReorder="False" Binding="{Binding Total}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <ListView 
-            ScrollViewer.VerticalScrollBarVisibility="Visible"
-            ItemsSource="{Binding GamesList}"
-                  >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Game:GameListItem DataContext="{Binding}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackPanel>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Expander>
+    </DockPanel>
 </Window>

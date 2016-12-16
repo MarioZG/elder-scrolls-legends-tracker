@@ -5,12 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Game"
              mc:Ignorable="d">
-    <StackPanel>
-        <TextBlock Text="{Binding Victories, StringFormat={} {0}-}"/>
-        <TextBlock Text="{Binding Defeats, StringFormat={} {0}}"/>
-        <TextBlock Text="{Binding OrderOfPlayFirst, StringFormat={} First:{0}}"/>
-        <TextBlock Text="{Binding OrderOfPlaySecond, StringFormat={} Second:{0}}"/>
-
-
-    </StackPanel>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock Text="Victories-Defeats: "/>
+            <TextBlock Text="{Binding Victories, StringFormat={} {0}-}"/>
+            <TextBlock Text="{Binding Defeats, StringFormat={} {0}}"/>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock Text="Order of play (first-second): "/>
+            <TextBlock Text="{Binding OrderOfPlayFirst, StringFormat={} {0}}"/>
+            <TextBlock Text="{Binding OrderOfPlaySecond, StringFormat={} -{0}}"/>
+        </StackPanel>
+    </DockPanel>
 </UserControl>

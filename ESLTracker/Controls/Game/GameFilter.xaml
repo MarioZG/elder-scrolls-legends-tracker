@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Game"
              mc:Ignorable="d">
-    <DockPanel Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+    <DockPanel Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="5,10,5,5">
-            <Label Content="Arena type"/>
+            <Label Content="Game type"/>
             <ComboBox 
                     ItemsSource="{Binding GameTypeSeletorValues}" SelectedItem="{Binding GameType, Mode=TwoWay}"/>
         </StackPanel>

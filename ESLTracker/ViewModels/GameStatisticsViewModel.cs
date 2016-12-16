@@ -92,7 +92,7 @@ namespace ESLTracker.ViewModels
         }
 
 
-        private IEnumerable<DataModel.Game> GamesList
+        public IEnumerable<DataModel.Game> GamesList
         {
             get
             {
