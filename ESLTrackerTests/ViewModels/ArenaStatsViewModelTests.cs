@@ -11,6 +11,7 @@ using ESLTracker.Utils;
 using ESLTrackerTests;
 using System.Collections.ObjectModel;
 using ESLTracker.ViewModels.Game;
+using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.ViewModels.Tests
 {
@@ -40,8 +41,8 @@ namespace ESLTracker.ViewModels.Tests
 
             tracker.Setup(t => t.Games).Returns(
                  new ObservableCollection<DataModel.Game>(
-                     GenerateGamesList(d1, 4, 3).Union(
-                    GenerateGamesList(d2, 4, 3))
+                     GenerateGamesList(d1, 4, 3, 0, 0, GameType.VersusArena).Union(
+                    GenerateGamesList(d2, 4, 3, 0, 0, GameType.VersusArena))
                 ));
 
             tracker.Setup(t => t.Rewards).Returns(
@@ -116,8 +117,8 @@ namespace ESLTracker.ViewModels.Tests
 
             tracker.Setup(t => t.Games).Returns(
                  new ObservableCollection<DataModel.Game>(
-                     GenerateGamesList(d1, 4, 3).Union(
-                    GenerateGamesList(d2, 4, 3))
+                     GenerateGamesList(d1, 4, 3, 0, 0, GameType.VersusArena).Union(
+                    GenerateGamesList(d2, 4, 3, 0, 0, GameType.VersusArena))
                 ));
 
 

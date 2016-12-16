@@ -88,13 +88,14 @@ namespace ESLTrackerTests
             int victories = 0, 
             int defeats = 0, 
             int draws = 0, 
-            int disconnects = 0)
+            int disconnects = 0,
+            GameType? gameType = null)
         {
             return new System.Collections.ObjectModel.ObservableCollection<Game>(
-                    Enumerable.Range(0, disconnects).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Disconnect }).Union(
-                    Enumerable.Range(0, defeats).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Defeat }).Union(
-                    Enumerable.Range(0, draws).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Draw }).Union(
-                    Enumerable.Range(0, victories).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Victory })
+                    Enumerable.Range(0, disconnects).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Disconnect, Type = gameType }).Union(
+                    Enumerable.Range(0, defeats).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Defeat, Type = gameType }).Union(
+                    Enumerable.Range(0, draws).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Draw, Type = gameType }).Union(
+                    Enumerable.Range(0, victories).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Victory, Type = gameType })
                     )))
                 );
         }
