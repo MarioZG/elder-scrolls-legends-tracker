@@ -90,13 +90,31 @@ namespace ESLTracker.ViewModels
             }
         }
 
+        private static object GetPropertyValue(object obj, string propertyName)
+        {
+            object ret = obj;
+            foreach (string prop in propertyName.Split(new char[] { '.'}))
+            {
+                ret = ret.GetType().GetProperty(prop).GetValue(ret, null);
+            }
+            return ret;
+        }
+
+        private string groupBy = "Deck";
+
+        public string GroupBy
+        {
+            get { return groupBy; }
+            set { groupBy = value; RaiseDataPropertyChange(); }
+        }
+
         public override dynamic GetDataSet()
         {
 
-
+            //System.Linq.Expressions.Expression<Func<object, bool>>  gropup = GetPropertyValue(g.Deck, "Deck.Class"); 
 
             var result = GamesList
-                .GroupBy(g => new { D = g.Deck, OC = g.OpponentClass })
+                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy) , OC = g.OpponentClass })
                         .Select(d => new
                         {
                             Deck = d.Key.D,
@@ -110,7 +128,7 @@ namespace ESLTracker.ViewModels
             //union totoal for deck
             result = result.Union(
                             GamesList
-                                .GroupBy(g => new { D = g.Deck })
+                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy) })
                                 .Select(d => new
                                 {
                                     Deck = d.Key.D,
@@ -122,7 +140,7 @@ namespace ESLTracker.ViewModels
                         );
 
             //add total row for all decks
-            DataModel.Deck totalDeck = new DataModel.Deck() { Name = "TOTAL" };
+            object totalDeck = new DataModel.Deck() { Name = "TOTAL" };
             var total = GamesList
                                 .GroupBy(g => g.OpponentClass)
                                 .Select(d => new
@@ -135,7 +153,19 @@ namespace ESLTracker.ViewModels
             result = result.Union(
                           total 
                         )
-                        ;
+                        //totoal for toal row
+                        .Union(
+                            GamesList
+                                .Select(d => new
+                                {
+                                    Deck = totalDeck,
+                                    Opp = "Total",
+                                    Win = GamesList.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
+                                        "-" + GamesList.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
+
+                                })
+                        );
+            ;
 
             return result.ToPivotTable(
                             item => item.Opp,
