@@ -129,6 +129,11 @@ namespace ESLTracker.ViewModels
         {
             get { return new RelayCommand(new Action<object>(CommandShowArenaStatsExecute)); }
         }
+
+        public ICommand CommandShowGamesStats
+        {
+            get { return new RelayCommand(new Action<object>(CommandShowGamesStatsExecute)); }
+        }
         #endregion
 
         ITrackerFactory trackerFactory;
@@ -264,6 +269,12 @@ namespace ESLTracker.ViewModels
         private void CommandShowArenaStatsExecute(object obj)
         {
             new ArenaStats().Show();
+        }
+
+
+        private void CommandShowGamesStatsExecute(object obj)
+        {
+            new GameStatistics().Show();
         }
     }
 }

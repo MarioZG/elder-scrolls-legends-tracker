@@ -28,7 +28,7 @@ namespace ESLTracker.DataModel
             {
                 if (Class.HasValue)
                 {
-                    return new DeckAttributes(ClassAttributesHelper.Classes[Class.Value]);
+                    return new DeckAttributes(Class.Value, ClassAttributesHelper.Classes[Class.Value]);
                 }
                 else
                 {
@@ -105,26 +105,26 @@ namespace ESLTracker.DataModel
             return trackerFactory.GetTracker().Games.Where(g => g.Deck.DeckId == this.DeckId);
         }
 
-        public IEnumerable GetDeckVsClass()
+        public dynamic GetDeckVsClass()
         {
             return GetDeckVsClass(null);
         }
 
-        public IEnumerable GetDeckVsClass(DeckClass? opponentClass)
+        public dynamic GetDeckVsClass(DeckClass? opponentClass)
         {
             return this.GetDeckGames()
-                        .Where(g=> (g.OpponentClass.HasValue)  //filter out all game where calss is not set (if we include in show all, crash below as here is no nul key in classes.attibutes)
-                                && ((g.OpponentClass == opponentClass) || (opponentClass == null))) //class = param, or oaram is null - show all"
-                        .GroupBy(d => d.OpponentClass.Value)
-                        .Select(d => new
-                        {
-                            Class = d.Key,
-                            Attributes = ClassAttributesHelper.Classes[d.Key],
-                            Total = d.Count(),
-                            Victory = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count(),
-                            Defeat = d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-                            WinPercent = d.Count() > 0 ? Math.Round((decimal)d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() / (decimal)d.Count() * 100, 0).ToString() : "-"
-                        });
+                      .Where(g => (g.OpponentClass.HasValue)  //filter out all game where calss is not set (if we include in show all, crash below as here is no nul key in classes.attibutes)
+                              && ((g.OpponentClass == opponentClass) || (opponentClass == null))) //class = param, or oaram is null - show all"
+                      .GroupBy(d => d.OpponentClass.Value)
+                      .Select(d => new
+                      {
+                          Class = d.Key,
+                          Attributes = ClassAttributesHelper.Classes[d.Key],
+                          Total = d.Count(),
+                          Victory = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count(),
+                          Defeat = d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
+                          WinPercent = d.Count() > 0 ? Math.Round((decimal)d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() / (decimal)d.Count() * 100, 0).ToString() : "-"
+                      });
         }
 
         public void UpdateAllBindings()

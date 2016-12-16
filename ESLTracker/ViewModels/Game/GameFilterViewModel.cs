@@ -15,21 +15,21 @@ namespace ESLTracker.ViewModels.Game
         public DateTime? FilterDateFrom
         {
             get { return filterDateFrom; }
-            set { filterDateFrom = value; RaisePropertyChangedEvent("DisplayDataSource"); }
+            set { filterDateFrom = value; RaiseDataPropertyChange(); }
         }
 
         protected DateTime? filterDateTo;
         public DateTime? FilterDateTo
         {
             get { return filterDateTo; }
-            set { filterDateTo = value; RaisePropertyChangedEvent("DisplayDataSource"); }
+            set { filterDateTo = value; RaiseDataPropertyChange(); }
         }
 
-        protected GameType deckType;
-        public GameType DeckType
+        protected GameType gameType;
+        public GameType GameType
         {
-            get { return deckType; }
-            set { deckType = value; RaisePropertyChangedEvent("DisplayDataSource"); }
+            get { return gameType; }
+            set { gameType = value; RaiseDataPropertyChange(); }
         }
 
         public dynamic DisplayDataSource
@@ -64,7 +64,7 @@ namespace ESLTracker.ViewModels.Game
                 SetDateFilters(value);
                 RaisePropertyChangedEvent("FilterDateFrom");
                 RaisePropertyChangedEvent("FilterDateTo");
-                RaisePropertyChangedEvent("DisplayDataSource");
+                RaiseDataPropertyChange();
             }
         }
 
@@ -111,6 +111,11 @@ namespace ESLTracker.ViewModels.Game
         }
 
         public abstract dynamic GetDataSet();
+
+        protected virtual void RaiseDataPropertyChange()
+        {
+            RaisePropertyChangedEvent("DisplayDataSource");
+        }
     }
 
     

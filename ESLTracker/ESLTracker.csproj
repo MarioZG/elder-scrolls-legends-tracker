@@ -101,6 +101,9 @@
     <Compile Include="Controls\Game\GameListItem.xaml.cs">
       <DependentUpon>GameListItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Game\GamesSummary.xaml.cs">
+      <DependentUpon>GamesSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Rewards\RewardItemList.xaml.cs">
       <DependentUpon>RewardItemList.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,9 @@
     </Compile>
     <Compile Include="DataModel\Enums\ArenaRank.cs" />
     <Compile Include="DataModel\ITracker.cs" />
+    <Compile Include="GameStatistics.xaml.cs">
+      <DependentUpon>GameStatistics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\ISettings.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
@@ -134,6 +140,7 @@
     <Compile Include="Utils\IOWrappers\PathWrapper.cs" />
     <Compile Include="Utils\IOWrappers\WrapperProvider.cs" />
     <Compile Include="Utils\ITrackerFactory.cs" />
+    <Compile Include="Utils\LinqExtensions.cs" />
     <Compile Include="Utils\Messages\ControlMessangerContext.cs" />
     <Compile Include="Utils\Messages\DeckListFilterChanged.cs" />
     <Compile Include="Utils\Messages\DeckListResetFilters.cs" />
@@ -144,6 +151,7 @@
     <Compile Include="Utils\SerializableVersion.cs" />
     <Compile Include="Utils\TrackerFactory.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
+    <Compile Include="ViewModels\GameStatisticsViewModel.cs" />
     <Compile Include="ViewModels\Game\GameFilterViewModel.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
     <Compile Include="Controls\DeckClassSelector.xaml.cs">
@@ -260,6 +268,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Game\GamesSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\OverlayWindowTitlebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -277,6 +289,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Settings\SettingsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

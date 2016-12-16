@@ -9,12 +9,21 @@ namespace ESLTracker.DataModel
 {
     public class DeckAttributes : List<DeckAttribute>
     {
+
+        DeckClass deckClass;
+
         public DeckAttributes()
         {
         }
 
-        public DeckAttributes(IEnumerable<DeckAttribute> collection) : base(collection)
+        public DeckAttributes(DeckClass deckClass)
         {
+            this.deckClass = deckClass;
+        }
+
+        public DeckAttributes(DeckClass deckClass, IEnumerable<DeckAttribute> collection) : base(collection)
+        {
+            this.deckClass = deckClass;
         }
 
         public IEnumerable<string> ImageSources
@@ -30,7 +39,7 @@ namespace ESLTracker.DataModel
 
         public override string ToString()
         {
-            return String.Join(",", this);
+            return deckClass.ToString();
         }
 
     }

@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="ESLTracker.Controls.Game.GamesSummary"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ESLTracker.Controls.Game"
+             mc:Ignorable="d">
+    <StackPanel>
+        <TextBlock Text="{Binding Victories, StringFormat={} {0}-}"/>
+        <TextBlock Text="{Binding Defeats, StringFormat={} {0}}"/>
+        <TextBlock Text="{Binding OrderOfPlayFirst, StringFormat={} First:{0}}"/>
+        <TextBlock Text="{Binding OrderOfPlaySecond, StringFormat={} Second:{0}}"/>
+
+
+    </StackPanel>
+</UserControl>

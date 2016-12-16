@@ -67,7 +67,7 @@ namespace ESLTracker.ViewModels.Tests
             trackerfactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerfactory.Object);
-            model.DeckType = DataModel.Enums.GameType.VersusArena;
+            model.GameType = DataModel.Enums.GameType.VersusArena;
 
             var result = model.GetDataSet();
 
@@ -160,7 +160,7 @@ namespace ESLTracker.ViewModels.Tests
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerfactory.Object);
             model.FilterDateFrom = new DateTime(2016, 11, 1);
             model.FilterDateTo = null;
-            model.DeckType = DataModel.Enums.GameType.VersusArena;
+            model.GameType = DataModel.Enums.GameType.VersusArena;
 
             var result = model.GetDataSet();
 
