@@ -37,5 +37,10 @@ namespace ESLTracker.Utils
         {
             return Process.GetProcesses().Where(p => p.MainWindowTitle == "The Elder Scrolls: Legends").FirstOrDefault();
         }
+
+        public FileVersionInfo GetEslFileVersionInfo()
+        {
+            return GetEslProcess()?.MainModule?.FileVersionInfo;
+        }
     }
 }

@@ -14,6 +14,7 @@ using System.Reflection;
 using ESLTracker.Utils;
 using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace ESLTracker.ViewModels.Game.Tests
 {
@@ -115,6 +116,87 @@ namespace ESLTracker.ViewModels.Game.Tests
             Assert.IsNotNull(model.ErrorMessage);
 
             messanger.Verify(m => m.Send(It.IsAny<object>()), Times.Never);
+        }
+
+        /// <summary>
+        /// verify if esl version is added when it's running
+        /// </summary>
+        [TestMethod()]
+        public void CommandButtonCreateExecuteTest004_CheckIfESLFileVersionAdded()
+        {
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            Mock<IMessenger> messanger = new Mock<IMessenger>();
+            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
+
+            Mock<ISettings> settings = new Mock<ISettings>();
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+
+            Mock<ITracker> tracker = new Mock<ITracker>();
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
+            tracker.Setup(t => t.ActiveDeck).Returns(new Deck(trackerFactory.Object));
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+
+            FileVersionInfo expected = FileVersionInfo.GetVersionInfo(Assembly.GetAssembly(this.GetType()).Location);
+
+            Mock<IWinAPI> winApi = new Mock<IWinAPI>();
+            winApi.Setup(w => w.GetEslFileVersionInfo()).Returns(expected);
+
+            trackerFactory.Setup(tf => tf.GetWinAPI()).Returns(winApi.Object);
+
+
+            EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
+
+            GameOutcome param = GameOutcome.Victory;
+
+            model.UpdateGameData(settings.Object, param);
+
+            Assert.IsNotNull(model.Game.ESLVersion);
+            Assert.AreEqual(expected.ProductVersion, model.Game.ESLVersion.ToString());
+
+        }
+
+        /// <summary>
+        /// verify if ESL version is taken from last game
+        /// </summary>
+        [TestMethod()]
+        public void CommandButtonCreateExecuteTest005_CheckIfESLFileVersionAddedWhenESLNOtRunning()
+        {
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            Mock<IMessenger> messanger = new Mock<IMessenger>();
+            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
+
+            Mock<ISettings> settings = new Mock<ISettings>();
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+
+            FileVersionInfo expected = FileVersionInfo.GetVersionInfo(Assembly.GetAssembly(this.GetType()).Location);
+
+            Mock<ITracker> tracker = new Mock<ITracker>();
+            //add two games wit hdiff version - ensure correct is copied
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>() {
+                new DataModel.Game() { Date = DateTime.Now, ESLVersion = new SerializableVersion(new Version(expected.ProductVersion.ToString()))},
+                new DataModel.Game() { Date = DateTime.Now.AddDays(-7), ESLVersion = new SerializableVersion(2,3)},
+                  new DataModel.Game() { Date = DateTime.Now, ESLVersion = null},
+            });
+            tracker.Setup(t => t.ActiveDeck).Returns(new Deck(trackerFactory.Object));
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+
+
+
+            Mock<IWinAPI> winApi = new Mock<IWinAPI>();
+            //ensure not running
+            winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);
+
+            trackerFactory.Setup(tf => tf.GetWinAPI()).Returns(winApi.Object);
+
+            EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
+
+            GameOutcome param = GameOutcome.Victory;
+
+            model.UpdateGameData(settings.Object, param);
+
+            Assert.IsNotNull(model.Game.ESLVersion);
+            Assert.AreEqual(expected.ProductVersion, model.Game.ESLVersion.ToString());
+
         }
 
         [TestMethod()]

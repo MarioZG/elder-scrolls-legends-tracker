@@ -6,5 +6,6 @@ namespace ESLTracker.Utils
     {
         Process GetEslProcess();
         bool IsGameActive();
+        FileVersionInfo GetEslFileVersionInfo();
     }
 }
