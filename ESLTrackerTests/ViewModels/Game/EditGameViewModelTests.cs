@@ -40,6 +40,11 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
+            Mock<IWinAPI> winApi = new Mock<IWinAPI>();
+            winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);
+
+            trackerFactory.Setup(tf => tf.GetWinAPI()).Returns(winApi.Object);
+
             EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
 
             PlayerRank selectedPlayerRank = PlayerRank.TheLord;
@@ -302,8 +307,15 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(timeConcluded);
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(new Mock<ITracker>().Object);
             trackerFactory.Setup(tf => tf.GetMessanger()).Returns(new Mock<IMessenger>().Object);
+
+            Mock<ITracker> tracker = new Mock<ITracker>();
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+
+            Mock<IWinAPI> winApi = new Mock<IWinAPI>();
+            winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);
+            trackerFactory.Setup(tf => tf.GetWinAPI()).Returns(winApi.Object);
 
             EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
 
