@@ -112,6 +112,9 @@
     <Compile Include="Controls\Game\GamesSummary.xaml.cs">
       <DependentUpon>GamesSummary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Game\RankedProgressChart.xaml.cs">
+      <DependentUpon>RankedProgressChart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Rewards\RewardItemList.xaml.cs">
       <DependentUpon>RewardItemList.xaml</DependentUpon>
     </Compile>
@@ -124,6 +127,9 @@
       <DependentUpon>GameStatistics.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\ISettings.cs" />
+    <Compile Include="RankedProgressChart.xaml.cs">
+      <DependentUpon>RankedProgressChart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
@@ -218,6 +224,7 @@
     <Compile Include="ViewModels\Decks\EditDeckViewModel.cs" />
     <Compile Include="ViewModels\Decks\IDeckTypeSelectorViewModel.cs" />
     <Compile Include="ViewModels\Game\EditGameViewModel.cs" />
+    <Compile Include="ViewModels\Game\RankedProgressChartViewModel.cs" />
     <Compile Include="ViewModels\IDeckClassSelectorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
@@ -283,6 +290,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Game\RankedProgressChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\OverlayWindowTitlebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -332,6 +343,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Controls\Rewards\RewardSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RankedProgressChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

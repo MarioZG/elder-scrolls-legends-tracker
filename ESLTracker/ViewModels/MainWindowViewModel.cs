@@ -134,6 +134,12 @@ namespace ESLTracker.ViewModels
         {
             get { return new RelayCommand(new Action<object>(CommandShowGamesStatsExecute)); }
         }
+
+        public ICommand CommandShowRankedProgress
+        {
+            get { return new RelayCommand(new Action<object>(CommandShowRankedProgressExecute)); }
+        }
+
         #endregion
 
         ITrackerFactory trackerFactory;
@@ -276,5 +282,12 @@ namespace ESLTracker.ViewModels
         {
             new GameStatistics().Show();
         }
+
+        private void CommandShowRankedProgressExecute(object obj)
+        {
+            new RankedProgressChart().Show();
+        }
+
+
     }
 }

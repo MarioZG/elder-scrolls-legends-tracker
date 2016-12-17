@@ -50,6 +50,7 @@
                     <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
                     <MenuItem Header="Arena runs" Command="{Binding CommandShowArenaStats}" />
                     <MenuItem Header="Games" Command="{Binding CommandShowGamesStats}" />
+                    <MenuItem Header="Ranked progress" Command="{Binding CommandShowRankedProgress}" />
                 </MenuItem>
                 <MenuItem Header="Show overlay window" Command="{Binding CommandShowOverlay}"/>
                 <MenuItem Command="{Binding CommandRunGame}">
