@@ -42,6 +42,56 @@ namespace ESLTracker.ViewModels.Game
 
         public Func<double, string> Formatter { get; set; }
 
+        private bool connectMin;
+
+        public bool ConnectMin
+        {
+            get { return connectMin; }
+            set {
+                connectMin = value;
+                ShowSeries();
+                RaisePropertyChangedEvent(); }
+        }
+
+        private bool connectMax;
+
+        public bool ConnectMax
+        {
+            get { return connectMax; }
+            set {
+                connectMax = value;
+                ShowSeries();
+                RaisePropertyChangedEvent(); }
+        }
+
+        private bool connectLast = true;
+
+        public bool ConnectLast
+        {
+            get { return connectLast; }
+            set {
+                connectLast = value;
+                ShowSeries();
+                RaisePropertyChangedEvent(); }
+        }
+
+        private bool showMaxMin = true;
+        private LineSeries lsLastInDay;
+        private LineSeries lsMinInDay;
+        private LineSeries lsMaxInDay;
+        private LineSeries lsAll;
+        private SeriesCollection seriesCollection;
+        private OhlcSeries ohlcMinMax;
+
+        public bool ShowMaxMin
+        {
+            get { return showMaxMin; }
+            set {
+                showMaxMin = value;
+                ShowSeries();
+                RaisePropertyChangedEvent(); }
+        }
+
         public RankedProgressChartViewModel() : this(TrackerFactory.DefaultTrackerFactory)
         {
 
@@ -62,8 +112,8 @@ namespace ESLTracker.ViewModels.Game
         {
             var games = trackerFactory.GetTracker()
                  .Games
-                 .Where(g => g.Type == GameType.PlayRanked 
-                        &&  ((filterDateFrom == null) ||  (g.Date >= filterDateFrom))
+                 .Where(g => g.Type == GameType.PlayRanked
+                        && ((filterDateFrom == null) || (g.Date >= filterDateFrom))
                         && ((filterDateTo == null) || (g.Date <= filterDateTo))
                         )
                  .OrderBy(g => g.Date);
@@ -113,35 +163,66 @@ namespace ESLTracker.ViewModels.Game
                 }
             }
 
-            OhlcSeries os = new OhlcSeries();
-            os.Values = new ChartValues<OhlcPoint>();
+            ohlcMinMax = new OhlcSeries();
+            ohlcMinMax.Values = new ChartValues<OhlcPoint>();
 
-            LineSeries ls = new LineSeries();
-            ls.Values = new ChartValues<int>();
+            lsLastInDay = new LineSeries();
+            lsLastInDay.Values = new ChartValues<int>();
+            lsMinInDay = new LineSeries();
+            lsMinInDay.Values = new ChartValues<int>();
+            lsMaxInDay = new LineSeries();
+            lsMaxInDay.Values = new ChartValues<int>();
+            lsAll = new LineSeries();
+            lsAll.Values = new ChartValues<int>();
             foreach (var row in chartData.Values)
             {
-                os.Values.Add(new OhlcPoint(row.Item2, row.Item3, row.Item1, row.Item2));
-                ls.Values.Add(row.Item2);
+                ohlcMinMax.Values.Add(new OhlcPoint(row.Item2, row.Item3, row.Item1, row.Item2));
+                lsMinInDay.Values.Add(row.Item1);
+                lsLastInDay.Values.Add(row.Item2);
+                lsMaxInDay.Values.Add(row.Item3);
+            }
+            foreach (var row in val.Values)
+            {
+                lsAll.Values.Add(row);
             }
 
-            //foreach (var row in val.Values)
-            //{
-            //    //os.Values.Add(row);
-            //    ls.Values.Add(row);
-            //}
 
             foreach (var key in chartData.Keys)
             {
                 labels.Add(key.Date.Date.ToString("d"));
             }
 
-            SeriesCollection sc = new SeriesCollection();
-            sc.Add(os);
-            sc.Add(ls);
+            seriesCollection = new SeriesCollection();
+            ShowSeries();
 
             RaisePropertyChangedEvent("Labels");
 
-            return sc;
+            return seriesCollection;
+        }
+
+        private void ShowSeries()
+        {
+            seriesCollection.Clear();
+            if (showMaxMin)
+            {
+                seriesCollection.Add(ohlcMinMax);
+                if (connectLast)
+                {
+                    seriesCollection.Add(lsLastInDay);
+                }
+                if (connectMin)
+                {
+                    seriesCollection.Add(lsMinInDay);
+                }
+                if (connectMax)
+                {
+                    seriesCollection.Add(lsMaxInDay);
+                }
+            }
+            else
+            {
+                seriesCollection.Add(lsAll);
+            }
         }
     }
 }

@@ -5,15 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Game"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Game"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
         <ViewModels:RankedProgressChartViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
+    </UserControl.Resources>
     <DockPanel>
         <local:GameFilter DockPanel.Dock="Top" />
-        <lvc:CartesianChart x:Name="chart" Series="{Binding DisplayDataSource}">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding ShowMaxMin}" Content="Show worst and best in a day"/>
+            <CheckBox IsChecked="{Binding ConnectMin}" 
+                      Visibility="{Binding ShowMaxMin, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                      Content="Connect worst in day"/>
+            <CheckBox IsChecked="{Binding ConnectLast}" 
+                      Visibility="{Binding ShowMaxMin, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                      Content="Connect last in day"/>
+            <CheckBox IsChecked="{Binding ConnectMax}" 
+                      Visibility="{Binding ShowMaxMin, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                      Content="Connect best in day"/>
+        </StackPanel>
+        <lvc:CartesianChart Margin="10,10,10,10" x:Name="chart" Series="{Binding DisplayDataSource}">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Labels="{Binding Labels}"/>
             </lvc:CartesianChart.AxisX>
