@@ -62,7 +62,7 @@
                         </Style>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn CanUserReorder="False">
+                        <DataGridTemplateColumn CanUserSort="False">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -83,8 +83,8 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn CanUserReorder="False" Binding="{Binding Deck, Converter={StaticResource DeckOrDeckClassToName}}" />
-                        <DataGridTextColumn CanUserReorder="False" Binding="{Binding Total}" />
+                        <DataGridTextColumn Binding="{Binding Deck, Converter={StaticResource DeckOrDeckClassToName}}" />
+                        <DataGridTextColumn CanUserSort="False" Binding="{Binding Total}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

@@ -30,6 +30,7 @@ namespace ESLTracker
                 DataGridTextColumn col = new DataGridTextColumn();
                 col.Header = da.ToString();
                 col.Binding = new Binding(da.ToString());
+                col.CanUserSort = false;
 
                 DataTemplate cardLayout = new DataTemplate();
                 cardLayout.DataType = typeof(GameStatistics);
