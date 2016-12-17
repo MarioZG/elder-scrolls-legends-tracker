@@ -28,6 +28,7 @@ target BuildMaster
 	<Target Name="BuildMaster">
 		<CallTarget Targets="Build"/>
 		<CallTarget Targets="CopyBinaries"/>
+		<CallTarget Targets="ExecuteTests"/>
 	</Target>
 	<Target Name="ReleaseLatest">
 		<CallTarget Targets="Build"/>
@@ -39,6 +40,9 @@ target BuildMaster
 	<Target Name="Build">
 		<Message Text="MSBuildProjectDirectoryr=$(MSBuildProjectDirectory)"/>
 		<CallTarget Targets="Compile"/>
+		<ItemGroup>
+			<OutputFiles Include="$(BuildDir)\ESLTracker\*.*" />
+		</ItemGroup>
 	</Target>
 	<Target Name="PrepareOutDir">
 		<RemoveDir Directories="$(BuildDir)"/>
@@ -49,13 +53,14 @@ target BuildMaster
 	</Target>
 	<Target Name="Compile" DependsOnTargets="CheckoutBranch">
 		<Message Text="Compiling projects @(ProjectToBuild)"/>
-		<MSBuild Projects="@(ProjectToBuild)" Properties="Configuration=Release"/>
+		<MSBuild Projects="@(ProjectToBuild)" Properties="Configuration=Release" />
 	</Target>
 	<Target Name="ExecuteTests" DependsOnTargets="Compile">
 		<Exec Command='"c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe"  /resultsfile:$(BuildDir)\tests.trx /testcontainer:$(BuildDir)\ESLTrackerTests\ESLTrackerTests.dll' />
 	</Target>
 	<Target Name="CopyBinaries" DependsOnTargets="Compile">
 		<!-- versiopn still should be latest master-->
+		<Message Text="Files to copy:@(OutputFiles)"/>
 		<RemoveDir Directories="$(RootDir)\Bin\$(Version)"/>
 		<MakeDir Directories="$(RootDir)\Bin\$(Version)"/>
 		<Copy SourceFiles='@(OutputFiles)' DestinationFolder='$(RootDir)\Bin\$(Version)' />
