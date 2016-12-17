@@ -81,8 +81,8 @@ namespace ESLTracker.ViewModels.Game
         private LineSeries lsAll;
         private SeriesCollection seriesCollection;
         private OhlcSeries ohlcMinMax;
-        private IList<string> labelsDetailed = new List<string>();
-        private IList<string> labels = new List<string>();
+        private IList<string> labelsDetailed;
+        private IList<string> labels;
 
         public bool ShowMaxMin
         {
@@ -114,8 +114,8 @@ namespace ESLTracker.ViewModels.Game
             var games = trackerFactory.GetTracker()
                  .Games
                  .Where(g => g.Type == GameType.PlayRanked
-                        && ((filterDateFrom == null) || (g.Date >= filterDateFrom))
-                        && ((filterDateTo == null) || (g.Date <= filterDateTo))
+                        && ((filterDateFrom == null) || (g.Date.Date >= filterDateFrom))
+                        && ((filterDateTo == null) || (g.Date.Date <= filterDateTo))
                         )
                  .OrderBy(g => g.Date);
 
@@ -176,6 +176,10 @@ namespace ESLTracker.ViewModels.Game
             lsMaxInDay.Values = new ChartValues<int>();
             lsAll = new LineSeries();
             lsAll.Values = new ChartValues<int>();
+            
+            labelsDetailed = new List<string>();
+            labels = new List<string>();
+
             foreach (var row in chartData.Values)
             {
                 ohlcMinMax.Values.Add(new OhlcPoint(row.Item2, row.Item3, row.Item1, row.Item2));
