@@ -143,7 +143,7 @@ namespace ESLTracker.ViewModels
                         );
 
             //add total row for all decks
-            object totalDeck = new DataModel.Deck() { Name = "TOTAL" };
+            object totalDeck = new DataModel.Deck() { Name = "TOTAL", Notes = "SUMMARYROW" };
             var total = GamesList
                                 .GroupBy(g => g.OpponentClass)
                                 .Select(d => new
@@ -169,7 +169,20 @@ namespace ESLTracker.ViewModels
                                     WinPerc = (double)GamesList.Where(g => g.Outcome == GameOutcome.Victory).Count() / GamesList.Count() * 100
                                 })
                         );
-            ;
+
+            //add % of opponents decks
+            //add total row for all decks
+            object totalOpponentDeck = new DataModel.Deck() { Name = "Games vs class %", Notes = "SUMMARYROW" };
+            var totalOpponents = GamesList
+                                .GroupBy(g => g.OpponentClass)
+                                .Select(d => new
+                                {
+                                    Deck = totalOpponentDeck,
+                                    Opp = ClassAttributesHelper.Classes[d.Key.Value].ToString(),
+                                    Win = Math.Round((double)d.Count() / GamesList.Count() * 100).ToString() ,
+                                    WinPerc = (double)d.Count() / GamesList.Count() * 100,
+                                });
+            result = result.Union(totalOpponents);
 
             return result.ToPivotTable(
                             item => item.Opp,

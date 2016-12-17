@@ -48,7 +48,7 @@
                             <Setter Property="FontWeight" Value="Normal"/>
                             <Style.Triggers>
                                 <!-- TOTAL row in bold-->
-                                <DataTrigger Binding="{Binding Deck.Name}" Value="TOTAL">
+                                <DataTrigger Binding="{Binding Deck.Notes}" Value="SUMMARYROW">
                                     <Setter Property="FontWeight" Value="ExtraBold"/>
                                 </DataTrigger>
                                 <!-- change sel ted row background-->
