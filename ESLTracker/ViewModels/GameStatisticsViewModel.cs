@@ -43,6 +43,54 @@ namespace ESLTracker.ViewModels
             }
         }
 
+        public int OrderOfPlayFirstVictories
+        {
+            get
+            {
+                return GamesList.Where(g => g.OrderOfPlay == OrderOfPlay.First && g.Outcome == GameOutcome.Victory).Count();
+            }
+        }
+
+        public int OrderOfPlaySecondVictories
+        {
+            get
+            {
+                return GamesList.Where(g => g.OrderOfPlay == OrderOfPlay.Second && g.Outcome == GameOutcome.Victory).Count();
+            }
+        }
+
+        public int OrderOfPlayFirstDefeats
+        {
+            get
+            {
+                return GamesList.Where(g => g.OrderOfPlay == OrderOfPlay.First && g.Outcome == GameOutcome.Defeat).Count();
+            }
+        }
+
+        public int OrderOfPlaySecondDefeats
+        {
+            get
+            {
+                return GamesList.Where(g => g.OrderOfPlay == OrderOfPlay.Second && g.Outcome == GameOutcome.Defeat).Count();
+            }
+        }
+
+        public decimal OrderOfPlayFirstRatio
+        {
+            get
+            {
+                return Math.Round((decimal)OrderOfPlayFirstVictories/ OrderOfPlayFirst *100,0);
+            }
+        }
+
+        public decimal OrderOfPlaySecondRatio
+        {
+            get
+            {
+                return Math.Round((decimal)OrderOfPlaySecondVictories / OrderOfPlaySecond * 100, 0);
+            }
+        }
+
         public override IEnumerable<GameType> GameTypeSeletorValues
         {
             get

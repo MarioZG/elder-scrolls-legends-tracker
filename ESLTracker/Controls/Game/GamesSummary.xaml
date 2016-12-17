@@ -9,12 +9,24 @@
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <TextBlock Text="Victories-Defeats: "/>
             <TextBlock Text="{Binding Victories, StringFormat={} {0}-}"/>
-            <TextBlock Text="{Binding Defeats, StringFormat={} {0}}"/>
+            <TextBlock Text="{Binding Defeats, StringFormat={}{0}}"/>
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <TextBlock Text="Order of play (first-second): "/>
             <TextBlock Text="{Binding OrderOfPlayFirst, StringFormat={} {0}}"/>
-            <TextBlock Text="{Binding OrderOfPlaySecond, StringFormat={} -{0}}"/>
+            <TextBlock Text="{Binding OrderOfPlaySecond, StringFormat={}-{0}}"/>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock Text="Victories-Defeats when play first: "/>
+            <TextBlock Text="{Binding OrderOfPlayFirstVictories, StringFormat={} {0}}"/>
+            <TextBlock Text="{Binding OrderOfPlayFirstDefeats, StringFormat={}-{0}}"/>
+            <TextBlock Text="{Binding OrderOfPlayFirstRatio, StringFormat={}({0}%)}"/>            
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock Text="Victories-Defeats when play second: "/>
+            <TextBlock Text="{Binding OrderOfPlaySecondVictories, StringFormat={} {0}}"/>
+            <TextBlock Text="{Binding OrderOfPlaySecondDefeats, StringFormat={}-{0}}"/>
+            <TextBlock Text="{Binding OrderOfPlaySecondRatio, StringFormat={}({0}%)}"/>
         </StackPanel>
     </DockPanel>
 </UserControl>
