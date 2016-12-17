@@ -79,6 +79,10 @@ namespace ESLTracker.ViewModels
         {
             get
             {
+                if (OrderOfPlayFirst == 0)
+                {
+                    return 0;
+                }
                 return Math.Round((decimal)OrderOfPlayFirstVictories/ OrderOfPlayFirst *100,0);
             }
         }
@@ -87,6 +91,10 @@ namespace ESLTracker.ViewModels
         {
             get
             {
+                if (OrderOfPlaySecond == 0)
+                {
+                    return 0;
+                }
                 return Math.Round((decimal)OrderOfPlaySecondVictories / OrderOfPlaySecond * 100, 0);
             }
         }

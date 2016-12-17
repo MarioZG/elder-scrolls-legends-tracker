@@ -73,37 +73,40 @@ namespace ESLTracker.ViewModels
             result.Where(r => Math.Abs(r.Avg.Pack - result.Max(rm => rm.Avg.Pack)) < 0.01).All(r => { r.Avg.MarkPack = true; return true; });
             result.Where(r => Math.Abs(r.Avg.Card - result.Max(rm => rm.Avg.Card)) < 0.01).All(r => { r.Avg.MarkCard = true; return true; });
 
-            result.Add(new
+            if (result.Count > 0)
             {
-                Class = "TOTAL" as object,
-                NumberOfRuns = result.Sum(r => r.NumberOfRuns),
-                AvgWins = result.Average(d => d.AvgWins),
-                Best = result.Max(d => d.Best),
-                Total = result.Aggregate(new RewardsTotal { },
-                    (accumulator, it) =>
-                        new RewardsTotal
-                        {
-                            Card = accumulator.Card + it.Total.Card,
-                            Pack = accumulator.Pack + it.Total.Pack,
-                            Gold = accumulator.Gold + it.Total.Gold,
-                            SoulGem = accumulator.SoulGem + it.Total.SoulGem
-                        }
-                ),
-                Avg = new RewardsTotal
+                result.Add(new
                 {
-                    Card = result.Average(r => r.Avg.Card),
-                    Pack = result.Average(r => r.Avg.Pack),
-                    Gold = result.Average(r => r.Avg.Gold),
-                    SoulGem = result.Average(r => r.Avg.SoulGem)
-                },
-                Max = new RewardsTotal
-                {
-                    Card = result.Max(r => r.Max.Card),
-                    Pack = result.Max(r => r.Max.Pack),
-                    Gold = result.Max(r => r.Max.Gold),
-                    SoulGem = result.Max(r => r.Max.SoulGem)
-                }
-            });
+                    Class = "TOTAL" as object,
+                    NumberOfRuns = result.Sum(r => r.NumberOfRuns),
+                    AvgWins = result.Average(d => d.AvgWins),
+                    Best = result.Max(d => d.Best),
+                    Total = result.Aggregate(new RewardsTotal { },
+                        (accumulator, it) =>
+                            new RewardsTotal
+                            {
+                                Card = accumulator.Card + it.Total.Card,
+                                Pack = accumulator.Pack + it.Total.Pack,
+                                Gold = accumulator.Gold + it.Total.Gold,
+                                SoulGem = accumulator.SoulGem + it.Total.SoulGem
+                            }
+                    ),
+                    Avg = new RewardsTotal
+                    {
+                        Card = result.Average(r => r.Avg.Card),
+                        Pack = result.Average(r => r.Avg.Pack),
+                        Gold = result.Average(r => r.Avg.Gold),
+                        SoulGem = result.Average(r => r.Avg.SoulGem)
+                    },
+                    Max = new RewardsTotal
+                    {
+                        Card = result.Max(r => r.Max.Card),
+                        Pack = result.Max(r => r.Max.Pack),
+                        Gold = result.Max(r => r.Max.Gold),
+                        SoulGem = result.Max(r => r.Max.SoulGem)
+                    }
+                });
+            }
 
             return result;
         }
