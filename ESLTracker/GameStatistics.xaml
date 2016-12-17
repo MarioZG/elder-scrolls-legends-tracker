@@ -7,7 +7,8 @@
         xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         xmlns:Game="clr-namespace:ESLTracker.Controls.Game"
-        mc:Ignorable="d">
+        mc:Ignorable="d"
+        Title="Games analysis">
     <Window.Resources>
         <Converters:ClassToAttributesIconsConverter x:Key="ClassToAttributesIconsConverter"/>
         <Converters:DeckOrDeckClassToAttributes x:Key="DeckOrDeckClassToAttributes"/>
