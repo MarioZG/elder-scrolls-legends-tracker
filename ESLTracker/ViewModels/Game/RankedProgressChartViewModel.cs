@@ -12,14 +12,24 @@ using LiveCharts.Wpf;
 
 namespace ESLTracker.ViewModels.Game
 {
-    public class RankedProgressChartViewModel : ViewModelBase
+    public class RankedProgressChartViewModel : GameFilterViewModel
     {
-        private ITrackerFactory trackerFactory;
 
         static int RankJump = 10;
 
+        public override IEnumerable<GameType> GameTypeSeletorValues
+        {
+            get
+            {
+                return new List<GameType>()
+                {
+                    GameType.PlayRanked
+                };
+            }
+        }
+
         public SeriesCollection SeriesCollection {
-            get { return GetData(); }
+            get { return GetDataSet(); }
         }
 
         private IList<string> labels = new List<string>();
@@ -30,14 +40,6 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
-        public string[] LabelsY
-        {
-            get
-            {
-                return new[] { "aa", "bb" };// Enum.GetValues(typeof(PlayerRank)).OfType<string>().ToArray();
-            }
-        }
-
         public Func<double, string> Formatter { get; set; }
 
         public RankedProgressChartViewModel() : this(TrackerFactory.DefaultTrackerFactory)
@@ -45,9 +47,9 @@ namespace ESLTracker.ViewModels.Game
 
         }
 
-        public RankedProgressChartViewModel(ITrackerFactory defaultTrackerFactory)
+        public RankedProgressChartViewModel(ITrackerFactory trackerFactory) : base(trackerFactory)
         {
-            this.trackerFactory = defaultTrackerFactory;
+            this.gameType = GameType.PlayRanked;
             Formatter = value => ((PlayerRank)(12 - (((int)value +2 ) / RankJump))).ToString();
         }
 
@@ -56,23 +58,26 @@ namespace ESLTracker.ViewModels.Game
             return (12 - (int)pr) * RankJump;
         }
 
-        public SeriesCollection GetData()
+        public override dynamic GetDataSet()
         {
             var games = trackerFactory.GetTracker()
-                .Games
-                .Where(g => g.Type == GameType.PlayRanked && g.Date > DateTime.Now.AddDays(-27))
-                .OrderBy(g => g.Date);
+                 .Games
+                 .Where(g => g.Type == GameType.PlayRanked 
+                        &&  ((filterDateFrom == null) ||  (g.Date >= filterDateFrom))
+                        && ((filterDateTo == null) || (g.Date <= filterDateTo))
+                        )
+                 .OrderBy(g => g.Date);
 
             int currval = 0;
-            PlayerRank? cPR = null;
+            PlayerRank? currentPR = null;
             Dictionary<string, int> val = new Dictionary<string, int>();
             Dictionary<DateTime, Tuple<int, int, int>> chartData = new Dictionary<DateTime, Tuple<int, int, int>>();
             foreach (dynamic r in games)
             {
-                if (cPR != r.PlayerRank)
+                if (currentPR != r.PlayerRank)
                 {
                     //rank up!
-                    cPR = r.PlayerRank;
+                    currentPR = r.PlayerRank;
                     currval = 0;
                 };
                 if (r.Outcome == GameOutcome.Victory)
@@ -83,12 +88,12 @@ namespace ESLTracker.ViewModels.Game
                 {
                     currval--;
                     if (currval < -2)
-                    { //serpent
+                    { //min serpent - cannot drop more
                         currval = -2;
                     }
                 }
-                var value = currval + (12 - (int)cPR) * RankJump;
-                val.Add(r.PlayerRank + "" + r.Outcome + r.Date, value);
+                var value = currval + (12 - (int)currentPR) * RankJump;
+                val.Add(r.PlayerRank + "" + r.Outcome + r.Date + Guid.NewGuid().ToString(), value);
                 if (chartData.ContainsKey(r.Date.Date))
                 {
                     if (chartData[r.Date.Date].Item1 > value)
@@ -110,7 +115,7 @@ namespace ESLTracker.ViewModels.Game
 
             OhlcSeries os = new OhlcSeries();
             os.Values = new ChartValues<OhlcPoint>();
-            
+
             LineSeries ls = new LineSeries();
             ls.Values = new ChartValues<int>();
             foreach (var row in chartData.Values)
@@ -118,6 +123,12 @@ namespace ESLTracker.ViewModels.Game
                 os.Values.Add(new OhlcPoint(row.Item2, row.Item3, row.Item1, row.Item2));
                 ls.Values.Add(row.Item2);
             }
+
+            //foreach (var row in val.Values)
+            //{
+            //    //os.Values.Add(row);
+            //    ls.Values.Add(row);
+            //}
 
             foreach (var key in chartData.Keys)
             {

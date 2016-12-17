@@ -11,8 +11,9 @@
     <UserControl.DataContext>
         <ViewModels:RankedProgressChartViewModel/>
     </UserControl.DataContext>
-    <Grid>
-        <lvc:CartesianChart x:Name="chart" Series="{Binding SeriesCollection}">
+    <DockPanel>
+        <local:GameFilter DockPanel.Dock="Top" />
+        <lvc:CartesianChart x:Name="chart" Series="{Binding DisplayDataSource}">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Labels="{Binding Labels}"/>
             </lvc:CartesianChart.AxisX>
@@ -21,5 +22,5 @@
                 </lvc:Axis>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
-    </Grid>
+    </DockPanel>
 </UserControl>

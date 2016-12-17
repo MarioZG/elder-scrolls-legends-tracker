@@ -8,8 +8,6 @@
         mc:Ignorable="d"
         Title="RankedProgressChart" Height="300" Width="300">
     <Grid>
-
         <Game:RankedProgressChart />
-
     </Grid>
 </Window>
