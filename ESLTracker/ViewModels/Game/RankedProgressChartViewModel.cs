@@ -32,11 +32,10 @@ namespace ESLTracker.ViewModels.Game
             get { return GetDataSet(); }
         }
 
-        private IList<string> labels = new List<string>();
         public IList<string> Labels
         {
             get {
-                return labels;
+                return showMaxMin ? labels : labelsDetailed;
             }
         }
 
@@ -82,6 +81,8 @@ namespace ESLTracker.ViewModels.Game
         private LineSeries lsAll;
         private SeriesCollection seriesCollection;
         private OhlcSeries ohlcMinMax;
+        private IList<string> labelsDetailed = new List<string>();
+        private IList<string> labels = new List<string>();
 
         public bool ShowMaxMin
         {
@@ -120,7 +121,7 @@ namespace ESLTracker.ViewModels.Game
 
             int currval = 0;
             PlayerRank? currentPR = null;
-            Dictionary<string, int> val = new Dictionary<string, int>();
+            Dictionary<string, Tuple<DateTime, int>> val = new Dictionary<string, Tuple<DateTime, int>>();
             Dictionary<DateTime, Tuple<int, int, int>> chartData = new Dictionary<DateTime, Tuple<int, int, int>>();
             foreach (dynamic r in games)
             {
@@ -129,7 +130,7 @@ namespace ESLTracker.ViewModels.Game
                     //rank up!
                     currentPR = r.PlayerRank;
                     currval = 0;
-                };
+                }
                 if (r.Outcome == GameOutcome.Victory)
                 {
                     currval += r.BonusRound ? 2 : 1;
@@ -143,7 +144,8 @@ namespace ESLTracker.ViewModels.Game
                     }
                 }
                 var value = currval + (12 - (int)currentPR) * RankJump;
-                val.Add(r.PlayerRank + "" + r.Outcome + r.Date + Guid.NewGuid().ToString(), value);
+                val.Add(r.PlayerRank + "" + r.Outcome + r.Date + Guid.NewGuid().ToString(),
+                    new Tuple<DateTime, int>(r.Date, value));
                 if (chartData.ContainsKey(r.Date.Date))
                 {
                     if (chartData[r.Date.Date].Item1 > value)
@@ -181,21 +183,18 @@ namespace ESLTracker.ViewModels.Game
                 lsLastInDay.Values.Add(row.Item2);
                 lsMaxInDay.Values.Add(row.Item3);
             }
-            foreach (var row in val.Values)
-            {
-                lsAll.Values.Add(row);
-            }
-
-
             foreach (var key in chartData.Keys)
             {
                 labels.Add(key.Date.Date.ToString("d"));
             }
+            foreach (var row in val)
+            {
+                lsAll.Values.Add(row.Value.Item2);
+                labelsDetailed.Add(row.Value.Item1.ToString("d"));
+            }
 
             seriesCollection = new SeriesCollection();
             ShowSeries();
-
-            RaisePropertyChangedEvent("Labels");
 
             return seriesCollection;
         }
@@ -223,6 +222,8 @@ namespace ESLTracker.ViewModels.Game
             {
                 seriesCollection.Add(lsAll);
             }
+
+            RaisePropertyChangedEvent("Labels");
         }
     }
 }
