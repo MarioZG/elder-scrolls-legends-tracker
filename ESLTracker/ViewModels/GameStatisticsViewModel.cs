@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
+using LiveCharts;
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
 
 namespace ESLTracker.ViewModels
 {
@@ -89,6 +93,12 @@ namespace ESLTracker.ViewModels
         {
             get { return valueToShow; }
             set { valueToShow = value; RaiseDataPropertyChange(); }
+        }
+
+        private SeriesCollection opponentClassHeatMap;
+        public SeriesCollection OpponentClassHeatMap
+        {
+            get { return opponentClassHeatMap; }
         }
 
         public GameStatisticsViewModel() : this(TrackerFactory.DefaultTrackerFactory)
@@ -208,6 +218,26 @@ namespace ESLTracker.ViewModels
                                     WinPerc = (double)d.Count() / GamesList.Count() * 100,
                                 });
             result = result.Union(totalOpponents);
+
+            opponentClassHeatMap = new SeriesCollection();
+            HeatSeries hs = new HeatSeries() {
+                Title = "",
+                LabelPoint  = ( x=> ClassAttributesHelper.FindClassByAttribute(
+                    new DeckAttribute[]{ (DeckAttribute)x.X, (DeckAttribute)x.Y}).First() + " : "+x.Weight+" % of games")};
+            hs.Values = new ChartValues<HeatPoint>();
+
+            foreach (var r in totalOpponents)
+            {
+                DeckClass dc = (DeckClass)Enum.Parse(typeof(DeckClass), r.Opp);
+                DataModel.DeckAttributes da = ClassAttributesHelper.Classes[dc];
+                DeckAttribute da1 = da[0];
+                DeckAttribute da2 = (da.Count > 1 ? da[1] : da[0]);
+                hs.Values.Add(new HeatPoint((int)da1, (int)da2, Int32.Parse(r.Win)));
+            }
+
+            opponentClassHeatMap.Add(hs);
+
+
 
             return result.ToPivotTable(
                             item => item.Opp,

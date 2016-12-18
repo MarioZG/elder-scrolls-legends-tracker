@@ -7,12 +7,21 @@
         xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         xmlns:Game="clr-namespace:ESLTracker.Controls.Game"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Games analysis">
     <Window.Resources>
         <Converters:ClassToAttributesIconsConverter x:Key="ClassToAttributesIconsConverter"/>
         <Converters:DeckOrDeckClassToAttributes x:Key="DeckOrDeckClassToAttributes"/>
         <Converters:DeckOrDeckClassToName x:Key="DeckOrDeckClassToName"/>
+        <ObjectDataProvider x:Key="DeckAttributeEnum" MethodName="GetNames"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="Enums:DeckAttribute"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </Window.Resources>
     <Window.DataContext>
         <ViewModels:GameStatisticsViewModel/>
@@ -24,6 +33,10 @@
         <Expander DockPanel.Dock="Top" IsExpanded="True" Header="Games summary" Style="{DynamicResource ExpanderHeaderText}">
             <StackPanel Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
                 <Game:GamesSummary Margin="5,5,5,5"/>
+            </StackPanel>
+        </Expander>
+        <Expander DockPanel.Dock="Top" IsExpanded="False" Header="Games breakdown" Style="{DynamicResource ExpanderHeaderText}">
+            <StackPanel Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
                 <StackPanel Margin="5,5,5,5" Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" Margin="0,0,5,0" Text="Group by "/>
                     <ComboBox SelectedValue="{Binding GroupBy}" SelectedValuePath="Tag">
@@ -87,6 +100,22 @@
                         <DataGridTextColumn CanUserSort="False" Binding="{Binding Total}" />
                     </DataGrid.Columns>
                 </DataGrid>
+            </StackPanel>
+        </Expander>
+        <Expander DockPanel.Dock="Top" IsExpanded="False" Header="Opponent class" Style="{DynamicResource ExpanderHeaderText}">
+            <StackPanel Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                <lvc:CartesianChart Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3"
+                            Height="200" Margin="20,20,20,20"
+                            Series="{Binding OpponentClassHeatMap}">
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Labels="{Binding Source={StaticResource DeckAttributeEnum}}">
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Position="RightTop" ShowLabels="True" LabelsRotation="270" Labels="{Binding Source={StaticResource DeckAttributeEnum}}">
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>
             </StackPanel>
         </Expander>
         <Expander DockPanel.Dock="Top" IsExpanded="True" Header="List of games" Style="{DynamicResource ExpanderHeaderText}">
