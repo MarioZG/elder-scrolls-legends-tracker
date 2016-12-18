@@ -40,7 +40,7 @@ namespace ESLTracker.Controls.Game
             InitializeComponent();
 
             foreach (DataModel.Enums.PlayerRank pr in Enum.GetValues(typeof(DataModel.Enums.PlayerRank))) {
-                this.chart.AxisY[0].Sections.Add(new LiveCharts.Wpf.AxisSection() { Value = RankedProgressChartViewModel.GetPlayerRankStartValue(pr)-2, SectionWidth = 2, Label = "Serpent", Fill = new SolidColorBrush(Colors.LightBlue) });
+                this.chart.AxisY[0].Sections.Add(new LiveCharts.Wpf.AxisSection() { Value = RankedProgressChartViewModel.GetPlayerRankStartValue(pr)-2, SectionWidth = 2, Label = "Serpent", Fill = new SolidColorBrush(Colors.AliceBlue) });
                 this.chart.AxisY[0].Sections.Add(new LiveCharts.Wpf.AxisSection() { Value = RankedProgressChartViewModel.GetPlayerRankStartValue(pr), SectionWidth = 8, Label = pr.ToString(), Fill = null});
             }
         }

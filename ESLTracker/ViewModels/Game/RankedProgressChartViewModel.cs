@@ -74,24 +74,29 @@ namespace ESLTracker.ViewModels.Game
                 RaisePropertyChangedEvent(); }
         }
 
-        private bool showMaxMin = true;
-        private LineSeries lsLastInDay;
-        private LineSeries lsMinInDay;
-        private LineSeries lsMaxInDay;
-        private LineSeries lsAll;
+        private bool showMaxMin = false;
+        public bool ShowMaxMin
+        {
+            get { return showMaxMin; }
+            set
+            {
+                showMaxMin = value;
+                ShowSeries();
+                RaisePropertyChangedEvent();
+            }
+        }
+
+        private Series lsLastInDay;
+        private Series lsMinInDay;
+        private Series lsMaxInDay;
+        private Series lsAll;
         private SeriesCollection seriesCollection;
         private OhlcSeries ohlcMinMax;
         private IList<string> labelsDetailed;
         private IList<string> labels;
 
-        public bool ShowMaxMin
-        {
-            get { return showMaxMin; }
-            set {
-                showMaxMin = value;
-                ShowSeries();
-                RaisePropertyChangedEvent(); }
-        }
+
+
 
         public RankedProgressChartViewModel() : this(TrackerFactory.DefaultTrackerFactory)
         {
@@ -101,6 +106,7 @@ namespace ESLTracker.ViewModels.Game
         public RankedProgressChartViewModel(ITrackerFactory trackerFactory) : base(trackerFactory)
         {
             this.gameType = GameType.PlayRanked;
+            this.FilterDateSelectedOption = DateFilter.Last7Days;
             Formatter = value => ((PlayerRank)(12 - (((int)value +2 ) / RankJump))).ToString();
         }
 
@@ -165,16 +171,19 @@ namespace ESLTracker.ViewModels.Game
                 }
             }
 
-            ohlcMinMax = new OhlcSeries();
+            ohlcMinMax = new OhlcSeries() { Title = null,
+                DecreaseBrush = new SolidColorBrush(Colors.DodgerBlue),
+                Stroke = new SolidColorBrush(Colors.DodgerBlue)
+            }; //LabelPoint = (cp) => { return "uu"; }
             ohlcMinMax.Values = new ChartValues<OhlcPoint>();
 
-            lsLastInDay = new LineSeries();
+            lsLastInDay = new LineSeries() { Title = "Last Rank in Day", Stroke = new SolidColorBrush(Colors.DodgerBlue), Fill = Brushes.Transparent };
             lsLastInDay.Values = new ChartValues<int>();
-            lsMinInDay = new LineSeries();
+            lsMinInDay = new LineSeries() { Title = "Worst Rank in Day", Stroke = new SolidColorBrush(Colors.Goldenrod), Fill = Brushes.Transparent };
             lsMinInDay.Values = new ChartValues<int>();
-            lsMaxInDay = new LineSeries();
+            lsMaxInDay = new LineSeries() { Title = "Best Rank in Day", Stroke = new SolidColorBrush(Colors.YellowGreen), Fill = Brushes.Transparent };
             lsMaxInDay.Values = new ChartValues<int>();
-            lsAll = new LineSeries();
+            lsAll = new LineSeries() { Title = "Rank", PointGeometry = null };
             lsAll.Values = new ChartValues<int>();
             
             labelsDetailed = new List<string>();

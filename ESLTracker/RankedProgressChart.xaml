@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ESLTracker"
         xmlns:Game="clr-namespace:ESLTracker.Controls.Game" x:Class="ESLTracker.RankedProgressChart"
         mc:Ignorable="d"
-        Title="RankedProgressChart" Height="300" Width="300">
+        Title="RankedProgressChart">
     <Grid>
         <Game:RankedProgressChart />
     </Grid>

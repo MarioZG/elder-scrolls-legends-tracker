@@ -7,7 +7,7 @@
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Game"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
         <ViewModels:RankedProgressChartViewModel/>
@@ -17,7 +17,9 @@
     </UserControl.Resources>
     <DockPanel>
         <local:GameFilter DockPanel.Dock="Top" />
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+        <TextBlock DockPanel.Dock="Bottom"></TextBlock> <!-- add so y legends are visible-->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="AliceBlue">
+            <WrapPanel Margin="5,5,5,5">
             <CheckBox IsChecked="{Binding ShowMaxMin}" Content="Show worst and best in a day"/>
             <CheckBox IsChecked="{Binding ConnectMin}" 
                       Visibility="{Binding ShowMaxMin, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
@@ -28,8 +30,9 @@
             <CheckBox IsChecked="{Binding ConnectMax}" 
                       Visibility="{Binding ShowMaxMin, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
                       Content="Connect best in day"/>
+            </WrapPanel>
         </StackPanel>
-        <lvc:CartesianChart Margin="10,10,10,10" x:Name="chart" Series="{Binding DisplayDataSource}">
+        <lvc:CartesianChart DataTooltip="{x:Null}" LegendLocation="Right" Padding="5,5,5,5" Hoverable="False" x:Name="chart" Series="{Binding DisplayDataSource}">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Labels="{Binding Labels}"/>
             </lvc:CartesianChart.AxisX>
