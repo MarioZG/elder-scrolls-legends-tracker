@@ -91,6 +91,10 @@ namespace ESLTracker.ViewModels.Game
                     filterDateFrom = null;
                     filterDateTo = null;
                     break;
+                case DateFilter.Today:
+                    filterDateFrom = today.Date;
+                    filterDateTo = today.Date;
+                    break;
                 case DateFilter.Last7Days:
                     filterDateFrom = today.AddDays(-6);
                     filterDateTo = today.Date;
@@ -123,6 +127,7 @@ namespace ESLTracker.ViewModels.Game
     public enum DateFilter
     {
         All,
+        Today,
         Last7Days,
         ThisMonth,
         PreviousMonth

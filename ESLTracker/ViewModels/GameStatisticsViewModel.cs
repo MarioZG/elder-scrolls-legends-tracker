@@ -109,9 +109,9 @@ namespace ESLTracker.ViewModels
         public GameStatisticsViewModel(ITrackerFactory trackerFactory) : base(trackerFactory)
         {
             this.gameType = GameType.PlayRanked;
-            Formatter = x => Math.Round((double)x / TotalGames * 100, 0) + " %";
-            FormatterFirst = x => Math.Round((double)x / OrderOfPlayFirst * 100, 0) + " %";
-            FormatterSecond = x => Math.Round((double)x / OrderOfPlaySecond * 100, 0) + " %";
+            Formatter = x => TotalGames > 0 ? Math.Round((double)x / TotalGames * 100, 0) + " %" : "- %";
+            FormatterFirst = x => OrderOfPlayFirst > 0 ? Math.Round((double)x / OrderOfPlayFirst * 100, 0) + " %" : "- %";
+            FormatterSecond = x => OrderOfPlaySecond > 0 ? Math.Round((double)x / OrderOfPlaySecond * 100, 0) + " %" : "- %";
         }
 
         protected override void RaiseDataPropertyChange()
