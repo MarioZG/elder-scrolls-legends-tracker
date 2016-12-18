@@ -4,29 +4,43 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Game"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d">
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <TextBlock Text="Victories-Defeats: "/>
-            <TextBlock Text="{Binding Victories, StringFormat={} {0}-}"/>
-            <TextBlock Text="{Binding Defeats, StringFormat={}{0}}"/>
-        </StackPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <TextBlock Text="Order of play (first-second): "/>
-            <TextBlock Text="{Binding OrderOfPlayFirst, StringFormat={} {0}}"/>
-            <TextBlock Text="{Binding OrderOfPlaySecond, StringFormat={}-{0}}"/>
-        </StackPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <TextBlock Text="Victories-Defeats when play first: "/>
-            <TextBlock Text="{Binding OrderOfPlayFirstVictories, StringFormat={} {0}}"/>
-            <TextBlock Text="{Binding OrderOfPlayFirstDefeats, StringFormat={}-{0}}"/>
-            <TextBlock Text="{Binding OrderOfPlayFirstRatio, StringFormat={} ({0}%)}"/>            
-        </StackPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <TextBlock Text="Victories-Defeats when play second: "/>
-            <TextBlock Text="{Binding OrderOfPlaySecondVictories, StringFormat={} {0}}"/>
-            <TextBlock Text="{Binding OrderOfPlaySecondDefeats, StringFormat={}-{0}}"/>
-            <TextBlock Text="{Binding OrderOfPlaySecondRatio, StringFormat={} ({0}%)}"/>
-        </StackPanel>
-    </DockPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <WrapPanel Grid.Column="0" Grid.Row="0">
+            <TextBlock Text="{Binding Victories, StringFormat={} Total Victories % ({0}}"/>
+            <TextBlock Text="{Binding TotalGames, StringFormat={} /{0})}"/>
+        </WrapPanel>
+        <lvc:Gauge Grid.Column="0" Grid.Row="2" DockPanel.Dock="Top" Uses360Mode="False" From="0" To="{Binding TotalGames}" Value="{Binding Victories}" 
+                    LabelFormatter="{Binding Formatter}" />
+        <WrapPanel Grid.Column="1" Grid.Row="0">
+            <TextBlock Text="{Binding OrderOfPlayFirst, StringFormat={} You played first % ({0}}"/>
+            <TextBlock Text="{Binding TotalGames, StringFormat={} /{0})}"/>
+        </WrapPanel>
+        <lvc:Gauge  Grid.Column="1" Grid.Row="2" DockPanel.Dock="Top" Uses360Mode="False" From="0" To="{Binding TotalGames}" Value="{Binding OrderOfPlayFirst}" 
+                   LabelFormatter="{Binding Formatter}" />
+        <WrapPanel Grid.Column="2" Grid.Row="0">
+            <TextBlock Text="{Binding OrderOfPlayFirstVictories, StringFormat={} Wins you played first ({0}}"/>
+            <TextBlock Text="{Binding OrderOfPlayFirst, StringFormat={} /{0})}"/>
+        </WrapPanel>
+        <lvc:Gauge Grid.Column="2" Grid.Row="2" Uses360Mode="False" From="0" To="{Binding OrderOfPlayFirst}" Value="{Binding OrderOfPlayFirstVictories}" 
+                   LabelFormatter="{Binding FormatterFirst}" />
+        <WrapPanel Grid.Column="3" Grid.Row="0">
+            <TextBlock Text="{Binding OrderOfPlaySecondVictories, StringFormat={} Wins you played second ({0}}"/>
+            <TextBlock Text="{Binding OrderOfPlaySecond, StringFormat={} /{0})}"/>
+        </WrapPanel>
+        <lvc:Gauge Grid.Column="3" Grid.Row="2" Uses360Mode="False" From="0" To="{Binding OrderOfPlaySecond}" Value="{Binding OrderOfPlaySecondVictories}" 
+                   LabelFormatter="{Binding FormatterSecond}" />
+    </Grid>
 </UserControl>

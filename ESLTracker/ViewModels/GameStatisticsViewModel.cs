@@ -19,13 +19,17 @@ namespace ESLTracker.ViewModels
             }
         }
 
-        public int Defeats
+        public int TotalGames
         {
             get
             {
-                return GamesList.Where(g => g.Outcome == GameOutcome.Defeat).Count();
+                return GamesList.Count();
             }
         }
+
+        public Func<double, string> Formatter { get; set; }
+        public Func<double, string> FormatterFirst { get; set; }
+        public Func<double, string> FormatterSecond { get; set; }
 
         public int OrderOfPlayFirst
         {
@@ -56,46 +60,6 @@ namespace ESLTracker.ViewModels
             get
             {
                 return GamesList.Where(g => g.OrderOfPlay == OrderOfPlay.Second && g.Outcome == GameOutcome.Victory).Count();
-            }
-        }
-
-        public int OrderOfPlayFirstDefeats
-        {
-            get
-            {
-                return GamesList.Where(g => g.OrderOfPlay == OrderOfPlay.First && g.Outcome == GameOutcome.Defeat).Count();
-            }
-        }
-
-        public int OrderOfPlaySecondDefeats
-        {
-            get
-            {
-                return GamesList.Where(g => g.OrderOfPlay == OrderOfPlay.Second && g.Outcome == GameOutcome.Defeat).Count();
-            }
-        }
-
-        public decimal OrderOfPlayFirstRatio
-        {
-            get
-            {
-                if (OrderOfPlayFirst == 0)
-                {
-                    return 0;
-                }
-                return Math.Round((decimal)OrderOfPlayFirstVictories/ OrderOfPlayFirst *100,0);
-            }
-        }
-
-        public decimal OrderOfPlaySecondRatio
-        {
-            get
-            {
-                if (OrderOfPlaySecond == 0)
-                {
-                    return 0;
-                }
-                return Math.Round((decimal)OrderOfPlaySecondVictories / OrderOfPlaySecond * 100, 0);
             }
         }
 
@@ -135,15 +99,20 @@ namespace ESLTracker.ViewModels
         public GameStatisticsViewModel(ITrackerFactory trackerFactory) : base(trackerFactory)
         {
             this.gameType = GameType.PlayRanked;
+            Formatter = x => Math.Round((double)x / TotalGames * 100, 0) + " %";
+            FormatterFirst = x => Math.Round((double)x / OrderOfPlayFirst * 100, 0) + " %";
+            FormatterSecond = x => Math.Round((double)x / OrderOfPlaySecond * 100, 0) + " %";
         }
 
         protected override void RaiseDataPropertyChange()
         {
             base.RaiseDataPropertyChange();
             RaisePropertyChangedEvent("Victories");
-            RaisePropertyChangedEvent("Defeats");
+            RaisePropertyChangedEvent("TotalGames");
             RaisePropertyChangedEvent("OrderOfPlayFirst");
             RaisePropertyChangedEvent("OrderOfPlaySecond");
+            RaisePropertyChangedEvent("OrderOfPlayFirstVictories");
+            RaisePropertyChangedEvent("OrderOfPlaySecondVictories");
             RaisePropertyChangedEvent("GamesList"); 
         }
 
