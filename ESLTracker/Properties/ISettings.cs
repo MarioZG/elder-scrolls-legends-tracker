@@ -18,6 +18,11 @@ namespace ESLTracker.Properties
         string NewDeck_SoloArenaName { get; set; }
         string NewDeck_VersusArenaName { get; set; }
 
+        /// <summary>
+        /// flag set default to true - used to preserve setting in new versions of application
+        /// </summary>
+        bool UpgradeRequired { get; set; }
+
         void Save();
     }
 }
