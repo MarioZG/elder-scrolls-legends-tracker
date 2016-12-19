@@ -123,7 +123,8 @@ namespace ESLTracker.ViewModels
             RaisePropertyChangedEvent("OrderOfPlaySecond");
             RaisePropertyChangedEvent("OrderOfPlayFirstVictories");
             RaisePropertyChangedEvent("OrderOfPlaySecondVictories");
-            RaisePropertyChangedEvent("GamesList"); 
+            RaisePropertyChangedEvent("GamesList");
+            RaisePropertyChangedEvent("OpponentClassHeatMap"); 
         }
 
 
