@@ -27,7 +27,7 @@
                 </Image.Style>
             </Image>
         </ToggleButton>
-        <Button x:Name="btnScreenShot" ToolTip="Make screenshot (Saved in data folder. Open from application settings.)" HorizontalAlignment="Right" Width="15" Click="btnScreenShot_Click">
+        <Button x:Name="btnScreenShot"  ToolTipService.InitialShowDelay="3000" ToolTip="Make screenshot (Saved in data folder. Open from application settings)" HorizontalAlignment="Right" Width="15" Click="btnScreenShot_Click">
             <Image Source="/Resources/WindowIcons/printScreen.png"/>
         </Button>
         <Button x:Name="btnShowMainWindow" ToolTip="Show main window" HorizontalAlignment="Right" Width="15" Click="btnShowMainWindow_Click">
