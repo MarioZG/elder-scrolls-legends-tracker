@@ -23,6 +23,10 @@ namespace ESLTracker.Properties
         /// </summary>
         bool UpgradeRequired { get; set; }
 
+        //games filter settings
+        ViewModels.Game.PredefinedDateFilter GamesFilter_SelectedPredefinedDateFilter { get; set; }
+        TimeSpan GamesFilter_DayCutoffTime { get; set; }
+
         void Save();
     }
 }

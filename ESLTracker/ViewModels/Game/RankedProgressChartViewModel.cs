@@ -106,7 +106,6 @@ namespace ESLTracker.ViewModels.Game
         public RankedProgressChartViewModel(ITrackerFactory trackerFactory) : base(trackerFactory)
         {
             this.gameType = GameType.PlayRanked;
-            this.FilterDateSelectedOption = DateFilter.Last7Days;
             Formatter = value => ((PlayerRank)(12 - (((int)value +2 ) / RankJump))).ToString();
         }
 

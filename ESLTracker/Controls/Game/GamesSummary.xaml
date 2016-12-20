@@ -43,7 +43,7 @@
             <TextBlock Text="{Binding OrderOfPlaySecondVictories, StringFormat={} second ({0}}"/>
             <TextBlock Text="{Binding OrderOfPlaySecond, StringFormat={} / {0})}"/>
         </WrapPanel>
-        <lvc:Gauge Grid.Column="3" Grid.Row="2" Uses360Mode="False" From="0.00000001" To="{Binding OrderOfPlaySecond}" Value="{Binding OrderOfPlaySecondVictories}" 
+        <lvc:Gauge Grid.Column="3" Grid.Row="2" Uses360Mode="False" From="0.00000000001" To="{Binding OrderOfPlaySecond}" Value="{Binding OrderOfPlaySecondVictories}" 
                    LabelFormatter="{Binding FormatterSecond}" />
     </Grid>
 </UserControl>

@@ -31,10 +31,6 @@ namespace ESLTracker.ViewModels
             }
         }
 
-        public Func<double, string> Formatter { get; set; }
-        public Func<double, string> FormatterFirst { get; set; }
-        public Func<double, string> FormatterSecond { get; set; }
-
         public int OrderOfPlayFirst
         {
             get
@@ -95,11 +91,18 @@ namespace ESLTracker.ViewModels
             set { valueToShow = value; RaiseDataPropertyChange(); }
         }
 
-        private SeriesCollection opponentClassHeatMap;
-        public SeriesCollection OpponentClassHeatMap
+        private ChartValues<HeatPoint> opponentClassHeatMap;
+        public ChartValues<HeatPoint> OpponentClassHeatMap
         {
             get { return opponentClassHeatMap; }
         }
+
+        //formatters for gauge
+        public Func<double, string> Formatter { get; set; }
+        public Func<double, string> FormatterFirst { get; set; }
+        public Func<double, string> FormatterSecond { get; set; }
+        public Func<ChartPoint, string> HeatLabelPoint { get; set; }
+       
 
         public GameStatisticsViewModel() : this(TrackerFactory.DefaultTrackerFactory)
         {
@@ -112,6 +115,9 @@ namespace ESLTracker.ViewModels
             Formatter = x => TotalGames > 0 ? Math.Round((double)x / TotalGames * 100, 0) + " %" : "- %";
             FormatterFirst = x => OrderOfPlayFirst > 0 ? Math.Round((double)x / OrderOfPlayFirst * 100, 0) + " %" : "- %";
             FormatterSecond = x => OrderOfPlaySecond > 0 ? Math.Round((double)x / OrderOfPlaySecond * 100, 0) + " %" : "- %";
+            HeatLabelPoint = (x => ClassAttributesHelper.FindClassByAttribute(
+                                      new DeckAttribute[]{ (DeckAttribute)x.X, (DeckAttribute)x.Y
+                                    }).First() + " : " + x.Weight + " % of games");
         }
 
         protected override void RaiseDataPropertyChange()
@@ -208,7 +214,7 @@ namespace ESLTracker.ViewModels
 
             //add % of opponents decks
             //add total row for all decks
-            object totalOpponentDeck = new DataModel.Deck() { Name = "Games vs class %", Notes = "SUMMARYROW" };
+            object totalOpponentDeck = new DataModel.Deck() { Name = "Opponent class %", Notes = "SUMMARYROW" };
             var totalOpponents = GamesList
                                 .GroupBy(g => g.OpponentClass)
                                 .Select(d => new
@@ -220,12 +226,7 @@ namespace ESLTracker.ViewModels
                                 });
             result = result.Union(totalOpponents);
 
-            opponentClassHeatMap = new SeriesCollection();
-            HeatSeries hs = new HeatSeries() {
-                Title = "",
-                LabelPoint  = ( x=> ClassAttributesHelper.FindClassByAttribute(
-                    new DeckAttribute[]{ (DeckAttribute)x.X, (DeckAttribute)x.Y}).First() + " : "+x.Weight+" % of games")};
-            hs.Values = new ChartValues<HeatPoint>();
+            opponentClassHeatMap = new ChartValues<HeatPoint>();
 
             foreach (var r in totalOpponents)
             {
@@ -233,12 +234,8 @@ namespace ESLTracker.ViewModels
                 DataModel.DeckAttributes da = ClassAttributesHelper.Classes[dc];
                 DeckAttribute da1 = da[0];
                 DeckAttribute da2 = (da.Count > 1 ? da[1] : da[0]);
-                hs.Values.Add(new HeatPoint((int)da1, (int)da2, Int32.Parse(r.Win)));
+                opponentClassHeatMap.Add(new HeatPoint((int)da1, (int)da2, Int32.Parse(r.Win)));
             }
-
-            opponentClassHeatMap.Add(hs);
-
-
 
             return result.ToPivotTable(
                             item => item.Opp,

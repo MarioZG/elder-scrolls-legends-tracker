@@ -102,17 +102,28 @@
                 </DataGrid>
             </StackPanel>
         </Expander>
-        <Expander DockPanel.Dock="Top" IsExpanded="False" Header="Opponent class" Style="{DynamicResource ExpanderHeaderText}">
+        <Expander DockPanel.Dock="Top" IsExpanded="False" Header="Opponent class heatmap" Style="{DynamicResource ExpanderHeaderText}">
             <StackPanel Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
                 <lvc:CartesianChart Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3"
                             Height="200" Margin="20,20,20,20"
-                            Series="{Binding OpponentClassHeatMap}">
+                                    >
+                    <lvc:CartesianChart.Series>
+                        <lvc:HeatSeries 
+                            Values="{Binding OpponentClassHeatMap}" 
+                            DataLabels="True"
+                            DrawsHeatRange="True"
+                            LabelPoint="{Binding HeatLabelPoint}">
+                        </lvc:HeatSeries>
+                    </lvc:CartesianChart.Series>
                     <lvc:CartesianChart.AxisY>
                         <lvc:Axis Labels="{Binding Source={StaticResource DeckAttributeEnum}}">
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisY>
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Position="RightTop" ShowLabels="True" LabelsRotation="270" Labels="{Binding Source={StaticResource DeckAttributeEnum}}">
+                        <lvc:Axis LabelsRotation="270" Labels="{Binding Source={StaticResource DeckAttributeEnum}}">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="1"></lvc:Separator>
+                            </lvc:Axis.Separator>
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                 </lvc:CartesianChart>

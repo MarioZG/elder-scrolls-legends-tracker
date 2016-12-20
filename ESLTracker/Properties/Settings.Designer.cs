@@ -166,5 +166,28 @@ namespace ESLTracker.Properties {
                 this["UpgradeRequired"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("All")]
+        public ViewModels.Game.PredefinedDateFilter GamesFilter_SelectedPredefinedDateFilter {
+            get {
+                return ((ViewModels.Game.PredefinedDateFilter)(this["GamesFilter_SelectedPredefinedDateFilter"]));
+            }
+            set {
+                this["GamesFilter_SelectedPredefinedDateFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.TimeSpan GamesFilter_DayCutoffTime {
+            get {
+                return ((global::System.TimeSpan)(this["GamesFilter_DayCutoffTime"]));
+            }
+            set {
+                this["GamesFilter_DayCutoffTime"] = value;
+            }
+        }
     }
 }

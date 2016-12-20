@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Game
@@ -49,13 +50,13 @@ namespace ESLTracker.ViewModels.Game
         {
             get
             {
-                return Enum.GetValues(typeof(DateFilter));
+                return Enum.GetValues(typeof(PredefinedDateFilter));
             }
         }
 
-        protected DateFilter filterDateSelectedOption;
+        protected PredefinedDateFilter filterDateSelectedOption;
 
-        public DateFilter FilterDateSelectedOption
+        public PredefinedDateFilter FilterDateSelectedOption
         {
             get { return filterDateSelectedOption; }
             set
@@ -65,12 +66,17 @@ namespace ESLTracker.ViewModels.Game
                 RaisePropertyChangedEvent("FilterDateFrom");
                 RaisePropertyChangedEvent("FilterDateTo");
                 RaiseDataPropertyChange();
+
+                settings.GamesFilter_SelectedPredefinedDateFilter = value;
+                settings.Save();
             }
         }
 
 
         protected ITrackerFactory trackerFactory;
-        
+        protected ISettings settings;
+
+
         public GameFilterViewModel() : this(TrackerFactory.DefaultTrackerFactory)
         {
 
@@ -79,31 +85,33 @@ namespace ESLTracker.ViewModels.Game
         public GameFilterViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
+            this.settings = trackerFactory.GetSettings();
+            this.FilterDateSelectedOption = settings.GamesFilter_SelectedPredefinedDateFilter;
         }
 
 
-        public void SetDateFilters(DateFilter value)
+        public void SetDateFilters(PredefinedDateFilter value)
         {
             DateTime today = trackerFactory.GetDateTimeNow().Date;
             switch (value)
             {
-                case DateFilter.All:
+                case PredefinedDateFilter.All:
                     filterDateFrom = null;
                     filterDateTo = null;
                     break;
-                case DateFilter.Today:
+                case PredefinedDateFilter.Today:
                     filterDateFrom = today.Date;
                     filterDateTo = today.Date;
                     break;
-                case DateFilter.Last7Days:
+                case PredefinedDateFilter.Last7Days:
                     filterDateFrom = today.AddDays(-6);
                     filterDateTo = today.Date;
                     break;
-                case DateFilter.ThisMonth:
+                case PredefinedDateFilter.ThisMonth:
                     filterDateFrom = new DateTime(today.Year, today.Month, 1);
                     filterDateTo = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
                     break;
-                case DateFilter.PreviousMonth:
+                case PredefinedDateFilter.PreviousMonth:
                     today = today.AddMonths(-1); //as we can change year in process!
                     filterDateFrom = new DateTime(today.Year, today.Month, 1);
                     filterDateTo = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
@@ -120,16 +128,5 @@ namespace ESLTracker.ViewModels.Game
         {
             RaisePropertyChangedEvent("DisplayDataSource");
         }
-    }
-
-    
-
-    public enum DateFilter
-    {
-        All,
-        Today,
-        Last7Days,
-        ThisMonth,
-        PreviousMonth
-    }
+    }       
 }

@@ -12,6 +12,7 @@ using ESLTrackerTests;
 using System.Collections.ObjectModel;
 using ESLTracker.ViewModels.Game;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Properties;
 
 namespace ESLTracker.ViewModels.Tests
 {
@@ -66,6 +67,8 @@ namespace ESLTracker.ViewModels.Tests
 
 
             trackerfactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+
+            trackerfactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
 
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerfactory.Object);
             model.GameType = DataModel.Enums.GameType.VersusArena;
@@ -158,6 +161,8 @@ namespace ESLTracker.ViewModels.Tests
 
             trackerfactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
+            trackerfactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerfactory.Object);
             model.FilterDateFrom = new DateTime(2016, 11, 1);
             model.FilterDateTo = null;
@@ -186,9 +191,14 @@ namespace ESLTracker.ViewModels.Tests
         [TestMethod()]
         public void SetDateFiltersTest001_All()
         {
-            ArenaStatsViewModel model = new ArenaStatsViewModel();
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 3, 7));
 
-            model.SetDateFilters(DateFilter.All);
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+
+            ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
+
+            model.SetDateFilters(PredefinedDateFilter.All);
 
             Assert.IsNull(model.FilterDateFrom);
             Assert.IsNull(model.FilterDateTo);
@@ -200,13 +210,15 @@ namespace ESLTracker.ViewModels.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 3, 7));
 
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+
             DateTime expectedFrom = new DateTime(2016, 2, 1);
             DateTime expectedTo = new DateTime(2016, 2, 29);
 
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
 
 
-            model.SetDateFilters(DateFilter.PreviousMonth);
+            model.SetDateFilters(PredefinedDateFilter.PreviousMonth);
 
             Assert.AreEqual(expectedFrom, model.FilterDateFrom);
             Assert.AreEqual(expectedTo, model.FilterDateTo);
@@ -218,13 +230,15 @@ namespace ESLTracker.ViewModels.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 3, 7));
 
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+
             DateTime expectedFrom = new DateTime(2016, 3, 1);
             DateTime expectedTo = new DateTime(2016, 3, 31);
 
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
 
 
-            model.SetDateFilters(DateFilter.ThisMonth);
+            model.SetDateFilters(PredefinedDateFilter.ThisMonth);
 
             Assert.AreEqual(expectedFrom, model.FilterDateFrom);
             Assert.AreEqual(expectedTo, model.FilterDateTo);
@@ -236,13 +250,15 @@ namespace ESLTracker.ViewModels.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 3, 7));
 
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+
             DateTime expectedFrom = new DateTime(2016, 3, 1);
             DateTime expectedTo = new DateTime(2016, 3, 7);
 
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
 
 
-            model.SetDateFilters(DateFilter.Last7Days);
+            model.SetDateFilters(PredefinedDateFilter.Last7Days);
 
             Assert.AreEqual(expectedFrom, model.FilterDateFrom);
             Assert.AreEqual(expectedTo, model.FilterDateTo);
