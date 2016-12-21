@@ -20,16 +20,16 @@
         <TextBlock DockPanel.Dock="Bottom"></TextBlock> <!-- add so y legends are visible-->
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="AliceBlue">
             <WrapPanel Margin="5,5,5,5">
-            <CheckBox IsChecked="{Binding ShowMaxMin}" Content="Show worst and best in a day"/>
+            <CheckBox IsChecked="{Binding ShowMaxMin}" Content="Show lowest and highest in a day"/>
             <CheckBox IsChecked="{Binding ConnectMin}" 
                       Visibility="{Binding ShowMaxMin, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
-                      Content="Connect worst in day"/>
+                      Content="Connect lowest rank in day"/>
             <CheckBox IsChecked="{Binding ConnectLast}" 
                       Visibility="{Binding ShowMaxMin, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
                       Content="Connect last in day"/>
             <CheckBox IsChecked="{Binding ConnectMax}" 
                       Visibility="{Binding ShowMaxMin, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
-                      Content="Connect best in day"/>
+                      Content="Connect highest rank in day"/>
             </WrapPanel>
         </StackPanel>
         <lvc:CartesianChart DataTooltip="{x:Null}" LegendLocation="Right" Padding="5,5,5,5" Hoverable="False" x:Name="chart" Series="{Binding DisplayDataSource}">
