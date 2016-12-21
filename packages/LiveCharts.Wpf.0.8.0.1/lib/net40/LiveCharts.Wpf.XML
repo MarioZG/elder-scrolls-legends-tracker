@@ -1484,6 +1484,11 @@
             The DataClick event is fired when a user click any data point
             </summary>
         </member>
+        <member name="E:LiveCharts.Wpf.Charts.Base.Chart.DataHover">
+            <summary>
+            The DataHover event is fired when a user hovers over any data point
+            </summary>
+        </member>
         <member name="E:LiveCharts.Wpf.Charts.Base.Chart.UpdaterTick">
             <summary>
             This event is fired every time the chart updates.
@@ -1712,6 +1717,11 @@
         <member name="P:LiveCharts.Wpf.Charts.Base.Chart.HasDataClickEventAttached">
             <summary>
             Gets whether the chart has a DataClick event attacked.
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.Charts.Base.Chart.HasDataHoverEventAttached">
+            <summary>
+            Gets whether the chart has a DataHover event attached
             </summary>
         </member>
         <member name="P:LiveCharts.Wpf.Charts.Base.Chart.IsControlLoaded">
@@ -2577,6 +2587,16 @@
             Gets or sets the stacked mode, values or percentage.
             </summary>
         </member>
+        <member name="F:LiveCharts.Wpf.StackedRowSeries.LabelsPositionProperty">
+            <summary>
+            The labels position property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.StackedRowSeries.LabelsPosition">
+            <summary>
+            Gets or sets where the label is placed
+            </summary>
+        </member>
         <member name="M:LiveCharts.Wpf.StackedRowSeries.GetPointView(LiveCharts.ChartPoint,System.String)">
             <summary>
             Gets the view of a given point
@@ -2628,6 +2648,16 @@
         <member name="P:LiveCharts.Wpf.StackedColumnSeries.StackMode">
             <summary>
             Gets or sets stacked mode, values or percentage
+            </summary>
+        </member>
+        <member name="F:LiveCharts.Wpf.StackedColumnSeries.LabelsPositionProperty">
+            <summary>
+            The labels position property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.StackedColumnSeries.LabelsPosition">
+            <summary>
+            Gets or sets where the label is placed
             </summary>
         </member>
         <member name="M:LiveCharts.Wpf.StackedColumnSeries.GetPointView(LiveCharts.ChartPoint,System.String)">

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Livecharts</name>
+        <name>LiveCharts</name>
     </assembly>
     <members>
         <member name="T:LiveCharts.AxisCore">
@@ -162,26 +162,6 @@
             Clears the separators.
             </summary>
         </member>
-        <member name="T:LiveCharts.AxisOrientation">
-            <summary>
-            Cartesian Axis orientation
-            </summary>
-        </member>
-        <member name="F:LiveCharts.AxisOrientation.None">
-            <summary>
-            Unknown orientation
-            </summary>
-        </member>
-        <member name="F:LiveCharts.AxisOrientation.X">
-            <summary>
-            Horizontal (X)
-            </summary>
-        </member>
-        <member name="F:LiveCharts.AxisOrientation.Y">
-            <summary>
-            Vertical (Y)
-            </summary>
-        </member>
         <member name="T:LiveCharts.AxisPosition">
             <summary>
             Axis position
@@ -256,265 +236,35 @@
             Places a labels inside the bar
             </summary>
         </member>
-        <member name="T:LiveCharts.ChartFunctions">
+        <member name="F:LiveCharts.BarLabelPosition.Parallel">
             <summary>
-            Contains useful methods to apply to a chart
+            Places a labels in a parallel orientation to the bar height.
             </summary>
         </member>
-        <member name="M:LiveCharts.ChartFunctions.ToPlotArea(System.Double,LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,System.Int32)">
+        <member name="F:LiveCharts.BarLabelPosition.Perpendicular">
             <summary>
-            Converts from chart values to chart control size.
-            </summary>
-            <param name="value">value to scale</param>
-            <param name="source">axis orientation to scale value at</param>
-            <param name="chart">chart model to scale value at</param>
-            <param name="axis">axis index in collection of chart.axis</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.ChartFunctions.ToPlotArea(System.Double,LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,LiveCharts.AxisCore)">
-            <summary>
-            Converts from chart values to chart control size.
-            </summary>
-            <param name="value">value to scale</param>
-            <param name="source">axis orientation to scale value at</param>
-            <param name="chart">chart model to scale value at</param>
-            <param name="axis">axis model instance</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.ChartFunctions.FromPlotArea(System.Double,LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,System.Int32)">
-            <summary>
-            Converts from chart control size to chart values.
-            </summary>
-            <param name="value">value to scale</param>
-            <param name="source">axis orientation to scale value at</param>
-            <param name="chart">chart model to scale value at</param>
-            <param name="axis">axis index in collection of chart.axis</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.ChartFunctions.ToDrawMargin(System.Double,LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,System.Int32)">
-            <summary>
-            Converts from chart values to chart draw margin size.
-            </summary>
-            <param name="value">value to scale</param>
-            <param name="source">axis orientation</param>
-            <param name="chart">chart model to scale the value at</param>
-            <param name="axis">axis instance to scale the value at</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.ChartFunctions.ToDrawMargin(System.Double,LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,LiveCharts.AxisCore)">
-            <summary>
-            Converts from chart values to chart draw margin size.
-            </summary>
-            <param name="value">value to scale</param>
-            <param name="source">axis orientation</param>
-            <param name="chart">chart model to scale the value at</param>
-            <param name="axis">axis instance to scale the value at</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.ChartFunctions.ToDrawMargin(LiveCharts.ChartPoint,System.Int32,System.Int32,LiveCharts.Charts.ChartCore)">
-            <summary>
-            Converts from chart values to chart draw margin size.
-            </summary>
-            <param name="point">point to scale</param>
-            <param name="axisXIndex">axis orientation</param>
-            <param name="axisYIndex">axis instance to scale the value at</param>
-            <param name="chart">chart model to scale the value at</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.ChartFunctions.GetUnitWidth(LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,System.Int32)">
-            <summary>
-            Gets the width of a unit in the chart
-            </summary>
-            <param name="source">axis orientation</param>
-            <param name="chart">chart model to get the scale at</param>
-            <param name="axis">axis index in the axes collection</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.ChartFunctions.GetUnitWidth(LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,LiveCharts.AxisCore)">
-            <summary>
-            Gets the width of a unit in the chart
-            </summary>
-            <param name="source">axis orientation</param>
-            <param name="chart">chart model to get the scale at</param>
-            <param name="axis">axis instance</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.ChartFunctions.GetTooltipData(LiveCharts.ChartPoint,LiveCharts.Charts.ChartCore,LiveCharts.TooltipSelectionMode)">
-            <summary>
-            Returns data in the chart according to:
-            </summary>
-            <param name="senderPoint">point that was hovered</param>
-            <param name="chart">chart model to get the data from</param>
-            <param name="selectionMode">selection mode</param>
-            <returns></returns>
-        </member>
-        <member name="T:LiveCharts.Charting">
-            <summary>
-            Global LiveCharts configuration
+            Places a labels in a perpendicular orientation to the bar height.
             </summary>
         </member>
-        <member name="M:LiveCharts.Charting.For``1(System.Object,LiveCharts.SeriesOrientation)">
+        <member name="T:LiveCharts.Charts.PieChartCore">
             <summary>
-            Saves a type mapper globally.
+            
             </summary>
-            <typeparam name="T">Type to configure</typeparam>
-            <param name="config">mapper</param>
-            <param name="orientation">mapper orientation</param>
+            <seealso cref="T:LiveCharts.Charts.ChartCore" />
         </member>
-        <member name="M:LiveCharts.Charting.GetConfig``1(LiveCharts.SeriesOrientation)">
+        <member name="M:LiveCharts.Charts.PieChartCore.#ctor(LiveCharts.Definitions.Charts.IChartView,LiveCharts.ChartUpdater)">
             <summary>
-            Gets the configuration of a given type and orientation
-            </summary>
-            <typeparam name="T">type to look for</typeparam>
-            <param name="orientation">orientation to look for</param>
-            <returns></returns>
-        </member>
-        <member name="T:LiveCharts.ChartPoint">
-            <summary>
-            Defines a point in the chart
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.X">
-            <summary>
-            Gets the X point value
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Y">
-            <summary>
-            Gets the Y point value
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.XStart">
-            <summary>
-            Gets the Gantt x start value
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.YStart">
-            <summary>
-            Gets the Gantt y start value
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Weight">
-            <summary>
-            Gets the Weight of the point
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.From">
-            <summary>
-            Gets where the stacked value started from
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.To">
-            <summary>
-            Gets where the stacked value finishes
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Sum">
-            <summary>
-            Get the total sum of the stacked elements
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Participation">
-            <summary>
-            Get the participation of the point in the stacked elements
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.StackedParticipation">
-            <summary>
-            gets the stacked participation of a point
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Open">
-            <summary>
-            Gets the Open value of the point
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.High">
-            <summary>
-            Gets the High value of the point
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Low">
-            <summary>
-            Gets the Low value of the point
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Close">
-            <summary>
-            Gets the Close value of the point
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Radius">
-            <summary>
-            Gets the Radius of a point
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Angle">
-            <summary>
-            Gets the angle of a point
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Fill">
-            <summary>
-            Gets the Fill brush of this point, this property overrides series Fill property 
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Stroke">
-            <summary>
-            Gets the Stroke brush of this point, this property overrides series Stroke property
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.ChartLocation">
-            <summary>
-            Gets the coordinate where the value is placed at chart
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Key">
-            <summary>
-            Gets the index of this point in the chart
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.Instance">
-            <summary>
-            Gets the object where the chart pulled the point
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.View">
-            <summary >
-            Gets or sets the view of this chart point
-            </summary>
-        </member>
-        <member name="P:LiveCharts.ChartPoint.SeriesView">
-            <summary>
-            Gets the series where the point belongs to
-            </summary>
-        </member>
-        <member name="T:LiveCharts.Charts.CartesianChartCore">
-            <summary>
-            Chart Model
-            </summary>
-        </member>
-        <member name="M:LiveCharts.Charts.CartesianChartCore.#ctor(LiveCharts.Definitions.Charts.IChartView,LiveCharts.ChartUpdater)">
-            <summary>
-            Initializes Chart model
+            Initializes a new instance of the <see cref="T:LiveCharts.Charts.PieChartCore"/> class.
             </summary>
             <param name="view">The view.</param>
             <param name="updater">The updater.</param>
         </member>
-        <member name="M:LiveCharts.Charts.CartesianChartCore.PrepareAxes">
+        <member name="M:LiveCharts.Charts.PieChartCore.PrepareAxes">
             <summary>
-            Prepares Chart Axes
+            Prepares the axes.
             </summary>
-        </member>
-        <member name="M:LiveCharts.Charts.CartesianChartCore.RunSpecializedChartComponents">
-            <summary>
-            Runs the specialized chart components.
-            </summary>
-        </member>
-        <member name="M:LiveCharts.Charts.CartesianChartCore.DrawOrUpdateSections">
-            <summary>
-            Draws the or update sections.
-            </summary>
+            <exception cref="T:LiveCharts.Helpers.LiveChartsException">There is a invalid series in the series collection, " +
+                                "verify that all the series implement IPieSeries.</exception>
         </member>
         <member name="T:LiveCharts.Charts.ChartCore">
             <summary>
@@ -716,25 +466,32 @@
             <param name="stackIndex">Index of the stack.</param>
             <param name="mode">The mode.</param>
         </member>
-        <member name="T:LiveCharts.Charts.PieChartCore">
+        <member name="T:LiveCharts.Charts.CartesianChartCore">
             <summary>
-            
+            Chart Model
             </summary>
-            <seealso cref="T:LiveCharts.Charts.ChartCore" />
         </member>
-        <member name="M:LiveCharts.Charts.PieChartCore.#ctor(LiveCharts.Definitions.Charts.IChartView,LiveCharts.ChartUpdater)">
+        <member name="M:LiveCharts.Charts.CartesianChartCore.#ctor(LiveCharts.Definitions.Charts.IChartView,LiveCharts.ChartUpdater)">
             <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.Charts.PieChartCore"/> class.
+            Initializes Chart model
             </summary>
             <param name="view">The view.</param>
             <param name="updater">The updater.</param>
         </member>
-        <member name="M:LiveCharts.Charts.PieChartCore.PrepareAxes">
+        <member name="M:LiveCharts.Charts.CartesianChartCore.PrepareAxes">
             <summary>
-            Prepares the axes.
+            Prepares Chart Axes
             </summary>
-            <exception cref="T:LiveCharts.Helpers.LiveChartsException">There is a invalid series in the series collection, " +
-                                "verify that all the series implement IPieSeries.</exception>
+        </member>
+        <member name="M:LiveCharts.Charts.CartesianChartCore.RunSpecializedChartComponents">
+            <summary>
+            Runs the specialized chart components.
+            </summary>
+        </member>
+        <member name="M:LiveCharts.Charts.CartesianChartCore.DrawOrUpdateSections">
+            <summary>
+            Draws the or update sections.
+            </summary>
         </member>
         <member name="T:LiveCharts.ChartUpdater">
             <summary>
@@ -901,13 +658,13 @@
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="T:LiveCharts.Configurations.FinancialMapper`1">
+        <member name="T:LiveCharts.Configurations.WeightedMapper`1">
             <summary>
-            Mapper to configure financial points
+            Mapper to configure Bubble points
             </summary>
             <typeparam name="T">type to configure</typeparam>
         </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Evaluate(System.Int32,`0,LiveCharts.ChartPoint)">
+        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Evaluate(System.Int32,`0,LiveCharts.ChartPoint)">
             <summary>
             Sets values for a specific point
             </summary>
@@ -915,89 +672,145 @@
             <param name="value"></param>
             <param name="key"></param>
         </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.X(System.Func{`0,System.Double})">
+        <member name="M:LiveCharts.Configurations.WeightedMapper`1.X(System.Func{`0,System.Double})">
+            <summary>
+            Sets the X mapper
+            </summary>
+            <param name="predicate">function that pulls the X coordinate</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.WeightedMapper`1.X(System.Func{`0,System.Int32,System.Double})">
+            <summary>
+            Sets the X mapper
+            </summary>
+            <param name="predicate">function that pulls the X coordinate, value and index as parameters</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Y(System.Func{`0,System.Double})">
+            <summary>
+            Sets the Y mapper
+            </summary>
+            <param name="predicate">function that pulls the Y coordinate</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Y(System.Func{`0,System.Int32,System.Double})">
+            <summary>
+            Sets the Y mapper
+            </summary>
+            <param name="predicate">function that pulls the Y coordinate, value and index as parameters</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Weight(System.Func{`0,System.Double})">
+            <summary>
+            Sets Weight mapper
+            </summary>
+            <param name="predicate">function that pulls the point's weight</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Weight(System.Func{`0,System.Int32,System.Double})">
+            <summary>
+            Sets Weight mapper
+            </summary>
+            <param name="predicate">function that pulls the point's weight, value and index as parameters</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Stroke(System.Func{`0,System.Object})">
+            <summary>
+            Sets the Stroke of the point
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Stroke(System.Func{`0,System.Int32,System.Object})">
+            <summary>
+            Sets the Stroke of the point
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Fill(System.Func{`0,System.Object})">
+            <summary>
+            Sets the Fill of the point
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Fill(System.Func{`0,System.Int32,System.Object})">
+            <summary>
+            Sets the Fill of the point
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LiveCharts.Configurations.PolarMapper`1">
+            <summary>
+            Mapper to configure polar series
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:LiveCharts.Configurations.PolarMapper`1.Evaluate(System.Int32,`0,LiveCharts.ChartPoint)">
+            <summary>
+            Sets values for a specific point
+            </summary>
+            <param name="point">Point to set</param>
+            <param name="value"></param>
+            <param name="key"></param>
+        </member>
+        <member name="M:LiveCharts.Configurations.PolarMapper`1.Radius(System.Func{`0,System.Double})">
             <summary>
             Maps X value
             </summary>
-            <param name="predicate">function that pulls X coordinate</param>
+            <param name="predicate">function that pulls the radius value</param>
             <returns>current mapper instance</returns>
         </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.X(System.Func{`0,System.Int32,System.Double})">
+        <member name="M:LiveCharts.Configurations.PolarMapper`1.Radius(System.Func{`0,System.Int32,System.Double})">
             <summary>
             Maps X value
             </summary>
-            <param name="predicate">function that pulls X coordinate, with value and index as parameters</param>
+            <param name="predicate">function that pulls the radius value, value and index as parameters</param>
             <returns>current mapper instance</returns>
         </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Y(System.Func{`0,System.Double})">
+        <member name="M:LiveCharts.Configurations.PolarMapper`1.Angle(System.Func{`0,System.Double})">
             <summary>
             Maps Y value
             </summary>
-            <param name="predicate">function that pulls Y coordinate</param>
+            <param name="predicate">function that pulls the angle value</param>
             <returns>current mapper instance</returns>
         </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Y(System.Func{`0,System.Int32,System.Double})">
+        <member name="M:LiveCharts.Configurations.PolarMapper`1.Angle(System.Func{`0,System.Int32,System.Double})">
             <summary>
             Maps Y value
             </summary>
-            <param name="predicate">function that pulls Y coordinate, with value and index as parameters</param>
+            <param name="predicate">function that pulls the angle value, value and index as parameters</param>
             <returns>current mapper instance</returns>
         </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Open(System.Func{`0,System.Double})">
+        <member name="M:LiveCharts.Configurations.PolarMapper`1.Stroke(System.Func{`0,System.Object})">
             <summary>
-            Maps Open value
+            Sets the Stroke of the point
             </summary>
-            <param name="predicate">function that pulls open value</param>
-            <returns>current mapper instance</returns>
+            <param name="predicate"></param>
+            <returns></returns>
         </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Open(System.Func{`0,System.Int32,System.Double})">
+        <member name="M:LiveCharts.Configurations.PolarMapper`1.Stroke(System.Func{`0,System.Int32,System.Object})">
             <summary>
-            Maps Open value
+            Sets the Stroke of the point
             </summary>
-            <param name="predicate">function that pulls open value, value and index as parameters</param>
-            <returns>current mapper instance</returns>
+            <param name="predicate"></param>
+            <returns></returns>
         </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.High(System.Func{`0,System.Double})">
+        <member name="M:LiveCharts.Configurations.PolarMapper`1.Fill(System.Func{`0,System.Object})">
             <summary>
-            Maps High value
+            Sets the Fill of the point
             </summary>
-            <param name="predicate">function that pulls High value</param>
-            <returns>current mapper instance</returns>
+            <param name="predicate"></param>
+            <returns></returns>
         </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.High(System.Func{`0,System.Int32,System.Double})">
+        <member name="M:LiveCharts.Configurations.PolarMapper`1.Fill(System.Func{`0,System.Int32,System.Object})">
             <summary>
-            Maps High value
+            Sets the Fill of the point
             </summary>
-            <param name="predicate">function that pulls High value</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Close(System.Func{`0,System.Double})">
-            <summary>
-            Maps Close value
-            </summary>
-            <param name="predicate">function that pulls close value</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Close(System.Func{`0,System.Int32,System.Double})">
-            <summary>
-            Maps Close value
-            </summary>
-            <param name="predicate">function that pulls close value, value and index as parameters</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Low(System.Func{`0,System.Double})">
-            <summary>
-            Maps Low value
-            </summary>
-            <param name="predicate">function that pulls low value</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Low(System.Func{`0,System.Int32,System.Double})">
-            <summary>
-            Maps Low value
-            </summary>
-            <param name="predicate">function that pulls low value, index and value as parameters</param>
-            <returns>current mapper instance</returns>
+            <param name="predicate"></param>
+            <returns></returns>
         </member>
         <member name="T:LiveCharts.Configurations.GanttMapper`1">
             <summary>
@@ -1097,6 +910,104 @@
             <param name="predicate"></param>
             <returns></returns>
         </member>
+        <member name="T:LiveCharts.Configurations.FinancialMapper`1">
+            <summary>
+            Mapper to configure financial points
+            </summary>
+            <typeparam name="T">type to configure</typeparam>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Evaluate(System.Int32,`0,LiveCharts.ChartPoint)">
+            <summary>
+            Sets values for a specific point
+            </summary>
+            <param name="point">Point to set</param>
+            <param name="value"></param>
+            <param name="key"></param>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.X(System.Func{`0,System.Double})">
+            <summary>
+            Maps X value
+            </summary>
+            <param name="predicate">function that pulls X coordinate</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.X(System.Func{`0,System.Int32,System.Double})">
+            <summary>
+            Maps X value
+            </summary>
+            <param name="predicate">function that pulls X coordinate, with value and index as parameters</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Y(System.Func{`0,System.Double})">
+            <summary>
+            Maps Y value
+            </summary>
+            <param name="predicate">function that pulls Y coordinate</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Y(System.Func{`0,System.Int32,System.Double})">
+            <summary>
+            Maps Y value
+            </summary>
+            <param name="predicate">function that pulls Y coordinate, with value and index as parameters</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Open(System.Func{`0,System.Double})">
+            <summary>
+            Maps Open value
+            </summary>
+            <param name="predicate">function that pulls open value</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Open(System.Func{`0,System.Int32,System.Double})">
+            <summary>
+            Maps Open value
+            </summary>
+            <param name="predicate">function that pulls open value, value and index as parameters</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.High(System.Func{`0,System.Double})">
+            <summary>
+            Maps High value
+            </summary>
+            <param name="predicate">function that pulls High value</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.High(System.Func{`0,System.Int32,System.Double})">
+            <summary>
+            Maps High value
+            </summary>
+            <param name="predicate">function that pulls High value</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Close(System.Func{`0,System.Double})">
+            <summary>
+            Maps Close value
+            </summary>
+            <param name="predicate">function that pulls close value</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Close(System.Func{`0,System.Int32,System.Double})">
+            <summary>
+            Maps Close value
+            </summary>
+            <param name="predicate">function that pulls close value, value and index as parameters</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Low(System.Func{`0,System.Double})">
+            <summary>
+            Maps Low value
+            </summary>
+            <param name="predicate">function that pulls low value</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.FinancialMapper`1.Low(System.Func{`0,System.Int32,System.Double})">
+            <summary>
+            Maps Low value
+            </summary>
+            <param name="predicate">function that pulls low value, index and value as parameters</param>
+            <returns>current mapper instance</returns>
+        </member>
         <member name="T:LiveCharts.Configurations.IPointEvaluator`1">
             <summary>
             
@@ -1150,160 +1061,6 @@
             </summary>
             <typeparam name="T">type to amp</typeparam>
             <returns>a new polar mapper insance</returns>
-        </member>
-        <member name="T:LiveCharts.Configurations.PolarMapper`1">
-            <summary>
-            Mapper to configure polar series
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:LiveCharts.Configurations.PolarMapper`1.Evaluate(System.Int32,`0,LiveCharts.ChartPoint)">
-            <summary>
-            Sets values for a specific point
-            </summary>
-            <param name="point">Point to set</param>
-            <param name="value"></param>
-            <param name="key"></param>
-        </member>
-        <member name="M:LiveCharts.Configurations.PolarMapper`1.Radius(System.Func{`0,System.Double})">
-            <summary>
-            Maps X value
-            </summary>
-            <param name="predicate">function that pulls the radius value</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.PolarMapper`1.Radius(System.Func{`0,System.Int32,System.Double})">
-            <summary>
-            Maps X value
-            </summary>
-            <param name="predicate">function that pulls the radius value, value and index as parameters</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.PolarMapper`1.Angle(System.Func{`0,System.Double})">
-            <summary>
-            Maps Y value
-            </summary>
-            <param name="predicate">function that pulls the angle value</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.PolarMapper`1.Angle(System.Func{`0,System.Int32,System.Double})">
-            <summary>
-            Maps Y value
-            </summary>
-            <param name="predicate">function that pulls the angle value, value and index as parameters</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.PolarMapper`1.Stroke(System.Func{`0,System.Object})">
-            <summary>
-            Sets the Stroke of the point
-            </summary>
-            <param name="predicate"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.PolarMapper`1.Stroke(System.Func{`0,System.Int32,System.Object})">
-            <summary>
-            Sets the Stroke of the point
-            </summary>
-            <param name="predicate"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.PolarMapper`1.Fill(System.Func{`0,System.Object})">
-            <summary>
-            Sets the Fill of the point
-            </summary>
-            <param name="predicate"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.PolarMapper`1.Fill(System.Func{`0,System.Int32,System.Object})">
-            <summary>
-            Sets the Fill of the point
-            </summary>
-            <param name="predicate"></param>
-            <returns></returns>
-        </member>
-        <member name="T:LiveCharts.Configurations.WeightedMapper`1">
-            <summary>
-            Mapper to configure Bubble points
-            </summary>
-            <typeparam name="T">type to configure</typeparam>
-        </member>
-        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Evaluate(System.Int32,`0,LiveCharts.ChartPoint)">
-            <summary>
-            Sets values for a specific point
-            </summary>
-            <param name="point">Point to set</param>
-            <param name="value"></param>
-            <param name="key"></param>
-        </member>
-        <member name="M:LiveCharts.Configurations.WeightedMapper`1.X(System.Func{`0,System.Double})">
-            <summary>
-            Sets the X mapper
-            </summary>
-            <param name="predicate">function that pulls the X coordinate</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.WeightedMapper`1.X(System.Func{`0,System.Int32,System.Double})">
-            <summary>
-            Sets the X mapper
-            </summary>
-            <param name="predicate">function that pulls the X coordinate, value and index as parameters</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Y(System.Func{`0,System.Double})">
-            <summary>
-            Sets the Y mapper
-            </summary>
-            <param name="predicate">function that pulls the Y coordinate</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Y(System.Func{`0,System.Int32,System.Double})">
-            <summary>
-            Sets the Y mapper
-            </summary>
-            <param name="predicate">function that pulls the Y coordinate, value and index as parameters</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Weight(System.Func{`0,System.Double})">
-            <summary>
-            Sets Weight mapper
-            </summary>
-            <param name="predicate">function that pulls the point's weight</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Weight(System.Func{`0,System.Int32,System.Double})">
-            <summary>
-            Sets Weight mapper
-            </summary>
-            <param name="predicate">function that pulls the point's weight, value and index as parameters</param>
-            <returns>current mapper instance</returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Stroke(System.Func{`0,System.Object})">
-            <summary>
-            Sets the Stroke of the point
-            </summary>
-            <param name="predicate"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Stroke(System.Func{`0,System.Int32,System.Object})">
-            <summary>
-            Sets the Stroke of the point
-            </summary>
-            <param name="predicate"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Fill(System.Func{`0,System.Object})">
-            <summary>
-            Sets the Fill of the point
-            </summary>
-            <param name="predicate"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Configurations.WeightedMapper`1.Fill(System.Func{`0,System.Int32,System.Object})">
-            <summary>
-            Sets the Fill of the point
-            </summary>
-            <param name="predicate"></param>
-            <returns></returns>
         </member>
         <member name="T:LiveCharts.Defaults.DateTimePoint">
             <summary>
@@ -1394,6 +1151,43 @@
             <param name="x"></param>
             <param name="y"></param>
             <param name="weight"></param>
+        </member>
+        <member name="T:LiveCharts.Defaults.PolarPoint">
+            <summary>
+            An already configured chart point, this class notifies the chart to update every time a property changes
+            </summary>
+        </member>
+        <member name="E:LiveCharts.Defaults.PolarPoint.PointChanged">
+            <summary>
+            The point changed event
+            </summary>
+        </member>
+        <member name="M:LiveCharts.Defaults.PolarPoint.#ctor">
+            <summary>
+            Initializes a new instance of PolarPoint class
+            </summary>
+        </member>
+        <member name="M:LiveCharts.Defaults.PolarPoint.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of PolarPoint class, giving angle and radius
+            </summary>
+            <param name="radius"></param>
+            <param name="angle"></param>
+        </member>
+        <member name="P:LiveCharts.Defaults.PolarPoint.Radius">
+            <summary>
+            The radius of the point
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Defaults.PolarPoint.Angle">
+            <summary>
+            The angle of the point
+            </summary>
+        </member>
+        <member name="M:LiveCharts.Defaults.PolarPoint.OnPointChanged">
+            <summary>
+            On point property changed method
+            </summary>
         </member>
         <member name="T:LiveCharts.Defaults.ObservablePoint">
             <summary>
@@ -1512,43 +1306,6 @@
             On point property changed method
             </summary>
         </member>
-        <member name="T:LiveCharts.Defaults.PolarPoint">
-            <summary>
-            An already configured chart point, this class notifies the chart to update every time a property changes
-            </summary>
-        </member>
-        <member name="E:LiveCharts.Defaults.PolarPoint.PointChanged">
-            <summary>
-            The point changed event
-            </summary>
-        </member>
-        <member name="M:LiveCharts.Defaults.PolarPoint.#ctor">
-            <summary>
-            Initializes a new instance of PolarPoint class
-            </summary>
-        </member>
-        <member name="M:LiveCharts.Defaults.PolarPoint.#ctor(System.Double,System.Double)">
-            <summary>
-            Initializes a new instance of PolarPoint class, giving angle and radius
-            </summary>
-            <param name="radius"></param>
-            <param name="angle"></param>
-        </member>
-        <member name="P:LiveCharts.Defaults.PolarPoint.Radius">
-            <summary>
-            The radius of the point
-            </summary>
-        </member>
-        <member name="P:LiveCharts.Defaults.PolarPoint.Angle">
-            <summary>
-            The angle of the point
-            </summary>
-        </member>
-        <member name="M:LiveCharts.Defaults.PolarPoint.OnPointChanged">
-            <summary>
-            On point property changed method
-            </summary>
-        </member>
         <member name="T:LiveCharts.Defaults.ScatterPoint">
             <summary>
             An already configured weighted chart point, this class notifies the chart to update every time a property changes
@@ -1599,61 +1356,328 @@
             On point property changed method
             </summary>
         </member>
-        <member name="T:LiveCharts.Definitions.Charts.IAxisSectionView">
+        <member name="T:LiveCharts.Charting">
+            <summary>
+            Global LiveCharts configuration
+            </summary>
+        </member>
+        <member name="M:LiveCharts.Charting.For``1(System.Object,LiveCharts.SeriesOrientation)">
+            <summary>
+            Saves a type mapper globally.
+            </summary>
+            <typeparam name="T">Type to configure</typeparam>
+            <param name="config">mapper</param>
+            <param name="orientation">mapper orientation</param>
+        </member>
+        <member name="M:LiveCharts.Charting.GetConfig``1(LiveCharts.SeriesOrientation)">
+            <summary>
+            Gets the configuration of a given type and orientation
+            </summary>
+            <typeparam name="T">type to look for</typeparam>
+            <param name="orientation">orientation to look for</param>
+            <returns></returns>
+        </member>
+        <member name="T:LiveCharts.Definitions.Charts.ICartesianChart">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.Definitions.Charts.IChartView" />
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.ICartesianChart.VisualElements">
+            <summary>
+            Gets or sets the visual elements.
+            </summary>
+            <value>
+            The visual elements.
+            </value>
+        </member>
+        <member name="T:LiveCharts.Definitions.Charts.ICartesianVisualElement">
             <summary>
             
             </summary>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.IAxisSectionView.Model">
+        <member name="P:LiveCharts.Definitions.Charts.ICartesianVisualElement.X">
             <summary>
-            Gets or sets the model.
+            Gets or sets the x.
+            </summary>
+            <value>
+            The x.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.ICartesianVisualElement.Y">
+            <summary>
+            Gets or sets the y.
+            </summary>
+            <value>
+            The y.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.ICartesianVisualElement.AxisX">
+            <summary>
+            Gets or sets the axis x.
+            </summary>
+            <value>
+            The axis x.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.ICartesianVisualElement.AxisY">
+            <summary>
+            Gets or sets the axis y.
+            </summary>
+            <value>
+            The axis y.
+            </value>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.ICartesianVisualElement.AddOrMove(LiveCharts.Charts.ChartCore)">
+            <summary>
+            Adds the or move.
+            </summary>
+            <param name="chart">The chart.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.ICartesianVisualElement.Remove(LiveCharts.Charts.ChartCore)">
+            <summary>
+            Removes the specified chart.
+            </summary>
+            <param name="chart">The chart.</param>
+        </member>
+        <member name="T:LiveCharts.Definitions.Charts.IChartView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.Model">
+            <summary>
+            Gets the model.
             </summary>
             <value>
             The model.
             </value>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.IAxisSectionView.Value">
+        <member name="E:LiveCharts.Definitions.Charts.IChartView.DataClick">
             <summary>
-            Gets or sets the value.
+            Occurs when [data click].
+            </summary>
+        </member>
+        <member name="E:LiveCharts.Definitions.Charts.IChartView.DataHover">
+            <summary>
+            Occurs when [data hover]
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.IsMocked">
+            <summary>
+            Gets or sets a value indicating whether this instance is mocked.
             </summary>
             <value>
-            The value.
+              <c>true</c> if this instance is mocked; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.IAxisSectionView.SectionWidth">
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.Series">
             <summary>
-            Gets or sets the width of the section.
+            Gets or sets the series.
             </summary>
             <value>
-            The width of the section.
+            The series.
             </value>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.IAxisSectionView.Draggable">
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.ActualSeries">
             <summary>
-            Gets or sets a value indicating whether this <see cref="T:LiveCharts.Definitions.Charts.IAxisSectionView"/> is draggable.
+            Gets the actual series.
             </summary>
             <value>
-              <c>true</c> if draggable; otherwise, <c>false</c>.
+            The actual series.
             </value>
         </member>
-        <member name="M:LiveCharts.Definitions.Charts.IAxisSectionView.DrawOrMove(LiveCharts.AxisOrientation,System.Int32)">
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.TooltipTimeout">
             <summary>
-            Draws the or move.
+            Gets or sets the tooltip timeout.
             </summary>
-            <param name="source">The source.</param>
-            <param name="axis">The axis.</param>
+            <value>
+            The tooltip timeout.
+            </value>
         </member>
-        <member name="M:LiveCharts.Definitions.Charts.IAxisSectionView.Remove">
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.Zoom">
             <summary>
-            Removes this instance.
+            Gets or sets the zoom.
+            </summary>
+            <value>
+            The zoom.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.ZoomingSpeed">
+            <summary>
+            Gets or sets the zooming speed.
+            </summary>
+            <value>
+            The zooming speed.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.LegendLocation">
+            <summary>
+            Gets or sets the legend location.
+            </summary>
+            <value>
+            The legend location.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.DisableAnimations">
+            <summary>
+            Gets or sets a value indicating whether [disable animations].
+            </summary>
+            <value>
+              <c>true</c> if [disable animations]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.AnimationsSpeed">
+            <summary>
+            Gets or sets the animations speed.
+            </summary>
+            <value>
+            The animations speed.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.UpdaterState">
+            <summary>
+            Gets or sets the state of the updater.
+            </summary>
+            <value>
+            The state of the updater.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.HasTooltip">
+            <summary>
+            Gets a value indicating whether this instance has tooltip.
+            </summary>
+            <value>
+            <c>true</c> if this instance has tooltip; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.HasDataClickEventAttached">
+            <summary>
+            Gets a value indicating whether this instance has data click event attached.
+            </summary>
+            <value>
+            <c>true</c> if this instance has data click event attached; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:LiveCharts.Definitions.Charts.IChartView.HasDataHoverEventAttached" -->
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.Hoverable">
+            <summary>
+            Gets a value indicating whether this <see cref="T:LiveCharts.Definitions.Charts.IChartView"/> is hoverable.
+            </summary>
+            <value>
+              <c>true</c> if hoverable; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.IsControlLoaded">
+            <summary>
+            Gets a value indicating whether this instance is control loaded.
+            </summary>
+            <value>
+            <c>true</c> if this instance is control loaded; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.IsInDesignMode">
+            <summary>
+            Gets a value indicating whether this instance is in design mode.
+            </summary>
+            <value>
+            <c>true</c> if this instance is in design mode; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.SetDrawMarginTop(System.Double)">
+            <summary>
+            Sets the draw margin top.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.SetDrawMarginLeft(System.Double)">
+            <summary>
+            Sets the draw margin left.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.SetDrawMarginHeight(System.Double)">
+            <summary>
+            Sets the height of the draw margin.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.SetDrawMarginWidth(System.Double)">
+            <summary>
+            Sets the width of the draw margin.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.AddToView(System.Object)">
+            <summary>
+            Adds to view.
+            </summary>
+            <param name="element">The element.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.AddToDrawMargin(System.Object)">
+            <summary>
+            Adds to draw margin.
+            </summary>
+            <param name="element">The element.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.RemoveFromView(System.Object)">
+            <summary>
+            Removes from view.
+            </summary>
+            <param name="element">The element.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.RemoveFromDrawMargin(System.Object)">
+            <summary>
+            Removes from draw margin.
+            </summary>
+            <param name="element">The element.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.EnsureElementBelongsToCurrentView(System.Object)">
+            <summary>
+            Ensures the element belongs to current view.
+            </summary>
+            <param name="element">The element.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.EnsureElementBelongsToCurrentDrawMargin(System.Object)">
+            <summary>
+            Ensures the element belongs to current draw margin.
+            </summary>
+            <param name="element">The element.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.HideTooltip">
+            <summary>
+            Hides the tooltip.
             </summary>
         </member>
-        <member name="M:LiveCharts.Definitions.Charts.IAxisSectionView.AsCoreElement(LiveCharts.AxisCore,LiveCharts.AxisOrientation)">
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.ShowLegend(LiveCharts.Dtos.CorePoint)">
             <summary>
-            Ases the core element.
+            Shows the legend.
             </summary>
-            <param name="axis">The axis.</param>
-            <param name="source">The source.</param>
+            <param name="at">At.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.HideLegend">
+            <summary>
+            Hides the legend.
+            </summary>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.LoadLegend">
+            <summary>
+            Loads the legend.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.MapXAxes(LiveCharts.Charts.ChartCore)">
+            <summary>
+            Maps the x axes.
+            </summary>
+            <param name="chart">The chart.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.Definitions.Charts.IChartView.MapYAxes(LiveCharts.Charts.ChartCore)">
+            <summary>
+            Maps the y axes.
+            </summary>
+            <param name="chart">The chart.</param>
             <returns></returns>
         </member>
         <member name="T:LiveCharts.Definitions.Charts.IAxisView">
@@ -1830,332 +1854,96 @@
             <param name="min">The minimum.</param>
             <param name="max">The maximum.</param>
         </member>
-        <member name="T:LiveCharts.Definitions.Charts.ICartesianChart">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.Definitions.Charts.IChartView" />
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.ICartesianChart.VisualElements">
-            <summary>
-            Gets or sets the visual elements.
-            </summary>
-            <value>
-            The visual elements.
-            </value>
-        </member>
-        <member name="T:LiveCharts.Definitions.Charts.ICartesianVisualElement">
+        <member name="T:LiveCharts.Definitions.Charts.IAxisSectionView">
             <summary>
             
             </summary>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.ICartesianVisualElement.X">
+        <member name="P:LiveCharts.Definitions.Charts.IAxisSectionView.Model">
             <summary>
-            Gets or sets the x.
-            </summary>
-            <value>
-            The x.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.ICartesianVisualElement.Y">
-            <summary>
-            Gets or sets the y.
-            </summary>
-            <value>
-            The y.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.ICartesianVisualElement.AxisX">
-            <summary>
-            Gets or sets the axis x.
-            </summary>
-            <value>
-            The axis x.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.ICartesianVisualElement.AxisY">
-            <summary>
-            Gets or sets the axis y.
-            </summary>
-            <value>
-            The axis y.
-            </value>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.ICartesianVisualElement.AddOrMove(LiveCharts.Charts.ChartCore)">
-            <summary>
-            Adds the or move.
-            </summary>
-            <param name="chart">The chart.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.ICartesianVisualElement.Remove(LiveCharts.Charts.ChartCore)">
-            <summary>
-            Removes the specified chart.
-            </summary>
-            <param name="chart">The chart.</param>
-        </member>
-        <member name="T:LiveCharts.Definitions.Charts.IChartView">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.Model">
-            <summary>
-            Gets the model.
+            Gets or sets the model.
             </summary>
             <value>
             The model.
             </value>
         </member>
-        <member name="E:LiveCharts.Definitions.Charts.IChartView.DataClick">
+        <member name="P:LiveCharts.Definitions.Charts.IAxisSectionView.Value">
             <summary>
-            Occurs when [data click].
-            </summary>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.IsMocked">
-            <summary>
-            Gets or sets a value indicating whether this instance is mocked.
+            Gets or sets the value.
             </summary>
             <value>
-              <c>true</c> if this instance is mocked; otherwise, <c>false</c>.
+            The value.
             </value>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.Series">
+        <member name="P:LiveCharts.Definitions.Charts.IAxisSectionView.SectionWidth">
             <summary>
-            Gets or sets the series.
+            Gets or sets the width of the section.
             </summary>
             <value>
-            The series.
+            The width of the section.
             </value>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.ActualSeries">
+        <member name="P:LiveCharts.Definitions.Charts.IAxisSectionView.Draggable">
             <summary>
-            Gets the actual series.
+            Gets or sets a value indicating whether this <see cref="T:LiveCharts.Definitions.Charts.IAxisSectionView"/> is draggable.
             </summary>
             <value>
-            The actual series.
+              <c>true</c> if draggable; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.TooltipTimeout">
+        <member name="M:LiveCharts.Definitions.Charts.IAxisSectionView.DrawOrMove(LiveCharts.AxisOrientation,System.Int32)">
             <summary>
-            Gets or sets the tooltip timeout.
+            Draws the or move.
             </summary>
-            <value>
-            The tooltip timeout.
-            </value>
+            <param name="source">The source.</param>
+            <param name="axis">The axis.</param>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.Zoom">
+        <member name="M:LiveCharts.Definitions.Charts.IAxisSectionView.Remove">
             <summary>
-            Gets or sets the zoom.
-            </summary>
-            <value>
-            The zoom.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.ZoomingSpeed">
-            <summary>
-            Gets or sets the zooming speed.
-            </summary>
-            <value>
-            The zooming speed.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.LegendLocation">
-            <summary>
-            Gets or sets the legend location.
-            </summary>
-            <value>
-            The legend location.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.DisableAnimations">
-            <summary>
-            Gets or sets a value indicating whether [disable animations].
-            </summary>
-            <value>
-              <c>true</c> if [disable animations]; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.AnimationsSpeed">
-            <summary>
-            Gets or sets the animations speed.
-            </summary>
-            <value>
-            The animations speed.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.UpdaterState">
-            <summary>
-            Gets or sets the state of the updater.
-            </summary>
-            <value>
-            The state of the updater.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.HasTooltip">
-            <summary>
-            Gets a value indicating whether this instance has tooltip.
-            </summary>
-            <value>
-            <c>true</c> if this instance has tooltip; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.HasDataClickEventAttached">
-            <summary>
-            Gets a value indicating whether this instance has data click event attached.
-            </summary>
-            <value>
-            <c>true</c> if this instance has data click event attached; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.Hoverable">
-            <summary>
-            Gets a value indicating whether this <see cref="T:LiveCharts.Definitions.Charts.IChartView"/> is hoverable.
-            </summary>
-            <value>
-              <c>true</c> if hoverable; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.IsControlLoaded">
-            <summary>
-            Gets a value indicating whether this instance is control loaded.
-            </summary>
-            <value>
-            <c>true</c> if this instance is control loaded; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.IChartView.IsInDesignMode">
-            <summary>
-            Gets a value indicating whether this instance is in design mode.
-            </summary>
-            <value>
-            <c>true</c> if this instance is in design mode; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.SetDrawMarginTop(System.Double)">
-            <summary>
-            Sets the draw margin top.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.SetDrawMarginLeft(System.Double)">
-            <summary>
-            Sets the draw margin left.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.SetDrawMarginHeight(System.Double)">
-            <summary>
-            Sets the height of the draw margin.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.SetDrawMarginWidth(System.Double)">
-            <summary>
-            Sets the width of the draw margin.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.AddToView(System.Object)">
-            <summary>
-            Adds to view.
-            </summary>
-            <param name="element">The element.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.AddToDrawMargin(System.Object)">
-            <summary>
-            Adds to draw margin.
-            </summary>
-            <param name="element">The element.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.RemoveFromView(System.Object)">
-            <summary>
-            Removes from view.
-            </summary>
-            <param name="element">The element.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.RemoveFromDrawMargin(System.Object)">
-            <summary>
-            Removes from draw margin.
-            </summary>
-            <param name="element">The element.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.EnsureElementBelongsToCurrentView(System.Object)">
-            <summary>
-            Ensures the element belongs to current view.
-            </summary>
-            <param name="element">The element.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.EnsureElementBelongsToCurrentDrawMargin(System.Object)">
-            <summary>
-            Ensures the element belongs to current draw margin.
-            </summary>
-            <param name="element">The element.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.HideTooltip">
-            <summary>
-            Hides the tooltip.
+            Removes this instance.
             </summary>
         </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.ShowLegend(LiveCharts.Dtos.CorePoint)">
+        <member name="M:LiveCharts.Definitions.Charts.IAxisSectionView.AsCoreElement(LiveCharts.AxisCore,LiveCharts.AxisOrientation)">
             <summary>
-            Shows the legend.
+            Ases the core element.
             </summary>
-            <param name="at">At.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.HideLegend">
-            <summary>
-            Hides the legend.
-            </summary>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.LoadLegend">
-            <summary>
-            Loads the legend.
-            </summary>
+            <param name="axis">The axis.</param>
+            <param name="source">The source.</param>
             <returns></returns>
         </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.MapXAxes(LiveCharts.Charts.ChartCore)">
-            <summary>
-            Maps the x axes.
-            </summary>
-            <param name="chart">The chart.</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Definitions.Charts.IChartView.MapYAxes(LiveCharts.Charts.ChartCore)">
-            <summary>
-            Maps the y axes.
-            </summary>
-            <param name="chart">The chart.</param>
-            <returns></returns>
-        </member>
-        <member name="T:LiveCharts.Definitions.Charts.IPieChart">
+        <member name="T:LiveCharts.Definitions.Charts.ISeparatorView">
             <summary>
             
             </summary>
-            <seealso cref="T:LiveCharts.Definitions.Charts.IChartView" />
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.IPieChart.InnerRadius">
+        <member name="P:LiveCharts.Definitions.Charts.ISeparatorView.IsEnabled">
             <summary>
-            Gets or sets the inner radius.
+            Gets or sets a value indicating whether this instance is enabled.
             </summary>
             <value>
-            The inner radius.
+            <c>true</c> if this instance is enabled; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.IPieChart.StartingRotationAngle">
+        <member name="P:LiveCharts.Definitions.Charts.ISeparatorView.Step">
             <summary>
-            Gets or sets the starting rotation angle.
+            Gets or sets separator step, this means the value between each line, use double.NaN for auto.
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.ISeparatorView.AxisOrientation">
+            <summary>
+            Gets the axis orientation.
             </summary>
             <value>
-            The starting rotation angle.
+            The axis orientation.
             </value>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.IPieChart.HoverPushOut">
+        <member name="M:LiveCharts.Definitions.Charts.ISeparatorView.AsCoreElement(LiveCharts.AxisCore,LiveCharts.AxisOrientation)">
             <summary>
-            Gets or sets the hover push out.
+            Ases the core element.
             </summary>
-            <value>
-            The hover push out.
-            </value>
+            <param name="axis">The axis.</param>
+            <param name="source">The source.</param>
+            <returns></returns>
         </member>
         <member name="T:LiveCharts.Definitions.Charts.ISeparatorElementView">
             <summary>
@@ -2236,101 +2024,71 @@
             </summary>
             <param name="chart">The chart.</param>
         </member>
-        <member name="T:LiveCharts.Definitions.Charts.ISeparatorView">
+        <member name="T:LiveCharts.Definitions.Charts.IPieChart">
             <summary>
             
             </summary>
+            <seealso cref="T:LiveCharts.Definitions.Charts.IChartView" />
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.ISeparatorView.IsEnabled">
+        <member name="P:LiveCharts.Definitions.Charts.IPieChart.InnerRadius">
             <summary>
-            Gets or sets a value indicating whether this instance is enabled.
+            Gets or sets the inner radius.
             </summary>
             <value>
-            <c>true</c> if this instance is enabled; otherwise, <c>false</c>.
+            The inner radius.
             </value>
         </member>
-        <member name="P:LiveCharts.Definitions.Charts.ISeparatorView.Step">
+        <member name="P:LiveCharts.Definitions.Charts.IPieChart.StartingRotationAngle">
             <summary>
-            Gets or sets separator step, this means the value between each line, use double.NaN for auto.
-            </summary>
-        </member>
-        <member name="P:LiveCharts.Definitions.Charts.ISeparatorView.AxisOrientation">
-            <summary>
-            Gets the axis orientation.
+            Gets or sets the starting rotation angle.
             </summary>
             <value>
-            The axis orientation.
+            The starting rotation angle.
             </value>
         </member>
-        <member name="M:LiveCharts.Definitions.Charts.ISeparatorView.AsCoreElement(LiveCharts.AxisCore,LiveCharts.AxisOrientation)">
+        <member name="P:LiveCharts.Definitions.Charts.IPieChart.HoverPushOut">
             <summary>
-            Ases the core element.
+            Gets or sets the hover push out.
             </summary>
-            <param name="axis">The axis.</param>
-            <param name="source">The source.</param>
-            <returns></returns>
+            <value>
+            The hover push out.
+            </value>
         </member>
-        <member name="T:LiveCharts.Definitions.Points.IBezierPointView">
+        <member name="T:LiveCharts.Definitions.Points.IStepPointView">
             <summary>
             
             </summary>
             <seealso cref="T:LiveCharts.Definitions.Points.IChartPointView" />
         </member>
-        <member name="P:LiveCharts.Definitions.Points.IBezierPointView.Data">
+        <member name="P:LiveCharts.Definitions.Points.IStepPointView.DeltaX">
             <summary>
-            Gets or sets the data.
+            Gets or sets the delta x.
             </summary>
             <value>
-            The data.
+            The delta x.
             </value>
         </member>
-        <member name="T:LiveCharts.Definitions.Points.IChartPointView">
+        <member name="P:LiveCharts.Definitions.Points.IStepPointView.DeltaY">
+            <summary>
+            Gets or sets the delta y.
+            </summary>
+            <value>
+            The delta y.
+            </value>
+        </member>
+        <member name="T:LiveCharts.Definitions.Points.IScatterPointView">
             <summary>
             
             </summary>
+            <seealso cref="T:LiveCharts.Definitions.Points.IChartPointView" />
         </member>
-        <member name="P:LiveCharts.Definitions.Points.IChartPointView.IsNew">
+        <member name="P:LiveCharts.Definitions.Points.IScatterPointView.Diameter">
             <summary>
-            Gets a value indicating whether this instance is new.
+            Gets or sets the diameter.
             </summary>
             <value>
-              <c>true</c> if this instance is new; otherwise, <c>false</c>.
+            The diameter.
             </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Points.IChartPointView.ValidArea">
-            <summary>
-            Gets the valid area.
-            </summary>
-            <value>
-            The valid area.
-            </value>
-        </member>
-        <member name="M:LiveCharts.Definitions.Points.IChartPointView.DrawOrMove(LiveCharts.ChartPoint,LiveCharts.ChartPoint,System.Int32,LiveCharts.Charts.ChartCore)">
-            <summary>
-            Draws the or move.
-            </summary>
-            <param name="previousDrawn">The previous drawn.</param>
-            <param name="current">The current.</param>
-            <param name="index">The index.</param>
-            <param name="chart">The chart.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Points.IChartPointView.RemoveFromView(LiveCharts.Charts.ChartCore)">
-            <summary>
-            Removes from view.
-            </summary>
-            <param name="chart">The chart.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Points.IChartPointView.OnHover(LiveCharts.ChartPoint)">
-            <summary>
-            Called when [hover].
-            </summary>
-            <param name="point">The point.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Points.IChartPointView.OnHoverLeave(LiveCharts.ChartPoint)">
-            <summary>
-            Called when [hover leave].
-            </summary>
-            <param name="point">The point.</param>
         </member>
         <member name="T:LiveCharts.Definitions.Points.IHeatPointView">
             <summary>
@@ -2484,247 +2242,67 @@
             The zero reference.
             </value>
         </member>
-        <member name="T:LiveCharts.Definitions.Points.IScatterPointView">
+        <member name="T:LiveCharts.Definitions.Points.IBezierPointView">
             <summary>
             
             </summary>
             <seealso cref="T:LiveCharts.Definitions.Points.IChartPointView" />
         </member>
-        <member name="P:LiveCharts.Definitions.Points.IScatterPointView.Diameter">
+        <member name="P:LiveCharts.Definitions.Points.IBezierPointView.Data">
             <summary>
-            Gets or sets the diameter.
+            Gets or sets the data.
             </summary>
             <value>
-            The diameter.
+            The data.
             </value>
         </member>
-        <member name="T:LiveCharts.Definitions.Points.IStepPointView">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.Definitions.Points.IChartPointView" />
-        </member>
-        <member name="P:LiveCharts.Definitions.Points.IStepPointView.DeltaX">
-            <summary>
-            Gets or sets the delta x.
-            </summary>
-            <value>
-            The delta x.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Points.IStepPointView.DeltaY">
-            <summary>
-            Gets or sets the delta y.
-            </summary>
-            <value>
-            The delta y.
-            </value>
-        </member>
-        <member name="T:LiveCharts.Definitions.Series.ICartesianSeries">
+        <member name="T:LiveCharts.Definitions.Points.IChartPointView">
             <summary>
             
             </summary>
         </member>
-        <member name="P:LiveCharts.Definitions.Series.ICartesianSeries.View">
+        <member name="P:LiveCharts.Definitions.Points.IChartPointView.IsNew">
             <summary>
-            Gets the view.
+            Gets a value indicating whether this instance is new.
             </summary>
             <value>
-            The view.
+              <c>true</c> if this instance is new; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="M:LiveCharts.Definitions.Series.ICartesianSeries.GetMinX(LiveCharts.AxisCore)">
+        <member name="P:LiveCharts.Definitions.Points.IChartPointView.ValidArea">
             <summary>
-            Gets the minimum x.
-            </summary>
-            <param name="axis">The axis.</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Definitions.Series.ICartesianSeries.GetMaxX(LiveCharts.AxisCore)">
-            <summary>
-            Gets the maximum x.
-            </summary>
-            <param name="axis">The axis.</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Definitions.Series.ICartesianSeries.GetMinY(LiveCharts.AxisCore)">
-            <summary>
-            Gets the minimum y.
-            </summary>
-            <param name="axis">The axis.</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Definitions.Series.ICartesianSeries.GetMaxY(LiveCharts.AxisCore)">
-            <summary>
-            Gets the maximum y.
-            </summary>
-            <param name="axis">The axis.</param>
-            <returns></returns>
-        </member>
-        <member name="T:LiveCharts.Definitions.Series.IColumnSeriesView">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
-        </member>
-        <member name="P:LiveCharts.Definitions.Series.IColumnSeriesView.MaxColumnWidth">
-            <summary>
-            Gets or sets the maximum width of the column.
+            Gets the valid area.
             </summary>
             <value>
-            The maximum width of the column.
+            The valid area.
             </value>
         </member>
-        <member name="P:LiveCharts.Definitions.Series.IColumnSeriesView.ColumnPadding">
+        <member name="M:LiveCharts.Definitions.Points.IChartPointView.DrawOrMove(LiveCharts.ChartPoint,LiveCharts.ChartPoint,System.Int32,LiveCharts.Charts.ChartCore)">
             <summary>
-            Gets or sets the column padding.
+            Draws the or move.
             </summary>
-            <value>
-            The column padding.
-            </value>
+            <param name="previousDrawn">The previous drawn.</param>
+            <param name="current">The current.</param>
+            <param name="index">The index.</param>
+            <param name="chart">The chart.</param>
         </member>
-        <member name="T:LiveCharts.Definitions.Series.IFinancialSeriesView">
+        <member name="M:LiveCharts.Definitions.Points.IChartPointView.RemoveFromView(LiveCharts.Charts.ChartCore)">
             <summary>
-            
+            Removes from view.
             </summary>
-            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
+            <param name="chart">The chart.</param>
         </member>
-        <member name="P:LiveCharts.Definitions.Series.IFinancialSeriesView.MaxColumnWidth">
+        <member name="M:LiveCharts.Definitions.Points.IChartPointView.OnHover(LiveCharts.ChartPoint)">
             <summary>
-            Gets or sets the maximum width of the column.
+            Called when [hover].
             </summary>
-            <value>
-            The maximum width of the column.
-            </value>
+            <param name="point">The point.</param>
         </member>
-        <member name="T:LiveCharts.Definitions.Series.IHeatSeriesView">
+        <member name="M:LiveCharts.Definitions.Points.IChartPointView.OnHoverLeave(LiveCharts.ChartPoint)">
             <summary>
-            
+            Called when [hover leave].
             </summary>
-            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
-        </member>
-        <member name="P:LiveCharts.Definitions.Series.IHeatSeriesView.Stops">
-            <summary>
-            Gets the stops.
-            </summary>
-            <value>
-            The stops.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Series.IHeatSeriesView.DrawsHeatRange">
-            <summary>
-            Gets a value indicating whether [draws heat range].
-            </summary>
-            <value>
-              <c>true</c> if [draws heat range]; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="T:LiveCharts.Definitions.Series.ILineSeriesView">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
-        </member>
-        <member name="P:LiveCharts.Definitions.Series.ILineSeriesView.LineSmoothness">
-            <summary>
-            Gets or sets the line smoothness.
-            </summary>
-            <value>
-            The line smoothness.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Series.ILineSeriesView.AreaLimit">
-            <summary>
-            Gets or sets the area limit.
-            </summary>
-            <value>
-            The area limit.
-            </value>
-        </member>
-        <member name="M:LiveCharts.Definitions.Series.ILineSeriesView.StartSegment(System.Int32,LiveCharts.Dtos.CorePoint)">
-            <summary>
-            Starts the segment.
-            </summary>
-            <param name="atIndex">At index.</param>
-            <param name="location">The location.</param>
-        </member>
-        <member name="M:LiveCharts.Definitions.Series.ILineSeriesView.EndSegment(System.Int32,LiveCharts.Dtos.CorePoint)">
-            <summary>
-            Ends the segment.
-            </summary>
-            <param name="atIndex">At index.</param>
-            <param name="location">The location.</param>
-        </member>
-        <member name="T:LiveCharts.Definitions.Series.IPieSeries">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:LiveCharts.Definitions.Series.IPieSeries.View">
-            <summary>
-            Gets the view.
-            </summary>
-            <value>
-            The view.
-            </value>
-        </member>
-        <member name="T:LiveCharts.Definitions.Series.IPieSeriesView">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
-        </member>
-        <member name="P:LiveCharts.Definitions.Series.IPieSeriesView.PushOut">
-            <summary>
-            Gets or sets the push out.
-            </summary>
-            <value>
-            The push out.
-            </value>
-        </member>
-        <member name="T:LiveCharts.Definitions.Series.IRowSeriesView">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
-        </member>
-        <member name="P:LiveCharts.Definitions.Series.IRowSeriesView.MaxRowHeigth">
-            <summary>
-            Gets or sets the maximum row heigth.
-            </summary>
-            <value>
-            The maximum row heigth.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Series.IRowSeriesView.RowPadding">
-            <summary>
-            Gets or sets the row padding.
-            </summary>
-            <value>
-            The row padding.
-            </value>
-        </member>
-        <member name="T:LiveCharts.Definitions.Series.IScatterSeriesView">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
-        </member>
-        <member name="P:LiveCharts.Definitions.Series.IScatterSeriesView.MaxPointShapeDiameter">
-            <summary>
-            Gets or sets the maximum point shape diameter.
-            </summary>
-            <value>
-            The maximum point shape diameter.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Definitions.Series.IScatterSeriesView.MinPointShapeDiameter">
-            <summary>
-            Gets or sets the minimum point shape diameter.
-            </summary>
-            <value>
-            The minimum point shape diameter.
-            </value>
+            <param name="point">The point.</param>
         </member>
         <member name="T:LiveCharts.Definitions.Series.ISeriesView">
             <summary>
@@ -2803,6 +2381,14 @@
             The actual values.
             </value>
         </member>
+        <member name="P:LiveCharts.Definitions.Series.ISeriesView.Title">
+            <summary>
+            Gets the title.
+            </summary>
+            <value>
+            The title.
+            </value>
+        </member>
         <member name="M:LiveCharts.Definitions.Series.ISeriesView.GetPointView(LiveCharts.ChartPoint,System.String)">
             <summary>
             Gets the point view.
@@ -2847,6 +2433,212 @@
             Gets the label point formatter.
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:LiveCharts.Definitions.Series.IScatterSeriesView">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.IScatterSeriesView.MaxPointShapeDiameter">
+            <summary>
+            Gets or sets the maximum point shape diameter.
+            </summary>
+            <value>
+            The maximum point shape diameter.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.IScatterSeriesView.MinPointShapeDiameter">
+            <summary>
+            Gets or sets the minimum point shape diameter.
+            </summary>
+            <value>
+            The minimum point shape diameter.
+            </value>
+        </member>
+        <member name="T:LiveCharts.Definitions.Series.ICartesianSeries">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.ICartesianSeries.View">
+            <summary>
+            Gets the view.
+            </summary>
+            <value>
+            The view.
+            </value>
+        </member>
+        <member name="M:LiveCharts.Definitions.Series.ICartesianSeries.GetMinX(LiveCharts.AxisCore)">
+            <summary>
+            Gets the minimum x.
+            </summary>
+            <param name="axis">The axis.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.Definitions.Series.ICartesianSeries.GetMaxX(LiveCharts.AxisCore)">
+            <summary>
+            Gets the maximum x.
+            </summary>
+            <param name="axis">The axis.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.Definitions.Series.ICartesianSeries.GetMinY(LiveCharts.AxisCore)">
+            <summary>
+            Gets the minimum y.
+            </summary>
+            <param name="axis">The axis.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.Definitions.Series.ICartesianSeries.GetMaxY(LiveCharts.AxisCore)">
+            <summary>
+            Gets the maximum y.
+            </summary>
+            <param name="axis">The axis.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LiveCharts.Definitions.Series.IColumnSeriesView">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.IColumnSeriesView.MaxColumnWidth">
+            <summary>
+            Gets or sets the maximum width of the column.
+            </summary>
+            <value>
+            The maximum width of the column.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.IColumnSeriesView.ColumnPadding">
+            <summary>
+            Gets or sets the column padding.
+            </summary>
+            <value>
+            The column padding.
+            </value>
+        </member>
+        <member name="T:LiveCharts.Definitions.Series.IHeatSeriesView">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.IHeatSeriesView.Stops">
+            <summary>
+            Gets the stops.
+            </summary>
+            <value>
+            The stops.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.IHeatSeriesView.DrawsHeatRange">
+            <summary>
+            Gets a value indicating whether [draws heat range].
+            </summary>
+            <value>
+              <c>true</c> if [draws heat range]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:LiveCharts.Definitions.Series.ILineSeriesView">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.ILineSeriesView.LineSmoothness">
+            <summary>
+            Gets or sets the line smoothness.
+            </summary>
+            <value>
+            The line smoothness.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.ILineSeriesView.AreaLimit">
+            <summary>
+            Gets or sets the area limit.
+            </summary>
+            <value>
+            The area limit.
+            </value>
+        </member>
+        <member name="M:LiveCharts.Definitions.Series.ILineSeriesView.StartSegment(System.Int32,LiveCharts.Dtos.CorePoint)">
+            <summary>
+            Starts the segment.
+            </summary>
+            <param name="atIndex">At index.</param>
+            <param name="location">The location.</param>
+        </member>
+        <member name="M:LiveCharts.Definitions.Series.ILineSeriesView.EndSegment(System.Int32,LiveCharts.Dtos.CorePoint)">
+            <summary>
+            Ends the segment.
+            </summary>
+            <param name="atIndex">At index.</param>
+            <param name="location">The location.</param>
+        </member>
+        <member name="T:LiveCharts.Definitions.Series.IFinancialSeriesView">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.IFinancialSeriesView.MaxColumnWidth">
+            <summary>
+            Gets or sets the maximum width of the column.
+            </summary>
+            <value>
+            The maximum width of the column.
+            </value>
+        </member>
+        <member name="T:LiveCharts.Definitions.Series.IPieSeries">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.IPieSeries.View">
+            <summary>
+            Gets the view.
+            </summary>
+            <value>
+            The view.
+            </value>
+        </member>
+        <member name="T:LiveCharts.Definitions.Series.IPieSeriesView">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.IPieSeriesView.PushOut">
+            <summary>
+            Gets or sets the push out.
+            </summary>
+            <value>
+            The push out.
+            </value>
+        </member>
+        <member name="T:LiveCharts.Definitions.Series.IRowSeriesView">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.Definitions.Series.ISeriesView" />
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.IRowSeriesView.MaxRowHeigth">
+            <summary>
+            Gets or sets the maximum row heigth.
+            </summary>
+            <value>
+            The maximum row heigth.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.IRowSeriesView.RowPadding">
+            <summary>
+            Gets or sets the row padding.
+            </summary>
+            <value>
+            The row padding.
+            </value>
         </member>
         <member name="T:LiveCharts.Definitions.Series.IStackedAreaSeriesView">
             <summary>
@@ -2921,53 +2713,297 @@
             <seealso cref="T:LiveCharts.Definitions.Series.ILineSeriesView" />
             <seealso cref="T:LiveCharts.Definitions.Series.IStackModelableSeriesView" />
         </member>
-        <member name="T:LiveCharts.Dtos.BezierData">
+        <member name="T:LiveCharts.Events.DataClickHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="chartPoint">The chart point.</param>
+        </member>
+        <member name="T:LiveCharts.Events.DataHoverHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="chartPoint"></param>
+        </member>
+        <member name="T:LiveCharts.Events.UpdaterTickHandler">
             <summary>
             
             </summary>
         </member>
-        <member name="M:LiveCharts.Dtos.BezierData.#ctor">
+        <member name="T:LiveCharts.Events.RangeChangedHandler">
             <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.Dtos.BezierData"/> class.
+            
+            </summary>
+            <param name="eventArgs">The <see cref="T:LiveCharts.Events.RangeChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="T:LiveCharts.Events.RangeChangedEventArgs">
+            <summary>
+            
             </summary>
         </member>
-        <member name="M:LiveCharts.Dtos.BezierData.#ctor(LiveCharts.Dtos.CorePoint)">
+        <member name="P:LiveCharts.Events.RangeChangedEventArgs.LeftLimitChange">
             <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.Dtos.BezierData"/> class.
+            Gets the min limit difference compared with previous state
             </summary>
-            <param name="point">The point.</param>
         </member>
-        <member name="P:LiveCharts.Dtos.BezierData.Point1">
+        <member name="P:LiveCharts.Events.RangeChangedEventArgs.RightLimitChange">
             <summary>
-            Gets or sets the point1.
+            Gets the max limit difference compared with previous state
             </summary>
-            <value>
-            The point1.
-            </value>
         </member>
-        <member name="P:LiveCharts.Dtos.BezierData.Point2">
+        <member name="P:LiveCharts.Events.RangeChangedEventArgs.Range">
             <summary>
-            Gets or sets the point2.
+            Gets the current axis range
             </summary>
-            <value>
-            The point2.
-            </value>
         </member>
-        <member name="P:LiveCharts.Dtos.BezierData.Point3">
+        <member name="P:LiveCharts.Events.RangeChangedEventArgs.Axis">
             <summary>
-            Gets or sets the point3.
+            Gets the axis that fired the change
             </summary>
-            <value>
-            The point3.
-            </value>
         </member>
-        <member name="P:LiveCharts.Dtos.BezierData.StartPoint">
+        <member name="T:LiveCharts.IObservableChartPoint">
             <summary>
-            Gets or sets the start point.
+            
             </summary>
-            <value>
-            The start point.
-            </value>
+        </member>
+        <member name="E:LiveCharts.IObservableChartPoint.PointChanged">
+            <summary>
+            Occurs when [point changed].
+            </summary>
+        </member>
+        <member name="T:LiveCharts.AxisOrientation">
+            <summary>
+            Cartesian Axis orientation
+            </summary>
+        </member>
+        <member name="F:LiveCharts.AxisOrientation.None">
+            <summary>
+            Unknown orientation
+            </summary>
+        </member>
+        <member name="F:LiveCharts.AxisOrientation.X">
+            <summary>
+            Horizontal (X)
+            </summary>
+        </member>
+        <member name="F:LiveCharts.AxisOrientation.Y">
+            <summary>
+            Vertical (Y)
+            </summary>
+        </member>
+        <member name="T:LiveCharts.ChartFunctions">
+            <summary>
+            Contains useful methods to apply to a chart
+            </summary>
+        </member>
+        <member name="M:LiveCharts.ChartFunctions.ToPlotArea(System.Double,LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,System.Int32)">
+            <summary>
+            Converts from chart values to chart control size.
+            </summary>
+            <param name="value">value to scale</param>
+            <param name="source">axis orientation to scale value at</param>
+            <param name="chart">chart model to scale value at</param>
+            <param name="axis">axis index in collection of chart.axis</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.ChartFunctions.ToPlotArea(System.Double,LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,LiveCharts.AxisCore)">
+            <summary>
+            Converts from chart values to chart control size.
+            </summary>
+            <param name="value">value to scale</param>
+            <param name="source">axis orientation to scale value at</param>
+            <param name="chart">chart model to scale value at</param>
+            <param name="axis">axis model instance</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.ChartFunctions.FromPlotArea(System.Double,LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,System.Int32)">
+            <summary>
+            Converts from chart control size to chart values.
+            </summary>
+            <param name="value">value to scale</param>
+            <param name="source">axis orientation to scale value at</param>
+            <param name="chart">chart model to scale value at</param>
+            <param name="axis">axis index in collection of chart.axis</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.ChartFunctions.ToDrawMargin(System.Double,LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,System.Int32)">
+            <summary>
+            Converts from chart values to chart draw margin size.
+            </summary>
+            <param name="value">value to scale</param>
+            <param name="source">axis orientation</param>
+            <param name="chart">chart model to scale the value at</param>
+            <param name="axis">axis instance to scale the value at</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.ChartFunctions.ToDrawMargin(System.Double,LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,LiveCharts.AxisCore)">
+            <summary>
+            Converts from chart values to chart draw margin size.
+            </summary>
+            <param name="value">value to scale</param>
+            <param name="source">axis orientation</param>
+            <param name="chart">chart model to scale the value at</param>
+            <param name="axis">axis instance to scale the value at</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.ChartFunctions.ToDrawMargin(LiveCharts.ChartPoint,System.Int32,System.Int32,LiveCharts.Charts.ChartCore)">
+            <summary>
+            Converts from chart values to chart draw margin size.
+            </summary>
+            <param name="point">point to scale</param>
+            <param name="axisXIndex">axis orientation</param>
+            <param name="axisYIndex">axis instance to scale the value at</param>
+            <param name="chart">chart model to scale the value at</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.ChartFunctions.GetUnitWidth(LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,System.Int32)">
+            <summary>
+            Gets the width of a unit in the chart
+            </summary>
+            <param name="source">axis orientation</param>
+            <param name="chart">chart model to get the scale at</param>
+            <param name="axis">axis index in the axes collection</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.ChartFunctions.GetUnitWidth(LiveCharts.AxisOrientation,LiveCharts.Charts.ChartCore,LiveCharts.AxisCore)">
+            <summary>
+            Gets the width of a unit in the chart
+            </summary>
+            <param name="source">axis orientation</param>
+            <param name="chart">chart model to get the scale at</param>
+            <param name="axis">axis instance</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.ChartFunctions.GetTooltipData(LiveCharts.ChartPoint,LiveCharts.Charts.ChartCore,LiveCharts.TooltipSelectionMode)">
+            <summary>
+            Returns data in the chart according to:
+            </summary>
+            <param name="senderPoint">point that was hovered</param>
+            <param name="chart">chart model to get the data from</param>
+            <param name="selectionMode">selection mode</param>
+            <returns></returns>
+        </member>
+        <member name="T:LiveCharts.ChartPoint">
+            <summary>
+            Defines a point in the chart
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.X">
+            <summary>
+            Gets the X point value
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Y">
+            <summary>
+            Gets the Y point value
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.XStart">
+            <summary>
+            Gets the Gantt x start value
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.YStart">
+            <summary>
+            Gets the Gantt y start value
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Weight">
+            <summary>
+            Gets the Weight of the point
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.From">
+            <summary>
+            Gets where the stacked value started from
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.To">
+            <summary>
+            Gets where the stacked value finishes
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Sum">
+            <summary>
+            Get the total sum of the stacked elements
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Participation">
+            <summary>
+            Get the participation of the point in the stacked elements
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.StackedParticipation">
+            <summary>
+            gets the stacked participation of a point
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Open">
+            <summary>
+            Gets the Open value of the point
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.High">
+            <summary>
+            Gets the High value of the point
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Low">
+            <summary>
+            Gets the Low value of the point
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Close">
+            <summary>
+            Gets the Close value of the point
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Radius">
+            <summary>
+            Gets the Radius of a point
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Angle">
+            <summary>
+            Gets the angle of a point
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Fill">
+            <summary>
+            Gets the Fill brush of this point, this property overrides series Fill property 
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Stroke">
+            <summary>
+            Gets the Stroke brush of this point, this property overrides series Stroke property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.ChartLocation">
+            <summary>
+            Gets the coordinate where the value is placed at chart
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Key">
+            <summary>
+            Gets the index of this point in the chart
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.Instance">
+            <summary>
+            Gets the object where the chart pulled the point
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.View">
+            <summary >
+            Gets or sets the view of this chart point
+            </summary>
+        </member>
+        <member name="P:LiveCharts.ChartPoint.SeriesView">
+            <summary>
+            Gets the series where the point belongs to
+            </summary>
         </member>
         <member name="T:LiveCharts.Dtos.CoreColor">
             <summary>
@@ -3223,6 +3259,54 @@
             The height.
             </value>
         </member>
+        <member name="T:LiveCharts.Dtos.BezierData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LiveCharts.Dtos.BezierData.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.Dtos.BezierData"/> class.
+            </summary>
+        </member>
+        <member name="M:LiveCharts.Dtos.BezierData.#ctor(LiveCharts.Dtos.CorePoint)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.Dtos.BezierData"/> class.
+            </summary>
+            <param name="point">The point.</param>
+        </member>
+        <member name="P:LiveCharts.Dtos.BezierData.Point1">
+            <summary>
+            Gets or sets the point1.
+            </summary>
+            <value>
+            The point1.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Dtos.BezierData.Point2">
+            <summary>
+            Gets or sets the point2.
+            </summary>
+            <value>
+            The point2.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Dtos.BezierData.Point3">
+            <summary>
+            Gets or sets the point3.
+            </summary>
+            <value>
+            The point3.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Dtos.BezierData.StartPoint">
+            <summary>
+            Gets or sets the start point.
+            </summary>
+            <value>
+            The start point.
+            </value>
+        </member>
         <member name="T:LiveCharts.Dtos.LabelEvaluation">
             <summary>
             
@@ -3402,48 +3486,70 @@
             The y formatter.
             </value>
         </member>
-        <member name="T:LiveCharts.Events.DataClickHandler">
+        <member name="T:LiveCharts.IChartValues">
             <summary>
             
             </summary>
-            <param name="sender">The sender.</param>
-            <param name="chartPoint">The chart point.</param>
+            <seealso cref="T:LiveCharts.Helpers.INoisyCollection" />
         </member>
-        <member name="T:LiveCharts.Events.UpdaterTickHandler">
+        <member name="M:LiveCharts.IChartValues.Initialize(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Forces values to calculate max, min and index data.
+            </summary>
+        </member>
+        <member name="M:LiveCharts.IChartValues.GetPoints(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Gets the current chart points in the view, the view is required as an argument, because an instance of IChartValues could hold many ISeriesView instances.
+            </summary>
+            <param name="seriesView">The series view</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.IChartValues.InitializeStep(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes the garbage collector
+            </summary>
+        </member>
+        <member name="M:LiveCharts.IChartValues.CollectGarbage(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Removes all unnecessary points from the view
+            </summary>
+        </member>
+        <member name="M:LiveCharts.IChartValues.GetTracker(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Gets series that owns the values
+            </summary>
+        </member>
+        <member name="T:LiveCharts.Helpers.LiveChartsException">
             <summary>
             
             </summary>
+            <seealso cref="T:System.Exception" />
         </member>
-        <member name="T:LiveCharts.Events.RangeChangedHandler">
+        <member name="M:LiveCharts.Helpers.LiveChartsException.#ctor">
             <summary>
-            
-            </summary>
-            <param name="eventArgs">The <see cref="T:LiveCharts.Events.RangeChangedEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="T:LiveCharts.Events.RangeChangedEventArgs">
-            <summary>
-            
+            Initializes a new instance of the <see cref="T:LiveCharts.Helpers.LiveChartsException"/> class.
             </summary>
         </member>
-        <member name="P:LiveCharts.Events.RangeChangedEventArgs.LeftLimitChange">
+        <member name="M:LiveCharts.Helpers.LiveChartsException.#ctor(System.String)">
             <summary>
-            Gets the min limit difference compared with previous state
+            Initializes a new instance of the <see cref="T:LiveCharts.Helpers.LiveChartsException"/> class.
             </summary>
+            <param name="message">The message that describes the error.</param>
         </member>
-        <member name="P:LiveCharts.Events.RangeChangedEventArgs.RightLimitChange">
+        <member name="M:LiveCharts.Helpers.LiveChartsException.#ctor(System.String,System.Exception)">
             <summary>
-            Gets the max limit difference compared with previous state
+            Initializes a new instance of the <see cref="T:LiveCharts.Helpers.LiveChartsException"/> class.
             </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
         </member>
-        <member name="P:LiveCharts.Events.RangeChangedEventArgs.Range">
+        <member name="M:LiveCharts.Helpers.LiveChartsException.#ctor(System.String,System.Exception,System.Object[])">
             <summary>
-            Gets the current axis range
+            Initializes a new instance of the <see cref="T:LiveCharts.Helpers.LiveChartsException"/> class.
             </summary>
-        </member>
-        <member name="P:LiveCharts.Events.RangeChangedEventArgs.Axis">
-            <summary>
-            Gets the axis that fired the change
-            </summary>
+            <param name="format">The format.</param>
+            <param name="innerException">The inner exception.</param>
+            <param name="args">The arguments.</param>
         </member>
         <member name="T:LiveCharts.Helpers.Extentions">
             <summary>
@@ -3479,38 +3585,6 @@
             <typeparam name="T">type to convert</typeparam>
             <param name="values">values to convert</param>
             <returns>a new ChartValues instance containing the passed collection</returns>
-        </member>
-        <member name="T:LiveCharts.Helpers.LiveChartsException">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:System.Exception" />
-        </member>
-        <member name="M:LiveCharts.Helpers.LiveChartsException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.Helpers.LiveChartsException"/> class.
-            </summary>
-        </member>
-        <member name="M:LiveCharts.Helpers.LiveChartsException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.Helpers.LiveChartsException"/> class.
-            </summary>
-            <param name="message">The message that describes the error.</param>
-        </member>
-        <member name="M:LiveCharts.Helpers.LiveChartsException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.Helpers.LiveChartsException"/> class.
-            </summary>
-            <param name="message">The error message that explains the reason for the exception.</param>
-            <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
-        </member>
-        <member name="M:LiveCharts.Helpers.LiveChartsException.#ctor(System.String,System.Exception,System.Object[])">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.Helpers.LiveChartsException"/> class.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="innerException">The inner exception.</param>
-            <param name="args">The arguments.</param>
         </member>
         <member name="T:LiveCharts.Helpers.NoisyCollectionCollectionChanged`1">
             <summary>
@@ -3778,49 +3852,6 @@
             Occurs when [noisy collection changed].
             </summary>
         </member>
-        <member name="T:LiveCharts.IChartValues">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.Helpers.INoisyCollection" />
-        </member>
-        <member name="M:LiveCharts.IChartValues.Initialize(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Forces values to calculate max, min and index data.
-            </summary>
-        </member>
-        <member name="M:LiveCharts.IChartValues.GetPoints(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Gets the current chart points in the view, the view is required as an argument, because an instance of IChartValues could hold many ISeriesView instances.
-            </summary>
-            <param name="seriesView">The series view</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.IChartValues.InitializeStep(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes the garbage collector
-            </summary>
-        </member>
-        <member name="M:LiveCharts.IChartValues.CollectGarbage(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Removes all unnecessary points from the view
-            </summary>
-        </member>
-        <member name="M:LiveCharts.IChartValues.GetTracker(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Gets series that owns the values
-            </summary>
-        </member>
-        <member name="T:LiveCharts.IObservableChartPoint">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="E:LiveCharts.IObservableChartPoint.PointChanged">
-            <summary>
-            Occurs when [point changed].
-            </summary>
-        </member>
         <member name="T:LiveCharts.LegendLocation">
             <summary>
             Charts legend locations
@@ -4028,6 +4059,290 @@
             no animated add
             </summary>
         </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.HeatAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.HeatAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+            <exception cref="T:LiveCharts.Helpers.LiveChartsException">There is no a valid gradient to create a heat series.</exception>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.GetMinX(LiveCharts.AxisCore)">
+            <summary>
+            Gets the minimum x.
+            </summary>
+            <param name="axis">The axis.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.GetMaxX(LiveCharts.AxisCore)">
+            <summary>
+            Gets the maximum x.
+            </summary>
+            <param name="axis">The axis.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.GetMinY(LiveCharts.AxisCore)">
+            <summary>
+            Gets the minimum y.
+            </summary>
+            <param name="axis">The axis.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.GetMaxY(LiveCharts.AxisCore)">
+            <summary>
+            Gets the maximum y.
+            </summary>
+            <param name="axis">The axis.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.CandleAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.CandleAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.CandleAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.CandleAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.PieAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.IPieSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.PieAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.PieAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.PieAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.OhlcAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.OhlcAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.OhlcAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.OhlcAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.StepLineAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.StepLineAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.StepLineAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.StepLineAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.VerticalStackedAreaAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.VerticalStackedAreaAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.VerticalStackedAreaAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.VerticalStackedAreaAlgorithm.GetStackedPoint(LiveCharts.ChartPoint)">
+            <summary>
+            Gets the stacked point.
+            </summary>
+            <param name="chartPoint">The chart point.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm.GetStackedPoint(LiveCharts.ChartPoint)">
+            <summary>
+            Gets the stacked point.
+            </summary>
+            <param name="chartPoint">The chart point.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.StackedRowAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.StackedRowAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.StackedRowAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.StackedRowAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.StackedColumnAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.StackedColumnAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.StackedColumnAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.StackedColumnAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.ColumnAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.ColumnAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.ColumnAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.ColumnAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.RowAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.RowAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.RowAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.RowAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.ScatterAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.ScatterAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.ScatterAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.ScatterAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.VerticalLineAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithms.LineAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.VerticalLineAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.VerticalLineAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="T:LiveCharts.SeriesAlgorithms.LineAlgorithm">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
+            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.LineAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.LineAlgorithm"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:LiveCharts.SeriesAlgorithms.LineAlgorithm.Update">
+            <summary>
+            Updates this instance.
+            </summary>
+        </member>
         <member name="T:LiveCharts.SeparatorConfigurationCore">
             <summary>
             
@@ -4197,290 +4512,6 @@
             <summary>
             Updates this instance.
             </summary>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.CandleAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.CandleAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.CandleAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.CandleAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.ColumnAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.ColumnAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.ColumnAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.ColumnAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.HeatAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.HeatAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-            <exception cref="T:LiveCharts.Helpers.LiveChartsException">There is no a valid gradient to create a heat series.</exception>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.GetMinX(LiveCharts.AxisCore)">
-            <summary>
-            Gets the minimum x.
-            </summary>
-            <param name="axis">The axis.</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.GetMaxX(LiveCharts.AxisCore)">
-            <summary>
-            Gets the maximum x.
-            </summary>
-            <param name="axis">The axis.</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.GetMinY(LiveCharts.AxisCore)">
-            <summary>
-            Gets the minimum y.
-            </summary>
-            <param name="axis">The axis.</param>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.HeatAlgorithm.GetMaxY(LiveCharts.AxisCore)">
-            <summary>
-            Gets the maximum y.
-            </summary>
-            <param name="axis">The axis.</param>
-            <returns></returns>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.LineAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.LineAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.LineAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.LineAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.OhlcAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.OhlcAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.OhlcAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.OhlcAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.PieAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.IPieSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.PieAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.PieAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.PieAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.RowAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.RowAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.RowAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.RowAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.ScatterAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.ScatterAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.ScatterAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.ScatterAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm.GetStackedPoint(LiveCharts.ChartPoint)">
-            <summary>
-            Gets the stacked point.
-            </summary>
-            <param name="chartPoint">The chart point.</param>
-            <returns></returns>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.StackedColumnAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.StackedColumnAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.StackedColumnAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.StackedColumnAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.StackedRowAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.StackedRowAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.StackedRowAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.StackedRowAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.StepLineAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.StepLineAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.StepLineAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.StepLineAlgorithm.Update">
-            <summary>
-            Updates this instance.
-            </summary>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.VerticalLineAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithms.LineAlgorithm" />
-            <seealso cref="T:LiveCharts.Definitions.Series.ICartesianSeries" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.VerticalLineAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.VerticalLineAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="T:LiveCharts.SeriesAlgorithms.VerticalStackedAreaAlgorithm">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:LiveCharts.SeriesAlgorithms.StackedAreaAlgorithm" />
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.VerticalStackedAreaAlgorithm.#ctor(LiveCharts.Definitions.Series.ISeriesView)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LiveCharts.SeriesAlgorithms.VerticalStackedAreaAlgorithm"/> class.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:LiveCharts.SeriesAlgorithms.VerticalStackedAreaAlgorithm.GetStackedPoint(LiveCharts.ChartPoint)">
-            <summary>
-            Gets the stacked point.
-            </summary>
-            <param name="chartPoint">The chart point.</param>
-            <returns></returns>
         </member>
         <member name="T:LiveCharts.SeriesCollection">
             <summary>
