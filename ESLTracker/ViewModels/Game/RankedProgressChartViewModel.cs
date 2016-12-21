@@ -124,53 +124,14 @@ namespace ESLTracker.ViewModels.Game
                         )
                  .OrderBy(g => g.Date);
 
-            int currval = 0;
-            PlayerRank? currentPR = null;
-            Dictionary<string, Tuple<DateTime, int>> val = new Dictionary<string, Tuple<DateTime, int>>();
-            Dictionary<DateTime, Tuple<int, int, int>> chartData = new Dictionary<DateTime, Tuple<int, int, int>>();
-            foreach (dynamic r in games)
-            {
-                if (currentPR != r.PlayerRank)
-                {
-                    //rank up!
-                    currentPR = r.PlayerRank;
-                    currval = 0;
-                }
-                if (r.Outcome == GameOutcome.Victory)
-                {
-                    currval += r.BonusRound ? 2 : 1;
-                }
-                else
-                {
-                    currval--;
-                    if (currval < -2)
-                    { //min serpent - cannot drop more
-                        currval = -2;
-                    }
-                }
-                var value = currval + (12 - (int)currentPR) * RankJump;
-                val.Add(r.PlayerRank + "" + r.Outcome + r.Date + Guid.NewGuid().ToString(),
-                    new Tuple<DateTime, int>(r.Date, value));
-                if (chartData.ContainsKey(r.Date.Date))
-                {
-                    if (chartData[r.Date.Date].Item1 > value)
-                    {
-                        chartData[r.Date.Date] = new Tuple<int, int, int>(value, chartData[r.Date.Date].Item2, chartData[r.Date.Date].Item3);
-                    }
-                    if (chartData[r.Date.Date].Item3 < value)
-                    {
-                        chartData[r.Date.Date] = new Tuple<int, int, int>(chartData[r.Date.Date].Item1, chartData[r.Date.Date].Item2, value);
-                    }
-                    //curr(last) value
-                    chartData[r.Date.Date] = new Tuple<int, int, int>(chartData[r.Date.Date].Item1, value, chartData[r.Date.Date].Item3);
-                }
-                else
-                {
-                    chartData.Add(r.Date.Date, new Tuple<int, int, int>(value, value, value));
-                }
-            }
+            Dictionary<string, Tuple<DateTime, int>> chartDatagameAfterGame;
+            Dictionary<DateTime, Tuple<int, int, int>> chartDataMaxMin;
 
-            ohlcMinMax = new OhlcSeries() { Title = null,
+            GetChartData(games, out chartDatagameAfterGame, out chartDataMaxMin);
+
+            ohlcMinMax = new OhlcSeries()
+            {
+                Title = null,
                 DecreaseBrush = new SolidColorBrush(Colors.DodgerBlue),
                 Stroke = new SolidColorBrush(Colors.DodgerBlue)
             }; //LabelPoint = (cp) => { return "uu"; }
@@ -184,22 +145,22 @@ namespace ESLTracker.ViewModels.Game
             lsMaxInDay.Values = new ChartValues<int>();
             lsAll = new LineSeries() { Title = "Rank", PointGeometry = null };
             lsAll.Values = new ChartValues<int>();
-            
+
             labelsDetailed = new List<string>();
             labels = new List<string>();
 
-            foreach (var row in chartData.Values)
+            foreach (var row in chartDataMaxMin.Values)
             {
                 ohlcMinMax.Values.Add(new OhlcPoint(row.Item2, row.Item3, row.Item1, row.Item2));
                 lsMinInDay.Values.Add(row.Item1);
                 lsLastInDay.Values.Add(row.Item2);
                 lsMaxInDay.Values.Add(row.Item3);
             }
-            foreach (var key in chartData.Keys)
+            foreach (var key in chartDataMaxMin.Keys)
             {
                 labels.Add(key.Date.Date.ToString("d"));
             }
-            foreach (var row in val)
+            foreach (var row in chartDatagameAfterGame)
             {
                 lsAll.Values.Add(row.Value.Item2);
                 labelsDetailed.Add(row.Value.Item1.ToString("d"));
@@ -209,6 +170,69 @@ namespace ESLTracker.ViewModels.Game
             ShowSeries();
 
             return seriesCollection;
+        }
+
+        public static void GetChartData(IOrderedEnumerable<DataModel.Game> games, 
+            out Dictionary<string, Tuple<DateTime, int>> chartDatagameAfterGame,
+            out Dictionary<DateTime, Tuple<int, int, int>> chartDataMaxMin)
+        {
+            int currval = 0;
+            PlayerRank? currentPR = null;
+            int? worstLegendRank = null;
+            chartDatagameAfterGame = new Dictionary<string, Tuple<DateTime, int>>();
+            chartDataMaxMin = new Dictionary<DateTime, Tuple<int, int, int>>();
+            foreach (dynamic r in games)
+            {
+                if (currentPR != r.PlayerRank)
+                {
+                    //rank up!
+                    currentPR = r.PlayerRank;
+                    currval = 0;
+                }
+                if (r.PlayerRank != PlayerRank.TheLegend)
+                {
+                    if (r.Outcome == GameOutcome.Victory)
+                    {
+                        currval += r.BonusRound ? 2 : 1;
+                    }
+                    else
+                    {
+                        currval--;
+                        if (currval < -2)
+                        { //min serpent - cannot drop more
+                            currval = -2;
+                        }
+                    }
+                }
+                else
+                {
+                    //calc for legends
+                    if (!worstLegendRank.HasValue) {
+                        worstLegendRank = games.Where(g => g.PlayerRank == PlayerRank.TheLegend).Max(g => g.PlayerLegendRank);
+                    }
+                    currval = worstLegendRank - r.PlayerLegendRank;
+                }
+                var value = currval + (12 - (int)currentPR) * RankJump;
+                chartDatagameAfterGame.Add(r.PlayerRank + "" + r.Outcome + r.Date + Guid.NewGuid().ToString(),
+                    new Tuple<DateTime, int>(r.Date, value));
+                if (chartDataMaxMin.ContainsKey(r.Date.Date))
+                {
+                    if (chartDataMaxMin[r.Date.Date].Item1 > value)
+                    {
+                        chartDataMaxMin[r.Date.Date] = new Tuple<int, int, int>(value, chartDataMaxMin[r.Date.Date].Item2, chartDataMaxMin[r.Date.Date].Item3);
+                    }
+                    if (chartDataMaxMin[r.Date.Date].Item3 < value)
+                    {
+                        chartDataMaxMin[r.Date.Date] = new Tuple<int, int, int>(chartDataMaxMin[r.Date.Date].Item1, chartDataMaxMin[r.Date.Date].Item2, value);
+                    }
+                    //curr(last) value
+                    chartDataMaxMin[r.Date.Date] = new Tuple<int, int, int>(chartDataMaxMin[r.Date.Date].Item1, value, chartDataMaxMin[r.Date.Date].Item3);
+                }
+                else
+                {
+                    chartDataMaxMin.Add(r.Date.Date, new Tuple<int, int, int>(value, value, value));
+                }
+            }
         }
 
         private void ShowSeries()

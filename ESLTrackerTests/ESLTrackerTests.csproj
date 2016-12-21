@@ -81,6 +81,7 @@
     <Compile Include="ViewModels\Decks\DeckTypeSelectorViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\EditDeckViewModelTests.cs" />
     <Compile Include="ViewModels\Game\EditGameViewModelTests.cs" />
+    <Compile Include="ViewModels\Game\RankedProgressChartViewModelTests.cs" />
     <Compile Include="ViewModels\Rewards\AddSingleRewardViewModelTests.cs" />
     <Compile Include="ViewModels\Rewards\RewardSetViewModelTests.cs" />
   </ItemGroup>
