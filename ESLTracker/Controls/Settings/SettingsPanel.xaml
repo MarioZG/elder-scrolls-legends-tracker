@@ -13,6 +13,9 @@
         <ViewModel:SettingsPanelViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
+        <Style TargetType="{x:Type Expander}">
+            <EventSetter Event="Expanded" Handler="expander_Expanded" />
+        </Style>
         <DataTemplate x:Key="expanderHeader">
             <Border BorderThickness="0,0,0,0" BorderBrush="Black" HorizontalAlignment="Stretch">
             <TextBlock Text="{Binding}"   
@@ -24,7 +27,7 @@
         <Converters:DeckNameSettingPreview x:Key="DeckNameSettingPreview"/>
     </UserControl.Resources>
     <StackPanel>
-        <Expander x:Name="expander" Header="General settings" IsExpanded="True" 
+        <Expander Header="General settings" IsExpanded="True"
                   HeaderTemplate="{StaticResource expanderHeader}" >
             <StackPanel Orientation="Vertical" Margin="10,10,10,10">
                 <CheckBox x:Name="checkBox" Content="Minimise on close" HorizontalAlignment="Left" 
@@ -40,7 +43,7 @@
                 </StackPanel>
             </StackPanel>
         </Expander>
-        <Expander x:Name="expanderArena" Header="Arena decks" IsExpanded="False" 
+        <Expander Header="Arena decks" IsExpanded="False"
                   HeaderTemplate="{StaticResource expanderHeader}" >
             <Grid Margin="10,10,10,10">
                 <Grid.RowDefinitions>

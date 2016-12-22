@@ -38,5 +38,12 @@ namespace ESLTracker.Controls.Settings
             InitializeComponent();
         }
 
+        private void expander_Expanded(object sender, RoutedEventArgs e)
+        {
+            foreach(Expander expander in Utils.WindowExtensions.FindVisualChildren<Expander>(this))
+            {
+                expander.IsExpanded = expander.Equals(sender);
+            }
+        }
     }
 }
