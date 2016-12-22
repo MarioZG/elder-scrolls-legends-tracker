@@ -134,6 +134,7 @@
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
     <Compile Include="Utils\Converters\ClassToAttributesIconsConverter.cs" />
+    <Compile Include="Utils\Converters\DeckNameSettingPreview.cs" />
     <Compile Include="Utils\Converters\DeckOrDeckClassToAttributes.cs" />
     <Compile Include="Utils\Converters\DeckOrDeckClassToName.cs" />
     <Compile Include="Utils\Converters\ObjectToVisibiltyCollapsedConverter.cs" />
