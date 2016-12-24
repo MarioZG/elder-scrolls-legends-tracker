@@ -29,6 +29,7 @@ namespace ESLTracker.DataModel
 
         public ObservableCollection<Game> Games { get; set; } = new ObservableCollection<Game>();
         public ObservableCollection<Deck> Decks { get; set; } = new ObservableCollection<Deck>();
+        public ObservableCollection<Pack> Packs { get; set; } = new ObservableCollection<Pack>();
 
         public List<Reward> Rewards { get; set; } = new List<Reward>();
 

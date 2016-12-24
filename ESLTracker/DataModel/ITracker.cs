@@ -11,6 +11,7 @@ namespace ESLTracker.DataModel
         ObservableCollection<Deck> Decks { get; set; }
         ObservableCollection<Game> Games { get; set; }
         List<Reward> Rewards { get; set; }
+        ObservableCollection<Pack> Packs { get; set; }
 
         event PropertyChangedEventHandler PropertyChanged;
 
