@@ -167,6 +167,7 @@
     <Compile Include="Utils\Messages\EditGame.cs" />
     <Compile Include="Utils\Messenger.cs" />
     <Compile Include="Utils\SerializableVersion.cs" />
+    <Compile Include="Utils\SingleInstanceApp.cs" />
     <Compile Include="Utils\TrackerFactory.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
     <Compile Include="ViewModels\GameStatisticsViewModel.cs" />

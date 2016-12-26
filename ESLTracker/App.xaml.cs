@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
+using ESLTracker.Utils;
 
 namespace ESLTracker
 {
@@ -17,6 +18,7 @@ namespace ESLTracker
     public partial class App : Application
     {
         public bool IsApplicationClosing { get; set; } = false;
+        SingleInstanceApp singleInstance;
 
         static App()
         {
@@ -26,10 +28,26 @@ namespace ESLTracker
                     XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
 
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            singleInstance = new SingleInstanceApp();
+            if (! singleInstance.CheckInstance())
+            {
+                MessageBox.Show("ESL Tracker is alrady running", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                App.Current.Shutdown();
+            }
+        }
+
         public void CloseApplication()
         {
             IsApplicationClosing = true;
             this.Shutdown();
+        }
+
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            singleInstance.Dispose();
         }
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
