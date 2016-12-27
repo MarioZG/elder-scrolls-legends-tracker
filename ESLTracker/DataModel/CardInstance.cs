@@ -95,6 +95,38 @@ namespace ESLTracker.DataModel
             }
         }
 
+        public Brush RarityColor
+        {
+            get
+            {
+                if ((Card != null) && (Card != Card.Unknown))
+                {
+                    switch (Card.Rarity)
+                    {
+                        case Enums.CardRarity.Common:
+                            return new SolidColorBrush(Color.FromArgb(255, 199, 199, 199));
+                            break;
+                        case Enums.CardRarity.Rare:
+                            return new SolidColorBrush(Color.FromArgb(255, 98, 192, 239));
+                            break;
+                        case Enums.CardRarity.Epic:
+                            return new SolidColorBrush(Color.FromArgb(255, 193, 86, 203));
+                            break;
+                        case Enums.CardRarity.Legendary:
+                            return new SolidColorBrush(Color.FromArgb(255, 252, 252, 122));
+                            break;
+                        default:
+                            throw new NotImplementedException("Unknown card rarity");
+                            break;
+                    }                    
+                }
+                else
+                {
+                    return new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+                }
+            }
+        }
+
         public string ImageSource
         {
             get
