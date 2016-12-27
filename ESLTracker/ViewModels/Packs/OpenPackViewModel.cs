@@ -48,6 +48,11 @@ namespace ESLTracker.ViewModels.Packs
 
         private void CommandSaveExecute(object obj)
         {
+            if (pack.Cards.Any(c=> c.Card == null || c.Card == Card.Unknown))
+            {
+                return;
+            }
+
             if (trackerFactory.GetSettings().Packs_ScreenshotAfterAdded)
             {
                 new FileManager(trackerFactory).SaveScreenShot();
