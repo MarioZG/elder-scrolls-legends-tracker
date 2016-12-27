@@ -27,7 +27,7 @@ namespace ESLTracker.ViewModels.Rewards.Tests
 
             Dictionary<RewardType, bool> ExpectedCommentsFocused = new Dictionary<RewardType, bool>()
             {
-                { RewardType.Card, true },
+                { RewardType.Card, false },
                  { RewardType.Gold, false },
                  { RewardType.Pack, true },
                  { RewardType.SoulGem, false}
