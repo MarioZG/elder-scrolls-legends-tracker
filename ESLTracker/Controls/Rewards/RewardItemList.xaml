@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Rewards"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d" 
              x:Name="rewardItemList"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -14,6 +15,7 @@
                 <PropertyGroupDescription PropertyName="Reason" />
             </CollectionViewSource.GroupDescriptions>
         </CollectionViewSource>
+        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
     </UserControl.Resources>
     <ListView  
             x:Name="dataGrid" 
@@ -42,7 +44,11 @@
                     <Image Width="25" Source="{Binding TypeIcon}" ToolTip="{Binding Type}" />
                     <TextBlock Margin="5,0,5,0" FontSize="16" FontWeight="SemiBold" Text="{Binding Quantity}" />
                     <StackPanel>
-                        <TextBlock Text="{Binding Comment}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding CardInstance.Card.Name}" />
+                            <TextBlock Text=" (golden)" Visibility="{Binding CardInstance.IsGolden, Converter={StaticResource BoolToVisibiltyCollapsedConverter}, TargetNullValue=Collapsed, FallbackValue=Collapsed}" />
+                            <TextBlock Text="{Binding Comment}" />
+                        </StackPanel>
                         <TextBlock Text="{Binding RewardQuestGuild}" />
                     </StackPanel>
                 </StackPanel>

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.DataModel;
+using ESLTracker.Utils;
 
 namespace ESLTracker.Controls.Cards
 {
@@ -20,8 +22,20 @@ namespace ESLTracker.Controls.Cards
     /// </summary>
     public partial class SelectCard : UserControl
     {
+        public CardInstance CardInstance
+        {
+            get { return (CardInstance)GetValue(CardProperty); }
+            set { SetValue(CardProperty, value);  }
+        }
 
+        // Using a DependencyProperty as the backing store for Card.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CardProperty =
+            DependencyProperty.Register("CardInstance", typeof(CardInstance), typeof(SelectCard), new PropertyMetadata(null, CardInstanceChanged));
 
+        private static void CardInstanceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            d.SetValue(CardNameProperty, ((CardInstance)e.NewValue)?.Card?.Name);
+        }
 
         public string CardName
         {
@@ -31,9 +45,15 @@ namespace ESLTracker.Controls.Cards
 
         // Using a DependencyProperty as the backing store for CardName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CardNameProperty =
-            DependencyProperty.Register("CardName", typeof(string), typeof(SelectCard), new PropertyMetadata(String.Empty));
+            DependencyProperty.Register("CardName", typeof(string), typeof(SelectCard), new PropertyMetadata(String.Empty, CardNameChanged));
 
-
+        private static void CardNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue != null)
+            {
+                ((SelectCard)d).CardInstance = new CardInstance(CardsDatabase.Default.FindCardByName(e.NewValue?.ToString()));
+            }
+        }
 
         public bool ShowIsGolden
         {
@@ -46,19 +66,6 @@ namespace ESLTracker.Controls.Cards
             DependencyProperty.Register("ShowIsGolden", typeof(bool), typeof(SelectCard), new PropertyMetadata(false));
 
 
-
-        public bool IsGolden
-        {
-            get { return (bool)GetValue(IsGoldenProperty); }
-            set { SetValue(IsGoldenProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for IsGolden.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty IsGoldenProperty =
-            DependencyProperty.Register("IsGolden", typeof(bool), typeof(SelectCard), new PropertyMetadata(false));
-
-
-
         public IEnumerable<string> CardNameAutocomplete
         {
             get { return (IEnumerable<string>)GetValue(CardNameAutocompleteProperty); }
@@ -69,8 +76,20 @@ namespace ESLTracker.Controls.Cards
         public static readonly DependencyProperty CardNameAutocompleteProperty =
             DependencyProperty.Register("CardNameAutocomplete", typeof(IEnumerable<string>), typeof(SelectCard), new PropertyMetadata(null));
 
+        public bool HasFocus
+        {
+            get { return (bool)GetValue(HasFocusProperty); }
+            set { SetValue(HasFocusProperty, value); }
+        }
 
+        // Using a DependencyProperty as the backing store for HasFocus.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HasFocusProperty =
+            DependencyProperty.Register("HasFocus", typeof(bool), typeof(SelectCard), new PropertyMetadata(false, FocusUpdate));
 
+        private static void FocusUpdate(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          //  throw new NotImplementedException();
+        }
 
         public SelectCard()
         {

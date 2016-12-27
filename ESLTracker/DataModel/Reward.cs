@@ -2,10 +2,11 @@
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
+using ESLTracker.ViewModels;
 
 namespace ESLTracker.DataModel
 {
-    public class Reward
+    public class Reward 
     {
         public Reward() : this(TrackerFactory.DefaultTrackerFactory)
         {
@@ -41,6 +42,8 @@ namespace ESLTracker.DataModel
                 arenaDeckId = value;
             }
         }
+
+        public CardInstance CardInstance { get; set; }
 
         [XmlIgnore]
         public System.Windows.Media.ImageSource TypeIcon

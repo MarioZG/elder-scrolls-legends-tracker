@@ -4,14 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Cards"
-             xmlns:behaviors="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
+             xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
+             xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="300">
     <DockPanel x:Name="LayoutRoot">
-        <CheckBox DockPanel.Dock="Right" Content="G" IsChecked="{Binding IsGolden}"/>
+        <CheckBox DockPanel.Dock="Right" Margin="5,0,0,0" Content="G" ToolTip="Is card golden" FlowDirection="RightToLeft" IsChecked="{Binding CardInstance.IsGolden}"/>
         <TextBlock DockPanel.Dock="Bottom" Text="some card data" Visibility="Collapsed"/>
-        <TextBox Text="{Binding Path=CardName, Mode=TwoWay}" 
-                 behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
-                  behaviors:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"/>
+        <TextBox MinWidth="100" Text="{Binding Path=CardName, Mode=TwoWay}" 
+                AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
+                AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
+                Behaviors:FocusExtension.IsFocused="{Binding HasFocus, Mode=TwoWay}"
+                Behaviors:FocusExtension.SelectAllOnFocus="True"/>
     </DockPanel>
 </UserControl>

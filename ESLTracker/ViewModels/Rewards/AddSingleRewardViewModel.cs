@@ -8,6 +8,7 @@ using System.Windows.Input;
 using ESLTracker.Controls.Rewards;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Rewards
 {
@@ -17,7 +18,7 @@ namespace ESLTracker.ViewModels.Rewards
         public Reward Reward
         {
             get { return reward; }
-            set { reward = value; RaisePropertyChangedEvent("Reward"); }
+            set { reward = value; RaisePropertyChangedEvent("Reward");  }
         }
 
 
@@ -26,6 +27,21 @@ namespace ESLTracker.ViewModels.Rewards
         {
             get { return guildSelectionVisible && isInEditMode && reward.Type == RewardType.Gold; }
             set { guildSelectionVisible = value; RaisePropertyChangedEvent("GuildSelectionVisible"); }
+        }
+        
+        private bool cardSelectionVisible;
+        public bool CardSelectionVisible
+        {
+            get { return cardSelectionVisible && isInEditMode && reward.Type == RewardType.Card; }
+            set { cardSelectionVisible = value; RaisePropertyChangedEvent("CardSelectionVisible"); }
+        }
+
+        public IEnumerable<string> CardNamesList
+        {
+            get
+            {
+                return trackerFactory.GetCardsDatabase().CardsNames;
+            }
         }
 
         public string BackgroundImagePath
@@ -45,6 +61,7 @@ namespace ESLTracker.ViewModels.Rewards
                 Visibility = Visibility.Visible;
                 RaisePropertyChangedEvent("IsInEditMode");
                 RaisePropertyChangedEvent("GuildSelectionVisible");
+                RaisePropertyChangedEvent("CardSelectionVisible");
             }
         }
 
@@ -67,6 +84,17 @@ namespace ESLTracker.ViewModels.Rewards
             {
                 commentsFocus = value;
                 RaisePropertyChangedEvent("CommentsFocus");
+            }
+        }
+
+        private bool selectCardFocus;
+        public bool SelectCardFocus
+        {
+            get { return selectCardFocus; }
+            set
+            {
+                selectCardFocus = value;
+                RaisePropertyChangedEvent(nameof(SelectCardFocus));
             }
         }
 
@@ -124,9 +152,16 @@ namespace ESLTracker.ViewModels.Rewards
         public int ActualWidth { get; set; }
         public int ActualHeight { get; set; }
 
-        public AddSingleRewardViewModel()
+        private TrackerFactory trackerFactory;
+
+        public AddSingleRewardViewModel() : this(new TrackerFactory())
         {
 
+        }
+
+        public AddSingleRewardViewModel(TrackerFactory trackerFactory)
+        {
+            this.trackerFactory = trackerFactory;
         }
 
         internal void Reset()
@@ -137,7 +172,8 @@ namespace ESLTracker.ViewModels.Rewards
                 Quantity = 0,
                 Comment = String.Empty,
                 RewardQuestGuild = null,
-                Type = reward.Type
+                Type = reward.Type,
+                CardInstance = null
             };
             InitTypeSpecifics(this.reward.Type);
             this.Margin = new Thickness(0, 0, 0, 0);
@@ -149,17 +185,21 @@ namespace ESLTracker.ViewModels.Rewards
             {
                 case RewardType.Gold:
                     GuildSelectionVisible = true;
+                    CardSelectionVisible = false;
                     break;
                 case RewardType.SoulGem:
                     GuildSelectionVisible = false;
+                    CardSelectionVisible = false;
                     break;
                 case RewardType.Pack:
                     this.reward.Quantity = 1;
                     GuildSelectionVisible = false;
+                    CardSelectionVisible = false;
                     break;
                 case RewardType.Card:
                     this.reward.Quantity = 1;
                     GuildSelectionVisible = false;
+                    CardSelectionVisible = true;
                     break;
                 default:
                     break;
@@ -180,7 +220,8 @@ namespace ESLTracker.ViewModels.Rewards
             this.ParentDataContext.SetActiveControl(this);
 
             this.QtyFocus = reward.Type == RewardType.Gold || reward.Type == RewardType.SoulGem;
-            this.CommentsFocus = reward.Type == RewardType.Pack || reward.Type == RewardType.Card;
+            this.CommentsFocus = reward.Type == RewardType.Pack;
+            this.SelectCardFocus = reward.Type == RewardType.Card;
         }
 
         public void CloseClicked(object param)

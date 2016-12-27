@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ESLTracker.Controls.Rewards.AddSingleReward"
+﻿<UserControl xmlns:Cards="clr-namespace:ESLTracker.Controls.Cards"  x:Class="ESLTracker.Controls.Rewards.AddSingleReward"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -53,36 +53,49 @@
                     <RowDefinition Height="20*"/>
                     <RowDefinition Height="20*"/>
                     <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30*"/>
                     <ColumnDefinition Width="70*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Quantity" Grid.Row="0"/>
-                <TextBox x:Name="txtQuantity"  HorizontalAlignment="Stretch"
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Label Content="Quantity " Grid.Row="0"/>
+                    <TextBox x:Name="txtQuantity"  HorizontalAlignment="Stretch"
                      Grid.Row="0" Grid.Column="1"
                      Text="{Binding Reward.Quantity}"
                      Behaviors:FocusExtension.IsFocused="{Binding QtyFocus, Mode=TwoWay}"
                      Behaviors:FocusExtension.SelectAllOnFocus="True"
                      Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
-                <Label Content="Comment" Grid.Row="1"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Label  Content="Card " 
+                           Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
+                    <Cards:SelectCard
+                                      HasFocus="{Binding SelectCardFocus, Mode=TwoWay}"
+                        CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
+                        CardNameAutocomplete="{Binding CardNamesList}"
+                           Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
+                </StackPanel>
+                <Label Content="Comment" Grid.Row="3"/>
                 <TextBox x:Name="txtComment" HorizontalAlignment="Stretch"
-                     Grid.Row="2" Grid.ColumnSpan="2"
+                     Grid.Row="4" Grid.ColumnSpan="2"
                      AcceptsReturn="True" MaxWidth="100"
                      Text="{Binding Reward.Comment}"
                      Behaviors:FocusExtension.IsFocused="{Binding CommentsFocus, Mode=TwoWay}"
                      Behaviors:FocusExtension.SelectAllOnFocus="True"
                      Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
-                <Label Content="Guild" Grid.Row="3"
+                <Label Content="Guild" Grid.Row="5"
                        Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
                 />
                 <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
-                      Grid.Row="3" Grid.Column="1"
+                      Grid.Row="5" Grid.Column="1"
                       SelectedItem="{Binding Reward.RewardQuestGuild}"
                       ItemsSource="{Binding Source={StaticResource GuildEnum}}"
                       Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
                 <Button x:Name="btnAdd" Content="Add" 
-                    Grid.Row="4" Grid.ColumnSpan="2"
+                    Grid.Row="6" Grid.ColumnSpan="2"
                     Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"
                     Command="{Binding CommandAddButtonPressed}"/>
             </Grid>
