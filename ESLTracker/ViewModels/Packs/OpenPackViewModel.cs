@@ -14,7 +14,13 @@ namespace ESLTracker.ViewModels.Packs
     {
         private TrackerFactory trackerFactory;
 
-        public Pack Pack { get; set; }
+        private Pack pack;
+
+        public Pack Pack
+        {
+            get { return pack; }
+            set { pack = value; RaisePropertyChangedEvent(nameof(Pack)); }
+        }
 
         public IEnumerable<string> CardNamesList
         {
@@ -44,7 +50,6 @@ namespace ESLTracker.ViewModels.Packs
         {
             ITracker tracker = trackerFactory.GetTracker();
             Pack.DateOpened = trackerFactory.GetDateTimeNow();
-           // trackerFactory.GetCardsDatabase().PopulateCollection(CardNames, Pack.Cards);
             tracker.Packs.Add(Pack);
             new FileManager(trackerFactory).SaveDatabase();
             Pack = new Pack();

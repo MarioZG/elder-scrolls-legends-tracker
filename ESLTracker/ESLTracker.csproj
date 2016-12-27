@@ -129,6 +129,9 @@
     <Compile Include="Controls\Packs\OpenPack.xaml.cs">
       <DependentUpon>OpenPack.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Packs\PacksStats.xaml.cs">
+      <DependentUpon>PacksStats.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Rewards\RewardItemList.xaml.cs">
       <DependentUpon>RewardItemList.xaml</DependentUpon>
     </Compile>
@@ -253,6 +256,7 @@
     <Compile Include="ViewModels\IDeckClassSelectorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\Packs\OpenPackViewModel.cs" />
+    <Compile Include="ViewModels\Packs\PacksStatsViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\Rewards\AddSingleRewardViewModel.cs" />
     <Compile Include="ViewModels\Rewards\IRewardSetViewModel.cs" />
@@ -329,6 +333,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Packs\OpenPack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Packs\PacksStats.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
