@@ -18,6 +18,14 @@ namespace ESLTracker.ViewModels.Packs
         public ObservableCollection<string> CardNames { get; set; } = new ObservableCollection<string>()
                     { String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty};
 
+        public IEnumerable<string> CardNamesList
+        {
+            get
+            {
+                return trackerFactory.GetCardsDatabase().CardsNames;
+            }
+        }
+
         public ICommand CommandSave
         {
             get { return new RelayCommand(new Action<object>(CommandSaveExecute)); }

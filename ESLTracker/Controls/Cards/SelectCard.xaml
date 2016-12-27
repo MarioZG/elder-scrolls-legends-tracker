@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="ESLTracker.Controls.Cards.SelectCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ESLTracker.Controls.Cards"
+             xmlns:behaviors="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="300">
+    <DockPanel x:Name="LayoutRoot">
+        <CheckBox DockPanel.Dock="Right" Content="G" IsChecked="{Binding IsGolden}"/>
+        <TextBlock DockPanel.Dock="Bottom" Text="some card data" Visibility="Collapsed"/>
+        <TextBox Text="{Binding Path=CardName, Mode=TwoWay}" 
+                 behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
+                  behaviors:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"/>
+    </DockPanel>
+</UserControl>
