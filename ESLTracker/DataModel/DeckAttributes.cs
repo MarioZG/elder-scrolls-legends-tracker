@@ -42,6 +42,18 @@ namespace ESLTracker.DataModel
             return deckClass.ToString();
         }
 
+        public string ToString(string format)
+        {
+            if (format == "a")
+            {
+                return String.Join(",", this);
+            }
+            else
+            {
+                return ToString();
+            }
+        }
+
         /// <summary>
         /// convert from comma separated list - used incard database deserialisation
         /// </summary>

@@ -8,13 +8,34 @@
              xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="300">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="brownBrush" Color="White"></SolidColorBrush>
+    </UserControl.Resources>
     <DockPanel x:Name="LayoutRoot">
         <CheckBox DockPanel.Dock="Right" Margin="5,0,0,0" Content="G" ToolTip="Is card golden" FlowDirection="RightToLeft" IsChecked="{Binding CardInstance.IsGolden}"/>
         <TextBlock DockPanel.Dock="Bottom" Text="some card data" Visibility="Collapsed"/>
-        <TextBox MinWidth="100" Text="{Binding Path=CardName, Mode=TwoWay}" 
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+            <Border CornerRadius="45"
+                Width="20"
+                Height="20"
+                Margin="0"
+                Padding="1"
+                Background="AliceBlue"
+                BorderBrush="Black"
+                BorderThickness="1">
+                <Viewbox VerticalAlignment="Stretch" Height="Auto">
+                    <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardInstance.Card.Cost}" VerticalAlignment="Stretch"/>
+                </Viewbox>
+            </Border>
+            <TextBox Background="{Binding CardInstance.BackgroundColor}" 
+                     Foreground="{Binding CardInstance.ForegroundColor}" 
+                     Width="150" FontWeight="Medium"
+                     Text="{Binding Path=CardName, Mode=TwoWay}" 
                 AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
                 AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
                 Behaviors:FocusExtension.IsFocused="{Binding HasFocus, Mode=TwoWay}"
                 Behaviors:FocusExtension.SelectAllOnFocus="True"/>
+            <!--<Image DockPanel.Dock="Bottom" Height="20" Source="{Binding CardInstance.ImageSource}"/>-->
+        </StackPanel>
     </DockPanel>
 </UserControl>
