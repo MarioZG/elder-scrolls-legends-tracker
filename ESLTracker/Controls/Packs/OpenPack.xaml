@@ -17,6 +17,7 @@
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[3], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[4], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[5], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
+        <TextBlock Text="{Binding Pack.SoulGemsValue, StringFormat={}Pack value: {0}}"/>
         <Button Content="Save" Command="{Binding CommandSave}" />
     </StackPanel>
 </UserControl>
