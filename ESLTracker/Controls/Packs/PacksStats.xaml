@@ -20,5 +20,9 @@
             <TextBlock Text="{Binding PacksSinceEpic, StringFormat={} Packs since last epic: {0}}"/>
             <TextBlock Text="{Binding PacksSinceEpic, StringFormat={} Max wait: {0}}"/>
         </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding PacksSinceGolden, StringFormat={} Packs since last golden: {0}}"/>
+            <TextBlock Text="{Binding PacksSinceGolden, StringFormat={} Max wait: {0}}"/>
+        </StackPanel>
     </StackPanel>
 </UserControl>

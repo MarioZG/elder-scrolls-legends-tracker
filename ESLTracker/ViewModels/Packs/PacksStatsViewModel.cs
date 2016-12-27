@@ -34,6 +34,14 @@ namespace ESLTracker.ViewModels.Packs
             }
         }
 
+        public int PacksSinceGolden
+        {
+            get
+            {
+                return OrderedPacks.Where(p => p.DateOpened > OrderedPacks.Where(p2 => p2.Cards.Any(c => c?.IsGolden == true)).DefaultIfEmpty(new Pack() { DateOpened = DateTime.MinValue }).FirstOrDefault().DateOpened).Count();
+            }
+        }
+
         public double AveragePackValue
         {
             get
