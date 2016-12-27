@@ -72,12 +72,13 @@
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <Label  Content="Card " 
                            Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
-                    <Cards:SelectCard
+              </StackPanel>
+                <Cards:SelectCard Grid.Row="2"
                                       HasFocus="{Binding SelectCardFocus, Mode=TwoWay}"
                         CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
                         CardNameAutocomplete="{Binding CardNamesList}"
                            Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
-                </StackPanel>
+
                 <Label Content="Comment" Grid.Row="3"/>
                 <TextBox x:Name="txtComment" HorizontalAlignment="Stretch"
                      Grid.Row="4" Grid.ColumnSpan="2"
