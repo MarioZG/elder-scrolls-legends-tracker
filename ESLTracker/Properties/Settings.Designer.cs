@@ -169,7 +169,7 @@ namespace ESLTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("All")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public ViewModels.Game.PredefinedDateFilter GamesFilter_SelectedPredefinedDateFilter {
             get {
                 return ((ViewModels.Game.PredefinedDateFilter)(this["GamesFilter_SelectedPredefinedDateFilter"]));
@@ -187,6 +187,18 @@ namespace ESLTracker.Properties {
             }
             set {
                 this["GamesFilter_DayCutoffTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Packs_ScreenshotAfterAdded {
+            get {
+                return ((bool)(this["Packs_ScreenshotAfterAdded"]));
+            }
+            set {
+                this["Packs_ScreenshotAfterAdded"] = value;
             }
         }
     }

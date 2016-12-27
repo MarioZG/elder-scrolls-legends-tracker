@@ -229,7 +229,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        internal void SaveScreenShot(DependencyObject control)
+        internal void SaveScreenShot()
         {
             IntPtr? eslHandle = trackerfactory.GetWinAPI().GetEslProcess()?.MainWindowHandle;
             if (eslHandle.HasValue)
@@ -243,7 +243,19 @@ namespace ESLTracker.Utils
                 var bmp = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 Graphics gfxBmp = Graphics.FromImage(bmp);
 
-                Window.GetWindow(control).Hide();
+                List<Window> hiddenWindows = new List<Window>();
+                foreach (Window w in App.Current.Windows)
+                {
+                    //System.Diagnostics.Debugger.Log(1, "", "w"+ w.Title);
+                    //System.Diagnostics.Debugger.Log(1, "", "  w.IsActive" + w.IsActive);
+                    //System.Diagnostics.Debugger.Log(1, "", "   w.Topmost" + w.Topmost);
+                    //System.Diagnostics.Debugger.Log(1, "", Environment.NewLine) ;
+                    if (w.IsActive)
+                    {
+                        w.Hide();
+                        hiddenWindows.Add(w);
+                    }
+                }
                 gfxBmp.CopyFromScreen(
                     rect.left,
                     rect.top,
@@ -251,7 +263,11 @@ namespace ESLTracker.Utils
                     0,
                     new System.Drawing.Size(width, height),
                     CopyPixelOperation.SourceCopy);
-                Window.GetWindow(control).Show();
+
+                foreach (Window w in hiddenWindows)
+                {
+                    w.Show();
+                }
 
                 string path = Path.Combine(
                     DataPath,

@@ -44,5 +44,8 @@
     <Setting Name="GamesFilter_DayCutoffTime" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Packs_ScreenshotAfterAdded" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -69,7 +69,28 @@
                   />
                 <Label Grid.Row="3" Grid.Column="1" Content="{Binding ElementName=soloArenaTemplate, Path=Text, Converter={StaticResource DeckNameSettingPreview}}"/>
             </Grid>
-        </Expander><UniformGrid>
+        </Expander>
+        <Expander Header="Packs" IsExpanded="False"
+                  HeaderTemplate="{StaticResource expanderHeader}" >
+            <Grid Margin="10,10,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Content="Save screenshot when addng pack" HorizontalAlignment="Left" 
+                        Margin="5,5,5,5"
+                        ToolTip="If checked, application will make screenshot of pack screen"
+                        IsChecked="{Binding Path=Packs_ScreenshotAfterAdded, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                  />
+            </Grid>
+        </Expander>
+        <UniformGrid>
             <Button Command="{Binding CommandCancelButtonPressed}" Content="Cancel" Margin="25,5,25,5" />
             <Button Command="{Binding CommandSaveButtonPressed}" Content="Save settings" Margin="25,5,25,5" Style="{DynamicResource SaveButton}"/>
         </UniformGrid>

@@ -27,6 +27,9 @@ namespace ESLTracker.Properties
         ViewModels.Game.PredefinedDateFilter GamesFilter_SelectedPredefinedDateFilter { get; set; }
         TimeSpan GamesFilter_DayCutoffTime { get; set; }
 
+        //make screenshot when pack is confirmed
+        bool Packs_ScreenshotAfterAdded { get; set; }
+
         void Save();
     }
 }

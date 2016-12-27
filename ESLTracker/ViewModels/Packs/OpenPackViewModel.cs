@@ -48,6 +48,10 @@ namespace ESLTracker.ViewModels.Packs
 
         private void CommandSaveExecute(object obj)
         {
+            if (trackerFactory.GetSettings().Packs_ScreenshotAfterAdded)
+            {
+                new FileManager(trackerFactory).SaveScreenShot();
+            }
             ITracker tracker = trackerFactory.GetTracker();
             Pack.DateOpened = trackerFactory.GetDateTimeNow();
             tracker.Packs.Add(Pack);
