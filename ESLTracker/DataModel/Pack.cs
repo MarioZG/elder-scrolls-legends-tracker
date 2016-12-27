@@ -19,12 +19,16 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                var notNullCards = Cards.Where(c => c.Card != null);
+                var notNullCards = Cards.Where(c => c.Card != null && c.Card != Card.Unknown);
                 return
-                    notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Common).Count() * 5
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Rare).Count() * 20
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Epic).Count() * 100
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Legendary).Count() * 400;
+                    notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Common && ! c.IsGolden).Count() * 5
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Common && c.IsGolden).Count() * 50
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Rare && !c.IsGolden).Count() * 20
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Rare && c.IsGolden).Count() * 100
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Epic && !c.IsGolden).Count() * 100
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Epic && c.IsGolden).Count() * 400
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Legendary && !c.IsGolden).Count() * 400
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Legendary && c.IsGolden).Count() * 1200;
             }
         }
 

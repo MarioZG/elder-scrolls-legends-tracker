@@ -12,8 +12,8 @@
         <SolidColorBrush x:Key="brownBrush" Color="White"></SolidColorBrush>
     </UserControl.Resources>
     <DockPanel x:Name="LayoutRoot">
-        <CheckBox DockPanel.Dock="Right" Margin="5,0,0,0" Content="G" ToolTip="Is card golden" FlowDirection="RightToLeft" IsChecked="{Binding CardInstance.IsGolden}"/>
-        <TextBlock DockPanel.Dock="Bottom" Text="some card data" Visibility="Collapsed"/>
+        <CheckBox DockPanel.Dock="Right" TabIndex="1" Margin="5,0,0,0" Content="G" ToolTip="Is card golden" FlowDirection="RightToLeft" 
+                  IsChecked="{Binding CardInstance.IsGolden, Mode=TwoWay}"/>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
             <Border CornerRadius="45"
                 Width="20"
@@ -29,13 +29,12 @@
             </Border>
             <TextBox Background="{Binding CardInstance.BackgroundColor}" 
                      Foreground="{Binding CardInstance.ForegroundColor}" 
-                     Width="150" FontWeight="Medium"
+                     Width="150" FontWeight="Medium" TabIndex="0"
                      Text="{Binding Path=CardName, Mode=TwoWay}" 
                 AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
                 AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
                 Behaviors:FocusExtension.IsFocused="{Binding HasFocus, Mode=TwoWay}"
                 Behaviors:FocusExtension.SelectAllOnFocus="True"/>
-            <!--<Image DockPanel.Dock="Bottom" Height="20" Source="{Binding CardInstance.ImageSource}"/>-->
         </StackPanel>
     </DockPanel>
 </UserControl>
