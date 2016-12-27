@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel
 {
+    [DebuggerDisplay("Card={Card.Name}; Golden={IsGolden}")]
     public class CardInstance 
     {
         private TrackerFactory trackerFactory;
@@ -16,7 +18,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return Card.Id;
+                return Card != null ? Card.Id : Card.Unknown.Id;
             }
             set
             {

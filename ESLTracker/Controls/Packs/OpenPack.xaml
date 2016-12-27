@@ -11,12 +11,12 @@
         <ViewModels:OpenPackViewModel/>
     </UserControl.DataContext>
     <StackPanel>
-        <Cards:SelectCard CardName="{Binding CardNames[0], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
-        <Cards:SelectCard CardName="{Binding CardNames[1], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
-        <Cards:SelectCard CardName="{Binding CardNames[2], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
-        <Cards:SelectCard CardName="{Binding CardNames[3], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
-        <Cards:SelectCard CardName="{Binding CardNames[4], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
-        <Cards:SelectCard CardName="{Binding CardNames[5], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
+        <Cards:SelectCard CardInstance="{Binding Pack.Cards[0], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
+        <Cards:SelectCard CardInstance="{Binding Pack.Cards[1], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
+        <Cards:SelectCard CardInstance="{Binding Pack.Cards[2], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
+        <Cards:SelectCard CardInstance="{Binding Pack.Cards[3], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
+        <Cards:SelectCard CardInstance="{Binding Pack.Cards[4], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
+        <Cards:SelectCard CardInstance="{Binding Pack.Cards[5], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Button Content="Save" Command="{Binding CommandSave}" />
     </StackPanel>
 </UserControl>
