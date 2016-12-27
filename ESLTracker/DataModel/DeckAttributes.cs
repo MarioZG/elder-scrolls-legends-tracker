@@ -42,5 +42,19 @@ namespace ESLTracker.DataModel
             return deckClass.ToString();
         }
 
+        /// <summary>
+        /// convert from comma separated list - used incard database deserialisation
+        /// </summary>
+        /// <param name="attribs"></param>
+        public static explicit operator DeckAttributes(string attribs)
+        {
+            DeckAttributes da = new DeckAttributes();
+            foreach(string attrib in attribs.Split(new char[] { ','}, StringSplitOptions.RemoveEmptyEntries))
+            {
+                da.Add((DeckAttribute)Enum.Parse(typeof(DeckAttribute), attrib, true));
+            }
+            return da;
+        }
+
     }
 }

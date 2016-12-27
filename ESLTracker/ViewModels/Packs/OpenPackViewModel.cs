@@ -36,14 +36,14 @@ namespace ESLTracker.ViewModels.Packs
         }
 
         private void CardNames_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {           
-            new CardsDatabase().PopulateCollection(CardNames, Pack.Cards);
+        {
+            trackerFactory.GetCardsDatabase().PopulateCollection(CardNames, Pack.Cards);
         }
 
         private void CommandSaveExecute(object obj)
         {
             Pack.DateOpened = trackerFactory.GetDateTimeNow();
-            new CardsDatabase().PopulateCollection(CardNames, Pack.Cards);
+            trackerFactory.GetCardsDatabase().PopulateCollection(CardNames, Pack.Cards);
             trackerFactory.GetTracker().Packs.Add(Pack);
             Pack = new Pack();
         }

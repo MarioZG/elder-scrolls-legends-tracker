@@ -36,5 +36,10 @@ namespace ESLTracker.Utils
         {
             return new WinAPI();
         }
+
+        public ICardsDatabase GetCardsDatabase()
+        {
+            return CardsDatabase.Default;
+        }
     }
 }

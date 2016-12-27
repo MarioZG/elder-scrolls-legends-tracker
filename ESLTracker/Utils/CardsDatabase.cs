@@ -8,39 +8,73 @@ using ESLTracker.DataModel;
 
 namespace ESLTracker.Utils
 {
-    public class CardsDatabase
+    public class CardsDatabase : ICardsDatabase
     {
-        public IEnumerable<string> CardsNames {
+
+        static CardsDatabase _instance;
+        [Obsolete("Use IFactory to obtain instance")]
+        public static CardsDatabase Default
+        {
             get
             {
-                return new List<string>() { "card 1", "better card" };
+                if (_instance == null)
+                {
+                    _instance = new CardsDatabase();
+                }
+                return _instance;
             }
         }
 
+        private CardsDatabase()
+        {
+
+        }
+
+        public IEnumerable<string> CardsNames {
+            get
+            {
+                return Cards.Select(c => c.Name);
+            }
+        }
+
+        IEnumerable<Card> cards;
         public IEnumerable<Card> Cards
         {
             get
             {
-                return new List<Card>() {
-                    new Card() {Name = "card 1", Rarity = DataModel.Enums.CardRarity.Common },
-                    new Card() {Name = "some other  1", Rarity = DataModel.Enums.CardRarity.Legendary }
-                };
+                if (cards == null)
+                {
+                    LoadCardsDatabase();
+                }
+                return cards;
             }
         }
 
-        internal void PopulateCollection(ObservableCollection<string> cardNames, ObservableCollection<Card> cards)
+        public void LoadCardsDatabase()
         {
-            cards.Clear();
+            cards = JsonHelper.DeserialiseJson<IEnumerable<Card>>(System.IO.File.ReadAllText("./Resources/cards.json"));
+        }
+
+        public void PopulateCollection(
+            ObservableCollection<string> cardNames, 
+            ObservableCollection<CardInstance> targetCollection)
+        {
+            targetCollection.Clear();
             foreach (string name in cardNames)
             {
                 Card card = FindCardByName(name);
-                cards.Add(card);
+                targetCollection.Add(new CardInstance(card));
             }
         }
 
         internal Card FindCardByName(string name)
         {
             return Cards.Where(c => c.Name.ToLower().Trim() == name.ToLower().Trim()).DefaultIfEmpty(Card.Unknown).FirstOrDefault();
+        }
+
+        public Card FindCardById(Guid value)
+        {
+            return Cards.Where(c => c.Id == value).DefaultIfEmpty(Card.Unknown).FirstOrDefault();
         }
     }
 }

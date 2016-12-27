@@ -15,5 +15,6 @@ namespace ESLTracker.Utils
         DateTime GetDateTimeNow();
         ISettings GetSettings();
         IWinAPI GetWinAPI();
+        ICardsDatabase GetCardsDatabase();
     }
 }
