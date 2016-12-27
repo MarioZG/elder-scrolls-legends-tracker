@@ -42,9 +42,11 @@ namespace ESLTracker.ViewModels.Packs
 
         private void CommandSaveExecute(object obj)
         {
+            ITracker tracker = trackerFactory.GetTracker();
             Pack.DateOpened = trackerFactory.GetDateTimeNow();
             trackerFactory.GetCardsDatabase().PopulateCollection(CardNames, Pack.Cards);
-            trackerFactory.GetTracker().Packs.Add(Pack);
+            tracker.Packs.Add(Pack);
+            new FileManager(trackerFactory).SaveDatabase();
             Pack = new Pack();
         }
     }
