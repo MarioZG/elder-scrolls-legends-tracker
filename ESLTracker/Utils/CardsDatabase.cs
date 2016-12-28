@@ -62,7 +62,7 @@ namespace ESLTracker.Utils
             cards = SerializationHelper.DeserializeJson<IEnumerable<Card>>(System.IO.File.ReadAllText(this.databasePath));
         }
 
-        internal Card FindCardByName(string name)
+        public Card FindCardByName(string name)
         {
             return Cards.Where(c => c.Name.ToLower().Trim() == name.ToLower().Trim()).DefaultIfEmpty(Card.Unknown).FirstOrDefault();
         }

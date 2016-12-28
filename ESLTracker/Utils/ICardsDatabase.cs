@@ -10,5 +10,6 @@ namespace ESLTracker.Utils
         IEnumerable<Card> Cards { get; }
         IEnumerable<string> CardsNames { get; }
         Card FindCardById(Guid value);
+        Card FindCardByName(string name);
     }
 }
