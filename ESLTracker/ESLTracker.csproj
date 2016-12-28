@@ -182,7 +182,7 @@
     <Compile Include="Utils\IOWrappers\WrapperProvider.cs" />
     <Compile Include="Utils\ITrackerFactory.cs" />
     <Compile Include="Utils\IWinAPI.cs" />
-    <Compile Include="Utils\JsonHelper.cs" />
+    <Compile Include="Utils\SerializationHelper.cs" />
     <Compile Include="Utils\LinqExtensions.cs" />
     <Compile Include="Utils\Messages\ControlMessangerContext.cs" />
     <Compile Include="Utils\Messages\DeckListFilterChanged.cs" />

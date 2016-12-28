@@ -52,7 +52,7 @@ namespace ESLTracker.Utils
 
         public void LoadCardsDatabase()
         {
-            cards = JsonHelper.DeserialiseJson<IEnumerable<Card>>(System.IO.File.ReadAllText("./Resources/cards.json"));
+            cards = SerializationHelper.DeserializeJson<IEnumerable<Card>>(System.IO.File.ReadAllText("./Resources/cards.json"));
         }
 
         public void PopulateCollection(

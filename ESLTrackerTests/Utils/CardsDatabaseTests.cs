@@ -43,7 +43,7 @@ namespace ESLTracker.Utils.Tests
                               ""health"":""1"",
                               ""race"":""highelf"",
                               ""text"":""Card text""}]";
-            Card card = JsonHelper.DeserialiseJson<IEnumerable<Card>>(json).First();
+            Card card = SerializationHelper.DeserializeJson<IEnumerable<Card>>(json).First();
 
             Assert.AreEqual(CardRarity.Common, card.Rarity);
             Assert.AreEqual(true, card.IsUnique);
