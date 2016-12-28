@@ -78,7 +78,12 @@ namespace ESLTracker.Utils
                             throw new InvalidDataException("You are using old file format version");
                         }
                     }
-                    
+                    else if (tracker.Version > Tracker.CurrentFileVersion)
+                    {
+                        //using old application
+                        throw new InvalidDataException(string.Format("You are using old version of application. File version={0}. Application works with {1}",tracker.Version, Tracker.CurrentFileVersion));
+                    }
+
                     //restore active deck
                     Guid? activeDeckFromSettings = trackerfactory.GetSettings().LastActiveDeckId;
                     if ((activeDeckFromSettings != null)
