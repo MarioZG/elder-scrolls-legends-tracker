@@ -43,7 +43,16 @@ namespace ESLTracker.ViewModels.Packs
         public OpenPackViewModel(TrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
+            InitNewPack();
+
+        }
+
+        private void InitNewPack()
+        {
             Pack = new Pack();
+            Pack.Cards = new ObservableCollection<CardInstance>()
+             { new CardInstance(), new CardInstance(), new CardInstance(),
+               new CardInstance(), new CardInstance(), new CardInstance()};
         }
 
         private void CommandSaveExecute(object obj)
@@ -61,7 +70,7 @@ namespace ESLTracker.ViewModels.Packs
             Pack.DateOpened = trackerFactory.GetDateTimeNow();
             tracker.Packs.Add(Pack);
             new FileManager(trackerFactory).SaveDatabase();
-            Pack = new Pack();
+            InitNewPack();
         }
     }
 }

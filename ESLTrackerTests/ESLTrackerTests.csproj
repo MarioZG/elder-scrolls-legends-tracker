@@ -65,6 +65,7 @@
     <Compile Include="BaseTest.cs" />
     <Compile Include="DataModel\DeckTests.cs" />
     <Compile Include="DataModel\GameTests.cs" />
+    <Compile Include="DataModel\PackTests.cs" />
     <Compile Include="DataModel\RewardTests.cs" />
     <Compile Include="DataModel\TrackerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

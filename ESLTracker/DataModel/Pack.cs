@@ -10,9 +10,7 @@ namespace ESLTracker.DataModel
 {
     public class Pack : ViewModelBase
     {
-        public ObservableCollection<CardInstance> Cards { get; set; } = new ObservableCollection<CardInstance>()
-             { new CardInstance(), new CardInstance(), new CardInstance(), new CardInstance(), new CardInstance(), new CardInstance()};
-
+        public ObservableCollection<CardInstance> Cards { get; set; } = new ObservableCollection<CardInstance>();
         public DateTime DateOpened { get; set; }
 
         public int SoulGemsValue
