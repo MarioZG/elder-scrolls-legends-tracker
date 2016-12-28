@@ -56,14 +56,14 @@ namespace ESLTracker.DataModel
         [XmlIgnore]
         public string Text { get; set; }
 
-        private TrackerFactory trackerFactory;
+        private ITrackerFactory trackerFactory;
 
-        public Card() : this(new TrackerFactory())
+        public Card() : this(TrackerFactory.DefaultTrackerFactory)
         {
 
         }
 
-        public Card(TrackerFactory trackerFactory)
+        public Card(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
         }

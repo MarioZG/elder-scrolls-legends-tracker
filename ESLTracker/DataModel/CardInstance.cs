@@ -18,7 +18,7 @@ namespace ESLTracker.DataModel
     [DebuggerDisplay("Card={Card.Name}; Golden={IsGolden}")]
     public class CardInstance 
     {
-        private TrackerFactory trackerFactory;
+        private ITrackerFactory trackerFactory;
 
         public Guid CardId
         {
@@ -144,22 +144,22 @@ namespace ESLTracker.DataModel
             }
         }
 
-        public CardInstance() : this(new TrackerFactory())
+        public CardInstance() : this(TrackerFactory.DefaultTrackerFactory)
         {
 
         }
 
-        public CardInstance(Card card) : this(card, new TrackerFactory())
+        public CardInstance(Card card) : this(card, TrackerFactory.DefaultTrackerFactory)
         {
 
         }
 
-        public CardInstance(TrackerFactory trackerFactory) : this(null, trackerFactory)
+        public CardInstance(ITrackerFactory trackerFactory) : this(null, trackerFactory)
         {
             
         }
 
-        public CardInstance(Card card, TrackerFactory trackerFactory)
+        public CardInstance(Card card, ITrackerFactory trackerFactory)
         {
             this.Card = card;
             this.trackerFactory = trackerFactory;
