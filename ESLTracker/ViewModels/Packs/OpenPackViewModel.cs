@@ -49,10 +49,11 @@ namespace ESLTracker.ViewModels.Packs
 
         private void InitNewPack()
         {
-            Pack = new Pack();
-            Pack.Cards = new ObservableCollection<CardInstance>()
-             { new CardInstance(), new CardInstance(), new CardInstance(),
-               new CardInstance(), new CardInstance(), new CardInstance()};
+            Pack = new Pack(new List<CardInstance>()
+            { new CardInstance(), new CardInstance(), new CardInstance(),
+               new CardInstance(), new CardInstance(), new CardInstance()});
+          
+
         }
 
         private void CommandSaveExecute(object obj)

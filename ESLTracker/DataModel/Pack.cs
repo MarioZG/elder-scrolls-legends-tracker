@@ -10,7 +10,8 @@ namespace ESLTracker.DataModel
 {
     public class Pack : ViewModelBase
     {
-        public ObservableCollection<CardInstance> Cards { get; set; } = new ObservableCollection<CardInstance>();
+        public ObservableCollection<CardInstance> Cards { get; set; }
+
         public DateTime DateOpened { get; set; }
 
         public int SoulGemsValue
@@ -30,14 +31,39 @@ namespace ESLTracker.DataModel
             }
         }
 
-        public Pack()
+        public Pack() : this(null)
         {
+           
+        }
+
+        public Pack(IEnumerable<CardInstance> startringCards)
+        {
+            if (startringCards == null)
+            {
+                Cards = new ObservableCollection<CardInstance>();
+            }
+            else
+            {
+                Cards = new ObservableCollection<CardInstance>(startringCards);
+            }
             Cards.CollectionChanged += Cards_CollectionChanged;
         }
 
         private void Cards_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            foreach (CardInstance ci in e.NewItems)
+            {
+                ci.PropertyChanged += Ci_PropertyChanged;
+            }
             RaisePropertyChangedEvent(nameof(SoulGemsValue));
+        }
+
+        private void Ci_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(CardInstance.Card) || e.PropertyName == nameof(CardInstance.IsGolden))
+            {
+                RaisePropertyChangedEvent(nameof(SoulGemsValue));
+            }
         }
     }
 }
