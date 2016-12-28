@@ -14,15 +14,15 @@
         <TextBlock Text="{Binding AveragePackValue, StringFormat={} Avergae pack value: {0}}"/>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding PacksSinceLegendary, StringFormat={} Packs since last legendary: {0}}"/>
-            <TextBlock Text="{Binding PacksSinceLegendary, StringFormat={} Max wait: {0}}"/>
+            <TextBlock Text="{Binding MaxPacksSinceLegendary, StringFormat={} Longest wait: {0}}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding PacksSinceEpic, StringFormat={} Packs since last epic: {0}}"/>
-            <TextBlock Text="{Binding PacksSinceEpic, StringFormat={} Max wait: {0}}"/>
+            <TextBlock Text="{Binding MaxPacksSinceEpic, StringFormat={} Longest wait: {0}}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding PacksSinceGolden, StringFormat={} Packs since last golden: {0}}"/>
-            <TextBlock Text="{Binding PacksSinceGolden, StringFormat={} Max wait: {0}}"/>
+            <TextBlock Text="{Binding MaxPacksSinceGolden, StringFormat={} Longest wait: {0}}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

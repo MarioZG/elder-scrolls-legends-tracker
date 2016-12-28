@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
+using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Packs
@@ -22,7 +23,15 @@ namespace ESLTracker.ViewModels.Packs
         {
             get
             {
-                return OrderedPacks.Where(p=> p.DateOpened > OrderedPacks.Where( p2=> p2.Cards.Any( c=> c?.Card?.Rarity == DataModel.Enums.CardRarity.Legendary)).DefaultIfEmpty(new Pack() { DateOpened = DateTime.MinValue }).FirstOrDefault().DateOpened).Count();
+                return PacksSince(c => c?.Card?.Rarity == CardRarity.Legendary);
+            }
+        }
+
+        public int MaxPacksSinceLegendary
+        {
+            get
+            {
+                return MaxPacksSince(c => c.Card.Rarity == CardRarity.Legendary);
             }
         }
 
@@ -30,7 +39,15 @@ namespace ESLTracker.ViewModels.Packs
         {
             get
             {
-                return OrderedPacks.Where(p => p.DateOpened > OrderedPacks.Where(p2 => p2.Cards.Any(c => c?.Card?.Rarity == DataModel.Enums.CardRarity.Epic)).DefaultIfEmpty(new Pack() { DateOpened = DateTime.MinValue }).FirstOrDefault().DateOpened).Count();
+                return PacksSince(c => c?.Card?.Rarity == CardRarity.Epic);
+            }
+        }
+
+        public int MaxPacksSinceEpic
+        {
+            get
+            {
+                return MaxPacksSince(c => c.Card.Rarity == CardRarity.Epic);
             }
         }
 
@@ -38,7 +55,15 @@ namespace ESLTracker.ViewModels.Packs
         {
             get
             {
-                return OrderedPacks.Where(p => p.DateOpened > OrderedPacks.Where(p2 => p2.Cards.Any(c => c?.IsGolden == true)).DefaultIfEmpty(new Pack() { DateOpened = DateTime.MinValue }).FirstOrDefault().DateOpened).Count();
+                return PacksSince(c => c?.IsGolden == true);
+            }
+        }
+
+        public int MaxPacksSinceGolden
+        {
+            get
+            {
+                return MaxPacksSince(c => c?.IsGolden == true);
             }
         }
 
@@ -73,6 +98,32 @@ namespace ESLTracker.ViewModels.Packs
         private void Packs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             RaisePropertyChangedEvent("");
+        }
+
+        private int PacksSince(Func<CardInstance, bool> filter)
+        {
+            return OrderedPacks
+                .Where(p => 
+                    p.DateOpened > OrderedPacks
+                                    .Where(p2 => p2.Cards.Any(filter))
+                                    .DefaultIfEmpty(new Pack() { DateOpened = DateTime.MinValue })
+                                    .FirstOrDefault()
+                                    .DateOpened
+                        ).Count();
+        }
+
+        private int MaxPacksSince(Func<CardInstance, bool> filter)
+        {
+            return OrderedPacks
+                .Select(p => new
+                    {
+                        SL = OrderedPacks.Where(p2 => p.DateOpened > p2.DateOpened
+                                && p2.DateOpened > (OrderedPacks.Where(
+                                p3 => p3.DateOpened < p.DateOpened &&  //get last legendary pack
+                                p3.Cards.Any(filter)).DefaultIfEmpty(new Pack() { DateOpened = DateTime.MinValue }).FirstOrDefault().DateOpened)
+                            ).Count(),
+                    })
+                .Max(r => r.SL);
         }
     }
 }
