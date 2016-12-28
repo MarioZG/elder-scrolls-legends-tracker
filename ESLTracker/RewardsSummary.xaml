@@ -30,6 +30,8 @@
                         <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
                         <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
                         <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" />
+                        <DataGridTextColumn Header="Card" Binding="{Binding CardInstance.Card.Name}" />
+                        <DataGridTextColumn Header="Card rarity" Binding="{Binding CardInstance.Card.Rarity}" />
                         <DataGridTextColumn Header="Guild" Binding="{Binding RewardQuestGuild}" />                        
                     </DataGrid.Columns>
                 </DataGrid>
