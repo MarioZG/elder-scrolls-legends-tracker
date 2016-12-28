@@ -55,19 +55,5 @@ namespace ESLTracker.Utils.Tests
             Assert.AreEqual("highelf", card.Race);
             Assert.AreEqual("Card text", card.Text);
         }
-
-        [TestMethod()]
-        public void PopulateCollectionTest001()
-        {
-            Pack pack = new Pack();
-            ObservableCollection<string> names = new ObservableCollection<string>( 
-               new string[] { "Adoring Fan", "random name", String.Empty, String.Empty, String.Empty, String.Empty }
-            );
-            CardsDatabase.Default.PopulateCollection(names, pack.Cards);
-
-            Assert.AreEqual(6, pack.Cards.Count);
-            Assert.AreEqual("Adoring Fan", pack.Cards[0].Card.Name);
-            Assert.AreEqual(Card.Unknown, pack.Cards[1].Card);
-        }
     }
 }

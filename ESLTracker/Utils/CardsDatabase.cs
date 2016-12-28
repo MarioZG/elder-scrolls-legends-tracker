@@ -62,18 +62,6 @@ namespace ESLTracker.Utils
             cards = SerializationHelper.DeserializeJson<IEnumerable<Card>>(System.IO.File.ReadAllText(this.databasePath));
         }
 
-        public void PopulateCollection(
-            ObservableCollection<string> cardNames, 
-            ObservableCollection<CardInstance> targetCollection)
-        {
-            targetCollection.Clear();
-            foreach (string name in cardNames)
-            {
-                Card card = FindCardByName(name);
-                targetCollection.Add(new CardInstance(card));
-            }
-        }
-
         internal Card FindCardByName(string name)
         {
             return Cards.Where(c => c.Name.ToLower().Trim() == name.ToLower().Trim()).DefaultIfEmpty(Card.Unknown).FirstOrDefault();
