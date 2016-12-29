@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace ESLTracker.DataModel.Tests
 {
-    [TestClass()]
+    [TestClass]
+    [DeploymentItem("./Resources/cards.json", "./Resources/")]
     public class PackTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void PackTest001_SerialiseAndDeserialise()
         {
             Pack pack = new Pack();

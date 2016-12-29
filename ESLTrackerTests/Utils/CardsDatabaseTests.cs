@@ -11,10 +11,11 @@ using System.Collections.ObjectModel;
 
 namespace ESLTracker.Utils.Tests
 {
-    [TestClass()]
+    [TestClass]
+    [DeploymentItem("./Resources/cards.json", "./Resources/")]
     public class CardsDatabaseTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void FindCardByNameTest001_UnknownCard()
         {
             Card expected = Card.Unknown;
@@ -23,7 +24,7 @@ namespace ESLTracker.Utils.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void LoadCardsDatabaseTest()
         {
             Assert.IsNotNull(CardsDatabase.Default.Cards);
