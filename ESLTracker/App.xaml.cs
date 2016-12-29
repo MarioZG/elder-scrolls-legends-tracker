@@ -55,7 +55,7 @@ namespace ESLTracker
             string filename = "./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt";
             string verInfo = String.Join(";",Assembly.GetEntryAssembly().CustomAttributes.Where(ca => ca.AttributeType == typeof(AssemblyInformationalVersionAttribute)).FirstOrDefault()?.ConstructorArguments);
             System.IO.File.WriteAllText(filename, "APP VERSION: "+ verInfo +Environment.NewLine);
-            System.IO.File.WriteAllText(filename, e.Exception.ToString());
+            System.IO.File.AppendAllText(filename, e.Exception.ToString());
             MessageBox.Show("Application encountered unhandled exception. Log file has been created in " + "./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt with details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             e.Handled = false;
         }
