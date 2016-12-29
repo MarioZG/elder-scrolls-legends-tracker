@@ -4,23 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Cards"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
              xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="300">
+             d:DesignWidth="300">
     <UserControl.Resources>
         <SolidColorBrush x:Key="brownBrush" Color="White"></SolidColorBrush>
+        <Converters:BoolToVisibiltyConverter x:Key="BoolToVisibiltyConverter" />
     </UserControl.Resources>
     <DockPanel x:Name="LayoutRoot">
         <CheckBox DockPanel.Dock="Right" TabIndex="1" Margin="5,0,0,0" Content="G" ToolTip="Is card golden" FlowDirection="RightToLeft" 
                   IsChecked="{Binding CardInstance.IsGolden, Mode=TwoWay}"/>
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+        <DockPanel>
             <Border CornerRadius="45"
                 Width="20"
                 Height="20"
                 Margin="0"
                 Padding="1"
                 Background="{Binding CardInstance.RarityColor}"
+                Visibility="{Binding CardInstance.HasCard, Converter={StaticResource BoolToVisibiltyConverter}}"    
                 BorderBrush="Black"
                 BorderThickness="1">
                 <Viewbox VerticalAlignment="Stretch" Height="Auto">
@@ -29,12 +32,12 @@
             </Border>
             <TextBox Background="{Binding CardInstance.BackgroundColor}" 
                      Foreground="{Binding CardInstance.ForegroundColor}" 
-                     Width="150" FontWeight="Medium" TabIndex="0"
+                     FontWeight="Medium" TabIndex="0"
                      Text="{Binding Path=CardName, Mode=TwoWay}" 
                 AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
                 AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
                 Behaviors:FocusExtension.IsFocused="{Binding HasFocus, Mode=TwoWay}"
                 Behaviors:FocusExtension.SelectAllOnFocus="True"/>
-        </StackPanel>
+        </DockPanel>
     </DockPanel>
 </UserControl>

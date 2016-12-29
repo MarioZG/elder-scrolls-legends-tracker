@@ -148,7 +148,14 @@ namespace ESLTracker.DataModel
                 }
             }
         }
-
+        
+        public bool HasCard
+        {
+            get
+            {
+                return ((card != null) && (card != Card.Unknown));
+            }
+        }
         public CardInstance() : this(TrackerFactory.DefaultTrackerFactory)
         {
 
