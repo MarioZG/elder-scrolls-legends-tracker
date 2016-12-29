@@ -77,6 +77,7 @@
     <Compile Include="Utils\Converters\ObjectToVisibiltyCollapsedConverterTests.cs" />
     <Compile Include="Utils\Converters\PlayerRankLegendToVisibiltyCollapsedTests.cs" />
     <Compile Include="Utils\FileManagerTests.cs" />
+    <Compile Include="Utils\ScreenshotNameProviderTests.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModelTests.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\DeckListViewModelTests.cs" />
