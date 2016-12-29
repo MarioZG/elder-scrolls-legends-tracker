@@ -56,7 +56,7 @@ namespace ESLTracker.Utils
         }
 
 
-        public Tracker LoadDatabase()
+        public Tracker LoadDatabase(bool throwDataFileException = false)
         {
             Tracker tracker = null;
             try
@@ -75,13 +75,15 @@ namespace ESLTracker.Utils
                         }
                         else
                         {
-                            throw new InvalidDataException("You are using old file format version");
+                            throw new DataFileException(string.Format("You are using old file format version and application cannot upgrade your file." + Environment.NewLine + Environment.NewLine + "File version={0}. Application works with {1}", tracker.Version, Tracker.CurrentFileVersion));
                         }
                     }
                     else if (tracker.Version > Tracker.CurrentFileVersion)
                     {
                         //using old application
-                        throw new InvalidDataException(string.Format("You are using old version of application. File version={0}. Application works with {1}",tracker.Version, Tracker.CurrentFileVersion));
+                        throw new DataFileException(
+                            string.Format("You are using old version of application. If you continue you might loose data!" + Environment.NewLine + Environment.NewLine + "Press Yes to start anyway (and potencailly loose data), No to cancel." + Environment.NewLine + Environment.NewLine + " File version={0}. Application works with {1}", tracker.Version, Tracker.CurrentFileVersion),
+                            true);
                     }
 
                     //restore active deck
@@ -96,6 +98,14 @@ namespace ESLTracker.Utils
                 {
                     tracker = new Tracker();
                     tracker.Version = Tracker.CurrentFileVersion;
+                }
+            }
+            catch (DataFileException)
+            {
+                //Datafile isses should have been resolved on app init
+                if (throwDataFileException) //should be true only in app init code
+                { 
+                    throw;
                 }
             }
             catch
