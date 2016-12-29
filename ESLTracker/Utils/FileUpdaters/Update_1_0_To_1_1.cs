@@ -11,18 +11,12 @@ using ESLTracker.DataModel.Enums;
 namespace ESLTracker.Utils.FileUpdaters
 {
     [SerializableVersion(1,0)]
-    public class Update_1_0_To_1_1 : IFileUpdater
+    public class Update_1_0_To_1_1 : UpdateBase
     {
-        public SerializableVersion TargetVersion { get; } = new SerializableVersion(1, 1);
+        public override SerializableVersion TargetVersion { get; } = new SerializableVersion(1, 1);
 
-        public bool UpdateFile(FileManager fileManager)
+        protected override void VersionSpecificUpdateFile(XmlDocument doc)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(fileManager.FullDataFilePath);
-            XmlNode versionNode = doc.SelectSingleNode("/Tracker/Version");
-
-            versionNode.InnerXml = fileManager.CreateNewVersionXML(TargetVersion);
-
             foreach (XmlNode dataNode in doc.SelectNodes("/Tracker/Decks/Deck/ArenaRank"))
             {
                 if (!String.IsNullOrWhiteSpace(dataNode.InnerText))
@@ -31,13 +25,6 @@ namespace ESLTracker.Utils.FileUpdaters
                     dataNode.InnerText = ((int)value).ToString();
                 }
             }
-
-            File.Copy(fileManager.FullDataFilePath, fileManager.FullDataFilePath + ".upgrade", true);
-            doc.Save(fileManager.FullDataFilePath);
-
-            return true;
         }
-
-
     }
 }

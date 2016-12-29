@@ -170,6 +170,7 @@
     <Compile Include="Utils\Converters\PlayerRankLegendToVisibiltyCollapsed.cs" />
     <Compile Include="Utils\DataFileException.cs" />
     <Compile Include="Utils\FileUpdaters\IFileUpdater.cs" />
+    <Compile Include="Utils\FileUpdaters\UpdateBase.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_1_To_1_2.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_0_To_1_1.cs" />
     <Compile Include="Utils\ICardsDatabase.cs" />
