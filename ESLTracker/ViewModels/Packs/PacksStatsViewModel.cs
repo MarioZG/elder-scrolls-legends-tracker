@@ -102,6 +102,10 @@ namespace ESLTracker.ViewModels.Packs
 
         private int PacksSince(Func<CardInstance, bool> filter)
         {
+            if (OrderedPacks.Count() == 0)
+            {
+                return 0;
+            }
             return OrderedPacks
                 .Where(p => 
                     p.DateOpened > OrderedPacks
@@ -114,6 +118,10 @@ namespace ESLTracker.ViewModels.Packs
 
         private int MaxPacksSince(Func<CardInstance, bool> filter)
         {
+            if (OrderedPacks.Count() == 0)
+            {
+                return 0;
+            }
             return OrderedPacks
                 .Select(p => new
                     {
