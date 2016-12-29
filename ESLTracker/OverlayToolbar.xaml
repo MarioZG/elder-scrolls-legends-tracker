@@ -16,7 +16,7 @@
     <StackPanel Orientation="Vertical" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Controls:OverlayWindowTitlebar Title="{Binding Path=DataContext.SummaryText,ElementName=editGame}" />
         <TabControl x:Name="tabControl">
-            <TabItem Header="Add game">
+            <TabItem x:Name="editGameTab" Header="Add game">
                 <Game:EditGame x:Name="editGame" />
             </TabItem>
             <TabItem Header="Add Rewards">

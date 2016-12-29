@@ -46,7 +46,7 @@ namespace ESLTracker
             {
                 this.editGame.DataContext.ErrorMessage = "There is unsaved game data. Save game before exit!  ";
                 this.editGame.DataContext.CommandExecuteWhenContinueOnError = commandExit;
-                //e.Cancel = true;
+                this.editGameTab.Focus();
                 this.Show();
                 this.Activate();
                 this.Focus();
