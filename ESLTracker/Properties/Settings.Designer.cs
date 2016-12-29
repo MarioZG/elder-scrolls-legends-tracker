@@ -169,10 +169,9 @@ namespace ESLTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public ViewModels.Game.PredefinedDateFilter GamesFilter_SelectedPredefinedDateFilter {
+        public global::ESLTracker.ViewModels.Game.PredefinedDateFilter GamesFilter_SelectedPredefinedDateFilter {
             get {
-                return ((ViewModels.Game.PredefinedDateFilter)(this["GamesFilter_SelectedPredefinedDateFilter"]));
+                return ((global::ESLTracker.ViewModels.Game.PredefinedDateFilter)(this["GamesFilter_SelectedPredefinedDateFilter"]));
             }
             set {
                 this["GamesFilter_SelectedPredefinedDateFilter"] = value;
@@ -181,6 +180,7 @@ namespace ESLTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("00:00:00")]
         public global::System.TimeSpan GamesFilter_DayCutoffTime {
             get {
                 return ((global::System.TimeSpan)(this["GamesFilter_DayCutoffTime"]));
@@ -199,6 +199,30 @@ namespace ESLTracker.Properties {
             }
             set {
                 this["Packs_ScreenshotAfterAdded"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Pack_{n:0000}_{d:yyyy_MM_dd_HH_mm}")]
+        public string Packs_ScreenshotNameTemplate {
+            get {
+                return ((string)(this["Packs_ScreenshotNameTemplate"]));
+            }
+            set {
+                this["Packs_ScreenshotNameTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Screenshot_{0:yyyy_MM_dd_HH_mm_ss}")]
+        public string General_ScreenshotNameTemplate {
+            get {
+                return ((string)(this["General_ScreenshotNameTemplate"]));
+            }
+            set {
+                this["General_ScreenshotNameTemplate"] = value;
             }
         }
     }

@@ -65,13 +65,19 @@ namespace ESLTracker.ViewModels.Packs
 
             if (trackerFactory.GetSettings().Packs_ScreenshotAfterAdded)
             {
-                new FileManager(trackerFactory).SaveScreenShot();
+                TakePackScreenshot();
             }
             ITracker tracker = trackerFactory.GetTracker();
             Pack.DateOpened = trackerFactory.GetDateTimeNow();
             tracker.Packs.Add(Pack);
             new FileManager(trackerFactory).SaveDatabase();
             InitNewPack();
+        }
+
+        public void TakePackScreenshot()
+        {
+            string fileName = new ScreenshotNameProvider().GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack);
+            new FileManager(trackerFactory).SaveScreenShot(fileName);
         }
     }
 }

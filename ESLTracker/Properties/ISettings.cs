@@ -30,6 +30,10 @@ namespace ESLTracker.Properties
         //make screenshot when pack is confirmed
         bool Packs_ScreenshotAfterAdded { get; set; }
 
+        //screenshot name templates
+        string Packs_ScreenshotNameTemplate { get; set; }
+        string General_ScreenshotNameTemplate { get; set; }
+
         void Save();
     }
 }

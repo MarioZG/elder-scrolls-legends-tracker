@@ -244,7 +244,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        internal void SaveScreenShot()
+        internal void SaveScreenShot(string fileName)
         {
             IntPtr? eslHandle = trackerfactory.GetWinAPI().GetEslProcess()?.MainWindowHandle;
             if (eslHandle.HasValue)
@@ -287,8 +287,8 @@ namespace ESLTracker.Utils
                 string path = Path.Combine(
                     DataPath,
                     ScreenShotFolder,
-                    Path.ChangeExtension(ScreenShotFolder + DateTime.Now.ToString("yyyyMMddHHmmss"),
-                    "png"));
+                    Path.ChangeExtension(fileName,"png")
+                    );
                 if (!Directory.Exists(Path.GetDirectoryName(path)))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(path));

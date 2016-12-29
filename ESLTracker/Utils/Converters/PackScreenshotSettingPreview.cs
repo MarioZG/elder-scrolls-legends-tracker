@@ -8,18 +8,17 @@ using System.Windows.Data;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class DeckNameSettingPreview : IValueConverter
+    public class PackScreenshotSettingPreview : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             ITrackerFactory trackerFactory = new TrackerFactory();
-            try
-            {
-                return new ScreenshotNameProvider(trackerFactory).GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Regular, value.ToString());
+            try {
+                return new ScreenshotNameProvider(trackerFactory).GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack, value.ToString());
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                return "ERROR:" + ex.Message;
+                return "ERROR:"+ex.Message;
             }
         }
 

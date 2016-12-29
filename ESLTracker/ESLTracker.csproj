@@ -135,6 +135,9 @@
     <Compile Include="Controls\Rewards\RewardItemList.xaml.cs">
       <DependentUpon>RewardItemList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Settings\OpenPackSettings.xaml.cs">
+      <DependentUpon>OpenPackSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Settings\SettingsPanel.xaml.cs">
       <DependentUpon>SettingsPanel.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,7 @@
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
     <Compile Include="Utils\CardsDatabase.cs" />
     <Compile Include="Utils\Converters\ClassToAttributesIconsConverter.cs" />
+    <Compile Include="Utils\Converters\PackScreenshotSettingPreview.cs" />
     <Compile Include="Utils\Converters\DeckNameSettingPreview.cs" />
     <Compile Include="Utils\Converters\DeckOrDeckClassToAttributes.cs" />
     <Compile Include="Utils\Converters\DeckOrDeckClassToName.cs" />
@@ -185,6 +189,7 @@
     <Compile Include="Utils\IOWrappers\WrapperProvider.cs" />
     <Compile Include="Utils\ITrackerFactory.cs" />
     <Compile Include="Utils\IWinAPI.cs" />
+    <Compile Include="Utils\ScreenshotNameProvider.cs" />
     <Compile Include="Utils\SerializationHelper.cs" />
     <Compile Include="Utils\LinqExtensions.cs" />
     <Compile Include="Utils\Messages\ControlMessangerContext.cs" />
@@ -352,6 +357,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Rewards\RewardItemList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Settings\OpenPackSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

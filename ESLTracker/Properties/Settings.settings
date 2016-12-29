@@ -38,14 +38,20 @@
     <Setting Name="UpgradeRequired" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="GamesFilter_SelectedPredefinedDateFilter" Type="System.String" Scope="User">
+    <Setting Name="GamesFilter_SelectedPredefinedDateFilter" Type="ESLTracker.ViewModels.Game.PredefinedDateFilter" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="GamesFilter_DayCutoffTime" Type="System.DateTime" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="GamesFilter_DayCutoffTime" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">00:00:00</Value>
     </Setting>
     <Setting Name="Packs_ScreenshotAfterAdded" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Packs_ScreenshotNameTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Pack_{n:0000}_{d:yyyy_MM_dd_HH_mm}</Value>
+    </Setting>
+    <Setting Name="General_ScreenshotNameTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Screenshot_{0:yyyy_MM_dd_HH_mm_ss}</Value>
     </Setting>
   </Settings>
 </SettingsFile>
