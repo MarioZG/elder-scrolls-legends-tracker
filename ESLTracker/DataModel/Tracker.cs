@@ -9,10 +9,11 @@ using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.DataModel
 {
-    public class Tracker : INotifyPropertyChanged, ITracker
+    public class Tracker : ITracker
     {
         private static Tracker _instance = null;
         public static Tracker Instance
@@ -53,11 +54,20 @@ namespace ESLTracker.DataModel
             set
             {
                 activeDeck = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ActiveDeck")); 
+                trackerFactory.GetMessanger().Send(new ActiveDeckChanged(value));
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private ITrackerFactory trackerFactory;
+        public Tracker() : this(TrackerFactory.DefaultTrackerFactory)
+        {
+
+        }
+
+        public Tracker(ITrackerFactory trackerFactory)
+        {
+            this.trackerFactory = trackerFactory;
+        }
 
         public IEnumerable<Reward> GetRewardsSummaryByType(RewardType type)
         {

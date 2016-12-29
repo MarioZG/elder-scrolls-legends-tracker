@@ -23,7 +23,8 @@ namespace ESLTracker.ViewModels.Game
             {
                 game = value;
                 Game.PropertyChanged += Game_PropertyChanged;
-                RaisePropertyChangedEvent("Game");
+                RaisePropertyChangedEvent(nameof(Game));
+                ShowWinsVsClass(game?.OpponentClass);
             }
         }
 
@@ -62,7 +63,7 @@ namespace ESLTracker.ViewModels.Game
             set
             {
                 opponentClassWins = value;
-                RaisePropertyChangedEvent("OpponentClassWins");
+                RaisePropertyChangedEvent(nameof(OpponentClassWins));
             }
         }
 
@@ -85,7 +86,7 @@ namespace ESLTracker.ViewModels.Game
         public bool isEditControl = false;
         public bool IsEditControl {
             get { return isEditControl; }
-            set { isEditControl = value; RaisePropertyChangedEvent("IsEditControl"); }
+            set { isEditControl = value; RaisePropertyChangedEvent(nameof(IsEditControl)); }
         }
 
         private string errorMessage;
@@ -93,17 +94,15 @@ namespace ESLTracker.ViewModels.Game
         public string ErrorMessage
         {
             get { return errorMessage; }
-            set { errorMessage = value; RaisePropertyChangedEvent("ErrorMessage"); }
+            set { errorMessage = value; RaisePropertyChangedEvent(nameof(ErrorMessage)); }
         }
-
 
         public ICommand CommandButtonCreate
         {
             get
             {
                 return new RelayCommand(
-                    new Action<object>(CommandButtonCreateExecute)//,
-                    //new Func<object, bool>(CommandButtonCreateCanExecute)
+                    new Action<object>(CommandButtonCreateExecute)
                     );
             }
         }
@@ -162,30 +161,31 @@ namespace ESLTracker.ViewModels.Game
             messanger = trackerFactory.GetMessanger();
             tracker = trackerFactory.GetTracker();
             Game.PropertyChanged += Game_PropertyChanged;
-            tracker.PropertyChanged += Instance_PropertyChanged;
-            messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
+            messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);
+            messanger.Register<EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
 
             this.BeginEdit();
         }
 
-        private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void ActiveDeckChanged(ActiveDeckChanged activeDeckChanged)
         {
-            if(e.PropertyName == "ActiveDeck")
+            if (!IsEditControl)
             {
+                this.Game.Deck = activeDeckChanged.ActiveDeck;
                 if (savedState != null)
                 {
                     savedState.Deck = tracker.ActiveDeck;
                 }
-                RaisePropertyChangedEvent("AllowedGameTypes");
+                RaisePropertyChangedEvent(nameof(AllowedGameTypes));
             }
-       }
+        }
 
         private void Game_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Type")
+            if (e.PropertyName == nameof(Game.Type))
             {
-                RaisePropertyChangedEvent("DisplayPlayerRank");
-                RaisePropertyChangedEvent("DisplayBonusRound");
+                RaisePropertyChangedEvent(nameof(DisplayPlayerRank));
+                RaisePropertyChangedEvent(nameof(DisplayBonusRound));
 
                 if (this.Game.Type == GameType.PlayRanked)
                 {
@@ -201,21 +201,24 @@ namespace ESLTracker.ViewModels.Game
                     Game.BonusRound = null;
                 }
             }
-            else if ((e.PropertyName == "OpponentName")
-                || (e.PropertyName == "OpponentClass"))
+            else if (e.PropertyName == nameof(Game.OpponentName))
             {
-                  RaisePropertyChangedEvent("SummaryText");
+                RaisePropertyChangedEvent(nameof(SummaryText));
+            }
+            else if (e.PropertyName == nameof(Game.OpponentClass))
+            {
+                RaisePropertyChangedEvent(nameof(SummaryText));
+                ShowWinsVsClass(this.Game.OpponentClass);
             }
         }
 
         public void UpdateBindings()
         {
-            RaisePropertyChangedEvent("Game");
+            RaisePropertyChangedEvent(nameof(Game));
         }
 
         public void CommandButtonCreateExecute(object parameter)
         {
-            //object[] args = parameter as object[];
             GameOutcome? outcome = EnumManager.ParseEnumString<GameOutcome>(parameter as string);
             this.ErrorMessage = null;
             if (tracker.ActiveDeck == null)
@@ -254,14 +257,7 @@ namespace ESLTracker.ViewModels.Game
 
                 this.UpdateBindings();
 
-                //clear opp class
-                //opponentClass.Reset();
-
-                //clear opp rank
-                //opponentRank.SelectedRank = null;
-                //opponentRank.LegendRank = null;
-
-                RaisePropertyChangedEvent("");
+                RaisePropertyChangedEvent(String.Empty);
 
             }
 
@@ -308,33 +304,43 @@ namespace ESLTracker.ViewModels.Game
 
         private IEnumerable<GameType> GetAllowedGameTypes()
         {
+            List<GameType> allowedGameTypes = null;
             if (tracker.ActiveDeck != null)
             {
-#pragma warning disable CS0162 // Unreachable code detected
                 switch (tracker.ActiveDeck.Type)
                 {
                     case DeckType.Constructed:
-                        return new List<GameType>() { GameType.PlayCasual, GameType.PlayRanked };
+                        allowedGameTypes = new List<GameType>() { GameType.PlayCasual, GameType.PlayRanked };
                         break;
                     case DeckType.VersusArena:
-                        return new List<GameType>() { GameType.VersusArena };
                         this.Game.Type = GameType.VersusArena;
+                        if (savedState != null)
+                        {
+                            savedState.Type = GameType.VersusArena;
+                        }
+                        allowedGameTypes = new List<GameType>() { GameType.VersusArena };
                         break;
                     case DeckType.SoloArena:
-                        return new List<GameType>() { GameType.SoloArena };
                         this.Game.Type = GameType.SoloArena;
+                        if (savedState != null)
+                        {
+                            savedState.Type = GameType.SoloArena;
+                        }
+                        allowedGameTypes = new List<GameType>() { GameType.SoloArena };
                         break;
                     default:
                         break;
                 }
-#pragma warning restore CS0162 // Unreachable code detected
             }
-            return Enum.GetValues(typeof(GameType)).Cast<GameType>();
+            if (allowedGameTypes == null)
+            {
+                allowedGameTypes = new List<GameType>(Enum.GetValues(typeof(GameType)).Cast<GameType>());
+            }
+            return allowedGameTypes;
         }
 
         public void ShowWinsVsClass(DeckClass? deckClass)
         {
-            //this.Game.OpponentClass = deckClass; //ugly hack until class slectro can be bound in xaml
             if ((deckClass != null) && (tracker.ActiveDeck != null))
             {
                 var res = tracker.ActiveDeck.GetDeckVsClass(deckClass);
@@ -383,8 +389,8 @@ namespace ESLTracker.ViewModels.Game
                 }
 
                 messanger.Send(
-                    new Utils.Messages.EditDeck() { Deck = game.Deck },
-                    Utils.Messages.EditDeck.Context.StatsUpdated);
+                    new EditDeck() { Deck = game.Deck },
+                    EditDeck.Context.StatsUpdated);
 
                 trackerFactory.GetFileManager().SaveDatabase();
             }

@@ -96,7 +96,7 @@ namespace ESLTracker.Utils
                 }
                 else
                 {
-                    tracker = new Tracker();
+                    tracker = new Tracker(this.trackerfactory);
                     tracker.Version = Tracker.CurrentFileVersion;
                 }
             }

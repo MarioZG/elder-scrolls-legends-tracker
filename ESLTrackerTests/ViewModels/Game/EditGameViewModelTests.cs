@@ -15,6 +15,7 @@ using ESLTracker.Utils;
 using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Game.Tests
 {
@@ -303,7 +304,7 @@ namespace ESLTracker.ViewModels.Game.Tests
 
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void UpdateGameData001_DateTimeWhenGameConcluded()
         {
             Mock<ISettings> settingsMock = new Mock<ISettings>();
@@ -332,5 +333,31 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             Assert.AreEqual(timeConcluded, model.Game.Date);
         }
+
+        [TestMethod]
+        public void ChangeActiveDeck001_AvailableGameTypesUpdated()
+        {
+            Deck activeDeck = new Deck() { Type = DeckType.SoloArena };
+
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+
+            Mock<ITracker> tracker = new Mock<ITracker>();
+            tracker.Setup(t => t.ActiveDeck).Returns(activeDeck);
+
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+
+            IMessenger messagnger = Messenger.Default;
+            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messagnger);
+
+            
+
+            EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
+            messagnger.Send(new ActiveDeckChanged(activeDeck));
+
+            Assert.AreEqual(1, model.AllowedGameTypes.Count());
+            Assert.AreEqual(GameType.SoloArena, model.AllowedGameTypes.First());
+            Assert.AreEqual(false, model.IsDirty());
+        }
+
     }
 }

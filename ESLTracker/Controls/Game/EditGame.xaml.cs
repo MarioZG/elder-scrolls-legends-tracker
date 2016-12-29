@@ -53,67 +53,14 @@ namespace ESLTracker.Controls.Game
                 typeof(EditGame), 
                 new PropertyMetadata(false));
 
-        private ITrackerFactory trackerFactory;
-        private IMessenger messanger;
-        private ITracker tracker;
-
-        public EditGame() : this(new TrackerFactory())
-        {
-
-        }
-
-        public EditGame(ITrackerFactory trackerFactory)
+        public EditGame() 
         {
             InitializeComponent();
-
-            this.trackerFactory = trackerFactory;
-            this.messanger = trackerFactory.GetMessanger();
-            this.tracker = trackerFactory.GetTracker();
-
-            tracker.PropertyChanged += Instance_PropertyChanged;
-            opponentClass.DataContext.PropertyChanged += DataContext_PropertyChanged;
 
             //TODO: Find a way to move it to xaml!
             var nameOfPropertyInVm = "IsEditControl";
             var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
             this.SetBinding(IsEditControlProperty, binding);
-
-            messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
-
-        }
-
-        private void EditGameStart(Utils.Messages.EditGame obj)
-        {
-            if (IsEditControl)
-            {
-                this.selectedDeck.DataContext = obj.Game.Deck;
-            }
-        }
-
-        private void DataContext_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if(e.PropertyName == "SelectedClass")
-            {
-                this.DataContext.ShowWinsVsClass(opponentClass.DataContext.SelectedClass);
-            }
-        }
-
-        private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (! IsEditControl
-                && (this.selectedDeck.DataContext != null) 
-                && (tracker.ActiveDeck != null))
-            {
-                this.DataContext.Game.Deck = tracker.ActiveDeck;
-                if (tracker.ActiveDeck.Type == DeckType.VersusArena)
-                {
-                    this.cbGameType.SelectedItem = DataModel.Enums.GameType.VersusArena;
-                }
-                else if (tracker.ActiveDeck.Type == DeckType.SoloArena)
-                {
-                    this.cbGameType.SelectedItem = DataModel.Enums.GameType.SoloArena;
-                }
-            }
         }
     }
 }

@@ -129,21 +129,23 @@ namespace ESLTracker.DataModel
                 return false;
             }
 
-            return (this.BonusRound == g.BonusRound
-                 && this.Date == g.Date
-                 && this.Deck == g.Deck
-                 && this.DeckId == g.DeckId
-                 && this.Notes == g.Notes
-                // && this.OpponentAttributes == g.OpponentAttributes
-                 && this.OpponentClass == g.OpponentClass
-                 && this.OpponentLegendRank == g.OpponentLegendRank
-                 && this.OpponentName == g.OpponentName
-                 && this.OpponentRank == g.OpponentRank
-                 && this.OrderOfPlay == g.OrderOfPlay
-                 && this.Outcome == g.Outcome
-                 && this.PlayerLegendRank == g.PlayerLegendRank
-                 && this.PlayerRank == g.PlayerRank
-                 && this.Type == g.Type);
+            bool ret = this.BonusRound == g.BonusRound;
+            ret &= this.Date == g.Date;
+            ret &= this.Deck == g.Deck;
+            ret &= this.DeckId == g.DeckId;
+            ret &= this.Notes == g.Notes;
+            // && this.OpponentAttributes == g.OpponentAttributes  ;
+            ret &= this.OpponentClass == g.OpponentClass;
+            ret &= this.OpponentLegendRank == g.OpponentLegendRank;
+            ret &= this.OpponentName == g.OpponentName;
+            ret &= this.OpponentRank == g.OpponentRank;
+            ret &= this.OrderOfPlay == g.OrderOfPlay;
+            ret &= this.Outcome == g.Outcome;
+            ret &= this.PlayerLegendRank == g.PlayerLegendRank;
+            ret &= this.PlayerRank == g.PlayerRank;
+            ret &= this.Type == g.Type;
+
+            return ret;
         }
     }
 }

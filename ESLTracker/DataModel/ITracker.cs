@@ -13,8 +13,6 @@ namespace ESLTracker.DataModel
         List<Reward> Rewards { get; set; }
         ObservableCollection<Pack> Packs { get; set; }
 
-        event PropertyChangedEventHandler PropertyChanged;
-
         IEnumerable<Reward> GetRewardsSummaryByType(RewardType type);
     }
 }

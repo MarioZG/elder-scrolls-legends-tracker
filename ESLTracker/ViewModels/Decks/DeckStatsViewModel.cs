@@ -68,7 +68,7 @@ namespace ESLTracker.ViewModels.Decks
             set { showControl = value; RaisePropertyChangedEvent("ShowControl"); }
         }
 
-        private IMessenger messagnger;
+        private IMessenger messanger;
         ITracker tracker;
 
 
@@ -79,23 +79,22 @@ namespace ESLTracker.ViewModels.Decks
 
         public DeckStatsViewModel(ITrackerFactory trackerFactory)
         {
-            this.messagnger = trackerFactory.GetMessanger();
+            this.messanger = trackerFactory.GetMessanger();
             tracker = trackerFactory.GetTracker();
 
-            tracker.PropertyChanged += Instance_PropertyChanged;
             if (tracker.ActiveDeck != null)
             {
                 //load data for active deck from settigs
                 RefreshData();
             }
 
-            messagnger.Register<EditDeck>(this, GameAdded, EditDeck.Context.StatsUpdated);
+            messanger.Register<EditDeck>(this, GameAdded, EditDeck.Context.StatsUpdated);
+            messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);
         }
 
-        private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void ActiveDeckChanged(ActiveDeckChanged obj)
         {
-            if ((e.PropertyName == "ActiveDeck")
-                && (tracker.ActiveDeck != null))
+            if (obj.ActiveDeck != null) //null when filter on decklist is refreshed
             {
                 RefreshData();
             }
