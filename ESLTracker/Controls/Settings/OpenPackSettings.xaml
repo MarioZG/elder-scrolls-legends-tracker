@@ -44,6 +44,6 @@
             See c# formatting for format help
         </TextBlock>
         <Label Grid.Row="3" Content="Preview" HorizontalAlignment="Right"/>
-        <Label Grid.Row="3" Grid.Column="1" Content="{Binding ElementName=screenshotFileName, Path=Text, Converter={StaticResource PackScreenshotSettingPreview}}"/>
+        <TextBlock Margin="5,5,5,5" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Text="{Binding ElementName=screenshotFileName, Path=Text, Converter={StaticResource PackScreenshotSettingPreview}}"/>
     </Grid>
 </UserControl>
