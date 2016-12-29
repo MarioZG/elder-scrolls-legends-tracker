@@ -125,7 +125,7 @@ namespace ESLTracker.ViewModels.Packs
             return OrderedPacks
                 .Select(p => new
                     {
-                        SL = OrderedPacks.Where(p2 => p.DateOpened > p2.DateOpened
+                        SL = 1+ OrderedPacks.Where(p2 => p.DateOpened > p2.DateOpened
                                 && p2.DateOpened > (OrderedPacks.Where(
                                 p3 => p3.DateOpened < p.DateOpened &&  //get last legendary pack
                                 p3.Cards.Any(filter)).DefaultIfEmpty(new Pack() { DateOpened = DateTime.MinValue }).FirstOrDefault().DateOpened)
