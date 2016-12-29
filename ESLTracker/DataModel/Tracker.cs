@@ -21,7 +21,7 @@ namespace ESLTracker.DataModel
             {
                 if (_instance == null)
                 {
-                    _instance = new FileManager(TrackerFactory.DefaultTrackerFactory).LoadDatabase();
+                    _instance = TrackerFactory.DefaultTrackerFactory.GetFileManager().LoadDatabase();
                 }
                 return _instance;
             }

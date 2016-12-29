@@ -241,7 +241,7 @@ namespace ESLTracker.ViewModels.Game
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
                     Utils.Messages.EditDeck.Context.StatsUpdated);
 
-                new FileManager(trackerFactory).SaveDatabase();
+                trackerFactory.GetFileManager().SaveDatabase();
 
                 this.Game = new DataModel.Game();
 
@@ -386,7 +386,7 @@ namespace ESLTracker.ViewModels.Game
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
                     Utils.Messages.EditDeck.Context.StatsUpdated);
 
-                new FileManager(trackerFactory).SaveDatabase();
+                trackerFactory.GetFileManager().SaveDatabase();
             }
 
             this.EndEdit();

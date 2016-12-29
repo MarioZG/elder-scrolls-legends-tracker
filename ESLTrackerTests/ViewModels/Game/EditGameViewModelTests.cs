@@ -45,6 +45,11 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             trackerFactory.Setup(tf => tf.GetWinAPI()).Returns(winApi.Object);
 
+            Mock<IFileManager> fileManager = new Mock<IFileManager>();
+
+            trackerFactory.Setup(tf => tf.GetFileManager()).Returns(fileManager.Object);
+
+
             EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
 
             PlayerRank selectedPlayerRank = PlayerRank.TheLord;

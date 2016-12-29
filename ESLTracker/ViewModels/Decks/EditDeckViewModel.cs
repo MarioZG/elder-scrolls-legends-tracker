@@ -125,7 +125,7 @@ namespace ESLTracker.ViewModels.Decks
             {
                 tracker.Decks.Add(this.Deck);
             }
-            new FileManager(trackerFactory).SaveDatabase();
+            trackerFactory.GetFileManager().SaveDatabase();
             this.EndEdit();
             messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
 

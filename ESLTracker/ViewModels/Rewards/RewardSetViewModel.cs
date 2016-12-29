@@ -126,7 +126,7 @@ namespace ESLTracker.ViewModels.Rewards
                 r.Date = date;
             }
             trackerFactory.GetTracker().Rewards.AddRange(newRewards);
-            new FileManager(trackerFactory).SaveDatabase();
+            trackerFactory.GetFileManager().SaveDatabase();
             Rewards.Clear();
             RewardReason = null;
         }

@@ -3,15 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.Utils.DrawingWrappers;
 
 namespace ESLTracker.Utils.IOWrappers
 {
     public class WrapperProvider : IWrapperProvider
     {
+        private static IWrapperProvider _instance;
+        [Obsolete("Use tracker factory to obtain instance")]
+        public static IWrapperProvider Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new WrapperProvider();
+                }
+                return _instance;
+            }
+        }
+
+        private WrapperProvider()
+        {
+
+        }
+
         static Dictionary<Type, object> Wrappers = new Dictionary<Type, object>();
 
-        public object GetWrapper(Type type)
+        public T GetWrapper<T>() //where T: object
         {
+            Type type = typeof(T);
             if (! Wrappers.ContainsKey(type))
             {
                 if (type == typeof(IDirectoryWrapper)) {
@@ -25,12 +46,16 @@ namespace ESLTracker.Utils.IOWrappers
                 {
                     Wrappers.Add(type, new PathWrapper());
                 }
+                else if (type == typeof(IBitmapWrapper))
+                {
+                    Wrappers.Add(type, new BitmapWrapper());
+                }
                 else
                 {
                     throw new NotImplementedException("Unknown interface " + type.FullName);
                 }
             }
-            return Wrappers[type];
+            return (T)Wrappers[type];// as T;
         }
     }
 }

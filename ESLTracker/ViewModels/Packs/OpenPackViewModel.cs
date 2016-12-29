@@ -70,14 +70,14 @@ namespace ESLTracker.ViewModels.Packs
             ITracker tracker = trackerFactory.GetTracker();
             Pack.DateOpened = trackerFactory.GetDateTimeNow();
             tracker.Packs.Add(Pack);
-            new FileManager(trackerFactory).SaveDatabase();
+            trackerFactory.GetFileManager().SaveDatabase();
             InitNewPack();
         }
 
         public void TakePackScreenshot()
         {
             string fileName = new ScreenshotNameProvider().GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack);
-            new FileManager(trackerFactory).SaveScreenShot(fileName);
+            trackerFactory.GetFileManager().SaveScreenShot(fileName);
         }
     }
 }

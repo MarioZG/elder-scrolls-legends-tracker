@@ -113,7 +113,12 @@ namespace ESLTracker.Utils.Tests
         [TestMethod()]
         public void SaveDatabaseTest001_NonExitingPath()
         {
-            new FileManager(null).SaveDatabase<Tracker>(TestContext.TestDeploymentDir + "./somerandomfolder/ss.xml", new Tracker());
+            Mock<IWrapperProvider> wrapperProvider = new Mock<IWrapperProvider>();
+
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetWrapperProvider()).Returns(wrapperProvider.Object);
+
+            new FileManager(trackerFactory.Object).SaveDatabase<Tracker>(TestContext.TestDeploymentDir + "./somerandomfolder/ss.xml", new Tracker());
         }
 
         [TestMethod()]

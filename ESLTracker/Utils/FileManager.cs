@@ -15,7 +15,7 @@ using System.Xml;
 
 namespace ESLTracker.Utils
 {
-    public class FileManager
+    public class FileManager : IFileManager
     {
         string DataPath
         {
@@ -178,7 +178,7 @@ namespace ESLTracker.Utils
 
         public void SaveDatabase<T>(string path, T tracker)
         {
-            IWrapperProvider wrapperProvider = new WrapperProvider();
+            IWrapperProvider wrapperProvider = trackerfactory.GetWrapperProvider();
             //check if path exist
             if (!Directory.Exists(Path.GetDirectoryName(path)))
             {
@@ -199,9 +199,9 @@ namespace ESLTracker.Utils
 
         public void BackupDatabase(IWrapperProvider wrapperProvider, string path)
         {
-            IPathWrapper pathWrapper = wrapperProvider.GetWrapper(typeof(IPathWrapper)) as IPathWrapper;
-            IDirectoryWrapper directoryWrapper = wrapperProvider.GetWrapper(typeof(IDirectoryWrapper)) as IDirectoryWrapper;
-            IFileWrapper fileWrapper = wrapperProvider.GetWrapper(typeof(IFileWrapper)) as IFileWrapper;
+            IPathWrapper pathWrapper = wrapperProvider.GetWrapper<IPathWrapper>();
+            IDirectoryWrapper directoryWrapper = wrapperProvider.GetWrapper<IDirectoryWrapper>();
+            IFileWrapper fileWrapper = wrapperProvider.GetWrapper<IFileWrapper>();
             //copy data.xml to data.xml.bak
             //copy data.xml to data_date.bak - it will override last dayily backup. first run of day will create new one
             string backupFileName = pathWrapper.GetFileNameWithoutExtension(path) + DateTime.Now.ToString("yyyyMMdd");
@@ -244,7 +244,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        internal void SaveScreenShot(string fileName)
+        public void SaveScreenShot(string fileName)
         {
             IntPtr? eslHandle = trackerfactory.GetWinAPI().GetEslProcess()?.MainWindowHandle;
             if (eslHandle.HasValue)

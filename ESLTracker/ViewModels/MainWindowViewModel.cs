@@ -190,7 +190,7 @@ namespace ESLTracker.ViewModels
             }
             if (!checkIfCanClose || (checkIfCanClose && MainWindow.ot.CanClose(CommandExit)))
             {
-                new FileManager(trackerFactory).SaveDatabase();
+                trackerFactory.GetFileManager().SaveDatabase();
                 MainWindow.UpdateOverlay = false;
                 MainWindow.ot.Close();
                 ISettings settings = trackerFactory.GetSettings();
