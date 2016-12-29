@@ -17,7 +17,7 @@ target BuildMaster
 	</PropertyGroup>	
 	<ItemGroup>
 		<ProjectToBuild Include="$(BuildDir)\Src\ESLTracker\ESLTracker.csproj">
-			<AdditionalProperties>OutputPath=$(BuildDir)\ESLTracker</AdditionalProperties>
+			<AdditionalProperties>OutputPath=$(BuildDir)\ESLTracker;AllowedReferenceRelatedFileExtensions=none;DebugSymbols=false;DebugType=None</AdditionalProperties>
 		</ProjectToBuild>
 		<ProjectToBuild Include="$(BuildDir)\Src\ESLTrackerTests\ESLTrackerTests.csproj">
 			<AdditionalProperties>OutputPath=$(BuildDir)\ESLTrackerTests</AdditionalProperties>
@@ -40,8 +40,9 @@ target BuildMaster
 	<Target Name="Build">
 		<Message Text="MSBuildProjectDirectoryr=$(MSBuildProjectDirectory)"/>
 		<CallTarget Targets="Compile"/>
+		<Message Text="Output in $(BuildDir)"/>
 		<ItemGroup>
-			<OutputFiles Include="$(BuildDir)\ESLTracker\*.*" />
+			<OutputFiles Include="$(BuildDir)\ESLTracker\**\*.*" />
 		</ItemGroup>
 	</Target>
 	<Target Name="PrepareOutDir">
@@ -63,11 +64,11 @@ target BuildMaster
 		<Message Text="Files to copy:@(OutputFiles)"/>
 		<RemoveDir Directories="$(RootDir)\Bin\$(Version)"/>
 		<MakeDir Directories="$(RootDir)\Bin\$(Version)"/>
-		<Copy SourceFiles='@(OutputFiles)' DestinationFolder='$(RootDir)\Bin\$(Version)' />
+		<Copy SourceFiles='@(OutputFiles)' DestinationFolder='$(RootDir)\Bin\$(Version)\%(RecursiveDir)' />
 	</Target>
 	<Target Name='ZipBinaries' DependsOnTargets='CopyBinaries'>
 		<ItemGroup>
-			<OutputFilesToZip Include="$(RootDir)\Bin\$(Version)\*.*" />
+			<OutputFilesToZip Include="$(RootDir)\Bin\$(Version)\**\*.*" />
 		</ItemGroup>
 		<Zip InputFileNames="@(OutputFilesToZip)"
 			OverwriteExistingFile="true"
