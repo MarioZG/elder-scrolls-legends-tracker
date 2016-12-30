@@ -109,13 +109,25 @@ namespace ESLTracker.DataModel
                     switch (Card.Rarity)
                     {
                         case Enums.CardRarity.Common:
-                            return new SolidColorBrush(Color.FromArgb(255, 199, 199, 199));
+                            return new RadialGradientBrush(
+                                 Color.FromArgb(255, 115, 115, 115),
+                                 Color.FromArgb(255, 200, 200, 200))
+                                  { RadiusX = 0.6, RadiusY = 0.6 };
                         case Enums.CardRarity.Rare:
-                            return new SolidColorBrush(Color.FromArgb(255, 98, 192, 239));
+                            return new RadialGradientBrush(
+                                 Color.FromArgb(255, 72, 132, 226),
+                                 Color.FromArgb(255, 135, 195, 224))
+                                { RadiusX = 0.6, RadiusY = 0.6 };
                         case Enums.CardRarity.Epic:
-                            return new SolidColorBrush(Color.FromArgb(255, 193, 86, 203));
+                            return new RadialGradientBrush(
+                                Color.FromArgb(255, 138, 43, 226),
+                                Color.FromArgb(255, 204, 84, 199))
+                                 { RadiusX = 0.6, RadiusY = 0.6 };
                         case Enums.CardRarity.Legendary:
-                            return new SolidColorBrush(Color.FromArgb(255, 252, 252, 122));
+                            return new RadialGradientBrush(                                
+                                Color.FromArgb(255, 240, 154, 35),
+                                Color.FromArgb(255, 255, 255, 40))
+                                 { RadiusX = 0.6, RadiusY = 0.6 };
                         default:
                             throw new NotImplementedException("Unknown card rarity");
                     }                    
