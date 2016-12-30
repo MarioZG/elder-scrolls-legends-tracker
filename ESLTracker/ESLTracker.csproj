@@ -803,7 +803,7 @@
     <Resource Include="Resources\Cards\orcclancaptain.png" />
     <Resource Include="Resources\Cards\orcclanshaman.png" />
     <Resource Include="Resources\Cards\orcishwarhammer.png" />
-    <Resource Include="Resources\Cards\orclansman.png" />
+    <Resource Include="Resources\Cards\orcclansman.png" />
     <Resource Include="Resources\Cards\packwolf.png" />
     <Resource Include="Resources\Cards\pahmarrahtrenegade.png" />
     <Resource Include="Resources\Cards\piercingjavelin.png" />
