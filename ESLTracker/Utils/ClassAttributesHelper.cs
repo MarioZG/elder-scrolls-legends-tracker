@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,16 @@ namespace ESLTracker.Utils
 
             return ret;
         }
+
+        public static Dictionary<DeckAttribute, Color> DeckAttributeColors = new Dictionary<DeckAttribute, Color>()
+        {
+            { DeckAttribute.Agility, Color.FromArgb(255, 8, 100, 30 )},
+            { DeckAttribute.Endurance, Color.FromArgb(255, 99, 55, 148 )},
+            { DeckAttribute.Intelligence, Color.FromArgb(255, 5, 117, 192 )},
+            { DeckAttribute.Neutral, Color.FromArgb(255, 115, 115, 115 )},
+            { DeckAttribute.Strength, Color.FromArgb(255, 151, 49, 30 )},
+            { DeckAttribute.Willpower, Color.FromArgb(255, 136, 102, 2 )}
+        };
 
     }
 }
