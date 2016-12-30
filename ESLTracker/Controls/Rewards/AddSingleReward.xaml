@@ -11,9 +11,11 @@
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
              mc:Ignorable="d" 
              Margin="{Binding Margin}"
-             Behaviors:SizeObserver.Observe="True"
-             Behaviors:SizeObserver.ObservedWidth="{Binding ActualWidth, Mode=OneWayToSource}"
-             Behaviors:SizeObserver.ObservedHeight="{Binding ActualHeight, Mode=OneWayToSource}">
+             Visibility="{Binding Visibility}"
+             Width="{Binding ControlWidth}"
+             MinWidth="100"
+             x:Name="control"
+>
     <UserControl.Resources>
         <ObjectDataProvider x:Key="GuildEnum" MethodName="GetValues"
                                 ObjectType="{x:Type System:Enum}">
@@ -27,7 +29,7 @@
     <UserControl.DataContext>
         <ViewModels:AddSingleRewardViewModel/>
     </UserControl.DataContext>
-    <Grid Visibility="{Binding Visibility}">
+    <Grid>
         <Image x:Name="imageClose" HorizontalAlignment="Right" VerticalAlignment="Top" Height="14" Width="14" 
                Source="pack://application:,,,/Resources/closeicon.png" 
                Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"
@@ -37,65 +39,64 @@
             </Image.InputBindings>
         </Image>
         <StackPanel>
-            <Image x:Name="image" Height="100" Width="100" 
+            <Image x:Name="image" Height="100" Width="100" Margin="0,0,0,10"
                Source="{Binding BackgroundImagePath}"
               >
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding CommandControlClicked}"/>
                 </Image.InputBindings>
             </Image>
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Opacity="60"
+            <Grid VerticalAlignment="Center" Opacity="60"
                     Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
                >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30*"/>
-                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Label Content="Quantity " Grid.Row="0"/>
-                    <TextBox x:Name="txtQuantity"  HorizontalAlignment="Stretch"
-                     Grid.Row="0" Grid.Column="1"
+                <DockPanel Grid.Row="0">
+                    <Label Content="Quantity " DockPanel.Dock="Left"/>
+                    <TextBox x:Name="txtQuantity" 
                      Text="{Binding Reward.Quantity}"
                      Behaviors:FocusExtension.IsFocused="{Binding QtyFocus, Mode=TwoWay}"
                      Behaviors:FocusExtension.SelectAllOnFocus="True"
                      Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
-                </StackPanel>
-                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                    <Label  Content="Card " 
+                </DockPanel>
+                <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+                    <Label DockPanel.Dock="Top"
+                           Content="Card " 
                            Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
-              </StackPanel>
-                <Cards:SelectCard Grid.Row="2"
+                    <Cards:SelectCard Grid.Row="2" Grid.ColumnSpan="2"
                                       HasFocus="{Binding SelectCardFocus, Mode=TwoWay}"
-                        CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
-                        CardNameAutocomplete="{Binding CardNamesList}"
-                           Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
-
+                                      CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
+                                      CardNameAutocomplete="{Binding CardNamesList}"
+                                        Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
+                </DockPanel>
                 <Label Content="Comment" Grid.Row="3"/>
                 <TextBox x:Name="txtComment" HorizontalAlignment="Stretch"
                      Grid.Row="4" Grid.ColumnSpan="2"
-                     AcceptsReturn="True" MaxWidth="100"
+                     AcceptsReturn="True" MinWidth="{Binding MinWidth, ElementName=control}" MaxWidth="{Binding ControlWidth}"
                      Text="{Binding Reward.Comment}"
                      Behaviors:FocusExtension.IsFocused="{Binding CommentsFocus, Mode=TwoWay}"
                      Behaviors:FocusExtension.SelectAllOnFocus="True"
                      Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
-                <Label Content="Guild" Grid.Row="5"
+                <DockPanel Grid.Row="5" Grid.ColumnSpan="2">
+                    <Label Content="Guild" DockPanel.Dock="Left"
                        Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
-                />
-                <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
-                      Grid.Row="5" Grid.Column="1"
+                    />
+                    <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
                       SelectedItem="{Binding Reward.RewardQuestGuild}"
                       ItemsSource="{Binding Source={StaticResource GuildEnum}}"
                       Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
-                <Button x:Name="btnAdd" Content="Add" 
+                </DockPanel>
+                <Button x:Name="btnAdd" Content="Add"  Margin="0,5,0,5"
                     Grid.Row="6" Grid.ColumnSpan="2"
                     Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"
                     Command="{Binding CommandAddButtonPressed}"/>

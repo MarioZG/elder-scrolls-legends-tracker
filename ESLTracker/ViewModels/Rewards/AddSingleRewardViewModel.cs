@@ -138,19 +138,15 @@ namespace ESLTracker.ViewModels.Rewards
             }
         }
 
-        private Thickness margin;
-        public Thickness Margin
+        private int controlWidth;
+        public int ControlWidth
         {
-            get { return margin; }
-            set
-            {
-                margin = value;
-                RaisePropertyChangedEvent("Margin");
-            }
+            get { return controlWidth; }
+            set { controlWidth = value; RaisePropertyChangedEvent(nameof(ControlWidth)); }
         }
 
-        public int ActualWidth { get; set; }
-        public int ActualHeight { get; set; }
+        public int EditModeWidth { get; set; }
+
 
         private TrackerFactory trackerFactory;
 
@@ -176,7 +172,7 @@ namespace ESLTracker.ViewModels.Rewards
                 CardInstance = null
             };
             InitTypeSpecifics(this.reward.Type);
-            this.Margin = new Thickness(0, 0, 0, 0);
+            this.ControlWidth = 0; //will set to min width
         }
 
         private void InitTypeSpecifics(RewardType value)

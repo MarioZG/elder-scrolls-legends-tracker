@@ -36,9 +36,25 @@ namespace ESLTracker.Controls.Rewards
             }
         }
 
+        public int EditModeWidth
+        {
+            get { return (int)GetValue(EditModeWidthProperty); }
+            set { SetValue(EditModeWidthProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EditModeWidth.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EditModeWidthProperty =
+            DependencyProperty.Register("EditModeWidth", typeof(int), typeof(AddSingleReward), new PropertyMetadata(100));
+
+
+
         public AddSingleReward()
         {
             InitializeComponent();
+
+            var nameOfPropertyInVm = "EditModeWidth";
+            var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
+            this.SetBinding(EditModeWidthProperty, binding);
         }
 
        //use to be able to pass type from xaml - research better way!
