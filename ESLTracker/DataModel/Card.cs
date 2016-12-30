@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
@@ -55,6 +56,16 @@ namespace ESLTracker.DataModel
 
         [XmlIgnore]
         public string Text { get; set; }
+
+        public string ImageName
+        {
+            get
+            {
+                Regex rgx = new Regex("[^a-zA-Z0-9]");
+                var name = rgx.Replace(Name, "");
+                return "pack://application:,,,/Resources/Cards/" + name + ".png";
+            }
+        }
 
         private ITrackerFactory trackerFactory;
 

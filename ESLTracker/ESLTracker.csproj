@@ -155,6 +155,7 @@
     <Compile Include="RankedProgressChart.xaml.cs">
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\CardImagesHelper.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
     <Compile Include="Utils\ResourcesHelper.cs" />
     <Compile Include="Settings.cs" />
