@@ -23,7 +23,7 @@
                 Margin="0"
                 Padding="1"
                 Background="{Binding CardInstance.RarityColor}"
-                Visibility="{Binding CardInstance.HasCard, Converter={StaticResource BoolToVisibiltyConverter}}"    
+                Visibility="{Binding CardInstance.HasCard, Converter={StaticResource BoolToVisibiltyConverter}, FallbackValue=Hidden}"    
                 BorderBrush="Black"
                 BorderThickness="1">
                 <Viewbox VerticalAlignment="Stretch" Height="Auto">
