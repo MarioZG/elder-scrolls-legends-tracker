@@ -51,7 +51,14 @@ namespace ESLTracker.Controls.Cards
         {
             if (e.NewValue != null)
             {
-                ((SelectCard)d).CardInstance = new CardInstance(CardsDatabase.Default.FindCardByName(e.NewValue?.ToString()));
+                if (((SelectCard)d).CardInstance == null)
+                {
+                    ((SelectCard)d).CardInstance = new CardInstance(CardsDatabase.Default.FindCardByName(e.NewValue?.ToString()));
+                }
+                else if (((SelectCard)d).CardInstance.Card?.Name != e.NewValue.ToString())
+                {
+                    ((SelectCard)d).CardInstance.Card = CardsDatabase.Default.FindCardByName(e.NewValue?.ToString());
+                }
             }
         }
 
@@ -90,6 +97,23 @@ namespace ESLTracker.Controls.Cards
         {
           //  throw new NotImplementedException();
         }
+
+        public bool ReadOnly
+        {
+            get { return (bool)GetValue(ReadOnlyProperty); }
+            set { SetValue(ReadOnlyProperty, value); }
+        }
+
+        public bool ReadOnlyNot
+        {
+            get { return ! (bool)GetValue(ReadOnlyProperty); }
+        }
+
+        // Using a DependencyProperty as the backing store for ReadOnly.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ReadOnlyProperty =
+            DependencyProperty.Register("ReadOnly", typeof(bool), typeof(SelectCard), new PropertyMetadata(false));
+
+
 
         public SelectCard()
         {

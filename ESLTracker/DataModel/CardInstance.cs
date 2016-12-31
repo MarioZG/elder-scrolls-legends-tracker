@@ -39,7 +39,7 @@ namespace ESLTracker.DataModel
         public Card Card
         {
             get { return card; }
-            set { card = value; }
+            set { card = value; RaisePropertyChangedEvent(String.Empty); }
         }
         private bool isGolden;
 

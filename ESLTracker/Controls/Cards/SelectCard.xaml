@@ -12,9 +12,16 @@
     <UserControl.Resources>
         <SolidColorBrush x:Key="brownBrush" Color="White"></SolidColorBrush>
         <Converters:BoolToVisibiltyConverter x:Key="BoolToVisibiltyConverter" />
+        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
     </UserControl.Resources>
     <DockPanel x:Name="LayoutRoot">
-        <CheckBox DockPanel.Dock="Right" TabIndex="1" Margin="5,0,0,0" Content="G" ToolTip="Is card golden" FlowDirection="RightToLeft" 
+        <CheckBox DockPanel.Dock="Right" 
+                  TabIndex="1" 
+                  Margin="5,0,0,0" 
+                  Content="G" 
+                  ToolTip="Check if card is golden" 
+                  FlowDirection="RightToLeft" 
+                  IsEnabled="{Binding ReadOnlyNot}"
                   IsChecked="{Binding CardInstance.IsGolden, Mode=TwoWay}"/>
         <DockPanel>
             <Border CornerRadius="45"
@@ -30,10 +37,19 @@
                     <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardInstance.Card.Cost}" VerticalAlignment="Stretch"/>
                 </Viewbox>
             </Border>
+            <TextBlock 
+                     Background="{Binding CardInstance.BackgroundColor}" 
+                     Foreground="{Binding CardInstance.ForegroundColor}" 
+                     FontWeight="Medium"
+                     Text="{Binding Path=CardName, Mode=TwoWay}" 
+                     MinWidth="180"
+                     Visibility="{Binding ReadOnly, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                />
             <TextBox Background="{Binding CardInstance.BackgroundColor}" 
                      Foreground="{Binding CardInstance.ForegroundColor}" 
                      FontWeight="Medium" TabIndex="0"
                      Text="{Binding Path=CardName, Mode=TwoWay}" 
+                     Visibility="{Binding ReadOnly, Converter={StaticResource BoolToVisibiltyCollapsedConverter}, ConverterParameter=not}"
                 AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
                 AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
                 Behaviors:FocusExtension.IsFocused="{Binding HasFocus, Mode=TwoWay}"
