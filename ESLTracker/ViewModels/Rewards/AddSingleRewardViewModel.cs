@@ -194,6 +194,7 @@ namespace ESLTracker.ViewModels.Rewards
                     break;
                 case RewardType.Card:
                     this.reward.Quantity = 1;
+                    Reward.CardInstance = new CardInstance(this.trackerFactory);
                     GuildSelectionVisible = false;
                     CardSelectionVisible = true;
                     break;
