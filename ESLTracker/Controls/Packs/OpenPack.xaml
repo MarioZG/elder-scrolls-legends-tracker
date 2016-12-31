@@ -11,14 +11,15 @@
         <ViewModels:OpenPackViewModel/>
     </UserControl.DataContext>
     <StackPanel>
+        <TextBlock Text="Enter cards found in pack" FontWeight="Bold" FontSize="14" Margin="22,0,2,7"/>
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[0], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[1], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[2], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[3], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[4], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[5], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
-        <TextBlock Text="{Binding Pack.SoulGemsValue, StringFormat={}Pack value: {0}}"/>
-        <local:PacksStats />
+        <TextBlock Margin="22, 4, 0, 0" Text="{Binding Pack.SoulGemsValue, StringFormat={}Pack value: {0}}"/>
+        <local:PacksStats Margin="20, 0, 0, 0" />
         <Button Content="Save" Command="{Binding CommandSave}" />
     </StackPanel>
 </UserControl>
