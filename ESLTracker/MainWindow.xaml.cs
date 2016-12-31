@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Messages;
 using ESLTracker.ViewModels;
 
 namespace ESLTracker
@@ -42,6 +43,9 @@ namespace ESLTracker
             InitializeComponent();
             UpdateOverlayAsync(this);
             Application.Current.MainWindow = this;
+
+            TrackerFactory.DefaultTrackerFactory.GetMessanger().Register<ApplicationShowBalloonTip>(this, ShowBaloonRequested);
+
         }
 
         internal static OverlayToolbar ot { get; set; } = new OverlayToolbar();
@@ -101,6 +105,11 @@ namespace ESLTracker
                 this.Activate();
                 this.Focus();
             }
+        }
+
+        private void ShowBaloonRequested(ApplicationShowBalloonTip baloonRequest)
+        {
+            this.taskBarIcon.ShowBalloonTip(baloonRequest.Title, baloonRequest.Message, Hardcodet.Wpf.TaskbarNotification.BalloonIcon.None);
         }
     }
 }

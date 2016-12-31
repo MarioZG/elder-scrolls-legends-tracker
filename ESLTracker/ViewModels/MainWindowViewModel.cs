@@ -220,9 +220,21 @@ namespace ESLTracker.ViewModels
 
         public void CommandRunGameExecute(object parameter)
         {
-            if (trackerFactory.GetWinAPI().GetEslProcess() == null)
+            IWinAPI winApi = trackerFactory.GetWinAPI();
+            bool isLauncherRunning = winApi.IsLauncherProcessRunning();
+
+            if (winApi.GetEslProcess() == null && ! winApi.IsLauncherProcessRunning())
             {
                 System.Diagnostics.Process.Start("bethesdanet://run/5");
+                trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "Starting game..."));
+            }
+            else if (trackerFactory.GetWinAPI().IsLauncherProcessRunning())
+            {
+                trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "Launcher is running - use it to start game."));
+            }
+            else
+            {
+                trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "Game is already running"));
             }
         }
 

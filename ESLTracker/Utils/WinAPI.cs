@@ -42,5 +42,11 @@ namespace ESLTracker.Utils
         {
             return GetEslProcess()?.MainModule?.FileVersionInfo;
         }
+
+        public bool IsLauncherProcessRunning()
+        {
+            return Process.GetProcesses().Where(p => p.ProcessName == "BethesdaNetLauncher").FirstOrDefault() != null;
+
+        }
     }
 }
