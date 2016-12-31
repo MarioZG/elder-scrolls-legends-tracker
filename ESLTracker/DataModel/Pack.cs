@@ -31,12 +31,12 @@ namespace ESLTracker.DataModel
             }
         }
 
-        public Pack() : this(null)
+        public Pack() : this(null, false)
         {
            
         }
 
-        public Pack(IEnumerable<CardInstance> startringCards)
+        public Pack(IEnumerable<CardInstance> startringCards, bool raiseChangeEventsOnCards)
         {
             if (startringCards == null)
             {
@@ -46,21 +46,43 @@ namespace ESLTracker.DataModel
             {
                 Cards = new ObservableCollection<CardInstance>(startringCards);
             }
-            Cards.CollectionChanged += Cards_CollectionChanged;
+
+            if (raiseChangeEventsOnCards)
+            {
+                Cards.CollectionChanged += Cards_CollectionChanged;
+            }
+
+            if ((startringCards != null) && raiseChangeEventsOnCards)
+            {
+                Cards.All(c => { c.PropertyChanged += CardInstance_PropertyChanged; return true; });
+
+            }
         }
 
         private void Cards_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            foreach (CardInstance ci in e.NewItems)
+            if (e.NewItems != null)
             {
-                ci.PropertyChanged += Ci_PropertyChanged;
+                foreach (CardInstance ci in e.NewItems)
+                {
+                    ci.PropertyChanged += CardInstance_PropertyChanged;
+                }
             }
-            RaisePropertyChangedEvent(nameof(SoulGemsValue));
+
+            if (e.OldItems != null)
+            {
+                foreach (CardInstance ci in e.OldItems)
+                {
+                    ci.PropertyChanged -= CardInstance_PropertyChanged;
+                }
+            }
         }
 
-        private void Ci_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void CardInstance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(CardInstance.Card) || e.PropertyName == nameof(CardInstance.IsGolden))
+            if (String.IsNullOrEmpty(e.PropertyName)
+                || (e.PropertyName == nameof(CardInstance.Card))
+                || (e.PropertyName == nameof(CardInstance.IsGolden)))
             {
                 RaisePropertyChangedEvent(nameof(SoulGemsValue));
             }

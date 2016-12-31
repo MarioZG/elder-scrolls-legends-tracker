@@ -50,10 +50,9 @@ namespace ESLTracker.ViewModels.Packs
         private void InitNewPack()
         {
             Pack = new Pack(new List<CardInstance>()
-            { new CardInstance(), new CardInstance(), new CardInstance(),
-               new CardInstance(), new CardInstance(), new CardInstance()});
-          
-
+                    { new CardInstance(), new CardInstance(), new CardInstance(),
+                      new CardInstance(), new CardInstance(), new CardInstance()},
+                    true);
         }
 
         private void CommandSaveExecute(object obj)
