@@ -48,8 +48,8 @@
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Cards:SelectCard CardInstance="{Binding CardInstance}" ReadOnly="True" Visibility="{Binding CardInstance, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}"/>
-                            <TextBlock Text="{Binding Comment}" />
                         </StackPanel>
+                        <TextBlock Text="{Binding Comment}" />
                         <TextBlock Text="{Binding RewardQuestGuild}" />
                     </StackPanel>
                 </StackPanel>
