@@ -114,14 +114,14 @@ namespace ESLTracker.ViewModels
             get { return new RelayCommand(new Action<object>(ShowOverlay)); }
         }
 
-        public ICommand CommandRunGame
+        public IAsyncCommand CommandRunGame
         {
             get
             {
-                return new RelayCommand(
-                              new Action<object>(CommandRunGameExecute),
-                              new Func<object, bool>(CommandRunGameCanExecute)
-                              );
+                return new RealyAsyncCommand<object>(
+                    new Func<Task<object>>(CommandRunGameExecute),
+                    new Func<object, bool>(CommandRunGameCanExecute)
+                    );
             }
         }
 
@@ -218,8 +218,11 @@ namespace ESLTracker.ViewModels
             ((MainWindow)Application.Current.MainWindow).RestoreOverlay();
         }
 
-        public void CommandRunGameExecute(object parameter)
+        bool startingGame;
+        public async Task<object> CommandRunGameExecute()
         {
+            startingGame = true;
+            CommandManager.InvalidateRequerySuggested();
             IWinAPI winApi = trackerFactory.GetWinAPI();
             bool isLauncherRunning = winApi.IsLauncherProcessRunning();
 
@@ -227,20 +230,29 @@ namespace ESLTracker.ViewModels
             {
                 System.Diagnostics.Process.Start("bethesdanet://run/5");
                 trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "Starting game..."));
+                await Task.Delay(TimeSpan.FromSeconds(20)); //wait 10 sec
+                if (winApi.GetEslProcess() == null)
+                {
+                    trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "There is probelm staring game, please check Bethesda.net Laucher."));
+                }
             }
             else if (trackerFactory.GetWinAPI().IsLauncherProcessRunning())
             {
-                trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "Launcher is running - use it to start game."));
+                trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "Bethesda.net Laucher is running - use it to start game."));
             }
             else
             {
                 trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "Game is already running"));
             }
+            startingGame = false;
+            CommandManager.InvalidateRequerySuggested();
+            return null;
         }
 
         private bool CommandRunGameCanExecute(object arg)
         {
-            return trackerFactory.GetWinAPI().GetEslProcess() == null;
+            IWinAPI winApi = trackerFactory.GetWinAPI();
+            return ! startingGame && winApi.GetEslProcess() == null;
         }
 
         public void EditSettings(object parameter)

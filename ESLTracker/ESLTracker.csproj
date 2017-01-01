@@ -269,10 +269,13 @@
     <Compile Include="ViewModels\Game\EditGameViewModel.cs" />
     <Compile Include="ViewModels\Game\PredefinedDateFilter.cs" />
     <Compile Include="ViewModels\Game\RankedProgressChartViewModel.cs" />
+    <Compile Include="ViewModels\IAsyncCommand.cs" />
     <Compile Include="ViewModels\IDeckClassSelectorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\NotifyTaskCompletion.cs" />
     <Compile Include="ViewModels\Packs\OpenPackViewModel.cs" />
     <Compile Include="ViewModels\Packs\PacksStatsViewModel.cs" />
+    <Compile Include="ViewModels\RealyAsyncCommand.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\Rewards\AddSingleRewardViewModel.cs" />
     <Compile Include="ViewModels\Rewards\IRewardSetViewModel.cs" />
