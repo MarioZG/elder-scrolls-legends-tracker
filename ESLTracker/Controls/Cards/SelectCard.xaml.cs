@@ -63,15 +63,15 @@ namespace ESLTracker.Controls.Cards
             }
         }
 
-        public bool ShowIsGolden
+        public bool ShowIsPremium
         {
-            get { return (bool)GetValue(ShowIsGoldenProperty); }
-            set { SetValue(ShowIsGoldenProperty, value); }
+            get { return (bool)GetValue(ShowIsPremiumProperty); }
+            set { SetValue(ShowIsPremiumProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ShowIsGolden.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ShowIsGoldenProperty =
-            DependencyProperty.Register("ShowIsGolden", typeof(bool), typeof(SelectCard), new PropertyMetadata(false));
+        // Using a DependencyProperty as the backing store for ShowIsPremium.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowIsPremiumProperty =
+            DependencyProperty.Register("ShowIsPremium", typeof(bool), typeof(SelectCard), new PropertyMetadata(false));
 
 
         public IEnumerable<string> CardNameAutocomplete

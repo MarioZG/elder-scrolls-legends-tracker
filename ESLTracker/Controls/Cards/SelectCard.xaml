@@ -18,12 +18,12 @@
         <CheckBox DockPanel.Dock="Right" 
                   TabIndex="1" 
                   Margin="5,0,0,0" 
-                  Content="G" 
-                  ToolTip="Check if card is golden" 
+                  Content="P" 
+                  ToolTip="Premium card" 
                   FlowDirection="RightToLeft" 
                   VerticalAlignment="Center"
                   IsEnabled="{Binding ReadOnlyNot}"
-                  IsChecked="{Binding CardInstance.IsGolden, Mode=TwoWay}"/>
+                  IsChecked="{Binding CardInstance.IsPremium, Mode=TwoWay}"/>
         <DockPanel>
             <Border CornerRadius="45"
                 Width="20"

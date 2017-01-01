@@ -17,7 +17,7 @@ using ESLTracker.ViewModels;
 
 namespace ESLTracker.DataModel
 {
-    [DebuggerDisplay("Card={Card.Name}; Golden={IsGolden}")]
+    [DebuggerDisplay("Card={Card.Name}; Premium={IsPremium}")]
     public class CardInstance : ViewModelBase
     {
         private ITrackerFactory trackerFactory;
@@ -41,12 +41,12 @@ namespace ESLTracker.DataModel
             get { return card; }
             set { card = value; RaisePropertyChangedEvent(String.Empty); }
         }
-        private bool isGolden;
+        private bool isPremium;
 
-        public bool IsGolden
+        public bool IsPremium
         {
-            get { return isGolden; }
-            set { isGolden = value;  RaisePropertyChangedEvent(nameof(IsGolden)); }
+            get { return isPremium; }
+            set { isPremium = value;  RaisePropertyChangedEvent(nameof(IsPremium)); }
         }
 
         public Brush BackgroundColor

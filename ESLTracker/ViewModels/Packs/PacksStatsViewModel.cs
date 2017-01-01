@@ -51,19 +51,19 @@ namespace ESLTracker.ViewModels.Packs
             }
         }
 
-        public int PacksSinceGolden
+        public int PacksSincePremium
         {
             get
             {
-                return PacksSince(c => c?.IsGolden == true);
+                return PacksSince(c => c?.IsPremium == true);
             }
         }
 
-        public int MaxPacksSinceGolden
+        public int MaxPacksSincePremium
         {
             get
             {
-                return MaxPacksSince(c => c?.IsGolden == true);
+                return MaxPacksSince(c => c?.IsPremium == true);
             }
         }
 

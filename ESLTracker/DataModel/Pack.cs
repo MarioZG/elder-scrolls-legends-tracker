@@ -20,14 +20,14 @@ namespace ESLTracker.DataModel
             {
                 var notNullCards = Cards.Where(c => c.Card != null && c.Card != Card.Unknown);
                 return
-                    notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Common && ! c.IsGolden).Count() * 5
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Common && c.IsGolden).Count() * 50
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Rare && !c.IsGolden).Count() * 20
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Rare && c.IsGolden).Count() * 100
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Epic && !c.IsGolden).Count() * 100
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Epic && c.IsGolden).Count() * 400
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Legendary && !c.IsGolden).Count() * 400
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Legendary && c.IsGolden).Count() * 1200;
+                    notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Common && ! c.IsPremium).Count() * 5
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Common && c.IsPremium).Count() * 50
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Rare && !c.IsPremium).Count() * 20
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Rare && c.IsPremium).Count() * 100
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Epic && !c.IsPremium).Count() * 100
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Epic && c.IsPremium).Count() * 400
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Legendary && !c.IsPremium).Count() * 400
+                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Legendary && c.IsPremium).Count() * 1200;
             }
         }
 
@@ -82,7 +82,7 @@ namespace ESLTracker.DataModel
         {
             if (String.IsNullOrEmpty(e.PropertyName)
                 || (e.PropertyName == nameof(CardInstance.Card))
-                || (e.PropertyName == nameof(CardInstance.IsGolden)))
+                || (e.PropertyName == nameof(CardInstance.IsPremium)))
             {
                 RaisePropertyChangedEvent(nameof(SoulGemsValue));
             }
