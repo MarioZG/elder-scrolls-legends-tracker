@@ -63,8 +63,7 @@
                            Content="Card " 
                            Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
                     <Cards:SelectCard
-                                     
-                                      Behaviors:FocusExtension.IsFocused="{Binding SelectCardFocus, Mode=TwoWay}"
+                                    Focusable="True"
                                       CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
                                       CardNameAutocomplete="{Binding CardNamesList}"
                                         Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
