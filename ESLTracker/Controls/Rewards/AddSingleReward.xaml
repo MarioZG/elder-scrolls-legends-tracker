@@ -46,22 +46,10 @@
                     <MouseBinding MouseAction="LeftClick" Command="{Binding CommandControlClicked}"/>
                 </Image.InputBindings>
             </Image>
-            <Grid VerticalAlignment="Center" Opacity="60"
+            <StackPanel VerticalAlignment="Center" Opacity="60"
                     Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
                >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <DockPanel Grid.Row="0">
+                <DockPanel>
                     <Label Content="Quantity " DockPanel.Dock="Left"/>
                     <TextBox x:Name="txtQuantity" 
                      Text="{Binding Reward.Quantity}"
@@ -69,25 +57,26 @@
                      Behaviors:FocusExtension.SelectAllOnFocus="True"
                      Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
                 </DockPanel>
-                <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+                <DockPanel>
                     <Label DockPanel.Dock="Top"
                            Content="Card " 
                            Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
-                    <Cards:SelectCard Grid.Row="2" Grid.ColumnSpan="2"
+                    <Cards:SelectCard
                                       HasFocus="{Binding SelectCardFocus, Mode=TwoWay}"
                                       CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
                                       CardNameAutocomplete="{Binding CardNamesList}"
                                         Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
                 </DockPanel>
-                <Label Content="Comment" Grid.Row="3"/>
-                <TextBox x:Name="txtComment" HorizontalAlignment="Stretch"
-                     Grid.Row="4" Grid.ColumnSpan="2"
-                     AcceptsReturn="True" MinWidth="{Binding MinWidth, ElementName=control}" MaxWidth="{Binding ControlWidth}"
-                     Text="{Binding Reward.Comment}"
-                     Behaviors:FocusExtension.IsFocused="{Binding CommentsFocus, Mode=TwoWay}"
-                     Behaviors:FocusExtension.SelectAllOnFocus="True"
-                     Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
-                <DockPanel Grid.Row="5" Grid.ColumnSpan="2">
+                <DockPanel>
+                    <Label Content="Note" DockPanel.Dock="Top"/>
+                    <TextBox x:Name="txtComment" HorizontalAlignment="Stretch"
+                         AcceptsReturn="True" MinWidth="{Binding MinWidth, ElementName=control}" MaxWidth="{Binding ControlWidth}"
+                         Text="{Binding Reward.Comment}"
+                         Behaviors:FocusExtension.IsFocused="{Binding CommentsFocus, Mode=TwoWay}"
+                         Behaviors:FocusExtension.SelectAllOnFocus="True"
+                         Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"/>
+                </DockPanel>
+                <DockPanel>
                     <Label Content="Guild" DockPanel.Dock="Left"
                        Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
                     />
@@ -100,7 +89,7 @@
                     Grid.Row="6" Grid.ColumnSpan="2"
                     Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}}"
                     Command="{Binding CommandAddButtonPressed}"/>
-            </Grid>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

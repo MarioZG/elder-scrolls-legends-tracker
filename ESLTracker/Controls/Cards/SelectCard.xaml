@@ -21,6 +21,7 @@
                   Content="G" 
                   ToolTip="Check if card is golden" 
                   FlowDirection="RightToLeft" 
+                  VerticalAlignment="Center"
                   IsEnabled="{Binding ReadOnlyNot}"
                   IsChecked="{Binding CardInstance.IsGolden, Mode=TwoWay}"/>
         <DockPanel>
@@ -30,11 +31,10 @@
                 Margin="0"
                 Padding="1"
                 Background="{Binding CardInstance.RarityColor}"
-                Visibility="{Binding CardInstance.HasCard, Converter={StaticResource BoolToVisibiltyConverter}, FallbackValue=Hidden}"    
                 BorderBrush="Black"
                 BorderThickness="1">
                 <Viewbox VerticalAlignment="Stretch" Height="Auto">
-                    <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardInstance.Card.Cost}" VerticalAlignment="Stretch"/>
+                    <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardInstance.Card.Cost, FallbackValue=-}" VerticalAlignment="Stretch"/>
                 </Viewbox>
             </Border>
             <TextBlock 
