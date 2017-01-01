@@ -72,7 +72,7 @@ namespace ESLTracker.ViewModels.Packs
                 return;
             }
 
-            ErrorMessage = String.Empty;
+            ErrorMessage = null;
 
             if (trackerFactory.GetSettings().Packs_ScreenshotAfterAdded)
             {
