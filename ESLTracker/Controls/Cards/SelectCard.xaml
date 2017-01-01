@@ -48,12 +48,12 @@
             <TextBox Background="{Binding CardInstance.BackgroundColor}" 
                      Foreground="{Binding CardInstance.ForegroundColor}" 
                      FontWeight="Medium" TabIndex="0"
+                     x:Name="txtName"
                      Text="{Binding Path=CardName, Mode=TwoWay}" 
                      Visibility="{Binding ReadOnly, Converter={StaticResource BoolToVisibiltyCollapsedConverter}, ConverterParameter=not}"
                 AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
                 AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
-                Behaviors:FocusExtension.IsFocused="{Binding HasFocus, Mode=TwoWay}"
-                Behaviors:FocusExtension.SelectAllOnFocus="True"/>
+/>
         </DockPanel>
     </DockPanel>
 </UserControl>

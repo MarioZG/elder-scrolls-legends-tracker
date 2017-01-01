@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using ESLTracker.DataModel;
 using ESLTracker.Utils;
 
@@ -83,21 +84,6 @@ namespace ESLTracker.Controls.Cards
         public static readonly DependencyProperty CardNameAutocompleteProperty =
             DependencyProperty.Register("CardNameAutocomplete", typeof(IEnumerable<string>), typeof(SelectCard), new PropertyMetadata(null));
 
-        public bool HasFocus
-        {
-            get { return (bool)GetValue(HasFocusProperty); }
-            set { SetValue(HasFocusProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for HasFocus.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty HasFocusProperty =
-            DependencyProperty.Register("HasFocus", typeof(bool), typeof(SelectCard), new PropertyMetadata(false, FocusUpdate));
-
-        private static void FocusUpdate(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-          //  throw new NotImplementedException();
-        }
-
         public bool ReadOnly
         {
             get { return (bool)GetValue(ReadOnlyProperty); }
@@ -113,12 +99,26 @@ namespace ESLTracker.Controls.Cards
         public static readonly DependencyProperty ReadOnlyProperty =
             DependencyProperty.Register("ReadOnly", typeof(bool), typeof(SelectCard), new PropertyMetadata(false));
 
-
-
         public SelectCard()
         {
             InitializeComponent();
             LayoutRoot.DataContext = this;
+            this.IsVisibleChanged += SelectCard_IsVisibleChanged;
+        }
+  
+        //https://www.codeproject.com/Tips/478376/Setting-focus-to-a-control-inside-a-usercontrol-in
+        //http://stackoverflow.com/questions/9535784/setting-default-keyboard-focus-on-loading-a-usercontrol
+        private void SelectCard_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue == true)
+            {
+                Dispatcher.BeginInvoke(
+                DispatcherPriority.ContextIdle,
+                new Action(delegate ()
+                {
+                    txtName.Focus();
+                }));
+            }
         }
     }
 }

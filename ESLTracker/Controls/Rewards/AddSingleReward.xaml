@@ -13,6 +13,7 @@
              Margin="{Binding Margin}"
              Visibility="{Binding Visibility}"
              Width="{Binding ControlWidth}"
+
              MinWidth="100"
              x:Name="control"
 >
@@ -62,7 +63,8 @@
                            Content="Card " 
                            Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
                     <Cards:SelectCard
-                                      HasFocus="{Binding SelectCardFocus, Mode=TwoWay}"
+                                     
+                                      Behaviors:FocusExtension.IsFocused="{Binding SelectCardFocus, Mode=TwoWay}"
                                       CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
                                       CardNameAutocomplete="{Binding CardNamesList}"
                                         Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
