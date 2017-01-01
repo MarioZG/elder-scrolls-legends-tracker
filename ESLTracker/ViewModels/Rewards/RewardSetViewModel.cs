@@ -194,10 +194,11 @@ namespace ESLTracker.ViewModels.Rewards
             {
                 reward.Reason = this.RewardReason.Value;
                 reward.ArenaDeck = ArenaDeck;
-                if (!Rewards.Contains(reward))
+                if (Rewards.Contains(reward))
                 {
-                    Rewards.Add(reward);
+                    Rewards.Remove(reward);
                 }
+                Rewards.Add(reward);
             }
         }
 
