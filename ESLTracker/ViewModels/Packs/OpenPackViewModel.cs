@@ -30,6 +30,15 @@ namespace ESLTracker.ViewModels.Packs
             }
         }
 
+        private string errorMessage;
+
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set { errorMessage = value; RaisePropertyChangedEvent(nameof(ErrorMessage)); }
+        }
+
+
         public ICommand CommandSave
         {
             get { return new RelayCommand(new Action<object>(CommandSaveExecute)); }
@@ -59,8 +68,11 @@ namespace ESLTracker.ViewModels.Packs
         {
             if (pack.Cards.Any(c=> c.Card == null || c.Card == Card.Unknown))
             {
+                ErrorMessage = "Please select 6 cards";
                 return;
             }
+
+            ErrorMessage = String.Empty;
 
             if (trackerFactory.GetSettings().Packs_ScreenshotAfterAdded)
             {

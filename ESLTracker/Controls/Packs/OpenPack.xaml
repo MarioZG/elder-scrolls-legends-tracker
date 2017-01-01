@@ -5,13 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Packs"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Packs" 
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
         <ViewModels:OpenPackViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <Converters:ObjectToVisibiltyCollapsedConverter x:Key="ObjectToVisibiltyCollapsedConverter"/>
+    </UserControl.Resources>
     <StackPanel>
         <TextBlock Text="Enter cards found in pack" FontWeight="Bold" FontSize="14" Margin="22,0,2,7"/>
+        <TextBlock Text="{Binding ErrorMessage}" Visibility="{Binding ErrorMessage, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}" Foreground="Red" Margin="22,0,2,7"/>
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[0], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[1], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[2], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
