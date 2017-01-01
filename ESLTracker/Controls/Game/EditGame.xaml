@@ -41,7 +41,6 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <Converters:PlayRankedSelected x:Key="PlayRankedSelected" />
-        <Converters:CommandMultipleParamaters x:Key="CommandMultipleParamatersConverter" />
         <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
         <Converters:StringNonEmptyToVisibiltyCollapsedConverter x:Key="StringNonEmptyToVisibiltyCollapsedConverter" />
         <Converters:ObjectToVisibiltyCollapsedConverter x:Key="ObjectToVisibiltyCollapsedConverter" />

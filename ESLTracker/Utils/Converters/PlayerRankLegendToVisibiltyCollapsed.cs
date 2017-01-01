@@ -10,25 +10,27 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class PlayerRankLegendToVisibiltyCollapsed : IValueConverter
+    public class PlayerRankLegendToVisibiltyCollapsed : InvertibleConverter<Visibility, PlayerRank>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        protected override Visibility ReturnWhenFalse
         {
-            bool not = false;
-            if ((parameter != null) && (parameter.ToString().ToUpper() == "NOT"))
+            get
             {
-                not = true;
+                return Visibility.Collapsed;
             }
-            if ((value != null) && (value is PlayerRank))
-            {
-                return not ^ (((PlayerRank)value) == PlayerRank.TheLegend) ? Visibility.Visible : Visibility.Collapsed;
-            }
-            return Visibility.Collapsed;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        protected override Visibility ReturnWhenTrue
         {
-            return Binding.DoNothing;
+            get
+            {
+                return Visibility.Visible;
+            }
+        }
+
+        protected override bool Condition(object value)
+        {
+            return (((PlayerRank)value) == PlayerRank.TheLegend);
         }
     }
 }

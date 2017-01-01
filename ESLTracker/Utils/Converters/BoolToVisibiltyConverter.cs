@@ -9,20 +9,27 @@ using System.Windows.Data;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class BoolToVisibiltyConverter : IValueConverter
+    public class BoolToVisibiltyConverter : InvertibleConverter<Visibility, bool>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        protected override Visibility ReturnWhenFalse
         {
-            if (value != null && value is bool)
+            get
             {
-                return (bool)value ? Visibility.Visible : Visibility.Hidden;
+                return Visibility.Hidden;
             }
-            return Visibility.Hidden;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        protected override Visibility ReturnWhenTrue
         {
-            return Binding.DoNothing;
+            get
+            {
+                return Visibility.Visible;
+            }
+        }
+
+        protected override bool Condition(object value)
+        {
+            return (bool)value;
         }
     }
 }

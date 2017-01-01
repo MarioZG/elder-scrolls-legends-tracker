@@ -9,21 +9,27 @@ using System.Windows.Data;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class ObjectToVisibiltyCollapsedConverter : IValueConverter
+    public class ObjectToVisibiltyCollapsedConverter : InvertibleConverter<Visibility, object>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        protected override Visibility ReturnWhenFalse
         {
-            bool not = false;
-            if ((parameter != null) && (parameter.ToString().ToUpper() == "NOT"))
+            get
             {
-                not = true;
+                return Visibility.Collapsed;
             }
-            return not ^ ! (value == null) ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        protected override Visibility ReturnWhenTrue
         {
-            return Binding.DoNothing;
+            get
+            {
+                return Visibility.Visible;
+            }
+        }
+
+        protected override bool Condition(object value)
+        {
+            return ! (value == null);
         }
     }
 }

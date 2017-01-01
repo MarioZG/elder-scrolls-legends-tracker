@@ -11,25 +11,27 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class DeckTypeToArenaRankVisibiltyCollapsed : IValueConverter
+    public class DeckTypeToArenaRankVisibiltyCollapsed : InvertibleConverter<Visibility, DeckType>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        protected override Visibility ReturnWhenFalse
         {
-            bool not = false;
-            if ((parameter != null) && (parameter.ToString().ToUpper() == "NOT"))
+            get
             {
-                not = true;
+                return Visibility.Collapsed;
             }
-            if (value != null && value is DeckType)
-            {
-                return not ^ Deck.IsArenaDeck((DeckType)value) ? Visibility.Visible : Visibility.Collapsed;
-            }
-            return Visibility.Collapsed;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        protected override Visibility ReturnWhenTrue
         {
-            return Binding.DoNothing;
+            get
+            {
+                return Visibility.Visible;
+            }
+        }
+
+        protected override bool Condition(object value)
+        {
+            return Deck.IsArenaDeck((DeckType)value);
         }
     }
 }
