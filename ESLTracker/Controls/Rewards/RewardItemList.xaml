@@ -51,7 +51,8 @@
                             <Cards:SelectCard CardInstance="{Binding CardInstance}" ReadOnly="True" Visibility="{Binding CardInstance, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}"/>
                         </StackPanel>
                         <TextBlock Text="{Binding Comment}" />
-                        <TextBlock Text="{Binding RewardQuestGuild}" />
+                        <TextBlock Text="{Binding RewardQuestGuild}"
+                                  Visibility="{Binding RewardQuestGuild, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}" />
                     </StackPanel>
                 </StackPanel>
             </DataTemplate>
