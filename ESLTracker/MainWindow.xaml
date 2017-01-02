@@ -72,24 +72,24 @@
             <Grid>
                 <Grid VerticalAlignment="Top" Panel.ZIndex="2"
                            x:Name="deckEdit"  
-                           Visibility="{Binding DeckEditVisible, Mode=TwoWay, Converter={Converters:BoolToVisibiltyConverter}}">
+                           Visibility="{Binding DeckEditVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                     <Decks:EditDeck x:Name="editDeck" Style="{DynamicResource ModalControlInWindow}" />
                 </Grid>
                 <Grid VerticalAlignment="Top" Panel.ZIndex="2"
-                        Visibility="{Binding SettingsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibiltyConverter}}">
+                        Visibility="{Binding SettingsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                     <Settings:SettingsPanel x:Name="settingsPanel" Style="{DynamicResource ModalControlInWindow}" />
                 </Grid>
                 <WrapPanel>
                     <WrapPanel IsEnabled="{Binding AllowCommands}"
-                            Visibility="{Binding DeckListVisible, Mode=TwoWay, Converter={Converters:BoolToVisibiltyConverter}}">
+                            Visibility="{Binding DeckListVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                         <Decks:DeckList x:Name="deckList"/>
                     </WrapPanel>
                     <WrapPanel 
-                        Visibility="{Binding DeckStatsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibiltyConverter}}">
+                        Visibility="{Binding DeckStatsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                             <Decks:DeckStats/>
                         </WrapPanel>
                     <WrapPanel 
-                        Visibility="{Binding EditGameVisible, Mode=TwoWay, Converter={Converters:BoolToVisibiltyConverter}}">
+                        Visibility="{Binding EditGameVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                         <Game:EditGame IsEditControl="True" />
                     </WrapPanel>
                 </WrapPanel>

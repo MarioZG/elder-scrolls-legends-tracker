@@ -23,7 +23,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Visible;
 
 
-            DeckTypeToArenaRankVisibiltyCollapsed converter = new DeckTypeToArenaRankVisibiltyCollapsed();
+            DeckTypeToArenaRankVisibilty converter = new DeckTypeToArenaRankVisibilty();
 
             object result = converter.Convert(
                 deckType,
@@ -43,7 +43,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Collapsed;
 
 
-            DeckTypeToArenaRankVisibiltyCollapsed converter = new DeckTypeToArenaRankVisibiltyCollapsed();
+            DeckTypeToArenaRankVisibilty converter = new DeckTypeToArenaRankVisibilty();
 
             object result = converter.Convert(
                 deckType,
@@ -62,7 +62,7 @@ namespace ESLTracker.Utils.Converters.Tests
 
             Visibility expected = Visibility.Collapsed;
 
-            DeckTypeToArenaRankVisibiltyCollapsed converter = new DeckTypeToArenaRankVisibiltyCollapsed();
+            DeckTypeToArenaRankVisibilty converter = new DeckTypeToArenaRankVisibilty();
 
             object result = converter.Convert(
                 deckType,
@@ -81,7 +81,7 @@ namespace ESLTracker.Utils.Converters.Tests
 
             Visibility expected = Visibility.Visible;
 
-            DeckTypeToArenaRankVisibiltyCollapsed converter = new DeckTypeToArenaRankVisibiltyCollapsed();
+            DeckTypeToArenaRankVisibilty converter = new DeckTypeToArenaRankVisibilty();
 
             object result = converter.Convert(
                 deckType,

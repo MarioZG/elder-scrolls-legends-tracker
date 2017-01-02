@@ -6,24 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class PlayerRankLegendToVisibiltyCollapsed : ToVisibilityConverter<PlayerRank>
+    public class BoolToVisibilty : ToVisibilityConverter<bool>
     {
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             if (converter == null)
             {
-                converter = new PlayerRankLegendToVisibiltyCollapsed();
+                converter = new BoolToVisibilty();
             }
             return converter;
         }
 
         protected override bool Condition(object value)
         {
-            return (((PlayerRank)value) == PlayerRank.TheLegend);
+            return (bool)value;
         }
     }
 }

@@ -23,7 +23,6 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <Converters:CommandMultipleParamaters x:Key="CommandMultipleParamatersConverter" />
-        <Converters:DeckTypeToArenaRankVisibiltyCollapsed x:Key="DeckTypeToArenaRankVisibiltyCollapsedConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -61,10 +60,10 @@
         <Controls:DeckClassSelector x:Name="deckClass"/>
         </StackPanel>       
         <Label Content="Arena rank" Grid.Row="3"
-               Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibiltyCollapsed}}"/>
+               Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibilty}}"/>
         <local:ArenaRank Grid.Row="3" Grid.Column="1"
                          SelectedRank="{Binding Deck.ArenaRank, Mode=TwoWay}" 
-                         Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibiltyCollapsed}}"
+                         Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibilty}}"
         />
         <UniformGrid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
             <Button Content="Cancel" HorizontalAlignment="Stretch" 

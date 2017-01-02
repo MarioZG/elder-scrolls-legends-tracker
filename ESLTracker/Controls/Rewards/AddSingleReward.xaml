@@ -31,7 +31,7 @@
     <Grid>
         <Image x:Name="imageClose" HorizontalAlignment="Right" VerticalAlignment="Top" Height="14" Width="14" 
                Source="pack://application:,,,/Resources/closeicon.png" 
-               Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibiltyConverter}, ConverterParameter=hidden}"
+               Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibilty}, ConverterParameter=hidden}"
                Panel.ZIndex="100">
             <Image.InputBindings>
                 <MouseBinding MouseAction="LeftClick" Command="{Binding CommandCloseClicked}"/>
@@ -46,7 +46,7 @@
                 </Image.InputBindings>
             </Image>
             <StackPanel VerticalAlignment="Center" Opacity="60"
-                    Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibiltyConverter}}"
+                    Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibilty}}"
                >
                 <DockPanel>
                     <Label Content="Quantity " DockPanel.Dock="Left"/>
@@ -54,19 +54,19 @@
                      Text="{Binding Reward.Quantity}"
                      Behaviors:FocusExtension.IsFocused="{Binding QtyFocus, Mode=TwoWay}"
                      Behaviors:FocusExtension.SelectAllOnFocus="True"
-                     Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibiltyConverter}, ConverterParameter=hidden}"/>
+                     Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibilty}, ConverterParameter=hidden}"/>
                 </DockPanel>
                 <DockPanel>
                     <Label DockPanel.Dock="Top"
                            Content="Card " 
 
-                           Visibility="{Binding CardSelectionVisible, Converter={Converters:BoolToVisibiltyConverter}}"/>
+                           Visibility="{Binding CardSelectionVisible, Converter={Converters:BoolToVisibilty}}"/>
                     <Viewbox MaxWidth="180" StretchDirection="DownOnly" Stretch="Uniform">
                         <Cards:SelectCard MinWidth="180"
                                     Focusable="True"
                                       CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
                                       CardNameAutocomplete="{Binding CardNamesList}"
-                                        Visibility="{Binding CardSelectionVisible, Converter={Converters:BoolToVisibiltyConverter}}"/>
+                                        Visibility="{Binding CardSelectionVisible, Converter={Converters:BoolToVisibilty}}"/>
                     </Viewbox>
                 </DockPanel>
                 <DockPanel>
@@ -76,20 +76,20 @@
                          Text="{Binding Reward.Comment}"
                          Behaviors:FocusExtension.IsFocused="{Binding CommentsFocus, Mode=TwoWay}"
                          Behaviors:FocusExtension.SelectAllOnFocus="True"
-                         Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibiltyConverter}, ConverterParameter=hidden}"/>
+                         Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibilty}, ConverterParameter=hidden}"/>
                 </DockPanel>
                 <DockPanel>
                     <Label Content="Guild" DockPanel.Dock="Left"
-                       Visibility="{Binding GuildSelectionVisible, Converter={Converters:BoolToVisibiltyConverter}}"
+                       Visibility="{Binding GuildSelectionVisible, Converter={Converters:BoolToVisibilty}}"
                     />
                     <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
                       SelectedItem="{Binding Reward.RewardQuestGuild}"
                       ItemsSource="{Binding Source={StaticResource GuildEnum}}"
-                      Visibility="{Binding GuildSelectionVisible, Converter={Converters:BoolToVisibiltyConverter}}"/>
+                      Visibility="{Binding GuildSelectionVisible, Converter={Converters:BoolToVisibilty}}"/>
                 </DockPanel>
                 <Button x:Name="btnAdd" Content="Add"  Margin="0,5,0,5"
                     Grid.Row="6" Grid.ColumnSpan="2"
-                    Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibiltyConverter}, ConverterParameter=hidden}"
+                    Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibilty}, ConverterParameter=hidden}"
                     Command="{Binding CommandAddButtonPressed}"/>
             </StackPanel>
         </StackPanel>

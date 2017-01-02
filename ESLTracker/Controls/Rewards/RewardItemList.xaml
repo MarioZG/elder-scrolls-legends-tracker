@@ -43,15 +43,15 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="5,0,5,0" FontSize="16" FontWeight="SemiBold" Text="{Binding Quantity}" />
                     <Image Width="25" Source="{Binding TypeIcon}" ToolTip="{Binding Type}"
-                           Visibility="{Binding CardInstance, Converter={Converters:ObjectToVisibiltyCollapsedConverter}, ConverterParameter=not}"/>
+                           Visibility="{Binding CardInstance, Converter={Converters:ObjectToVisibilty}, ConverterParameter=not}"/>
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Cards:SelectCard CardInstance="{Binding CardInstance}" ReadOnly="True" Visibility="{Binding CardInstance, Converter={Converters:ObjectToVisibiltyCollapsedConverter}}"/>
+                            <Cards:SelectCard CardInstance="{Binding CardInstance}" ReadOnly="True" Visibility="{Binding CardInstance, Converter={Converters:ObjectToVisibilty}}"/>
                         </StackPanel>
                         <TextBlock Text="{Binding Comment}" 
                                   Visibility="{Binding Comment, Converter={Converters:StringNonEmptyToVisibiltyCollapsedConverter}}" />
                         <TextBlock Text="{Binding RewardQuestGuild}"
-                                  Visibility="{Binding RewardQuestGuild, Converter={Converters:ObjectToVisibiltyCollapsedConverter}}" />
+                                  Visibility="{Binding RewardQuestGuild, Converter={Converters:ObjectToVisibilty}}" />
                     </StackPanel>
                 </StackPanel>
             </DataTemplate>

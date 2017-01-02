@@ -11,13 +11,13 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class DeckTypeToArenaRankVisibiltyCollapsed : ToVisibilityConverter<DeckType>
+    public class DeckTypeToArenaRankVisibilty : ToVisibilityConverter<DeckType>
     {
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             if (converter == null)
             {
-                converter = new DeckTypeToArenaRankVisibiltyCollapsed();
+                converter = new DeckTypeToArenaRankVisibilty();
             }
             return converter;
         }

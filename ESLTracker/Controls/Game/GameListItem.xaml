@@ -27,7 +27,7 @@
             <TextBlock Margin="5,0,0,0" Text="{Binding OpponentClass, StringFormat={}({0})}" />
             <TextBlock Margin="5,0,0,0" Text="{Binding OpponentRank}" />
             <TextBlock
-                Visibility="{Binding OpponentRank, Converter={Converters:PlayerRankLegendToVisibiltyCollapsed}}"
+                Visibility="{Binding OpponentRank, Converter={Converters:PlayerRankLegendToVisibilty}}"
                 Text="{Binding OpponentLegendRank, StringFormat={}({0})}" />
         </StackPanel>
         <TextBlock DockPanel.Dock="Bottom" Margin="5,0,0,0" Text="{Binding Notes}" />
@@ -35,12 +35,12 @@
             <TextBlock Text="You went "/>
             <TextBlock Text="{Binding OrderOfPlay}" />
             <TextBlock Margin="5,0,0,0" 
-                       Visibility="{Binding BonusRound, Converter={Converters:BoolToVisibiltyConverter}}"
+                       Visibility="{Binding BonusRound, Converter={Converters:BoolToVisibilty}}"
                        Text="Bonus Round" />
             <TextBlock Text=" Your rank: "/>
             <TextBlock Text="{Binding PlayerRank}" />
             <TextBlock 
-                Visibility="{Binding PlayerRank, Converter={Converters:PlayerRankLegendToVisibiltyCollapsed}}"
+                Visibility="{Binding PlayerRank, Converter={Converters:PlayerRankLegendToVisibilty}}"
                 Text="{Binding PlayerLegendRank, StringFormat={}({0})}" />
         </StackPanel>
 

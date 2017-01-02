@@ -170,13 +170,13 @@
     <Compile Include="Utils\Converters\DeckNameSettingPreview.cs" />
     <Compile Include="Utils\Converters\DeckOrDeckClassToAttributes.cs" />
     <Compile Include="Utils\Converters\DeckOrDeckClassToName.cs" />
-    <Compile Include="Utils\Converters\ObjectToVisibiltyCollapsedConverter.cs" />
+    <Compile Include="Utils\Converters\ObjectToVisibilty.cs" />
     <Compile Include="Utils\Converters\StringNonEmptyToVisibiltyCollapsedConverter.cs" />
-    <Compile Include="Utils\Converters\BoolToVisibiltyConverter.cs" />
+    <Compile Include="Utils\Converters\BoolToVisibilty.cs" />
     <Compile Include="Utils\Converters\CommandMultipleParamaters.cs" />
-    <Compile Include="Utils\Converters\DeckTypeToArenaRankVisibiltyCollapsed.cs" />
+    <Compile Include="Utils\Converters\DeckTypeToArenaRankVisibilty.cs" />
     <Compile Include="Utils\Converters\IsInCollectionToBool.cs" />
-    <Compile Include="Utils\Converters\PlayerRankLegendToVisibiltyCollapsed.cs" />
+    <Compile Include="Utils\Converters\PlayerRankLegendToVisibilty.cs" />
     <Compile Include="Utils\DataFileException.cs" />
     <Compile Include="Utils\DrawingWrappers\BitmapWrapper.cs" />
     <Compile Include="Utils\DrawingWrappers\IBitmapWrapper.cs" />

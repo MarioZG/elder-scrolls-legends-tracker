@@ -9,13 +9,13 @@ using System.Windows.Data;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class ObjectToVisibiltyCollapsedConverter : ToVisibilityConverter<object>
+    public class ObjectToVisibilty : ToVisibilityConverter<object>
     {
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             if (converter == null)
             {
-                converter = new ObjectToVisibiltyCollapsedConverter();
+                converter = new ObjectToVisibilty();
             }
             return converter;
         }

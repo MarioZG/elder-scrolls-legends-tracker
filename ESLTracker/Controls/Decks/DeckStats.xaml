@@ -14,7 +14,7 @@
     </UserControl.DataContext>
     <UserControl.Resources>
     </UserControl.Resources>
-    <DockPanel Visibility="{Binding ShowControl, Converter={Converters:BoolToVisibiltyConverter}}">
+    <DockPanel Visibility="{Binding ShowControl, Converter={Converters:BoolToVisibilty}}">
         <local:DeckItem DockPanel.Dock="Top"
             DataContext="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}" />
         <Rewards:RewardItemList DockPanel.Dock="Top"

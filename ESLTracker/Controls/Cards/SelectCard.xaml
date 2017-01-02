@@ -69,13 +69,13 @@
                      Foreground="{Binding CardInstance.ForegroundColor}"                      
                      Content="{Binding Path=CardName}" 
                      MinWidth="180"
-                     Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibiltyConverter}}"
+                     Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibilty}}"
                 />
             </Border>
             <Border BorderThickness="1" 
                     BorderBrush="Gray" 
                     Background="{Binding CardInstance.BackgroundColor}" 
-                    Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibiltyConverter}, ConverterParameter=not}"
+                    Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibilty}, ConverterParameter=not}"
                     >
                 <TextBox 
                     Style="{StaticResource ShadowText}"

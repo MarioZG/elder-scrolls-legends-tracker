@@ -22,7 +22,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Visible;
 
 
-            BoolToVisibiltyConverter converter = new BoolToVisibiltyConverter();
+            BoolToVisibilty converter = new BoolToVisibilty();
 
             object result = converter.Convert(
                 value,
@@ -42,7 +42,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Collapsed;
 
 
-            BoolToVisibiltyConverter converter = new BoolToVisibiltyConverter();
+            BoolToVisibilty converter = new BoolToVisibilty();
 
             object result = converter.Convert(
                 value,
@@ -62,7 +62,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Visible;
 
 
-            BoolToVisibiltyConverter converter = new BoolToVisibiltyConverter();
+            BoolToVisibilty converter = new BoolToVisibilty();
 
             object result = converter.Convert(
                 value,
@@ -82,7 +82,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Collapsed;
 
 
-            BoolToVisibiltyConverter converter = new BoolToVisibiltyConverter();
+            BoolToVisibilty converter = new BoolToVisibilty();
 
             object result = converter.Convert(
                 value,
@@ -102,7 +102,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Collapsed;
 
 
-            BoolToVisibiltyConverter converter = new BoolToVisibiltyConverter();
+            BoolToVisibilty converter = new BoolToVisibilty();
 
             object result = converter.Convert(
                 value,
@@ -122,7 +122,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Visible;
 
 
-            BoolToVisibiltyConverter converter = new BoolToVisibiltyConverter();
+            BoolToVisibilty converter = new BoolToVisibilty();
 
             object result = converter.Convert(
                 value,

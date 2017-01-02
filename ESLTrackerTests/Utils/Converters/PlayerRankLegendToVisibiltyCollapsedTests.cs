@@ -23,7 +23,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Visible;
 
 
-            PlayerRankLegendToVisibiltyCollapsed converter = new PlayerRankLegendToVisibiltyCollapsed();
+            PlayerRankLegendToVisibilty converter = new PlayerRankLegendToVisibilty();
 
             object result = converter.Convert(
                 playerRank, 
@@ -43,7 +43,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Collapsed;
 
 
-            PlayerRankLegendToVisibiltyCollapsed converter = new PlayerRankLegendToVisibiltyCollapsed();
+            PlayerRankLegendToVisibilty converter = new PlayerRankLegendToVisibilty();
 
             object result = converter.Convert(
                 playerRank,
@@ -63,7 +63,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Collapsed;
 
 
-            PlayerRankLegendToVisibiltyCollapsed converter = new PlayerRankLegendToVisibiltyCollapsed();
+            PlayerRankLegendToVisibilty converter = new PlayerRankLegendToVisibilty();
 
             object result = converter.Convert(
                 playerRank,
@@ -83,7 +83,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Visible;
 
 
-            PlayerRankLegendToVisibiltyCollapsed converter = new PlayerRankLegendToVisibiltyCollapsed();
+            PlayerRankLegendToVisibilty converter = new PlayerRankLegendToVisibilty();
 
             object result = converter.Convert(
                 playerRank,

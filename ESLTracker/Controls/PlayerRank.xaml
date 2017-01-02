@@ -17,13 +17,12 @@
                 <x:Type TypeName="Enums:PlayerRank"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-        <Converters:PlayerRankLegendToVisibiltyCollapsed x:Key="PlayerRankLegendToVisibiltyCollapsed" />
     </UserControl.Resources>
     <DockPanel>       
         <TextBox x:Name="txtPlayerLegendRank" Grid.Row="6" Grid.Column="1" Width="40" 
                  DockPanel.Dock="Right"
                  Text="{Binding ElementName=rankControl, Path=LegendRank, Mode=TwoWay}"
-                 Visibility="{Binding Path=SelectedItem, ElementName=cbPlayerRank ,Converter={Converters:PlayerRankLegendToVisibiltyCollapsed}}"
+                 Visibility="{Binding Path=SelectedItem, ElementName=cbPlayerRank ,Converter={Converters:PlayerRankLegendToVisibilty}}"
                  />
         <ComboBox x:Name="cbPlayerRank" 
               ItemsSource="{Binding Source={StaticResource PlayerRankEnum}}"
@@ -33,7 +32,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding}" />
                         <TextBlock Text="{Binding StringFormat={} ({0:D})}" 
-                            Visibility="{Binding Converter={Converters:PlayerRankLegendToVisibiltyCollapsed}, ConverterParameter=Not}"
+                            Visibility="{Binding Converter={Converters:PlayerRankLegendToVisibilty}, ConverterParameter=Not}"
                             />
                     </StackPanel>
                 </DataTemplate>

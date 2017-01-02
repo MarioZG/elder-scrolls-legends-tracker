@@ -19,7 +19,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Visible;
             object param = null;
 
-            ObjectToVisibiltyCollapsedConverter converter = new ObjectToVisibiltyCollapsedConverter();
+            ObjectToVisibilty converter = new ObjectToVisibilty();
 
             object result = converter.Convert(
                 new object(),
@@ -38,7 +38,7 @@ namespace ESLTracker.Utils.Converters.Tests
 
             object valueToCOnvert = null;
 
-            ObjectToVisibiltyCollapsedConverter converter = new ObjectToVisibiltyCollapsedConverter();
+            ObjectToVisibilty converter = new ObjectToVisibilty();
 
             object result = converter.Convert(
                 valueToCOnvert,
@@ -57,7 +57,7 @@ namespace ESLTracker.Utils.Converters.Tests
 
             object valueToCOnvert = null;
 
-            ObjectToVisibiltyCollapsedConverter converter = new ObjectToVisibiltyCollapsedConverter();
+            ObjectToVisibilty converter = new ObjectToVisibilty();
 
             object result = converter.Convert(
                 valueToCOnvert,
@@ -76,7 +76,7 @@ namespace ESLTracker.Utils.Converters.Tests
 
             object valueToCOnvert = new object();
 
-            ObjectToVisibiltyCollapsedConverter converter = new ObjectToVisibiltyCollapsedConverter();
+            ObjectToVisibilty converter = new ObjectToVisibilty();
 
             object result = converter.Convert(
                 valueToCOnvert,
