@@ -174,7 +174,6 @@
     <Compile Include="Utils\Converters\ObjectToVisibilty.cs" />
     <Compile Include="Utils\Converters\StringNonEmptyToVisibiltyCollapsedConverter.cs" />
     <Compile Include="Utils\Converters\BoolToVisibilty.cs" />
-    <Compile Include="Utils\Converters\CommandMultipleParamaters.cs" />
     <Compile Include="Utils\Converters\DeckTypeToArenaRankVisibilty.cs" />
     <Compile Include="Utils\Converters\IsInCollectionToBool.cs" />
     <Compile Include="Utils\Converters\PlayerRankLegendToVisibilty.cs" />

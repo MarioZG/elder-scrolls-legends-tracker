@@ -105,11 +105,8 @@ namespace ESLTracker.ViewModels.Decks
 
         public void CommandButtonSaveExecute(object parameter)
         {
-            object[] args = parameter as object[];
-            EditDeckViewModel model = args[0] as EditDeckViewModel;
-            DeckClassSelectorViewModel selectedClassModel = args[1] as DeckClassSelectorViewModel;
-            if ((model != null)
-                && (selectedClassModel != null)
+            DeckClassSelectorViewModel selectedClassModel = parameter as DeckClassSelectorViewModel;
+            if ((selectedClassModel != null)
                 && selectedClassModel.SelectedClass.HasValue)
             {
                 SaveDeck(selectedClassModel, tracker);
@@ -143,18 +140,14 @@ namespace ESLTracker.ViewModels.Decks
 
         public void CommandButtonCancelExecute(object parameter)
         {
-            object[] args = parameter as object[];
-            EditDeckViewModel model = args[0] as EditDeckViewModel;
-            DeckClassSelectorViewModel selectedClassModel = args[1] as DeckClassSelectorViewModel;
-            if (model != null)
+            DeckClassSelectorViewModel selectedClassModel = parameter as DeckClassSelectorViewModel;
+
+            this.CancelEdit();
+            messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
+            this.Deck = CreateDefaultDeck();
+            if (selectedClassModel != null)
             {
-                this.CancelEdit();
-                messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
-                model.Deck = CreateDefaultDeck();
-                if (selectedClassModel != null)
-                {
-                    selectedClassModel.Reset();
-                }
+                selectedClassModel.Reset();
             }
         }
 
