@@ -157,6 +157,7 @@
     </Compile>
     <Compile Include="Utils\CardImagesHelper.cs" />
     <Compile Include="Utils\Converters\InvertibleConverter.cs" />
+    <Compile Include="Utils\Converters\ToVisibilityConverter.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
     <Compile Include="Utils\ResourcesHelper.cs" />
