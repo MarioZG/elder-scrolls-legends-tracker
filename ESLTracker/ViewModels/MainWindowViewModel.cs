@@ -230,7 +230,7 @@ namespace ESLTracker.ViewModels
             {
                 System.Diagnostics.Process.Start("bethesdanet://run/5");
                 trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "Starting game..."));
-                await Task.Delay(TimeSpan.FromSeconds(20)); //wait 10 sec
+                await Task.Delay(TimeSpan.FromSeconds(60)); //wait 10 sec
                 if (winApi.GetEslProcess() == null)
                 {
                     trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "There is probelm staring game, please check Bethesda.net Laucher."));
