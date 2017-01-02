@@ -43,8 +43,9 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <StackPanel Orientation="Horizontal">
-                    <Image Width="25" Source="{Binding TypeIcon}" ToolTip="{Binding Type}" />
                     <TextBlock Margin="5,0,5,0" FontSize="16" FontWeight="SemiBold" Text="{Binding Quantity}" />
+                    <Image Width="25" Source="{Binding TypeIcon}" ToolTip="{Binding Type}"
+                           Visibility="{Binding CardInstance, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}, ConverterParameter=not}"/>
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Cards:SelectCard CardInstance="{Binding CardInstance}" ReadOnly="True" Visibility="{Binding CardInstance, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}"/>
