@@ -13,9 +13,6 @@
         mc:Ignorable="d"
         Title="Games analysis">
     <Window.Resources>
-        <Converters:ClassToAttributesIconsConverter x:Key="ClassToAttributesIconsConverter"/>
-        <Converters:DeckOrDeckClassToAttributes x:Key="DeckOrDeckClassToAttributes"/>
-        <Converters:DeckOrDeckClassToName x:Key="DeckOrDeckClassToName"/>
         <ObjectDataProvider x:Key="DeckAttributeEnum" MethodName="GetNames"
                             ObjectType="{x:Type System:Enum}">
             <ObjectDataProvider.MethodParameters>
@@ -79,8 +76,8 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <ItemsControl ItemsSource="{Binding Path=Deck, Converter={StaticResource DeckOrDeckClassToAttributes}}" BorderThickness="0"
-                                                    ToolTip="{Binding Deck, Converter={StaticResource DeckOrDeckClassToName}}">
+                                        <ItemsControl ItemsSource="{Binding Path=Deck, Converter={Converters:DeckOrDeckClassToAttributes}}" BorderThickness="0"
+                                                    ToolTip="{Binding Deck, Converter={Converters:DeckOrDeckClassToName}}">
                                             <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
                                                     <WrapPanel IsItemsHost="True" />
@@ -96,7 +93,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding Deck, Converter={StaticResource DeckOrDeckClassToName}}" />
+                        <DataGridTextColumn Binding="{Binding Deck, Converter={Converters:DeckOrDeckClassToName}}" />
                         <DataGridTextColumn CanUserSort="False" Binding="{Binding Total}" />
                     </DataGrid.Columns>
                 </DataGrid>

@@ -17,7 +17,6 @@
                 <x:Type TypeName="Enums:DeckClass"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-        <Converters:IsInCollectionToBool x:Key="IsInCollectionToBool"/>
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:DeckClassSelectorViewModel/>
@@ -28,7 +27,7 @@
                       Style="{DynamicResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Strength"
-                      IsChecked="{Binding FilterButtonStateCollection, Mode=OneWay, Converter={StaticResource IsInCollectionToBool}, ConverterParameter=Strength}"
+                      IsChecked="{Binding FilterButtonStateCollection, Mode=OneWay, Converter={Converters:IsInCollectionToBool}, ConverterParameter=Strength}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
@@ -41,7 +40,7 @@
                       CommandParameter="Intelligence"
                       IsChecked="{Binding FilterButtonStateCollection, 
                                 Mode=OneWay, 
-                                Converter={StaticResource IsInCollectionToBool}, 
+                                Converter={Converters:IsInCollectionToBool}, 
                                 ConverterParameter=Intelligence}"
             >
             <StackPanel>
@@ -55,7 +54,7 @@
                       CommandParameter="Agility"
                       IsChecked="{Binding FilterButtonStateCollection, 
                                 Mode=OneWay, 
-                                Converter={StaticResource IsInCollectionToBool}, 
+                                Converter={Converters:IsInCollectionToBool}, 
                                 ConverterParameter=Agility}"
             >
             <StackPanel>
@@ -69,7 +68,7 @@
                       CommandParameter="Willpower"
                       IsChecked="{Binding FilterButtonStateCollection, 
                                 Mode=OneWay, 
-                                Converter={StaticResource IsInCollectionToBool}, 
+                                Converter={Converters:IsInCollectionToBool}, 
                                 ConverterParameter=Willpower}"
             >
             <StackPanel>
@@ -83,7 +82,7 @@
                       CommandParameter="Endurance"
                       IsChecked="{Binding FilterButtonStateCollection, 
                                 Mode=OneWay, 
-                                Converter={StaticResource IsInCollectionToBool}, 
+                                Converter={Converters:IsInCollectionToBool}, 
                                 ConverterParameter=Endurance}"
             >
             <StackPanel>
@@ -97,7 +96,7 @@
                       CommandParameter="Neutral"
                       IsChecked="{Binding FilterButtonStateCollection, 
                                 Mode=OneWay, 
-                                Converter={StaticResource IsInCollectionToBool}, 
+                                Converter={Converters:IsInCollectionToBool}, 
                                 ConverterParameter=Neutral}"
             >
             <StackPanel>

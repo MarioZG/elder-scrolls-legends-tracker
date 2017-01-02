@@ -9,7 +9,7 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class IsInCollectionToBool : IValueConverter
+    public class IsInCollectionToBool : MarkupConverter<IsInCollectionToBool>, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

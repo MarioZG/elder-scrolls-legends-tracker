@@ -157,6 +157,7 @@
     </Compile>
     <Compile Include="Utils\CardImagesHelper.cs" />
     <Compile Include="Utils\Converters\InvertibleConverter.cs" />
+    <Compile Include="Utils\Converters\MarkupConverter.cs" />
     <Compile Include="Utils\Converters\ToVisibilityConverter.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
@@ -165,7 +166,7 @@
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
     <Compile Include="Utils\CardsDatabase.cs" />
-    <Compile Include="Utils\Converters\ClassToAttributesIconsConverter.cs" />
+    <Compile Include="Utils\Converters\ClassToAttributesIcons.cs" />
     <Compile Include="Utils\Converters\PackScreenshotSettingPreview.cs" />
     <Compile Include="Utils\Converters\DeckNameSettingPreview.cs" />
     <Compile Include="Utils\Converters\DeckOrDeckClassToAttributes.cs" />
@@ -257,7 +258,6 @@
       <DependentUpon>RewardsSummary.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\ClassAttributesHelper.cs" />
-    <Compile Include="Utils\Converters\PlayRankedSelected.cs" />
     <Compile Include="Utils\EnumManager.cs" />
     <Compile Include="Utils\FileManager.cs" />
     <Compile Include="Utils\WindowExtensions.cs" />

@@ -40,7 +40,6 @@
                 <x:Type TypeName="Enums:PlayerRank"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-        <Converters:PlayRankedSelected x:Key="PlayRankedSelected" />
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:EditGameViewModel/>

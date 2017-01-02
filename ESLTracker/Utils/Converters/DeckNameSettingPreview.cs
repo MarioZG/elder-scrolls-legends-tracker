@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class DeckNameSettingPreview : IValueConverter
+    public class DeckNameSettingPreview : MarkupConverter<DeckNameSettingPreview>, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

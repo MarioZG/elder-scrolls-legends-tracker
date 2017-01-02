@@ -23,7 +23,6 @@
                Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}, Path=Width}"/>
             </Border>
         </DataTemplate>
-        <Converters:DeckNameSettingPreview x:Key="DeckNameSettingPreview"/>
     </UserControl.Resources>
     <StackPanel>
         <Expander Header="General settings" IsExpanded="True"
@@ -65,7 +64,7 @@
                                 See c# formatting for format help
                     </TextBlock>
                     <Label Grid.Row="3" Content="Preview" HorizontalAlignment="Right"/>
-                    <TextBlock Margin="5,5,5,5" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Text="{Binding ElementName=screenshotFileName, Path=Text, Converter={StaticResource DeckNameSettingPreview}}"/>
+                    <TextBlock Margin="5,5,5,5" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Text="{Binding ElementName=screenshotFileName, Path=Text, Converter={Converters:DeckNameSettingPreview}}"/>
                 </Grid>
             </StackPanel>
         </Expander>
@@ -87,13 +86,13 @@
                         ToolTip="Default name for Versus arena deck"
                         Text="{Binding NewDeck_VersusArenaName, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                   />
-                <Label Grid.Row="1" Grid.Column="1" Content="{Binding ElementName=vsArenaTemplate, Path=Text, Converter={StaticResource DeckNameSettingPreview}}"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding ElementName=vsArenaTemplate, Path=Text, Converter={Converters:DeckNameSettingPreview}}"/>
                 <Label Grid.Row="2" Content="Default name for Solo Arena deck"/>
                 <TextBox x:Name="soloArenaTemplate" Margin="5,5,5,5" Grid.Row="2" Grid.Column="1"
                         ToolTip="Default name for Versus arena deck"
                         Text="{Binding NewDeck_SoloArenaName, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                   />
-                <Label Grid.Row="3" Grid.Column="1" Content="{Binding ElementName=soloArenaTemplate, Path=Text, Converter={StaticResource DeckNameSettingPreview}}"/>
+                <Label Grid.Row="3" Grid.Column="1" Content="{Binding ElementName=soloArenaTemplate, Path=Text, Converter={Converters:DeckNameSettingPreview}}"/>
             </Grid>
         </Expander>
         <Expander Header="Packs" IsExpanded="False"

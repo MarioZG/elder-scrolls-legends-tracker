@@ -6,19 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Markup;
 using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.Converters
 {
-    class PlayRankedSelected : IValueConverter
+    public class ClassToAttributesIcons : MarkupConverter<ClassToAttributesIcons>, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((value != null) && (value is GameType))
+            if (value != null && value is DeckClass)
             {
-                return (((GameType)value) == GameType.PlayRanked) ? Visibility.Visible : Visibility.Collapsed;
+                return ClassAttributesHelper.Classes[(DeckClass)value].ImageSources;
             }
-            return Visibility.Collapsed;
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

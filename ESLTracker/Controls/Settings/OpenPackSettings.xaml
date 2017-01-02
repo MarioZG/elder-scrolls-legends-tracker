@@ -8,7 +8,6 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <Converters:PackScreenshotSettingPreview x:Key="PackScreenshotSettingPreview"/>
     </UserControl.Resources>
     <Grid Margin="10,10,10,10">
         <Grid.RowDefinitions>
@@ -43,6 +42,6 @@
             See c# formatting for format help
         </TextBlock>
         <Label Grid.Row="3" Content="Preview" HorizontalAlignment="Right"/>
-        <TextBlock Margin="5,5,5,5" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Text="{Binding ElementName=screenshotFileName, Path=Text, Converter={StaticResource PackScreenshotSettingPreview}}"/>
+        <TextBlock Margin="5,5,5,5" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Text="{Binding ElementName=screenshotFileName, Path=Text, Converter={Converters:PackScreenshotSettingPreview}}"/>
     </Grid>
 </UserControl>

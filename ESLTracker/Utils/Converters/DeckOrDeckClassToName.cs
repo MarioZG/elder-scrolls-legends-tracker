@@ -10,7 +10,7 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class DeckOrDeckClassToName : IValueConverter
+    public class DeckOrDeckClassToName : MarkupConverter<DeckOrDeckClassToName>,IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

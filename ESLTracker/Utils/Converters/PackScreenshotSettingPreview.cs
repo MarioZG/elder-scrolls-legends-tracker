@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class PackScreenshotSettingPreview : IValueConverter
+    public class PackScreenshotSettingPreview : MarkupConverter<PackScreenshotSettingPreview>, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

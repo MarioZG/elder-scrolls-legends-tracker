@@ -12,7 +12,6 @@
         <ViewModels:ArenaStatsViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <Converters:ClassToAttributesIconsConverter x:Key="ClassToAttributesIconsConverter"/>
         <Style x:Key="bestAverage" TargetType="{x:Type TextBlock}">
             <!-- http://stackoverflow.com/questions/13534485/same-setters-for-different-triggers -->
             <Style.Triggers>
@@ -49,7 +48,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <ItemsControl ItemsSource="{Binding Path=Class, Converter={StaticResource ClassToAttributesIconsConverter}}" BorderThickness="0"
+                                <ItemsControl ItemsSource="{Binding Path=Class, Converter={Converters:ClassToAttributesIcons}}" BorderThickness="0"
                                                 ToolTip="{Binding Class}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
