@@ -120,5 +120,25 @@ namespace ESLTracker.Utils.Converters.Tests
 
             Assert.AreEqual(expetced, converter.ReturnWhenFalse_Access);
         }
+
+        [TestMethod]
+        public void CheckForOtherParametersTest007_ConvertTwice_FirstOverridesReturnFalse()
+        {
+            string paramaterPassed = "some -hidden";
+            Visibility expetced = Visibility.Hidden;//defualt for false 
+
+            SampleToVisibiltyClass converter = new SampleToVisibiltyClass();
+
+            converter.CheckForOtherParameters_Access(paramaterPassed);
+
+            Assert.AreEqual(expetced, converter.ReturnWhenFalse_Access);
+
+            //another call - without converter params
+            paramaterPassed = "";
+            expetced = Visibility.Collapsed;
+            converter.CheckForOtherParameters_Access(paramaterPassed);
+
+            Assert.AreEqual(expetced, converter.ReturnWhenFalse_Access);
+        }
     }
 }

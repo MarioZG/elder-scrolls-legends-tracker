@@ -46,9 +46,14 @@ namespace ESLTracker.Utils.Converters
             {
                 returnWhenFalse = Visibility.Collapsed;
             }
-            if (falseIsHidden)
+            else if (falseIsHidden)
             {
                 returnWhenFalse = Visibility.Hidden;
+            }
+            else
+            {
+                //default
+                returnWhenFalse = Visibility.Collapsed;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace ESLTracker.Utils.Converters.Tests
             bool value = false;
             object param = null;
 
-            Visibility expected = Visibility.Hidden;
+            Visibility expected = Visibility.Collapsed;
 
 
             BoolToVisibiltyConverter converter = new BoolToVisibiltyConverter();

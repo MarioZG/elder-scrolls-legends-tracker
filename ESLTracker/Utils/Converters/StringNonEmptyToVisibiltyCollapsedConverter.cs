@@ -9,24 +9,8 @@ using System.Windows.Data;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class StringNonEmptyToVisibiltyCollapsedConverter : InvertibleConverter<Visibility, string>
+    public class StringNonEmptyToVisibiltyCollapsedConverter : ToVisibilityConverter<string>
     {
-        protected override Visibility ReturnWhenFalse
-        {
-            get
-            {
-                return Visibility.Collapsed;
-            }
-        }
-
-        protected override Visibility ReturnWhenTrue
-        {
-            get
-            {
-                return Visibility.Visible;
-            }
-        }
-
         protected override bool Condition(object value)
         {
             return !String.IsNullOrWhiteSpace((String)value);

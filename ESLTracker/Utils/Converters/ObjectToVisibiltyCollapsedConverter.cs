@@ -9,24 +9,8 @@ using System.Windows.Data;
 
 namespace ESLTracker.Utils.Converters
 {
-    public class ObjectToVisibiltyCollapsedConverter : InvertibleConverter<Visibility, object>
+    public class ObjectToVisibiltyCollapsedConverter : ToVisibilityConverter<object>
     {
-        protected override Visibility ReturnWhenFalse
-        {
-            get
-            {
-                return Visibility.Collapsed;
-            }
-        }
-
-        protected override Visibility ReturnWhenTrue
-        {
-            get
-            {
-                return Visibility.Visible;
-            }
-        }
-
         protected override bool Condition(object value)
         {
             return ! (value == null);
