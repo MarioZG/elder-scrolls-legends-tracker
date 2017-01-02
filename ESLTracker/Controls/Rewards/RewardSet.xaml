@@ -17,7 +17,6 @@
                 <x:Type TypeName="Enums:RewardReason"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-        <Converters:HasSelectedValueToVisibilityConverter x:Key="HasSelectedValueToVisibilityConverter" />
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:RewardSetViewModel/>
@@ -37,7 +36,7 @@
             />
         </StackPanel>
         <Grid  x:Name="grid" HorizontalAlignment="Center"
-              Visibility="{Binding ElementName=cbReason, Path=SelectedItem, Converter={StaticResource HasSelectedValueToVisibilityConverter}}">
+              Visibility="{Binding ElementName=cbReason, Path=SelectedItem, Converter={Converters:ObjectToVisibilty}, ConverterParameter=Hidden}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -57,7 +56,7 @@
             Content="Done" 
             Command="{Binding CommandDoneButtonPressed}" 
             Grid.Row="2" 
-            Visibility="{Binding ElementName=cbReason, Path=SelectedItem, Converter={StaticResource HasSelectedValueToVisibilityConverter}}"
+            Visibility="{Binding ElementName=cbReason, Path=SelectedItem, Converter={Converters:ObjectToVisibilty}, ConverterParameter=Hidden}"
             />
     </StackPanel>
 </UserControl>

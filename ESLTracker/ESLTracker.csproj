@@ -260,7 +260,6 @@
     <Compile Include="Utils\Converters\PlayRankedSelected.cs" />
     <Compile Include="Utils\EnumManager.cs" />
     <Compile Include="Utils\FileManager.cs" />
-    <Compile Include="Utils\Converters\HasSelectedValueToVisibilityConverter.cs" />
     <Compile Include="Utils\WindowExtensions.cs" />
     <Compile Include="ViewModels\Decks\DeckStatsViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckListViewModel.cs" />
