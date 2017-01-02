@@ -11,6 +11,15 @@ namespace ESLTracker.Utils.Converters
 {
     public class StringNonEmptyToVisibiltyCollapsedConverter : ToVisibilityConverter<string>
     {
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (converter == null)
+            {
+                converter = new StringNonEmptyToVisibiltyCollapsedConverter();
+            }
+            return converter;
+        }
+
         protected override bool Condition(object value)
         {
             return !String.IsNullOrWhiteSpace((String)value);

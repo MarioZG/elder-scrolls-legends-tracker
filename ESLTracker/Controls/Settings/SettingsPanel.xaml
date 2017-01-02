@@ -24,7 +24,6 @@
             </Border>
         </DataTemplate>
         <Converters:DeckNameSettingPreview x:Key="DeckNameSettingPreview"/>
-        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
     </UserControl.Resources>
     <StackPanel>
         <Expander Header="General settings" IsExpanded="True"
@@ -60,7 +59,7 @@
                   />
                     <ToggleButton x:Name="nameTemplate" Content=" ? " Grid.Column="2" Grid.Row="1" IsChecked="False"/>
                     <TextBlock x:Name="Help" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
-                        Visibility="{Binding IsChecked, ElementName=nameTemplate, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}">
+                        Visibility="{Binding IsChecked, ElementName=nameTemplate, Converter={Converters:BoolToVisibiltyConverter}}">
                                 Variables:<LineBreak/>
                                 {d} or {0} for date<LineBreak/>
                                 See c# formatting for format help

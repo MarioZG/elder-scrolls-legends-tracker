@@ -23,7 +23,7 @@
         <TextBox x:Name="txtPlayerLegendRank" Grid.Row="6" Grid.Column="1" Width="40" 
                  DockPanel.Dock="Right"
                  Text="{Binding ElementName=rankControl, Path=LegendRank, Mode=TwoWay}"
-                 Visibility="{Binding Path=SelectedItem, ElementName=cbPlayerRank ,Converter={StaticResource PlayerRankLegendToVisibiltyCollapsed}}"
+                 Visibility="{Binding Path=SelectedItem, ElementName=cbPlayerRank ,Converter={Converters:PlayerRankLegendToVisibiltyCollapsed}}"
                  />
         <ComboBox x:Name="cbPlayerRank" 
               ItemsSource="{Binding Source={StaticResource PlayerRankEnum}}"
@@ -33,7 +33,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding}" />
                         <TextBlock Text="{Binding StringFormat={} ({0:D})}" 
-                            Visibility="{Binding Converter={StaticResource PlayerRankLegendToVisibiltyCollapsed}, ConverterParameter=Not}"
+                            Visibility="{Binding Converter={Converters:PlayerRankLegendToVisibiltyCollapsed}, ConverterParameter=Not}"
                             />
                     </StackPanel>
                 </DataTemplate>

@@ -13,7 +13,6 @@
         <ViewModels:RankedProgressChartViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
-        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
     </UserControl.Resources>
     <DockPanel>
         <local:GameFilter DockPanel.Dock="Top" />
@@ -22,13 +21,13 @@
             <WrapPanel Margin="5,5,5,5">
             <CheckBox IsChecked="{Binding ShowMaxMin}" Content="Show lowest and highest in a day"/>
             <CheckBox IsChecked="{Binding ConnectMin}" 
-                      Visibility="{Binding ShowMaxMin, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                      Visibility="{Binding ShowMaxMin, Converter={Converters:BoolToVisibiltyConverter}}" 
                       Content="Connect lowest rank in day"/>
             <CheckBox IsChecked="{Binding ConnectLast}" 
-                      Visibility="{Binding ShowMaxMin, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                      Visibility="{Binding ShowMaxMin, Converter={Converters:BoolToVisibiltyConverter}}" 
                       Content="Connect last in day"/>
             <CheckBox IsChecked="{Binding ConnectMax}" 
-                      Visibility="{Binding ShowMaxMin, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                      Visibility="{Binding ShowMaxMin, Converter={Converters:BoolToVisibiltyConverter}}" 
                       Content="Connect highest rank in day"/>
             </WrapPanel>
         </StackPanel>

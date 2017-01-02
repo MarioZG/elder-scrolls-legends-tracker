@@ -12,6 +12,15 @@ namespace ESLTracker.Utils.Converters
 {
     public class PlayerRankLegendToVisibiltyCollapsed : ToVisibilityConverter<PlayerRank>
     {
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (converter == null)
+            {
+                converter = new PlayerRankLegendToVisibiltyCollapsed();
+            }
+            return converter;
+        }
+
         protected override bool Condition(object value)
         {
             return (((PlayerRank)value) == PlayerRank.TheLegend);

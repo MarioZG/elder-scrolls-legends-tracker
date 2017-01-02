@@ -13,6 +13,15 @@ namespace ESLTracker.Utils.Converters
 {
     public class DeckTypeToArenaRankVisibiltyCollapsed : ToVisibilityConverter<DeckType>
     {
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (converter == null)
+            {
+                converter = new DeckTypeToArenaRankVisibiltyCollapsed();
+            }
+            return converter;
+        }
+
         protected override bool Condition(object value)
         {
             return Deck.IsArenaDeck((DeckType)value);

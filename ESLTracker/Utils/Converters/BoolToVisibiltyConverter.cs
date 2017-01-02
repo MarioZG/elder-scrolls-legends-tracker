@@ -11,6 +11,15 @@ namespace ESLTracker.Utils.Converters
 {
     public class BoolToVisibiltyConverter : ToVisibilityConverter<bool>
     {
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (converter == null)
+            {
+                converter = new BoolToVisibiltyConverter();
+            }
+            return converter;
+        }
+
         protected override bool Condition(object value)
         {
             return (bool)value;

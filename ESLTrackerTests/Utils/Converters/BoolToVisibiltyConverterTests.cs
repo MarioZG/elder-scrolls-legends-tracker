@@ -62,7 +62,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Visible;
 
 
-            BoolToVisibiltyCollapsedConverter converter = new BoolToVisibiltyCollapsedConverter();
+            BoolToVisibiltyConverter converter = new BoolToVisibiltyConverter();
 
             object result = converter.Convert(
                 value,
@@ -82,7 +82,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Collapsed;
 
 
-            BoolToVisibiltyCollapsedConverter converter = new BoolToVisibiltyCollapsedConverter();
+            BoolToVisibiltyConverter converter = new BoolToVisibiltyConverter();
 
             object result = converter.Convert(
                 value,
@@ -102,7 +102,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Collapsed;
 
 
-            BoolToVisibiltyCollapsedConverter converter = new BoolToVisibiltyCollapsedConverter();
+            BoolToVisibiltyConverter converter = new BoolToVisibiltyConverter();
 
             object result = converter.Convert(
                 value,
@@ -122,7 +122,7 @@ namespace ESLTracker.Utils.Converters.Tests
             Visibility expected = Visibility.Visible;
 
 
-            BoolToVisibiltyCollapsedConverter converter = new BoolToVisibiltyCollapsedConverter();
+            BoolToVisibiltyConverter converter = new BoolToVisibiltyConverter();
 
             object result = converter.Convert(
                 value,

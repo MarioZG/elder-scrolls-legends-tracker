@@ -8,7 +8,6 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
         <Converters:PackScreenshotSettingPreview x:Key="PackScreenshotSettingPreview"/>
     </UserControl.Resources>
     <Grid Margin="10,10,10,10">
@@ -37,7 +36,7 @@
                   />
         <ToggleButton x:Name="nameTemplate" Content=" ? " Grid.Column="2" Grid.Row="1" IsChecked="False"/>
         <TextBlock x:Name="Help" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
-                   Visibility="{Binding IsChecked, ElementName=nameTemplate, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}">
+                   Visibility="{Binding IsChecked, ElementName=nameTemplate, Converter={Converters:BoolToVisibiltyConverter}}">
             Variables:<LineBreak/>
             {d} or {0} for date<LineBreak/>
             {n} or {1} for number<LineBreak/>

@@ -12,11 +12,10 @@
         <ViewModels:OpenPackViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
-        <Converters:ObjectToVisibiltyCollapsedConverter x:Key="ObjectToVisibiltyCollapsedConverter"/>
     </UserControl.Resources>
     <StackPanel Margin="10,0,0,0">
         <TextBlock Margin="0,5,2,4" Text="Enter cards found in pack" FontWeight="Bold" FontSize="14" />
-        <TextBlock Margin="0,0,2,4" Text="{Binding ErrorMessage}" Visibility="{Binding ErrorMessage, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}" Foreground="Red"/>
+        <TextBlock Margin="0,0,2,4" Text="{Binding ErrorMessage}" Visibility="{Binding ErrorMessage, Converter={Converters:ObjectToVisibiltyCollapsedConverter}}" Foreground="Red"/>
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[0], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[1], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[2], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />

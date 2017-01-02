@@ -11,7 +11,6 @@
              d:DesignWidth="300">
     <UserControl.Resources>
         <SolidColorBrush x:Key="brownBrush" Color="White"></SolidColorBrush>
-        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
         <Style x:Key="ShadowText" TargetType="{x:Type Control}">
             <Style.Triggers>
                 <!-- no shadow when cad unknown or not set-->
@@ -70,13 +69,13 @@
                      Foreground="{Binding CardInstance.ForegroundColor}"                      
                      Content="{Binding Path=CardName}" 
                      MinWidth="180"
-                     Visibility="{Binding ReadOnly, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                     Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibiltyConverter}}"
                 />
             </Border>
             <Border BorderThickness="1" 
                     BorderBrush="Gray" 
                     Background="{Binding CardInstance.BackgroundColor}" 
-                    Visibility="{Binding ReadOnly, Converter={StaticResource BoolToVisibiltyCollapsedConverter}, ConverterParameter=not}"
+                    Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibiltyConverter}, ConverterParameter=not}"
                     >
                 <TextBox 
                     Style="{StaticResource ShadowText}"

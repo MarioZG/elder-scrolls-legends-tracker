@@ -41,9 +41,6 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <Converters:PlayRankedSelected x:Key="PlayRankedSelected" />
-        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
-        <Converters:StringNonEmptyToVisibiltyCollapsedConverter x:Key="StringNonEmptyToVisibiltyCollapsedConverter" />
-        <Converters:ObjectToVisibiltyCollapsedConverter x:Key="ObjectToVisibiltyCollapsedConverter" />
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:EditGameViewModel/>
@@ -68,10 +65,10 @@
             <ColumnDefinition Width="70*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal"  Background="DarkRed" Grid.ColumnSpan="2"
-                    Visibility="{Binding ErrorMessage,Converter={StaticResource StringNonEmptyToVisibiltyCollapsedConverter}}"
+                    Visibility="{Binding ErrorMessage,Converter={Converters:StringNonEmptyToVisibiltyCollapsedConverter}}"
                     >
             <TextBlock Margin="3,3,3,3" Foreground="White" Text="{Binding ErrorMessage}" Grid.ColumnSpan="2"/>
-            <TextBlock Visibility="{Binding CommandExecuteWhenContinueOnError, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}">
+            <TextBlock Visibility="{Binding CommandExecuteWhenContinueOnError, Converter={Converters:ObjectToVisibiltyCollapsedConverter}}">
                 <Hyperlink Foreground="White" FontWeight="Medium" 
                                   Command="{Binding CommandButtonResetAllChanges}">Close anyway</Hyperlink>
             </TextBlock>
@@ -97,41 +94,41 @@
         <TextBox x:Name="txtOpponentName" Grid.Row="5" Grid.Column="1"
                  Text="{Binding Game.OpponentName}"/>
         <Label x:Name="label1" Content="Opponent Rank" Grid.Row="6"
-                Visibility="{Binding DisplayPlayerRank, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                Visibility="{Binding DisplayPlayerRank, Converter={Converters:BoolToVisibiltyConverter}}"
                />
         <Controls:PlayerRank x:Name="cbOpponentRank"  Grid.Row="6" Grid.Column="1"
                             SelectedRank="{Binding Game.OpponentRank, Mode=TwoWay}"
                              LegendRank="{Binding Game.OpponentLegendRank, Mode=TwoWay}"
                              DataContextPath="Game.OpponentRank,Game.OpponentLegendRank"
-                Visibility="{Binding DisplayPlayerRank, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                Visibility="{Binding DisplayPlayerRank, Converter={Converters:BoolToVisibiltyConverter}}" 
                 />
         <Label x:Name="label2" Content="Player Rank" Grid.Row="7"
-                Visibility="{Binding DisplayPlayerRank, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                Visibility="{Binding DisplayPlayerRank, Converter={Converters:BoolToVisibiltyConverter}}"
                />
         <Controls:PlayerRank x:Name="cbPlayerRank" Grid.Row="7" Grid.Column="1"
                             SelectedRank="{Binding Game.PlayerRank, Mode=TwoWay}"
                              LegendRank="{Binding Game.PlayerLegendRank, Mode=TwoWay}"
                              DataContextPath="Game.PlayerRank,Game.PlayerLegendRank"
-                Visibility="{Binding DisplayPlayerRank, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                Visibility="{Binding DisplayPlayerRank, Converter={Converters:BoolToVisibiltyConverter}}" 
                              />
 
         <CheckBox x:Name="cbBonusRound" Content="Bonus round" Grid.Column="1" Grid.Row="8"
                   IsThreeState="False"
-                  Visibility="{Binding DisplayBonusRound, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}" 
+                  Visibility="{Binding DisplayBonusRound, Converter={Converters:BoolToVisibiltyConverter}}" 
                   IsChecked="{Binding Game.BonusRound}"
                   />
         <Label Content="Notes" Grid.Row="9"/>
         <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Game.Notes}" Grid.Column="1" Grid.Row="9"></TextBox>
         <Label Content="Game outcome" Grid.Row="10"
-                  Visibility="{Binding IsEditControl, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                  Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibiltyConverter}}"
                />
         <ComboBox x:Name="cbOutcome" Grid.Row="10" Grid.Column="1"
-                  Visibility="{Binding IsEditControl, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                  Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibiltyConverter}}"
                   ItemsSource="{Binding Source={StaticResource GameOutcomeEnum}}" 
                   SelectedItem="{Binding Game.Outcome}"
                    />
         <UniformGrid Rows="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11" Margin="5,15,5,10"
-                    Visibility="{Binding IsEditControl, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}">
+                    Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibiltyConverter}}">
             <Button x:Name="btnCancelChanges" 
                     Content="Cancel"
                     Command="{Binding CommandButtonCancelChanges}" Margin="0,0,10,0">
@@ -142,7 +139,7 @@
             </Button>
         </UniformGrid>
         <UniformGrid Rows="1" Grid.Column="1" Grid.Row="11"
-                     Visibility="{Binding IsEditControl, Converter={StaticResource BoolToVisibiltyCollapsedConverter}, ConverterParameter=not}">
+                     Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibiltyConverter}, ConverterParameter=not}">
             <Button x:Name="btnVicotry" Content="Victory"
                     Command="{Binding CommandButtonCreate}"
                     CommandParameter="Victory">

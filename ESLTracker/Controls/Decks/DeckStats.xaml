@@ -13,9 +13,8 @@
         <ViewModels:DeckStatsViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
-        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
     </UserControl.Resources>
-    <DockPanel Visibility="{Binding ShowControl, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}">
+    <DockPanel Visibility="{Binding ShowControl, Converter={Converters:BoolToVisibiltyConverter}}">
         <local:DeckItem DockPanel.Dock="Top"
             DataContext="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}" />
         <Rewards:RewardItemList DockPanel.Dock="Top"

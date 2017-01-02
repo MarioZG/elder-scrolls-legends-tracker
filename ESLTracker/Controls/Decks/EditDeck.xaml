@@ -61,10 +61,10 @@
         <Controls:DeckClassSelector x:Name="deckClass"/>
         </StackPanel>       
         <Label Content="Arena rank" Grid.Row="3"
-               Visibility="{Binding Deck.Type, Converter={StaticResource DeckTypeToArenaRankVisibiltyCollapsedConverter}}"/>
+               Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibiltyCollapsed}}"/>
         <local:ArenaRank Grid.Row="3" Grid.Column="1"
                          SelectedRank="{Binding Deck.ArenaRank, Mode=TwoWay}" 
-                         Visibility="{Binding Deck.Type, Converter={StaticResource DeckTypeToArenaRankVisibiltyCollapsedConverter}}"
+                         Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibiltyCollapsed}}"
         />
         <UniformGrid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
             <Button Content="Cancel" HorizontalAlignment="Stretch" 

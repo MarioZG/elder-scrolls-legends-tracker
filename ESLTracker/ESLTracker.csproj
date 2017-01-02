@@ -172,7 +172,6 @@
     <Compile Include="Utils\Converters\DeckOrDeckClassToName.cs" />
     <Compile Include="Utils\Converters\ObjectToVisibiltyCollapsedConverter.cs" />
     <Compile Include="Utils\Converters\StringNonEmptyToVisibiltyCollapsedConverter.cs" />
-    <Compile Include="Utils\Converters\BoolToVisibiltyCollapsedConverter.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyConverter.cs" />
     <Compile Include="Utils\Converters\CommandMultipleParamaters.cs" />
     <Compile Include="Utils\Converters\DeckTypeToArenaRankVisibiltyCollapsed.cs" />

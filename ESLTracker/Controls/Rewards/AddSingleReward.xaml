@@ -24,8 +24,6 @@
                 <x:Type TypeName="Enums:Guild"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-        <Converters:BoolToVisibiltyConverter x:Key="BoolToVisibiltyConverter" />
-        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:AddSingleRewardViewModel/>
@@ -33,7 +31,7 @@
     <Grid>
         <Image x:Name="imageClose" HorizontalAlignment="Right" VerticalAlignment="Top" Height="14" Width="14" 
                Source="pack://application:,,,/Resources/closeicon.png" 
-               Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}, ConverterParameter=hidden}"
+               Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibiltyConverter}, ConverterParameter=hidden}"
                Panel.ZIndex="100">
             <Image.InputBindings>
                 <MouseBinding MouseAction="LeftClick" Command="{Binding CommandCloseClicked}"/>
@@ -48,7 +46,7 @@
                 </Image.InputBindings>
             </Image>
             <StackPanel VerticalAlignment="Center" Opacity="60"
-                    Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                    Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibiltyConverter}}"
                >
                 <DockPanel>
                     <Label Content="Quantity " DockPanel.Dock="Left"/>
@@ -56,18 +54,19 @@
                      Text="{Binding Reward.Quantity}"
                      Behaviors:FocusExtension.IsFocused="{Binding QtyFocus, Mode=TwoWay}"
                      Behaviors:FocusExtension.SelectAllOnFocus="True"
-                     Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}, ConverterParameter=hidden}"/>
+                     Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibiltyConverter}, ConverterParameter=hidden}"/>
                 </DockPanel>
                 <DockPanel>
                     <Label DockPanel.Dock="Top"
                            Content="Card " 
-                           Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
+
+                           Visibility="{Binding CardSelectionVisible, Converter={Converters:BoolToVisibiltyConverter}}"/>
                     <Viewbox MaxWidth="180" StretchDirection="DownOnly" Stretch="Uniform">
                         <Cards:SelectCard MinWidth="180"
                                     Focusable="True"
                                       CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
                                       CardNameAutocomplete="{Binding CardNamesList}"
-                                        Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
+                                        Visibility="{Binding CardSelectionVisible, Converter={Converters:BoolToVisibiltyConverter}}"/>
                     </Viewbox>
                 </DockPanel>
                 <DockPanel>
@@ -77,20 +76,20 @@
                          Text="{Binding Reward.Comment}"
                          Behaviors:FocusExtension.IsFocused="{Binding CommentsFocus, Mode=TwoWay}"
                          Behaviors:FocusExtension.SelectAllOnFocus="True"
-                         Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}, ConverterParameter=hidden}"/>
+                         Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibiltyConverter}, ConverterParameter=hidden}"/>
                 </DockPanel>
                 <DockPanel>
                     <Label Content="Guild" DockPanel.Dock="Left"
-                       Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                       Visibility="{Binding GuildSelectionVisible, Converter={Converters:BoolToVisibiltyConverter}}"
                     />
                     <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
                       SelectedItem="{Binding Reward.RewardQuestGuild}"
                       ItemsSource="{Binding Source={StaticResource GuildEnum}}"
-                      Visibility="{Binding GuildSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
+                      Visibility="{Binding GuildSelectionVisible, Converter={Converters:BoolToVisibiltyConverter}}"/>
                 </DockPanel>
                 <Button x:Name="btnAdd" Content="Add"  Margin="0,5,0,5"
                     Grid.Row="6" Grid.ColumnSpan="2"
-                    Visibility="{Binding IsInEditMode, Converter={StaticResource BoolToVisibiltyConverter}, ConverterParameter=hidden}"
+                    Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibiltyConverter}, ConverterParameter=hidden}"
                     Command="{Binding CommandAddButtonPressed}"/>
             </StackPanel>
         </StackPanel>

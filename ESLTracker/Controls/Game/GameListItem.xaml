@@ -8,8 +8,6 @@
              mc:Ignorable="d"
              x:Name="gameListItem">
     <UserControl.Resources>
-        <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
-        <Converters:PlayerRankLegendToVisibiltyCollapsed x:Key="PlayerRankLegendToVisibiltyCollapsed" />
     </UserControl.Resources>
     <DockPanel Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
         <DockPanel.ContextMenu>
@@ -29,7 +27,7 @@
             <TextBlock Margin="5,0,0,0" Text="{Binding OpponentClass, StringFormat={}({0})}" />
             <TextBlock Margin="5,0,0,0" Text="{Binding OpponentRank}" />
             <TextBlock
-                Visibility="{Binding OpponentRank, Converter={StaticResource PlayerRankLegendToVisibiltyCollapsed}}"
+                Visibility="{Binding OpponentRank, Converter={Converters:PlayerRankLegendToVisibiltyCollapsed}}"
                 Text="{Binding OpponentLegendRank, StringFormat={}({0})}" />
         </StackPanel>
         <TextBlock DockPanel.Dock="Bottom" Margin="5,0,0,0" Text="{Binding Notes}" />
@@ -37,12 +35,12 @@
             <TextBlock Text="You went "/>
             <TextBlock Text="{Binding OrderOfPlay}" />
             <TextBlock Margin="5,0,0,0" 
-                       Visibility="{Binding BonusRound, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
+                       Visibility="{Binding BonusRound, Converter={Converters:BoolToVisibiltyConverter}}"
                        Text="Bonus Round" />
             <TextBlock Text=" Your rank: "/>
             <TextBlock Text="{Binding PlayerRank}" />
             <TextBlock 
-                Visibility="{Binding PlayerRank, Converter={StaticResource PlayerRankLegendToVisibiltyCollapsed}}"
+                Visibility="{Binding PlayerRank, Converter={Converters:PlayerRankLegendToVisibiltyCollapsed}}"
                 Text="{Binding PlayerLegendRank, StringFormat={}({0})}" />
         </StackPanel>
 

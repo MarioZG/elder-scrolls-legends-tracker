@@ -5,11 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace ESLTracker.Utils.Converters
 {
-    public abstract class InvertibleConverter<TReturn, TValue> : IValueConverter
+    public abstract class InvertibleConverter<TReturn, TValue> : MarkupExtension, IValueConverter
     {
+        protected static InvertibleConverter<TReturn, TValue> converter = null;
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            throw new NotImplementedException("Must override in inherited class");
+        }
 
         public static char[] ParameterSeparator =  { '-' };
 
