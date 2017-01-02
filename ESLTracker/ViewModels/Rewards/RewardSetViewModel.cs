@@ -194,11 +194,17 @@ namespace ESLTracker.ViewModels.Rewards
             {
                 reward.Reason = this.RewardReason.Value;
                 reward.ArenaDeck = ArenaDeck;
+                //hack to force UI update
                 if (Rewards.Contains(reward))
                 {
+                    int index = Rewards.IndexOf(reward);
                     Rewards.Remove(reward);
+                    Rewards.Insert(index, reward);
                 }
-                Rewards.Add(reward);
+                else
+                {
+                    Rewards.Add(reward);
+                }
             }
         }
 
