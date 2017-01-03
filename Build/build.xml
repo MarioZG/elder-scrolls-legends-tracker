@@ -71,8 +71,9 @@ target BuildMaster
 			<OutputFilesToZip Include="$(RootDir)\Bin\$(Version)\**\*.*" />
 		</ItemGroup>
 		<Zip InputFileNames="@(OutputFilesToZip)"
+			 InputFilesRoot="$(RootDir)\Bin\$(Version)\"
 			OverwriteExistingFile="true"
-			 ZIPRootFolder="ESLTracker_$(Version)"
+			 ZIPRootFolder="ESLTracker"
 			OutputFileName="$(RootDir)\Bin\ESLTracker_$(Version).zip" />
 	</Target>
 	<Target Name='UpdateVersion' DependsOnTargets='Compile'>
@@ -97,6 +98,7 @@ target BuildMaster
 	<UsingTask TaskName="Zip" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
 		<ParameterGroup>
 			<InputFileNames ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+			<InputFilesRoot ParameterType="System.String" Required="true" />
 			<ZIPRootFolder ParameterType="System.String" Required="true" />
 			<OutputFileName ParameterType="System.String" Required="true" />
 			<OverwriteExistingFile ParameterType="System.Boolean" Required="false" />
@@ -117,7 +119,7 @@ target BuildMaster
           {
             foreach (var inputFileName in InputFileNames.Select(f => f.ItemSpec))
             {
-              var archiveEntry = archive.CreateEntry(ZIPRootFolder + Path.DirectorySeparatorChar + Path.GetFileName(inputFileName));
+			var archiveEntry = archive.CreateEntry(ZIPRootFolder + Path.DirectorySeparatorChar + inputFileName.Replace(InputFilesRoot, ""));
 
               using (var fs = new FileStream(inputFileName, FileMode.Open))
               {
