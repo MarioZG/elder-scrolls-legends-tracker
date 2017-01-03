@@ -14,17 +14,17 @@
     <UserControl.Resources>
         <Converters:ObjectToVisibiltyCollapsedConverter x:Key="ObjectToVisibiltyCollapsedConverter"/>
     </UserControl.Resources>
-    <StackPanel>
-        <TextBlock Text="Enter cards found in pack" FontWeight="Bold" FontSize="14" Margin="22,0,2,7"/>
-        <TextBlock Text="{Binding ErrorMessage}" Visibility="{Binding ErrorMessage, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}" Foreground="Red" Margin="22,0,2,7"/>
+    <StackPanel Margin="10,0,0,0">
+        <TextBlock Margin="0,5,2,4" Text="Enter cards found in pack" FontWeight="Bold" FontSize="14" />
+        <TextBlock Margin="0,0,2,4" Text="{Binding ErrorMessage}" Visibility="{Binding ErrorMessage, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}" Foreground="Red"/>
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[0], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[1], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[2], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[3], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[4], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[5], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
-        <TextBlock Margin="22, 4, 0, 0" Text="{Binding Pack.SoulGemsValue, StringFormat={}Pack value: {0}}"/>
-        <local:PacksStats Margin="20, 0, 0, 0" />
+        <TextBlock Margin="0,5,5,0" Text="{Binding Pack.SoulGemsValue, StringFormat={}Pack value: {0}}"/>
+        <local:PacksStats Margin="-4,0,0,0" />
         <Button Content="Save" Command="{Binding CommandSave}" />
     </StackPanel>
 </UserControl>
