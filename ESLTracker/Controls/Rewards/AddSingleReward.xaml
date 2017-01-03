@@ -62,11 +62,13 @@
                     <Label DockPanel.Dock="Top"
                            Content="Card " 
                            Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
-                    <Cards:SelectCard
+                    <Viewbox MaxWidth="180" StretchDirection="DownOnly" Stretch="Uniform">
+                        <Cards:SelectCard MinWidth="180"
                                     Focusable="True"
                                       CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
                                       CardNameAutocomplete="{Binding CardNamesList}"
                                         Visibility="{Binding CardSelectionVisible, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"/>
+                    </Viewbox>
                 </DockPanel>
                 <DockPanel>
                     <Label Content="Note" DockPanel.Dock="Top"/>

@@ -18,6 +18,7 @@
         </CollectionViewSource>
         <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
         <Converters:ObjectToVisibiltyCollapsedConverter x:Key="ObjectToVisibiltyCollapsedConverter" />
+        <Converters:StringNonEmptyToVisibiltyCollapsedConverter x:Key="StringNonEmptyToVisibiltyCollapsedConverter" />
     </UserControl.Resources>
     <ListView  
             x:Name="dataGrid" 
@@ -50,7 +51,8 @@
                         <StackPanel Orientation="Horizontal">
                             <Cards:SelectCard CardInstance="{Binding CardInstance}" ReadOnly="True" Visibility="{Binding CardInstance, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}"/>
                         </StackPanel>
-                        <TextBlock Text="{Binding Comment}" />
+                        <TextBlock Text="{Binding Comment}" 
+                                  Visibility="{Binding Comment, Converter={StaticResource StringNonEmptyToVisibiltyCollapsedConverter}}" />
                         <TextBlock Text="{Binding RewardQuestGuild}"
                                   Visibility="{Binding RewardQuestGuild, Converter={StaticResource ObjectToVisibiltyCollapsedConverter}}" />
                     </StackPanel>
