@@ -13,6 +13,31 @@
         <SolidColorBrush x:Key="brownBrush" Color="White"></SolidColorBrush>
         <Converters:BoolToVisibiltyConverter x:Key="BoolToVisibiltyConverter" />
         <Converters:BoolToVisibiltyCollapsedConverter x:Key="BoolToVisibiltyCollapsedConverter" />
+        <Style x:Key="ShadowText" TargetType="{x:Type Control}">
+            <Style.Triggers>
+                <!-- no shadow when cad unknown or not set-->
+                <DataTrigger Binding="{Binding CardInstance.Card}"  Value="{x:Null}">
+                    <Setter Property="Effect" Value="{x:Null}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CardInstance.Card.Text}"  Value="{x:Null}">
+                    <Setter Property="Effect" Value="{x:Null}"/>
+                </DataTrigger>
+            </Style.Triggers>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect
+                          ShadowDepth="2"
+                          Direction="315"
+                          Color="Black"
+                          Opacity="1"
+                          BlurRadius="1"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="25,0,0,2" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
     </UserControl.Resources>
     <DockPanel x:Name="LayoutRoot">
         <CheckBox DockPanel.Dock="Right" 
@@ -24,36 +49,51 @@
                   VerticalAlignment="Center"
                   IsEnabled="{Binding ReadOnlyNot}"
                   IsChecked="{Binding CardInstance.IsPremium, Mode=TwoWay}"/>
-        <DockPanel>
+        <Grid Height="25" VerticalAlignment="Center">
             <Border CornerRadius="45"
                 Width="20"
                 Height="20"
-                Margin="0"
-                Padding="1"
+                Margin="2,1,2,1"
+                Padding="2"
+                HorizontalAlignment="Left"
+                Panel.ZIndex="2"
                 Background="{Binding CardInstance.RarityColor}"
                 BorderBrush="Black"
-                BorderThickness="1">
+                BorderThickness="0">
                 <Viewbox VerticalAlignment="Stretch" Height="Auto">
                     <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardInstance.Card.Cost, FallbackValue=-}" VerticalAlignment="Stretch"/>
                 </Viewbox>
             </Border>
-            <TextBlock 
-                     Background="{Binding CardInstance.BackgroundColor}" 
-                     Foreground="{Binding CardInstance.ForegroundColor}" 
-                     FontWeight="Medium"
-                     Text="{Binding Path=CardName, Mode=TwoWay}" 
+            <Border BorderBrush="{x:Null}" Background="{Binding CardInstance.BackgroundColor}"  Height="25" VerticalAlignment="Center">
+                <Label 
+                     Background="{x:Null}"  
+                     Style="{StaticResource ShadowText}"
+                     Foreground="{Binding CardInstance.ForegroundColor}"                      
+                     Content="{Binding Path=CardName}" 
                      MinWidth="180"
                      Visibility="{Binding ReadOnly, Converter={StaticResource BoolToVisibiltyCollapsedConverter}}"
                 />
-            <TextBox Background="{Binding CardInstance.BackgroundColor}" 
+            </Border>
+            <Border BorderThickness="1" 
+                    BorderBrush="Gray" 
+                    Background="{Binding CardInstance.BackgroundColor}" 
+                    Visibility="{Binding ReadOnly, Converter={StaticResource BoolToVisibiltyCollapsedConverter}, ConverterParameter=not}"
+                    >
+                <TextBox 
+                    Style="{StaticResource ShadowText}"
+                    Background="{x:Null}" 
+                    BorderBrush="{x:Null}"
+                    BorderThickness="0" 
                      Foreground="{Binding CardInstance.ForegroundColor}" 
-                     FontWeight="Medium" TabIndex="0"
+                     TabIndex="0"
                      x:Name="txtName"
+                     Height="25"
                      Text="{Binding Path=CardName, Mode=TwoWay}" 
-                     Visibility="{Binding ReadOnly, Converter={StaticResource BoolToVisibiltyCollapsedConverter}, ConverterParameter=not}"
-                AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
-                AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
-/>
-        </DockPanel>
+                    AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
+                    AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
+                    >
+                </TextBox>
+            </Border>
+        </Grid>
     </DockPanel>
 </UserControl>
