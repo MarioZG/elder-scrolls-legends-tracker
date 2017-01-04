@@ -169,6 +169,7 @@ namespace ESLTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("All")]
         public global::ESLTracker.ViewModels.Game.PredefinedDateFilter GamesFilter_SelectedPredefinedDateFilter {
             get {
                 return ((global::ESLTracker.ViewModels.Game.PredefinedDateFilter)(this["GamesFilter_SelectedPredefinedDateFilter"]));
@@ -204,7 +205,7 @@ namespace ESLTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Pack_{n:00000}_{d:yyyy_MM_dd_HH_mm}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Pack_{n:0000}_{d:yyyy_MM_dd_HH_mm}")]
         public string Packs_ScreenshotNameTemplate {
             get {
                 return ((string)(this["Packs_ScreenshotNameTemplate"]));

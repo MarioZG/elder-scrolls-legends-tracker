@@ -39,7 +39,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="GamesFilter_SelectedPredefinedDateFilter" Type="ESLTracker.ViewModels.Game.PredefinedDateFilter" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">All</Value>
     </Setting>
     <Setting Name="GamesFilter_DayCutoffTime" Type="System.TimeSpan" Scope="User">
       <Value Profile="(Default)">00:00:00</Value>
