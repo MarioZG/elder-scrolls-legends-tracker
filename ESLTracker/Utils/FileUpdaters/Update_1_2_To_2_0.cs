@@ -16,6 +16,7 @@ namespace ESLTracker.Utils.FileUpdaters
         protected override void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker)
         {
             CreateInitalHistoryForExistingDecks(tracker);
+            doc.InnerXml = SerializationHelper.SerializeXML(tracker);
         }
 
         public void CreateInitalHistoryForExistingDecks(Tracker tracker)

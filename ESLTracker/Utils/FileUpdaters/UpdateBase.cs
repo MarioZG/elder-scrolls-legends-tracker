@@ -18,11 +18,12 @@ namespace ESLTracker.Utils.FileUpdaters
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
+
+            VersionSpecificUpdateFile(doc, tracker);
+
             XmlNode versionNode = doc.SelectSingleNode("/Tracker/Version");
             //set new file version
             versionNode.InnerXml = CreateNewVersionXML(TargetVersion);
-
-            VersionSpecificUpdateFile(doc, tracker);
 
             File.Copy(filePath, filePath + "_" + TargetVersion + ".upgrade", true);
             doc.Save(filePath);
