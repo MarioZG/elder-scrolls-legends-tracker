@@ -48,6 +48,7 @@ namespace ESLTrackerTests
                 { typeof(int?), 234},
                 { typeof(ArenaRank?), ArenaRank.Level5},
                 { typeof(SerializableVersion), new SerializableVersion(1,2,3,4)},
+                { typeof(ObservableCollection<DeckVersion>), new ObservableCollection<DeckVersion>() {new DeckVersion() { Version = new SerializableVersion(1,2) } } },
                 { typeof(object), new object()}
             };
 
@@ -68,6 +69,7 @@ namespace ESLTrackerTests
                 { typeof(int?), 567},
                 { typeof(ArenaRank?), ArenaRank.Gladiator },
                 { typeof(SerializableVersion), new SerializableVersion(1,2,3,4)},
+                { typeof(ObservableCollection<DeckVersion>), new ObservableCollection<DeckVersion>() {new DeckVersion() { Version = new SerializableVersion(2,3) } } }
              //   { typeof(object), new object()}
             };
 

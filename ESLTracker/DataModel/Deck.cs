@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
@@ -8,7 +11,7 @@ using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel
 {
-    public class Deck : ViewModels.ViewModelBase, ICloneable
+    public class Deck : ViewModels.ViewModelBase, ICloneable, IEquatable<Deck>
     {
         public Guid DeckId { get; set; }
 
@@ -42,17 +45,64 @@ namespace ESLTracker.DataModel
         public DateTime CreatedDate { get; set; }
         public ArenaRank? ArenaRank { get; set; }
 
+        
+        [XmlIgnore]
+        public ReadOnlyCollection<DeckVersion> History
+        {
+            get
+            {
+                return DoNotUse.ToList().AsReadOnly();
+            }
+        }
+
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        //obsolete prevents serialisation!!!!
+        //[Obsolete("This is only for serialization process", true)]
+        [XmlArray("DeckVersions")]
+        public ObservableCollection<DeckVersion> DoNotUse { get; set; } = new ObservableCollection<DeckVersion>();
+
+        private Guid selectedVersionId;
+        public Guid SelectedVersionId
+        {
+            get
+            {
+                return selectedVersionId != null ? selectedVersionId : History.OrderByDescending( dv => dv.Version).First().VersionId ;
+            }
+            set
+            {
+                selectedVersionId = value;
+            }
+        }
+
         private ITrackerFactory trackerFactory; //cannot be ITracker, as we need to load it first - stack overflow when database is loading
 
+        [Obsolete("Use static CreateNewDeck instead. This is public  if for serialization purpose only")]
         public Deck() : this(TrackerFactory.DefaultTrackerFactory)
         {
         }
 
         internal Deck(ITrackerFactory tracker)
         {
-            DeckId = Guid.NewGuid(); //if deserialise, will be overriten!, if new generate!
-            CreatedDate = tracker.GetDateTimeNow();
+            DeckId = tracker.GetNewGuid(); //if deserialise, will be overriten!, if new generate!
+            DateTime createdDateTime = tracker.GetDateTimeNow();
+            CreatedDate = createdDateTime;
             this.trackerFactory = tracker;
+        }
+
+        internal static Deck CreateNewDeck()
+        {
+            return CreateNewDeck(TrackerFactory.DefaultTrackerFactory);
+        }
+
+        public static Deck CreateNewDeck(ITrackerFactory trackerFactory)
+        {
+            Deck deck = new Deck(trackerFactory);
+            deck.CreateVersion(1, 0, trackerFactory.GetDateTimeNow());
+
+            return deck;
         }
 
         public int Victories {
@@ -166,5 +216,114 @@ namespace ESLTracker.DataModel
             return trackerFactory.GetTracker().Rewards
                 .Where(r=> r.ArenaDeckId == DeckId);
         }
+
+
+        /// <summary>
+        /// Creates new deck version in history, adds to colletion and returns reference
+        /// </summary>
+        /// <param name="major"></param>
+        /// <param name="minor"></param>
+        /// <param name="createdDate"></param>
+        /// <returns></returns>
+        public DeckVersion CreateVersion(int major, int minor, DateTime createdDate)
+        {
+            SerializableVersion version = new SerializableVersion(major, minor);
+            if (DoNotUse.Any(v => v.Version == version))
+            {
+                throw new ArgumentException(string.Format("Version {0} alread has been added to deck '{1}'", version, Name));
+            }
+            DeckVersion dv = new DeckVersion();
+            dv.CreatedDate = createdDate;
+            dv.Version = version;
+            this.DoNotUse.Add(dv); //add to history
+            this.SelectedVersionId = dv.VersionId;
+            return dv;
+        }
+
+        /// <summary>
+        /// Apply history from other deck instance. used in cancel edit on view model
+        /// </summary>
+        /// <param name="savedState"></param>
+        internal void CopyHistory(IEnumerable<DeckVersion> history)
+        {
+            if ((history == null) || (history.Count() == 0))
+            {
+                throw new ArgumentException("History cannot be null or empty");
+            }
+            this.DoNotUse = new ObservableCollection<DeckVersion>(history);
+            if (! this.History.Any( dv => dv.VersionId == this.SelectedVersionId))
+            {
+                this.SelectedVersionId = this.History.OrderByDescending(dv => dv.Version).First().VersionId;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return DeckId.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Deck);
+        }
+
+        public bool Equals(Deck other)
+        {
+            // If parameter is null, return false.
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+
+            // Optimization for a common success case.
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            // If run-time types are not exactly the same, return false.
+            if (this.GetType() != other.GetType())
+                return false;
+
+            bool equals = true;
+
+            equals &= this.ArenaRank == other.ArenaRank;
+            //equals &= this.Attributes == other.Attributes; //attributes depends only on class - 
+            equals &= this.Class == other.Class;
+            equals &= this.CreatedDate == other.CreatedDate;
+            equals &= this.DeckId == other.DeckId;
+            equals &= Enumerable.SequenceEqual(this.History, other.History);
+            equals &= this.Name == other.Name;
+            equals &= this.Notes == other.Notes;
+            equals &= this.SelectedVersionId == other.SelectedVersionId;
+            equals &= this.Type == other.Type;
+
+            return equals;
+        }
+
+        public static bool operator ==(Deck lhs, Deck rhs)
+        {
+            // Check for null on left side.
+            if (Object.ReferenceEquals(lhs, null))
+            {
+                if (Object.ReferenceEquals(rhs, null))
+                {
+                    // null == null = true.
+                    return true;
+                }
+
+                // Only the left side is null.
+                return false;
+            }
+            // Equals handles case of null on right side.
+            return lhs.Equals(rhs);
+        }
+
+        public static bool operator !=(Deck lhs, Deck rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+
     }
 }

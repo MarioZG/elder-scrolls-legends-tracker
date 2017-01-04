@@ -12,6 +12,7 @@ using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 using System.Reflection;
 using ESLTrackerTests;
+using System.Collections;
 
 namespace ESLTracker.ViewModels.Decks.Tests
 {
@@ -108,15 +109,20 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod]
         public void IEditableObjectImplementation001_CancelEdit()
         {
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetNewGuid()).Returns(() => Guid.NewGuid());
+
             Mock<IDeckClassSelectorViewModel> deckClassSelector = new Mock<IDeckClassSelectorViewModel>();
 
             EditDeckViewModel model = new EditDeckViewModel();
             model.DeckClassModel = deckClassSelector.Object;
-            Deck deck = new Deck();
+            Deck deck = new Deck(trackerFactory.Object);
 
             model.Deck = deck;
 
             PopulateObject(deck, StartProp);
+            //fix up selected version id - otherwise it would be some random guid
+            deck.History.Last().VersionId = deck.SelectedVersionId;
 
             TestContext.WriteLine("Begin Edit");
             model.BeginEdit();
@@ -130,7 +136,13 @@ namespace ESLTracker.ViewModels.Decks.Tests
             {
                 if (p.CanWrite)
                 {
-                    Assert.AreEqual(StartProp[p.PropertyType], p.GetValue(deck), "Failed validation of prop {0} of type {1}", p.Name, p.PropertyType);
+                    if (p.PropertyType.GetInterface(nameof(ICollection)) != null)
+                    {
+                        CollectionAssert.AreEqual(StartProp[p.PropertyType] as ICollection, p.GetValue(deck) as ICollection, "Failed validation of prop {0} of type {1}", p.Name, p.PropertyType);
+                    }
+                    else {
+                        Assert.AreEqual(StartProp[p.PropertyType], p.GetValue(deck), "Failed validation of prop {0} of type {1}", p.Name, p.PropertyType);
+                    }
                 }
             }
 

@@ -23,7 +23,7 @@ namespace ESLTracker.ViewModels.Tests
         public void GetArenaRunStatisticsTest001_MoreThanOneRecordForSameRewardType()
         {
             Mock<ITrackerFactory> trackerfactory = new Mock<ITrackerFactory>();
-
+            trackerfactory.Setup(tf => tf.GetNewGuid()).Returns(() => Guid.NewGuid());
             //two decks
             //d1 - 4 winn run 12g, 12g (24g in total), 34sg, 1 p, 1 card
             //d2 - another 4 winn run 18g, 20g (38g in total), 10sg ,  8sg (18sg in total), 2 p, 3 card
@@ -97,7 +97,7 @@ namespace ESLTracker.ViewModels.Tests
         public void GetArenaRunStatisticsTest002_MoreThanOneRecordForSameRewardTypeAndAddedSomeDataOutsideFilters()
         {
             Mock<ITrackerFactory> trackerfactory = new Mock<ITrackerFactory>();
-
+            trackerfactory.Setup(tf => tf.GetNewGuid()).Returns( () => Guid.NewGuid());
             trackerfactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 11, 1, 0, 0, 1));
 
             //two decks

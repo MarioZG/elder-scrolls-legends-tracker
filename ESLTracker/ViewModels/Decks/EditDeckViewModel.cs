@@ -178,6 +178,8 @@ namespace ESLTracker.ViewModels.Decks
             Deck.Notes = savedState.Notes;
             Deck.CreatedDate = savedState.CreatedDate;
             Deck.ArenaRank = savedState.ArenaRank;
+            Deck.SelectedVersionId = savedState.SelectedVersionId;
+            Deck.CopyHistory(savedState.History);
             RaisePropertyChangedEvent("Deck");
         }
 

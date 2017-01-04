@@ -285,6 +285,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             Mock<ITracker> tracker = new Mock<ITracker>();
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetNewGuid()).Returns(() => Guid.NewGuid());
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
             Deck deckToShow = new Deck(trackerFactory.Object) { Type = DeckType.VersusArena, Class = classFilter } ;
@@ -324,6 +325,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             Mock<ITracker> tracker = new Mock<ITracker>();
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetNewGuid()).Returns(() => Guid.NewGuid());
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
             Deck deckToShow = new Deck(trackerFactory.Object) { Type = DeckType.VersusArena, Class = DeckClass.Assassin };

@@ -19,5 +19,6 @@ namespace ESLTracker.Utils
         ICardsDatabase GetCardsDatabase();
         IWrapperProvider GetWrapperProvider();
         IFileManager GetFileManager();
+        Guid GetNewGuid();
     }
 }

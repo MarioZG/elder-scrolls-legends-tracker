@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
     <Compile Include="DataModel\DeckTests.cs" />
+    <Compile Include="DataModel\DeckVersionTests.cs" />
     <Compile Include="DataModel\GameTests.cs" />
     <Compile Include="DataModel\PackTests.cs" />
     <Compile Include="DataModel\RewardTests.cs" />

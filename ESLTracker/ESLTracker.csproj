@@ -143,6 +143,7 @@
     </Compile>
     <Compile Include="DataModel\Card.cs" />
     <Compile Include="DataModel\CardInstance.cs" />
+    <Compile Include="DataModel\DeckVersion.cs" />
     <Compile Include="DataModel\Enums\ArenaRank.cs" />
     <Compile Include="DataModel\Enums\CardRarity.cs" />
     <Compile Include="DataModel\Enums\CardType.cs" />

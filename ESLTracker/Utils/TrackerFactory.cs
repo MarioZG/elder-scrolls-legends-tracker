@@ -58,5 +58,10 @@ namespace ESLTracker.Utils
             }
             return fileManager;
         }
+
+        public Guid GetNewGuid()
+        {
+            return Guid.NewGuid();
+        }
     }
 }
