@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Serialization;
+using ESLTracker.DataModel;
 
 namespace ESLTracker.Utils.FileUpdaters
 {
@@ -12,22 +14,37 @@ namespace ESLTracker.Utils.FileUpdaters
     {
         public abstract SerializableVersion TargetVersion { get; }
 
-        public bool UpdateFile(FileManager fileManager)
+        public bool UpdateFile(string filePath, Tracker tracker)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(fileManager.FullDataFilePath);
+            doc.Load(filePath);
             XmlNode versionNode = doc.SelectSingleNode("/Tracker/Version");
             //set new file version
-            versionNode.InnerXml = fileManager.CreateNewVersionXML(TargetVersion);
+            versionNode.InnerXml = CreateNewVersionXML(TargetVersion);
 
-            VersionSpecificUpdateFile(doc, fileManager);
+            VersionSpecificUpdateFile(doc, tracker);
 
-            File.Copy(fileManager.FullDataFilePath, fileManager.FullDataFilePath + "_" + TargetVersion + ".upgrade", true);
-            doc.Save(fileManager.FullDataFilePath);
+            File.Copy(filePath, filePath + "_" + TargetVersion + ".upgrade", true);
+            doc.Save(filePath);
 
             return true;
         }
 
-        protected abstract void VersionSpecificUpdateFile(XmlDocument doc, FileManager fileManager);
+        protected abstract void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker);
+
+        protected string CreateNewVersionXML(SerializableVersion TargetVersion)
+        {
+            StringBuilder serialisedVersion = new StringBuilder();
+            using (TextWriter writer = new StringWriter(serialisedVersion))
+            {
+                var xml = new XmlSerializer(typeof(SerializableVersion), String.Empty);
+                xml.Serialize(writer, TargetVersion);
+            }
+
+            XmlDocument newVersionDoc = new XmlDocument();
+            newVersionDoc.LoadXml(serialisedVersion.ToString());
+
+            return newVersionDoc.DocumentElement.InnerXml;
+        }
     }
 }

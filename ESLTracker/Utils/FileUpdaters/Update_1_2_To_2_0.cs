@@ -8,18 +8,17 @@ using ESLTracker.DataModel;
 
 namespace ESLTracker.Utils.FileUpdaters
 {
-    [SerializableVersion(1, 1)]
+    [SerializableVersion(1, 2)]
     public class Update_1_2_To_2_0 : UpdateBase
     {
         public override SerializableVersion TargetVersion { get; } = new SerializableVersion(2, 0);
 
-        protected override void VersionSpecificUpdateFile(XmlDocument doc, FileManager fileManager)
+        protected override void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker)
         {
-            Tracker tracker = fileManager.LoadDatabase();
             CreateInitalHistoryForExistingDecks(tracker);
         }
 
-        internal void CreateInitalHistoryForExistingDecks(Tracker tracker)
+        public void CreateInitalHistoryForExistingDecks(Tracker tracker)
         {
             foreach (Deck deck in tracker.Decks)
             {

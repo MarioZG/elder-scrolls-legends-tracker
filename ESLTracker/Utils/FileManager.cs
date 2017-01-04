@@ -68,7 +68,7 @@ namespace ESLTracker.Utils
                     //check for data update
                     if (tracker.Version < Tracker.CurrentFileVersion)
                     {
-                        if (UpdateFile(tracker.Version))
+                        if (UpdateFile(tracker.Version, tracker))
                         {
                             //reload after update
                             tracker = LoadDatabase();
@@ -114,7 +114,7 @@ namespace ESLTracker.Utils
                 {
                     if (tracker.Version != Tracker.CurrentFileVersion)
                     {
-                        if (UpdateFile(tracker.Version))
+                        if (UpdateFile(tracker.Version, tracker))
                         {
                             //reload after update
                             tracker = LoadDatabase();
@@ -302,10 +302,10 @@ namespace ESLTracker.Utils
 
         internal bool UpdateFile()
         {
-            return UpdateFile(ReadCurrentFileVersionFromXML());
+            return UpdateFile(ReadCurrentFileVersionFromXML(), null);
         }
 
-        internal bool UpdateFile(SerializableVersion fromVersion)
+        internal bool UpdateFile(SerializableVersion fromVersion, Tracker tracker)
         {
             if (fromVersion == null)
             {
@@ -318,7 +318,7 @@ namespace ESLTracker.Utils
                 return false;
             }
             IFileUpdater updater = (IFileUpdater)Activator.CreateInstance(updaterTypes.First());
-            return updater.UpdateFile(this);
+            return updater.UpdateFile(this.FullDataFilePath, tracker);
         }
 
 
@@ -369,19 +369,6 @@ namespace ESLTracker.Utils
             }
         }
 
-        internal string CreateNewVersionXML(SerializableVersion TargetVersion)
-        {
-            StringBuilder serialisedVersion = new StringBuilder();
-            using (TextWriter writer = new StringWriter(serialisedVersion))
-            {
-                var xml = new XmlSerializer(typeof(SerializableVersion), String.Empty);
-                xml.Serialize(writer, TargetVersion);
-            }
 
-            XmlDocument newVersionDoc = new XmlDocument();
-            newVersionDoc.LoadXml(serialisedVersion.ToString());
-
-            return newVersionDoc.DocumentElement.InnerXml;
-        }
     }
 }

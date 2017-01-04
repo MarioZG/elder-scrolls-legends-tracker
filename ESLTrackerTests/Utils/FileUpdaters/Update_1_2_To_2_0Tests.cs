@@ -18,7 +18,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
 #pragma warning disable CS0618 // Type or member is obsolete - dont want to create deck with history
             //create decks with emoty history
             Deck d1 = new Deck() { DoNotUse = null, SelectedVersionId = Guid.Empty };
-            Deck d2 = new Deck() { DoNotUse = null, SelectedVersionId = Guid.Empty }; 
+            Deck d2 = new Deck() { DoNotUse = null, SelectedVersionId = Guid.Empty };
 #pragma warning restore CS0618 // Type or member is obsolete
 
             Tracker tracker = new Tracker();

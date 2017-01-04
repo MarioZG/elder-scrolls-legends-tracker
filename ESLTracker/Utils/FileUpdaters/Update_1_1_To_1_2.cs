@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.FileUpdaters
@@ -15,7 +16,7 @@ namespace ESLTracker.Utils.FileUpdaters
     {
         public override SerializableVersion TargetVersion { get; } = new SerializableVersion(1, 2);
 
-        protected override void VersionSpecificUpdateFile(XmlDocument doc, FileManager fileManager)
+        protected override void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker)
         {
             //do nothing - just marking packs changes
         }
