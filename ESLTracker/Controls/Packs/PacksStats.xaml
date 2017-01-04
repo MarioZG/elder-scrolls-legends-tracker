@@ -11,7 +11,7 @@
         <ViewModels:PacksStatsViewModel/>
     </UserControl.DataContext>
     <StackPanel>
-        <TextBlock Text="{Binding AveragePackValue, StringFormat={} Avergae pack value: {0}}"/>
+        <TextBlock Text="{Binding AveragePackValue, StringFormat={} Average pack value: {0}}"/>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding PacksSinceLegendary, StringFormat={} Packs since last legendary: {0}}"/>
             <TextBlock Text="{Binding MaxPacksSinceLegendary, StringFormat={} Longest wait: {0}}"/>
