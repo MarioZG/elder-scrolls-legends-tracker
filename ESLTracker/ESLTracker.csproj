@@ -161,6 +161,7 @@
     <Compile Include="Utils\Converters\MarkupConverter.cs" />
     <Compile Include="Utils\Converters\ToVisibilityConverter.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
+    <Compile Include="Utils\FileUpdaters\Update_1_2_To_2_0.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
     <Compile Include="Utils\ResourcesHelper.cs" />
     <Compile Include="Settings.cs" />

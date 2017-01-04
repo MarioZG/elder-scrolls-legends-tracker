@@ -15,7 +15,7 @@ namespace ESLTracker.Utils.FileUpdaters
     {
         public override SerializableVersion TargetVersion { get; } = new SerializableVersion(1, 1);
 
-        protected override void VersionSpecificUpdateFile(XmlDocument doc)
+        protected override void VersionSpecificUpdateFile(XmlDocument doc, FileManager fileManager)
         {
             foreach (XmlNode dataNode in doc.SelectNodes("/Tracker/Decks/Deck/ArenaRank"))
             {

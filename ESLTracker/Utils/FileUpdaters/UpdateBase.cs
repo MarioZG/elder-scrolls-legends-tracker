@@ -20,7 +20,7 @@ namespace ESLTracker.Utils.FileUpdaters
             //set new file version
             versionNode.InnerXml = fileManager.CreateNewVersionXML(TargetVersion);
 
-            VersionSpecificUpdateFile(doc);
+            VersionSpecificUpdateFile(doc, fileManager);
 
             File.Copy(fileManager.FullDataFilePath, fileManager.FullDataFilePath + "_" + TargetVersion + ".upgrade", true);
             doc.Save(fileManager.FullDataFilePath);
@@ -28,6 +28,6 @@ namespace ESLTracker.Utils.FileUpdaters
             return true;
         }
 
-        protected abstract void VersionSpecificUpdateFile(XmlDocument doc);
+        protected abstract void VersionSpecificUpdateFile(XmlDocument doc, FileManager fileManager);
     }
 }

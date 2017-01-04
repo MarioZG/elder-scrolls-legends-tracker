@@ -15,7 +15,7 @@ namespace ESLTracker.Utils.FileUpdaters
     {
         public override SerializableVersion TargetVersion { get; } = new SerializableVersion(1, 2);
 
-        protected override void VersionSpecificUpdateFile(XmlDocument doc)
+        protected override void VersionSpecificUpdateFile(XmlDocument doc, FileManager fileManager)
         {
             //do nothing - just marking packs changes
         }
