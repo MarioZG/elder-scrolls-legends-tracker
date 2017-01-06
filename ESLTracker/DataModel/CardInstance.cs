@@ -49,6 +49,15 @@ namespace ESLTracker.DataModel
             set { isPremium = value;  RaisePropertyChangedEvent(nameof(IsPremium)); }
         }
 
+        private int quantity;
+
+        public int Quantity
+        {
+            get { return quantity; }
+            set { quantity = value; RaisePropertyChangedEvent(nameof(Quantity)); }
+        }
+
+
         public Brush BackgroundColor
         {
             get

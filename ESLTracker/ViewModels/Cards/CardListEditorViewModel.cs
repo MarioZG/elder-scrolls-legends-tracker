@@ -16,10 +16,12 @@ namespace ESLTracker.ViewModels.Cards
         public CardInstance NewCard
         {
             get { return newCard; }
-            set {
+            set
+            {
                 newCard = value;
-                CardsCollection.Add(value);
-                RaisePropertyChangedEvent(nameof(NewCard)); }
+                AddCard(value, 1);
+                RaisePropertyChangedEvent(nameof(NewCard));
+            }
         }
 
         private ObservableCollection<CardInstance> cardsCollection;
@@ -48,6 +50,20 @@ namespace ESLTracker.ViewModels.Cards
         public CardListEditorViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
+        }
+
+        internal void AddCard(CardInstance value, int qty)
+        {
+            var card = CardsCollection.Where(ci => ci.CardId == value.CardId).FirstOrDefault();
+            if (card != null)
+            {
+                card.Quantity += qty; //if already in deck, inc qty
+            }
+            else
+            {
+                value.Quantity = qty;
+                CardsCollection.Add(value);
+            }
         }
     }
 }

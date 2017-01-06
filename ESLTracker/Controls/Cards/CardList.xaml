@@ -14,7 +14,11 @@
     <ItemsControl ItemsSource="{Binding}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <local:SelectCard Margin="0,1,0,1" CardInstance="{Binding}" ReadOnly="True" />
+                <local:SelectCard 
+                    Margin="0,1,0,1" 
+                    CardInstance="{Binding}" 
+                    ReadOnly="True" 
+                    ShowIsPremium="False" />
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
