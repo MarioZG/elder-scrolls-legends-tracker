@@ -102,8 +102,20 @@
     <Compile Include="Controls\Cards\SelectCard.xaml.cs">
       <DependentUpon>SelectCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Decks\CardBreakdown.xaml.cs">
+      <DependentUpon>CardBreakdown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cards\CardList.xaml.cs">
+      <DependentUpon>CardList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cards\CardListEditor.xaml.cs">
+      <DependentUpon>CardListEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Decks\DeckFilter.xaml.cs">
       <DependentUpon>DeckFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Decks\DeckPreview.xaml.cs">
+      <DependentUpon>DeckPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Decks\DeckStats.xaml.cs">
       <DependentUpon>DeckStats.xaml</DependentUpon>
@@ -214,6 +226,8 @@
     <Compile Include="Utils\SingleInstanceApp.cs" />
     <Compile Include="Utils\TrackerFactory.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
+    <Compile Include="ViewModels\Cards\CardListEditorViewModel.cs" />
+    <Compile Include="ViewModels\Decks\DeckPreviewViewModel.cs" />
     <Compile Include="ViewModels\GameStatisticsViewModel.cs" />
     <Compile Include="ViewModels\Game\GameFilterViewModel.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
@@ -300,6 +314,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Decks\CardBreakdown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Cards\CardList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Cards\CardListEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Decks\DeckFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -309,6 +335,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Decks\DeckList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Decks\DeckPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

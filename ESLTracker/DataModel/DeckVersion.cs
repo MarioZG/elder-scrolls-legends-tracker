@@ -13,7 +13,7 @@ namespace ESLTracker.DataModel
         public Guid VersionId { get; set; } 
 
         public SerializableVersion Version { get; set; }
-        public ObservableCollection<CardInstance> Cards = new ObservableCollection<CardInstance>();
+        public ObservableCollection<CardInstance> Cards { get; set; } = new ObservableCollection<CardInstance>();
 
         public DateTime CreatedDate { get; set; }
 

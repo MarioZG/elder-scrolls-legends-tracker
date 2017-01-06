@@ -86,7 +86,7 @@
                     </WrapPanel>
                     <WrapPanel 
                         Visibility="{Binding DeckStatsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
-                            <Decks:DeckStats/>
+                            <Decks:DeckPreview/>
                         </WrapPanel>
                     <WrapPanel 
                         Visibility="{Binding EditGameVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
