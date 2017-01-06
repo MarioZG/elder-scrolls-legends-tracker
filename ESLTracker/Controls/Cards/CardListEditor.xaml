@@ -12,13 +12,19 @@
     </UserControl.DataContext>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button Content=" x3 " DockPanel.Dock="Right" Command="{Binding CommandAddCardToDeck}" CommandParameter="3"/>
-            <Button Content=" x2 " DockPanel.Dock="Right" Command="{Binding CommandAddCardToDeck}" CommandParameter="2"/>
-            <Button Content=" x1 " DockPanel.Dock="Right" Command="{Binding CommandAddCardToDeck}" CommandParameter="1"/>
+            <Button Content=" x3 " DockPanel.Dock="Right" 
+                    TabIndex="3"
+                    Command="{Binding CommandAddCardToDeck}" CommandParameter="3"/>
+            <Button Content=" x2 " DockPanel.Dock="Right"
+                    TabIndex="2"
+                    Command="{Binding CommandAddCardToDeck}" CommandParameter="2"/>
+            <Button Content=" x1 " DockPanel.Dock="Right" 
+                    TabIndex="1"
+                    Command="{Binding CommandAddCardToDeck}" CommandParameter="1"/>
             <local:SelectCard DockPanel.Dock="Top" CardInstance="{Binding NewCard, Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" />
 
         </DockPanel>
-        <local:CardList DataContext="{Binding CardsCollection}" BorderThickness="4" BorderBrush="Black"/>
+        <local:CardList TabIndex="0"  DataContext="{Binding CardsCollection}"/>
 
     </DockPanel>
 </UserControl>

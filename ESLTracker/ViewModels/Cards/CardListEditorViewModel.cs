@@ -72,13 +72,19 @@ namespace ESLTracker.ViewModels.Cards
             {
                 return;
             }
+            foreach (var ci in CardsCollection.Where(ci => ci.BorderBrush != null))
+            {
+                ci.BorderBrush = null;
+            }
             var card = CardsCollection.Where(ci => ci.CardId == value.CardId).FirstOrDefault();
             if (card != null)
             {
                 card.Quantity += qty; //if already in deck, inc qty
+                card.BorderBrush = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 100, 15));
             }
             else
             {
+                value.BorderBrush = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 100, 15));
                 value.Quantity = qty;
                 CardsCollection.Add(value);
             }

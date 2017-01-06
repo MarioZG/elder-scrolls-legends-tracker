@@ -57,7 +57,7 @@ namespace ESLTracker.DataModel
             set { quantity = value; RaisePropertyChangedEvent(nameof(Quantity)); }
         }
 
-
+        [XmlIgnore]
         public Brush BackgroundColor
         {
             get
@@ -65,7 +65,7 @@ namespace ESLTracker.DataModel
                 return CardImagesHelper.GetCardMiniature(card);
             }
         }
-
+        [XmlIgnore]
         public Brush ForegroundColor
         {
             get
@@ -80,15 +80,22 @@ namespace ESLTracker.DataModel
                 }
             }
         }
-
+        [XmlIgnore]
         public Brush RarityColor
         {
             get
             {
                 return CardImagesHelper.GetRarityBrush(card);
             }
-        }       
+        }
 
+        private Brush borderBrush = null;
+        [XmlIgnore]
+        public Brush BorderBrush
+        {
+            get { return borderBrush; }
+            set { borderBrush = value; RaisePropertyChangedEvent(nameof(BorderBrush)); }
+        }
 
         public bool HasCard
         {
