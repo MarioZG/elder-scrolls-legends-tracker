@@ -18,7 +18,8 @@
                     Margin="0,1,0,1" 
                     CardInstance="{Binding}" 
                     ReadOnly="True" 
-                    ShowIsPremium="False" />
+                    ShowIsPremium="False"
+                    ShowQuantity="True"/>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>

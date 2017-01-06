@@ -48,7 +48,11 @@
                   Visibility="{Binding ShowIsPremium, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
                   IsEnabled="{Binding ReadOnlyNot}"
                   IsChecked="{Binding CardInstance.IsPremium, Mode=TwoWay}"/>
-        <TextBlock Text="{Binding CardInstance.Quantity}" DockPanel.Dock="Right" />
+        <TextBlock 
+            FontSize="13" FontWeight="Medium" 
+            Text="{Binding CardInstance.Quantity}" 
+            Visibility="{Binding ShowQuantity, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
+            DockPanel.Dock="Right" />
         <Grid Height="25" VerticalAlignment="Center">
             <Border CornerRadius="45"
                 Width="20"

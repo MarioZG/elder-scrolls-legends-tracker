@@ -74,6 +74,19 @@ namespace ESLTracker.Controls.Cards
             DependencyProperty.Register("ShowIsPremium", typeof(bool), typeof(SelectCard), new PropertyMetadata(false));
 
 
+
+        public bool ShowQuantity
+        {
+            get { return (bool)GetValue(ShowQuantityProperty); }
+            set { SetValue(ShowQuantityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowQuantity.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowQuantityProperty =
+            DependencyProperty.Register("ShowQuantity", typeof(bool), typeof(SelectCard), new PropertyMetadata(false));
+
+
+
         public IEnumerable<string> CardNameAutocomplete
         {
             get { return (IEnumerable<string>)GetValue(CardNameAutocompleteProperty); }

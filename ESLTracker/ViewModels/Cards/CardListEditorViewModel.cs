@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.Utils;
 
@@ -19,7 +20,6 @@ namespace ESLTracker.ViewModels.Cards
             set
             {
                 newCard = value;
-                AddCard(value, 1);
                 RaisePropertyChangedEvent(nameof(NewCard));
             }
         }
@@ -40,6 +40,14 @@ namespace ESLTracker.ViewModels.Cards
             }
         }
 
+        public ICommand CommandAddCardToDeck
+        {
+            get
+            {
+                return new RelayCommand(CommandAddCardToDeckExecute);
+            }
+        }
+
         private ITrackerFactory trackerFactory;
 
         public CardListEditorViewModel() : this(TrackerFactory.DefaultTrackerFactory)
@@ -52,8 +60,18 @@ namespace ESLTracker.ViewModels.Cards
             this.trackerFactory = trackerFactory;
         }
 
+        private void CommandAddCardToDeckExecute(object obj)
+        {
+            int qty = Int32.Parse(obj.ToString());
+            AddCard(newCard, qty);
+        }
+
         internal void AddCard(CardInstance value, int qty)
         {
+            if (value == null)
+            {
+                return;
+            }
             var card = CardsCollection.Where(ci => ci.CardId == value.CardId).FirstOrDefault();
             if (card != null)
             {
