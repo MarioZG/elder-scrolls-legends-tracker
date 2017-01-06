@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks" 
              mc:Ignorable="d" 
+             x:Name="deckPreview"
              d:DesignHeight="300" d:DesignWidth="500">
     <UserControl.DataContext>
         <ViewModels:DeckPreviewViewModel/>
@@ -14,9 +15,9 @@
         <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
             <TextBlock Text="{Binding Deck.Name}" />
             <Button Content="Edit"/>
-            <Cards:CardList DataContext="{Binding CurrentVersion.Cards}"/>
+            <Cards:CardList DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}"/>
             <local:CardBreakdown />
         </StackPanel>
-        <Cards:CardListEditor CardCollection="{Binding CurrentVersion.Cards}" />
+        <Cards:CardListEditor CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" />
     </DockPanel>
 </UserControl>

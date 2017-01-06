@@ -22,7 +22,13 @@ namespace ESLTracker.ViewModels.Cards
                 RaisePropertyChangedEvent(nameof(NewCard)); }
         }
 
-        public ObservableCollection<CardInstance> CardsCollection { get; set; }
+        private ObservableCollection<CardInstance> cardsCollection;
+
+        public ObservableCollection<CardInstance> CardsCollection
+        {
+            get { return cardsCollection; }
+            set { cardsCollection = value; RaisePropertyChangedEvent(nameof(CardsCollection)); }
+        }
 
         public IEnumerable<string> CardNamesList
         {

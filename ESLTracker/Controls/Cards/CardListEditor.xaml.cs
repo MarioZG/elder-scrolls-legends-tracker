@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.DataModel;
+using ESLTracker.ViewModels.Cards;
 
 namespace ESLTracker.Controls.Cards
 {
@@ -30,7 +31,24 @@ namespace ESLTracker.Controls.Cards
 
         // Using a DependencyProperty as the backing store for CardCollection.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CardCollectionProperty =
-            DependencyProperty.Register("CardCollection", typeof(ObservableCollection<CardInstance>), typeof(CardListEditor), new PropertyMetadata(new ObservableCollection<CardInstance>()));
+            DependencyProperty.Register("CardCollection", typeof(ObservableCollection<CardInstance>), typeof(CardListEditor), new PropertyMetadata(new ObservableCollection<CardInstance>(), CardCollectionChanged));
+
+        private static void CardCollectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((CardListEditor)d).DataContext.CardsCollection = (ObservableCollection<CardInstance>)e.NewValue;
+        }
+
+        new public CardListEditorViewModel DataContext
+        {
+            get
+            {
+                return (CardListEditorViewModel)base.DataContext;
+            }
+            set
+            {
+                base.DataContext = value;
+            }
+        }       
 
         public CardListEditor()
         {

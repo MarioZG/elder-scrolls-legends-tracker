@@ -11,20 +11,11 @@
             <Setter Property="ReadOnly" Value="True"/>
         </Style>
     </UserControl.Resources>
-    <StackPanel>
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-        <local:SelectCard />
-    </StackPanel>
+    <ItemsControl ItemsSource="{Binding}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <local:SelectCard Margin="0,1,0,1" CardInstance="{Binding}" ReadOnly="True" />
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
 </UserControl>

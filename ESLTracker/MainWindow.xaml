@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:local="clr-namespace:ESLTracker"
-        xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks" x:Class="ESLTracker.MainWindow"
+        xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks" 
+        x:Class="ESLTracker.MainWindow"
+        xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
         xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         xmlns:Properties="clr-namespace:ESLTracker.Properties" 
@@ -86,7 +88,7 @@
                     </WrapPanel>
                     <WrapPanel 
                         Visibility="{Binding DeckStatsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
-                            <Decks:DeckPreview/>
+                        <Decks:DeckPreview Deck="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}"/>
                         </WrapPanel>
                     <WrapPanel 
                         Visibility="{Binding EditGameVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">

@@ -9,13 +9,26 @@ namespace ESLTracker.ViewModels.Decks
 {
     public class DeckPreviewViewModel : ViewModelBase
     {
-        public Deck Deck {get;set;}
+
+        private Deck deck;
+
+        public Deck Deck
+        {
+            get { return deck; }
+            set {
+                deck = value;
+                RaisePropertyChangedEvent(nameof(Deck));
+                RaisePropertyChangedEvent(nameof(CurrentVersion));
+            }
+        }
+
         public DeckVersion CurrentVersion
         {
             get
             {
                 return Deck?.History.Where(dh => dh.VersionId == Deck.SelectedVersionId).First();
             }
+            set { }
         }
     }
 }

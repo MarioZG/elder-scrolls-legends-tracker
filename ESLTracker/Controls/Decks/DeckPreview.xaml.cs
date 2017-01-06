@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.DataModel;
+using ESLTracker.ViewModels.Decks;
 
 namespace ESLTracker.Controls.Decks
 {
@@ -35,17 +36,12 @@ namespace ESLTracker.Controls.Decks
 
         private static void DeckChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            //throw new NotImplementedException();
+            ((DeckPreviewViewModel)((DeckPreview)d).DataContext).Deck = e.NewValue as Deck;
         }
 
         public DeckPreview()
         {
             InitializeComponent();
-
-            var nameOfPropertyInVm = "Deck";
-            var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
-            this.SetBinding(DeckProperty, binding);
-
         }
     }
 }
