@@ -133,5 +133,26 @@ namespace ESLTracker.Controls.Cards
                 }));
             }
         }
+
+        /// <summary>
+        /// Used for moving the caret to the end of the suggested auto-completion text.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter)
+                return;
+
+            TextBox tb = e.OriginalSource as TextBox;
+            if (tb == null)
+                return;
+
+            //validate card name
+            CardNameChanged(
+                this as DependencyObject, 
+                new DependencyPropertyChangedEventArgs(CardNameProperty, tb.Text, tb.Text));
+
+        }
     }
 }

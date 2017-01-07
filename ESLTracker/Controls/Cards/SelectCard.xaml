@@ -93,6 +93,7 @@
                      x:Name="txtName"
                      Height="25"
                      Text="{Binding Path=CardName, Mode=TwoWay}" 
+                    KeyDown="OnPreviewKeyDown"
                     AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
                     AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
                     >
