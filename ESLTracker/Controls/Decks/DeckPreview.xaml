@@ -18,20 +18,22 @@
                 <MenuItem Header="Cancel" Command="{Binding CommandCancel}"/>
                 <MenuItem Header="Save" Command="{Binding CommandSave}"/>
             </Menu>
-            <TextBlock Text="{Binding CurrentVersionString}" DockPanel.Dock="Right"/>
-            <TextBlock Text="{Binding Deck.Name}"/>
+            <TextBlock Padding="5,5,5,10" Style="{StaticResource DeckName}" Text="{Binding CurrentVersionString}" DockPanel.Dock="Right"/>
+            <TextBlock Padding="10,5,5,5" Style="{StaticResource DeckName}" Text="{Binding Deck.Name}"/>
         </DockPanel>
-        <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
+        <DockPanel DockPanel.Dock="Left">
             <local:EditDeck 
+                DockPanel.Dock="Top"
                 Deck="{Binding DataContext.Deck, ElementName=deckPreview, Mode=TwoWay}"
                 Visibility="{Binding  DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
                 />
+            <local:CardBreakdown DockPanel.Dock="Bottom"/>
             <Cards:CardList 
                 DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}"
                 Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ConverterParameter=not, ElementName=deckPreview}"
                 />
-            <local:CardBreakdown />
-        </StackPanel>
+
+        </DockPanel>
         <Cards:CardListEditor 
             Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
             CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" />

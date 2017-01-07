@@ -58,4 +58,8 @@
         </Setter>
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"/>
     </Style>
+    <Style x:Key="DeckName" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
 </ResourceDictionary>

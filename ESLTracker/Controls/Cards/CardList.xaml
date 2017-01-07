@@ -18,6 +18,7 @@
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
+    <ScrollViewer>
     <ItemsControl ItemsSource="{Binding Source={StaticResource cardsCollectionView}}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
@@ -32,4 +33,5 @@
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
+    </ScrollViewer>
 </UserControl>

@@ -8,7 +8,13 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <TextBlock>
-            100 legendaries,<LineBreak/> some epic, all with lethad
+                xx cards<LineBreak/> 
+                xx deck value<LineBreak/>
+                Chart color break<LineBreak/>
+                    keywords<LineBreak/>
+                    xx lethal<LineBreak/>
+                    xx guard<LineBreak/>
+                    chart mana curve<LineBreak/>
         </TextBlock>
     </Grid>
 </UserControl>
