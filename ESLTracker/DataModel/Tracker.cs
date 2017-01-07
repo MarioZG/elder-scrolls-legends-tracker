@@ -13,7 +13,7 @@ using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.DataModel
 {
-    public class Tracker : ITracker
+    public class Tracker : ViewModels.ViewModelBase, ITracker
     {
         private static Tracker _instance = null;
         public static Tracker Instance
@@ -54,7 +54,7 @@ namespace ESLTracker.DataModel
             set
             {
                 activeDeck = value;
-                trackerFactory.GetMessanger().Send(new ActiveDeckChanged(value));
+                RaisePropertyChangedEvent("ActiveDeck");
             }
         }
 

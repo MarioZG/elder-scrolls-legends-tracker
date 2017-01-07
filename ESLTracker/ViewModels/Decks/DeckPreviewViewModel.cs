@@ -90,15 +90,25 @@ namespace ESLTracker.ViewModels.Decks
 
         private void CommandSaveExecute(object parameter)
         {
+            ClearModifiedBorder();
             SaveDeck(this.trackerFactory.GetTracker());
             this.IsInEditMode = false;
         }
 
         private void CommandCancelExecute(object obj)
         {
+            ClearModifiedBorder();
             this.CancelEdit();
             messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
             this.IsInEditMode = false;
+        }
+
+        private void ClearModifiedBorder()
+        {
+            foreach (var ci in Deck.SelectedVersion.Cards.Where(ci => ci.BorderBrush != null))
+            {
+                ci.BorderBrush = null;
+            }
         }
 
         public void BeginEdit()
@@ -127,7 +137,6 @@ namespace ESLTracker.ViewModels.Decks
 
         public void SaveDeck(ITracker tracker)
         {
-           // this.Deck.Class = selectedClassModel.SelectedClass.Value;
             if (!tracker.Decks.Contains(this.Deck))
             {
                 tracker.Decks.Add(this.Deck);
@@ -135,12 +144,6 @@ namespace ESLTracker.ViewModels.Decks
             trackerFactory.GetFileManager().SaveDatabase();
             this.EndEdit();
             messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
-
-            //this.Deck = Deck.CreateNewDeck();
-            //if (selectedClassModel != null)
-            //{
-            //    selectedClassModel.Reset();
-            //}
         }
     }
 }
