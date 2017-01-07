@@ -11,6 +11,7 @@
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks" 
              x:Class="ESLTracker.Controls.Decks.EditDeck"
              mc:Ignorable="d" 
+             x:Name="editDeck"
              >
     <UserControl.DataContext>
         <ViewModels:EditDeckViewModel/>
@@ -53,10 +54,10 @@
                   IsEnabled="{Binding CanChangeType}"/>
         <Label Content="Deck name" Margin="0,5,5,5" Grid.Row="1"/>
         <TextBox x:Name="txtName" TextWrapping="Wrap"  Margin="5,5,5,5"
-                 Text="{Binding Deck.Name}" Grid.Column="1" Grid.Row="1"/>
+                 Text="{Binding Deck.Name, Mode=TwoWay}" Grid.Column="1" Grid.Row="1"/>
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
-        <Label Content="Deck attributes and class"/>
-        <Controls:DeckClassSelector x:Name="deckClass"/>
+            <Label Content="Deck attributes and class"/>
+            <Controls:DeckClassSelector x:Name="deckClass" SelectedClass="{Binding DataContext.Deck.Class, ElementName=editDeck, Mode=TwoWay}"/>
         </StackPanel>       
         <Label Content="Arena rank" Grid.Row="3"
                Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibilty}}"/>
@@ -64,17 +65,5 @@
                          SelectedRank="{Binding Deck.ArenaRank, Mode=TwoWay}" 
                          Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibilty}}"
         />
-        <UniformGrid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
-            <Button Content="Cancel" HorizontalAlignment="Stretch" 
-                    Command="{Binding CommandButtonCancel}"
-                    CommandParameter="{Binding Path=DataContext, ElementName=deckClass}"
-                    >
-            </Button>
-            <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Stretch" Margin="10,20,10,0" Style="{DynamicResource SaveButton}"
-                    Command="{Binding CommandButtonSave}" 
-                    CommandParameter="{Binding Path=DataContext, ElementName=deckClass}"
-                    >
-            </Button>
-        </UniformGrid>
     </Grid>
 </UserControl>

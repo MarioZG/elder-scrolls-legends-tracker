@@ -19,133 +19,91 @@ namespace ESLTracker.ViewModels.Decks.Tests
     [TestClass()]
     public class EditDeckViewModelTests : BaseTest
     {
-        [TestMethod]
-        public void CommandButtonSaveExecuteTest001_NewDeck()
-        {
-            Mock<ITracker> tracker = new Mock<ITracker>();
-            Mock<IDeckClassSelectorViewModel> deckClass = new Mock<IDeckClassSelectorViewModel>();
+        //[TestMethod]
+        //public void CommandButtonSaveExecuteTest001_NewDeck()
+        //{
+        //    Mock<ITracker> tracker = new Mock<ITracker>();
+        //    Mock<IDeckClassSelectorViewModel> deckClass = new Mock<IDeckClassSelectorViewModel>();
 
 
-            DeckClass deckClassValue = DeckClass.Mage;
-            string deckName = "Test deck";
-            DeckType deckType = DeckType.VersusArena;
-            ObservableCollection<Deck> decks = new ObservableCollection<Deck>();
+        //    DeckClass deckClassValue = DeckClass.Mage;
+        //    string deckName = "Test deck";
+        //    DeckType deckType = DeckType.VersusArena;
+        //    ObservableCollection<Deck> decks = new ObservableCollection<Deck>();
 
-            tracker.Setup(t => t.Decks).Returns(decks);
-            deckClass.Setup(d => d.SelectedClass).Returns(deckClassValue);
+        //    tracker.Setup(t => t.Decks).Returns(decks);
+        //    deckClass.Setup(d => d.SelectedClass).Returns(deckClassValue);
 
-            EditDeckViewModel model = new EditDeckViewModel();
-            model.DeckClassModel = deckClass.Object;
-            model.Deck.Name = deckName;
-            model.Deck.Type = deckType;
-
-
-            model.SaveDeck(
-                deckClass.Object, 
-                tracker.Object
-                );
-
-            //check if added correctly
-            Assert.AreEqual(1, tracker.Object.Decks.Count);
-            Assert.AreEqual(deckClassValue, tracker.Object.Decks[0].Class);
-            Assert.AreEqual(deckName, tracker.Object.Decks[0].Name);
-            Assert.AreEqual(deckType, tracker.Object.Decks[0].Type);
-        }
+        //    EditDeckViewModel model = new EditDeckViewModel();
+        //    model.DeckClassModel = deckClass.Object;
+        //    model.Deck.Name = deckName;
+        //    model.Deck.Type = deckType;
 
 
-        [TestMethod]
-        public void CommandButtonSaveExecuteTest002_EditDeck()
-        {
-            Mock<ITracker> tracker = new Mock<ITracker>();
-            Mock<IDeckClassSelectorViewModel> deckClass = new Mock<IDeckClassSelectorViewModel>();
+        //    model.SaveDeck(
+        //        deckClass.Object, 
+        //        tracker.Object
+        //        );
+
+        //    //check if added correctly
+        //    Assert.AreEqual(1, tracker.Object.Decks.Count);
+        //    Assert.AreEqual(deckClassValue, tracker.Object.Decks[0].Class);
+        //    Assert.AreEqual(deckName, tracker.Object.Decks[0].Name);
+        //    Assert.AreEqual(deckType, tracker.Object.Decks[0].Type);
+        //}
 
 
-            DeckClass deckClassValue = DeckClass.Mage;
-            string deckName = "Test deck";
-            string deckNameAfterChange = "Test deck changed";
-            DeckType deckType = DeckType.VersusArena;
-            ObservableCollection<Deck> decks = new ObservableCollection<Deck>();
-            //add some decks
-            decks.Add(new Deck());
-            decks.Add(new Deck());
-            decks.Add(new Deck());
-            decks.Add(new Deck());
-
-            Deck editedDeck = new Deck()
-            {
-                Name = deckName,
-                Class = deckClassValue,
-                Type = deckType
-            };
-            decks.Add(editedDeck);
-
-            int expectedDeckCount = decks.Count;
+        //[TestMethod]
+        //public void CommandButtonSaveExecuteTest002_EditDeck()
+        //{
+        //    Mock<ITracker> tracker = new Mock<ITracker>();
+        //    Mock<IDeckClassSelectorViewModel> deckClass = new Mock<IDeckClassSelectorViewModel>();
 
 
-            tracker.Setup(t => t.Decks).Returns(decks);
-            deckClass.Setup(d => d.SelectedClass).Returns(deckClassValue);
+        //    DeckClass deckClassValue = DeckClass.Mage;
+        //    string deckName = "Test deck";
+        //    string deckNameAfterChange = "Test deck changed";
+        //    DeckType deckType = DeckType.VersusArena;
+        //    ObservableCollection<Deck> decks = new ObservableCollection<Deck>();
+        //    //add some decks
+        //    decks.Add(new Deck());
+        //    decks.Add(new Deck());
+        //    decks.Add(new Deck());
+        //    decks.Add(new Deck());
 
-            EditDeckViewModel model = new EditDeckViewModel();
-            model.DeckClassModel = deckClass.Object;
-            model.Deck = editedDeck;
-            model.Deck.Name = deckNameAfterChange;
+        //    Deck editedDeck = new Deck()
+        //    {
+        //        Name = deckName,
+        //        Class = deckClassValue,
+        //        Type = deckType
+        //    };
+        //    decks.Add(editedDeck);
+
+        //    int expectedDeckCount = decks.Count;
 
 
-            model.SaveDeck(
-                deckClass.Object,
-                tracker.Object
-                );
+        //    tracker.Setup(t => t.Decks).Returns(decks);
+        //    deckClass.Setup(d => d.SelectedClass).Returns(deckClassValue);
 
-            //check if added correctly
-            Assert.AreEqual(expectedDeckCount, tracker.Object.Decks.Count);
+        //    EditDeckViewModel model = new EditDeckViewModel();
+        //    model.DeckClassModel = deckClass.Object;
+        //    model.Deck = editedDeck;
+        //    model.Deck.Name = deckNameAfterChange;
 
-            Deck editedDeckInTracker = tracker.Object.Decks.Where(d => d.DeckId == editedDeck.DeckId).FirstOrDefault();
-            Assert.IsNotNull(editedDeckInTracker);
-            Assert.AreEqual(deckClassValue, editedDeckInTracker.Class);
-            Assert.AreEqual(deckNameAfterChange, editedDeckInTracker.Name);
-            Assert.AreEqual(deckType, editedDeckInTracker.Type);
-        }
 
-        [TestMethod]
-        public void IEditableObjectImplementation001_CancelEdit()
-        {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetNewGuid()).Returns(() => Guid.NewGuid());
+        //    model.SaveDeck(
+        //        deckClass.Object,
+        //        tracker.Object
+        //        );
 
-            Mock<IDeckClassSelectorViewModel> deckClassSelector = new Mock<IDeckClassSelectorViewModel>();
+        //    //check if added correctly
+        //    Assert.AreEqual(expectedDeckCount, tracker.Object.Decks.Count);
 
-            EditDeckViewModel model = new EditDeckViewModel();
-            model.DeckClassModel = deckClassSelector.Object;
-            Deck deck = new Deck(trackerFactory.Object);
-
-            model.Deck = deck;
-
-            PopulateObject(deck, StartProp);
-            //fix up selected version id - otherwise it would be some random guid
-            deck.History.Last().VersionId = deck.SelectedVersionId;
-
-            TestContext.WriteLine("Begin Edit");
-            model.BeginEdit();
-
-            PopulateObject(deck, EditProp);
-
-            TestContext.WriteLine("Cancel Edit");
-            model.CancelEdit();
-
-            foreach (PropertyInfo p in deck.GetType().GetProperties())
-            {
-                if (p.CanWrite)
-                {
-                    if (p.PropertyType.GetInterface(nameof(ICollection)) != null)
-                    {
-                        CollectionAssert.AreEqual(StartProp[p.PropertyType] as ICollection, p.GetValue(deck) as ICollection, "Failed validation of prop {0} of type {1}", p.Name, p.PropertyType);
-                    }
-                    else {
-                        Assert.AreEqual(StartProp[p.PropertyType], p.GetValue(deck), "Failed validation of prop {0} of type {1}", p.Name, p.PropertyType);
-                    }
-                }
-            }
-
-        }
+        //    Deck editedDeckInTracker = tracker.Object.Decks.Where(d => d.DeckId == editedDeck.DeckId).FirstOrDefault();
+        //    Assert.IsNotNull(editedDeckInTracker);
+        //    Assert.AreEqual(deckClassValue, editedDeckInTracker.Class);
+        //    Assert.AreEqual(deckNameAfterChange, editedDeckInTracker.Name);
+        //    Assert.AreEqual(deckType, editedDeckInTracker.Type);
+        //}
     }
 }

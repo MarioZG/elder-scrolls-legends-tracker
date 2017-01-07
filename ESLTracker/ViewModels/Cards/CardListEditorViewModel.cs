@@ -88,6 +88,7 @@ namespace ESLTracker.ViewModels.Cards
                 value.Quantity = qty;
                 CardsCollection.Add(value);
             }
+            NewCard = null;
         }
     }
 }

@@ -13,11 +13,18 @@
         <ViewModels:DeckPreviewViewModel/>
     </UserControl.DataContext>
     <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Menu FontSize="14" DockPanel.Dock="Right" Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}">
+                <MenuItem Header="Cancel" Command="{Binding CommandCancel}"/>
+                <MenuItem Header="Save" Command="{Binding CommandSave}"/>
+            </Menu>
+            <TextBlock Text="{Binding CurrentVersionString}" DockPanel.Dock="Right"/>
+            <TextBlock Text="{Binding Deck.Name}"/>
+        </DockPanel>
         <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
-            <TextBlock Text="{Binding Deck.Name}" />
-            <Button Content="Edit" Command="{Binding CommandEditMode}"/>
             <local:EditDeck 
-                Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
+                Deck="{Binding DataContext.Deck, ElementName=deckPreview, Mode=TwoWay}"
+                Visibility="{Binding  DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
                 />
             <Cards:CardList 
                 DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}"

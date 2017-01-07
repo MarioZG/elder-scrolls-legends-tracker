@@ -97,11 +97,16 @@ namespace ESLTracker.DataModel
             return CreateNewDeck(TrackerFactory.DefaultTrackerFactory);
         }
 
-        public static Deck CreateNewDeck(ITrackerFactory trackerFactory)
+        internal static Deck CreateNewDeck(string deckName)
+        {
+            return CreateNewDeck(TrackerFactory.DefaultTrackerFactory, deckName);
+        }
+
+        public static Deck CreateNewDeck(ITrackerFactory trackerFactory, string deckName = "")
         {
             Deck deck = new Deck(trackerFactory);
             deck.CreateVersion(1, 0, trackerFactory.GetDateTimeNow());
-
+            deck.Name = deckName;
             return deck;
         }
 

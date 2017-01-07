@@ -140,6 +140,11 @@ namespace ESLTracker.ViewModels
             get { return new RelayCommand(new Action<object>(CommandShowRankedProgressExecute)); }
         }
 
+        public ICommand CommandEditDeck
+        {
+            get { return new RelayCommand(new Action<object>(CommandEditDeckExecute)); }
+        }
+
         #endregion
 
         ITrackerFactory trackerFactory;
@@ -155,8 +160,6 @@ namespace ESLTracker.ViewModels
             this.trackerFactory = trackerFactory;
             tracker = trackerFactory.GetTracker();
             messanger = trackerFactory.GetMessanger();
-            messanger.Register<Utils.Messages.EditDeck>(this, EditDeckStart, Utils.Messages.EditDeck.Context.StartEdit);
-            messanger.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
             messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
             messanger.Register<Utils.Messages.EditGame>(this, EditGameFinished, Utils.Messages.EditGame.Context.EditFinished);
             messanger.Register<Utils.Messages.EditSettings>(this, EditSettingsFinished, Utils.Messages.EditSettings.Context.EditFinished);
@@ -208,7 +211,7 @@ namespace ESLTracker.ViewModels
         public void NewDeck(object parameter)
         {
             messanger.Send(
-                new Utils.Messages.EditDeck() { Deck = EditDeckViewModel.CreateDefaultDeck() },
+                new Utils.Messages.EditDeck() { Deck = Deck.CreateNewDeck("New deck") },
                 Utils.Messages.EditDeck.Context.StartEdit
                 );
         }
@@ -270,18 +273,6 @@ namespace ESLTracker.ViewModels
             this.AllowCommands = true;
         }
 
-        private void EditDeckStart(Utils.Messages.EditDeck obj)
-        {
-            this.DeckEditVisible = true;
-            this.AllowCommands = false;
-        }
-
-        private void EditDeckFinished(EditDeck obj)
-        {
-            this.DeckEditVisible = false;
-            this.AllowCommands = true;
-        }
-
         private void EditGameStart(EditGame obj)
         {
             this.EditGameVisible = true;
@@ -310,6 +301,13 @@ namespace ESLTracker.ViewModels
         private void CommandShowRankedProgressExecute(object obj)
         {
             new RankedProgressChart().Show();
+        }
+
+        private void CommandEditDeckExecute(object obj)
+        {
+            messanger.Send(
+                new EditDeck() { Deck = tracker.ActiveDeck },
+                EditDeck.Context.StartEdit);
         }
 
 

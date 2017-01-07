@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.DataModel;
 using ESLTracker.ViewModels;
 using ESLTracker.ViewModels.Decks;
 
@@ -22,6 +23,20 @@ namespace ESLTracker.Controls.Decks
     /// </summary>
     public partial class EditDeck : UserControl
     {
+        public Deck Deck
+        {
+            get { return (Deck)GetValue(DeckProperty); }
+            set { SetValue(DeckProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Deck.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DeckProperty =
+            DependencyProperty.Register(nameof(Deck), typeof(Deck), typeof(EditDeck), new PropertyMetadata(null, DeckChanged));
+
+        private static void DeckChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((EditDeck)d).DataContext.Deck = (Deck)e.NewValue;
+        }
 
         public new EditDeckViewModel DataContext
         {
