@@ -46,7 +46,11 @@
                            Visibility="{Binding CardInstance, Converter={Converters:ObjectToVisibilty}, ConverterParameter=not}"/>
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Cards:SelectCard CardInstance="{Binding CardInstance}" ReadOnly="True" Visibility="{Binding CardInstance, Converter={Converters:ObjectToVisibilty}}"/>
+                            <Cards:SelectCard 
+                                CardInstance="{Binding CardInstance}" 
+                                ReadOnly="True" 
+                                ShowIsPremium="True"
+                                Visibility="{Binding CardInstance, Converter={Converters:ObjectToVisibilty}}"/>
                         </StackPanel>
                         <TextBlock Text="{Binding Comment}" 
                                   Visibility="{Binding Comment, Converter={Converters:StringNonEmptyToVisibiltyCollapsedConverter}}" />

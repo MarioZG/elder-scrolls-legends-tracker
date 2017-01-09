@@ -66,6 +66,7 @@
                                     Focusable="True"
                                       CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
                                       CardNameAutocomplete="{Binding CardNamesList}"
+                                           ShowIsPremium="True"
                                         Visibility="{Binding CardSelectionVisible, Converter={Converters:BoolToVisibilty}}"/>
                     </Viewbox>
                 </DockPanel>
