@@ -34,15 +34,15 @@ namespace ESLTracker.ViewModels
 
         //Async bits here
 
-        private readonly Func<Task<TResult>> _command;
+        private readonly Func<object,Task<TResult>> _command;
         // Raises PropertyChanged
         public NotifyTaskCompletion<TResult> Execution { get; private set; }
-        public RealyAsyncCommand(Func<Task<TResult>> command)
+        public RealyAsyncCommand(Func<object, Task<TResult>> command)
         {
             _command = command;
         }
 
-        public RealyAsyncCommand(Func<Task<TResult>> command, Func<object, bool> canExecute)
+        public RealyAsyncCommand(Func<object,Task<TResult>> command, Func<object, bool> canExecute)
         {
             _command = command;
             _canExecute = canExecute;
@@ -50,7 +50,7 @@ namespace ESLTracker.ViewModels
 
         public Task ExecuteAsync(object parameter)
         {
-            Execution = new NotifyTaskCompletion<TResult>(_command());
+            Execution = new NotifyTaskCompletion<TResult>(_command(parameter));
             return Execution.TaskCompletion != null ? Execution.TaskCompletion : Execution.Task;
         }
 

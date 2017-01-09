@@ -119,7 +119,7 @@ namespace ESLTracker.ViewModels
             get
             {
                 return new RealyAsyncCommand<object>(
-                    new Func<Task<object>>(CommandRunGameExecute),
+                    new Func<object,Task<object>>(CommandRunGameExecute),
                     new Func<object, bool>(CommandRunGameCanExecute)
                     );
             }
@@ -222,7 +222,7 @@ namespace ESLTracker.ViewModels
         }
 
         bool startingGame;
-        public async Task<object> CommandRunGameExecute()
+        public async Task<object> CommandRunGameExecute(object parameter)
         {
             startingGame = true;
             CommandManager.InvalidateRequerySuggested();

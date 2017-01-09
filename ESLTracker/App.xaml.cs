@@ -40,18 +40,26 @@ namespace ESLTracker
             singleInstance.Dispose();
         }
 
-        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        private void HandleUnhandledException(Exception ex, string source)
         {
             string filename = "./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt";
             string verInfo = String.Join(";",Assembly.GetEntryAssembly().CustomAttributes.Where(ca => ca.AttributeType == typeof(AssemblyInformationalVersionAttribute)).FirstOrDefault()?.ConstructorArguments);
             System.IO.File.WriteAllText(filename, "APP VERSION: "+ verInfo +Environment.NewLine);
-            System.IO.File.AppendAllText(filename, e.Exception.ToString());
+            System.IO.File.AppendAllText(filename, ex.ToString());
             MessageBox.Show("Application encountered unhandled exception. Log file has been created in " + "./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt with details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            e.Handled = false;
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            AppDomain.CurrentDomain.UnhandledException += (s, ex) =>
+                HandleUnhandledException((Exception)ex.ExceptionObject, "AppDomain.CurrentDomain.UnhandledException");
+
+            DispatcherUnhandledException += (s, ex) =>
+                HandleUnhandledException(ex.Exception, "Application.Current.DispatcherUnhandledException");
+
+            TaskScheduler.UnobservedTaskException += (s, ex) =>
+                HandleUnhandledException(ex.Exception, "TaskScheduler.UnobservedTaskException");
+
             CheckSingleInstance();
             CheckDataFile();
         }

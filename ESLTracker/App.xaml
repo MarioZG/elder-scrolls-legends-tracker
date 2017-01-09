@@ -4,7 +4,6 @@
              xmlns:local="clr-namespace:ESLTracker"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              StartupUri="MainWindow.xaml"
-             DispatcherUnhandledException="Application_DispatcherUnhandledException"
              Startup="Application_Startup"
              Exit="Application_Exit">
     <Application.Resources>

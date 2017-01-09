@@ -8,6 +8,8 @@ using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
+using ESLTracker.Utils.Extensions;
+using System.Collections.ObjectModel;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -29,7 +31,10 @@ namespace ESLTracker.ViewModels.Decks
         public bool IsInEditMode
         {
             get { return isInEditMode; }
-            set { isInEditMode = value; RaisePropertyChangedEvent(nameof(IsInEditMode)); }
+            set { isInEditMode = value;
+                RaisePropertyChangedEvent(nameof(IsInEditMode));
+                RaisePropertyChangedEvent(nameof(ShowEditDeckPanel));
+            }
         }
 
         public ICommand CommandSave
@@ -45,6 +50,13 @@ namespace ESLTracker.ViewModels.Decks
             get
             {
                 return new RelayCommand(CommandCancelExecute);
+            }
+        }
+        public ICommand CommandImport
+        {
+            get
+            {
+                return new RealyAsyncCommand<object>(CommandImportExecute);
             }
         }
 
@@ -70,6 +82,24 @@ namespace ESLTracker.ViewModels.Decks
                 return GetMaxSingleCardForDeck(deck);
             }
         }
+
+        public bool ShowEditDeckPanel
+        {
+            get { return isInEditMode && ! showImportPanel; }
+        }
+
+        private bool showImportPanel;
+
+        public bool ShowImportPanel
+        {
+            get { return showImportPanel; }
+            set {
+                showImportPanel = value;
+                RaisePropertyChangedEvent(nameof(ShowImportPanel));
+                RaisePropertyChangedEvent(nameof(ShowEditDeckPanel));
+            }
+        }
+
 
         //priate ariable used for IEditableObject implemenation. Keeps inital state of object
         internal Deck savedState;
@@ -167,6 +197,53 @@ namespace ESLTracker.ViewModels.Decks
                 default:
                     return null;
             }
+        }
+
+
+        private async Task<object> CommandImportExecute(object obj)
+        {
+            this.ShowImportPanel = true;
+
+            DeckImporter deckImporter = obj as DeckImporter;
+            var tcs = new TaskCompletionSource<bool>();
+            deckImporter.ImportFinished(tcs);
+
+            await tcs.Task;
+
+            bool succeed = tcs.Task.Result;
+
+            if (succeed)
+            {
+                if (deckImporter.DeltaImport)
+                {
+                    foreach (var importedCard in deckImporter.Cards) {
+                        var instance = deck.SelectedVersion.Cards.Where(ci => ci.Card.Id == importedCard.CardId).FirstOrDefault();
+                        if (instance != null)
+                        {
+                            instance.Quantity += importedCard.Quantity;
+                            if (instance.Quantity <= 0)
+                            {
+                                deck.SelectedVersion.Cards.Remove(instance);
+                            }
+                            if (MaxSingleCardQuantity.HasValue && instance.Quantity > MaxSingleCardQuantity)
+                            {
+                                instance.Quantity = MaxSingleCardQuantity.Value;
+                            }
+                        }
+                        else if (importedCard.Quantity > 0)
+                        {
+                            deck.SelectedVersion.Cards.Add(importedCard);
+                        }
+                    }
+                }
+                else
+                {
+                    deck.SelectedVersion.Cards = new ObservableCollection<CardInstance>(deckImporter.Cards);
+                    RaisePropertyChangedEvent(String.Empty);
+                }
+            }
+            this.ShowImportPanel = false;
+            return null;
         }
 
     }

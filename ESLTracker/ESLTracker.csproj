@@ -126,6 +126,9 @@
     <Compile Include="Controls\Decks\ArenaRank.xaml.cs">
       <DependentUpon>ArenaRank.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Decks\ImportText.xaml.cs">
+      <DependentUpon>ImportText.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Game\GameFilter.xaml.cs">
       <DependentUpon>GameFilter.xaml</DependentUpon>
     </Compile>
@@ -173,7 +176,9 @@
     <Compile Include="Utils\Converters\MarkupConverter.cs" />
     <Compile Include="Utils\Converters\ObjectToBool.cs" />
     <Compile Include="Utils\Converters\ToVisibilityConverter.cs" />
+    <Compile Include="Utils\DeckImporter.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
+    <Compile Include="Utils\Extensions\TaskExtensions.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_2_To_2_0.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
     <Compile Include="Utils\ResourcesHelper.cs" />
@@ -229,6 +234,7 @@
     <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
     <Compile Include="ViewModels\Cards\CardListEditorViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckPreviewViewModel.cs" />
+    <Compile Include="ViewModels\Decks\ImportTextViewModel.cs" />
     <Compile Include="ViewModels\GameStatisticsViewModel.cs" />
     <Compile Include="ViewModels\Game\GameFilterViewModel.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
@@ -358,6 +364,10 @@
     <Page Include="Controls\Decks\ArenaRank.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Decks\ImportText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Game\EditGame.xaml">
       <SubType>Designer</SubType>

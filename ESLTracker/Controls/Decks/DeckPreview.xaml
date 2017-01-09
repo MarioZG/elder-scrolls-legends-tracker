@@ -15,6 +15,7 @@
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Menu FontSize="14" DockPanel.Dock="Right" Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}">
+                <MenuItem Header="Import" Command="{Binding CommandImport}" CommandParameter="{Binding DataContext.DeckImporter, ElementName=importControl}"/>
                 <MenuItem Header="Cancel" Command="{Binding CommandCancel}"/>
                 <MenuItem Header="Save" Command="{Binding CommandSave}"/>
             </Menu>
@@ -35,8 +36,10 @@
 
         </DockPanel>
         <Cards:CardListEditor 
-            Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
+            Visibility="{Binding DataContext.ShowEditDeckPanel, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
             CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" 
             MaxSingleCardQuantity="{Binding DataContext.MaxSingleCardQuantity, ElementName=deckPreview}"/>
+        <local:ImportText x:Name="importControl" 
+                          Visibility="{Binding DataContext.ShowImportPanel, ElementName=deckPreview, Converter={Converters:BoolToVisibilty}}"/>
     </DockPanel>
 </UserControl>

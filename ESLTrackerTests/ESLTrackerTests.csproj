@@ -83,6 +83,7 @@
     <Compile Include="Utils\Converters\PlayerRankLegendToVisibiltyCollapsedTests.cs" />
     <Compile Include="Utils\Converters\StringNonEmptyToVisibiltyCollapsedConverterTests.cs" />
     <Compile Include="Utils\Converters\ToVisibilityConverterTests.cs" />
+    <Compile Include="Utils\DeckImporterTests.cs" />
     <Compile Include="Utils\FileManagerTests.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_2_To_2_0Tests.cs" />
     <Compile Include="Utils\ScreenshotNameProviderTests.cs" />
