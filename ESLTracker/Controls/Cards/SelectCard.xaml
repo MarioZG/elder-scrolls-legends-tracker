@@ -56,7 +56,8 @@
         </Style>
     </UserControl.Resources>
     <Button x:Name="LayoutRoot"
-            HorizontalContentAlignment="Stretch"
+            HorizontalContentAlignment="Stretch" 
+            ToolTipService.IsEnabled="{Binding CardInstance.Card, Converter={Converters:ObjectToBool}}"
             Command="{Binding MouseLeftClick, ElementName=seletCard}" CommandParameter="{Binding CardInstance}">
         <DockPanel >
             <CheckBox DockPanel.Dock="Right" 
