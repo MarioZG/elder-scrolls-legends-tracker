@@ -11,7 +11,6 @@
              x:Name="seletCard"
              d:DesignWidth="300">
     <UserControl.Resources>
-        <SolidColorBrush x:Key="brownBrush" Color="White"></SolidColorBrush>
         <Style x:Key="ShadowText" TargetType="{x:Type Control}">
             <Style.Triggers>
                 <!-- no shadow when cad unknown or not set-->
@@ -34,7 +33,7 @@
             </Setter>
             <Setter Property="FontWeight" Value="Medium" />
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="Padding" Value="25,0,0,2" />
+            <Setter Property="Padding" Value="17,0,0,2" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
         <Style x:Key="toolTipAttackHealth" TargetType="{x:Type TextBlock}">
@@ -70,35 +69,48 @@
                   Visibility="{Binding ShowIsPremium, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
                   IsEnabled="{Binding ReadOnlyNot}"
                   IsChecked="{Binding CardInstance.IsPremium, Mode=TwoWay}"/>
-            <TextBlock 
-            FontSize="13" FontWeight="Medium" 
-            Text="{Binding CardInstance.Quantity}" 
-            Visibility="{Binding ShowQuantity, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
-            DockPanel.Dock="Right" />
-            <Grid Height="25" VerticalAlignment="Center">
+            <Border CornerRadius="45"
+                    DockPanel.Dock="Right"
+                    Width="25"
+                    Height="25"
+                    Margin="-10,0,0,0"
+                    Padding="2"
+                    HorizontalAlignment="Left"
+                    Panel.ZIndex="2"
+                    Background="Black"
+                    BorderBrush="Black"
+                    Visibility="{Binding ShowQuantity, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
+                    BorderThickness="0">
+                <Viewbox VerticalAlignment="Stretch" Height="Auto">
+                    <TextBlock 
+                    FontSize="13" Foreground="White"
+                    Text="{Binding CardInstance.Quantity}" 
+                     />
+                </Viewbox>
+            </Border>
+            <Grid Height="25" VerticalAlignment="Center" Margin="10,0,0,0">
                 <Border CornerRadius="45"
-                Width="20"
-                Height="20"
-                Margin="2,1,2,1"
-                Padding="2"
-                HorizontalAlignment="Left"
-                Panel.ZIndex="2"
-                Background="{Binding CardInstance.RarityColor}"
-                BorderBrush="Black"
-                BorderThickness="0">
+                        Width="25"
+                        Height="25"
+                        Margin="-10,0,0,0"
+                        Padding="2"
+                        HorizontalAlignment="Left"
+                        Panel.ZIndex="2"
+                        Background="{Binding CardInstance.RarityColor}"
+                        BorderBrush="Black"
+                        BorderThickness="1">
                     <Viewbox VerticalAlignment="Stretch" Height="Auto">
                         <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardInstance.Card.Cost, FallbackValue=-}" VerticalAlignment="Stretch"/>
                     </Viewbox>
                 </Border>
                 <Border BorderBrush="{x:Null}" Background="{Binding CardInstance.BackgroundColor}"  Height="25" VerticalAlignment="Center">
                     <Label 
-                     Background="{x:Null}"  
-                     Style="{StaticResource ShadowText}"
-                     Foreground="{Binding CardInstance.ForegroundColor}"                      
-                     Content="{Binding Path=CardName}" 
-                     MinWidth="180"
-                     Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibilty}}"
-                />
+                         Background="{x:Null}"  
+                         Style="{StaticResource ShadowText}"
+                         Foreground="{Binding CardInstance.ForegroundColor}"                      
+                         Content="{Binding Path=CardName}" 
+                         MinWidth="180"
+                         Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibilty}}"/>
                 </Border>
                 <Border BorderThickness="1" 
                     BorderBrush="Gray" 
