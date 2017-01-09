@@ -63,6 +63,14 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        public int? MaxSingleCardQuantity
+        {
+            get
+            {
+                return GetMaxSingleCardForDeck(deck);
+            }
+        }
+
         //priate ariable used for IEditableObject implemenation. Keeps inital state of object
         internal Deck savedState;
 
@@ -145,5 +153,21 @@ namespace ESLTracker.ViewModels.Decks
             this.EndEdit();
             messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
         }
+
+        internal int? GetMaxSingleCardForDeck(Deck deckToCheck)
+        {
+            switch (deckToCheck?.Type)
+            {
+                case DataModel.Enums.DeckType.Constructed:
+                    return 3;
+                case DataModel.Enums.DeckType.VersusArena:
+                    return null;
+                case DataModel.Enums.DeckType.SoloArena:
+                    return null;
+                default:
+                    return null;
+            }
+        }
+
     }
 }

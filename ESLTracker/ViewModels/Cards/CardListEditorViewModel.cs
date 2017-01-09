@@ -40,6 +40,8 @@ namespace ESLTracker.ViewModels.Cards
             }
         }
 
+        public int? MaxSingleCardQuantity { get; set; }
+
         public ICommand CommandAddCardToDeck
         {
             get
@@ -92,9 +94,14 @@ namespace ESLTracker.ViewModels.Cards
             }
             else
             {
-                value.BorderBrush = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 100, 15));
-                value.Quantity = qty;
-                CardsCollection.Add(value);
+                card = value;
+                card.BorderBrush = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 100, 15));
+                card.Quantity = qty;
+                CardsCollection.Add(card);
+            }
+            if (MaxSingleCardQuantity.HasValue && MaxSingleCardQuantity.Value < card.Quantity)
+            {
+                card.Quantity = MaxSingleCardQuantity.Value;
             }
             NewCard = null;
         }

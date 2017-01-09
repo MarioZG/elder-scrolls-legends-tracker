@@ -36,6 +36,7 @@
         </DockPanel>
         <Cards:CardListEditor 
             Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
-            CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" />
+            CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" 
+            MaxSingleCardQuantity="{Binding DataContext.MaxSingleCardQuantity, ElementName=deckPreview}"/>
     </DockPanel>
 </UserControl>

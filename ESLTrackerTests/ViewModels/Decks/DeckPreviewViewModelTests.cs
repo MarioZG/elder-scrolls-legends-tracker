@@ -69,5 +69,37 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Assert.AreEqual(true, model.IsInEditMode);
 
         }
+
+        [TestMethod()]
+        public void GetMaxSingleCardForDeckTest001_Constructed()
+        {
+            DeckPreviewViewModel model = new DeckPreviewViewModel();
+
+            int? actual = model.GetMaxSingleCardForDeck(new Deck() { Type = DataModel.Enums.DeckType.Constructed });
+
+            Assert.AreEqual(3, actual);
+
+        }
+
+        [TestMethod()]
+        public void GetMaxSingleCardForDeckTest001_SoloArena()
+        {
+            DeckPreviewViewModel model = new DeckPreviewViewModel();
+
+            int? actual = model.GetMaxSingleCardForDeck(new Deck() { Type = DataModel.Enums.DeckType.SoloArena });
+
+            Assert.AreEqual(null, actual);
+        }
+
+
+        [TestMethod()]
+        public void GetMaxSingleCardForDeckTest001_VersusArena()
+        {
+            DeckPreviewViewModel model = new DeckPreviewViewModel();
+
+            int? actual = model.GetMaxSingleCardForDeck(new Deck() { Type = DataModel.Enums.DeckType.VersusArena });
+
+            Assert.AreEqual(null, actual);
+        }
     }
 }
