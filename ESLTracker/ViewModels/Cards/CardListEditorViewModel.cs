@@ -48,6 +48,14 @@ namespace ESLTracker.ViewModels.Cards
             }
         }
 
+        public ICommand CommandCardClicked
+        {
+            get
+            {
+                return new RelayCommand(CommandCardClickedExecute);
+            }
+        }
+
         private ITrackerFactory trackerFactory;
 
         public CardListEditorViewModel() : this(TrackerFactory.DefaultTrackerFactory)
@@ -89,6 +97,27 @@ namespace ESLTracker.ViewModels.Cards
                 CardsCollection.Add(value);
             }
             NewCard = null;
+        }
+
+        private void CommandCardClickedExecute(object param)
+        {
+            CardInstance cardInstance = param as CardInstance;
+            if (cardInstance == null)
+            {
+                return;
+            }
+
+            RemoveCard(cardInstance);
+
+        }
+
+        private void RemoveCard(CardInstance cardInstance)
+        {
+            cardInstance.Quantity -= 1;
+            if (cardInstance.Quantity == 0)
+            {
+                cardsCollection.Remove(cardInstance);
+            }
         }
     }
 }

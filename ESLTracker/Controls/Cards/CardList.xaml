@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Cards"
              xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              mc:Ignorable="d" 
+             x:Name="cardList"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <Style TargetType="local:SelectCard">
@@ -29,7 +30,8 @@
                     CardInstance="{Binding}" 
                     ReadOnly="True" 
                     ShowIsPremium="False"
-                    ShowQuantity="True"/>
+                    ShowQuantity="True"
+                    MouseLeftClick="{Binding MouseLeftClick, ElementName=cardList}"/>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>

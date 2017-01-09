@@ -8,6 +8,7 @@
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
              xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              mc:Ignorable="d" 
+             x:Name="seletCard"
              d:DesignWidth="300">
     <UserControl.Resources>
         <SolidColorBrush x:Key="brownBrush" Color="White"></SolidColorBrush>
@@ -37,8 +38,11 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <DockPanel x:Name="LayoutRoot">
-        <CheckBox DockPanel.Dock="Right" 
+    <Button x:Name="LayoutRoot"
+            HorizontalContentAlignment="Stretch"
+            Command="{Binding MouseLeftClick, ElementName=seletCard}" CommandParameter="{Binding CardInstance}">
+        <DockPanel >
+            <CheckBox DockPanel.Dock="Right" 
                   TabIndex="1" 
                   Margin="5,0,0,0" 
                   Content="P" 
@@ -48,13 +52,13 @@
                   Visibility="{Binding ShowIsPremium, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
                   IsEnabled="{Binding ReadOnlyNot}"
                   IsChecked="{Binding CardInstance.IsPremium, Mode=TwoWay}"/>
-        <TextBlock 
+            <TextBlock 
             FontSize="13" FontWeight="Medium" 
             Text="{Binding CardInstance.Quantity}" 
             Visibility="{Binding ShowQuantity, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
             DockPanel.Dock="Right" />
-        <Grid Height="25" VerticalAlignment="Center">
-            <Border CornerRadius="45"
+            <Grid Height="25" VerticalAlignment="Center">
+                <Border CornerRadius="45"
                 Width="20"
                 Height="20"
                 Margin="2,1,2,1"
@@ -64,12 +68,12 @@
                 Background="{Binding CardInstance.RarityColor}"
                 BorderBrush="Black"
                 BorderThickness="0">
-                <Viewbox VerticalAlignment="Stretch" Height="Auto">
-                    <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardInstance.Card.Cost, FallbackValue=-}" VerticalAlignment="Stretch"/>
-                </Viewbox>
-            </Border>
-            <Border BorderBrush="{x:Null}" Background="{Binding CardInstance.BackgroundColor}"  Height="25" VerticalAlignment="Center">
-                <Label 
+                    <Viewbox VerticalAlignment="Stretch" Height="Auto">
+                        <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardInstance.Card.Cost, FallbackValue=-}" VerticalAlignment="Stretch"/>
+                    </Viewbox>
+                </Border>
+                <Border BorderBrush="{x:Null}" Background="{Binding CardInstance.BackgroundColor}"  Height="25" VerticalAlignment="Center">
+                    <Label 
                      Background="{x:Null}"  
                      Style="{StaticResource ShadowText}"
                      Foreground="{Binding CardInstance.ForegroundColor}"                      
@@ -77,13 +81,13 @@
                      MinWidth="180"
                      Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibilty}}"
                 />
-            </Border>
-            <Border BorderThickness="1" 
+                </Border>
+                <Border BorderThickness="1" 
                     BorderBrush="Gray" 
                     Background="{Binding CardInstance.BackgroundColor}" 
                     Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibilty}, ConverterParameter=not}"
                     >
-                <TextBox 
+                    <TextBox 
                     Style="{StaticResource ShadowText}"
                     Background="{x:Null}" 
                     BorderBrush="{x:Null}"
@@ -97,8 +101,18 @@
                     AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
                     AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
                     >
-                </TextBox>
-            </Border>
-        </Grid>
-    </DockPanel>
+                    </TextBox>
+                </Border>
+            </Grid>
+        </DockPanel>
+        <Button.Template>
+            <ControlTemplate TargetType="{x:Type ButtonBase}">
+                <Border Background="#00000000">
+                    <ContentPresenter Margin="{TemplateBinding Padding}"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Border>
+            </ControlTemplate>
+        </Button.Template>
+    </Button>
 </UserControl>

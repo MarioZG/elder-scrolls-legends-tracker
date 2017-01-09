@@ -112,6 +112,19 @@ namespace ESLTracker.Controls.Cards
         public static readonly DependencyProperty ReadOnlyProperty =
             DependencyProperty.Register("ReadOnly", typeof(bool), typeof(SelectCard), new PropertyMetadata(false));
 
+
+
+        public ICommand MouseLeftClick
+        {
+            get { return (ICommand)GetValue(MouseLeftClickProperty); }
+            set { SetValue(MouseLeftClickProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MouseLeftClick.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MouseLeftClickProperty =
+            DependencyProperty.Register("MouseLeftClick", typeof(ICommand), typeof(SelectCard), new PropertyMetadata(null));
+
+
         public SelectCard()
         {
             InitializeComponent();

@@ -7,6 +7,7 @@
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Cards"
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
              mc:Ignorable="d" 
+             x:Name="cardEditor"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
         <ViewModels:CardListEditorViewModel/>
@@ -33,6 +34,9 @@
                 Behaviors:FocusExtension.IsFocused="{Binding FocusCardEntry, Mode=TwoWay}"
                 CardNameAutocomplete="{Binding CardNamesList}" />
         </DockPanel>
-        <local:CardList TabIndex="0"  DataContext="{Binding CardsCollection}"/>
+        <local:CardList 
+            TabIndex="0"  
+            MouseLeftClick="{Binding DataContext.CommandCardClicked, ElementName=cardEditor}"
+            DataContext="{Binding CardsCollection}"/>
     </DockPanel>
 </UserControl>

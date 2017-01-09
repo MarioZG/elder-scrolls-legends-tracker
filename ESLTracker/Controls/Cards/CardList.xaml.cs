@@ -32,6 +32,15 @@ namespace ESLTracker.Controls.Cards
         public static readonly DependencyProperty CardCollectionProperty =
             DependencyProperty.Register(nameof(CardCollection), typeof(ObservableCollection<CardInstance>), typeof(CardList), new PropertyMetadata(new ObservableCollection<CardInstance>()));
 
+        public ICommand MouseLeftClick
+        {
+            get { return (ICommand)GetValue(MouseLeftClickProperty); }
+            set { SetValue(MouseLeftClickProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MouseLeftClick.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MouseLeftClickProperty =
+            DependencyProperty.Register("MouseLeftClick", typeof(ICommand), typeof(CardList), new PropertyMetadata(null));
 
 
         public CardList()
