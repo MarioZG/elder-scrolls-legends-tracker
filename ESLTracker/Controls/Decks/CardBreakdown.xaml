@@ -10,13 +10,19 @@
     <UserControl.DataContext>
         <ViewModels:CardBreakdownViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style x:Key="sectionHeader" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="0,0,0,5" />
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+    </UserControl.Resources>
     <StackPanel Orientation="Vertical">
-        <TextBlock FontSize="14" FontWeight="Medium" Text="Deck statistics"/>
+        <TextBlock Style="{StaticResource sectionHeader}" Text="Deck statistics"/>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding CardCount, StringFormat={} {0} cards; }"/>
             <TextBlock Text="{Binding CardsValue, StringFormat={} Value of {0} soul gems.}"/>
         </StackPanel>
-        <TextBlock Margin="0,0,0,5" Text="Card attributes"/>
+        <TextBlock Style="{StaticResource sectionHeader}" Text="Card attributes"/>
         <lvc:CartesianChart Series="{Binding DeckColorsSeriesCollection}" Panel.ZIndex="3" DisableAnimations="True">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Foreground="White" Visibility="Collapsed" />
@@ -25,8 +31,9 @@
                 <lvc:Axis Foreground="White" Visibility="Collapsed" />
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
-        <TextBlock Margin="0,0,0,5" Text="Card type"/>
-        <lvc:CartesianChart Series="{Binding CardTypeSeriesCollection}" DisableAnimations="True">
+        <TextBlock Style="{StaticResource sectionHeader}" Text="Card type"/>
+        <TextBlock Text="{Binding CardTypeBreakdownText}"/>
+        <lvc:CartesianChart Visibility="Collapsed" MinHeight="80" Series="{Binding CardTypeSeriesCollection}" DisableAnimations="True">
             <lvc:CartesianChart.AxisY>
                 <lvc:Axis  Labels="{Binding CardTypeLabelsCollection}">
                     <lvc:Axis.Separator >
@@ -35,13 +42,14 @@
                 </lvc:Axis>
             </lvc:CartesianChart.AxisY>
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis   Foreground="White">
+                <lvc:Axis Foreground="White">
                     <lvc:Axis.Separator >
                         <lvc:Separator IsEnabled="False" Step="1"></lvc:Separator>
                     </lvc:Axis.Separator>
                 </lvc:Axis>
             </lvc:CartesianChart.AxisX>
-        </lvc:CartesianChart><TextBlock Margin="0,0,0,5" Text="Mana curve"/>
+        </lvc:CartesianChart>
+        <TextBlock Style="{StaticResource sectionHeader}" Text="Mana curve"/>
         <lvc:CartesianChart Height="70" Series="{Binding ManaCurveSeriesCollection}" DisableAnimations="True">
             <lvc:CartesianChart.AxisY>
                 <lvc:Axis MaxValue="{Binding ManaCurveMaxValue}" Foreground="White" Visibility="Collapsed" />

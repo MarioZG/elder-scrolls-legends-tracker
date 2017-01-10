@@ -39,7 +39,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             get
             {
-                return cardCollection?.Sum( c=> c.Quantity);
+                return cardCollection?.Sum(c => c.Quantity);
             }
         }
 
@@ -89,6 +89,7 @@ namespace ESLTracker.ViewModels.Decks
             get
             {
                 SeriesCollection sc = new SeriesCollection();
+                ManaCurveMaxValue = 0;
                 if (cardCollection != null)
                 {
                     int maxCost = 7;
@@ -156,5 +157,26 @@ namespace ESLTracker.ViewModels.Decks
         public string[] CardTypeLabelsCollection { get; set; }
 
         public int ManaCurveMaxValue { get; set; }
+
+        public string CardTypeBreakdownText
+        {
+            get
+            {
+                StringBuilder text = new StringBuilder();
+                if (cardCollection != null)
+                {
+                    foreach (CardType ct in Enum.GetValues(typeof(CardType)))
+                    {
+                        int count = cardCollection.Where(ci => ci.Card.Type == ct).Sum(ci => ci.Quantity);
+                        if (count > 0)
+                        {
+                            text.AppendFormat("{0}: {1}   ", ct, count);
+                        }
+                    }
+                    return text.ToString();
+                }
+                return null;
+            }
+        }
     }
 }
