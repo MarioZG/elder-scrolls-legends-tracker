@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.Utils;
 using ESLTracker.ViewModels;
 
 namespace ESLTracker.DataModel
@@ -18,16 +19,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                var notNullCards = Cards.Where(c => c.Card != null && c.Card != Card.Unknown);
-                return
-                    notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Common && ! c.IsPremium).Count() * 5
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Common && c.IsPremium).Count() * 50
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Rare && !c.IsPremium).Count() * 20
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Rare && c.IsPremium).Count() * 100
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Epic && !c.IsPremium).Count() * 100
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Epic && c.IsPremium).Count() * 400
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Legendary && !c.IsPremium).Count() * 400
-                    + notNullCards.Where(c => c.Card.Rarity == Enums.CardRarity.Legendary && c.IsPremium).Count() * 1200;
+                return SoulGemsHelper.CalculateCardsSellValue(Cards);
             }
         }
 
@@ -87,5 +79,7 @@ namespace ESLTracker.DataModel
                 RaisePropertyChangedEvent(nameof(SoulGemsValue));
             }
         }
+
+
     }
 }

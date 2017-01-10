@@ -230,9 +230,11 @@
     <Compile Include="Utils\Messenger.cs" />
     <Compile Include="Utils\SerializableVersion.cs" />
     <Compile Include="Utils\SingleInstanceApp.cs" />
+    <Compile Include="Utils\SoulGemsHelper.cs" />
     <Compile Include="Utils\TrackerFactory.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
     <Compile Include="ViewModels\Cards\CardListEditorViewModel.cs" />
+    <Compile Include="ViewModels\Decks\CardBreakdownViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckPreviewViewModel.cs" />
     <Compile Include="ViewModels\Decks\ImportTextViewModel.cs" />
     <Compile Include="ViewModels\GameStatisticsViewModel.cs" />
