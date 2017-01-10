@@ -6,11 +6,26 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
              mc:Ignorable="d" 
+             MinWidth="200"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
         <ViewModels:ImportTextViewModel />
     </UserControl.DataContext>
-    <StackPanel>
+    <StackPanel Margin="5,5,5,5">
+        <TextBlock Text="Import cards" FontWeight="Bold"/>
+        <TextBlock TextWrapping="WrapWithOverflow">
+            Provide decklist. One card in each line, first quantity of card followed by space and card name. Example:<LineBreak/>
+            <LineBreak/>
+            3 Swamp Leviathan<LineBreak/>
+            2 Hist Groove<LineBreak/>
+            <LineBreak/>
+            If using delta import, cards to remove provide as negative quantity<LineBreak/>
+            <LineBreak/>
+            -2 Calm<LineBreak/>
+            2 Execute<LineBreak/>
+            <LineBreak/>
+            will remove two calm cards and add two execute cards to current deck
+        </TextBlock>
         <TextBox Height="100" AcceptsReturn="True" Text="{Binding ImportData}"/>
         <CheckBox Content="Delta import" IsChecked="{Binding DeckImporter.DeltaImport}"/>
         <Button Content="Cancel" Command="{Binding CommandCancel}"/>
