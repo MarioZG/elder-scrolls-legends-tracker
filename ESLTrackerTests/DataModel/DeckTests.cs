@@ -436,8 +436,8 @@ namespace ESLTracker.DataModel.Tests
             //check if selected deck is in history!!
             Assert.IsTrue(deck2.History.Any(dh => dh.VersionId == deck2.SelectedVersionId));
             //selectd should be latest
-            Assert.IsTrue(deck2.SelectedVersionId == 
-                    deck2.History.OrderByDescending( dv => dv.Version).First().VersionId);
+            Assert.IsTrue(deck2.SelectedVersionId ==
+                    deck2.History.OrderByDescending(dv => dv.Version).First().VersionId);
 
         }
 
@@ -447,7 +447,7 @@ namespace ESLTracker.DataModel.Tests
             Deck deck = new Deck();
             Guid d2selectd = deck.CreateVersion(1, 1, DateTime.Now).VersionId;
             deck.SelectedVersionId = deck.CreateVersion(2, 1, DateTime.Now).VersionId;
-             deck.CreateVersion(3, 1, DateTime.Now);
+            deck.CreateVersion(3, 1, DateTime.Now);
 
             Deck deck2 = new Deck();
             deck2.SelectedVersionId = d2selectd;
@@ -455,6 +455,36 @@ namespace ESLTracker.DataModel.Tests
 
             CollectionAssert.AreEqual(deck.History, deck2.History);
             Assert.AreEqual(d2selectd, deck2.SelectedVersionId);
+        }
+
+        [TestMethod()]
+        public void CloneTest001()
+        {
+            Deck deck = new Deck();
+            PopulateObject(deck, StartProp);
+
+            Deck clone = deck.Clone() as Deck;
+
+            foreach (PropertyInfo p in typeof(Deck).GetProperties())
+            {
+                if (p.CanWrite)
+                {
+                    TestContext.WriteLine("Checking prop:{0}.{1};{2}", p.Name, p.GetValue(deck), p.GetValue(clone));
+                    if (p.PropertyType == typeof(string))
+                    {
+                        //http://stackoverflow.com/questions/506648/how-do-strings-work-when-shallow-copying-something-in-c
+                        continue;
+                    }
+                    if (p.PropertyType.GetInterface(nameof(ICollection)) != null)
+                    {
+                        CollectionAssert.AreNotEqual(p.GetValue(deck) as ICollection, p.GetValue(clone) as ICollection, new ReferenceComparer());
+                    }
+                    else
+                    {
+                        Assert.IsFalse(Object.ReferenceEquals(p.GetValue(deck), p.GetValue(clone)));
+                    }
+                }
+            }
         }
 #pragma warning restore CS0618 // Type or member is obsolete - new deck()
     }

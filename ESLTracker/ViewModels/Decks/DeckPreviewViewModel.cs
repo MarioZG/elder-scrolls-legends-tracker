@@ -128,8 +128,14 @@ namespace ESLTracker.ViewModels.Decks
 
         private void CommandSaveExecute(object parameter)
         {
+            string versionInc = parameter as string;
+            SerializableVersion ver = new SerializableVersion(0, 0);
+            if (parameter != null)
+            {
+                ver = new SerializableVersion(new Version(versionInc));
+            } 
             ClearModifiedBorder();
-            SaveDeck(this.trackerFactory.GetTracker());
+            SaveDeck(this.trackerFactory.GetTracker(), ver, Deck.SelectedVersion.Cards);
             this.IsInEditMode = false;
         }
 
@@ -173,8 +179,34 @@ namespace ESLTracker.ViewModels.Decks
             RaisePropertyChangedEvent(nameof(Deck));
         }
 
-        public void SaveDeck(ITracker tracker)
+        public void SaveDeck(ITracker tracker, SerializableVersion versionIncrease, IEnumerable<CardInstance> cardsCollection)
         {
+            if (versionIncrease == new SerializableVersion(0,0))
+            {
+                //overwrite
+                //we were working on current version - do nothing
+            }
+            else
+            {
+                //save current cards
+                List<CardInstance> cards = new List<CardInstance>(Deck.SelectedVersion.Cards);
+                //undo changes in curr version
+                //Deck.SelectedVersion points to curret latest
+                Deck.SelectedVersion.Cards = savedState.History.Where(dv => dv.VersionId == Deck.SelectedVersionId).First().Cards;
+                //create new verson wih new cards
+
+                Deck.CreateVersion(
+                    Deck.SelectedVersion.Version.Major + versionIncrease.Major,
+                    Deck.SelectedVersion.Version.Minor + versionIncrease.Minor,
+                    trackerFactory.GetDateTimeNow());
+                
+                //now Deck.SelectedVersion points to new version                
+                foreach (CardInstance ci in cards)
+                {
+                    Deck.SelectedVersion.Cards.Add((CardInstance)ci.Clone());
+                }
+
+            }
             if (!tracker.Decks.Contains(this.Deck))
             {
                 tracker.Decks.Add(this.Deck);

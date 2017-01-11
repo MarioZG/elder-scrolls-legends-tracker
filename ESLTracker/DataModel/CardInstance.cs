@@ -18,7 +18,7 @@ using ESLTracker.ViewModels;
 namespace ESLTracker.DataModel
 {
     [DebuggerDisplay("Card={Card.Name}; Premium={IsPremium}")]
-    public class CardInstance : ViewModelBase
+    public class CardInstance : ViewModelBase, ICloneable
     {
         private ITrackerFactory trackerFactory;
 
@@ -128,6 +128,16 @@ namespace ESLTracker.DataModel
         private void LoadCardFromDataBase(Guid value)
         {
             this.Card = trackerFactory.GetCardsDatabase().FindCardById(value);
+        }
+
+        public object Clone()
+        {
+            CardInstance ci =  this.MemberwiseClone() as CardInstance;
+            //if (ci != null)
+            //{
+               
+            //}
+            return ci;
         }
     }
 }

@@ -9,6 +9,7 @@ using ESLTrackerTests;
 using ESLTracker.Utils;
 using Moq;
 using System.Reflection;
+using System.Collections;
 
 namespace ESLTracker.DataModel.Tests
 {
@@ -189,6 +190,36 @@ namespace ESLTracker.DataModel.Tests
                     p.SetValue(d2, EditProp[p.PropertyType]);
 
                     Assert.IsFalse(d1 == d2); //should return false
+                }
+            }
+        }
+
+        [TestMethod]
+        public void CloneTest()
+        {
+            DeckVersion deckVersion = new DeckVersion();
+            PopulateObject(deckVersion, StartProp);
+
+            DeckVersion clone = deckVersion.Clone() as DeckVersion;
+
+            foreach (PropertyInfo p in typeof(DeckVersion).GetProperties())
+            {
+                if (p.CanWrite)
+                {
+                    TestContext.WriteLine("Checking prop:{0}.{1};{2}", p.Name, p.GetValue(deckVersion), p.GetValue(clone));
+                    if (p.PropertyType == typeof(string))
+                    {
+                        //http://stackoverflow.com/questions/506648/how-do-strings-work-when-shallow-copying-something-in-c
+                        continue;
+                    }
+                    if (p.PropertyType.GetInterface(nameof(ICollection)) != null)
+                    {
+                        CollectionAssert.AreNotEqual(p.GetValue(deckVersion) as ICollection, p.GetValue(clone) as ICollection, new ReferenceComparer());
+                    }
+                    else
+                    {
+                        Assert.IsFalse(Object.ReferenceEquals(p.GetValue(deckVersion), p.GetValue(clone)));
+                    }
                 }
             }
         }

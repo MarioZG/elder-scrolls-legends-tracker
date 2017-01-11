@@ -42,13 +42,18 @@ namespace ESLTrackerTests
                 { typeof(Deck), new Deck()},
                 { typeof(GameType?), GameType.SoloArena},
                 { typeof(bool?), true},
+                { typeof(bool), true},
                 { typeof(OrderOfPlay?), OrderOfPlay.Second},
                 { typeof(GameOutcome), GameOutcome.Disconnect},
                 { typeof(PlayerRank?), PlayerRank.TheMage},
                 { typeof(int?), 234},
+                { typeof(int), 2234},
                 { typeof(ArenaRank?), ArenaRank.Level5},
                 { typeof(SerializableVersion), new SerializableVersion(1,2,3,4)},
                 { typeof(ObservableCollection<DeckVersion>), new ObservableCollection<DeckVersion>() {new DeckVersion() { Version = new SerializableVersion(1,2) } } },
+                { typeof(ObservableCollection<CardInstance>), new ObservableCollection<CardInstance>() {new CardInstance(new Card() {Name = "Card start" }) } },
+                { typeof(Card), Card.Unknown},
+                { typeof(System.Windows.Media.Brush), System.Windows.Media.Brushes.Aquamarine},
                 { typeof(object), new object()}
             };
 
@@ -63,13 +68,18 @@ namespace ESLTrackerTests
                 { typeof(Deck), new Deck()},
                 { typeof(GameType?), GameType.PlayCasual},
                 { typeof(bool?), false},
+                { typeof(bool), false},
                 { typeof(OrderOfPlay?), OrderOfPlay.First},
                 { typeof(GameOutcome), GameOutcome.Draw},
                 { typeof(PlayerRank?), PlayerRank.TheLover},
                 { typeof(int?), 567},
+                { typeof(int), 1567},
                 { typeof(ArenaRank?), ArenaRank.Gladiator },
                 { typeof(SerializableVersion), new SerializableVersion(1,2,3,4)},
-                { typeof(ObservableCollection<DeckVersion>), new ObservableCollection<DeckVersion>() {new DeckVersion() { Version = new SerializableVersion(2,3) } } }
+                { typeof(ObservableCollection<DeckVersion>), new ObservableCollection<DeckVersion>() {new DeckVersion() { Version = new SerializableVersion(2,3) } } },
+                { typeof(ObservableCollection<CardInstance>), new ObservableCollection<CardInstance>() {new CardInstance(new Card() {Name = "Card edit" }) } },
+                { typeof(Card), new Card() {Name = "Other unknown card" } },
+                { typeof(System.Windows.Media.Brush), System.Windows.Media.Brushes.Gainsboro},
              //   { typeof(object), new object()}
             };
 

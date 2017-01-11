@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace ESLTracker.Utils
 {
     [XmlRoot("Version")]
-    public class SerializableVersion : Attribute, IComparable
+    public class SerializableVersion : Attribute, IComparable, ICloneable
     {
         public int Build;
         public int Major;
@@ -140,6 +140,11 @@ namespace ESLTracker.Utils
             {
                 throw new Exception("Invalid version string", ex);
             }
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone() as SerializableVersion;
         }
     }
 }

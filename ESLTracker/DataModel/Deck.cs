@@ -8,6 +8,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.DataModel
 {
@@ -198,7 +199,12 @@ namespace ESLTracker.DataModel
 
         public object Clone()
         {
-            return this.MemberwiseClone() as Deck;
+            Deck deck = this.MemberwiseClone() as Deck;
+            if (deck != null)
+            {
+                deck.DoNotUse = this.DoNotUse.DeepCopy<DeckVersion>();
+            }
+            return deck;
         }
 
         public static bool IsArenaDeck(DeckType type)

@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.DataModel
 {
-    public class DeckVersion: IEquatable<DeckVersion>
+    public class DeckVersion: IEquatable<DeckVersion>, ICloneable
     {
         public Guid VersionId { get; set; } 
 
@@ -89,6 +90,17 @@ namespace ESLTracker.DataModel
         public static bool operator !=(DeckVersion lhs, DeckVersion rhs)
         {
             return !(lhs == rhs);
+        }
+
+        public object Clone()
+        {
+            DeckVersion dv = this.MemberwiseClone() as DeckVersion;
+            if (dv != null)
+            {
+                dv.Cards = this.Cards.DeepCopy<CardInstance>();
+                dv.Version = this.Version.Clone() as SerializableVersion;
+            }
+            return dv;
         }
     }
 }
