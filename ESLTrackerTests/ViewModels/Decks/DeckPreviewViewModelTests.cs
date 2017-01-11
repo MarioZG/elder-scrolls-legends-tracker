@@ -118,7 +118,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Deck deck = Deck.CreateNewDeck(trackerFactory.Object, "test deck");
             deck.SelectedVersion.Cards.Add(card);
 
-          //  List<CardInstance> modifiedCollection = new List<CardInstance>()
+            //  List<CardInstance> modifiedCollection = new List<CardInstance>()
             {
                 //    card, //include this and ensure it has been cloned
                 deck.SelectedVersion.Cards.Add(new CardInstance(Card.Unknown));
@@ -151,7 +151,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             DeckPreviewViewModel model = new DeckPreviewViewModel();
             model.Deck = deck;
-            
+
             model.BeginEdit();
 
             deck.SelectedVersion.Cards.Add(new CardInstance(Card.Unknown));
@@ -160,7 +160,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             model.SaveDeck(tracker.Object, new SerializableVersion(1, 0), deck.SelectedVersion.Cards);
 
             Assert.AreEqual(3, model.Deck.SelectedVersion.Cards.Count);
-            Assert.AreEqual(new SerializableVersion(2,0), model.Deck.SelectedVersion.Version);
+            Assert.AreEqual(new SerializableVersion(2, 0), model.Deck.SelectedVersion.Version);
             Assert.AreEqual(1, model.Deck.History[0].Cards.Count);
             Assert.AreEqual(2, model.Deck.History.Count);
             //endsure inial card has ebeen cloned
@@ -215,7 +215,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             Deck deck = Deck.CreateNewDeck(trackerFactory.Object, "test deck");
             deck.CreateVersion(1, 3, trackerFactory.Object.GetDateTimeNow()); //ensure its not ordered :)
-            Guid selectedVersion =  deck.CreateVersion(1, 1, trackerFactory.Object.GetDateTimeNow()).VersionId;
+            Guid selectedVersion = deck.CreateVersion(1, 1, trackerFactory.Object.GetDateTimeNow()).VersionId;
             deck.CreateVersion(1, 2, trackerFactory.Object.GetDateTimeNow());
 
             deck.SelectedVersionId = selectedVersion; //select 1.1
@@ -262,6 +262,44 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             Assert.AreEqual(new SerializableVersion(2, 0), model.Deck.SelectedVersion.Version);
             Assert.AreEqual(5, model.Deck.History.Count);
+        }
+
+        [TestMethod()]
+        public void CalculateDeckChangesTest001()
+        {
+            Card c1 = new Card() { Name = "c1", Id = Guid.NewGuid() };
+            Card c2 = new Card() { Name = "c2", Id = Guid.NewGuid() };
+            Card c3 = new Card() { Name = "c3", Id = Guid.NewGuid() };
+            Card c4 = new Card() { Name = "c4", Id = Guid.NewGuid() };
+            Card c5 = new Card() { Name = "c5", Id = Guid.NewGuid() };
+
+            ObservableCollection<CardInstance> coll1 = new ObservableCollection<CardInstance>();
+            coll1.Add(new CardInstance(c1) { Quantity = 2 });
+            coll1.Add(new CardInstance(c2) { Quantity = 2 });
+            coll1.Add(new CardInstance(c3) { Quantity = 3 });
+            coll1.Add(new CardInstance(c4) { Quantity = 3 });
+
+            ObservableCollection<CardInstance> coll2 = new ObservableCollection<CardInstance>();
+            coll2.Add(new CardInstance(c2) { Quantity = 2 });
+            coll2.Add(new CardInstance(c3) { Quantity = 1 });
+            coll2.Add(new CardInstance(c4) { Quantity = 3 });
+            coll2.Add(new CardInstance(c5) { Quantity = 2 });
+
+            ObservableCollection<CardInstance> expected = new ObservableCollection<CardInstance>();
+            expected.Add(new CardInstance(c1) { Quantity = 2 }); 
+            //c2 - no changes not in a list
+            expected.Add(new CardInstance(c3) { Quantity = 2 });
+            //c4 - no changes not in a list
+            expected.Add(new CardInstance(c5) { Quantity = -2 });
+
+            var actual = new DeckPreviewViewModel().CalculateDeckChanges(coll1, coll2);
+            CollectionAssert.AreEqual(expected, actual,
+                Comparer<CardInstance>.Create((x, y) => x.CardId == y.CardId && x.Quantity == y.Quantity ? 0 : 1),
+                "{0}Actual:{0}{1}; {0}Expected:{0}{2}",
+                Environment.NewLine,
+                String.Join(Environment.NewLine, actual.Select( c => c.DebuggerInfo)),
+                String.Join(Environment.NewLine, expected.Select(c => c.DebuggerInfo)));
+
         }
     }
 }

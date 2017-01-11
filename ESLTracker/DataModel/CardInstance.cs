@@ -17,7 +17,7 @@ using ESLTracker.ViewModels;
 
 namespace ESLTracker.DataModel
 {
-    [DebuggerDisplay("Card={Card.Name}; Premium={IsPremium}")]
+    [DebuggerDisplay("{DebuggerInfo}")]
     public class CardInstance : ViewModelBase, ICloneable
     {
         private ITrackerFactory trackerFactory;
@@ -104,6 +104,15 @@ namespace ESLTracker.DataModel
                 return ((card != null) && (card != Card.Unknown));
             }
         }
+
+        public string DebuggerInfo
+        {
+            get
+            {
+                return string.Format("Card={0};IsPremium={1};Qty={2}", Card.Name, IsPremium, Quantity);
+            }
+        }
+
         public CardInstance() : this(TrackerFactory.DefaultTrackerFactory)
         {
 

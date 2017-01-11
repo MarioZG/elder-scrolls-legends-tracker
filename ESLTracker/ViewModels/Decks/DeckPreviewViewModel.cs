@@ -74,10 +74,13 @@ namespace ESLTracker.ViewModels.Decks
                 if (value != null)
                 {
                     Deck.SelectedVersionId = value.VersionId;
+                    //update changes
+                    CurrentVersion.Cards.CollectionChanged += (s, e) => { RaisePropertyChangedEvent(nameof(ChangesFromCurrentVersion)); };
                 }
                 RaisePropertyChangedEvent(nameof(CurrentVersion));
             }
         }
+
         public string CurrentVersionString
         {
             get
@@ -111,6 +114,21 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        public ObservableCollection<CardInstance> ChangesFromCurrentVersion
+        {
+            get
+            {
+                if ((savedState != null)
+                    && (CurrentVersion != null))
+                {
+                    return CalculateDeckChanges(CurrentVersion.Cards, savedState.History.Where(dv => dv.VersionId == CurrentVersion.VersionId).First().Cards);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
 
         //priate ariable used for IEditableObject implemenation. Keeps inital state of object
         internal Deck savedState;
@@ -303,6 +321,27 @@ namespace ESLTracker.ViewModels.Decks
             }
             this.ShowImportPanel = false;
             return null;
+        }
+
+        internal ObservableCollection<CardInstance> CalculateDeckChanges(ObservableCollection<CardInstance> cards1, ObservableCollection<CardInstance> cards2)
+        {
+            ObservableCollection<CardInstance> result = new ObservableCollection<CardInstance>();
+
+            result = cards1.DeepCopy<CardInstance>();
+            foreach(CardInstance card in cards2)
+            {
+                CardInstance currentCard = result.Where(ci => ci.CardId == card.CardId).FirstOrDefault();
+                if (currentCard != null)
+                {
+                    currentCard.Quantity -= card.Quantity;
+                }
+                else
+                {
+                    result.Add(new CardInstance(card.Card) { Quantity = -card.Quantity });
+                }
+            }
+
+            return new ObservableCollection<CardInstance>(result.Where( ci=> ci.Quantity != 0));
         }
 
     }
