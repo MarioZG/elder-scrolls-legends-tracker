@@ -75,6 +75,8 @@ namespace ESLTracker.DataModel
             set
             {
                 selectedVersionId = value;
+                RaisePropertyChangedEvent(nameof(SelectedVersion));
+                RaisePropertyChangedEvent(nameof(SelectedVersionId));
             }
         }
 
