@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.DataModel
 {
+    [DebuggerDisplay("Version={Version}; CardsCount={Cards.Count}")]
     public class DeckVersion: IEquatable<DeckVersion>, ICloneable
     {
         public Guid VersionId { get; set; } 

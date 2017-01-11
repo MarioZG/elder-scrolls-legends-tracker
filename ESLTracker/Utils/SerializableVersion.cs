@@ -55,7 +55,7 @@ namespace ESLTracker.Utils
 
         public override string ToString()
         {
-            return string.Format("{0}.{1}.{2}.{3}", Major, Minor, Revision, Build);
+            return string.Format("{0}.{1}", Major, Minor);
         }
 
         /// <summary>

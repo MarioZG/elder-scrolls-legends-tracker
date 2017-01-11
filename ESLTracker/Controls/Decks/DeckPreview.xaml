@@ -23,7 +23,17 @@
                     <MenuItem Header="Small amendmends" Command="{Binding CommandSave}" CommandParameter="0.1"/>
                 </MenuItem> 
             </Menu>
-            <TextBlock Padding="5,5,5,10" Style="{StaticResource DeckName}" Text="{Binding CurrentVersionString}" DockPanel.Dock="Right"/>
+            <ComboBox 
+                DockPanel.Dock="Right"
+                Padding="5,5,5,10" 
+                ItemsSource="{Binding Deck.History}" 
+                SelectedItem="{Binding CurrentVersion}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Version, StringFormat={}v{0}}" Style="{StaticResource DeckName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock Padding="10,5,5,5" Style="{StaticResource DeckName}" Text="{Binding Deck.Name}"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Left">

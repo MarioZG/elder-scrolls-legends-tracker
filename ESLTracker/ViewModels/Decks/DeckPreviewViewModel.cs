@@ -23,6 +23,7 @@ namespace ESLTracker.ViewModels.Decks
             get { return deck; }
             set {
                 deck = value;
+                CurrentVersion = Deck?.History.Where(dh => dh.VersionId == Deck.SelectedVersionId).First();
                 RaisePropertyChangedEvent(String.Empty);
             }
         }
@@ -60,11 +61,21 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        public DeckVersion currentVersion;
         public DeckVersion CurrentVersion
         {
             get
             {
-                return Deck?.History.Where(dh => dh.VersionId == Deck.SelectedVersionId).First();
+                return currentVersion;
+            }
+            set
+            {
+                currentVersion = value;
+                if (value != null)
+                {
+                    Deck.SelectedVersionId = value.VersionId;
+                }
+                RaisePropertyChangedEvent(nameof(CurrentVersion));
             }
         }
         public string CurrentVersionString

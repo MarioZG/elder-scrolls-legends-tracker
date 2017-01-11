@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,6 +11,7 @@ using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel
 {
+    [DebuggerDisplay("Name={Name}")]
     public class Card
     {
         public static Card Unknown { get; } = new Card() { Name = "Unknown" };
