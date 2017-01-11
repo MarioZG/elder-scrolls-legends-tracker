@@ -130,6 +130,29 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        public Dictionary<string, ObservableCollection<CardInstance>> ChangesHistory
+        {
+            get
+            {
+                Dictionary<string, ObservableCollection<CardInstance>> changesHist = new Dictionary<string, ObservableCollection<CardInstance>>();
+                Deck surceDeck = savedState != null ? savedState : Deck; 
+                if (surceDeck != null)
+                {
+                    DeckVersion prev = null;
+                    foreach (DeckVersion dv in surceDeck.History)
+                    {
+                        if (prev != null)
+                        {
+                            changesHist.Add(prev.Version.ToString("mm")+" -> "+ dv.Version.ToString("mm"), CalculateDeckChanges(dv.Cards, prev.Cards));
+                        }
+                        prev = dv;
+                    }
+                    changesHist = changesHist.Reverse().ToDictionary(i => i.Key, i => i.Value);
+                }
+                return changesHist;
+            }
+        }
+
         //priate ariable used for IEditableObject implemenation. Keeps inital state of object
         internal Deck savedState;
 

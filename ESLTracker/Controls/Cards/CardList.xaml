@@ -19,7 +19,7 @@
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
-    <ScrollViewer>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
     <ItemsControl ItemsSource="{Binding Source={StaticResource cardsCollectionView}}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>

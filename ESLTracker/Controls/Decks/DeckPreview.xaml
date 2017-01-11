@@ -49,12 +49,26 @@
                 DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}"
                 Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ConverterParameter=not, ElementName=deckPreview}"
                 />
-            <Cards:CardList 
-                DataContext="{Binding DataContext.ChangesFromCurrentVersion, ElementName=deckPreview}"
-                Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
-                />
-
         </DockPanel>
+        <ScrollViewer DockPanel.Dock="Right">
+            <StackPanel>
+                <TextBlock 
+                    FontWeight="Medium" 
+                    Text="Current changes"
+                    Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"/>
+                <Cards:CardList  
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        DataContext="{Binding DataContext.ChangesFromCurrentVersion, ElementName=deckPreview}"
+                        Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
+                        />
+                <local:DeckHistory
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                    DataContext="{Binding DataContext.ChangesHistory, ElementName=deckPreview}"
+                    />
+            </StackPanel>
+        </ScrollViewer>
         <Cards:CardListEditor 
             Visibility="{Binding DataContext.ShowEditDeckPanel, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
             CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" 

@@ -114,6 +114,9 @@
     <Compile Include="Controls\Decks\DeckFilter.xaml.cs">
       <DependentUpon>DeckFilter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Decks\DeckHistory.xaml.cs">
+      <DependentUpon>DeckHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Decks\DeckPreview.xaml.cs">
       <DependentUpon>DeckPreview.xaml</DependentUpon>
     </Compile>
@@ -337,6 +340,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Decks\DeckFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Decks\DeckHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

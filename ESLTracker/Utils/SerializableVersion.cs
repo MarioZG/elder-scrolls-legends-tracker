@@ -60,6 +60,9 @@ namespace ESLTracker.Utils
         }
 
         /// <summary>
+        /// Formats:
+        /// "G/g" - general {M}.{m}.{b}.{r}
+        /// "MM" - {M}.{m}
         /// {M}: Major, {m}: Minor, {r}: Revision, {b}: Build
         /// </summary>
         /// <param name="format"></param>

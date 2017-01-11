@@ -22,15 +22,6 @@ namespace ESLTracker.Controls.Cards
     /// </summary>
     public partial class CardList : UserControl
     {
-        public ObservableCollection<CardInstance> CardCollection
-        {
-            get { return (ObservableCollection<CardInstance>)GetValue(CardCollectionProperty); }
-            set { SetValue(CardCollectionProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for CardsList.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CardCollectionProperty =
-            DependencyProperty.Register(nameof(CardCollection), typeof(ObservableCollection<CardInstance>), typeof(CardList), new PropertyMetadata(new ObservableCollection<CardInstance>()));
 
         public ICommand MouseLeftClick
         {
