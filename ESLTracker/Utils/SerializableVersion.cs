@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using System.Xml.Serialization;
 namespace ESLTracker.Utils
 {
     [XmlRoot("Version")]
-    public class SerializableVersion : Attribute, IComparable, ICloneable
+    public class SerializableVersion : Attribute, IComparable, ICloneable, IFormattable
     {
         public int Build;
         public int Major;
@@ -55,7 +56,7 @@ namespace ESLTracker.Utils
 
         public override string ToString()
         {
-            return string.Format("{0}.{1}", Major, Minor);
+            return this.ToString("G", CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -65,10 +66,30 @@ namespace ESLTracker.Utils
         /// <returns></returns>
         public string ToString(string format)
         {
+            return this.ToString(format, CultureInfo.CurrentCulture);
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+
+            if (String.IsNullOrEmpty(format) || format.ToUpperInvariant() == "G")
+            {
+                format = "{M}.{m}.{b}.{r}";
+            }
+            else if (format.ToUpperInvariant() == "MM")
+            {
+                format = "{M}.{m}";
+            }
+
+            if (formatProvider == null)
+            {
+                formatProvider = CultureInfo.CurrentCulture;
+            }
+            
             return format.Replace("{M}", Major.ToString())
-                         .Replace("{m}", Minor.ToString())
-                         .Replace("{r}", Revision.ToString())
-                         .Replace("{b}", Build.ToString());
+                        .Replace("{m}", Minor.ToString())
+                        .Replace("{b}", Build.ToString())
+                        .Replace("{r}", Revision.ToString());
         }
 
         public override bool Equals(Object obj)
@@ -146,5 +167,6 @@ namespace ESLTracker.Utils
         {
             return this.MemberwiseClone() as SerializableVersion;
         }
+
     }
 }
