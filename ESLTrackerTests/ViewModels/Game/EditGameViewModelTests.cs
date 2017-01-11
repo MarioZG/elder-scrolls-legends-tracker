@@ -317,6 +317,7 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
+            tracker.Setup(t => t.ActiveDeck).Returns(Deck.CreateNewDeck(trackerFactory.Object));
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
             Mock<IWinAPI> winApi = new Mock<IWinAPI>();
@@ -337,9 +338,10 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod]
         public void ChangeActiveDeck001_AvailableGameTypesUpdated()
         {
-            Deck activeDeck = new Deck() { Type = DeckType.SoloArena };
-
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+
+            Deck activeDeck = Deck.CreateNewDeck(trackerFactory.Object);
+            activeDeck.Type = DeckType.SoloArena;
 
             Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.ActiveDeck).Returns(activeDeck);
@@ -352,7 +354,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             
 
             EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
-            messagnger.Send(new ActiveDeckChanged(activeDeck));
+            model.ActiveDeckChanged(new ActiveDeckChanged(activeDeck));
 
             Assert.AreEqual(1, model.AllowedGameTypes.Count());
             Assert.AreEqual(GameType.SoloArena, model.AllowedGameTypes.First());

@@ -16,6 +16,7 @@ namespace ESLTracker.Utils.FileUpdaters
         protected override void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker)
         {
             CreateInitalHistoryForExistingDecks(tracker);
+            AllocateGamesToInitalVersionOfDeck(tracker);
             doc.InnerXml = SerializationHelper.SerializeXML(tracker);
         }
 
@@ -31,6 +32,15 @@ namespace ESLTracker.Utils.FileUpdaters
                 { 
                     deck.CreateVersion(1, 0, deck.CreatedDate);
                 }
+            }
+        }
+
+        private static void AllocateGamesToInitalVersionOfDeck(Tracker tracker)
+        {
+            //allocate games to default version
+            foreach (Game game in tracker.Games)
+            {
+                game.DeckVersionId = game.Deck.SelectedVersionId;
             }
         }
     }

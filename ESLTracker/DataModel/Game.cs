@@ -33,6 +33,16 @@ namespace ESLTracker.DataModel
             }
         }
 
+        public Guid DeckVersionId { get; set; }
+
+        public string DeckVersionString
+        {
+            get
+            {
+                return Deck.History.Where(dv => dv.VersionId == DeckVersionId).First().Version.ToString("MM");
+            }
+        }
+
         public DateTime Date { get; set; }
 
         GameType? type;
@@ -106,7 +116,12 @@ namespace ESLTracker.DataModel
 
         public object Clone()
         {
-            return this.MemberwiseClone() as Game;
+            Game clone = this.MemberwiseClone() as Game;
+            if (clone != null)
+            {
+                clone.ESLVersion = this.ESLVersion?.Clone() as SerializableVersion;
+            }
+            return clone;
         }
 
         public override int GetHashCode()

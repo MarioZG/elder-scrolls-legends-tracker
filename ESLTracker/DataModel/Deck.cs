@@ -203,7 +203,7 @@ namespace ESLTracker.DataModel
             Deck deck = this.MemberwiseClone() as Deck;
             if (deck != null)
             {
-                deck.DoNotUse = this.DoNotUse.DeepCopy<DeckVersion>();
+                deck.DoNotUse = this.DoNotUse?.DeepCopy<DeckVersion>();
             }
             return deck;
         }

@@ -99,8 +99,8 @@ namespace ESLTracker.DataModel
             DeckVersion dv = this.MemberwiseClone() as DeckVersion;
             if (dv != null)
             {
-                dv.Cards = this.Cards.DeepCopy<CardInstance>();
-                dv.Version = this.Version.Clone() as SerializableVersion;
+                dv.Cards = this.Cards?.DeepCopy<CardInstance>();
+                dv.Version = this.Version?.Clone() as SerializableVersion;
             }
             return dv;
         }

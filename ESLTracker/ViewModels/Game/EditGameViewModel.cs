@@ -167,14 +167,16 @@ namespace ESLTracker.ViewModels.Game
             this.BeginEdit();
         }
 
-        private void ActiveDeckChanged(ActiveDeckChanged activeDeckChanged)
+        internal void ActiveDeckChanged(ActiveDeckChanged activeDeckChanged)
         {
             if (!IsEditControl)
             {
                 this.Game.Deck = activeDeckChanged.ActiveDeck;
+                this.Game.DeckVersionId = activeDeckChanged.ActiveDeck.SelectedVersionId;
                 if (savedState != null)
                 {
                     savedState.Deck = tracker.ActiveDeck;
+                    savedState.DeckVersionId = tracker.ActiveDeck.SelectedVersionId;
                 }
                 RaisePropertyChangedEvent(nameof(AllowedGameTypes));
             }
@@ -266,6 +268,7 @@ namespace ESLTracker.ViewModels.Game
         internal void UpdateGameData(Properties.ISettings settings, GameOutcome? outcome)
         {
             this.Game.Deck = tracker.ActiveDeck;
+            this.Game.DeckVersionId = tracker.ActiveDeck.SelectedVersionId;
             this.Game.Outcome = outcome.Value;
             this.Game.Date = trackerFactory.GetDateTimeNow(); //game date - when it concluded (we dont know when it started)
             FileVersionInfo fvi = trackerFactory.GetWinAPI().GetEslFileVersionInfo();
@@ -429,6 +432,7 @@ namespace ESLTracker.ViewModels.Game
             Game.Date = savedState.Date;
             Game.Deck = savedState.Deck;
             Game.DeckId = savedState.DeckId;
+            Game.DeckVersionId = savedState.DeckVersionId;
             Game.Notes = savedState.Notes;
             Game.OpponentClass = savedState.OpponentClass;
             Game.OpponentLegendRank = savedState.OpponentLegendRank;

@@ -9,6 +9,7 @@ using ESLTrackerTests;
 using System.Reflection;
 using ESLTracker.Utils;
 using Moq;
+using System.Collections;
 
 namespace ESLTracker.DataModel.Tests
 {
@@ -92,6 +93,40 @@ namespace ESLTracker.DataModel.Tests
                     p.SetValue(y, EditProp[p.PropertyType]);
 
                     Assert.IsFalse(x.Equals(y), "Property {0} failed. x={1};y={2};", p.Name, p.GetValue(x), p.GetValue(y));
+                }
+            }
+        }
+
+        [TestMethod]
+        public void CloneTest()
+        {
+            Game game = new Game();
+            PopulateObject(game, StartProp);
+
+            Game clone = game.Clone() as Game;
+
+            foreach (PropertyInfo p in typeof(Game).GetProperties())
+            {
+                if (p.CanWrite)
+                {
+                    TestContext.WriteLine("Checking prop:{0}.{1};{2}", p.Name, p.GetValue(game), p.GetValue(clone));
+                    if (p.PropertyType == typeof(string))
+                    {
+                        //http://stackoverflow.com/questions/506648/how-do-strings-work-when-shallow-copying-something-in-c
+                        continue;
+                    }
+                    if (p.Name == nameof(Game.Deck))  //dont want to clone deck
+                    {
+                        continue;
+                    }
+                    if (p.PropertyType.GetInterface(nameof(ICollection)) != null)
+                    {
+                        CollectionAssert.AreNotEqual(p.GetValue(game) as ICollection, p.GetValue(clone) as ICollection, new ReferenceComparer());
+                    }
+                    else
+                    {
+                        Assert.IsFalse(Object.ReferenceEquals(p.GetValue(game), p.GetValue(clone)));
+                    }
                 }
             }
         }

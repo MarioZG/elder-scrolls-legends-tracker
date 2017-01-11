@@ -32,7 +32,8 @@
         </StackPanel>
         <TextBlock DockPanel.Dock="Bottom" Margin="5,0,0,0" Text="{Binding Notes}" />
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <TextBlock Text="You went "/>
+            <TextBlock Margin="0,0,0,0" Text="{Binding DeckVersionString, StringFormat={} Deck version: {0}. }" />
+            <TextBlock Text=" You went "/>
             <TextBlock Text="{Binding OrderOfPlay}" />
             <TextBlock Margin="5,0,0,0" 
                        Visibility="{Binding BonusRound, Converter={Converters:BoolToVisibilty}}"
