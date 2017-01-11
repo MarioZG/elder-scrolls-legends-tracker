@@ -206,9 +206,25 @@ namespace ESLTracker.ViewModels.Decks
                 Deck.SelectedVersion.Cards = savedState.History.Where(dv => dv.VersionId == Deck.SelectedVersionId).First().Cards;
                 //create new verson wih new cards
 
+                int major, minor;
+                if (versionIncrease.Major == 1)
+                {
+                    major = versionIncrease.Major + Deck.History.Select(dv => dv.Version).OrderByDescending(dv => dv).First().Major;
+                    minor = 0;
+                }
+                else if (versionIncrease.Minor == 1)
+                {
+                    major = Deck.SelectedVersion.Version.Major;
+                    minor = versionIncrease.Minor + Deck.History.Where(dv=> dv.Version.Major == major).Select(dv => dv.Version).OrderByDescending(dv => dv).First().Minor;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException(nameof(versionIncrease),"Method accepts only version increase by 0 or 1");
+                }
+
                 Deck.CreateVersion(
-                    Deck.SelectedVersion.Version.Major + versionIncrease.Major,
-                    Deck.SelectedVersion.Version.Minor + versionIncrease.Minor,
+                    major,
+                    minor,
                     trackerFactory.GetDateTimeNow());
                 
                 //now Deck.SelectedVersion points to new version                

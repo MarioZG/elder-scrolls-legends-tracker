@@ -52,7 +52,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return DoNotUse.ToList().AsReadOnly();
+                return DoNotUse.OrderBy( dv => dv.Version).ToList().AsReadOnly();
             }
         }
 
@@ -94,6 +94,7 @@ namespace ESLTracker.DataModel
         {
         }
 
+        [Obsolete("Use static CreateNewDeck instead. This is public  if for serialization purpose only")]
         internal Deck(ITrackerFactory tracker)
         {
             DeckId = tracker.GetNewGuid(); //if deserialise, will be overriten!, if new generate!
