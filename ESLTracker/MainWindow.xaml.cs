@@ -41,7 +41,7 @@ namespace ESLTracker
         public MainWindow()
         {
             InitializeComponent();
-            UpdateOverlayAsync(this);
+            Task.Run( () =>  UpdateOverlayAsync(this));
             Application.Current.MainWindow = this;
 
             TrackerFactory.DefaultTrackerFactory.GetMessanger().Register<ApplicationShowBalloonTip>(this, ShowBaloonRequested);
@@ -50,18 +50,26 @@ namespace ESLTracker
 
         internal static OverlayToolbar ot { get; set; } = new OverlayToolbar();
 
-        private static async void UpdateOverlayAsync(Window mainWindow)
+        private static async Task UpdateOverlayAsync(Window mainWindow)
         {
-            IWinAPI winAPI = new WinAPI();     
-            ot.Show();
+            IWinAPI winAPI = new WinAPI();
+            mainWindow.Dispatcher.Invoke(() => {
+                ot.Show();
+            });
             UpdateOverlay = true;
-            while (UpdateOverlay && ! ot.IsDisposed())
+            bool isDisposed = false;
+            mainWindow.Dispatcher.Invoke(() => isDisposed = ot.IsDisposed());
+            while (UpdateOverlay && !isDisposed)
             {
-                ot.Visibility = winAPI.IsGameActive() || ot.IsActive || mainWindow.IsActive ? Visibility.Visible : Visibility.Hidden;
-               // ot.Topmost = WindowsUtils.IsGameActive();
+                mainWindow.Dispatcher.Invoke(() =>
+                    ot.Visibility = winAPI.IsGameActive() || ot.IsActive || mainWindow.IsActive ? Visibility.Visible : Visibility.Hidden
+                    );
                 await Task.Delay(1000);
+                mainWindow.Dispatcher.Invoke(() => isDisposed = ot.IsDisposed());
             }
-            ot.Hide();
+            mainWindow.Dispatcher.Invoke(() => {
+                ot.Hide();
+            });
             UpdateOverlay = false;
         }
 
@@ -94,7 +102,7 @@ namespace ESLTracker
         {
             if (!UpdateOverlay)
             {
-                UpdateOverlayAsync(this);
+                Task.Run(() => UpdateOverlayAsync(this));
             }
         }
 
