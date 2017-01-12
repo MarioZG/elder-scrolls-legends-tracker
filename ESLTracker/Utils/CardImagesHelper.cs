@@ -16,14 +16,22 @@ namespace ESLTracker.Utils
 {
     public class CardImagesHelper
     {
+        private static Dictionary<Guid, Media.Brush> CardMiniatureCache = new Dictionary<Guid, Media.Brush>();
+
         public static Media.Brush GetCardMiniature(Card card)
         {
             if ((card != null) && (card != Card.Unknown))
             {
-                Drawing.Bitmap attribsBitmap = GetAtrriutesBackground(card);
-                Drawing.Bitmap cardBitmap = GetCardSmallImage(card);
+                if (!CardMiniatureCache.ContainsKey(card.Id))
+                {
+                    Drawing.Bitmap attribsBitmap = GetAtrriutesBackground(card);
+                    Drawing.Bitmap cardBitmap = GetCardSmallImage(card);
 
-                return MergeAttribsAndCArd(attribsBitmap, cardBitmap);
+                    Media.Brush brush = MergeAttribsAndCArd(attribsBitmap, cardBitmap);
+
+                    CardMiniatureCache.Add(card.Id, brush);
+                }
+                return CardMiniatureCache[card.Id];
             }
             else
             {
