@@ -46,9 +46,9 @@ namespace ESLTracker.Controls.Cards
 
         // Using a DependencyProperty as the backing store for MaxCardQuantity.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LimitCardCountProperty =
-            DependencyProperty.Register(nameof(LimitCardCount), typeof(bool), typeof(CardListEditor), new PropertyMetadata(null, MaxSingleCardQuantityChanged));
+            DependencyProperty.Register(nameof(LimitCardCount), typeof(bool), typeof(CardListEditor), new PropertyMetadata(false, LimitCardCountChanged));
 
-        private static void MaxSingleCardQuantityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void LimitCardCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((CardListEditor)d).DataContext.LimitCardCount = (bool)e.NewValue;
         }
