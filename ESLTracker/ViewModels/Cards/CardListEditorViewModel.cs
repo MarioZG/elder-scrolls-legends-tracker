@@ -40,7 +40,7 @@ namespace ESLTracker.ViewModels.Cards
             }
         }
 
-        public int? MaxSingleCardQuantity { get; set; }
+        public bool LimitCardCount { get; set; }
 
         public ICommand CommandAddCardToDeck
         {
@@ -99,12 +99,14 @@ namespace ESLTracker.ViewModels.Cards
                 card.Quantity = qty;
                 CardsCollection.Add(card);
             }
-            if (MaxSingleCardQuantity.HasValue && MaxSingleCardQuantity.Value < card.Quantity)
+            if (LimitCardCount)
             {
-                card.Quantity = MaxSingleCardQuantity.Value;
+                DeckHelper.EnforceCardLimit(card);
             }
             NewCard = null;
         }
+
+
 
         private void CommandCardClickedExecute(object param)
         {

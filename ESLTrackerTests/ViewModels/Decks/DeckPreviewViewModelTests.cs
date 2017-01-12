@@ -72,35 +72,35 @@ namespace ESLTracker.ViewModels.Decks.Tests
         }
 
         [TestMethod()]
-        public void GetMaxSingleCardForDeckTest001_Constructed()
+        public void LimitCardCountForDeckTest001_Constructed()
         {
             DeckPreviewViewModel model = new DeckPreviewViewModel();
 
-            int? actual = model.GetMaxSingleCardForDeck(new Deck() { Type = DataModel.Enums.DeckType.Constructed });
+            bool actual = model.LimitCardCountForDeck(new Deck() { Type = DataModel.Enums.DeckType.Constructed });
 
-            Assert.AreEqual(3, actual);
+            Assert.AreEqual(true, actual);
 
         }
 
         [TestMethod()]
-        public void GetMaxSingleCardForDeckTest001_SoloArena()
+        public void LimitCardCountForDeckTest001_SoloArena()
         {
             DeckPreviewViewModel model = new DeckPreviewViewModel();
 
-            int? actual = model.GetMaxSingleCardForDeck(new Deck() { Type = DataModel.Enums.DeckType.SoloArena });
+            bool actual = model.LimitCardCountForDeck(new Deck() { Type = DataModel.Enums.DeckType.SoloArena });
 
-            Assert.AreEqual(null, actual);
+            Assert.AreEqual(false, actual);
         }
 
 
         [TestMethod()]
-        public void GetMaxSingleCardForDeckTest001_VersusArena()
+        public void LimitCardCountForDeckTest001_VersusArena()
         {
             DeckPreviewViewModel model = new DeckPreviewViewModel();
 
-            int? actual = model.GetMaxSingleCardForDeck(new Deck() { Type = DataModel.Enums.DeckType.VersusArena });
+            bool actual = model.LimitCardCountForDeck(new Deck() { Type = DataModel.Enums.DeckType.VersusArena });
 
-            Assert.AreEqual(null, actual);
+            Assert.AreEqual(false, actual);
         }
 
         [TestMethod()]

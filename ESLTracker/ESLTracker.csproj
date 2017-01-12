@@ -179,6 +179,7 @@
     <Compile Include="Utils\Converters\MarkupConverter.cs" />
     <Compile Include="Utils\Converters\ObjectToBool.cs" />
     <Compile Include="Utils\Converters\ToVisibilityConverter.cs" />
+    <Compile Include="Utils\DeckHelper.cs" />
     <Compile Include="Utils\DeckImporter.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
     <Compile Include="Utils\Extensions\ObservableCollectionExtensions.cs" />

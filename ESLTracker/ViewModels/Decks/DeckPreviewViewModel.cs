@@ -89,11 +89,11 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        public int? MaxSingleCardQuantity
+        public bool LimitCardCount
         {
             get
             {
-                return GetMaxSingleCardForDeck(deck);
+                return LimitCardCountForDeck(deck);
             }
         }
 
@@ -284,19 +284,9 @@ namespace ESLTracker.ViewModels.Decks
             messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
         }
 
-        internal int? GetMaxSingleCardForDeck(Deck deckToCheck)
+        internal bool LimitCardCountForDeck(Deck deckToCheck)
         {
-            switch (deckToCheck?.Type)
-            {
-                case DataModel.Enums.DeckType.Constructed:
-                    return 3;
-                case DataModel.Enums.DeckType.VersusArena:
-                    return null;
-                case DataModel.Enums.DeckType.SoloArena:
-                    return null;
-                default:
-                    return null;
-            }
+            return deckToCheck?.Type == DataModel.Enums.DeckType.Constructed;
         }
 
 
@@ -325,9 +315,9 @@ namespace ESLTracker.ViewModels.Decks
                             {
                                 deck.SelectedVersion.Cards.Remove(instance);
                             }
-                            if (MaxSingleCardQuantity.HasValue && instance.Quantity > MaxSingleCardQuantity)
+                            if (LimitCardCount)
                             {
-                                instance.Quantity = MaxSingleCardQuantity.Value;
+                                DeckHelper.EnforceCardLimit(instance);
                             }
                         }
                         else if (importedCard.Quantity > 0)

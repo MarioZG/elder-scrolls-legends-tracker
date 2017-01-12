@@ -38,19 +38,19 @@ namespace ESLTracker.Controls.Cards
             ((CardListEditor)d).DataContext.CardsCollection = (ObservableCollection<CardInstance>)e.NewValue;
         }
 
-        public int? MaxSingleCardQuantity
+        public bool LimitCardCount
         {
-            get { return (int?)GetValue(MaxSingleCardQuantityProperty); }
-            set { SetValue(MaxSingleCardQuantityProperty, value); }
+            get { return (bool)GetValue(LimitCardCountProperty); }
+            set { SetValue(LimitCardCountProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MaxCardQuantity.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MaxSingleCardQuantityProperty =
-            DependencyProperty.Register(nameof(MaxSingleCardQuantity), typeof(int?), typeof(CardListEditor), new PropertyMetadata(null, MaxSingleCardQuantityChanged));
+        public static readonly DependencyProperty LimitCardCountProperty =
+            DependencyProperty.Register(nameof(LimitCardCount), typeof(bool), typeof(CardListEditor), new PropertyMetadata(null, MaxSingleCardQuantityChanged));
 
         private static void MaxSingleCardQuantityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((CardListEditor)d).DataContext.MaxSingleCardQuantity = (int?)e.NewValue;
+            ((CardListEditor)d).DataContext.LimitCardCount = (bool)e.NewValue;
         }
 
         new public CardListEditorViewModel DataContext
