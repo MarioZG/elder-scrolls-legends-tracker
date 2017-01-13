@@ -124,6 +124,7 @@
         <tb:TaskbarIcon
                 x:Name="taskBarIcon"
                 IconSource="/Resources/TrayIcon.ico"
+                DoubleClickCommand="{Binding CommandNotifyIconLeftClick}"
                 LeftClickCommand="{Binding CommandNotifyIconLeftClick}">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
