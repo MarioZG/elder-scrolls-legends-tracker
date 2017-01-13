@@ -25,6 +25,8 @@ namespace ESLTracker
         {
             InitializeComponent();
 
+            int totalColumnIndex = this.dataGrid.Columns.IndexOf(this.classColumnsPlaceholder);
+
             foreach(DeckAttributes da in ClassAttributesHelper.Classes.Values)
             {
                 DataGridTextColumn col = new DataGridTextColumn();
@@ -60,7 +62,7 @@ namespace ESLTracker
 
                 col.HeaderTemplate = cardLayout;
 
-                this.dataGrid.Columns.Add(col);
+                this.dataGrid.Columns.Insert(++totalColumnIndex, col);
             }
 
         }

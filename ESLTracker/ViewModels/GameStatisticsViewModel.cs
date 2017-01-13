@@ -220,6 +220,98 @@ namespace ESLTracker.ViewModels
                                 })
                         );
 
+            #region first-second ration and wins for deck versions
+            //add % of gaames you went first
+            result = result.Union(
+                            GamesList
+                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = g.DeckVersion.Version })
+                                .Select(d => new
+                                {
+                                    Deck = d.Key.D,
+                                    DeckVersion = d.Key.VS,
+                                    Opp = "First-Second",
+                                    Win = d.Where(d2 => d2.OrderOfPlay == OrderOfPlay.First).Count() +
+                                        "-" + d.Where(d2 => d2.OrderOfPlay == OrderOfPlay.Second).Count(),
+                                    WinPerc = (double)d.Where(g => g.OrderOfPlay == OrderOfPlay.First).Count() / d.Count() * 100
+                                })
+                        );
+
+            //add % of wins  you went first
+            result = result.Union(
+                            GamesList
+                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = g.DeckVersion.Version })
+                                .Select(d => new
+                                {
+                                    Deck = d.Key.D,
+                                    DeckVersion = d.Key.VS,
+                                    Opp = "FirstWin",
+                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory && d2.OrderOfPlay == OrderOfPlay.First).Count() +
+                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat && d2.OrderOfPlay == OrderOfPlay.First).Count(),
+                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory && g.OrderOfPlay == OrderOfPlay.First).Count() / d.Where(g => g.OrderOfPlay == OrderOfPlay.First).Count() * 100
+                                })
+                        );
+            //add % of wins you went second
+            result = result.Union(
+                            GamesList
+                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = g.DeckVersion.Version })
+                                .Select(d => new
+                                {
+                                    Deck = d.Key.D,
+                                    DeckVersion = d.Key.VS,
+                                    Opp = "SecondWin",
+                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory && d2.OrderOfPlay == OrderOfPlay.Second).Count() +
+                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat && d2.OrderOfPlay == OrderOfPlay.Second).Count(),
+                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory && g.OrderOfPlay == OrderOfPlay.Second).Count() / d.Where( g=> g.OrderOfPlay == OrderOfPlay.Second).Count() * 100
+                                })
+                        );
+            #endregion
+
+            #region first-second ration and wins for deck total
+            //add % of gaames you went first
+            result = result.Union(
+                            GamesList
+                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = TOTAL_ROW_VERSION })
+                                .Select(d => new
+                                {
+                                    Deck = d.Key.D,
+                                    DeckVersion = d.Key.VS,
+                                    Opp = "First-Second",
+                                    Win = d.Where(d2 => d2.OrderOfPlay == OrderOfPlay.First).Count() +
+                                        "-" + d.Where(d2 => d2.OrderOfPlay == OrderOfPlay.Second).Count(),
+                                    WinPerc = (double)d.Where(g => g.OrderOfPlay == OrderOfPlay.First).Count() / d.Count() * 100
+                                })
+                        );
+
+            //add % of wins  you went first
+            result = result.Union(
+                            GamesList
+                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = TOTAL_ROW_VERSION })
+                                .Select(d => new
+                                {
+                                    Deck = d.Key.D,
+                                    DeckVersion = d.Key.VS,
+                                    Opp = "FirstWin",
+                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory && d2.OrderOfPlay == OrderOfPlay.First).Count() +
+                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat && d2.OrderOfPlay == OrderOfPlay.First).Count(),
+                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory && g.OrderOfPlay == OrderOfPlay.First).Count() / d.Where(g => g.OrderOfPlay == OrderOfPlay.First).Count() * 100
+                                })
+                        );
+            //add % of wins you went second
+            result = result.Union(
+                            GamesList
+                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = TOTAL_ROW_VERSION })
+                                .Select(d => new
+                                {
+                                    Deck = d.Key.D,
+                                    DeckVersion = d.Key.VS,
+                                    Opp = "SecondWin",
+                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory && d2.OrderOfPlay == OrderOfPlay.Second).Count() +
+                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat && d2.OrderOfPlay == OrderOfPlay.Second).Count(),
+                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory && g.OrderOfPlay == OrderOfPlay.Second).Count() / d.Where(g => g.OrderOfPlay == OrderOfPlay.Second).Count() * 100
+                                })
+                        );
+            #endregion
+
             result = result.OrderBy(r => r.Deck).ThenBy(r => r.DeckVersion);
 
             //add total row for all decks
@@ -284,7 +376,10 @@ namespace ESLTracker.ViewModels
                             item => item.Opp,
                             item => new { item.Deck, item.DeckVersion },
                             items => items.Any() ? 
-                                    (valueToShow == "Win" ? items.First().Win : Math.Round(items.First().WinPerc,0).ToString() )
+                                    (valueToShow == "Win" ? 
+                                            items.First().Win : 
+                                            (! double.IsNaN(items.First().WinPerc) ? Math.Round(items.First().WinPerc,0).ToString() : "")
+                                    )
                                  : "");
 
         }
