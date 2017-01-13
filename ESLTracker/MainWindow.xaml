@@ -94,6 +94,14 @@
                         </StackPanel>
                     </MenuItem.Header>
                 </MenuItem>
+                <MenuItem Command="{Binding CommandAbout}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Source="/Resources/MenuIcons/settings.png" />
+                            <ContentPresenter Content="About..." Margin="5,0,0,0" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
             </Menu>
             <Grid>
                 <Grid VerticalAlignment="Top" Panel.ZIndex="2"

@@ -145,6 +145,11 @@ namespace ESLTracker.ViewModels
             get { return new RelayCommand(new Action<object>(CommandEditDeckExecute)); }
         }
 
+        public ICommand CommandAbout
+        {
+            get { return new RelayCommand(new Action<object>(CommandAboutExecute)); }
+        }
+
         #endregion
 
         ITrackerFactory trackerFactory;
@@ -310,6 +315,9 @@ namespace ESLTracker.ViewModels
                 EditDeck.Context.StartEdit);
         }
 
-
+        private void CommandAboutExecute(object obj)
+        {
+            new About().ShowDialog();
+        }
     }
 }

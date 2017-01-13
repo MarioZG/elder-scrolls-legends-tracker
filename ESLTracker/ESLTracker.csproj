@@ -96,6 +96,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ArenaStats.xaml.cs">
       <DependentUpon>ArenaStats.xaml</DependentUpon>
     </Compile>
@@ -315,6 +318,10 @@
     <Compile Include="ViewModels\Settings\SettingsPanelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Utils\WinAPI.cs" />
+    <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ArenaStats.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1012,6 +1019,9 @@
     <Resource Include="Resources\Cards\wrothgarkingpin.png" />
     <Resource Include="Resources\Cards\yewshield.png" />
     <Resource Include="Resources\Cards\youngmammoth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AppLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
