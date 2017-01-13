@@ -12,7 +12,7 @@ using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.DataModel
 {
-    public class Deck : ViewModels.ViewModelBase, ICloneable, IEquatable<Deck>
+    public class Deck : ViewModels.ViewModelBase, ICloneable, IEquatable<Deck>, IComparable
     {
         public Guid DeckId { get; set; }
 
@@ -322,6 +322,18 @@ namespace ESLTracker.DataModel
             equals &= this.Type == other.Type;
 
             return equals;
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj is Deck)
+            {
+                return Name.CompareTo(((Deck)obj).Name);
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         public static bool operator ==(Deck lhs, Deck rhs)

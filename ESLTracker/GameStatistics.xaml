@@ -75,7 +75,8 @@
                         <DataGridTemplateColumn CanUserSort="False">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" 
+                                                Visibility="{Binding DeckVersion, ConverterParameter=0.0, Converter={Converters:VersionToVisibilty}}">
                                         <ItemsControl ItemsSource="{Binding Path=Deck, Converter={Converters:DeckOrDeckClassToAttributes}}" BorderThickness="0"
                                                     ToolTip="{Binding Deck, Converter={Converters:DeckOrDeckClassToName}}">
                                             <ItemsControl.ItemsPanel>
@@ -93,9 +94,41 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding Deck, Converter={Converters:DeckOrDeckClassToName}}" />
+                        <DataGridTemplateColumn CanUserSort="False">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel HorizontalAlignment="Right">
+                                        <TextBlock Text="{Binding Deck, Converter={Converters:DeckOrDeckClassToName}}"
+                                                   Visibility="{Binding DeckVersion, ConverterParameter=0.0, Converter={Converters:VersionToVisibilty}}"
+                                                   />
+                                        <TextBlock Text="{Binding DeckVersion, StringFormat={}v{0:MM}}" HorizontalAlignment="Right" TextAlignment="Right"
+                                                    Visibility="{Binding DeckVersion, ConverterParameter=not-0.0, Converter={Converters:VersionToVisibilty}}"
+                                                    />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn CanUserSort="False" Binding="{Binding Total}" />
                     </DataGrid.Columns>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Style.Triggers>
+                                <DataTrigger  Value="False">
+                                    <DataTrigger.Binding>
+                                        <MultiBinding Converter="{Converters:GameStatsRowVisibility}">
+                                            <MultiBinding.Bindings>
+                                                <Binding Path="SelectedItem" ElementName="dataGrid" />
+                                                <Binding Path="Deck" /><!--current item deck-->
+                                                <Binding Path="DeckVersion" /><!--current item deck version-->
+                                                <Binding Path="DataContext.TOTAL_ROW_VERSION" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Window}}" />
+                                            </MultiBinding.Bindings>
+                                        </MultiBinding>
+                                    </DataTrigger.Binding>   
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
                 </DataGrid>
             </StackPanel>
         </Expander>

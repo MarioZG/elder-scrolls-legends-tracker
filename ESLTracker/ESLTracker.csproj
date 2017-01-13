@@ -175,10 +175,13 @@
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\CardImagesHelper.cs" />
+    <Compile Include="Utils\Converters\DebuggingConverter.cs" />
+    <Compile Include="Utils\Converters\GameStatsRowVisibility.cs" />
     <Compile Include="Utils\Converters\InvertibleConverter.cs" />
     <Compile Include="Utils\Converters\MarkupConverter.cs" />
     <Compile Include="Utils\Converters\ObjectToBool.cs" />
     <Compile Include="Utils\Converters\ToVisibilityConverter.cs" />
+    <Compile Include="Utils\Converters\VersionToVisibilty.cs" />
     <Compile Include="Utils\DeckHelper.cs" />
     <Compile Include="Utils\DeckImporter.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />

@@ -33,6 +33,12 @@ namespace ESLTracker.DataModel
             }
         }
 
+        [XmlIgnore]
+        public DeckVersion DeckVersion
+        {
+            get { return Deck.History.Where( dh => dh.VersionId == DeckVersionId).First(); }
+        }
+
         public Guid DeckVersionId { get; set; }
 
         public string DeckVersionString

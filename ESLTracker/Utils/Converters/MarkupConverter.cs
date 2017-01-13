@@ -9,7 +9,7 @@ using System.Windows.Markup;
 
 namespace ESLTracker.Utils.Converters
 {
-    public abstract class MarkupConverter<T> : MarkupExtension where T : IValueConverter, new()
+    public abstract class MarkupConverter<T> : MarkupExtension where T :  new()
     {
         private static T converter = default(T);
         public override object ProvideValue(IServiceProvider serviceProvider)

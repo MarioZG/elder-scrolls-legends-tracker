@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Media;
+using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 using LiveCharts;
@@ -158,31 +160,67 @@ namespace ESLTracker.ViewModels
             return ret;
         }
 
+        public SerializableVersion TOTAL_ROW_VERSION { get; } = new SerializableVersion(0, 0);
+
         public override dynamic GetDataSet()
         {
+            
+            //breakdwon by deck
             var result = GamesList
-                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy) , OC = g.OpponentClass })
+                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = g.DeckVersion.Version, OC = g.OpponentClass })
                         .Select(d => new
                         {
                             Deck = d.Key.D,
+                            DeckVersion = d.Key.VS,
                             Opp = ClassAttributesHelper.Classes[d.Key.OC.Value].ToString(),
                             Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
                                 "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
                             WinPerc =  (double)d.Where( g=> g.Outcome == GameOutcome.Victory).Count()/ d.Count() * 100,
                         });
-            //union totoal for deck
+            //add totoal for deck
+            result = result.Union(
+                GamesList.GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = TOTAL_ROW_VERSION, OC = g.OpponentClass })
+                        .Select(d => new
+                        {
+                            Deck = d.Key.D,
+                            DeckVersion = d.Key.VS,
+                            Opp = ClassAttributesHelper.Classes[d.Key.OC.Value].ToString(),
+                            Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
+                                "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
+                            WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory).Count() / d.Count() * 100,
+                        })
+                        );
+            //union totoal for all deck versoons
             result = result.Union(
                             GamesList
-                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy) })
+                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = TOTAL_ROW_VERSION })
                                 .Select(d => new
                                 {
                                     Deck = d.Key.D,
+                                    DeckVersion = d.Key.VS,
                                     Opp = "Total",
                                     Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
                                         "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
                                     WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory).Count() / d.Count() * 100
                                 })
                         );
+
+            //union totoal for each deck version
+            result = result.Union(
+                            GamesList
+                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = g.DeckVersion.Version })
+                                .Select(d => new
+                                {
+                                    Deck = d.Key.D,
+                                    DeckVersion = d.Key.VS,
+                                    Opp = "Total",
+                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
+                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
+                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory).Count() / d.Count() * 100
+                                })
+                        );
+
+            result = result.OrderBy(r => r.Deck).ThenBy(r => r.DeckVersion);
 
             //add total row for all decks
             object totalDeck = new DataModel.Deck() { Name = "TOTAL", Notes = "SUMMARYROW" };
@@ -191,6 +229,7 @@ namespace ESLTracker.ViewModels
                                 .Select(d => new
                                 {
                                     Deck = totalDeck,
+                                    DeckVersion = TOTAL_ROW_VERSION,
                                     Opp = ClassAttributesHelper.Classes[d.Key.Value].ToString(),
                                     Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
                                             "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
@@ -205,6 +244,7 @@ namespace ESLTracker.ViewModels
                                 .Select(d => new
                                 {
                                     Deck = totalDeck,
+                                    DeckVersion = TOTAL_ROW_VERSION,
                                     Opp = "Total",
                                     Win = GamesList.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
                                         "-" + GamesList.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
@@ -220,6 +260,7 @@ namespace ESLTracker.ViewModels
                                 .Select(d => new
                                 {
                                     Deck = totalOpponentDeck,
+                                    DeckVersion = TOTAL_ROW_VERSION,
                                     Opp = ClassAttributesHelper.Classes[d.Key.Value].ToString(),
                                     Win = Math.Round((double)d.Count() / GamesList.Count() * 100).ToString() ,
                                     WinPerc = (double)d.Count() / GamesList.Count() * 100,
@@ -237,9 +278,11 @@ namespace ESLTracker.ViewModels
                 opponentClassHeatMap.Add(new HeatPoint((int)da1, (int)da2, Int32.Parse(r.Win)));
             }
 
-            return result.ToPivotTable(
+            //new ListCollectionView
+
+            return result.ToPivotTable2(
                             item => item.Opp,
-                            item =>item.Deck,
+                            item => new { item.Deck, item.DeckVersion },
                             items => items.Any() ? 
                                     (valueToShow == "Win" ? items.First().Win : Math.Round(items.First().WinPerc,0).ToString() )
                                  : "");
