@@ -105,11 +105,6 @@
             </Menu>
             <Grid>
                 <Grid VerticalAlignment="Top" Panel.ZIndex="2"
-                           x:Name="deckEdit"  
-                           Visibility="{Binding DeckEditVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
-                    <Decks:EditDeck x:Name="editDeck" Style="{DynamicResource ModalControlInWindow}" />
-                </Grid>
-                <Grid VerticalAlignment="Top" Panel.ZIndex="2"
                         Visibility="{Binding SettingsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                     <Settings:SettingsPanel x:Name="settingsPanel" Style="{DynamicResource ModalControlInWindow}" />
                 </Grid>

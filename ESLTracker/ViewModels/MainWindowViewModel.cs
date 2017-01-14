@@ -165,6 +165,8 @@ namespace ESLTracker.ViewModels
             this.trackerFactory = trackerFactory;
             tracker = trackerFactory.GetTracker();
             messanger = trackerFactory.GetMessanger();
+            messanger.Register<Utils.Messages.EditDeck>(this, EditDeckStart, Utils.Messages.EditDeck.Context.StartEdit);
+            messanger.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
             messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
             messanger.Register<Utils.Messages.EditGame>(this, EditGameFinished, Utils.Messages.EditGame.Context.EditFinished);
             messanger.Register<Utils.Messages.EditSettings>(this, EditSettingsFinished, Utils.Messages.EditSettings.Context.EditFinished);
@@ -318,6 +320,20 @@ namespace ESLTracker.ViewModels
         private void CommandAboutExecute(object obj)
         {
             new About().ShowDialog();
+        }
+
+        private void EditDeckStart(Utils.Messages.EditDeck obj)
+        {
+            this.DeckEditVisible = true;
+            this.DeckListVisible = false;
+            this.AllowCommands = false;
+        }
+
+        private void EditDeckFinished(EditDeck obj)
+        {
+            this.DeckEditVisible = false;
+            this.DeckListVisible = true;
+            this.AllowCommands = true;
         }
     }
 }
