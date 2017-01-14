@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks" 
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters" 
+             xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors" 
              mc:Ignorable="d" 
              x:Name="deckPreview"
              d:DesignHeight="300" d:DesignWidth="500">
@@ -57,14 +58,10 @@
                     Text="Current changes"
                     Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"/>
                 <Cards:CardList  
-                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                         DataContext="{Binding DataContext.ChangesFromCurrentVersion, ElementName=deckPreview}"
                         Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
                         />
                 <local:DeckHistory
-                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                     DataContext="{Binding DataContext.ChangesHistory, ElementName=deckPreview}"
                     />
             </StackPanel>

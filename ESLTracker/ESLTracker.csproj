@@ -188,6 +188,7 @@
     <Compile Include="Utils\DeckHelper.cs" />
     <Compile Include="Utils\DeckImporter.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
+    <Compile Include="Utils\Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Utils\Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Utils\Extensions\TaskExtensions.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_2_To_2_0.cs" />

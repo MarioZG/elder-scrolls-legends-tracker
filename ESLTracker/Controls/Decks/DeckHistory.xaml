@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <ItemsControl ItemsSource="{Binding}">
+
+        <ItemsControl
+                PreviewMouseWheel="ItemsControl_PreviewMouseWheel"
+                ItemsSource="{Binding}"
+                Style="{StaticResource ItemsControlVirtualizedStyle}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -17,5 +20,5 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-    </ScrollViewer>
+
 </UserControl>

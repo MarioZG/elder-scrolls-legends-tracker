@@ -19,11 +19,12 @@
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-    <ItemsControl ItemsSource="{Binding Source={StaticResource cardsCollectionView}}">
+    <ItemsControl
+        Style="{StaticResource ItemsControlVirtualizedStyle}"
+        ItemsSource="{Binding Source={StaticResource cardsCollectionView}}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <local:SelectCard 
+                <local:SelectCard                     
                     BorderBrush="{Binding BorderBrush}" 
                     BorderThickness="2"
                     Margin="0,0,0,1" 
@@ -35,5 +36,4 @@
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
-    </ScrollViewer>
 </UserControl>
