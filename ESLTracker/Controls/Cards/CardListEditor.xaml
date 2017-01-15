@@ -35,7 +35,6 @@
             <local:SelectCard 
                 DockPanel.Dock="Top" 
                 CardInstance="{Binding NewCard, Mode=TwoWay}"
-                Behaviors:FocusExtension.IsFocused="{Binding FocusCardEntry, Mode=TwoWay}"
                 CardNameAutocomplete="{Binding CardNamesList}" />
         </DockPanel>
         <ScrollViewer>
