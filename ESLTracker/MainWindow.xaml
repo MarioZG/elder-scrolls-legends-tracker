@@ -53,17 +53,6 @@
                             </StackPanel>
                         </MenuItem.Header>
                     </MenuItem>
-                    <MenuItem 
-                          Command="{Binding CommandImportDeck}" 
-                          VerticalAlignment="Center"
-                          >
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Height="16" Source="/Resources/MenuIcons/newDeck.png" />
-                                <ContentPresenter Content="Import Deck" Margin="5,0,0,0" />
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
                 </MenuItem>
                 <MenuItem>
                     <MenuItem.Header>
