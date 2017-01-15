@@ -18,6 +18,10 @@
         <KeyBinding Gesture="Ctrl+3" Command="{Binding CommandAddCardToDeck}" CommandParameter="3"/>
     </UserControl.InputBindings>
     <DockPanel>
+        <TextBlock 
+                Style="{StaticResource EditDeck_SectionHeader}"
+                DockPanel.Dock="Top"
+                Text="Edit cards"/>
         <DockPanel DockPanel.Dock="Top">
             <Button Content=" x3 " DockPanel.Dock="Right" 
                     TabIndex="3"
@@ -34,9 +38,11 @@
                 Behaviors:FocusExtension.IsFocused="{Binding FocusCardEntry, Mode=TwoWay}"
                 CardNameAutocomplete="{Binding CardNamesList}" />
         </DockPanel>
-        <local:CardList 
-            TabIndex="0"  
-            MouseLeftClick="{Binding DataContext.CommandCardClicked, ElementName=cardEditor}"
-            DataContext="{Binding CardsCollection}"/>
+        <ScrollViewer>
+            <local:CardList 
+                TabIndex="0"  
+                MouseLeftClick="{Binding DataContext.CommandCardClicked, ElementName=cardEditor}"
+                DataContext="{Binding CardsCollection}"/>
+        </ScrollViewer>
     </DockPanel>
 </UserControl>

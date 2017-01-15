@@ -114,6 +114,9 @@
     <Compile Include="Controls\Cards\CardListEditor.xaml.cs">
       <DependentUpon>CardListEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Decks\DeckEdit.xaml.cs">
+      <DependentUpon>DeckEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Decks\DeckFilter.xaml.cs">
       <DependentUpon>DeckFilter.xaml</DependentUpon>
     </Compile>
@@ -247,6 +250,7 @@
     <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
     <Compile Include="ViewModels\Cards\CardListEditorViewModel.cs" />
     <Compile Include="ViewModels\Decks\CardBreakdownViewModel.cs" />
+    <Compile Include="ViewModels\Decks\DeckEditViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckPreviewViewModel.cs" />
     <Compile Include="ViewModels\Decks\ImportTextViewModel.cs" />
     <Compile Include="ViewModels\GameStatisticsViewModel.cs" />
@@ -261,8 +265,8 @@
     <Compile Include="Controls\Decks\DeckList.xaml.cs">
       <DependentUpon>DeckList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Decks\EditDeck.xaml.cs">
-      <DependentUpon>EditDeck.xaml</DependentUpon>
+    <Compile Include="Controls\Decks\DeckProperties.xaml.cs">
+      <DependentUpon>DeckProperties.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Game\EditGame.xaml.cs">
       <DependentUpon>EditGame.xaml</DependentUpon>
@@ -300,7 +304,7 @@
     <Compile Include="ViewModels\Decks\DeckStatsViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckListViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckTypeSelectorViewModel.cs" />
-    <Compile Include="ViewModels\Decks\EditDeckViewModel.cs" />
+    <Compile Include="ViewModels\Decks\DeckPropertiesViewModel.cs" />
     <Compile Include="ViewModels\Decks\IDeckTypeSelectorViewModel.cs" />
     <Compile Include="ViewModels\Game\EditGameViewModel.cs" />
     <Compile Include="ViewModels\Game\PredefinedDateFilter.cs" />
@@ -351,6 +355,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Decks\DeckEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Decks\DeckFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -379,7 +387,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Decks\EditDeck.xaml">
+    <Page Include="Controls\Decks\DeckProperties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

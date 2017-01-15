@@ -20,6 +20,7 @@
         </CollectionViewSource>
     </UserControl.Resources>
     <ItemsControl
+        PreviewMouseWheel="ItemsControl_PreviewMouseWheel"
         Style="{StaticResource ItemsControlVirtualizedStyle}"
         ItemsSource="{Binding Source={StaticResource cardsCollectionView}}">
         <ItemsControl.ItemTemplate>

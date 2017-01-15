@@ -108,20 +108,28 @@
                         Visibility="{Binding SettingsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                     <Settings:SettingsPanel x:Name="settingsPanel" Style="{DynamicResource ModalControlInWindow}" />
                 </Grid>
-                <WrapPanel>
-                    <WrapPanel IsEnabled="{Binding AllowCommands}"
+                <DockPanel>
+                    <WrapPanel 
+                            DockPanel.Dock="Left"
+                            IsEnabled="{Binding AllowCommands}"
                             Visibility="{Binding DeckListVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                         <Decks:DeckList x:Name="deckList"/>
                     </WrapPanel>
-                    <WrapPanel 
-                        Visibility="{Binding DeckStatsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
-                        <Decks:DeckPreview x:Name="deckPreview" Deck="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}"/>
-                        </WrapPanel>
+                    <WrapPanel
+                        Visibility="{Binding DeckEditVisible, Mode=TwoWay, ConverterParameter=not, Converter={Converters:BoolToVisibilty}}">
+                        <Decks:DeckPreview 
+                            Deck="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}"/>
+                    </WrapPanel>
+                    <WrapPanel
+                        Visibility="{Binding DeckEditVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
+                        <Decks:DeckEdit
+                            Deck="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}"/>
+                    </WrapPanel>
                     <WrapPanel 
                         Visibility="{Binding EditGameVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                         <Game:EditGame IsEditControl="True" />
                     </WrapPanel>
-                </WrapPanel>
+                </DockPanel>
             </Grid>
         </DockPanel>
         <tb:TaskbarIcon

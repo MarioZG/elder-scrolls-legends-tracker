@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.Controls.Cards
 {
@@ -36,6 +37,13 @@ namespace ESLTracker.Controls.Cards
         public CardList()
         {
             InitializeComponent();
+        }
+
+        private void ItemsControl_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scv = ((DependencyObject)sender).FindParent<ScrollViewer>();
+            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+            e.Handled = true;
         }
     }
 }

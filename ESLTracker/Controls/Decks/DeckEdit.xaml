@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="ESLTracker.Controls.Decks.DeckEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
+             xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks" 
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters" 
+             xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors" 
+             xmlns:Cards="clr-namespace:ESLTracker.Controls.Cards" 
+             mc:Ignorable="d" 
+             x:Name="deckEdit"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <ViewModels:DeckEditViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Menu FontSize="14" DockPanel.Dock="Top">
+                <MenuItem Header="Import" Command="{Binding CommandImport}" CommandParameter="{Binding DataContext.DeckImporter, ElementName=importControl}"/>
+                <MenuItem Header="Cancel" Command="{Binding CommandCancel}"/>
+                <MenuItem Header="Save">
+                    <MenuItem Header="Overwrite current version" Command="{Binding CommandSave}"/>
+                    <MenuItem Header="Major changes" Command="{Binding CommandSave}" CommandParameter="1.0"/>
+                    <MenuItem Header="Small amendmends" Command="{Binding CommandSave}" CommandParameter="0.1"/>
+                </MenuItem>
+            </Menu>
+            <ComboBox 
+                DockPanel.Dock="Right"
+                Padding="5,5,5,10" 
+                ItemsSource="{Binding Deck.History}" 
+                SelectedItem="{Binding CurrentVersion}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Version, StringFormat={}v{0:mm}}" Style="{StaticResource DeckName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Padding="10,5,5,5" Style="{StaticResource DeckName}" Text="{Binding Deck.Name}"/>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Left">
+            <Border 
+                DockPanel.Dock="Top"
+                Style="{StaticResource EditDeck_FormSection}">
+                <local:DeckProperties 
+                    Deck="{Binding DataContext.Deck, ElementName=deckEdit, Mode=TwoWay}" />
+            </Border>
+            <Border 
+                DockPanel.Dock="Bottom"
+                Style="{StaticResource EditDeck_FormSection}">
+                <local:CardBreakdown 
+                    CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckEdit}"/>
+            </Border>
+        </DockPanel>
+        <Border 
+            DockPanel.Dock="Right" 
+            Style="{StaticResource EditDeck_FormSection}">
+            <DockPanel>
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                    Style="{StaticResource EditDeck_SectionHeader}"
+                    Text="Changes"/>
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock 
+                            Text="Not saved"/>
+                        <Cards:CardList  
+                            DataContext="{Binding DataContext.ChangesFromCurrentVersion, ElementName=deckEdit}"
+                            />
+                        <local:DeckHistory
+                            DataContext="{Binding DataContext.ChangesHistory, ElementName=deckEdit}"
+                        />
+                    </StackPanel>
+                </ScrollViewer>
+            </DockPanel>
+         </Border>
+        <Border Style="{StaticResource EditDeck_FormSection}"
+                MinWidth="150">
+                <Cards:CardListEditor 
+                    CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckEdit}" 
+                    LimitCardCount="{Binding DataContext.LimitCardCount, ElementName=deckEdit}"/>
+        </Border>
+        <WrapPanel
+            Visibility="{Binding DataContext.ShowImportPanel, ElementName=deckEdit, Converter={Converters:BoolToVisibilty}}">
+            <local:ImportText x:Name="importControl" />
+        </WrapPanel>
+    </DockPanel>
+</UserControl>

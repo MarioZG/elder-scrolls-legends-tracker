@@ -8,22 +8,14 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters" 
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors" 
              mc:Ignorable="d" 
-             x:Name="deckPreview"
-             d:DesignHeight="300" d:DesignWidth="500">
+             x:Name="deckPreview">
     <UserControl.DataContext>
         <ViewModels:DeckPreviewViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+    </UserControl.Resources>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Menu FontSize="14" DockPanel.Dock="Right" Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}">
-                <MenuItem Header="Import" Command="{Binding CommandImport}" CommandParameter="{Binding DataContext.DeckImporter, ElementName=importControl}"/>
-                <MenuItem Header="Cancel" Command="{Binding CommandCancel}"/>
-                <MenuItem Header="Save">
-                    <MenuItem Header="Overwrite current version" Command="{Binding CommandSave}"/>
-                    <MenuItem Header="Major changes" Command="{Binding CommandSave}" CommandParameter="1.0"/>
-                    <MenuItem Header="Small amendmends" Command="{Binding CommandSave}" CommandParameter="0.1"/>
-                </MenuItem> 
-            </Menu>
             <ComboBox 
                 DockPanel.Dock="Right"
                 Padding="5,5,5,10" 
@@ -38,39 +30,39 @@
             <TextBlock Padding="10,5,5,5" Style="{StaticResource DeckName}" Text="{Binding Deck.Name}"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Left">
-            <local:EditDeck 
-                DockPanel.Dock="Top"
-                Deck="{Binding DataContext.Deck, ElementName=deckPreview, Mode=TwoWay}"
-                Visibility="{Binding  DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
-                />
-            <local:CardBreakdown 
-                DockPanel.Dock="Bottom"
-                CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckPreview}"/>
-            <Cards:CardList 
-                DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}"
-                Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ConverterParameter=not, ElementName=deckPreview}"
-                />
+            <Border DockPanel.Dock="Bottom"
+                    Style="{StaticResource EditDeck_FormSection}">
+                <local:CardBreakdown                     
+                    CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckPreview}"/>
+            </Border>
+            <Border DockPanel.Dock="Bottom"
+                    Style="{StaticResource EditDeck_FormSection}">
+                <DockPanel>
+                    <TextBlock 
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource EditDeck_SectionHeader}"
+                            Text="Cards"/>
+                    <ScrollViewer>
+                        <Cards:CardList 
+                            DockPanel.Dock="Bottom"
+                            DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" />
+                    </ScrollViewer>
+                </DockPanel>
+            </Border>
         </DockPanel>
-        <ScrollViewer DockPanel.Dock="Right">
-            <StackPanel>
-                <TextBlock 
-                    FontWeight="Medium" 
-                    Text="Current changes"
-                    Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"/>
-                <Cards:CardList  
-                        DataContext="{Binding DataContext.ChangesFromCurrentVersion, ElementName=deckPreview}"
-                        Visibility="{Binding DataContext.IsInEditMode, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
-                        />
-                <local:DeckHistory
-                    DataContext="{Binding DataContext.ChangesHistory, ElementName=deckPreview}"
-                    />
-            </StackPanel>
-        </ScrollViewer>
-        <Cards:CardListEditor 
-            Visibility="{Binding DataContext.ShowEditDeckPanel, Converter={Converters:BoolToVisibilty}, ElementName=deckPreview}"
-            CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" 
-            LimitCardCount="{Binding DataContext.LimitCardCount, ElementName=deckPreview}"/>
-        <local:ImportText x:Name="importControl" 
-                          Visibility="{Binding DataContext.ShowImportPanel, ElementName=deckPreview, Converter={Converters:BoolToVisibilty}}"/>
+        <Border Style="{StaticResource EditDeck_FormSection}">
+            <DockPanel>
+                    <TextBlock 
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource EditDeck_SectionHeader}"
+                            Text="Changes history"/>
+                    <ScrollViewer>
+                        <local:DeckHistory 
+                                DockPanel.Dock="Right"
+                                DataContext="{Binding DataContext.ChangesHistory, ElementName=deckPreview}"
+                                />
+                    </ScrollViewer>
+            </DockPanel>
+        </Border>
     </DockPanel>
 </UserControl>

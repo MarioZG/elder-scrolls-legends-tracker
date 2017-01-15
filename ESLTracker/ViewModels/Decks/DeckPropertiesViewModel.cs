@@ -11,7 +11,7 @@ using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Decks
 {
-    public class EditDeckViewModel : ViewModelBase
+    public class DeckPropertiesViewModel : ViewModelBase
     {
         public Deck deck;
         public Deck Deck
@@ -54,11 +54,11 @@ namespace ESLTracker.ViewModels.Decks
         ITracker tracker;
         private TrackerFactory trackerFactory;
 
-        public EditDeckViewModel() : this(new TrackerFactory())
+        public DeckPropertiesViewModel() : this(new TrackerFactory())
         {
         }
 
-        internal EditDeckViewModel(TrackerFactory trackerFactory)
+        internal DeckPropertiesViewModel(TrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
             tracker = trackerFactory.GetTracker();

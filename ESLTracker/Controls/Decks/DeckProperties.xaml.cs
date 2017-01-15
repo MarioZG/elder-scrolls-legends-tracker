@@ -21,7 +21,7 @@ namespace ESLTracker.Controls.Decks
     /// <summary>
     /// Interaction logic for EditDeck.xaml
     /// </summary>
-    public partial class EditDeck : UserControl
+    public partial class DeckProperties : UserControl
     {
         public Deck Deck
         {
@@ -31,18 +31,18 @@ namespace ESLTracker.Controls.Decks
 
         // Using a DependencyProperty as the backing store for Deck.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DeckProperty =
-            DependencyProperty.Register(nameof(Deck), typeof(Deck), typeof(EditDeck), new PropertyMetadata(null, DeckChanged));
+            DependencyProperty.Register(nameof(Deck), typeof(Deck), typeof(DeckProperties), new PropertyMetadata(null, DeckChanged));
 
         private static void DeckChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((EditDeck)d).DataContext.Deck = (Deck)e.NewValue;
+            ((DeckProperties)d).DataContext.Deck = (Deck)e.NewValue;
         }
 
-        public new EditDeckViewModel DataContext
+        public new DeckPropertiesViewModel DataContext
         {
             get
             {
-                return base.DataContext as EditDeckViewModel;
+                return base.DataContext as DeckPropertiesViewModel;
             }
             set
             {
@@ -50,7 +50,7 @@ namespace ESLTracker.Controls.Decks
             }
         }
 
-        public EditDeck()
+        public DeckProperties()
         {
             InitializeComponent();
 
