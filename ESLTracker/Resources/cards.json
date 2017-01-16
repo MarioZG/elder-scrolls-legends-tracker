@@ -1,5 +1,5 @@
 {
-    "Version": "0.2",
+    "Version": "0.3",
     "Cards": [
         {
             "id": "094f4937-e5db-8a41-e441-1905cd7a1406",
@@ -932,8 +932,8 @@
             "type": "creature",
             "attributes": "intelligence",
             "cost": "2",
-            "attack": "2",
-            "health": "2",
+            "attack": "1",
+            "health": "1",
             "race": "highelf",
             "text": "When you play an action, Crystal Tower Crafter gets +1/+1."
         },
@@ -1377,7 +1377,7 @@
             "attack": "3",
             "health": "1",
             "race": "khajiit",
-            "text": "Summon: Move another friendly creature. When a friendly creature moves, give it +1/+1."
+            "text": "Summon: Move another friendly creature in this lane. When a friendly creature moves, give it +1/+1."
         },
         {
             "id": "1d970c45-07e3-a4aa-8b83-ff1a10fe00e2",
@@ -1390,7 +1390,7 @@
             "attack": "3",
             "health": "1",
             "race": "khajiit",
-            "text": "Prophecy. Summon: Move another friendly creature."
+            "text": "Prophecy. Summon: Move another friendly creature in this lane."
         },
         {
             "id": "bc5014e8-3b43-b8c9-d97d-3a76c4c7548b",
@@ -2391,7 +2391,7 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Summon: +1 max magicka.\r\nWhen you have 15 or more max magicka, sacrifice this to summon an 8/8 Swamp Leviathan in each lane."
+            "text": "Summon: +1 max magicka.\r\n At the start of your turn, if you have 15 or more max magicka, sacrifice this to summon an 8/8 Swamp Leviathan in each lane."
         },
         {
             "id": "12ce0c15-c941-9ca5-d5b5-565b05f80471",
@@ -3678,7 +3678,7 @@
             "attack": "5",
             "health": "4",
             "race": "imperial",
-            "text": "Summon: Give friendly creatures in this lane Drain this turn."
+            "text": "Summon: Give a friendly creature Drain this turn."
         },
         {
             "id": "1e350e47-658e-cbed-09c9-c25499f778a0",
@@ -4441,7 +4441,7 @@
             "isunique": false,
             "type": "creature",
             "attributes": "neutral",
-            "cost": "3",
+            "cost": "4",
             "attack": "1",
             "health": "1",
             "race": "fish",
@@ -4454,7 +4454,7 @@
             "isunique": false,
             "type": "action",
             "attributes": "neutral",
-            "cost": "3",
+            "cost": "4",
             "attack": "0",
             "health": "0",
             "race": "",
@@ -4484,7 +4484,7 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Drain. +1/+1"
+            "text": "+1/+1\r\n Summon: Give the wielder Drain this turn."
         },
         {
             "id": "8e940763-947b-9b1d-1969-37518fdd159c",
@@ -4545,11 +4545,11 @@
             "isunique": false,
             "type": "creature",
             "attributes": "agility",
-            "cost": "5",
+            "cost": "6",
             "attack": "4",
             "health": "4",
             "race": "argonian",
-            "text": "Summon: If you have more health than your opponent, the next card you play this turn costs 5 less."
+            "text": "Summon: If you have more health than your opponent, the next card you play this turn costs 6 less."
         },
         {
             "id": "273b6c42-b522-6ef2-446e-2d2eede0c146",
