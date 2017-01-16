@@ -19,22 +19,10 @@ namespace ESLTracker.Utils
             {
                 if (_instance == null)
                 {
-                    _instance = new CardsDatabase("./Resources/cards.json");
+                    _instance = LoadCardsDatabase("./Resources/cards.json");
                 }
                 return _instance;
             }
-        }
-
-        private string databasePath;
-
-        private CardsDatabase()
-        {
-
-        }
-
-        public CardsDatabase(string datbasePath)
-        {
-            this.databasePath = datbasePath;
         }
 
         public IEnumerable<string> CardsNames {
@@ -49,17 +37,25 @@ namespace ESLTracker.Utils
         {
             get
             {
-                if (cards == null)
-                {
-                    LoadCardsDatabase();
-                }
                 return cards;
+            }
+            set
+            {
+                cards = value;
             }
         }
 
-        public void LoadCardsDatabase()
+        public Version version { get; set; }
+
+        private CardsDatabase()
         {
-            cards = SerializationHelper.DeserializeJson<IEnumerable<Card>>(System.IO.File.ReadAllText(this.databasePath));
+
+        }
+
+        public static CardsDatabase LoadCardsDatabase(string datbasePath)
+        {
+            CardsDatabase database = SerializationHelper.DeserializeJson<CardsDatabase>(System.IO.File.ReadAllText(datbasePath));
+            return database;
         }
 
         public Card FindCardByName(string name)
