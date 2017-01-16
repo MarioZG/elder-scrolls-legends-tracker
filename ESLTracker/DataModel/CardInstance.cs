@@ -142,6 +142,7 @@ namespace ESLTracker.DataModel
         public object Clone()
         {
             CardInstance ci =  this.MemberwiseClone() as CardInstance;
+            ci.ClearPropertyChanged();
             //if (ci != null)
             //{
                

@@ -103,6 +103,8 @@ namespace ESLTracker.DataModel.Tests
             Game game = new Game();
             PopulateObject(game, StartProp);
 
+            game.PropertyChanged += (s, e) => { };
+
             Game clone = game.Clone() as Game;
 
             foreach (PropertyInfo p in typeof(Game).GetProperties())
@@ -128,6 +130,12 @@ namespace ESLTracker.DataModel.Tests
                         Assert.IsFalse(Object.ReferenceEquals(p.GetValue(game), p.GetValue(clone)));
                     }
                 }
+            }
+
+            foreach (EventInfo ev in typeof(CardInstance).GetEvents())
+            {
+                FieldInfo fieldTheEvent = GetAllFields(typeof(CardInstance)).Where(f => f.Name == ev.Name).First();
+                Assert.IsNull(fieldTheEvent.GetValue(clone));
             }
         }
     }

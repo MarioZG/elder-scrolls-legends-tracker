@@ -86,7 +86,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             ObservableCollection<CardInstance> result = new ObservableCollection<CardInstance>();
 
-            result = cards1.DeepCopy<CardInstance>();
+            result = cards1.DeepCopy<ObservableCollection<CardInstance>, CardInstance >();
             foreach(CardInstance card in cards2)
             {
                 CardInstance currentCard = result.Where(ci => ci.CardId == card.CardId).FirstOrDefault();

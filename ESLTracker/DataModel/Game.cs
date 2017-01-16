@@ -123,6 +123,7 @@ namespace ESLTracker.DataModel
         public object Clone()
         {
             Game clone = this.MemberwiseClone() as Game;
+            clone.ClearPropertyChanged();
             if (clone != null)
             {
                 clone.ESLVersion = this.ESLVersion?.Clone() as SerializableVersion;

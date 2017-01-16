@@ -203,9 +203,10 @@ namespace ESLTracker.DataModel
         public object Clone()
         {
             Deck deck = this.MemberwiseClone() as Deck;
+            deck.ClearPropertyChanged();
             if (deck != null)
             {
-                deck.DoNotUse = this.DoNotUse?.DeepCopy<DeckVersion>();
+                deck.DoNotUse = this.DoNotUse?.DeepCopy<ObservableCollection<DeckVersion>, DeckVersion>();
             }
             return deck;
         }

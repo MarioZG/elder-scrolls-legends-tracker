@@ -17,5 +17,10 @@ namespace ESLTracker.ViewModels
             var handler = PropertyChanged;
             handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        protected void ClearPropertyChanged()
+        {
+            PropertyChanged = null;
+        }
     }
 }

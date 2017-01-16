@@ -196,6 +196,7 @@
     <Compile Include="Utils\Extensions\TaskExtensions.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_2_To_2_0.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
+    <Compile Include="Utils\PropertiesObservableCollection.cs" />
     <Compile Include="Utils\ResourcesHelper.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />

@@ -304,7 +304,7 @@ namespace ESLTracker.ViewModels.Decks
                 }
                 else
                 {
-                    deck.SelectedVersion.Cards = new ObservableCollection<CardInstance>(deckImporter.Cards);
+                    deck.SelectedVersion.Cards = new PropertiesObservableCollection<CardInstance>(deckImporter.Cards);
                     RaisePropertyChangedEvent(String.Empty);
                 }
             }
@@ -316,7 +316,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             ObservableCollection<CardInstance> result = new ObservableCollection<CardInstance>();
 
-            result = cards1.DeepCopy<CardInstance>();
+            result = cards1.DeepCopy<ObservableCollection<CardInstance>, CardInstance>();
             foreach (CardInstance card in cards2)
             {
                 CardInstance currentCard = result.Where(ci => ci.CardId == card.CardId).FirstOrDefault();

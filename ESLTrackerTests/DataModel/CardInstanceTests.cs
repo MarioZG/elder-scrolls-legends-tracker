@@ -19,6 +19,8 @@ namespace ESLTracker.DataModel.Tests
             CardInstance ci = new CardInstance();
             PopulateObject(ci, StartProp);
 
+            ci.PropertyChanged += (s, e) => { };
+
             CardInstance clone = ci.Clone() as CardInstance;
 
             foreach (PropertyInfo p in typeof(CardInstance).GetProperties())
@@ -37,8 +39,11 @@ namespace ESLTracker.DataModel.Tests
                 }
             }
 
-
-
+            foreach (EventInfo ev in typeof(CardInstance).GetEvents())
+            {
+                FieldInfo fieldTheEvent = GetAllFields(typeof(CardInstance)).Where(f => f.Name == ev.Name).First();
+                Assert.IsNull(fieldTheEvent.GetValue(clone));
+            }
         }
     }
 }

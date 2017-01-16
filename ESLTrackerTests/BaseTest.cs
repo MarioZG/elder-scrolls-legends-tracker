@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -52,6 +53,7 @@ namespace ESLTrackerTests
                 { typeof(SerializableVersion), new SerializableVersion(1,2,3,4)},
                 { typeof(ObservableCollection<DeckVersion>), new ObservableCollection<DeckVersion>() {new DeckVersion() { Version = new SerializableVersion(1,2) } } },
                 { typeof(ObservableCollection<CardInstance>), new ObservableCollection<CardInstance>() {new CardInstance(new Card() {Name = "Card start" }) } },
+                { typeof(PropertiesObservableCollection<CardInstance>), new PropertiesObservableCollection<CardInstance>() {new CardInstance(new Card() {Name = "Card edit" }) } },
                 { typeof(Card), Card.Unknown},
                 { typeof(System.Windows.Media.Brush), System.Windows.Media.Brushes.Aquamarine},
                 { typeof(object), new object()}
@@ -78,6 +80,7 @@ namespace ESLTrackerTests
                 { typeof(SerializableVersion), new SerializableVersion(1,2,3,4)},
                 { typeof(ObservableCollection<DeckVersion>), new ObservableCollection<DeckVersion>() {new DeckVersion() { Version = new SerializableVersion(2,3) } } },
                 { typeof(ObservableCollection<CardInstance>), new ObservableCollection<CardInstance>() {new CardInstance(new Card() {Name = "Card edit" }) } },
+                { typeof(PropertiesObservableCollection<CardInstance>), new PropertiesObservableCollection<CardInstance>() {new CardInstance(new Card() {Name = "Card edit" }) } },
                 { typeof(Card), new Card() {Name = "Other unknown card" } },
                 { typeof(System.Windows.Media.Brush), System.Windows.Media.Brushes.Gainsboro},
              //   { typeof(object), new object()}
@@ -112,6 +115,16 @@ namespace ESLTrackerTests
                 );
         }
 
+        protected IEnumerable<FieldInfo> GetAllFields(Type t)
+        {
+            if (t == null)
+                return Enumerable.Empty<FieldInfo>();
+
+            BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic |
+                                 BindingFlags.Static | BindingFlags.Instance |
+                                 BindingFlags.DeclaredOnly;
+            return t.GetFields(flags).Concat(GetAllFields(t.BaseType));
+        }
 
     }
 }

@@ -463,6 +463,8 @@ namespace ESLTracker.DataModel.Tests
             Deck deck = new Deck();
             PopulateObject(deck, StartProp);
 
+            deck.PropertyChanged += (s, e) => { };
+
             Deck clone = deck.Clone() as Deck;
 
             foreach (PropertyInfo p in typeof(Deck).GetProperties())
@@ -484,6 +486,12 @@ namespace ESLTracker.DataModel.Tests
                         Assert.IsFalse(Object.ReferenceEquals(p.GetValue(deck), p.GetValue(clone)));
                     }
                 }
+            }
+
+            foreach (EventInfo ev in typeof(CardInstance).GetEvents())
+            {
+                FieldInfo fieldTheEvent = GetAllFields(typeof(CardInstance)).Where(f => f.Name == ev.Name).First();
+                Assert.IsNull(fieldTheEvent.GetValue(clone));
             }
         }
 #pragma warning restore CS0618 // Type or member is obsolete - new deck()

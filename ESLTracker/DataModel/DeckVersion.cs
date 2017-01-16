@@ -16,7 +16,7 @@ namespace ESLTracker.DataModel
         public Guid VersionId { get; set; } 
 
         public SerializableVersion Version { get; set; }
-        public ObservableCollection<CardInstance> Cards { get; set; } = new ObservableCollection<CardInstance>();
+        public PropertiesObservableCollection<CardInstance> Cards { get; set; } = new PropertiesObservableCollection<CardInstance>();
 
         public DateTime CreatedDate { get; set; }
 
@@ -99,7 +99,7 @@ namespace ESLTracker.DataModel
             DeckVersion dv = this.MemberwiseClone() as DeckVersion;
             if (dv != null)
             {
-                dv.Cards = this.Cards?.DeepCopy<CardInstance>();
+                dv.Cards = this.Cards?.DeepCopy<PropertiesObservableCollection<CardInstance>, CardInstance>();
                 dv.Version = this.Version?.Clone() as SerializableVersion;
             }
             return dv;
