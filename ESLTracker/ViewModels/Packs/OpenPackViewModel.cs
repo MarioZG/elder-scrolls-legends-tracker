@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.Utils;
+using ESLTracker.ViewModels;
 
 namespace ESLTracker.ViewModels.Packs
 {
@@ -38,10 +39,20 @@ namespace ESLTracker.ViewModels.Packs
             set { errorMessage = value; RaisePropertyChangedEvent(nameof(ErrorMessage)); }
         }
 
+        public IAsyncCommand CommandSave { get; private set; }
 
-        public ICommand CommandSave
+        private string buttonSaveLabel = "Save";
+        public string ButtonSaveLabel
         {
-            get { return new RelayCommand(new Action<object>(CommandSaveExecute)); }
+            get { return buttonSaveLabel; }
+            set { buttonSaveLabel = value; RaisePropertyChangedEvent(nameof(ButtonSaveLabel)); }
+        }
+
+        private bool buttonSaveEnabled = true;
+        public bool ButtonSaveEnabled
+        {
+            get { return buttonSaveEnabled; }
+            set { buttonSaveEnabled = value; RaisePropertyChangedEvent(nameof(ButtonSaveEnabled)); }
         }
 
         public OpenPackViewModel() : this(new TrackerFactory())
@@ -51,6 +62,8 @@ namespace ESLTracker.ViewModels.Packs
 
         public OpenPackViewModel(TrackerFactory trackerFactory)
         {
+            CommandSave = new RealyAsyncCommand<object>(CommandSaveExecute);
+
             this.trackerFactory = trackerFactory;
             InitNewPack();
 
@@ -64,31 +77,40 @@ namespace ESLTracker.ViewModels.Packs
                     true);
         }
 
-        private void CommandSaveExecute(object obj)
+        private async Task<object> CommandSaveExecute(object obj)
         {
+            ButtonSaveLabel = "Saving...";
+            ButtonSaveEnabled = false;
             if (pack.Cards.Any(c=> c.Card == null || c.Card == Card.Unknown))
             {
                 ErrorMessage = "Please select 6 cards";
-                return;
+                return null;
             }
 
             ErrorMessage = null;
 
             if (trackerFactory.GetSettings().Packs_ScreenshotAfterAdded)
             {
-                TakePackScreenshot();
+                ButtonSaveLabel = "Taking screenshot...";
+                await TakePackScreenshot();
             }
+            ButtonSaveLabel = "Saving pack...";
             ITracker tracker = trackerFactory.GetTracker();
             Pack.DateOpened = trackerFactory.GetDateTimeNow();
             tracker.Packs.Add(Pack);
             trackerFactory.GetFileManager().SaveDatabase();
             InitNewPack();
+
+            ButtonSaveLabel = "Save";
+            ButtonSaveEnabled = true;
+
+            return null;
         }
 
-        public void TakePackScreenshot()
+        public async Task TakePackScreenshot()
         {
             string fileName = new ScreenshotNameProvider().GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack);
-            trackerFactory.GetFileManager().SaveScreenShot(fileName);
+            await trackerFactory.GetFileManager().SaveScreenShot(fileName);
         }
     }
 }

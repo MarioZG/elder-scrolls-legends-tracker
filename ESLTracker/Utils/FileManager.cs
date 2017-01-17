@@ -244,7 +244,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        public void SaveScreenShot(string fileName)
+        public async Task SaveScreenShot(string fileName)
         {
             IntPtr? eslHandle = trackerfactory.GetWinAPI().GetEslProcess()?.MainWindowHandle;
             if (eslHandle.HasValue)
