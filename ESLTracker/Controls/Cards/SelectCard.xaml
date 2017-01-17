@@ -112,7 +112,7 @@
                          MinWidth="180"
                          Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibilty}}"/>
                 </Border>
-                <Border BorderThickness="0,1,0,1" 
+                <Border BorderThickness="0,1,1,1" 
                     BorderBrush="Gray" 
                     Background="{Binding CardInstance.BackgroundColor}" 
                     Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibilty}, ConverterParameter=not}"
