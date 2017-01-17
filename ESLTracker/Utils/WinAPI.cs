@@ -10,6 +10,9 @@ namespace ESLTracker.Utils
 {
     public class WinAPI : IWinAPI
     {
+
+        public static IWinAPI Default { get; } = new WinAPI();
+
         [StructLayout(LayoutKind.Sequential)]
         public struct Rect
         {
@@ -33,9 +36,15 @@ namespace ESLTracker.Utils
             return fw == eslw;
         }
 
+        Process eslProcess = null;
         public Process GetEslProcess()
         {
-            return Process.GetProcesses().Where(p => p.MainWindowTitle == "The Elder Scrolls: Legends").FirstOrDefault();
+            if ((eslProcess == null)
+                || (eslProcess.HasExited))
+            {
+                eslProcess = Process.GetProcesses().Where(p => p.MainWindowTitle == "The Elder Scrolls: Legends").FirstOrDefault();
+            }
+            return eslProcess;
         }
 
         public FileVersionInfo GetEslFileVersionInfo()
