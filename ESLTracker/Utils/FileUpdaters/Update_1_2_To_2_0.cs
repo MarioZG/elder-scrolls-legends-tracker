@@ -15,6 +15,8 @@ namespace ESLTracker.Utils.FileUpdaters
 
         protected override void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker)
         {
+            UpdateCardInstanceQtyTo1_OnPacks(tracker);
+            UpdateCardInstanceQtyTo1_OnRewards(tracker);
             CreateInitalHistoryForExistingDecks(tracker);
             AllocateGamesToInitalVersionOfDeck(tracker);
             doc.InnerXml = SerializationHelper.SerializeXML(tracker);
@@ -41,6 +43,31 @@ namespace ESLTracker.Utils.FileUpdaters
             foreach (Game game in tracker.Games)
             {
                 game.DeckVersionId = game.Deck.SelectedVersionId;
+            }
+        }
+
+        private void UpdateCardInstanceQtyTo1_OnRewards(Tracker tracker)
+        {
+            foreach(Pack p in tracker.Packs)
+            {
+                foreach (CardInstance ci in p.Cards)
+                {
+                    if (ci.Quantity == 0)
+                    {
+                        ci.Quantity = 1;
+                    }
+                }
+            }
+        }
+
+        private void UpdateCardInstanceQtyTo1_OnPacks(Tracker tracker)
+        {
+            foreach (Reward r in tracker.Rewards.Where( r=> r.Type == DataModel.Enums.RewardType.Card))
+            {
+                if ((r.CardInstance != null) && (r.CardInstance.Quantity == 0))
+                {
+                    r.CardInstance.Quantity = 1;
+                }
             }
         }
     }

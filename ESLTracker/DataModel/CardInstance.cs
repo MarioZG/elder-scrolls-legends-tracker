@@ -49,7 +49,7 @@ namespace ESLTracker.DataModel
             set { isPremium = value;  RaisePropertyChangedEvent(nameof(IsPremium)); }
         }
 
-        private int quantity;
+        private int quantity = 1;
 
         public int Quantity
         {
