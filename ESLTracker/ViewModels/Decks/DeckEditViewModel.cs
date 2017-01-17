@@ -188,7 +188,7 @@ namespace ESLTracker.ViewModels.Decks
 
         public void EndEdit()
         {
-            savedState = Deck;
+            savedState = null;
         }
 
         public void CancelEdit()
