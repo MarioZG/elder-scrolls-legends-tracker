@@ -26,8 +26,10 @@ namespace ESLTracker.Utils.FileUpdaters
             versionNode.InnerXml = CreateNewVersionXML(TargetVersion);
 
             File.Copy(filePath, filePath + "_" + TargetVersion + ".upgrade", true);
-            doc.Save(filePath);
-
+            using (TextWriter sw = new StreamWriter(filePath, false, Encoding.UTF8)) //Set encoding
+            {
+                doc.Save(sw);
+            }
             return true;
         }
 
