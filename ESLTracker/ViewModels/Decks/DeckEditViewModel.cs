@@ -51,6 +51,38 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        public bool IsNewDeck
+        {
+            get
+            {
+                return ! this.trackerFactory.GetTracker().Decks.Contains(deck);
+            }
+        }
+
+        public string SaveCurrentLabel
+        {
+            get
+            {
+                return string.Format("Overwrite current version ({0:mm})", deck?.SelectedVersion?.Version);
+            }
+        }
+
+        public string SaveMajorLabel
+        {
+            get
+            {
+                return string.Format("Major changes ({0}.0)", GetMaxMajor()+1);
+            }
+        }
+
+        public string SaveMinorLabel
+        {
+            get
+            {
+                return string.Format("Small amendmends ({0}.{1})", deck?.SelectedVersion?.Version.Major, GetMaxMinor(deck?.SelectedVersion?.Version.Major) + 1);
+            }
+        }
+
         public DeckVersion currentVersion;
         public DeckVersion CurrentVersion
         {
@@ -68,6 +100,7 @@ namespace ESLTracker.ViewModels.Decks
                     CurrentVersion.Cards.CollectionChanged += (s, e) => { RaisePropertyChangedEvent(nameof(ChangesFromCurrentVersion)); };
                 }
                 RaisePropertyChangedEvent(nameof(CurrentVersion));
+                RaisePropertyChangedEvent(nameof(SaveCurrentLabel));                
             }
         }
 
@@ -225,13 +258,13 @@ namespace ESLTracker.ViewModels.Decks
                 int major, minor;
                 if (versionIncrease.Major == 1)
                 {
-                    major = versionIncrease.Major + Deck.History.Select(dv => dv.Version).OrderByDescending(dv => dv).First().Major;
+                    major = versionIncrease.Major + GetMaxMajor();
                     minor = 0;
                 }
                 else if (versionIncrease.Minor == 1)
                 {
                     major = Deck.SelectedVersion.Version.Major;
-                    minor = versionIncrease.Minor + Deck.History.Where(dv => dv.Version.Major == major).Select(dv => dv.Version).OrderByDescending(dv => dv).First().Minor;
+                    minor = versionIncrease.Minor + GetMaxMinor(major);
                 }
                 else
                 {
@@ -258,6 +291,33 @@ namespace ESLTracker.ViewModels.Decks
             this.EndEdit();
             messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
         }
+
+        private int GetMaxMajor()
+        {
+            if (Deck == null)
+            {
+                return 0;
+            }
+            return Deck.History.Select(dv => dv.Version).OrderByDescending(dv => dv).First().Major;
+        }
+
+        private int GetMaxMinor(int? major)
+        {
+            if (Deck == null)
+            {
+                return 0;
+            }
+            else if (major.HasValue)
+            {
+                return Deck.History.Where(dv => dv.Version.Major == major).Select(dv => dv.Version).OrderByDescending(dv => dv).First().Minor;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+
 
         internal bool LimitCardCountForDeck(Deck deckToCheck)
         {

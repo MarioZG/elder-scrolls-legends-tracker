@@ -22,10 +22,14 @@
             <Menu FontSize="14" DockPanel.Dock="Top">
                 <MenuItem Header="Import" Command="{Binding CommandImport}" CommandParameter="{Binding DataContext.DeckImporter, ElementName=importControl}"/>
                 <MenuItem Header="Cancel" Command="{Binding CommandCancel}"/>
-                <MenuItem Header="Save">
-                    <MenuItem Header="Overwrite current version" Command="{Binding CommandSave}"/>
-                    <MenuItem Header="Major changes" Command="{Binding CommandSave}" CommandParameter="1.0"/>
-                    <MenuItem Header="Small amendmends" Command="{Binding CommandSave}" CommandParameter="0.1"/>
+                <MenuItem Header="Save"
+                          Command="{Binding CommandSave}"
+                          Visibility="{Binding IsNewDeck, Converter={Converters:BoolToVisibilty}}"/>
+                <MenuItem Header="Save" 
+                          Visibility="{Binding IsNewDeck, ConverterParameter=not, Converter={Converters:BoolToVisibilty}}">
+                    <MenuItem Header="{Binding SaveCurrentLabel}" Command="{Binding CommandSave}"/>
+                    <MenuItem Header="{Binding SaveMajorLabel}" Command="{Binding CommandSave}" CommandParameter="1.0"/>
+                    <MenuItem Header="{Binding SaveMinorLabel}" Command="{Binding CommandSave}" CommandParameter="0.1"/>
                 </MenuItem>
             </Menu>
             <ComboBox 
