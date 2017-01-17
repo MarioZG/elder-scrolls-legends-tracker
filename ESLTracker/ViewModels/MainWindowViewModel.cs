@@ -142,7 +142,12 @@ namespace ESLTracker.ViewModels
 
         public ICommand CommandEditDeck
         {
-            get { return new RelayCommand(new Action<object>(CommandEditDeckExecute)); }
+            get
+            {
+                return new RelayCommand(
+                    new Action<object>(CommandEditDeckExecute),
+                    CommandEditDeckCanExecute);
+            }
         }
 
         public ICommand CommandAbout
@@ -308,6 +313,11 @@ namespace ESLTracker.ViewModels
         private void CommandShowRankedProgressExecute(object obj)
         {
             new RankedProgressChart().Show();
+        }
+
+        private bool CommandEditDeckCanExecute(object arg)
+        {
+            return tracker.ActiveDeck != null;
         }
 
         private void CommandEditDeckExecute(object obj)
