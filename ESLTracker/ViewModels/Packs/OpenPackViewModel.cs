@@ -79,26 +79,27 @@ namespace ESLTracker.ViewModels.Packs
 
         private async Task<object> CommandSaveExecute(object obj)
         {
-            ButtonSaveLabel = "Saving...";
-            ButtonSaveEnabled = false;
             if (pack.Cards.Any(c=> c.Card == null || c.Card == Card.Unknown))
             {
                 ErrorMessage = "Please select 6 cards";
                 return null;
             }
 
+            ButtonSaveLabel = "Saving...";
+            ButtonSaveEnabled = false;
+
             ErrorMessage = null;
 
             if (trackerFactory.GetSettings().Packs_ScreenshotAfterAdded)
             {
                 ButtonSaveLabel = "Taking screenshot...";
-                await TakePackScreenshot();
+                await Task.Factory.StartNew( () => TakePackScreenshot());
             }
             ButtonSaveLabel = "Saving pack...";
             ITracker tracker = trackerFactory.GetTracker();
             Pack.DateOpened = trackerFactory.GetDateTimeNow();
             tracker.Packs.Add(Pack);
-            trackerFactory.GetFileManager().SaveDatabase();
+            await Task.Factory.StartNew(() => trackerFactory.GetFileManager().SaveDatabase());
             InitNewPack();
 
             ButtonSaveLabel = "Save";

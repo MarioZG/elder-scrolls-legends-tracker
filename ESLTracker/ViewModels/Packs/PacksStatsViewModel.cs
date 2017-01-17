@@ -107,7 +107,7 @@ namespace ESLTracker.ViewModels.Packs
                 return 0;
             }
             return OrderedPacks
-                .Where(p => 
+                .Where(p =>
                     p.DateOpened > OrderedPacks
                                     .Where(p2 => p2.Cards.Any(filter))
                                     .DefaultIfEmpty(new Pack() { DateOpened = DateTime.MinValue })
@@ -122,16 +122,26 @@ namespace ESLTracker.ViewModels.Packs
             {
                 return 0;
             }
-            return OrderedPacks
-                .Select(p => new
-                    {
-                        SL = 1+ OrderedPacks.Where(p2 => p.DateOpened > p2.DateOpened
-                                && p2.DateOpened > (OrderedPacks.Where(
-                                p3 => p3.DateOpened < p.DateOpened &&  //get last legendary pack
-                                p3.Cards.Any(filter)).DefaultIfEmpty(new Pack() { DateOpened = DateTime.MinValue }).FirstOrDefault().DateOpened)
-                            ).Count(),
-                    })
-                .Max(r => r.SL);
+
+            //indexes of searched packs
+            var packIndexes = OrderedPacks.Select((p, index) => new { p, index })
+                .Where(col => col.p.Cards.Any(filter))
+                .Select(col => col.index);
+            if (packIndexes.Count() == 0)
+            {
+                //nothing fulfills filter - return all!
+                return OrderedPacks.Count();
+            }
+            else if (packIndexes.Count() == 1)
+            {
+                return packIndexes.First();
+            }
+            else
+            {
+                return Math.Max(packIndexes.First(),
+                    packIndexes.Zip(packIndexes.Skip(1), (x, y) => y - x).Max()
+                    );
+            }
         }
     }
 }

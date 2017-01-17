@@ -259,18 +259,22 @@ namespace ESLTracker.Utils
                 Graphics gfxBmp = Graphics.FromImage(bmp);
 
                 List<Window> hiddenWindows = new List<Window>();
-                foreach (Window w in App.Current.Windows)
+                App.Current.Dispatcher.Invoke(() =>
                 {
-                    //System.Diagnostics.Debugger.Log(1, "", "w"+ w.Title);
-                    //System.Diagnostics.Debugger.Log(1, "", "  w.IsActive" + w.IsActive);
-                    //System.Diagnostics.Debugger.Log(1, "", "   w.Topmost" + w.Topmost);
-                    //System.Diagnostics.Debugger.Log(1, "", Environment.NewLine) ;
-                    if (w.IsActive)
+                    foreach (Window w in App.Current.Windows)
                     {
-                        w.Hide();
-                        hiddenWindows.Add(w);
+                        //System.Diagnostics.Debugger.Log(1, "", "w"+ w.Title);
+                        //System.Diagnostics.Debugger.Log(1, "", "  w.IsActive" + w.IsActive);
+                        //System.Diagnostics.Debugger.Log(1, "", "   w.Topmost" + w.Topmost);
+                        //System.Diagnostics.Debugger.Log(1, "", Environment.NewLine) ;
+                        //if (w.IsActive)
+                        {
+                            w.Hide();
+                            hiddenWindows.Add(w);
+                        }
                     }
-                }
+                });
+                await Task.Delay(TimeSpan.FromSeconds(1)); //wait 1 sec for qindows to hide
                 gfxBmp.CopyFromScreen(
                     rect.left,
                     rect.top,
@@ -281,7 +285,7 @@ namespace ESLTracker.Utils
 
                 foreach (Window w in hiddenWindows)
                 {
-                    w.Show();
+                    w.Dispatcher.Invoke(() => w.Show());
                 }
 
                 string path = Path.Combine(
