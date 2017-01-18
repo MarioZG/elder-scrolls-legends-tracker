@@ -35,12 +35,12 @@ namespace ESLTracker.ViewModels
             set { deckListVisible = value; RaisePropertyChangedEvent("DeckListVisible"); }
         }
 
-        private bool deckStatsVisible = true;
+        private bool deckPreviewVisible = true;
 
-        public bool DeckStatsVisible
+        public bool DeckPreviewVisible
         {
-            get { return deckStatsVisible; }
-            set { deckStatsVisible = value; RaisePropertyChangedEvent("DeckStatsVisible"); }
+            get { return deckPreviewVisible; }
+            set { deckPreviewVisible = value; RaisePropertyChangedEvent(nameof(DeckPreviewVisible)); }
         }
 
         private bool settingsVisible = false;
@@ -288,14 +288,14 @@ namespace ESLTracker.ViewModels
         private void EditGameStart(EditGame obj)
         {
             this.EditGameVisible = true;
-            this.DeckStatsVisible = false;
+            this.DeckPreviewVisible = false;
             this.AllowCommands = false;
         }
 
         private void EditGameFinished(EditGame obj)
         {
             this.EditGameVisible = false;
-            this.DeckStatsVisible = true;
+            this.DeckPreviewVisible = true;
             this.AllowCommands = true;
         }
 
@@ -335,6 +335,7 @@ namespace ESLTracker.ViewModels
         private void EditDeckStart(Utils.Messages.EditDeck obj)
         {
             this.DeckEditVisible = true;
+            this.DeckPreviewVisible = false;
             this.DeckListVisible = false;
             this.AllowCommands = false;
         }
@@ -342,6 +343,7 @@ namespace ESLTracker.ViewModels
         private void EditDeckFinished(EditDeck obj)
         {
             this.DeckEditVisible = false;
+            this.DeckPreviewVisible = true;
             this.DeckListVisible = true;
             this.AllowCommands = true;
         }

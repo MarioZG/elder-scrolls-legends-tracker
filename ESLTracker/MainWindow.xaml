@@ -105,7 +105,7 @@
                         <Decks:DeckList x:Name="deckList"/>
                     </WrapPanel>
                     <WrapPanel
-                        Visibility="{Binding DeckEditVisible, Mode=TwoWay, ConverterParameter=not, Converter={Converters:BoolToVisibilty}}">
+                        Visibility="{Binding DeckPreviewVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                         <Decks:DeckPreview 
                             Deck="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}"/>
                     </WrapPanel>
