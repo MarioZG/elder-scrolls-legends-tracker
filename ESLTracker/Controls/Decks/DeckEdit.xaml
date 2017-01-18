@@ -66,6 +66,7 @@
             </Border>
         </DockPanel>
         <Border 
+            MinWidth="200"
             DockPanel.Dock="Right" 
             Style="{StaticResource EditDeck_FormSection}">
             <DockPanel>
@@ -87,9 +88,8 @@
                 </ScrollViewer>
             </DockPanel>
          </Border>
-        <Border Style="{StaticResource EditDeck_FormSection}"
-                MinWidth="150">
-                <Cards:CardListEditor 
+        <Border Style="{StaticResource EditDeck_FormSection}">
+            <Cards:CardListEditor MinWidth="200"
                     CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckEdit}" 
                     LimitCardCount="{Binding DataContext.LimitCardCount, ElementName=deckEdit}"/>
         </Border>

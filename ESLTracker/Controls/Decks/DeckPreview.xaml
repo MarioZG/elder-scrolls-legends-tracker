@@ -27,6 +27,7 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+            <TextBlock DockPanel.Dock="Right" Padding="10,5,2,5" Text="Selected version"/>
             <TextBlock Padding="10,5,5,5" Style="{StaticResource DeckName}" Text="{Binding Deck.Name}"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Left">
@@ -35,7 +36,7 @@
                 <local:CardBreakdown                     
                     CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckPreview}"/>
             </Border>
-            <Border DockPanel.Dock="Bottom"
+            <Border DockPanel.Dock="Bottom" MinWidth="200"
                     Style="{StaticResource EditDeck_FormSection}">
                 <DockPanel>
                     <TextBlock 
@@ -57,7 +58,7 @@
                             Style="{StaticResource EditDeck_SectionHeader}"
                             Text="Changes history"/>
                     <ScrollViewer>
-                        <local:DeckHistory 
+                    <local:DeckHistory MinWidth="200"
                                 DockPanel.Dock="Right"
                                 DataContext="{Binding DataContext.ChangesHistory, ElementName=deckPreview, IsAsync=True}"
                                 />
