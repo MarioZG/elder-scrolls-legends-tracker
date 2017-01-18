@@ -43,7 +43,13 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <TextBlock Padding="10,5,5,5" Style="{StaticResource DeckName}" Text="{Binding Deck.Name}"/>
+            <TextBlock DockPanel.Dock="Right" Padding="10,5,2,5" Text="Selected version"/>
+            <TextBlock DockPanel.Dock="Bottom" 
+                       Foreground="Red"
+                       Padding="10,2,2,0" 
+                       Visibility="{Binding ErrorMessage, Converter={Converters:ObjectToVisibilty}}"
+                       Text="{Binding ErrorMessage}"/>
+            <TextBlock Padding="10,5,5,2" Style="{StaticResource DeckName}" Text="{Binding Deck.Name}"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Left">
             <Border 

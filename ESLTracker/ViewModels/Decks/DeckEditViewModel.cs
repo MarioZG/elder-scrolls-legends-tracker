@@ -163,6 +163,14 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        private string errorMessage;
+
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set { errorMessage = value; RaisePropertyChangedEvent(nameof(ErrorMessage)); }
+        }
+
         //priate ariable used for IEditableObject implemenation. Keeps inital state of object
         internal Deck savedState;
 
@@ -241,6 +249,12 @@ namespace ESLTracker.ViewModels.Decks
 
         public void SaveDeck(ITracker tracker, SerializableVersion versionIncrease, IEnumerable<CardInstance> cardsCollection)
         {
+            ErrorMessage = String.Empty;
+            if (Deck.Class == null)
+            {
+                ErrorMessage = "Please select deck class";
+                return;
+            }
             if (versionIncrease == new SerializableVersion(0, 0))
             {
                 //overwrite
