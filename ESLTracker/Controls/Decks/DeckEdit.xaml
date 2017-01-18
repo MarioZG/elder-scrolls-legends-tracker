@@ -49,8 +49,14 @@
             <Border 
                 DockPanel.Dock="Top"
                 Style="{StaticResource EditDeck_FormSection}">
-                <local:DeckProperties 
-                    Deck="{Binding DataContext.Deck, ElementName=deckEdit, Mode=TwoWay}" />
+                <DockPanel>
+                    <TextBlock 
+                        Style="{StaticResource EditDeck_SectionHeader}"
+                        DockPanel.Dock="Top"
+                        Text="Properties"/>
+                    <local:DeckProperties 
+                        Deck="{Binding DataContext.Deck, ElementName=deckEdit, Mode=TwoWay}" />
+                </DockPanel>
             </Border>
             <Border 
                 DockPanel.Dock="Bottom"

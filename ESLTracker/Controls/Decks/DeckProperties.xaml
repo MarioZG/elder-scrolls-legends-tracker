@@ -25,13 +25,8 @@
         </ObjectDataProvider>
     </UserControl.Resources>
     <StackPanel>
-        <TextBlock 
-                Style="{StaticResource EditDeck_SectionHeader}"
-                DockPanel.Dock="Top"
-                Text="Properties"/>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
@@ -39,7 +34,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="78*"/>
+                <ColumnDefinition Width="80*"/>
             </Grid.ColumnDefinitions>
             <Grid.Resources>
                 <Style TargetType="{x:Type Button}">
@@ -52,24 +47,26 @@
                     <Setter Property="Margin" Value="0,5,0,5" />
                 </Style>
             </Grid.Resources>
-            <Label Content="Type" Grid.Row="0" Margin="5,20,0,0"/>
-            <ComboBox x:Name="cbDeckType" Margin="0,20,0,0"
+            <Label Content="Type" Grid.Row="0" Margin="0,2,2,2" Grid.ColumnSpan="2"/>
+            <ComboBox x:Name="cbDeckType" Margin="0,2,2,2"
                       ItemsSource="{Binding Source={StaticResource DeckTypeEnum}}" 
                       SelectedItem="{Binding DeckType}" Grid.Row="0" Grid.Column="1"
                       IsEnabled="{Binding CanChangeType}"/>
-            <Label Content="Deck name" Margin="0,5,5,5" Grid.Row="1"/>
-            <TextBox x:Name="txtName" TextWrapping="Wrap"  Margin="5,5,5,5"
+            <Label Content="Deck name" Margin="0,2,2,2" Grid.Row="1"/>
+            <TextBox x:Name="txtName" TextWrapping="Wrap"  Margin="0,2,2,2"
                      Text="{Binding Deck.Name, Mode=TwoWay}" Grid.Column="1" Grid.Row="1"/>
-            <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
-                <Label Content="Deck attributes and class"/>
-                <Controls:DeckClassSelector x:Name="deckClass" SelectedClass="{Binding DataContext.Deck.Class, ElementName=editDeck, Mode=TwoWay}"/>
-            </StackPanel>       
             <Label Content="Arena rank" Grid.Row="3"
-                   Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibilty}}"/>
+                   Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibilty}}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
             <local:ArenaRank Grid.Row="3" Grid.Column="1"
+                             Margin="0,2,2,2"
                              SelectedRank="{Binding Deck.ArenaRank, Mode=TwoWay}" 
-                             Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibilty}}"
+                             Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibilty}}" Grid.RowSpan="2"
             />
         </Grid>
+        <Controls:DeckClassSelector 
+                x:Name="deckClass" 
+                Margin="0,2,2,2"
+                ToolTip="Select deck attributes or class"
+                SelectedClass="{Binding DataContext.Deck.Class, ElementName=editDeck, Mode=TwoWay}"/>
     </StackPanel>
 </UserControl>
