@@ -316,12 +316,15 @@ namespace ESLTracker.ViewModels.Game
                 switch (tracker.ActiveDeck.Type)
                 {
                     case DeckType.Constructed:
-                        this.Game.Type = null;
-                        if (savedState != null)
-                        {
-                            savedState.Type = null;
-                        }
                         allowedGameTypes = new List<GameType>() { GameType.PlayCasual, GameType.PlayRanked };
+                        if (( this.game.Type.HasValue) && (! allowedGameTypes.Contains(this.Game.Type.Value)))
+                        {
+                            this.Game.Type = null;
+                            if (savedState != null)
+                            {
+                                savedState.Type = null;
+                            }
+                        }
                         break;
                     case DeckType.VersusArena:
                         this.Game.Type = GameType.VersusArena;
