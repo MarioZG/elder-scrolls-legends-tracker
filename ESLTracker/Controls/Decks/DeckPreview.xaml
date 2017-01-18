@@ -59,7 +59,7 @@
                     <ScrollViewer>
                         <local:DeckHistory 
                                 DockPanel.Dock="Right"
-                                DataContext="{Binding DataContext.ChangesHistory, ElementName=deckPreview}"
+                                DataContext="{Binding DataContext.ChangesHistory, ElementName=deckPreview, IsAsync=True}"
                                 />
                     </ScrollViewer>
             </DockPanel>
