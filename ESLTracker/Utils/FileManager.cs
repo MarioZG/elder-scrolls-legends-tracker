@@ -263,18 +263,18 @@ namespace ESLTracker.Utils
                 {
                     foreach (Window w in App.Current.Windows)
                     {
-                        //System.Diagnostics.Debugger.Log(1, "", "w"+ w.Title);
-                        //System.Diagnostics.Debugger.Log(1, "", "  w.IsActive" + w.IsActive);
-                        //System.Diagnostics.Debugger.Log(1, "", "   w.Topmost" + w.Topmost);
-                        //System.Diagnostics.Debugger.Log(1, "", Environment.NewLine) ;
-                        //if (w.IsActive)
+                        // System.Diagnostics.Debugger.Log(1, "", "w"+ w.Title);
+                        // System.Diagnostics.Debugger.Log(1, "", "  w.IsActive" + w.IsActive);
+                        // System.Diagnostics.Debugger.Log(1, "", "   w.Topmost" + w.Topmost);
+                        // System.Diagnostics.Debugger.Log(1, "", Environment.NewLine) ;
+                        if (w.IsActive) //if other if visible - cannot do anything; otherwise if it was in back, it would be show at the top:/...
                         {
                             w.Hide();
                             hiddenWindows.Add(w);
                         }
                     }
                 });
-                await Task.Delay(TimeSpan.FromSeconds(1)); //wait 1 sec for qindows to hide
+                WinAPI.SetForegroundWindow(eslHandle.Value);
                 gfxBmp.CopyFromScreen(
                     rect.left,
                     rect.top,

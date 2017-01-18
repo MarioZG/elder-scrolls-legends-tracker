@@ -28,6 +28,9 @@ namespace ESLTracker.Utils
         [DllImport("user32.dll")]
         public static extern IntPtr GetWindowRect(IntPtr hWnd, ref Rect rect);
 
+        [DllImport("USER32.DLL")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+
         public bool IsGameActive()
         {
             IntPtr fw = GetForegroundWindow();
