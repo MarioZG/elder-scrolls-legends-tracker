@@ -145,6 +145,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             CardInstance card = new CardInstance(new Card(trackerFactory.Object));
 
             Deck deck = Deck.CreateNewDeck(trackerFactory.Object, "test deck");
+            deck.Class = DataModel.Enums.DeckClass.Assassin; //any
             deck.SelectedVersion.Cards.Add(card);
 
             DeckEditViewModel model = new DeckEditViewModel();
@@ -178,6 +179,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             CardInstance card = new CardInstance(new Card(trackerFactory.Object));
 
             Deck deck = Deck.CreateNewDeck(trackerFactory.Object, "test deck");
+            deck.Class = DataModel.Enums.DeckClass.Assassin; //any
             deck.SelectedVersion.Cards.Add(card);
 
             DeckEditViewModel model = new DeckEditViewModel();
@@ -212,6 +214,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             CardInstance card = new CardInstance(new Card(trackerFactory.Object));
 
             Deck deck = Deck.CreateNewDeck(trackerFactory.Object, "test deck");
+            deck.Class = DataModel.Enums.DeckClass.Assassin; //any
             deck.CreateVersion(1, 3, trackerFactory.Object.GetDateTimeNow()); //ensure its not ordered :)
             Guid selectedVersion = deck.CreateVersion(1, 1, trackerFactory.Object.GetDateTimeNow()).VersionId;
             deck.CreateVersion(1, 2, trackerFactory.Object.GetDateTimeNow());
@@ -244,6 +247,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             CardInstance card = new CardInstance(new Card(trackerFactory.Object));
 
             Deck deck = Deck.CreateNewDeck(trackerFactory.Object, "test deck");
+            deck.Class = DataModel.Enums.DeckClass.Assassin; //any
             deck.CreateVersion(1, 3, trackerFactory.Object.GetDateTimeNow()); //ensure its not ordered :)
             Guid selectedVersion = deck.CreateVersion(1, 1, trackerFactory.Object.GetDateTimeNow()).VersionId;
             deck.CreateVersion(1, 2, trackerFactory.Object.GetDateTimeNow());
