@@ -316,6 +316,11 @@ namespace ESLTracker.ViewModels.Game
                 switch (tracker.ActiveDeck.Type)
                 {
                     case DeckType.Constructed:
+                        this.Game.Type = null;
+                        if (savedState != null)
+                        {
+                            savedState.Type = null;
+                        }
                         allowedGameTypes = new List<GameType>() { GameType.PlayCasual, GameType.PlayRanked };
                         break;
                     case DeckType.VersusArena:
@@ -336,6 +341,13 @@ namespace ESLTracker.ViewModels.Game
                         break;
                     default:
                         break;
+                }
+            }
+            else 
+            {
+                if (savedState != null)
+                {
+                    savedState.Type = null;
                 }
             }
             if (allowedGameTypes == null)
