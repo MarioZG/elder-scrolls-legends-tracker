@@ -171,14 +171,17 @@ namespace ESLTracker.ViewModels.Game
         {
             if (!IsEditControl)
             {
-                this.Game.Deck = activeDeckChanged.ActiveDeck;
-                this.Game.DeckVersionId = activeDeckChanged.ActiveDeck.SelectedVersionId;
-                if (savedState != null)
+                if (activeDeckChanged.ActiveDeck != null)
                 {
-                    savedState.Deck = tracker.ActiveDeck;
-                    savedState.DeckVersionId = tracker.ActiveDeck.SelectedVersionId;
-                }
-                RaisePropertyChangedEvent(nameof(AllowedGameTypes));
+                    this.Game.Deck = activeDeckChanged.ActiveDeck;
+                    this.Game.DeckVersionId = activeDeckChanged.ActiveDeck.SelectedVersionId;
+                    if (savedState != null)
+                    {
+                        savedState.Deck = tracker.ActiveDeck;
+                        savedState.DeckVersionId = tracker.ActiveDeck.SelectedVersionId;
+                    }
+                    RaisePropertyChangedEvent(nameof(AllowedGameTypes));
+                }                
             }
         }
 
