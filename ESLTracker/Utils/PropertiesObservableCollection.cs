@@ -42,18 +42,18 @@ namespace ESLTracker.Utils
 
         private void PropertiesObservableCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (e.NewItems != null)
-            {
-                foreach (T element in e.NewItems)
-                {
-                    element.PropertyChanged += Element_PropertyChanged;
-                }
-            }
             if (e.OldItems != null)
             {
                 foreach (T element in e.OldItems)
                 {
                     element.PropertyChanged -= Element_PropertyChanged;
+                }
+            }
+            if (e.NewItems != null)
+            {
+                foreach (T element in e.NewItems)
+                {
+                    element.PropertyChanged += Element_PropertyChanged;
                 }
             }
         }

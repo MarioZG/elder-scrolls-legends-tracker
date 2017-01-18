@@ -380,6 +380,8 @@ namespace ESLTracker.ViewModels.Decks
                 else
                 {
                     deck.SelectedVersion.Cards = new PropertiesObservableCollection<CardInstance>(deckImporter.Cards);
+                    //curr version shour equal deck.selected version, attch change to reflect clink for remove in deck history
+                    CurrentVersion.Cards.CollectionChanged += (s, e) => { RaisePropertyChangedEvent(nameof(ChangesFromCurrentVersion)); };
                     RaisePropertyChangedEvent(String.Empty);
                 }
             }

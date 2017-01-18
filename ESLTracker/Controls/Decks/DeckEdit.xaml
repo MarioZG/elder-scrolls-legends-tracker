@@ -74,6 +74,7 @@
         <Border 
             MinWidth="200"
             DockPanel.Dock="Right" 
+            Visibility="{Binding DataContext.ShowImportPanel, ElementName=deckEdit, ConverterParameter=not, Converter={Converters:BoolToVisibilty}}"
             Style="{StaticResource EditDeck_FormSection}">
             <DockPanel>
                 <TextBlock 
@@ -94,7 +95,9 @@
                 </ScrollViewer>
             </DockPanel>
          </Border>
-        <Border Style="{StaticResource EditDeck_FormSection}">
+        <Border 
+                Visibility="{Binding DataContext.ShowImportPanel, ElementName=deckEdit, ConverterParameter=not, Converter={Converters:BoolToVisibilty}}"
+                Style="{StaticResource EditDeck_FormSection}">
             <Cards:CardListEditor MinWidth="200"
                     CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckEdit}" 
                     LimitCardCount="{Binding DataContext.LimitCardCount, ElementName=deckEdit}"/>

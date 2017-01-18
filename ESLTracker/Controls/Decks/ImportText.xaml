@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
              mc:Ignorable="d" 
-             MinWidth="200"
-             d:DesignHeight="300" d:DesignWidth="300">
+             MinWidth="200">
     <UserControl.DataContext>
         <ViewModels:ImportTextViewModel />
     </UserControl.DataContext>
