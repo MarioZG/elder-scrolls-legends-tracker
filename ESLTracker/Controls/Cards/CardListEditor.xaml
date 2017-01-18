@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Cards"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Cards"
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d" 
              x:Name="cardEditor"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -18,19 +19,43 @@
         <KeyBinding Gesture="Ctrl+3" Command="{Binding CommandAddCardToDeck}" CommandParameter="3"/>
     </UserControl.InputBindings>
     <DockPanel>
-        <TextBlock 
+        <Grid  DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock 
                 Style="{StaticResource EditDeck_SectionHeader}"
-                DockPanel.Dock="Top"
-                Text="Edit cards"/>
+                HorizontalAlignment="Stretch"
+                Text="Edit cards">
+            </TextBlock>
+            <ToggleButton x:Name="helpChecked" 
+                    Margin="0,-5,0,0"
+                    IsChecked="False"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Content="?"/>
+        </Grid>
+        <TextBlock 
+            DockPanel.Dock="Top" 
+            Visibility="{Binding IsChecked, ElementName=helpChecked, Converter={Converters:BoolToVisibilty}}"
+            TextWrapping="WrapWithOverflow"
+            Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DockPanel}}}"
+            >
+            Type in card name and use buttons x1, x2 and x3 to add to deck. Click card image to remove from deck.
+        </TextBlock>
         <DockPanel DockPanel.Dock="Top">
             <Button Content=" x3 " DockPanel.Dock="Right" 
+                    ToolTip="Add 3 cards (ctrl+3)"
                     TabIndex="3"
                     Command="{Binding CommandAddCardToDeck}" CommandParameter="3"/>
             <Button Content=" x2 " DockPanel.Dock="Right"
+                    ToolTip="Add 2 cards (ctrl+2)"
                     TabIndex="2"
                     Command="{Binding CommandAddCardToDeck}" CommandParameter="2"/>
             <Button Content=" x1 " DockPanel.Dock="Right" 
                     TabIndex="1"
+                    ToolTip="Add 1 card (ctrl+1)"
                     Command="{Binding CommandAddCardToDeck}" CommandParameter="1"/>
             <local:SelectCard 
                 DockPanel.Dock="Top" 
