@@ -108,4 +108,11 @@
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" />
     </Style>
+    <Style x:Key="EditDeck_FormSectionEx" TargetType="{x:Type Expander}">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" />
+    </Style>
 </ResourceDictionary>

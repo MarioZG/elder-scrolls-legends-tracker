@@ -17,7 +17,6 @@
         </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical">
-        <TextBlock Style="{StaticResource EditDeck_SectionHeader}" Text="Cards breakdown"/>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding CardCount, StringFormat={} {0} cards; }"/>
             <TextBlock Text="{Binding CardsValue, StringFormat={} Value of {0} soul gems.}"/>

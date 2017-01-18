@@ -67,8 +67,11 @@
             <Border 
                 DockPanel.Dock="Bottom"
                 Style="{StaticResource EditDeck_FormSection}">
+                <StackPanel>
+                <TextBlock Style="{StaticResource EditDeck_SectionHeader}" Text="Cards breakdown"/>
                 <local:CardBreakdown 
                     CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckEdit}"/>
+                </StackPanel>
             </Border>
         </DockPanel>
         <Border 

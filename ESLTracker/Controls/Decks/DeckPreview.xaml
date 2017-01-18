@@ -31,39 +31,63 @@
             <TextBlock Padding="10,5,5,5" Style="{StaticResource DeckName}" Text="{Binding Deck.Name}"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Left">
-            <Border DockPanel.Dock="Bottom"
-                    Style="{StaticResource EditDeck_FormSection}">
-                <local:CardBreakdown                     
+            <Expander DockPanel.Dock="Bottom"
+                      IsExpanded="True"
+                      Header="Cards breakdown"
+                      Style="{StaticResource EditDeck_FormSectionEx}">
+                <local:CardBreakdown        
+                    Background="{x:Static SystemColors.WindowBrush}"
                     CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckPreview}"/>
-            </Border>
-            <Border DockPanel.Dock="Bottom" MinWidth="200"
-                    Style="{StaticResource EditDeck_FormSection}">
-                <DockPanel>
-                    <TextBlock 
-                            DockPanel.Dock="Top"
-                            Style="{StaticResource EditDeck_SectionHeader}"
-                            Text="Cards"/>
-                    <ScrollViewer>
+            </Expander>
+            <Expander Header="Cards" DockPanel.Dock="Bottom" MinWidth="200"
+                      IsExpanded="True"
+                    Style="{StaticResource EditDeck_FormSectionEx}">
+                <ScrollViewer
+                        Background="{x:Static SystemColors.WindowBrush}" >
                         <Cards:CardList 
                             DockPanel.Dock="Bottom"
                             DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" />
                     </ScrollViewer>
-                </DockPanel>
-            </Border>
+            </Expander>
         </DockPanel>
-        <Border Style="{StaticResource EditDeck_FormSection}">
-            <DockPanel>
-                    <TextBlock 
-                            DockPanel.Dock="Top"
-                            Style="{StaticResource EditDeck_SectionHeader}"
-                            Text="Changes history"/>
-                    <ScrollViewer>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="r1" Tag="{Binding ElementName=ex1}"/>
+                <RowDefinition  x:Name="r2" Tag="{Binding ElementName=ex2}"/>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="RowDefinition">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Tag.IsExpanded, RelativeSource={RelativeSource Self}}" 
+                                    Value="True">
+                            <Setter Property="Height" Value="*"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag.IsExpanded, RelativeSource={RelativeSource Self}}" 
+                                    Value="False">
+                            <Setter Property="Height" Value="auto"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+            <Expander x:Name="ex1" Grid.Row="0" 
+                      Header="Changes history" 
+                      IsExpanded="True" 
+                      Style="{StaticResource EditDeck_FormSectionEx}">
+                <Grid Background="{x:Static SystemColors.WindowBrush}">
+                <ScrollViewer>
                     <local:DeckHistory MinWidth="200"
                                 DockPanel.Dock="Right"
                                 DataContext="{Binding DataContext.ChangesHistory, ElementName=deckPreview, IsAsync=True}"
                                 />
-                    </ScrollViewer>
-            </DockPanel>
-        </Border>
+                </ScrollViewer>
+                </Grid>
+            </Expander>
+            <Expander x:Name="ex2" Grid.Row="1" 
+                      Header="Games" 
+                      IsExpanded="True" 
+                      Style="{StaticResource EditDeck_FormSectionEx}">
+                <local:DeckStats Background="{x:Static SystemColors.WindowBrush}"/>
+            </Expander>
+        </Grid>
     </DockPanel>
 </UserControl>
