@@ -24,9 +24,9 @@
                 <MenuItem Header="Cancel" Command="{Binding CommandCancel}"/>
                 <MenuItem Header="Save"
                           Command="{Binding CommandSave}"
-                          Visibility="{Binding IsNewDeck, Converter={Converters:BoolToVisibilty}}"/>
+                          Visibility="{Binding AllowVersionSave, Converter={Converters:BoolToVisibilty}}"/>
                 <MenuItem Header="Save" 
-                          Visibility="{Binding IsNewDeck, ConverterParameter=not, Converter={Converters:BoolToVisibilty}}">
+                          Visibility="{Binding AllowVersionSave, ConverterParameter=not, Converter={Converters:BoolToVisibilty}}">
                     <MenuItem Header="{Binding SaveCurrentLabel}" Command="{Binding CommandSave}"/>
                     <MenuItem Header="{Binding SaveMajorLabel}" Command="{Binding CommandSave}" CommandParameter="1.0"/>
                     <MenuItem Header="{Binding SaveMinorLabel}" Command="{Binding CommandSave}" CommandParameter="0.1"/>

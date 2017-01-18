@@ -26,7 +26,10 @@
         <StackPanel Margin="10,0,0,0">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource DeckName}" Text="{Binding Name}" />
-                <TextBlock Style="{StaticResource DeckName}" Text="{Binding SelectedVersion.Version, StringFormat={} (v{0:MM})}" />
+                <TextBlock 
+                    Style="{StaticResource DeckName}" 
+                    Visibility="{Binding Type, ConverterParameter=not, Converter={Converters:DeckTypeToArenaRankVisibilty}}"
+                    Text="{Binding SelectedVersion.Version, StringFormat={} (v{0:MM})}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=Type}" />

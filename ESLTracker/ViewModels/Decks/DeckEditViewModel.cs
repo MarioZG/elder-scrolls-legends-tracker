@@ -51,11 +51,12 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        public bool IsNewDeck
+        public bool AllowVersionSave
         {
             get
             {
-                return ! this.trackerFactory.GetTracker().Decks.Contains(deck);
+                return (!this.trackerFactory.GetTracker().Decks.Contains(deck)) //do not allow versions for new deck
+                    || Deck.IsArenaDeck(deck.Type);
             }
         }
 
