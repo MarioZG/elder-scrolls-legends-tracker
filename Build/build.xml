@@ -50,7 +50,7 @@ target BuildMaster
 		<MakeDir Directories="$(BuildDir)"/>
 	</Target>
 	<Target Name="CheckoutBranch" DependsOnTargets="PrepareOutDir">
-		<Exec Command='"C:\Program Files\Git\cmd\git.exe" clone -b $(GitBranchName) --depth 1 file://$(RootDir) $(BuildDir)\Src"'/>
+		<Exec Command='"C:\Program Files\Git\cmd\git.exe" clone -b $(GitBranchName) --single-branch file://$(RootDir) $(BuildDir)\Src"'/>
 	</Target>
 	<Target Name="Compile" DependsOnTargets="CheckoutBranch">
 		<Message Text="Compiling projects @(ProjectToBuild)"/>
