@@ -17,6 +17,7 @@
         </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical">
+        <TextBlock Style="{StaticResource sectionHeader}" Text="General"/>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding CardCount, StringFormat={} {0} cards; }"/>
             <TextBlock Text="{Binding CardsValue, StringFormat={} Value of {0} soul gems.}"/>

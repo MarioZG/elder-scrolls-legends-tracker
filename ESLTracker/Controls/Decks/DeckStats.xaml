@@ -18,6 +18,41 @@
         <Rewards:RewardItemList DockPanel.Dock="Top"
             PanelOrientation="Horizontal"
             DataContext="{Binding ActiveDeckRewards}" />
+        <ListView  DockPanel.Dock="Top"
+            ItemsSource="{Binding WinRatioVsClass}"   
+            SelectedItem="{Binding SelectedClassFilter}"
+            >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"></StackPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <ItemsControl ItemsSource="{Binding Path=Attributes.ImageSources}" BorderThickness="0"
+                                ToolTip="{Binding Class}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel IsItemsHost="True" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Width="15" Source="{Binding}"></Image>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Victory, StringFormat={}{0}}" />
+                            <TextBlock Text="-" />
+                            <TextBlock Text="{Binding Defeat, StringFormat={}{0}}" />
+                        </StackPanel>
+                        <TextBlock Text="{Binding WinPercent, StringFormat={}{0} %}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <ListView 
             ScrollViewer.VerticalScrollBarVisibility="Visible"
             ItemsSource="{Binding ActiveDeckGames}">

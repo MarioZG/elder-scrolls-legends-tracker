@@ -13,6 +13,21 @@
         <ViewModels:DeckPreviewViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
+        <Style x:Key="HeaderText" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource HeaderText}" Text="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
@@ -30,64 +45,35 @@
             <TextBlock DockPanel.Dock="Right" Padding="10,5,2,5" Text="Selected version"/>
             <TextBlock Padding="10,5,5,5" Style="{StaticResource DeckName}" Text="{Binding Deck.Name}"/>
         </DockPanel>
-        <DockPanel DockPanel.Dock="Left">
-            <Expander DockPanel.Dock="Bottom"
-                      IsExpanded="True"
-                      Header="Cards breakdown"
-                      Style="{StaticResource EditDeck_FormSectionEx}">
-                <local:CardBreakdown        
-                    Background="{x:Static SystemColors.WindowBrush}"
-                    CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckPreview}"/>
-            </Expander>
-            <Expander Header="Cards" DockPanel.Dock="Bottom" MinWidth="200"
-                      IsExpanded="True"
-                    Style="{StaticResource EditDeck_FormSectionEx}">
-                <ScrollViewer
-                        Background="{x:Static SystemColors.WindowBrush}" >
-                        <Cards:CardList 
-                            DockPanel.Dock="Bottom"
-                            DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" />
-                    </ScrollViewer>
-            </Expander>
-        </DockPanel>
-        <Grid >
-            <Grid.RowDefinitions>
-                <RowDefinition x:Name="r1" Tag="{Binding ElementName=ex1}"/>
-                <RowDefinition  x:Name="r2" Tag="{Binding ElementName=ex2}"/>
-            </Grid.RowDefinitions>
-            <Grid.Resources>
-                <Style TargetType="RowDefinition">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Tag.IsExpanded, RelativeSource={RelativeSource Self}}" 
-                                    Value="True">
-                            <Setter Property="Height" Value="*"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Tag.IsExpanded, RelativeSource={RelativeSource Self}}" 
-                                    Value="False">
-                            <Setter Property="Height" Value="auto"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Resources>
-            <Expander x:Name="ex1" Grid.Row="0" 
-                      Header="Changes history" 
-                      IsExpanded="True" 
-                      Style="{StaticResource EditDeck_FormSectionEx}">
-                <Grid Background="{x:Static SystemColors.WindowBrush}">
+        <TabControl DockPanel.Dock="Left">
+            <TabItem Header="Cards">
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                        <local:CardBreakdown     
+                            Margin="5"
+                            Background="{x:Static SystemColors.WindowBrush}"
+                            CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckPreview}"/>
+                        <ScrollViewer
+                                Margin="5"
+                                Background="{x:Static SystemColors.WindowBrush}" >
+                            <Cards:CardList 
+                                DockPanel.Dock="Bottom"
+                                DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" />
+                        </ScrollViewer>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Cards history">
                 <ScrollViewer>
-                    <local:DeckHistory MinWidth="200"
-                                DockPanel.Dock="Right"
-                                DataContext="{Binding DataContext.ChangesHistory, ElementName=deckPreview, IsAsync=True}"
+                    <local:DeckHistory 
+                            MinWidth="200"
+                            Margin="5"
+                            DockPanel.Dock="Right"
+                            DataContext="{Binding DataContext.ChangesHistory, ElementName=deckPreview, IsAsync=True}"
                                 />
                 </ScrollViewer>
-                </Grid>
-            </Expander>
-            <Expander x:Name="ex2" Grid.Row="1" 
-                      Header="Games" 
-                      IsExpanded="True" 
-                      Style="{StaticResource EditDeck_FormSectionEx}">
+            </TabItem>
+            <TabItem Header="Games">
                 <local:DeckStats Background="{x:Static SystemColors.WindowBrush}"/>
-            </Expander>
-        </Grid>
+            </TabItem>
+        </TabControl>
     </DockPanel>
 </UserControl>
