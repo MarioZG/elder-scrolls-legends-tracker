@@ -11,6 +11,7 @@
         xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         xmlns:Properties="clr-namespace:ESLTracker.Properties" 
+        xmlns:Controls="clr-namespace:ESLTracker.Controls" 
         mc:Ignorable="d"
         x:Name="mainWindow"
         Title="ESL Tracker" Height="553.805" SizeToContent="Width"
@@ -98,6 +99,18 @@
                     <Settings:SettingsPanel x:Name="settingsPanel" Style="{DynamicResource ModalControlInWindow}" />
                 </Grid>
                 <DockPanel>
+                    <StackPanel                            
+                            Orientation="Horizontal"
+                            DockPanel.Dock="Top"
+                            Visibility="{Binding AppUpateVersionInfo.IsAvailable, Converter={Converters:BoolToVisibilty}}" Background="Red">
+                        <TextBlock>
+                            New version available.
+                        </TextBlock>
+                        <TextBlock>
+                            <Controls:ClickableUrl NavigateUri="https://github.com/MarioZG/elder-scrolls-legends-tracker/releases/latest">View changelog </Controls:ClickableUrl>
+                            <Controls:ClickableUrl NavigateUri="{Binding AppUpateVersionInfo.DownloadUrl}">Download</Controls:ClickableUrl>
+                        </TextBlock>
+                    </StackPanel>
                     <WrapPanel 
                             DockPanel.Dock="Left"
                             IsEnabled="{Binding AllowCommands}"

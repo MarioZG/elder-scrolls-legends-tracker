@@ -13,6 +13,32 @@ namespace ESLTracker.Utils
     {
         public static ITrackerFactory DefaultTrackerFactory { get; set; } = new TrackerFactory();
 
+        public T GetService<T>() where T: class
+        {
+            Type type = typeof(T);
+            if (type == typeof(IHTTPService)) {
+                return new HTTPService(this) as T;
+            }
+            else if (type == typeof(IApplicationService))
+            {
+                return new ApplicationService() as T;
+            }
+            else if (type == typeof(IFileWrapper))
+            {
+                return new FileWrapper() as T;
+            }
+            else if (type == typeof(ICardsDatabase))
+            {
+#pragma warning disable CS0618 // Type or member is obsolete
+                return CardsDatabase.Default as T;
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
+            else {
+                throw new NotImplementedException(typeof(T).Name);
+            }
+        }
+
+
         public ITracker GetTracker()
         {
             return Tracker.Instance;

@@ -105,6 +105,7 @@
     <Compile Include="Controls\Cards\SelectCard.xaml.cs">
       <DependentUpon>SelectCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ClickableUrl.cs" />
     <Compile Include="Controls\Decks\CardBreakdown.xaml.cs">
       <DependentUpon>CardBreakdown.xaml</DependentUpon>
     </Compile>
@@ -180,6 +181,7 @@
     <Compile Include="RankedProgressChart.xaml.cs">
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\ApplicationService.cs" />
     <Compile Include="Utils\CardImagesHelper.cs" />
     <Compile Include="Utils\Converters\DebuggingConverter.cs" />
     <Compile Include="Utils\Converters\GameStatsRowVisibility.cs" />
@@ -195,7 +197,11 @@
     <Compile Include="Utils\Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Utils\Extensions\TaskExtensions.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_2_To_2_0.cs" />
+    <Compile Include="Utils\HTTPService.cs" />
+    <Compile Include="Utils\IApplicationService.cs" />
+    <Compile Include="Utils\IHTTPService.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
+    <Compile Include="Utils\NewVersioInfo.cs" />
     <Compile Include="Utils\PropertiesObservableCollection.cs" />
     <Compile Include="Utils\ResourcesHelper.cs" />
     <Compile Include="Settings.cs" />
@@ -248,6 +254,7 @@
     <Compile Include="Utils\SingleInstanceApp.cs" />
     <Compile Include="Utils\SoulGemsHelper.cs" />
     <Compile Include="Utils\TrackerFactory.cs" />
+    <Compile Include="Utils\VersionChecker.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
     <Compile Include="ViewModels\Cards\CardListEditorViewModel.cs" />
     <Compile Include="ViewModels\Decks\CardBreakdownViewModel.cs" />

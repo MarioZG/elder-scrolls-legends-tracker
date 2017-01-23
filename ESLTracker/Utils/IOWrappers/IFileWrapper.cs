@@ -9,5 +9,8 @@ namespace ESLTracker.Utils.IOWrappers
     public interface IFileWrapper
     {
         void Delete(string s);
+        void Move(string sourceFileName, string destFileName);
+        void WriteAllText(string path, string contents);
+        bool Exists(string path);
     }
 }

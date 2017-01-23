@@ -373,6 +373,28 @@ namespace ESLTracker.Utils
             }
         }
 
+        public void UpdateCardsDB(string newContent)
+        {
+            string fileName = ".\\Resources\\cards.json";
+            IFileWrapper fileWrapper = trackerfactory.GetService<IFileWrapper>();
+            ICardsDatabase cardsDatabase = trackerfactory.GetService<ICardsDatabase>();
+
+            string backupFileName = string.Format("{0}_{1}{2}", 
+                Path.GetFileNameWithoutExtension(fileName),
+                cardsDatabase.Version,
+                Path.GetExtension(fileName)); //includes . 
+            backupFileName = Path.Combine(Path.GetDirectoryName(fileName), backupFileName);
+
+            if (fileWrapper.Exists(backupFileName))
+            {
+                fileWrapper.Delete(backupFileName);
+            }
+            fileWrapper.Move(fileName, backupFileName);
+
+            fileWrapper.WriteAllText(fileName, newContent);
+            trackerfactory.GetService<ICardsDatabase>().RealoadDB();
+        }
+
 
     }
 }

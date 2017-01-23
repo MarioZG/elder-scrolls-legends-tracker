@@ -83,6 +83,21 @@ namespace ESLTracker.ViewModels
             set { windowState = value; RaisePropertyChangedEvent("WindowState"); }
         }
 
+        private VersionChecker versionChecker;
+        private NewVersioInfo appUpdateVersionInfo;
+        public NewVersioInfo AppUpateVersionInfo
+        {
+            get
+            {
+                if (appUpdateVersionInfo == null)
+                {
+                    versionChecker = new VersionChecker(trackerFactory);
+                    appUpdateVersionInfo = versionChecker.AppVersionInfo;
+                }
+                return appUpdateVersionInfo;
+            }
+        }
+
         #region Commands
         public ICommand CommandEditSettings
         {

@@ -12,5 +12,20 @@ namespace ESLTracker.Utils.IOWrappers
         {
             System.IO.File.Delete(path);
         }
+
+        public void Move(string sourceFileName, string destFileName)
+        {
+            System.IO.File.Move(sourceFileName, destFileName);
+        }
+
+        public void WriteAllText(string path, string contents)
+        {
+            System.IO.File.WriteAllText(path, contents);
+        }
+
+        public bool Exists(string path)
+        {
+            return System.IO.File.Exists(path);
+        }
     }
 }

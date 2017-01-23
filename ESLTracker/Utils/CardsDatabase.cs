@@ -45,7 +45,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        public Version version { get; set; }
+        public Version Version { get; set; }
 
         private CardsDatabase()
         {
@@ -66,6 +66,11 @@ namespace ESLTracker.Utils
         public Card FindCardById(Guid value)
         {
             return Cards.Where(c => c.Id == value).DefaultIfEmpty(Card.Unknown).FirstOrDefault();
+        }
+
+        public void RealoadDB()
+        {
+            _instance = LoadCardsDatabase("./Resources/cards.json");
         }
     }
 }

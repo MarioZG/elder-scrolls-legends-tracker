@@ -8,5 +8,6 @@ namespace ESLTracker.Utils
         void SaveDatabase();
         Tracker LoadDatabase(bool throwDataFileException = false);
         Task SaveScreenShot(string fileName);
+        void UpdateCardsDB(string newContent);
     }
 }

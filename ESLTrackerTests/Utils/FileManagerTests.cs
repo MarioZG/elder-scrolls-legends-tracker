@@ -191,5 +191,30 @@ namespace ESLTracker.Utils.Tests
 
             Assert.AreEqual(expected, result);
         }
+
+        [TestMethod()]
+        public void UpdateCardsDBTest001()
+        {
+            string newFileContent = "{some json}";
+
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+
+            Mock<IFileWrapper> fileWrapper = new Mock<IFileWrapper>();
+            trackerFactory.Setup(tf => tf.GetService<IFileWrapper>()).Returns(fileWrapper.Object);
+
+            Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
+            cardsDatabase.Setup(cd => cd.Version).Returns(new Version(3, 4));
+            trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDatabase.Object);
+
+            FileManager fm = new FileManager(trackerFactory.Object);
+
+            fm.UpdateCardsDB(newFileContent);
+
+            fileWrapper.Verify(m => m.Move(".\\Resources\\cards.json", ".\\Resources\\cards_3.4.json"), Times.Once);
+            fileWrapper.Verify(m => m.WriteAllText(".\\Resources\\cards.json", newFileContent), Times.Once);
+
+            cardsDatabase.Verify(m => m.RealoadDB(), Times.Once);
+
+        }
     }
 }

@@ -62,6 +62,11 @@ namespace ESLTracker
 
             CheckSingleInstance();
             CheckDataFile();
+            VersionChecker vc = new VersionChecker(TrackerFactory.DefaultTrackerFactory);
+            if (vc.IsNewCardsDBAvailable())
+            {
+                vc.GetLatestCardsDB();
+            }
         }
 
         private static void CheckDataFile()

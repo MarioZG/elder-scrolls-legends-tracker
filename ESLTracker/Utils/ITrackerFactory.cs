@@ -11,6 +11,7 @@ namespace ESLTracker.Utils
 {
     public interface ITrackerFactory
     {
+        T GetService<T>() where T : class;
         ITracker GetTracker();
         IMessenger GetMessanger();
         DateTime GetDateTimeNow();
