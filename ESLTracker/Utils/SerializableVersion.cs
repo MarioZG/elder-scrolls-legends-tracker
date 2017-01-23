@@ -51,7 +51,7 @@ namespace ESLTracker.Utils
             if (other == null)
                 return -1;
 
-            return new Version(Major, Minor, Build, Revision).CompareTo(new Version(other.Major, other.Minor, other.Revision, other.Build));
+            return new Version(Major, Minor, Build, Revision).CompareTo(new Version(other.Major, other.Minor, other.Build, other.Revision));
         }
 
         public override string ToString()
