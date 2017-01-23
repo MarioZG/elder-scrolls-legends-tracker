@@ -170,6 +170,11 @@ namespace ESLTracker.ViewModels
             get { return new RelayCommand(new Action<object>(CommandAboutExecute)); }
         }
 
+        public ICommand CommandCloseNewVersionInfo
+        {
+            get { return new RelayCommand(new Action<object>(CommandCloseNewVersionInfoExecute)); }
+        }
+
         #endregion
 
         ITrackerFactory trackerFactory;
@@ -362,5 +367,12 @@ namespace ESLTracker.ViewModels
             this.DeckListVisible = true;
             this.AllowCommands = true;
         }
+
+        private void CommandCloseNewVersionInfoExecute(object obj)
+        {
+            this.AppUpateVersionInfo.IsAvailable = false;
+            RaisePropertyChangedEvent(nameof(AppUpateVersionInfo));
+        }
+
     }
 }

@@ -99,18 +99,20 @@
                     <Settings:SettingsPanel x:Name="settingsPanel" Style="{DynamicResource ModalControlInWindow}" />
                 </Grid>
                 <DockPanel>
-                    <StackPanel                            
-                            Orientation="Horizontal"
+                    <DockPanel                            
                             DockPanel.Dock="Top"
-                            Visibility="{Binding AppUpateVersionInfo.IsAvailable, Converter={Converters:BoolToVisibilty}}" Background="Red">
-                        <TextBlock>
-                            New version available.
+                        HorizontalAlignment="Stretch"
+                            Visibility="{Binding AppUpateVersionInfo.IsAvailable, Converter={Converters:BoolToVisibilty}}" 
+                            Background="DarkRed">
+                        <TextBlock Foreground="White" DockPanel.Dock="Left" FontSize="12">
+                            New version of tracker is available.
+                            <Controls:ClickableUrl Foreground="White" NavigateUri="https://github.com/MarioZG/elder-scrolls-legends-tracker/releases/latest">Open changelog </Controls:ClickableUrl>
+                            <Controls:ClickableUrl Foreground="White" NavigateUri="{Binding AppUpateVersionInfo.DownloadUrl}">Download</Controls:ClickableUrl>
                         </TextBlock>
-                        <TextBlock>
-                            <Controls:ClickableUrl NavigateUri="https://github.com/MarioZG/elder-scrolls-legends-tracker/releases/latest">View changelog </Controls:ClickableUrl>
-                            <Controls:ClickableUrl NavigateUri="{Binding AppUpateVersionInfo.DownloadUrl}">Download</Controls:ClickableUrl>
-                        </TextBlock>
-                    </StackPanel>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right" Padding="4,0,4,0">
+                            <Hyperlink Foreground="White" Command="{Binding CommandCloseNewVersionInfo}"> X </Hyperlink>
+                        </TextBlock>                       
+                    </DockPanel>
                     <WrapPanel 
                             DockPanel.Dock="Left"
                             IsEnabled="{Binding AllowCommands}"
