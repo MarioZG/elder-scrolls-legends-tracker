@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using ESLTracker.DataModel;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.Controls.Cards
 {
@@ -166,6 +167,16 @@ namespace ESLTracker.Controls.Cards
                 this as DependencyObject, 
                 new DependencyPropertyChangedEventArgs(CardNameProperty, tb.Text, tb.Text));
 
+        }
+
+        protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
+        {
+            base.OnPreviewMouseDown(e);
+            DeckOverlay window = this.FindParent<DeckOverlay>();
+            if (window != null)
+            {
+                window.DragMove();
+            }
         }
     }
 }

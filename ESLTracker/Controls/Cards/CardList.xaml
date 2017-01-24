@@ -27,8 +27,8 @@
             <DataTemplate>
                 <local:SelectCard                     
                     BorderBrush="{Binding BorderBrush}" 
-                    BorderThickness="2"
-                    Margin="0,0,0,1" 
+                    BorderThickness="1"
+                    Margin="0,0,0,0" 
                     CardInstance="{Binding}" 
                     ReadOnly="True" 
                     ShowIsPremium="False"

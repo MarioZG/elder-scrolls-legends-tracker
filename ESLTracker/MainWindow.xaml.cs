@@ -48,27 +48,33 @@ namespace ESLTracker
 
         }
 
-        internal static OverlayToolbar ot { get; set; } = new OverlayToolbar();
-
-        private static async Task UpdateOverlayAsync(Window mainWindow)
+        private static async Task UpdateOverlayAsync(MainWindow mainWindow)
         {
             IWinAPI winAPI = new WinAPI();
             mainWindow.Dispatcher.Invoke(() => {
-                ot.Show();
+                foreach (Window w in mainWindow.DataContext.OverlayWindows)
+                {
+                    w.Show();
+                }
             });
             UpdateOverlay = true;
-            bool isDisposed = false;
-            mainWindow.Dispatcher.Invoke(() => isDisposed = ot.IsDisposed());
-            while (UpdateOverlay && !isDisposed)
+            while (UpdateOverlay)
             {
                 mainWindow.Dispatcher.Invoke(() =>
-                    ot.Visibility = winAPI.IsGameActive() || ot.IsActive || mainWindow.IsActive ? Visibility.Visible : Visibility.Hidden
-                    );
+                {
+                    bool isAnyOverlayActive = mainWindow.DataContext.OverlayWindows.IsAnyActive();
+                    foreach (IOverlayWindow window in mainWindow.DataContext.OverlayWindows)
+                    {
+                        ((IOverlayWindow)window).UpdateVisibilty(winAPI.IsGameActive(), mainWindow.IsActive, isAnyOverlayActive);
+                    }
+                });
                 await Task.Delay(1000);
-                mainWindow.Dispatcher.Invoke(() => isDisposed = ot.IsDisposed());
             }
             mainWindow.Dispatcher.Invoke(() => {
-                ot.Hide();
+                foreach (Window w in mainWindow.DataContext.OverlayWindows)
+                {
+                    w.Hide();
+                }
             });
             UpdateOverlay = false;
         }
@@ -86,7 +92,8 @@ namespace ESLTracker
                 }
                 else
                 {
-                    if (MainWindow.ot.CanClose(this.DataContext.CommandExit))
+                    OverlayToolbar ot = this.DataContext.OverlayWindows.GetWindowByType<OverlayToolbar>();
+                    if (ot.CanClose(this.DataContext.CommandExit))
                     {
                         this.DataContext.Exit(true);
                     }

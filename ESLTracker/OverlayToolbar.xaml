@@ -1,9 +1,10 @@
-﻿<Window xmlns:Packs="clr-namespace:ESLTracker.Controls.Packs"  xmlns:Controls="clr-namespace:ESLTracker.Controls"  xmlns:Game="clr-namespace:ESLTracker.Controls.Game"  xmlns:Rewards="clr-namespace:ESLTracker.Controls.Rewards"  x:Class="ESLTracker.OverlayToolbar"
+﻿<base:OverlayWindowBase xmlns:Packs="clr-namespace:ESLTracker.Controls.Packs"  xmlns:Controls="clr-namespace:ESLTracker.Controls"  xmlns:Game="clr-namespace:ESLTracker.Controls.Game"  xmlns:Rewards="clr-namespace:ESLTracker.Controls.Rewards"  x:Class="ESLTracker.OverlayToolbar"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ESLTracker"
+        xmlns:base="clr-namespace:ESLTracker.Controls"
         xmlns:Properties="clr-namespace:ESLTracker.Properties"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"  Title="Game" 
@@ -28,4 +29,4 @@
         </TabControl>
 
     </StackPanel>
-</Window>
+</base:OverlayWindowBase>

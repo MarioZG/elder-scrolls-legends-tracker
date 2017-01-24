@@ -67,7 +67,10 @@
                     <MenuItem Header="Games" Command="{Binding CommandShowGamesStats}" />
                     <MenuItem Header="Ranked progress" Command="{Binding CommandShowRankedProgress}" />
                 </MenuItem>
-                <MenuItem Header="Show overlay window" Command="{Binding CommandShowOverlay}"/>
+                <MenuItem Header="Overlays">
+                    <MenuItem Command="{Binding CommandManageOverlayWindow}" CommandParameter="{x:Type local:OverlayToolbar}" IsCheckable="true" Header="Add game/reward/pack" IsChecked="{Binding OverlayWindows, Converter={Converters:ShowOverlayWindowToBool},  ConverterParameter={x:Type local:OverlayToolbar}}"/>
+                    <MenuItem Command="{Binding CommandManageOverlayWindow}" CommandParameter="{x:Type local:DeckOverlay}" IsCheckable="true" Header="Card list" IsChecked="{Binding OverlayWindows, Converter={Converters:ShowOverlayWindowToBool}, ConverterParameter={x:Type local:DeckOverlay}}"/>
+                </MenuItem>
                 <MenuItem Command="{Binding CommandRunGame}">
                     <MenuItem.Header>
                         <StackPanel Orientation="Horizontal">

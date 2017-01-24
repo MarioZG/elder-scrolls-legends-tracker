@@ -155,6 +155,7 @@
     <Compile Include="Controls\Game\RankedProgressChart.xaml.cs">
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OverlayWindowBase.cs" />
     <Compile Include="Controls\Packs\OpenPack.xaml.cs">
       <DependentUpon>OpenPack.xaml</DependentUpon>
     </Compile>
@@ -178,6 +179,9 @@
     <Compile Include="DataModel\Enums\CardType.cs" />
     <Compile Include="DataModel\ITracker.cs" />
     <Compile Include="DataModel\Pack.cs" />
+    <Compile Include="DeckOverlay.xaml.cs">
+      <DependentUpon>DeckOverlay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameStatistics.xaml.cs">
       <DependentUpon>GameStatistics.xaml</DependentUpon>
     </Compile>
@@ -192,6 +196,7 @@
     <Compile Include="Utils\Converters\InvertibleConverter.cs" />
     <Compile Include="Utils\Converters\MarkupConverter.cs" />
     <Compile Include="Utils\Converters\ObjectToBool.cs" />
+    <Compile Include="Utils\Converters\ShowOverlayWindowToBool.cs" />
     <Compile Include="Utils\Converters\ToVisibilityConverter.cs" />
     <Compile Include="Utils\Converters\VersionToVisibilty.cs" />
     <Compile Include="Utils\DeckHelper.cs" />
@@ -204,8 +209,10 @@
     <Compile Include="Utils\HTTPService.cs" />
     <Compile Include="Utils\IApplicationService.cs" />
     <Compile Include="Utils\IHTTPService.cs" />
+    <Compile Include="Utils\IOverlayWindow.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
     <Compile Include="Utils\NewVersioInfo.cs" />
+    <Compile Include="Utils\OverlayWindowRepository.cs" />
     <Compile Include="Utils\PropertiesObservableCollection.cs" />
     <Compile Include="Utils\ResourcesHelper.cs" />
     <Compile Include="Settings.cs" />
@@ -460,6 +467,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Settings\SettingsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeckOverlay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

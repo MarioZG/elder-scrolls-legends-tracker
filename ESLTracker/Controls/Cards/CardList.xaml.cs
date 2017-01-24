@@ -40,10 +40,13 @@ namespace ESLTracker.Controls.Cards
         }
 
         private void ItemsControl_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
+        {            
             ScrollViewer scv = ((DependencyObject)sender).FindParent<ScrollViewer>();
-            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
-            e.Handled = true;
+            if (scv != null)
+            {
+                scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+                e.Handled = true;
+            }
         }
     }
 }

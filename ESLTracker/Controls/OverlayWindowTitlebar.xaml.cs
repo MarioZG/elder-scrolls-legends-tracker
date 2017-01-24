@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.Controls
 {
@@ -45,7 +46,8 @@ namespace ESLTracker.Controls
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.UpdateOverlay = false;
+            var window = this.FindParent<Window>();
+            ((IOverlayWindow)window).ShowOnScreen = false;
         }
 
         private void btnCollapse_Click(object sender, RoutedEventArgs e)
@@ -53,7 +55,6 @@ namespace ESLTracker.Controls
             ToggleButton tb = sender as ToggleButton;
             if (tb != null)
             {
-                Utils.WindowExtensions.FindVisualChildren<TabControl>(this);
                 ((System.Windows.Controls.StackPanel)Window.GetWindow(this).Content).Children[1].Visibility =
                     tb.IsChecked.Value ?  Visibility.Hidden : Visibility.Visible;
                 ((System.Windows.Controls.StackPanel)Window.GetWindow(this).Content).Background =

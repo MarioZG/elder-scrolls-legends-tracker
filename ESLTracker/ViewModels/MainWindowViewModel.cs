@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -98,6 +99,8 @@ namespace ESLTracker.ViewModels
             }
         }
 
+        public OverlayWindowRepository OverlayWindows { get; set; } = new OverlayWindowRepository();
+
         #region Commands
         public ICommand CommandEditSettings
         {
@@ -175,6 +178,14 @@ namespace ESLTracker.ViewModels
             get { return new RelayCommand(new Action<object>(CommandCloseNewVersionInfoExecute)); }
         }
 
+        public ICommand CommandManageOverlayWindow
+        {
+            get
+            {
+                return new RelayCommand(new Action<object>(CommandManageOverlayWindowExecute));
+            }
+        }
+
         #endregion
 
         ITrackerFactory trackerFactory;
@@ -195,6 +206,10 @@ namespace ESLTracker.ViewModels
             messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
             messanger.Register<Utils.Messages.EditGame>(this, EditGameFinished, Utils.Messages.EditGame.Context.EditFinished);
             messanger.Register<Utils.Messages.EditSettings>(this, EditSettingsFinished, Utils.Messages.EditSettings.Context.EditFinished);
+
+            this.OverlayWindows.Add(new OverlayToolbar());
+            this.OverlayWindows.Add(new DeckOverlay());
+            this.OverlayWindows.CollectionChanged += (s, e) => RaisePropertyChangedEvent(nameof(OverlayWindows));
         }
 
         public void NotifyIconLeftClick(object parameter)
@@ -223,11 +238,12 @@ namespace ESLTracker.ViewModels
             {
                 checkIfCanClose = (bool)parameter;
             }
-            if (!checkIfCanClose || (checkIfCanClose && MainWindow.ot.CanClose(CommandExit)))
+            OverlayToolbar ot = this.OverlayWindows.GetWindowByType<OverlayToolbar>();
+            if (!checkIfCanClose || (checkIfCanClose && ot.CanClose(CommandExit)))
             {
                 trackerFactory.GetFileManager().SaveDatabase();
                 MainWindow.UpdateOverlay = false;
-                MainWindow.ot.Close();
+                ot.Close();
                 ISettings settings = trackerFactory.GetSettings();
                 settings.LastActiveDeckId = tracker.ActiveDeck?.DeckId;
                 settings.Save();
@@ -372,6 +388,13 @@ namespace ESLTracker.ViewModels
         {
             this.AppUpateVersionInfo.IsAvailable = false;
             RaisePropertyChangedEvent(nameof(AppUpateVersionInfo));
+        }
+
+        private void CommandManageOverlayWindowExecute(object obj)
+        {
+            var window = OverlayWindows.GetWindowByType((Type)obj);
+            ((IOverlayWindow)window).ShowOnScreen = !((IOverlayWindow)window).ShowOnScreen;
+            RaisePropertyChangedEvent(nameof(OverlayWindows));
         }
 
     }

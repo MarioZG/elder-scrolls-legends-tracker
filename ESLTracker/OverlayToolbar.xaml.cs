@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ESLTracker.Controls;
+using ESLTracker.Utils;
 using ESLTracker.ViewModels;
 
 namespace ESLTracker
@@ -18,7 +22,7 @@ namespace ESLTracker
     /// <summary>
     /// Interaction logic for OverlayToolbar.xaml
     /// </summary>
-    public partial class OverlayToolbar : Window
+    public partial class OverlayToolbar : OverlayWindowBase
     {
         public OverlayToolbar()
         {
@@ -47,6 +51,7 @@ namespace ESLTracker
                 this.editGame.DataContext.ErrorMessage = "There is unsaved game data. Save game before exit!  ";
                 this.editGame.DataContext.CommandExecuteWhenContinueOnError = commandExit;
                 this.editGameTab.Focus();
+                this.ShowOnScreen = true;
                 this.Show();
                 this.Activate();
                 this.Focus();
