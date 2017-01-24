@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -13,16 +14,16 @@ namespace ESLTracker.Utils.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && value is IEnumerable<DeckAttribute> && parameter != null)
+            if (value != null && value is IEnumerable && parameter != null)
             {
-                return ((IEnumerable<DeckAttribute>)value).Contains(EnumManager.ParseEnumString<DeckAttribute>(parameter.ToString()));
+                return ((IEnumerable)value).OfType<object>().Contains(parameter);
             }
             return false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return Binding.DoNothing;
         }
     }
 }

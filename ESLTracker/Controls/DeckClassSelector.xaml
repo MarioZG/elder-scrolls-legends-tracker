@@ -27,7 +27,7 @@
                       Style="{DynamicResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Strength"
-                      IsChecked="{Binding FilterButtonStateCollection, Mode=OneWay, Converter={Converters:IsInCollectionToBool}, ConverterParameter=Strength}"
+                      IsChecked="{Binding FilterButtonStateCollection, Mode=OneWay, Converter={Converters:IsInCollectionToBool}, ConverterParameter={x:Static Enums:DeckAttribute.Strength}}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
@@ -41,7 +41,7 @@
                       IsChecked="{Binding FilterButtonStateCollection, 
                                 Mode=OneWay, 
                                 Converter={Converters:IsInCollectionToBool}, 
-                                ConverterParameter=Intelligence}"
+                                ConverterParameter={x:Static Enums:DeckAttribute.Intelligence}}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
@@ -55,7 +55,7 @@
                       IsChecked="{Binding FilterButtonStateCollection, 
                                 Mode=OneWay, 
                                 Converter={Converters:IsInCollectionToBool}, 
-                                ConverterParameter=Agility}"
+                                ConverterParameter={x:Static Enums:DeckAttribute.Agility}}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
@@ -69,7 +69,7 @@
                       IsChecked="{Binding FilterButtonStateCollection, 
                                 Mode=OneWay, 
                                 Converter={Converters:IsInCollectionToBool}, 
-                                ConverterParameter=Willpower}"
+                                ConverterParameter={x:Static Enums:DeckAttribute.Willpower}}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
@@ -83,7 +83,7 @@
                       IsChecked="{Binding FilterButtonStateCollection, 
                                 Mode=OneWay, 
                                 Converter={Converters:IsInCollectionToBool}, 
-                                ConverterParameter=Endurance}"
+                                ConverterParameter={x:Static Enums:DeckAttribute.Endurance}}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
@@ -97,7 +97,7 @@
                       IsChecked="{Binding FilterButtonStateCollection, 
                                 Mode=OneWay, 
                                 Converter={Converters:IsInCollectionToBool}, 
-                                ConverterParameter=Neutral}"
+                                ConverterParameter={x:Static Enums:DeckAttribute.Neutral}}"
             >
             <StackPanel>
                 <Image Style="{DynamicResource ImageFilterClassButtonStyle}"
