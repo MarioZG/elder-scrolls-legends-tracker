@@ -65,7 +65,7 @@ namespace ESLTracker
                     bool isAnyOverlayActive = mainWindow.DataContext.OverlayWindows.IsAnyActive();
                     foreach (IOverlayWindow window in mainWindow.DataContext.OverlayWindows)
                     {
-                        ((IOverlayWindow)window).UpdateVisibilty(winAPI.IsGameActive(), mainWindow.IsActive, isAnyOverlayActive);
+                        ((IOverlayWindow)window).UpdateVisibilty(winAPI.IsGameActive(), winAPI.GetEslProcess() != null, mainWindow.IsActive, isAnyOverlayActive);
                     }
                 });
                 await Task.Delay(1000);

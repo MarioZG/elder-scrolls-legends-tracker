@@ -15,7 +15,7 @@ namespace ESLTracker.Controls
     {
 
         public abstract bool ShowOnScreen { get; set; }
-        public abstract void UpdateVisibilty(bool isGameActive, bool isMainWIndowActive, bool isOtherWindowActive);
+        public abstract void UpdateVisibilty(bool isGameActive, bool isGameProcessRunning, bool isMainWIndowActive, bool isOtherWindowActive);
 
         protected ISettings Settings = TrackerFactory.DefaultTrackerFactory.GetSettings();
 

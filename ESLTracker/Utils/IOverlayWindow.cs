@@ -8,7 +8,7 @@ namespace ESLTracker.Utils
 {
     public interface IOverlayWindow
     {
-        void UpdateVisibilty(bool isGameActive, bool isMainWIndowActive, bool isOtherWindowActive);
+        void UpdateVisibilty(bool isGameActive, bool isGameProcessRunning, bool isMainWIndowActive, bool isOtherWindowActive);
         bool ShowOnScreen { get; set; }
     }
 }
