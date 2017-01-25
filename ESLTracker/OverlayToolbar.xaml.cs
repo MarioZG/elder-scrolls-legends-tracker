@@ -24,6 +24,16 @@ namespace ESLTracker
     /// </summary>
     public partial class OverlayToolbar : OverlayWindowBase
     {
+        public override bool ShowOnScreen
+        {
+            get { return Settings.OverlayWindow_ShowOnStart; }
+            set
+            {
+                Settings.OverlayWindow_ShowOnStart = value;
+                RaisePropertyChangedEvent();
+            }
+        }
+
         public OverlayToolbar()
         {
             InitializeComponent();
@@ -34,6 +44,13 @@ namespace ESLTracker
                 this.Left = System.Windows.SystemParameters.PrimaryScreenWidth - this.Width;
                 this.Top = System.Windows.SystemParameters.PrimaryScreenHeight / 4;
             }
+        }
+
+        public override void UpdateVisibilty(bool isGameActive, bool isMainWIndowActive, bool isOtherWindowActive)
+        {
+            this.Visibility = ShowOnScreen && !this.IsDisposed() &&
+                                (isGameActive || isMainWIndowActive || isOtherWindowActive)
+                                ? Visibility.Visible : Visibility.Hidden;
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

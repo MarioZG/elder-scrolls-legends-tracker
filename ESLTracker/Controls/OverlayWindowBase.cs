@@ -6,25 +6,18 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 
 namespace ESLTracker.Controls
 {
     abstract public class OverlayWindowBase: Window,  IOverlayWindow, INotifyPropertyChanged
     {
-        protected bool showOnScreen = true;
-        public bool ShowOnScreen
-        {
-            get { return showOnScreen; }
-            set { showOnScreen = value; RaisePropertyChangedEvent(); }
-        }
 
-        public void UpdateVisibilty(bool isGameActive, bool isMainWIndowActive, bool isOtherWindowActive)
-        {
-            this.Visibility = ShowOnScreen && !this.IsDisposed() &&
-                                (isGameActive || isMainWIndowActive || isOtherWindowActive)
-                                ? Visibility.Visible : Visibility.Hidden;
-        }
+        public abstract bool ShowOnScreen { get; set; }
+        public abstract void UpdateVisibilty(bool isGameActive, bool isMainWIndowActive, bool isOtherWindowActive);
+
+        protected ISettings Settings = TrackerFactory.DefaultTrackerFactory.GetSettings();
 
         public event PropertyChangedEventHandler PropertyChanged;
 

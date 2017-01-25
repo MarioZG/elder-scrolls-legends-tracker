@@ -53,5 +53,20 @@
     <Setting Name="General_ScreenshotNameTemplate" Type="System.String" Scope="User">
       <Value Profile="(Default)">Screenshot_{0:yyyy_MM_dd_HH_mm_ss}</Value>
     </Setting>
+    <Setting Name="OverlayDeck_WindowPositionX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="OverlayDeck_WindowPositionY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="OverlayDeck_Scale" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="OverlayDeck_ShowOnStart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="OverlayWindow_ShowOnStart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

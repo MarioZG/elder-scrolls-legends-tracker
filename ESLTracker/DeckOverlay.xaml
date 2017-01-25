@@ -8,16 +8,21 @@
         xmlns:local="clr-namespace:ESLTracker"
         xmlns:Controls="clr-namespace:ESLTracker.Controls"
         xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
+        xmlns:Properties="clr-namespace:ESLTracker.Properties"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"  Title="Deck" 
         Height="622.805" Width="308.65" Topmost="True" 
         Background="{x:Null}" AllowsTransparency="True" 
-        WindowStyle="None" ShowInTaskbar="False">
+        WindowStyle="None" ShowInTaskbar="False"
+        Left="{Binding Path=OverlayDeck_WindowPositionX, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+        Top="{Binding Path=OverlayDeck_WindowPositionY, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+        >
     <StackPanel>
         <StackPanel.LayoutTransform>
             <ScaleTransform 
                 x:Name="contentScale"
-                CenterX="0" CenterY="0"
+                ScaleX="{Binding Path=OverlayDeck_Scale, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                ScaleY="{Binding Path=OverlayDeck_Scale, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
         />
         </StackPanel.LayoutTransform>
         <Controls:OverlayWindowTitlebar Title="Deck" />

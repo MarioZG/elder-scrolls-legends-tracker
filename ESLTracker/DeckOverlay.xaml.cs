@@ -23,9 +23,34 @@ namespace ESLTracker
     /// </summary>
     public partial class DeckOverlay : OverlayWindowBase
     {
+        public override bool ShowOnScreen
+        {
+            get { return Settings.OverlayDeck_ShowOnStart; }
+            set
+            {
+                Settings.OverlayDeck_ShowOnStart = value;
+                RaisePropertyChangedEvent();
+            }
+        }
+
+
         public DeckOverlay()
         {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.Manual;
+            if (this.Left == -1 || this.Top == -1)
+            {
+                //first run with clear settings
+                this.Left = System.Windows.SystemParameters.PrimaryScreenWidth - this.Width;
+                this.Top = System.Windows.SystemParameters.PrimaryScreenHeight / 4;
+            }
+        }
+
+        public override void UpdateVisibilty(bool isGameActive, bool isMainWIndowActive, bool isOtherWindowActive)
+        {
+            this.Visibility = ShowOnScreen && !this.IsDisposed() &&
+                                (isGameActive || isMainWIndowActive || isOtherWindowActive)
+                                ? Visibility.Visible : Visibility.Hidden;
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
@@ -45,8 +70,8 @@ namespace ESLTracker
             if (Keyboard.IsKeyDown(Key.LeftCtrl) ||
                 Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                contentScale.ScaleX += (args.Delta > 0) ? 0.1 : -0.1;
-                contentScale.ScaleY += (args.Delta > 0) ? 0.1 : -0.1;
+
+                TrackerFactory.DefaultTrackerFactory.GetSettings().OverlayDeck_Scale += (args.Delta > 0) ? 0.1 : -0.1;
             }
         }
     }

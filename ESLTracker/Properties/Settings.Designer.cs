@@ -226,5 +226,65 @@ namespace ESLTracker.Properties {
                 this["General_ScreenshotNameTemplate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public double OverlayDeck_WindowPositionX {
+            get {
+                return ((double)(this["OverlayDeck_WindowPositionX"]));
+            }
+            set {
+                this["OverlayDeck_WindowPositionX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public double OverlayDeck_WindowPositionY {
+            get {
+                return ((double)(this["OverlayDeck_WindowPositionY"]));
+            }
+            set {
+                this["OverlayDeck_WindowPositionY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double OverlayDeck_Scale {
+            get {
+                return ((double)(this["OverlayDeck_Scale"]));
+            }
+            set {
+                this["OverlayDeck_Scale"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool OverlayDeck_ShowOnStart {
+            get {
+                return ((bool)(this["OverlayDeck_ShowOnStart"]));
+            }
+            set {
+                this["OverlayDeck_ShowOnStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool OverlayWindow_ShowOnStart {
+            get {
+                return ((bool)(this["OverlayWindow_ShowOnStart"]));
+            }
+            set {
+                this["OverlayWindow_ShowOnStart"] = value;
+            }
+        }
     }
 }

@@ -34,6 +34,11 @@ namespace ESLTracker.Properties
         string Packs_ScreenshotNameTemplate { get; set; }
         string General_ScreenshotNameTemplate { get; set; }
 
+        double OverlayDeck_Scale { get; set; }
+
+        bool OverlayDeck_ShowOnStart { get; set; }
+        bool OverlayWindow_ShowOnStart { get; set; }
+
         void Save();
     }
 }
