@@ -47,18 +47,24 @@
         </DockPanel>
         <TabControl DockPanel.Dock="Left">
             <TabItem Header="Cards">
-                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
+                    <TextBlock 
+                        Text="No cards. Edit deck to add cards."
+                            Visibility="{Binding DataContext.CurrentVersion.Cards, ConverterParameter=not, Converter={Converters:CollectionCountToVisibility}, ElementName=deckPreview}" />
+                    <StackPanel Orientation="Horizontal"
+                            Visibility="{Binding DataContext.CurrentVersion.Cards, Converter={Converters:CollectionCountToVisibility}, ElementName=deckPreview}">
                         <local:CardBreakdown     
-                            Margin="5"
-                            Background="{x:Static SystemColors.WindowBrush}"
-                            CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckPreview}"/>
-                        <ScrollViewer
                                 Margin="5"
-                                Background="{x:Static SystemColors.WindowBrush}" >
-                            <Cards:CardList 
-                                DockPanel.Dock="Bottom"
-                                DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" />
-                        </ScrollViewer>
+                                Background="{x:Static SystemColors.WindowBrush}"
+                                CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckPreview}"/>
+                            <ScrollViewer
+                                    Margin="5"
+                                    Background="{x:Static SystemColors.WindowBrush}" >
+                                <Cards:CardList 
+                                    DockPanel.Dock="Bottom"
+                                    DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" />
+                            </ScrollViewer>
+                    </StackPanel>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Cards history">

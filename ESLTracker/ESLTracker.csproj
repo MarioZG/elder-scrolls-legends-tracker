@@ -191,6 +191,7 @@
     </Compile>
     <Compile Include="Utils\ApplicationService.cs" />
     <Compile Include="Utils\CardImagesHelper.cs" />
+    <Compile Include="Utils\Converters\CollectionCountToVisibility.cs" />
     <Compile Include="Utils\Converters\DebuggingConverter.cs" />
     <Compile Include="Utils\Converters\GameStatsRowVisibility.cs" />
     <Compile Include="Utils\Converters\InvertibleConverter.cs" />
