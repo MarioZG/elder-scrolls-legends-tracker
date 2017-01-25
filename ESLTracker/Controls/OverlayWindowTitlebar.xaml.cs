@@ -50,15 +50,20 @@ namespace ESLTracker.Controls
             ((IOverlayWindow)window).ShowOnScreen = false;
         }
 
+        private Brush originalBackgroundBrush;
         private void btnCollapse_Click(object sender, RoutedEventArgs e)
         {
             ToggleButton tb = sender as ToggleButton;
             if (tb != null)
             {
-                ((System.Windows.Controls.StackPanel)Window.GetWindow(this).Content).Children[1].Visibility =
+                if (tb.IsChecked.Value)
+                {
+                    originalBackgroundBrush = ((StackPanel)Window.GetWindow(this).Content).Background;
+                }
+                ((StackPanel)Window.GetWindow(this).Content).Children[1].Visibility =
                     tb.IsChecked.Value ?  Visibility.Hidden : Visibility.Visible;
-                ((System.Windows.Controls.StackPanel)Window.GetWindow(this).Content).Background =
-                    tb.IsChecked.Value ? null : SystemColors.ControlBrush;
+                ((StackPanel)Window.GetWindow(this).Content).Background =
+                    tb.IsChecked.Value ? null : originalBackgroundBrush;
             }
             e.Handled = false;
         }
