@@ -11,16 +11,12 @@ namespace ESLTracker.Utils
     {
         public SerializableVersion GetAssemblyVersion()
         {
-            string versionString = Assembly.GetEntryAssembly().CustomAttributes.Where(ca => ca.AttributeType == typeof(AssemblyFileVersionAttribute)).FirstOrDefault()?.ConstructorArguments?.FirstOrDefault().Value.ToString();
-            return new SerializableVersion(new Version(versionString));
+            return new SerializableVersion(new Version(GitVersionInformation.AssemblySemVer));
         }
 
         public SerializableVersion GetAssemblyInformationalVersion()
         {
-            return
-                 new SerializableVersion(new Version(
-                     String.Join(";", Assembly.GetEntryAssembly().CustomAttributes.Where(ca => ca.AttributeType == typeof(AssemblyInformationalVersionAttribute)).FirstOrDefault()?.ConstructorArguments)
-                 ));
+            return new SerializableVersion(new Version(GitVersionInformation.InformationalVersion));
         }
     }
 }
