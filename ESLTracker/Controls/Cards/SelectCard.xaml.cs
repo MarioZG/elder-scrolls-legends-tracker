@@ -55,11 +55,11 @@ namespace ESLTracker.Controls.Cards
             {
                 if (((SelectCard)d).CardInstance == null)
                 {
-                    ((SelectCard)d).CardInstance = new CardInstance(CardsDatabase.Default.FindCardByName(e.NewValue?.ToString()));
+                    ((SelectCard)d).CardInstance = new CardInstance(TrackerFactory.DefaultTrackerFactory.GetCardsDatabase().FindCardByName(e.NewValue?.ToString()));
                 }
                 else if (((SelectCard)d).CardInstance.Card?.Name != e.NewValue.ToString())
                 {
-                    ((SelectCard)d).CardInstance.Card = CardsDatabase.Default.FindCardByName(e.NewValue?.ToString());
+                    ((SelectCard)d).CardInstance.Card = TrackerFactory.DefaultTrackerFactory.GetCardsDatabase().FindCardByName(e.NewValue?.ToString());
                 }
             }
         }

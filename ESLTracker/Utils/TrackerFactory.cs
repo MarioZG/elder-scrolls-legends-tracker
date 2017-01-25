@@ -66,12 +66,16 @@ namespace ESLTracker.Utils
 
         public ICardsDatabase GetCardsDatabase()
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             return CardsDatabase.Default;
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         public IWrapperProvider GetWrapperProvider()
         {
-           return WrapperProvider.Instance;
+#pragma warning disable CS0618 // Type or member is obsolete
+            return WrapperProvider.Instance;
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         IFileManager fileManager;

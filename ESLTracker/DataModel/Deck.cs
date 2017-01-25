@@ -117,7 +117,9 @@ namespace ESLTracker.DataModel
 
         public static Deck CreateNewDeck(ITrackerFactory trackerFactory, string deckName = "")
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             Deck deck = new Deck(trackerFactory);
+#pragma warning restore CS0618 // Type or member is obsolete
             deck.CreateVersion(1, 0, trackerFactory.GetDateTimeNow());
             deck.Name = deckName;
             return deck;
@@ -267,7 +269,6 @@ namespace ESLTracker.DataModel
         /// <summary>
         /// Apply history from other deck instance. used in cancel edit on view model
         /// </summary>
-        /// <param name="savedState"></param>
         internal void CopyHistory(IEnumerable<DeckVersion> history)
         {
             if ((history == null) || (history.Count() == 0))
@@ -329,7 +330,7 @@ namespace ESLTracker.DataModel
         {
             if (obj is Deck)
             {
-                return Name.CompareTo(((Deck)obj).Name);
+                return string.Compare(Name, ((Deck)obj).Name, StringComparison.InvariantCulture);
             }
             else
             {

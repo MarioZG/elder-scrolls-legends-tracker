@@ -315,7 +315,7 @@ namespace ESLTracker.ViewModels
             result = result.OrderBy(r => r.Deck).ThenBy(r => r.DeckVersion);
 
             //add total row for all decks
-            object totalDeck = new DataModel.Deck() { Name = "TOTAL", Notes = "SUMMARYROW" };
+            object totalDeck = Deck.CreateNewDeck(trackerFactory, "TOTAL");
             var total = GamesList
                                 .GroupBy(g => g.OpponentClass)
                                 .Select(d => new
@@ -346,7 +346,7 @@ namespace ESLTracker.ViewModels
 
             //add % of opponents decks
             //add total row for all decks
-            object totalOpponentDeck = new DataModel.Deck() { Name = "Opponent class %", Notes = "SUMMARYROW" };
+            object totalOpponentDeck = Deck.CreateNewDeck(trackerFactory, "Opponent class %");
             var totalOpponents = GamesList
                                 .GroupBy(g => g.OpponentClass)
                                 .Select(d => new
