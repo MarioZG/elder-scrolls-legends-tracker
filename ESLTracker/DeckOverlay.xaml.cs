@@ -49,7 +49,7 @@ namespace ESLTracker
         public override void UpdateVisibilty(bool isGameActive, bool isMainWIndowActive, bool isOtherWindowActive)
         {
             this.Visibility = ShowOnScreen && !this.IsDisposed() &&
-                                (isGameActive || isMainWIndowActive || isOtherWindowActive)
+                                (isGameActive || this.IsActive)
                                 ? Visibility.Visible : Visibility.Hidden;
         }
 
