@@ -3,7 +3,7 @@
 		<Message Text="Updating $(RootDir)\versions.json"/>
 		<Message Text="GitVersion_AssemblySemVer: $(GitVersion_AssemblySemVer)"/>
 		<UpdateVersionJson VersionsFile="$(MSBuildProjectDirectory)\..\Build\versions.json" AppVersion="$(GitVersion_AssemblySemVer)"/>
-		<Exec IgnoreExitCode="true" WorkingDirectory="$(MSBuildProjectDirectory)" Command='"C:\Program Files\Git\cmd\git.exe" add build\versions.json"'/>
+		<Exec IgnoreExitCode="true" WorkingDirectory="$(MSBuildProjectDirectory)" Command='"C:\Program Files\Git\cmd\git.exe" add "../Build/versions.json"'/>
 		<Exec IgnoreExitCode="true" WorkingDirectory="$(MSBuildProjectDirectory)" Command='"C:\Program Files\Git\cmd\git.exe" commit -m [BUILD]updateVersions"'/>
 	</Target>
 	<UsingTask TaskName="UpdateVersionJson" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">

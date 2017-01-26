@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{200098ED
 	ProjectSection(SolutionItems) = preProject
 		Build\build.xml = Build\build.xml
 		Build\versions.json = Build\versions.json
+		Build\versions.targets = Build\versions.targets
 	EndProjectSection
 EndProject
 Global
