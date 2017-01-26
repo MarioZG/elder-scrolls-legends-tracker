@@ -1,5 +1,5 @@
 {
-    "Version": "0.3",
+    "Version": "0.4",
     "Cards": [
         {
             "id": "094f4937-e5db-8a41-e441-1905cd7a1406",
@@ -463,7 +463,7 @@
             "isunique": false,
             "type": "creature",
             "attributes": "endurance",
-            "cost": "5",
+            "cost": "6",
             "attack": "4",
             "health": "4",
             "race": "imperial",
@@ -1011,7 +1011,7 @@
             "attributes": "willpower",
             "cost": "5",
             "attack": "4",
-            "health": "4",
+            "health": "5",
             "race": "khajiit",
             "text": "Pilfer: Draw a random support from your deck."
         },
@@ -1048,7 +1048,7 @@
             "isunique": false,
             "type": "support",
             "attributes": "intelligence",
-            "cost": "2",
+            "cost": "3",
             "attack": "0",
             "health": "0",
             "race": "",
@@ -2010,7 +2010,7 @@
             "isunique": false,
             "type": "support",
             "attributes": "strength",
-            "cost": "3",
+            "cost": "4",
             "attack": "0",
             "health": "0",
             "race": "",
@@ -3948,7 +3948,7 @@
             "type": "creature",
             "attributes": "strength",
             "cost": "4",
-            "attack": "2",
+            "attack": "3",
             "health": "5",
             "race": "daedra",
             "text": "When Reive attacks, deal 2 damage to the enemy player, then increase the damage from this ability by 2."
@@ -4326,7 +4326,7 @@
             "attributes": "intelligence",
             "cost": "2",
             "attack": "2",
-            "health": "2",
+            "health": "1",
             "race": "harpy",
             "text": "Prophecy. Summon: Shackle an enemy creature."
         },
@@ -5170,7 +5170,7 @@
             "type": "creature",
             "attributes": "agility",
             "cost": "1",
-            "attack": "2",
+            "attack": "1",
             "health": "1",
             "race": "woodelf",
             "text": "Summon: Shuffle three Brotherhood Assassins into your deck."
