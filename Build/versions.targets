@@ -1,0 +1,34 @@
+<Project ToolsVersion="14.0" DefaultTargets="BuildMaster" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name='UpdateVersionsJson'>
+		<Message Text="Updating $(RootDir)\versions.json"/>
+		<Message Text="GitVersion_AssemblySemVer: $(GitVersion_AssemblySemVer)"/>
+		<UpdateVersionJson VersionsFile="$(MSBuildProjectDirectory)\..\Build\versions.json" AppVersion="$(GitVersion_AssemblySemVer)"/>
+		<Exec IgnoreExitCode="true" WorkingDirectory="$(MSBuildProjectDirectory)" Command='"C:\Program Files\Git\cmd\git.exe" add build\versions.json"'/>
+		<Exec IgnoreExitCode="true" WorkingDirectory="$(MSBuildProjectDirectory)" Command='"C:\Program Files\Git\cmd\git.exe" commit -m [BUILD]updateVersions"'/>
+	</Target>
+	<UsingTask TaskName="UpdateVersionJson" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+		<ParameterGroup>
+			<VersionsFile ParameterType="System.String" Required="true" />
+			<AppVersion ParameterType="System.String" Required="true" />
+			<!--CardsDBVersion ParameterType="System.String" Required="true" /-->
+		</ParameterGroup>
+		<Task>
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[        
+				
+var cards = System.IO.File.ReadAllText(@"$(MSBuildProjectDirectory)\\Resources\\cards.json");
+var sIndex = cards.IndexOf(@"""Version""")+@"""Version""".Length;
+sIndex = cards.IndexOf(@"""",sIndex )+1;
+var sIndexEnd = cards.IndexOf(@"""", sIndex);
+
+var cardsDBVersion = cards.Substring(sIndex, sIndexEnd - sIndex);
+
+  System.IO.File.WriteAllText(VersionsFile,string.Format(@"{{
+    ""CardsDB"": ""{0}"",
+    ""Application"" :  ""{1}""
+}}",cardsDBVersion, AppVersion));
+				]]>
+			</Code>
+		</Task>
+	</UsingTask>
+</Project>
