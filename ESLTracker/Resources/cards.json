@@ -1,5 +1,5 @@
 {
-    "Version": "0.4",
+    "Version": "0.5",
     "Cards": [
         {
             "id": "094f4937-e5db-8a41-e441-1905cd7a1406",
@@ -4654,6 +4654,19 @@
             "health": "3",
             "race": "argonian",
             "text": "Summon: +0/+2 and Guard if the top card of your deck is (Endurance)."
+        },
+        {
+            "id": "72ac5adf-fbbf-5442-14cf-ea61ea0ad69d",
+            "name": "Stampede Sentinel",
+            "rarity": "Epic",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "strength",
+            "cost": "6",
+            "attack": "7",
+            "health": "7",
+            "race": "giant",
+            "text": "Breakthrough. You can't be damaged by actions or supports."
         },
         {
             "id": "ea65383d-750c-cf79-8f18-8265b911c025",
