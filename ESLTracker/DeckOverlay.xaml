@@ -25,7 +25,7 @@
                 ScaleY="{Binding Path=OverlayDeck_Scale, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
         />
         </StackPanel.LayoutTransform>
-        <Controls:OverlayWindowTitlebar Title="Deck" />
+        <Controls:OverlayWindowTitlebar Title="Deck" Visibility="Hidden" />
         <Cards:CardList DataContext="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck.SelectedVersion.Cards}" />
     </StackPanel>
 </base:OverlayWindowBase>
