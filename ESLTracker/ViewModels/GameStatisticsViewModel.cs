@@ -164,201 +164,88 @@ namespace ESLTracker.ViewModels
 
         public override dynamic GetDataSet()
         {
-            
-            //breakdwon by deck
-            var result = GamesList
-                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = g.DeckVersion.Version, OC = g.OpponentClass })
-                        .Select(d => new
-                        {
-                            Deck = d.Key.D,
-                            DeckVersion = d.Key.VS,
-                            Opp = ClassAttributesHelper.Classes[d.Key.OC.Value].ToString(),
-                            Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
-                                "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-                            WinPerc =  (double)d.Where( g=> g.Outcome == GameOutcome.Victory).Count()/ d.Count() * 100,
-                        });
+
+            //breakdawn  by deck
+            var result = GetBreakDownByDeck(
+                            (g) => GetPropertyValue(g, GroupBy),
+                            (g) => g.DeckVersion.Version,
+                            (g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString());
             //add totoal for deck
             result = result.Union(
-                GamesList.GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = TOTAL_ROW_VERSION, OC = g.OpponentClass })
-                        .Select(d => new
-                        {
-                            Deck = d.Key.D,
-                            DeckVersion = d.Key.VS,
-                            Opp = ClassAttributesHelper.Classes[d.Key.OC.Value].ToString(),
-                            Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
-                                "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-                            WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory).Count() / d.Count() * 100,
-                        })
-                        );
+                        GetBreakDownByDeck(
+                            (g) => GetPropertyValue(g, GroupBy),
+                            (g) => TOTAL_ROW_VERSION,
+                            (g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString()));
+
             //union totoal for all deck versoons
             result = result.Union(
-                            GamesList
-                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = TOTAL_ROW_VERSION })
-                                .Select(d => new
-                                {
-                                    Deck = d.Key.D,
-                                    DeckVersion = d.Key.VS,
-                                    Opp = "Total",
-                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
-                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory).Count() / d.Count() * 100
-                                })
-                        );
+                         GetBreakDownByDeck(
+                            (g) => GetPropertyValue(g, GroupBy),
+                            (g) => TOTAL_ROW_VERSION,
+                            (g) => "Total"));
+
 
             //union totoal for each deck version
             result = result.Union(
-                            GamesList
-                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = g.DeckVersion.Version })
-                                .Select(d => new
-                                {
-                                    Deck = d.Key.D,
-                                    DeckVersion = d.Key.VS,
-                                    Opp = "Total",
-                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
-                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory).Count() / d.Count() * 100
-                                })
-                        );
+                         GetBreakDownByDeck(
+                            (g) => GetPropertyValue(g, GroupBy),
+                            (g) => g.DeckVersion.Version,
+                            (g) => "Total"));
 
-            #region first-second ration and wins for deck versions
-            //add % of gaames you went first
-            result = result.Union(
-                            GamesList
-                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = g.DeckVersion.Version })
-                                .Select(d => new
-                                {
-                                    Deck = d.Key.D,
-                                    DeckVersion = d.Key.VS,
-                                    Opp = "First-Second",
-                                    Win = d.Where(d2 => d2.OrderOfPlay == OrderOfPlay.First).Count() +
-                                        "-" + d.Where(d2 => d2.OrderOfPlay == OrderOfPlay.Second).Count(),
-                                    WinPerc = (double)d.Where(g => g.OrderOfPlay == OrderOfPlay.First).Count() / d.Count() * 100
-                                })
-                        );
+            result = FirstSecondStats(
+                         result,
+                         (g) => g.DeckVersion.Version);
 
-            //add % of wins  you went first
-            result = result.Union(
-                            GamesList
-                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = g.DeckVersion.Version })
-                                .Select(d => new
-                                {
-                                    Deck = d.Key.D,
-                                    DeckVersion = d.Key.VS,
-                                    Opp = "FirstWin",
-                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory && d2.OrderOfPlay == OrderOfPlay.First).Count() +
-                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat && d2.OrderOfPlay == OrderOfPlay.First).Count(),
-                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory && g.OrderOfPlay == OrderOfPlay.First).Count() / d.Where(g => g.OrderOfPlay == OrderOfPlay.First).Count() * 100
-                                })
-                        );
-            //add % of wins you went second
-            result = result.Union(
-                            GamesList
-                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = g.DeckVersion.Version })
-                                .Select(d => new
-                                {
-                                    Deck = d.Key.D,
-                                    DeckVersion = d.Key.VS,
-                                    Opp = "SecondWin",
-                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory && d2.OrderOfPlay == OrderOfPlay.Second).Count() +
-                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat && d2.OrderOfPlay == OrderOfPlay.Second).Count(),
-                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory && g.OrderOfPlay == OrderOfPlay.Second).Count() / d.Where( g=> g.OrderOfPlay == OrderOfPlay.Second).Count() * 100
-                                })
-                        );
-            #endregion
-
-            #region first-second ration and wins for deck total
-            //add % of gaames you went first
-            result = result.Union(
-                            GamesList
-                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = TOTAL_ROW_VERSION })
-                                .Select(d => new
-                                {
-                                    Deck = d.Key.D,
-                                    DeckVersion = d.Key.VS,
-                                    Opp = "First-Second",
-                                    Win = d.Where(d2 => d2.OrderOfPlay == OrderOfPlay.First).Count() +
-                                        "-" + d.Where(d2 => d2.OrderOfPlay == OrderOfPlay.Second).Count(),
-                                    WinPerc = (double)d.Where(g => g.OrderOfPlay == OrderOfPlay.First).Count() / d.Count() * 100
-                                })
-                        );
-
-            //add % of wins  you went first
-            result = result.Union(
-                            GamesList
-                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = TOTAL_ROW_VERSION })
-                                .Select(d => new
-                                {
-                                    Deck = d.Key.D,
-                                    DeckVersion = d.Key.VS,
-                                    Opp = "FirstWin",
-                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory && d2.OrderOfPlay == OrderOfPlay.First).Count() +
-                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat && d2.OrderOfPlay == OrderOfPlay.First).Count(),
-                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory && g.OrderOfPlay == OrderOfPlay.First).Count() / d.Where(g => g.OrderOfPlay == OrderOfPlay.First).Count() * 100
-                                })
-                        );
-            //add % of wins you went second
-            result = result.Union(
-                            GamesList
-                                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = TOTAL_ROW_VERSION })
-                                .Select(d => new
-                                {
-                                    Deck = d.Key.D,
-                                    DeckVersion = d.Key.VS,
-                                    Opp = "SecondWin",
-                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory && d2.OrderOfPlay == OrderOfPlay.Second).Count() +
-                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat && d2.OrderOfPlay == OrderOfPlay.Second).Count(),
-                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory && g.OrderOfPlay == OrderOfPlay.Second).Count() / d.Where(g => g.OrderOfPlay == OrderOfPlay.Second).Count() * 100
-                                })
-                        );
-            #endregion
+            //add % of games you went first
+            result = FirstSecondStats(
+                         result,
+                         (g) => TOTAL_ROW_VERSION);
 
             result = result.OrderBy(r => r.Deck).ThenBy(r => r.DeckVersion);
 
             //add total row for all decks
             object totalDeck = Deck.CreateNewDeck(trackerFactory, "TOTAL");
-            var total = GamesList
-                                .GroupBy(g => g.OpponentClass)
-                                .Select(d => new
-                                {
-                                    Deck = totalDeck,
-                                    DeckVersion = TOTAL_ROW_VERSION,
-                                    Opp = ClassAttributesHelper.Classes[d.Key.Value].ToString(),
-                                    Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
-                                            "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-                                    WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory).Count() / d.Count() * 100
-                                });
+
             result = result.Union(
-                          total 
-                        )
-                        //totoal for toal row
-                        .Union(
-                            GamesList
-                                .Select(d => new
-                                {
-                                    Deck = totalDeck,
-                                    DeckVersion = TOTAL_ROW_VERSION,
-                                    Opp = "Total",
-                                    Win = GamesList.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
-                                        "-" + GamesList.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-                                    WinPerc = (double)GamesList.Where(g => g.Outcome == GameOutcome.Victory).Count() / GamesList.Count() * 100
-                                })
-                        );
+                         GetBreakDownByDeck(
+                            (g) => totalDeck,
+                            (g) => TOTAL_ROW_VERSION,
+                            (g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString()));
+
+            //totoal for toal row
+            result = result.Union(
+                        GetBreakDownByDeck(
+                            (g) => totalDeck,
+                            (g) => TOTAL_ROW_VERSION,
+                            (g) => "Total"));
 
             //add % of opponents decks
             //add total row for all decks
             object totalOpponentDeck = Deck.CreateNewDeck(trackerFactory, "Opponent class %");
-            var totalOpponents = GamesList
-                                .GroupBy(g => g.OpponentClass)
-                                .Select(d => new
-                                {
-                                    Deck = totalOpponentDeck,
-                                    DeckVersion = TOTAL_ROW_VERSION,
-                                    Opp = ClassAttributesHelper.Classes[d.Key.Value].ToString(),
-                                    Win = Math.Round((double)d.Count() / GamesList.Count() * 100).ToString() ,
-                                    WinPerc = (double)d.Count() / GamesList.Count() * 100,
-                                });
+
+            var totalOpponents = GetBreakDownByOpponentClass(
+                                    (g) => totalOpponentDeck,
+                                    (g) => TOTAL_ROW_VERSION,
+                                    (g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString());
+
             result = result.Union(totalOpponents);
 
+            CreateOpponentHeatMapData(totalOpponents);
+
+            return result.ToPivotTable2(
+                            item => item.Opp,
+                            item => new { item.Deck, item.DeckVersion },
+                            items => items.Any() ?
+                                    (valueToShow == "Win" ?
+                                            items.First().Win :
+                                            (!double.IsNaN(items.First().WinPerc) ? Math.Round(items.First().WinPerc, 0).ToString() : "")
+                                    )
+                                 : "");
+
+        }
+
+        private void CreateOpponentHeatMapData(IEnumerable<DeckStatsDataRecord> totalOpponents)
+        {
             opponentClassHeatMap = new ChartValues<HeatPoint>();
 
             foreach (var r in totalOpponents)
@@ -369,19 +256,112 @@ namespace ESLTracker.ViewModels
                 DeckAttribute da2 = (da.Count > 1 ? da[1] : da[0]);
                 opponentClassHeatMap.Add(new HeatPoint((int)da1, (int)da2, Int32.Parse(r.Win)));
             }
+        }
 
-            //new ListCollectionView
+        private IEnumerable<DeckStatsDataRecord> FirstSecondStats(
+            IEnumerable<DeckStatsDataRecord> result,
+            Func<DataModel.Game, SerializableVersion> groupByVersion)
+        {
+            //add % of gaames you went first
+            result = result.Union(
+                         GetFirstSecondData(
+                            groupByVersion,
+                            (g) => "First-Second"));
 
-            return result.ToPivotTable2(
-                            item => item.Opp,
-                            item => new { item.Deck, item.DeckVersion },
-                            items => items.Any() ? 
-                                    (valueToShow == "Win" ? 
-                                            items.First().Win : 
-                                            (! double.IsNaN(items.First().WinPerc) ? Math.Round(items.First().WinPerc,0).ToString() : "")
-                                    )
-                                 : "");
+            //add % of wins  you went first
+            result = result.Union(
+                         GetFirstSecondWinrateData(
+                             OrderOfPlay.First,
+                            groupByVersion,
+                            (g) => "FirstWin"));
 
+            //add % of wins you went second
+            result = result.Union(
+                         GetFirstSecondWinrateData(
+                             OrderOfPlay.Second,
+                            groupByVersion,
+                            (g) => "SecondWin"));
+            return result;
+        }
+
+        private struct DeckStatsDataRecord
+        {
+            public object Deck;
+            public SerializableVersion DeckVersion;
+            public string Opp;
+            public string Win;
+            public double WinPerc;
+        }
+
+        private IEnumerable<DeckStatsDataRecord> GetBreakDownByDeck(
+            Func<DataModel.Game, object> groupByDeck,
+            Func<DataModel.Game,SerializableVersion> groupByVersion,
+            Func<DataModel.Game, string> groupByOpponnetClass)
+        {
+            return GamesList
+                .GroupBy(g => new { D = groupByDeck(g), VS = groupByVersion(g), OC = groupByOpponnetClass(g) })
+                        .Select(d => new DeckStatsDataRecord
+                        {
+                            Deck = d.Key.D,
+                            DeckVersion = d.Key.VS,
+                            Opp = d.Key.OC,
+                            Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() +
+                                "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
+                            WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory).Count() / d.Count() * 100,
+                        });
+        }
+
+        private IEnumerable<DeckStatsDataRecord> GetBreakDownByOpponentClass(
+            Func<DataModel.Game, object> groupByDeck,
+            Func<DataModel.Game, SerializableVersion> groupByVersion,
+            Func<DataModel.Game, string> groupByOpponnetClass)
+        {
+            return GamesList
+                .GroupBy(g => new { D = groupByDeck(g), VS = groupByVersion(g), OC = groupByOpponnetClass(g) })
+                        .Select(d => new DeckStatsDataRecord
+                        {
+                            Deck = d.Key.D,
+                            DeckVersion = d.Key.VS,
+                            Opp = d.Key.OC,
+                            Win = Math.Round((double)d.Count() / GamesList.Count() * 100).ToString(),
+                            WinPerc = (double)d.Count() / GamesList.Count() * 100,
+                        });
+        }
+
+
+        private IEnumerable<DeckStatsDataRecord> GetFirstSecondData(
+           Func<DataModel.Game, SerializableVersion> groupByVersion,
+           Func<DataModel.Game, string> groupByOpponnetClass)
+        {
+            return GamesList
+                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = groupByVersion(g), OC = groupByOpponnetClass(g) })
+                        .Select(d => new DeckStatsDataRecord
+                        {
+                            Deck = d.Key.D,
+                            DeckVersion = d.Key.VS,
+                            Opp = d.Key.OC,
+                            Win = d.Where(d2 => d2.OrderOfPlay == OrderOfPlay.First).Count() +
+                                        "-" + d.Where(d2 => d2.OrderOfPlay == OrderOfPlay.Second).Count(),
+                            WinPerc = (double)d.Where(g => g.OrderOfPlay == OrderOfPlay.First).Count() / d.Count() * 100
+                        });
+        }
+
+        private IEnumerable<DeckStatsDataRecord> GetFirstSecondWinrateData(
+                OrderOfPlay orderOfPlay,
+                Func<DataModel.Game, SerializableVersion> groupByVersion,
+                Func<DataModel.Game, string> groupByOpponnetClass)
+        {
+            return GamesList
+                .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = groupByVersion(g), OC = groupByOpponnetClass(g) })
+                        .Select(d => new DeckStatsDataRecord
+                        {
+                            Deck = d.Key.D,
+                            DeckVersion = d.Key.VS,
+                            Opp = d.Key.OC,
+                            Win = d.Where(d2 => d2.Outcome == GameOutcome.Victory && d2.OrderOfPlay == orderOfPlay).Count() +
+                                        "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat && d2.OrderOfPlay == orderOfPlay).Count(),
+                            WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory && g.OrderOfPlay == orderOfPlay).Count() / d.Where(g => g.OrderOfPlay == OrderOfPlay.First).Count() * 100
+                        });
         }
     }
 }
