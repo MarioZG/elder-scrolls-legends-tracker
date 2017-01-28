@@ -40,7 +40,9 @@ namespace ESLTrackerTests
                 { typeof(DeckAttributes), new DeckAttributes() { DeckAttribute.Intelligence } },
                 { typeof(DeckClass?), DeckClass.Crusader },
                 { typeof(DateTime), DateTime.Now },
+#pragma warning disable CS0618 // Type or member is obsolete
                 { typeof(Deck), new Deck()},
+#pragma warning restore CS0618 // Type or member is obsolete
                 { typeof(GameType?), GameType.SoloArena},
                 { typeof(bool?), true},
                 { typeof(bool), true},
@@ -67,7 +69,9 @@ namespace ESLTrackerTests
                 { typeof(DeckAttributes), new DeckAttributes() { DeckAttribute.Endurance, DeckAttribute.Strength } },
                 { typeof(DeckClass?), DeckClass.Monk },
                 { typeof(DateTime), DateTime.Now.AddDays(-4) },
+#pragma warning disable CS0618 // Type or member is obsolete
                 { typeof(Deck), new Deck()},
+#pragma warning restore CS0618 // Type or member is obsolete
                 { typeof(GameType?), GameType.PlayCasual},
                 { typeof(bool?), false},
                 { typeof(bool), false},

@@ -244,7 +244,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        public async Task SaveScreenShot(string fileName)
+        public Task SaveScreenShot(string fileName)
         {
             IntPtr? eslHandle = trackerfactory.GetWinAPI().GetEslProcess()?.MainWindowHandle;
             if (eslHandle.HasValue)
@@ -259,9 +259,9 @@ namespace ESLTracker.Utils
                 Graphics gfxBmp = Graphics.FromImage(bmp);
 
                 List<Window> hiddenWindows = new List<Window>();
-                App.Current.Dispatcher.Invoke(() =>
+                Application.Current.Dispatcher.Invoke(() =>
                 {
-                    foreach (Window w in App.Current.Windows)
+                    foreach (Window w in Application.Current.Windows)
                     {
                         // System.Diagnostics.Debugger.Log(1, "", "w"+ w.Title);
                         // System.Diagnostics.Debugger.Log(1, "", "  w.IsActive" + w.IsActive);
@@ -302,6 +302,8 @@ namespace ESLTracker.Utils
                 gfxBmp.Dispose();
 
             }
+
+            return Task.FromResult<object>(null);
         }
 
         internal bool UpdateFile()
