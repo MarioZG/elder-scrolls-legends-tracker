@@ -151,7 +151,7 @@ namespace ESLTracker.ViewModels
                     FilteredClasses.Insert(i, dc);
                 }
             }
-            messenger.Send(new DeckListFilterChanged(DeckListFilterChanged.Source.ClassFilter, null, null, SelectedClass, FilteredClasses), MessangerContext);
+            messenger.Send(new DeckListFilterChanged(DeckListFilterChanged.Source.ClassFilter, null, null, null, SelectedClass, FilteredClasses), MessangerContext);
         }
 
         public void Reset()

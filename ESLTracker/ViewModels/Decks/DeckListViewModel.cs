@@ -20,6 +20,7 @@ namespace ESLTracker.ViewModels.Decks
             DeckListFilterChanged.Source.Unknown, 
             null, 
             false, 
+            false,
             null,
             ClassAttributesHelper.Classes.Keys.ToList()); //default to all classes
 
@@ -59,6 +60,7 @@ namespace ESLTracker.ViewModels.Decks
                 DeckListFilterChanged.Source.Unknown,
                 obj.ChangeSource ==  DeckListFilterChanged.Source.TypeFilter ? obj.FilteredTypes :  lastDeckFilter.FilteredTypes,
                 obj.ChangeSource == DeckListFilterChanged.Source.TypeFilter ? obj.ShowFInishedArenaRuns: lastDeckFilter.ShowFInishedArenaRuns,
+                obj.ChangeSource == DeckListFilterChanged.Source.TypeFilter ? obj.ShowHiddenDecks : lastDeckFilter.ShowHiddenDecks,
                 obj.ChangeSource == DeckListFilterChanged.Source.ClassFilter ? obj.SelectedClass : lastDeckFilter.SelectedClass, 
                 obj.ChangeSource == DeckListFilterChanged.Source.ClassFilter ? obj.FilteredClasses : lastDeckFilter.FilteredClasses);
 
@@ -74,6 +76,7 @@ namespace ESLTracker.ViewModels.Decks
                     tracker.Decks,
                     this.lastDeckFilter.FilteredTypes,
                     this.lastDeckFilter.ShowFInishedArenaRuns,
+                    this.lastDeckFilter.ShowHiddenDecks,
                     this.lastDeckFilter.SelectedClass,
                     this.lastDeckFilter.FilteredClasses)
                 .All(d => { FilteredDecks.Add(d); return true; });
@@ -92,6 +95,7 @@ namespace ESLTracker.ViewModels.Decks
             IEnumerable<Deck> deckBase,
             IEnumerable<DeckType> filteredTypes,
             bool showCompletedArenaRuns,
+            bool showHiddenDecks,
             DeckClass? selectedClass,
             IEnumerable<DeckClass> filteredClasses)
         {
@@ -103,6 +107,7 @@ namespace ESLTracker.ViewModels.Decks
                     (d.Class == selectedClass)
                     && ((filteredTypes == null) || (filteredTypes.Contains(d.Type)))
                     && ((showCompletedArenaRuns) || (! d.IsArenaRunFinished()))
+                    && ((showHiddenDecks) || (!d.IsHidden))
                     );
                 return filteredList;
             }
@@ -114,6 +119,7 @@ namespace ESLTracker.ViewModels.Decks
                     && (filteredClasses == null || filteredClasses.Contains(d.Class.Value))
                     && ((filteredTypes == null) || (filteredTypes.Contains(d.Type)))
                     && ((showCompletedArenaRuns) || (!d.IsArenaRunFinished()))
+                    && ((showHiddenDecks) || (!d.IsHidden))
                     );
                 return filteredList;
             }

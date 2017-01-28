@@ -89,6 +89,8 @@ namespace ESLTracker.DataModel
             }
         }
 
+        public bool IsHidden { get; set; }
+
         private ITrackerFactory trackerFactory; //cannot be ITracker, as we need to load it first - stack overflow when database is loading
 
         [Obsolete("Use static CreateNewDeck instead. This is public  if for serialization purpose only")]

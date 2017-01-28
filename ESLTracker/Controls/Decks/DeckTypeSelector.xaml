@@ -29,12 +29,20 @@
                       CommandParameter="SoloArena"
                       IsChecked="{Binding FilterButtonState[DeckAttribute.SoloArena]}"/>
     </UniformGrid>
-        <CheckBox HorizontalAlignment="Right" Content="Show completed arena runs"
+        <DockPanel>
+            <CheckBox DockPanel.Dock="Left" Content="Hidden decks"
+                  IsChecked="{Binding ShowHiddenDecks}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox DockPanel.Dock="Left" HorizontalAlignment="Right"  Content="Completed arena runs"
                   IsChecked="{Binding ShowCompletedArenaRuns}">
-            <CheckBox.LayoutTransform>
-                <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
-            </CheckBox.LayoutTransform>
-        </CheckBox>
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </DockPanel>
     </StackPanel>
 
 </UserControl>

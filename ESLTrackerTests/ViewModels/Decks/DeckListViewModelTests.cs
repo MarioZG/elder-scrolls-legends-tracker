@@ -32,13 +32,14 @@ namespace ESLTracker.ViewModels.Decks.Tests
             //init some random classes
             DeckBase = new List<Deck>()
             {
-                new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Agility },
+#pragma warning disable CS0618 // Type or member is obsolete
+                new Deck(trackerFactory.Object) {IsHidden = true, Type = DeckType.Constructed, Class = DeckClass.Agility },
                 new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Archer },
+                new Deck(trackerFactory.Object) {IsHidden = true,Type = DeckType.Constructed, Class = DeckClass.Assassin },
                 new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Assassin },
-                new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Assassin },
-                new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Assassin },
+                new Deck(trackerFactory.Object) {IsHidden = true,Type = DeckType.Constructed, Class = DeckClass.Assassin },
                 new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Battlemage},
-                new Deck(trackerFactory.Object) {Type = DeckType.Constructed, Class = DeckClass.Endurance },
+                new Deck(trackerFactory.Object) {IsHidden = true,Type = DeckType.Constructed, Class = DeckClass.Endurance },
                 new Deck(trackerFactory.Object) {Type = DeckType.SoloArena, Class = DeckClass.Monk },
                 new Deck(trackerFactory.Object) {Type = DeckType.SoloArena, Class = DeckClass.Mage },
                 new Deck(trackerFactory.Object) {Type = DeckType.SoloArena, Class = DeckClass.Mage },
@@ -47,12 +48,15 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 new Deck(trackerFactory.Object) {Type = DeckType.VersusArena, Class = DeckClass.Spellsword },
                 new Deck(trackerFactory.Object) {Type = DeckType.VersusArena, Class = DeckClass.Strength },
                 new Deck(trackerFactory.Object) {Type = DeckType.VersusArena, Class = DeckClass.Willpower }
+#pragma warning restore CS0618 // Type or member is obsolete
             };
 
             //add each class once
             foreach (DeckClass dc in Enum.GetValues(typeof(DeckClass)))
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 DeckBase.Add(new Deck() { Class = dc });
+#pragma warning restore CS0618 // Type or member is obsolete
             }
         }
 
@@ -90,7 +94,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
             IEnumerable<Deck> result = model.FilterDeckList(
                 DeckBase, 
                 null, 
-                false, 
+                false,
+                false,
                 selectedClass, 
                 filteredClasses);
 
@@ -122,6 +127,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 DeckBase,
                 null,
                 false,
+                false,
                 selectedClass,
                 filteredClasses);
 
@@ -150,6 +156,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             IEnumerable<Deck> result = model.FilterDeckList(
                 DeckBase,
                 null,
+                false,
                 false,
                 selectedClass,
                 filteredClasses);
@@ -180,6 +187,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 DeckBase,
                 null,
                 false,
+                false,
                 selectedClass,
                 filteredClasses);
 
@@ -195,6 +203,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 DeckBase,
                 null,
                 false,
+                true,
                 selectedClass,
                 filteredClasses);
 
@@ -214,7 +223,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
             IEnumerable<Deck> result = model.FilterDeckList(
                 DeckBase, 
                 filteredTypes,
-                false, 
+                false,
+                false,
                 null,
                 Utils.ClassAttributesHelper.Classes.Keys);
 
@@ -238,7 +248,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
             IEnumerable<Deck> result = model.FilterDeckList(
                 DeckBase, 
                 filteredTypes, 
-                false, 
+                false,
+                false,
                 classFilter, 
                 filteredClasses);
 
@@ -304,6 +315,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 new Deck[] { deckToShow, deckToHide },
                 filteredTypes, 
                 showCompletedArenaRuns,
+                false,
                 selectedClass, 
                 filteredClasses);
 
@@ -344,12 +356,55 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 new Deck[] { deckToShow, deckToHide },
                 filteredTypes,
                 showCompletedArenaRuns,
+                false,
                 selectedClass,
                 filteredClasses);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(deckToShow.DeckId, result.First().DeckId);
 
+        }
+
+        [TestMethod()]
+        public void FilterDeckListTest009_FilterExcludeHiddenDecks()
+        {
+            List<DeckType> typeFilter = new List<DeckType>() { DeckType.Constructed };
+            var filteredTypes = new ObservableCollection<DeckType>(typeFilter);
+
+            int expectedCount = 19;
+
+            DeckListViewModel model = new DeckListViewModel();
+
+            IEnumerable<Deck> result = model.FilterDeckList(
+                DeckBase,
+                filteredTypes,
+                false,
+                false,
+                null,
+                null);
+
+            Assert.AreEqual(expectedCount, result.Count());
+        }
+
+        [TestMethod()]
+        public void FilterDeckListTest010_FilterIncludeHiddenDecks()
+        {
+            List<DeckType> typeFilter = new List<DeckType>() { DeckType.Constructed };
+            var filteredTypes = new ObservableCollection<DeckType>(typeFilter);
+
+            int expectedCount = 23;
+
+            DeckListViewModel model = new DeckListViewModel();
+
+            IEnumerable<Deck> result = model.FilterDeckList(
+                DeckBase,
+                filteredTypes,
+                false,
+                true,
+                null,
+                null);
+
+            Assert.AreEqual(expectedCount, result.Count());
         }
     }
 }
