@@ -45,6 +45,7 @@
                         <ComboBoxItem Content="Victory-Defeat" Tag="Win"/>
                         <ComboBoxItem Content="Victory %" Tag="WinPerc"/>
                     </ComboBox>
+                    <CheckBox Content="Include hidden decks" IsChecked="{Binding IncludeHiddenDecks}" />
                 </StackPanel>
                 <DataGrid 
                 x:Name="dataGrid"

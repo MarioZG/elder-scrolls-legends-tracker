@@ -60,7 +60,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -77,6 +79,7 @@
     <Compile Include="ReferenceComparer.cs" />
     <Compile Include="SettingsTests.cs" />
     <Compile Include="TypeExtensions.cs" />
+    <Compile Include="GenerateFileTest.cs" />
     <Compile Include="Utils\CardsDatabaseTests.cs" />
     <Compile Include="Utils\ClassAttributesHelperTests.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyConverterTests.cs" />

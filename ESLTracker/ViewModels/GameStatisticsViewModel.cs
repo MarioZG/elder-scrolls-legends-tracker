@@ -93,6 +93,15 @@ namespace ESLTracker.ViewModels
             set { valueToShow = value; RaiseDataPropertyChange(); }
         }
 
+        private bool includeHiddenDecks;
+
+        public bool IncludeHiddenDecks
+        {
+            get { return includeHiddenDecks; }
+            set { includeHiddenDecks = value; RaiseDataPropertyChange(); }
+        }
+
+
         private ChartValues<HeatPoint> opponentClassHeatMap;
         public ChartValues<HeatPoint> OpponentClassHeatMap
         {
@@ -146,6 +155,7 @@ namespace ESLTracker.ViewModels
                         && (g.Type == this.gameType)
                         && ((filterDateFrom == null) || (g.Date.Date >= filterDateFrom.Value.Date))
                         && ((FilterDateTo == null) || (g.Date.Date <= FilterDateTo.Value.Date))
+                        && ((includeHiddenDecks) || (! g.Deck.IsHidden))
                         );
             }
         }
