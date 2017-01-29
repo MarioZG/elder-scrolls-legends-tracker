@@ -12,6 +12,7 @@ using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.DataModel
 {
+    [DebuggerDisplay("{DebuggerInfo}")]
     public class Deck : ViewModels.ViewModelBase, ICloneable, IEquatable<Deck>, IComparable
     {
         public Guid DeckId { get; set; }
@@ -86,6 +87,14 @@ namespace ESLTracker.DataModel
             get
             {
                 return this.History.Where( dh => dh.VersionId == this.selectedVersionId).FirstOrDefault();
+            }
+        }
+
+        public string DebuggerInfo
+        {
+            get
+            {
+                return string.Format("Name={0};SelectedVersion={1:mm};", Name, SelectedVersion.Version);
             }
         }
 

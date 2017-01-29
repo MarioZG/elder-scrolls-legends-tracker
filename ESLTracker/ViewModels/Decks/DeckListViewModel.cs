@@ -24,6 +24,17 @@ namespace ESLTracker.ViewModels.Decks
             null,
             ClassAttributesHelper.Classes.Keys.ToList()); //default to all classes
 
+        public Deck SelectedDeck
+        {
+            get {
+                return tracker.ActiveDeck;
+            }
+            set
+            {
+                tracker.ActiveDeck = value;
+            }
+        }
+
         IMessenger messanger;
         ITracker tracker;
 
@@ -38,6 +49,20 @@ namespace ESLTracker.ViewModels.Decks
             get { return new RelayCommand(new Action<object>(CommandEditDeckExecute)); }
         }
 
+        public ICommand CommandHideDeck
+        {
+            get { return new RelayCommand(
+                CommandHideDeckExecute,
+                CommandHideDeckCanExecute); }
+        }
+
+        public ICommand CommandUnHideDeck
+        {
+            get { return new RelayCommand(
+                CommandUnHideDeckExecute,
+                CommandUnHideDeckCanExecute); }
+        }
+        
         public DeckListViewModel() : this (new TrackerFactory())
         {
         }
@@ -144,6 +169,48 @@ namespace ESLTracker.ViewModels.Decks
         private void EditDeckFinished(EditDeck obj)
         {
             ApplyFilter();
+        }
+
+        private void CommandHideDeckExecute(object obj)
+        {
+            if (SelectedDeck != null)
+            {
+                SelectedDeck.IsHidden = true;
+                ApplyFilter();
+            }
+        }
+
+        private bool CommandHideDeckCanExecute(object arg)
+        {
+            if (SelectedDeck != null)
+            {
+                return !SelectedDeck.IsHidden;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void CommandUnHideDeckExecute(object arg)
+        {
+            if (SelectedDeck != null)
+            {
+                SelectedDeck.IsHidden = false;
+                ApplyFilter();
+            }
+        }
+
+        private bool CommandUnHideDeckCanExecute(object arg)
+        {
+            if (SelectedDeck != null)
+            {
+                return SelectedDeck.IsHidden;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

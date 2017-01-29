@@ -16,12 +16,14 @@
         <local:DeckFilter x:Name="deckFilter" HorizontalAlignment="Stretch" DockPanel.Dock="Top"/>
         <ListBox x:Name="listBox"
                  ScrollViewer.VerticalScrollBarVisibility="Visible"
-                 SelectedItem="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}"
+                 SelectedItem="{Binding SelectedDeck}"
                  ItemsSource="{Binding FilteredDecks, Mode=TwoWay}"
                  >
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Edit" Command="{Binding CommandEditDeck}" />
+                    <MenuItem Header="Edit" Command="{Binding CommandEditDeck}" CommandParameter="{Binding SelectedDeck}"/>
+                    <MenuItem Header="Hide" Command="{Binding CommandHideDeck}"/>
+                    <MenuItem Header="Unhide" Command="{Binding CommandUnHideDeck}"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
             <ListBox.ItemContainerStyle>
