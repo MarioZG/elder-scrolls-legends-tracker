@@ -111,7 +111,7 @@
                         </DataGridTemplateColumn>
                         <DataGridTextColumn CanUserSort="False" Binding="{Binding Total}"/>
                         <DataGridTextColumn Visibility="Collapsed" x:Name="classColumnsPlaceholder" />
-                        <DataGridTextColumn Header="1st-2nd" CanUserSort="False" Binding="{Binding First-Second}" />
+                        <DataGridTextColumn Header="1st-2nd" CanUserSort="False" Binding="{Binding First_Second}" />
                         <DataGridTextColumn Header="1st % wins" CanUserSort="False" Binding="{Binding FirstWin}" />
                         <DataGridTextColumn Header="2nd % wins" CanUserSort="False" Binding="{Binding SecondWin}" />                        
                     </DataGrid.Columns>

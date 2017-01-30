@@ -242,16 +242,41 @@ namespace ESLTracker.ViewModels
 
             CreateOpponentHeatMapData(totalOpponents);
 
-            return result.ToPivotTable2(
-                            item => item.Opp,
-                            item => new { item.Deck, item.DeckVersion },
-                            items => items.Any() ?
-                                    (valueToShow == "Win" ?
-                                            items.First().Win :
-                                            (!double.IsNaN(items.First().WinPerc) ? Math.Round(items.First().WinPerc, 0).ToString() : "")
-                                    )
-                                 : "");
 
+            return result.GroupBy(r => new { r.Deck, r.DeckVersion })
+                .Select(r=> new
+                {
+                    Deck = r.Key.Deck,
+                    DeckVersion = r.Key.DeckVersion,
+                    Neutral = GetResultToShow(r, "Neutral"),
+                    Strength = GetResultToShow(r, "Strength"),
+                    Inteligence = GetResultToShow(r, "Inteligence"),
+                    Willpower = GetResultToShow(r, "Willpower"),
+                    Agility = GetResultToShow(r, "Agility"),
+                    Endurance = GetResultToShow(r, "Endurance"),
+                    Archer = GetResultToShow(r, "Archer"),
+                    Assassin = GetResultToShow(r, "Assassin"),
+                    Battlemage = GetResultToShow(r, "Battlemage"),
+                    Crusader = GetResultToShow(r, "Crusader"),
+                    Mage = GetResultToShow(r, "Mage"),
+                    Monk = GetResultToShow(r, "Monk"),
+                    Scout = GetResultToShow(r, "Scout"),
+                    Sorcerer = GetResultToShow(r, "Sorcerer"),
+                    Spellsword = GetResultToShow(r, "Spellsword"),
+                    Warrior = GetResultToShow(r, "Warrior"),
+                    Total = GetResultToShow(r, "Total"),
+                    First_Second = GetResultToShow(r, "First_Second"),
+                    FirstWin = GetResultToShow(r, "FirstWin"),
+                    SecondWin = GetResultToShow(r, "SecondWin"),
+                });
+        }
+
+        private string GetResultToShow(
+            IGrouping<dynamic, DeckStatsDataRecord> rows,
+            string header)
+        {
+            return valueToShow == "Win" ? rows.Where(gg => gg.Opp == header).FirstOrDefault().Win :
+                                            (!double.IsNaN(rows.Where(gg => gg.Opp == header).FirstOrDefault().WinPerc) ? Math.Round(rows.Where(gg => gg.Opp == "Neutral").FirstOrDefault().WinPerc, 0).ToString() : "");
         }
 
         private void CreateOpponentHeatMapData(IEnumerable<DeckStatsDataRecord> totalOpponents)
@@ -276,7 +301,7 @@ namespace ESLTracker.ViewModels
             result = result.Union(
                          GetFirstSecondData(
                             groupByVersion,
-                            (g) => "First-Second"));
+                            (g) => "First_Second"));
 
             //add % of wins  you went first
             result = result.Union(
