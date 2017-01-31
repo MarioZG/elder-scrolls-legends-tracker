@@ -336,6 +336,7 @@ namespace ESLTracker.DataModel
             equals &= this.Notes == other.Notes;
             equals &= this.SelectedVersionId == other.SelectedVersionId;
             equals &= this.Type == other.Type;
+            equals &= this.IsHidden == other.IsHidden;
 
             return equals;
         }

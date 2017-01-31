@@ -44,8 +44,8 @@ namespace ESLTrackerTests
                 { typeof(Deck), new Deck()},
 #pragma warning restore CS0618 // Type or member is obsolete
                 { typeof(GameType?), GameType.SoloArena},
-                { typeof(bool?), true},
-                { typeof(bool), true},
+                { typeof(bool?), false},
+                { typeof(bool), false},
                 { typeof(OrderOfPlay?), OrderOfPlay.Second},
                 { typeof(GameOutcome), GameOutcome.Disconnect},
                 { typeof(PlayerRank?), PlayerRank.TheMage},
@@ -73,8 +73,8 @@ namespace ESLTrackerTests
                 { typeof(Deck), new Deck()},
 #pragma warning restore CS0618 // Type or member is obsolete
                 { typeof(GameType?), GameType.PlayCasual},
-                { typeof(bool?), false},
-                { typeof(bool), false},
+                { typeof(bool?), true},
+                { typeof(bool), true},
                 { typeof(OrderOfPlay?), OrderOfPlay.First},
                 { typeof(GameOutcome), GameOutcome.Draw},
                 { typeof(PlayerRank?), PlayerRank.TheLover},
