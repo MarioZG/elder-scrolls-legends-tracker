@@ -81,6 +81,14 @@ namespace ESLTracker
             }
         }
 
+        public string CardsDatabaseVersion
+        {
+            get
+            {
+                return Utils.CardsDatabase.Default.Version.ToString();
+            }
+        }
+
         public About()
         {
             this.Owner = Application.Current.MainWindow;

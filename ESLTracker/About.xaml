@@ -15,6 +15,7 @@
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="{Binding AppVersion, StringFormat={}Application version: {0}}" />
                 <TextBlock Text="{Binding FileVersion, StringFormat={}File version: {0:mm}}" />
+                <TextBlock Text="{Binding CardsDatabaseVersion, StringFormat={}Cards database version: {0:mm}}" />
             </StackPanel>
         </StackPanel>
         <TextBlock Margin="0,10,0,0" FontSize="16" FontWeight="Bold">TESL Tracker</TextBlock>
