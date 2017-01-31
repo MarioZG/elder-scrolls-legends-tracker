@@ -62,7 +62,19 @@ namespace ESLTracker.ViewModels.Decks
                 CommandUnHideDeckExecute,
                 CommandUnHideDeckCanExecute); }
         }
-        
+
+        public ICommand CommandDeleteDeck
+        {
+            get
+            {
+                return new RelayCommand(
+                      CommandDeleteDeckExecute,
+                      CommandDeleteDeckCanExecute);
+            }
+        }
+
+        ITrackerFactory trackerFactory;
+
         public DeckListViewModel() : this (new TrackerFactory())
         {
         }
@@ -74,7 +86,8 @@ namespace ESLTracker.ViewModels.Decks
             messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
             messanger.Register<EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
 
-            tracker = factory.GetTracker();
+            this.trackerFactory = factory;
+            this.tracker = factory.GetTracker();
             FilteredDecks = new ObservableCollection<Deck>(tracker.Decks);
         }
 
@@ -211,6 +224,22 @@ namespace ESLTracker.ViewModels.Decks
             {
                 return false;
             }
+        }
+
+        private bool CommandDeleteDeckCanExecute(object arg)
+        {
+            return trackerFactory.GetService<IDeckService>().CanDelete(SelectedDeck);
+        }
+
+        private void CommandDeleteDeckExecute(object obj)
+        {
+            IDeckService deckService = trackerFactory.GetService<IDeckService>();
+            if (deckService.CanDelete(SelectedDeck))
+            {
+                deckService.DeleteDeck(SelectedDeck);
+            }
+            trackerFactory.GetFileManager().SaveDatabase();
+            ApplyFilter();
         }
     }
 }

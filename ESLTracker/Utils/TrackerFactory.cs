@@ -16,7 +16,8 @@ namespace ESLTracker.Utils
         public T GetService<T>() where T: class
         {
             Type type = typeof(T);
-            if (type == typeof(IHTTPService)) {
+            if (type == typeof(IHTTPService))
+            {
                 return new HTTPService(this) as T;
             }
             else if (type == typeof(IApplicationService))
@@ -33,7 +34,16 @@ namespace ESLTracker.Utils
                 return CardsDatabase.Default as T;
 #pragma warning restore CS0618 // Type or member is obsolete
             }
-            else {
+            else if (type == typeof(IDeckService))
+            {
+                return new DeckService(this) as T;
+            }
+            else if (type == typeof(ISettings))
+            {
+                return Properties.Settings.Default as T;
+            }
+            else
+            {
                 throw new NotImplementedException(typeof(T).Name);
             }
         }

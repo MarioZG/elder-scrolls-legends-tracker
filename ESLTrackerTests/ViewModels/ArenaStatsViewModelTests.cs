@@ -22,15 +22,17 @@ namespace ESLTracker.ViewModels.Tests
         [TestMethod()]
         public void GetArenaRunStatisticsTest001_MoreThanOneRecordForSameRewardType()
         {
-            Mock<ITrackerFactory> trackerfactory = new Mock<ITrackerFactory>();
-            trackerfactory.Setup(tf => tf.GetNewGuid()).Returns(() => Guid.NewGuid());
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetNewGuid()).Returns(() => Guid.NewGuid());
+            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
+
             //two decks
             //d1 - 4 winn run 12g, 12g (24g in total), 34sg, 1 p, 1 card
             //d2 - another 4 winn run 18g, 20g (38g in total), 10sg ,  8sg (18sg in total), 2 p, 3 card
             //d3 - some random 1g, 2sg, 3p, 4c - just to mess data a bit
-            Deck d1 = new Deck(trackerfactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
-            Deck d2 = new Deck(trackerfactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
-            Deck d3 = new Deck(trackerfactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
+            Deck d1 = new Deck(trackerFactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
+            Deck d2 = new Deck(trackerFactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
+            Deck d3 = new Deck(trackerFactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
 
 
 
@@ -50,27 +52,27 @@ namespace ESLTracker.ViewModels.Tests
                  new ObservableCollection<DataModel.Reward>()
                      {
                      //d1 rewards
-                     new Reward(trackerfactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Gold, Quantity = 12 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Gold, Quantity = 12 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 34 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Pack, Quantity = 1 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Card, Quantity = 1 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Gold, Quantity = 12 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Gold, Quantity = 12 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 34 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Pack, Quantity = 1 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Card, Quantity = 1 },
                      //d2 rewards
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Gold, Quantity = 18 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Gold, Quantity = 20 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 10 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 8 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Pack, Quantity = 2 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Card, Quantity = 3 }
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Gold, Quantity = 18 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Gold, Quantity = 20 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 10 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 8 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Pack, Quantity = 2 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Card, Quantity = 3 }
                  }.ToList()
                  );
 
 
-            trackerfactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
-            trackerfactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
 
-            ArenaStatsViewModel model = new ArenaStatsViewModel(trackerfactory.Object);
+            ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
             model.GameType = DataModel.Enums.GameType.VersusArena;
 
             var result = model.GetDataSet();
@@ -96,21 +98,22 @@ namespace ESLTracker.ViewModels.Tests
         [TestMethod()]
         public void GetArenaRunStatisticsTest002_MoreThanOneRecordForSameRewardTypeAndAddedSomeDataOutsideFilters()
         {
-            Mock<ITrackerFactory> trackerfactory = new Mock<ITrackerFactory>();
-            trackerfactory.Setup(tf => tf.GetNewGuid()).Returns( () => Guid.NewGuid());
-            trackerfactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 11, 1, 0, 0, 1));
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            trackerFactory.Setup(tf => tf.GetNewGuid()).Returns( () => Guid.NewGuid());
+            trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 11, 1, 0, 0, 1));
+            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
             //two decks
             //d1 - 4 winn run 12g, 12g (24g in total), 34sg, 1 p, 1 card
             //d2 - another 4 winn run 18g, 20g (38g in total), 10sg ,  8sg (18sg in total), 2 p, 3 card
             //d3 - some random 1g, 2sg, 3p, 4c - just to mess data a bit
-            Deck d1 = new Deck(trackerfactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
-            Deck d2 = new Deck(trackerfactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
-            Deck d3 = new Deck(trackerfactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
+            Deck d1 = new Deck(trackerFactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
+            Deck d2 = new Deck(trackerFactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
+            Deck d3 = new Deck(trackerFactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, Class = DataModel.Enums.DeckClass.Assassin };
             //d4 - solo arena run
-            Deck d4 = new Deck(trackerfactory.Object) { Type = DataModel.Enums.DeckType.SoloArena, Class = DataModel.Enums.DeckClass.Assassin };
+            Deck d4 = new Deck(trackerFactory.Object) { Type = DataModel.Enums.DeckType.SoloArena, Class = DataModel.Enums.DeckClass.Assassin };
             //d5 some old run, out of date fulter
-            Deck d5 = new Deck(trackerfactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, CreatedDate = new DateTime(2016, 10, 1), Class = DataModel.Enums.DeckClass.Assassin };
+            Deck d5 = new Deck(trackerFactory.Object) { Type = DataModel.Enums.DeckType.VersusArena, CreatedDate = new DateTime(2016, 10, 1), Class = DataModel.Enums.DeckClass.Assassin };
 
             Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Decks).Returns(new System.Collections.ObjectModel.ObservableCollection<Deck>()
@@ -129,41 +132,41 @@ namespace ESLTracker.ViewModels.Tests
                  new ObservableCollection<DataModel.Reward>()
                      {
                      //d1 rewards
-                     new Reward(trackerfactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Gold, Quantity = 12 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Gold, Quantity = 12 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 34 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Pack, Quantity = 1 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Card, Quantity = 1 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Gold, Quantity = 12 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Gold, Quantity = 12 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 34 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Pack, Quantity = 1 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d1, Type = DataModel.Enums.RewardType.Card, Quantity = 1 },
                      //d2 rewards
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Gold, Quantity = 18 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Gold, Quantity = 20 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 10 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 8 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Pack, Quantity = 2 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Card, Quantity = 3 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Gold, Quantity = 18 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Gold, Quantity = 20 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 10 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 8 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Pack, Quantity = 2 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d2, Type = DataModel.Enums.RewardType.Card, Quantity = 3 },
                      //d4 rewards, big qrty to mess up avergae
-                     new Reward(trackerfactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.Gold, Quantity = 1118 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.Gold, Quantity = 1120 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 1110 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 118 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.Pack, Quantity = 112 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.Card, Quantity = 113 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.Gold, Quantity = 1118 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.Gold, Quantity = 1120 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 1110 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 118 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.Pack, Quantity = 112 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d4, Type = DataModel.Enums.RewardType.Card, Quantity = 113 },
                      //d5 rewards, big qrty to mess up avergae - shold be incluede
-                     new Reward(trackerfactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.Gold, Quantity = 1118 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.Gold, Quantity = 1120 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 1110 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 118 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.Pack, Quantity = 112 },
-                     new Reward(trackerfactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.Card, Quantity = 113 }
+                     new Reward(trackerFactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.Gold, Quantity = 1118 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.Gold, Quantity = 1120 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 1110 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.SoulGem, Quantity = 118 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.Pack, Quantity = 112 },
+                     new Reward(trackerFactory.Object) {ArenaDeck = d5, Type = DataModel.Enums.RewardType.Card, Quantity = 113 }
                  }.ToList()
                  );
 
 
-            trackerfactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
-            trackerfactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
 
-            ArenaStatsViewModel model = new ArenaStatsViewModel(trackerfactory.Object);
+            ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
             model.FilterDateFrom = new DateTime(2016, 11, 1);
             model.FilterDateTo = null;
             model.GameType = DataModel.Enums.GameType.VersusArena;

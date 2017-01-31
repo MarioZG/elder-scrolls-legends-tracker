@@ -6,7 +6,9 @@
              xmlns:local="clr-namespace:ESLTracker.Controls"
              xmlns:Properties="clr-namespace:ESLTracker.Properties"
              xmlns:ViewModel="clr-namespace:ESLTracker.ViewModels.Settings"
+             xmlns:Deck="clr-namespace:ESLTracker.ViewModels.Decks"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+             xmlns:Utils="clr-namespace:ESLTracker.Utils"
              mc:Ignorable="d">
     <UserControl.DataContext>
         <ViewModel:SettingsPanelViewModel/>
@@ -38,6 +40,14 @@
                      Text="{Binding Path=DataPath, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                      />
                     <Button Content="Open Data Folder" Command="{Binding CommandOpenDataFolder}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,5,5,5" ToolTip="Deck delete mode">
+                    <TextBlock
+                        Text="Deck delete mode"
+                     />
+                    <ComboBox 
+                        ItemsSource="{Binding Source={Utils:EnumBindingSource {x:Type Deck:DeckDeleteMode}}}"
+                        SelectedItem="{Binding Path=DeckDeleteMode, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"/>
                 </StackPanel>
                 <Grid Margin="10,10,10,10">
                     <Grid.RowDefinitions>

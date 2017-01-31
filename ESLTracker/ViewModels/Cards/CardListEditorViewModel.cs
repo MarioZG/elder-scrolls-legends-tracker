@@ -101,7 +101,7 @@ namespace ESLTracker.ViewModels.Cards
             }
             if (LimitCardCount)
             {
-                DeckHelper.EnforceCardLimit(card);
+                trackerFactory.GetService<IDeckService>().EnforceCardLimit(card);
             }
             NewCard = null;
         }

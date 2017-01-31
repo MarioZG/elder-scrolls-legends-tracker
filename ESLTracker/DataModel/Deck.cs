@@ -138,7 +138,7 @@ namespace ESLTracker.DataModel
 
         public int Victories {
             get {
-                return GetDeckGames().Where(g => g.Outcome == GameOutcome.Victory).Count();
+                return DeckGames.Where(g => g.Outcome == GameOutcome.Victory).Count();
             }
         }
 
@@ -146,21 +146,21 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return GetDeckGames().Where(g => g.Outcome == GameOutcome.Defeat).Count();
+                return DeckGames.Where(g => g.Outcome == GameOutcome.Defeat).Count();
             }
         }
 
         public int Disconnects {
             get
             {
-                return GetDeckGames().Where(g => g.Outcome == GameOutcome.Disconnect).Count();
+                return DeckGames.Where(g => g.Outcome == GameOutcome.Disconnect).Count();
             }
         }
         public int Draws
         {
             get
             {
-                return GetDeckGames().Where(g => g.Outcome == GameOutcome.Draw).Count();
+                return DeckGames.Where(g => g.Outcome == GameOutcome.Draw).Count();
             }
         }
 
@@ -169,10 +169,10 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                int gamesTotal = GetDeckGames().Count();
+                int gamesTotal = DeckGames.Count();
                 if (gamesTotal != 0)
                 {
-                    return Math.Round((double)Victories / (double)GetDeckGames().Count() * 100, 0).ToString();
+                    return Math.Round((double)Victories / (double)DeckGames.Count() * 100, 0).ToString();
                 }
                 else
                 {
@@ -181,9 +181,12 @@ namespace ESLTracker.DataModel
             }
         }
 
-        public IEnumerable<Game> GetDeckGames()
+        public IEnumerable<Game> DeckGames
         {
-            return trackerFactory.GetTracker().Games.Where(g => g.Deck.DeckId == this.DeckId);
+            get
+            {
+                return trackerFactory.GetService<IDeckService>().GetDeckGames(this);
+            }
         }
 
         public dynamic GetDeckVsClass()
@@ -193,7 +196,7 @@ namespace ESLTracker.DataModel
 
         public dynamic GetDeckVsClass(DeckClass? opponentClass)
         {
-            return this.GetDeckGames()
+            return this.DeckGames
                       .Where(g => (g.OpponentClass.HasValue)  //filter out all game where calss is not set (if we include in show all, crash below as here is no nul key in classes.attibutes)
                               && ((g.OpponentClass == opponentClass) || (opponentClass == null))) //class = param, or oaram is null - show all"
                       .GroupBy(d => d.OpponentClass.Value)

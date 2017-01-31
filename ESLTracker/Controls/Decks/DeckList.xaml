@@ -24,6 +24,7 @@
                     <MenuItem Header="Edit" Command="{Binding CommandEditDeck}" CommandParameter="{Binding SelectedDeck}"/>
                     <MenuItem Header="Hide" Command="{Binding CommandHideDeck}"/>
                     <MenuItem Header="Unhide" Command="{Binding CommandUnHideDeck}"/>
+                    <MenuItem Header="Delete" Command="{Binding CommandDeleteDeck}"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
             <ListBox.ItemContainerStyle>

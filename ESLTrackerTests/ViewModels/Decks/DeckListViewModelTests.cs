@@ -29,6 +29,9 @@ namespace ESLTracker.ViewModels.Decks.Tests
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
 
+            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
+
+
             //init some random classes
             DeckBase = new List<Deck>()
             {
@@ -298,6 +301,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetNewGuid()).Returns(() => Guid.NewGuid());
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
+
 
             Deck deckToShow = new Deck(trackerFactory.Object) { Type = DeckType.VersusArena, Class = classFilter } ;
             Deck deckToHide = new Deck(trackerFactory.Object) { Type = DeckType.VersusArena, Class = classFilter } ;
@@ -339,6 +344,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetNewGuid()).Returns(() => Guid.NewGuid());
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
             Deck deckToShow = new Deck(trackerFactory.Object) { Type = DeckType.VersusArena, Class = DeckClass.Assassin };
             Deck deckToHide = new Deck(trackerFactory.Object) { Type = DeckType.VersusArena, Class = DeckClass.Inteligence };

@@ -44,7 +44,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             get
             {
-                return Deck?.GetDeckGames().Count() == 0;
+                return Deck?.DeckGames.Count() == 0;
             }
         }
 

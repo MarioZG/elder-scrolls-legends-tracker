@@ -103,6 +103,7 @@ namespace ESLTracker.DataModel.Tests
             Mock<ITracker> trackerMock = new Mock<ITracker>();
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(trackerMock.Object);
+            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
             Deck deck = new Deck(trackerFactory.Object) { Type = Enums.DeckType.VersusArena };
 
@@ -121,6 +122,7 @@ namespace ESLTracker.DataModel.Tests
             Mock<ITracker> trackerMock = new Mock<ITracker>();
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(trackerMock.Object);
+            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
             Deck deck = new Deck(trackerFactory.Object) { Type = Enums.DeckType.VersusArena };
 
@@ -139,6 +141,7 @@ namespace ESLTracker.DataModel.Tests
             Mock<ITracker> trackerMock = new Mock<ITracker>();
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(trackerMock.Object);
+            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
             Deck deck = new Deck(trackerFactory.Object) { Type = Enums.DeckType.SoloArena };
 
@@ -157,6 +160,7 @@ namespace ESLTracker.DataModel.Tests
             Mock<ITracker> trackerMock = new Mock<ITracker>();
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(trackerMock.Object);
+            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
             Deck deck = new Deck(trackerFactory.Object) { Type = Enums.DeckType.SoloArena };
 
@@ -176,6 +180,7 @@ namespace ESLTracker.DataModel.Tests
             Mock<ITracker> trackerMock = new Mock<ITracker>();
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(trackerMock.Object);
+            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
             Deck deck = new Deck(trackerFactory.Object) { Type = Enums.DeckType.SoloArena };
 
@@ -195,6 +200,7 @@ namespace ESLTracker.DataModel.Tests
             Mock<ITracker> trackerMock = new Mock<ITracker>();
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(trackerMock.Object);
+            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
             Deck deck = new Deck(trackerFactory.Object) { Type = Enums.DeckType.VersusArena };
 

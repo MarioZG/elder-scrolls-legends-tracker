@@ -103,7 +103,7 @@ namespace ESLTracker.ViewModels.Decks
         private void RefreshData()
         {
             WinRatioVsClass = tracker.ActiveDeck.GetDeckVsClass();
-            ActiveDeckGames = new ObservableCollection<DataModel.Game>(tracker.ActiveDeck.GetDeckGames().OrderByDescending(g=> g.Date));
+            ActiveDeckGames = new ObservableCollection<DataModel.Game>(tracker.ActiveDeck.DeckGames.OrderByDescending(g=> g.Date));
             ActiveDeckRewards = new ObservableCollection<Reward>(tracker.Rewards.Where(r => r.ArenaDeckId == tracker.ActiveDeck.DeckId));
             RaisePropertyChangedEvent("WinRatioVsClass");
 

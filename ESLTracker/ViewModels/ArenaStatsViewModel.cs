@@ -38,7 +38,7 @@ namespace ESLTracker.ViewModels
             var groupby = typeof(DataModel.Deck).GetProperty("Class");
 
             var result = trackerFactory.GetTracker().Decks
-            .Where(d => d.GetDeckGames().Any( g => g.Type == GameType)
+            .Where(d => d.DeckGames.Any( g => g.Type == GameType)
                      && ((filterDateFrom == null) || (d.CreatedDate.Date >= filterDateFrom.Value.Date))
                      && ((FilterDateTo == null) || (d.CreatedDate.Date <= FilterDateTo.Value.Date)))
             .GroupBy(d => groupby.GetValue(d))

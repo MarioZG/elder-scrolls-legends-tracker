@@ -39,6 +39,8 @@ namespace ESLTracker.Properties
         bool OverlayDeck_ShowOnStart { get; set; }
         bool OverlayWindow_ShowOnStart { get; set; }
 
+        ViewModels.Decks.DeckDeleteMode DeckDeleteMode { get; set; }
+
         void Save();
     }
 }

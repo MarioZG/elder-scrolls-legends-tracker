@@ -286,5 +286,17 @@ namespace ESLTracker.Properties {
                 this["OverlayWindow_ShowOnStart"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Forbidden")]
+        public global::ESLTracker.ViewModels.Decks.DeckDeleteMode DeckDeleteMode {
+            get {
+                return ((global::ESLTracker.ViewModels.Decks.DeckDeleteMode)(this["DeckDeleteMode"]));
+            }
+            set {
+                this["DeckDeleteMode"] = value;
+            }
+        }
     }
 }
