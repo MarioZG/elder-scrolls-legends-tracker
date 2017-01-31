@@ -50,6 +50,7 @@ namespace ESLTracker.ViewModels.Decks
         }
 
         IMessenger messanger;
+        ITrackerFactory trackerFactory;
 
 
         //command for filter toggle button pressed
@@ -58,9 +59,14 @@ namespace ESLTracker.ViewModels.Decks
             get { return new RelayCommand(new Action<object>(FilterClicked)); }
         }
 
-        public DeckTypeSelectorViewModel()
+        public DeckTypeSelectorViewModel() : this(TrackerFactory.DefaultTrackerFactory)
         {
-            messanger = new TrackerFactory().GetMessanger();
+        }
+
+        public DeckTypeSelectorViewModel(ITrackerFactory trackerFactory)
+        {
+            this.trackerFactory = trackerFactory;
+            messanger = trackerFactory.GetMessanger();
             FilterButtonState = new Dictionary<DeckType, bool>();
             foreach (DeckType a in Enum.GetValues(typeof(DeckType)))
             {
