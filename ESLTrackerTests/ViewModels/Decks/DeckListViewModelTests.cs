@@ -12,6 +12,7 @@ using Moq;
 using System.Collections.ObjectModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
+using ESLTracker.Properties;
 
 namespace ESLTracker.ViewModels.Decks.Tests
 {
@@ -274,9 +275,13 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             Mock<IMessenger> messanger = new Mock<IMessenger>();
 
+            Mock<ISettings> settings = new Mock<ISettings>();
+            settings.Setup(s => s.DeckViewSortOrder).Returns(DeckViewSortOrder.LastUsed);
+
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
 
             DeckListViewModel model = new DeckListViewModel(trackerFactory.Object);
 

@@ -17,6 +17,23 @@ namespace ESLTracker.Utils.FileUpdaters
         {
             //do nothing
             //deck.ishidden is false by defualt (boolean)
+            SetDeckLastUsed(tracker);
+        }
+
+        public void SetDeckLastUsed(ITracker tracker)
+        {
+            foreach(Deck d in tracker.Decks)
+            {
+                Game lastGame = tracker.Games.Where(g => g.DeckId == d.DeckId).OrderByDescending(g => g.Date).FirstOrDefault();
+                if (lastGame != null)
+                {
+                    d.LastUsed = lastGame.Date;
+                }
+                else
+                {
+                    d.LastUsed = d.CreatedDate;
+                }
+            }
         }
     }
 }

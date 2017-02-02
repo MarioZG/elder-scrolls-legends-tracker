@@ -160,16 +160,6 @@ namespace ESLTracker.ViewModels
             }
         }
 
-        private static object GetPropertyValue(object obj, string propertyName)
-        {
-            object ret = obj;
-            foreach (string prop in propertyName.Split(new char[] { '.'}))
-            {
-                ret = ret.GetType().GetProperty(prop).GetValue(ret, null);
-            }
-            return ret;
-        }
-
         public SerializableVersion TOTAL_ROW_VERSION { get; } = new SerializableVersion(0, 0);
 
         public override dynamic GetDataSet()

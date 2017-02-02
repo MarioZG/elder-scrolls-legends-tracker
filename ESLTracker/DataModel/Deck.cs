@@ -100,6 +100,20 @@ namespace ESLTracker.DataModel
 
         public bool IsHidden { get; set; }
 
+        private DateTime lastUsed = DateTime.MinValue;
+        public DateTime LastUsed
+        {
+            get
+            {
+                return lastUsed;
+            }
+            set
+            {
+                SetProperty<DateTime>(ref lastUsed, value);
+            }
+        }
+
+
         private ITrackerFactory trackerFactory; //cannot be ITracker, as we need to load it first - stack overflow when database is loading
 
         [Obsolete("Use static CreateNewDeck instead. This is public  if for serialization purpose only")]
@@ -337,6 +351,7 @@ namespace ESLTracker.DataModel
             equals &= this.SelectedVersionId == other.SelectedVersionId;
             equals &= this.Type == other.Type;
             equals &= this.IsHidden == other.IsHidden;
+            equals &= this.LastUsed == other.LastUsed;
 
             return equals;
         }

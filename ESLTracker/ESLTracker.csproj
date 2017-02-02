@@ -276,6 +276,7 @@
     <Compile Include="ViewModels\Decks\DeckDeleteMode.cs" />
     <Compile Include="ViewModels\Decks\DeckEditViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckPreviewViewModel.cs" />
+    <Compile Include="ViewModels\Decks\DeckViewSortOrder.cs" />
     <Compile Include="ViewModels\Decks\ImportTextViewModel.cs" />
     <Compile Include="ViewModels\GameStatisticsViewModel.cs" />
     <Compile Include="ViewModels\Game\GameFilterViewModel.cs" />

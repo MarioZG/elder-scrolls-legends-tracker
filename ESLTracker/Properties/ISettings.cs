@@ -40,6 +40,7 @@ namespace ESLTracker.Properties
         bool OverlayWindow_ShowOnStart { get; set; }
 
         ViewModels.Decks.DeckDeleteMode DeckDeleteMode { get; set; }
+        ViewModels.Decks.DeckViewSortOrder DeckViewSortOrder { get; set; }
 
         void Save();
     }

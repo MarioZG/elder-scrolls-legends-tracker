@@ -71,5 +71,8 @@
     <Setting Name="DeckDeleteMode" Type="ESLTracker.ViewModels.Decks.DeckDeleteMode" Scope="User">
       <Value Profile="(Default)">Forbidden</Value>
     </Setting>
+    <Setting Name="DeckViewSortOrder" Type="ESLTracker.ViewModels.Decks.DeckViewSortOrder" Scope="User">
+      <Value Profile="(Default)">Name</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

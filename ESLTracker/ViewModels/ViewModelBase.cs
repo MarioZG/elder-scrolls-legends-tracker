@@ -22,5 +22,31 @@ namespace ESLTracker.ViewModels
         {
             PropertyChanged = null;
         }
+
+        protected object GetPropertyValue(object obj, string propertyName)
+        {
+            object ret = obj;
+            foreach (string prop in propertyName.Split(new char[] { '.' }))
+            {
+                ret = ret.GetType().GetProperty(prop).GetValue(ret, null);
+            }
+            return ret;
+        }
+
+        protected bool SetProperty<T>(
+           ref T backingStore,
+           T value,
+           [CallerMemberName]string propertyName = "",
+           Action onChanged = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(backingStore, value))
+                return false;
+
+            backingStore = value;
+            onChanged?.Invoke();
+            RaisePropertyChangedEvent(propertyName);
+            return true;
+        }
+
     }
 }

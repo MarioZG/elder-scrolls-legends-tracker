@@ -110,14 +110,19 @@ namespace ESLTracker.ViewModels.Decks
             Deck activeDeck = tracker.ActiveDeck; //we loose it when FilteredDecks.Clear();
             FilteredDecks.Clear();
 
-            FilterDeckList(
+            var filteredDecks = FilterDeckList(
                     tracker.Decks,
                     this.lastDeckFilter.FilteredTypes,
                     this.lastDeckFilter.ShowFInishedArenaRuns,
                     this.lastDeckFilter.ShowHiddenDecks,
                     this.lastDeckFilter.SelectedClass,
-                    this.lastDeckFilter.FilteredClasses)
-                .All(d => { FilteredDecks.Add(d); return true; });
+                    this.lastDeckFilter.FilteredClasses);
+
+            DeckViewSortOrder sortOrder = trackerFactory.GetSettings().DeckViewSortOrder;
+
+            filteredDecks = filteredDecks.OrderBy( d=> GetPropertyValue(d, sortOrder.ToString()));
+
+            filteredDecks.All(d => { FilteredDecks.Add(d); return true; });
 
             if (!FilteredDecks.Contains(activeDeck))
             {

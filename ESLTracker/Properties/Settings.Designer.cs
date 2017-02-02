@@ -298,5 +298,17 @@ namespace ESLTracker.Properties {
                 this["DeckDeleteMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Name")]
+        public global::ESLTracker.ViewModels.Decks.DeckViewSortOrder DeckViewSortOrder {
+            get {
+                return ((global::ESLTracker.ViewModels.Decks.DeckViewSortOrder)(this["DeckViewSortOrder"]));
+            }
+            set {
+                this["DeckViewSortOrder"] = value;
+            }
+        }
     }
 }

@@ -93,6 +93,7 @@
     <Compile Include="Utils\DeckServiceTests.cs" />
     <Compile Include="Utils\FileManagerTests.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_2_To_2_0Tests.cs" />
+    <Compile Include="Utils\FileUpdaters\Update_2_0_To_2_1Tests.cs" />
     <Compile Include="Utils\ScreenshotNameProviderTests.cs" />
     <Compile Include="Utils\SerializableVersionTests.cs" />
     <Compile Include="Utils\VersionCheckerTests.cs" />

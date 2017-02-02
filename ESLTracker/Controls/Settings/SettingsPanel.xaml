@@ -43,11 +43,19 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5,5,5,5" ToolTip="Deck delete mode">
                     <TextBlock
-                        Text="Deck delete mode"
+                        Text="Deck delete mode "
                      />
                     <ComboBox 
                         ItemsSource="{Binding Source={Utils:EnumBindingSource {x:Type Deck:DeckDeleteMode}}}"
                         SelectedItem="{Binding Path=DeckDeleteMode, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,5,5,5" ToolTip="Deck delete mode">
+                    <TextBlock
+                        Text="Deck order in list "
+                     />
+                    <ComboBox 
+                        ItemsSource="{Binding Source={Utils:EnumBindingSource {x:Type Deck:DeckViewSortOrder}}}"
+                        SelectedItem="{Binding Path=DeckViewSortOrder, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"/>
                 </StackPanel>
                 <Grid Margin="10,10,10,10">
                     <Grid.RowDefinitions>
