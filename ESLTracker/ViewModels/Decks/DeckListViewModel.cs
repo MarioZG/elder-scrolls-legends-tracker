@@ -83,7 +83,6 @@ namespace ESLTracker.ViewModels.Decks
         {
             this.messanger = factory.GetMessanger();
             messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
-            messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
             messanger.Register<EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
 
             this.trackerFactory = factory;
