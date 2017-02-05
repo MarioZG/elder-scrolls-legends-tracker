@@ -215,6 +215,8 @@ namespace ESLTracker.ViewModels.Decks
         public void CommandResetFiltersExecute(object param)
         {
             messanger.Send<DeckListResetFilters>(new DeckListResetFilters(), ControlMessangerContext.DeckList_DeckFilterControl);
+            this.DeckTextSearch = String.Empty;
+            this.DeckTextSearchEntered = false;
             ApplyFilter();
         }
 

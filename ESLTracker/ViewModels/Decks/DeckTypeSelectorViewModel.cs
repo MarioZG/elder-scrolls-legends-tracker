@@ -122,6 +122,8 @@ namespace ESLTracker.ViewModels.Decks
                 FilteredTypes.Clear();
                 Enum.GetValues(typeof(DeckType)).OfType<DeckType>().All(t => { FilteredTypes.Add(t); return true; });
             }
+            ShowCompletedArenaRuns = false;
+            ShowHiddenDecks = false;
             RaisePropertyChangedEvent("FilterButtonState");
         }
 
