@@ -47,25 +47,29 @@
         </DockPanel>
         <TabControl DockPanel.Dock="Left">
             <TabItem Header="Cards">
-                <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
+                <DockPanel>
                     <TextBlock 
+                        DockPanel.Dock="Top"
                         Text="No cards. Edit deck to add cards."
                             Visibility="{Binding DataContext.CurrentVersion.Cards, ConverterParameter=not, Converter={Converters:CollectionCountToVisibility}, ElementName=deckPreview}" />
-                    <StackPanel Orientation="Horizontal"
+                    <DockPanel 
                             Visibility="{Binding DataContext.CurrentVersion.Cards, Converter={Converters:CollectionCountToVisibility}, ElementName=deckPreview}">
                         <local:CardBreakdown     
                                 Margin="5"
+                                DockPanel.Dock="Left"
                                 Background="{x:Static SystemColors.WindowBrush}"
                                 CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckPreview}"/>
-                            <ScrollViewer
+                        <ScrollViewer
+                                    DockPanel.Dock="Right"
+                                    VerticalScrollBarVisibility="Visible"
                                     Margin="5"
                                     Background="{x:Static SystemColors.WindowBrush}" >
-                                <Cards:CardList 
+                            <Cards:CardList 
                                     DockPanel.Dock="Bottom"
-                                    DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview}" />
-                            </ScrollViewer>
-                    </StackPanel>
-                </StackPanel>
+                                    DataContext="{Binding DataContext.CurrentVersion.Cards, ElementName=deckPreview, IsAsync=True}" />
+                        </ScrollViewer>
+                    </DockPanel>
+                </DockPanel>
             </TabItem>
             <TabItem Header="Cards history">
                 <ScrollViewer>
