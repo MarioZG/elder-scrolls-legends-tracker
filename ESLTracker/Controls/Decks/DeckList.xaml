@@ -21,10 +21,43 @@
                  >
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Edit" Command="{Binding CommandEditDeck}" CommandParameter="{Binding SelectedDeck}"/>
-                    <MenuItem Header="Hide" Command="{Binding CommandHideDeck}"/>
-                    <MenuItem Header="Unhide" Command="{Binding CommandUnHideDeck}"/>
-                    <MenuItem Header="Delete" Command="{Binding CommandDeleteDeck}"/>
+                    <MenuItem 
+                          Command="{Binding CommandEditDeck}" 
+                          CommandParameter="{Binding SelectedDeck}"
+                          VerticalAlignment="Center"
+                          Header="Edit Deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/edit.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                          Command="{Binding CommandHideDeck}" 
+                          VerticalAlignment="Center"
+                          Header="Hide Deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/hide.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                          Command="{Binding CommandUnHideDeck}" 
+                          VerticalAlignment="Center"
+                          Header="Unhide Deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/visible.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                          Command="{Binding CommandDeleteDeck}" 
+                          VerticalAlignment="Center"
+                          Header="Delete deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/delete.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </ContextMenu>
             </ListBox.ContextMenu>
             <ListBox.ItemContainerStyle>

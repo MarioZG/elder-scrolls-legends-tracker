@@ -77,16 +77,19 @@ namespace ESLTracker.ViewModels.Decks
 
         public ICommand CommandHideDeck
         {
-            get { return new RelayCommand(
-                CommandHideDeckExecute,
-                CommandHideDeckCanExecute); }
+            get {
+                return new RelayCommand(
+                          (object param) => CommandHideDeckExecute(new EditDeck() { Deck = SelectedDeck }),
+                          (object param) => deckService.CommandHideDeckCanExecute(SelectedDeck));
+            }
         }
 
         public ICommand CommandUnHideDeck
         {
             get { return new RelayCommand(
-                CommandUnHideDeckExecute,
-                CommandUnHideDeckCanExecute); }
+                    (object param) => CommandUnHideDeckExecute(new EditDeck() { Deck = SelectedDeck }),
+                    (object param) => deckService.CommandUnHideDeckCanExecute(SelectedDeck));
+            }
         }
 
         public ICommand CommandDeleteDeck
@@ -94,8 +97,8 @@ namespace ESLTracker.ViewModels.Decks
             get
             {
                 return new RelayCommand(
-                      CommandDeleteDeckExecute,
-                      CommandDeleteDeckCanExecute);
+                    (object param) => CommandDeleteDeckExecute(new EditDeck() { Deck = SelectedDeck }),
+                    (object param) => deckService.CanDelete(SelectedDeck));
             }
         }
         #endregion
@@ -103,7 +106,7 @@ namespace ESLTracker.ViewModels.Decks
         ITrackerFactory trackerFactory;
         IMessenger messanger;
         ITracker tracker;
-
+        IDeckService deckService;
 
         public DeckListViewModel() : this (new TrackerFactory())
         {
@@ -114,10 +117,15 @@ namespace ESLTracker.ViewModels.Decks
             this.messanger = factory.GetMessanger();
             messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
             messanger.Register<EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
+            messanger.Register<EditDeck>(this, CommandHideDeckExecute, Utils.Messages.EditDeck.Context.Hide);
+            messanger.Register<EditDeck>(this, CommandUnHideDeckExecute, Utils.Messages.EditDeck.Context.UnHide);
+            messanger.Register<EditDeck>(this, CommandDeleteDeckExecute, Utils.Messages.EditDeck.Context.Delete);
 
             this.trackerFactory = factory;
             this.tracker = factory.GetTracker();
             FilteredDecks = new ObservableCollection<Deck>(tracker.Decks);
+
+            deckService = trackerFactory.GetService<IDeckService>();
         }
 
         private void DeckFilterChanged(DeckListFilterChanged obj)
@@ -175,8 +183,6 @@ namespace ESLTracker.ViewModels.Decks
         {
             IEnumerable<Deck> filteredList;
 
-            IDeckService deckService = trackerFactory.GetService<IDeckService>();
-
             if (selectedClass.HasValue)
             {
                 //specific class slected (there might nbe more in filteredclasses propery!!!
@@ -225,59 +231,30 @@ namespace ESLTracker.ViewModels.Decks
             ApplyFilter();
         }
 
-        private void CommandHideDeckExecute(object obj)
+        private void CommandHideDeckExecute(EditDeck editDeck)
         {
-            if (SelectedDeck != null)
+            if (editDeck.Deck != null)
             {
-                SelectedDeck.IsHidden = true;
+                editDeck.Deck.IsHidden = true;
                 ApplyFilter();
             }
         }
 
-        private bool CommandHideDeckCanExecute(object arg)
-        {
-            if (SelectedDeck != null)
-            {
-                return !SelectedDeck.IsHidden;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
-        private void CommandUnHideDeckExecute(object arg)
+        private void CommandUnHideDeckExecute(EditDeck editDeck)
         {
-            if (SelectedDeck != null)
+            if (editDeck.Deck != null)
             {
-                SelectedDeck.IsHidden = false;
+                editDeck.Deck.IsHidden = false;
                 ApplyFilter();
             }
         }
 
-        private bool CommandUnHideDeckCanExecute(object arg)
+        private void CommandDeleteDeckExecute(EditDeck editDeck)
         {
-            if (SelectedDeck != null)
+            if (deckService.CanDelete(editDeck.Deck))
             {
-                return SelectedDeck.IsHidden;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private bool CommandDeleteDeckCanExecute(object arg)
-        {
-            return trackerFactory.GetService<IDeckService>().CanDelete(SelectedDeck);
-        }
-
-        private void CommandDeleteDeckExecute(object obj)
-        {
-            IDeckService deckService = trackerFactory.GetService<IDeckService>();
-            if (deckService.CanDelete(SelectedDeck))
-            {
-                deckService.DeleteDeck(SelectedDeck);
+                deckService.DeleteDeck(editDeck.Deck);
             }
             trackerFactory.GetFileManager().SaveDatabase();
             ApplyFilter();

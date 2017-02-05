@@ -1064,6 +1064,12 @@
   <ItemGroup>
     <Resource Include="Resources\Cards\stampedesentinel.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\hide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\visible.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
   <Import Project="..\build\versions.targets" Condition="Exists('..\build\versions.targets')" />

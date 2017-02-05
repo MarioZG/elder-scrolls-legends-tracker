@@ -35,24 +35,47 @@
                     <MenuItem 
                           Command="{Binding CommandNewDeck}" 
                           VerticalAlignment="Center"
+                          Header="New Deck"
                           >
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Height="16" Source="/Resources/MenuIcons/newDeck.png" />
-                                <ContentPresenter Content="New Deck" Margin="5,0,0,0" />
-                            </StackPanel>
-                        </MenuItem.Header>
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/newDeck.png"/>
+                        </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem 
                           Command="{Binding CommandEditDeck}" 
                           VerticalAlignment="Center"
+                          Header="Edit Deck"
                           >
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Height="16" Source="/Resources/MenuIcons/edit.png" />
-                                <ContentPresenter Content="Edit Deck" Margin="5,0,0,0" />
-                            </StackPanel>
-                        </MenuItem.Header>
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/edit.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                          Command="{Binding CommandHideDeck}" 
+                          VerticalAlignment="Center"
+                          Header="Hide Deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/hide.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                          Command="{Binding CommandUnHideDeck}" 
+                          VerticalAlignment="Center"
+                          Header="Unhide Deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/visible.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                          Command="{Binding CommandDeleteDeck}" 
+                          VerticalAlignment="Center"
+                          Header="Delete deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/delete.png"/>
+                        </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem>

@@ -186,11 +186,49 @@ namespace ESLTracker.ViewModels
             }
         }
 
+        public ICommand CommandHideDeck
+        {
+            get
+            {
+                return new RelayCommand(
+                        (object param) => messanger.Send(
+                                                new EditDeck() { Deck = tracker.ActiveDeck },
+                                                EditDeck.Context.Hide),
+                          (object param) => deckService.CommandHideDeckCanExecute(tracker.ActiveDeck));
+            }
+        }
+
+        public ICommand CommandUnHideDeck
+        {
+            get
+            {
+                return new RelayCommand(
+                        (object param) => messanger.Send(
+                                                new EditDeck() { Deck = tracker.ActiveDeck },
+                                                EditDeck.Context.UnHide),
+                      (object param) => deckService.CommandUnHideDeckCanExecute(tracker.ActiveDeck));
+            }
+        }
+
+        public ICommand CommandDeleteDeck
+        {
+            get
+            {
+                return new RelayCommand(
+                            (object param) => messanger.Send(
+                                                new EditDeck() { Deck = tracker.ActiveDeck },
+                                                EditDeck.Context.Delete),
+                        (object param) => deckService.CanDelete(tracker.ActiveDeck));
+            }
+        }
+
+
         #endregion
 
         ITrackerFactory trackerFactory;
         IMessenger messanger;
         ITracker tracker;
+        IDeckService deckService;
 
         public MainWindowViewModel() : this(new TrackerFactory())
         {
@@ -206,6 +244,8 @@ namespace ESLTracker.ViewModels
             messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
             messanger.Register<Utils.Messages.EditGame>(this, EditGameFinished, Utils.Messages.EditGame.Context.EditFinished);
             messanger.Register<Utils.Messages.EditSettings>(this, EditSettingsFinished, Utils.Messages.EditSettings.Context.EditFinished);
+
+            deckService = trackerFactory.GetService<IDeckService>();
 
             this.OverlayWindows.Add(new OverlayToolbar());
             this.OverlayWindows.Add(new DeckOverlay());

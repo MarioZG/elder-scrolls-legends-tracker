@@ -92,5 +92,30 @@ namespace ESLTracker.Utils
             ret = d.SelectedVersion.Cards.Any(c => c.Card.Name.ToLowerInvariant().Contains(searchString.ToLowerInvariant()));
             return ret;
         }
+
+        public bool CommandHideDeckCanExecute(Deck deck)
+        {
+            if (deck != null)
+            {
+                return !deck.IsHidden;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool CommandUnHideDeckCanExecute(Deck deck)
+        {
+            if (deck != null)
+            {
+                return deck.IsHidden;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

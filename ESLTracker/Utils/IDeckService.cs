@@ -10,5 +10,7 @@ namespace ESLTracker.Utils
         void EnforceCardLimit(CardInstance card);
         IEnumerable<Game> GetDeckGames(Deck deck);
         bool SearchString(Deck d, string searchString);
+        bool CommandHideDeckCanExecute(Deck deck);
+        bool CommandUnHideDeckCanExecute(Deck deck);
     }
 }
