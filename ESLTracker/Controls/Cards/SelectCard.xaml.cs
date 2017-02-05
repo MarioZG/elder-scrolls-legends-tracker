@@ -173,7 +173,7 @@ namespace ESLTracker.Controls.Cards
         {
             base.OnPreviewMouseDown(e);
             DeckOverlay window = this.FindParent<DeckOverlay>();
-            if (window != null)
+            if ((window != null) && (e.LeftButton == MouseButtonState.Pressed))
             {
                 window.DragMove();
             }
