@@ -46,11 +46,16 @@ namespace ESLTracker
             }
         }
 
-        public override void UpdateVisibilty(bool isGameActive, bool isGameProcessRunning, bool isMainWIndowActive, bool isOtherWindowActive)
+        public override void UpdateVisibilty(
+            bool isGameActive, 
+            bool isGameProcessRunning, 
+            bool isMainWIndowActive, 
+            bool isOtherWindowActive)
         {
-            this.Visibility = ShowOnScreen && !this.IsDisposed()
+            this.Visibility = ShowOnScreen 
+                                && !this.IsDisposed()
                                 && (TrackerFactory.DefaultTrackerFactory.GetTracker().ActiveDeck?.SelectedVersion?.Cards?.Count > 0)
-                                && (isGameActive || isGameProcessRunning || this.IsActive)
+                                && (isGameActive || isOtherWindowActive || this.IsActive)
                                 ? Visibility.Visible : Visibility.Hidden;
         }
 
