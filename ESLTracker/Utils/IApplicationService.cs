@@ -2,7 +2,7 @@
 {
     public interface IApplicationService
     {
-        SerializableVersion GetAssemblyInformationalVersion();
+        string GetAssemblyInformationalVersion();
         SerializableVersion GetAssemblyVersion();
     }
 }

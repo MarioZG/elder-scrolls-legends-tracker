@@ -1,5 +1,7 @@
 {
     "Version": "0.5",
+    "VersionInfo": "Game Update 1.61",
+    "VersionDate": "2017-01-25T00:00:00.000Z",
     "Cards": [
         {
             "id": "094f4937-e5db-8a41-e441-1905cd7a1406",
@@ -25,7 +27,7 @@
             "attack": "0",
             "health": "1",
             "race": "woodelf",
-            "text": "Prophecy, Guard. Last Gasp: Adoring Fan will return. Adoring Fan can\u0027t be Silenced."
+            "text": "Prophecy, Guard. Last Gasp: Adoring Fan will return. Adoring Fan can't be Silenced."
         },
         {
             "id": "90f7dc80-21ed-d0c6-dfca-10f82e990600",
@@ -81,7 +83,7 @@
         },
         {
             "id": "89d9e34a-3814-b4ad-ff87-5df0ccd71438",
-            "name": "Alik\u0027r Bandit",
+            "name": "Alik'r Bandit",
             "rarity": "Epic",
             "isunique": false,
             "type": "creature",
@@ -90,11 +92,11 @@
             "attack": "3",
             "health": "4",
             "race": "redguard",
-            "text": "When Alik\u0027r Bandit equips an item, he gains +1/+1."
+            "text": "When Alik'r Bandit equips an item, he gains +1/+1."
         },
         {
             "id": "bc679e34-fbe8-1787-6aba-7170e40322d8",
-            "name": "Alik\u0027r Survivalist",
+            "name": "Alik'r Survivalist",
             "rarity": "Epic",
             "isunique": false,
             "type": "creature",
@@ -103,7 +105,7 @@
             "attack": "3",
             "health": "4",
             "race": "redguard",
-            "text": "Summon: Put a Steel Dagger into your hand. When Alik\u0027r Survivalist equips an item, he gains +1/+1."
+            "text": "Summon: Put a Steel Dagger into your hand. When Alik'r Survivalist equips an item, he gains +1/+1."
         },
         {
             "id": "36597b39-3783-6b99-af86-b314063b5d8a",
@@ -172,7 +174,7 @@
         },
         {
             "id": "02caf274-7704-2298-e0db-dd35f87fbe7e",
-            "name": "Apprentice\u0027s Potion",
+            "name": "Apprentice's Potion",
             "rarity": "Common",
             "isunique": false,
             "type": "action",
@@ -289,7 +291,7 @@
         },
         {
             "id": "496f60b2-6977-ba53-d125-90d5bcd5e15f",
-            "name": "Assassin\u0027s Bow",
+            "name": "Assassin's Bow",
             "rarity": "Rare",
             "isunique": false,
             "type": "item",
@@ -441,7 +443,7 @@
             "attack": "7",
             "health": "4",
             "race": "giant",
-            "text": "Breakthrough. Summon: Return an enemy creature to your opponent\u0027s hand or destroy an enemy support."
+            "text": "Breakthrough. Summon: Return an enemy creature to your opponent's hand or destroy an enemy support."
         },
         {
             "id": "14c71ca5-850b-140c-a8a8-770dc37c6b7f",
@@ -480,7 +482,7 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Draw a copy of a random creature from your opponent\u0027s deck."
+            "text": "Draw a copy of a random creature from your opponent's deck."
         },
         {
             "id": "9bd81fd5-330d-7dca-4cd7-42a5e13958b6",
@@ -740,7 +742,7 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Prophecy. Return a creature to its owner\u0027s hand."
+            "text": "Prophecy. Return a creature to its owner's hand."
         },
         {
             "id": "49738e8d-9833-abd0-79ec-a76b87227e31",
@@ -796,7 +798,7 @@
         },
         {
             "id": "81dbe7a8-56cb-19d4-8b5d-aab135411ba6",
-            "name": "Chieftain\u0027s Banner",
+            "name": "Chieftain's Banner",
             "rarity": "Rare",
             "isunique": false,
             "type": "support",
@@ -1056,7 +1058,7 @@
         },
         {
             "id": "5519cfce-5e20-5a4b-a643-2ee2a480ea78",
-            "name": "Dawn\u0027s Wrath",
+            "name": "Dawn's Wrath",
             "rarity": "Legendary",
             "isunique": false,
             "type": "action",
@@ -1299,7 +1301,7 @@
             "attack": "5",
             "health": "5",
             "race": "daedra",
-            "text": "Guard. Summon: Double a creature\u0027s power and health."
+            "text": "Guard. Summon: Double a creature's power and health."
         },
         {
             "id": "337e6735-79da-baf0-71aa-5806624f158a",
@@ -1325,7 +1327,7 @@
             "attack": "4",
             "health": "4",
             "race": "darkelf",
-            "text": "Guard. Other friendly creatures can\u0027t be Shackled."
+            "text": "Guard. Other friendly creatures can't be Shackled."
         },
         {
             "id": "1e734f21-0b06-1be6-c4cd-7a873ddeddb8",
@@ -1598,7 +1600,7 @@
             "attack": "1",
             "health": "1",
             "race": "khajiit",
-            "text": "Pilfer: Double Elsweyr Lookout\u0027s power and health."
+            "text": "Pilfer: Double Elsweyr Lookout's power and health."
         },
         {
             "id": "4f130569-3dfb-d731-04b6-4ef74e9c8397",
@@ -1702,7 +1704,7 @@
             "attack": "3",
             "health": "3",
             "race": "nereid",
-            "text": "Summon: Reveal the top card of the opponent\u0027s deck."
+            "text": "Summon: Reveal the top card of the opponent's deck."
         },
         {
             "id": "0808ec9e-1f2c-948e-c5b6-6a1917be02f8",
@@ -1719,7 +1721,7 @@
         },
         {
             "id": "58c16756-f118-bcac-b550-dccf982aef65",
-            "name": "Fate\u0027s Witness",
+            "name": "Fate's Witness",
             "rarity": "Rare",
             "isunique": false,
             "type": "creature",
@@ -2014,7 +2016,7 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "At the start of each player\u0027s turn, deal 2 damage to that player."
+            "text": "At the start of each player's turn, deal 2 damage to that player."
         },
         {
             "id": "919775ec-9e51-042a-e985-41c13570a774",
@@ -2690,7 +2692,7 @@
             "attack": "12",
             "health": "12",
             "race": "daedra",
-            "text": "Breakthrough, Guard, Regenerate. Your opponent can\u0027t target Iron Atronach with actions. "
+            "text": "Breakthrough, Guard, Regenerate. Your opponent can't target Iron Atronach with actions. "
         },
         {
             "id": "635d3fc9-0b45-42af-2422-2572aa41fe5f",
@@ -2716,7 +2718,7 @@
             "attack": "3",
             "health": "4",
             "race": "redguard",
-            "text": "Other friendly creatures can\u0027t be Silenced."
+            "text": "Other friendly creatures can't be Silenced."
         },
         {
             "id": "e23f120d-29f9-6b6a-aec9-aa6060acb4b5",
@@ -2885,7 +2887,7 @@
             "attack": "7",
             "health": "4",
             "race": "daedra",
-            "text": "Lumbering Ogrim can\u0027t gain Cover."
+            "text": "Lumbering Ogrim can't gain Cover."
         },
         {
             "id": "0430649d-71eb-04e6-580f-e6996d92f4ff",
@@ -2937,7 +2939,7 @@
             "attack": "3",
             "health": "2",
             "race": "nord",
-            "text": "Mage Slayer can\u0027t be damaged by actions."
+            "text": "Mage Slayer can't be damaged by actions."
         },
         {
             "id": "f5063ae9-1286-d06a-de61-7d28c08ba644",
@@ -3045,7 +3047,7 @@
         },
         {
             "id": "8c40f677-1521-3806-0c43-0e8ab839362e",
-            "name": "Mentor\u0027s Ring",
+            "name": "Mentor's Ring",
             "rarity": "Legendary",
             "isunique": false,
             "type": "item",
@@ -3058,7 +3060,7 @@
         },
         {
             "id": "cd8efed9-dc06-ba4d-d751-af1c157493b3",
-            "name": "Merchant\u0027s Camel",
+            "name": "Merchant's Camel",
             "rarity": "Common",
             "isunique": false,
             "type": "creature",
@@ -3275,7 +3277,7 @@
             "attack": "3",
             "health": "2",
             "race": "goblin",
-            "text": "On your first turn, reduce Murkwater Butcher\u0027s cost to 1."
+            "text": "On your first turn, reduce Murkwater Butcher's cost to 1."
         },
         {
             "id": "de60c31c-5eb7-eafc-8f30-80fef0d540cb",
@@ -3353,7 +3355,7 @@
             "attack": "7",
             "health": "7",
             "race": "dragon",
-            "text": "Guard. Your opponent can\u0027t target Nahagliiv with actions."
+            "text": "Guard. Your opponent can't target Nahagliiv with actions."
         },
         {
             "id": "de0e5c4d-c486-150f-8d40-2376ae6dc702",
@@ -3383,7 +3385,7 @@
         },
         {
             "id": "82dc190e-d554-2a37-dd02-7581db3a2f8c",
-            "name": "Necromancer\u0027s Amulet",
+            "name": "Necromancer's Amulet",
             "rarity": "Epic",
             "isunique": false,
             "type": "support",
@@ -3574,7 +3576,7 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Uses: 3. Activate: Put a copy of a random card from your opponent\u0027s deck into your hand."
+            "text": "Uses: 3. Activate: Put a copy of a random card from your opponent's deck into your hand."
         },
         {
             "id": "01e79292-074f-76ff-5054-ef7bd2222aff",
@@ -3691,7 +3693,7 @@
             "attack": "5",
             "health": "5",
             "race": "beast",
-            "text": "Pit Lion can\u0027t be summoned unless there\u0027s a friendly unit in each lane. "
+            "text": "Pit Lion can't be summoned unless there's a friendly unit in each lane. "
         },
         {
             "id": "432898a7-6d44-d5c4-f3f5-2b164e340cc8",
@@ -3773,7 +3775,7 @@
         },
         {
             "id": "fc825917-5466-7016-b903-4b0eadb87cfb",
-            "name": "Quin\u0027rawl Burglar",
+            "name": "Quin'rawl Burglar",
             "rarity": "Legendary",
             "isunique": false,
             "type": "creature",
@@ -3786,7 +3788,7 @@
         },
         {
             "id": "f5a464bf-c967-092d-c55a-4df29d39ff0c",
-            "name": "Quin\u0027Rawl Skulker",
+            "name": "Quin'Rawl Skulker",
             "rarity": "Legendary",
             "isunique": false,
             "type": "creature",
@@ -4081,7 +4083,7 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "+0/+2. Summon: The wielder\u0027s power becomes equal to its health."
+            "text": "+0/+2. Summon: The wielder's power becomes equal to its health."
         },
         {
             "id": "35e5fb0b-acb7-4638-1e43-234777871949",
@@ -4341,7 +4343,7 @@
             "attack": "5",
             "health": "5",
             "race": "imperial",
-            "text": "Siege Catapult can\u0027t attack unless your side of its lane is full."
+            "text": "Siege Catapult can't attack unless your side of its lane is full."
         },
         {
             "id": "e3cff698-9254-b1c5-c6d3-181ee2441f24",
@@ -4397,7 +4399,7 @@
         },
         {
             "id": "5f3af07f-7aeb-9c04-505d-9af48c261289",
-            "name": "Skirmisher\u0027s Elixir",
+            "name": "Skirmisher's Elixir",
             "rarity": "Rare",
             "isunique": false,
             "type": "support",
@@ -4462,7 +4464,7 @@
         },
         {
             "id": "79fab68a-cecf-231a-549c-2649d4633a5d",
-            "name": "Smuggler\u0027s Haul",
+            "name": "Smuggler's Haul",
             "rarity": "Epic",
             "isunique": false,
             "type": "action",
@@ -4930,7 +4932,7 @@
         },
         {
             "id": "28bc7476-4193-fe91-7567-365dfa4b4006",
-            "name": "Swindler\u0027s Market",
+            "name": "Swindler's Market",
             "rarity": "Rare",
             "isunique": false,
             "type": "support",
@@ -5021,7 +5023,7 @@
         },
         {
             "id": "738e5861-9a27-9275-7d4a-9b521f697159",
-            "name": "Thieves\u0027 Den",
+            "name": "Thieves' Den",
             "rarity": "Legendary",
             "isunique": false,
             "type": "support",
@@ -5160,7 +5162,7 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "If your opponent doesn\u0027t damage you on their turn, sacrifice this and summon a Priest of the Moons in each lane."
+            "text": "If your opponent doesn't damage you on their turn, sacrifice this and summon a Priest of the Moons in each lane."
         },
         {
             "id": "2a26756d-0aae-c321-efab-696c125232d0",
@@ -5424,7 +5426,7 @@
         },
         {
             "id": "de42a506-dd51-adb3-e2b2-078ca5467f42",
-            "name": "Winter\u0027s Grasp",
+            "name": "Winter's Grasp",
             "rarity": "Epic",
             "isunique": false,
             "type": "action",
@@ -5437,7 +5439,7 @@
         },
         {
             "id": "f06ebf8e-380c-6ff7-f838-b8e29a1fd6c5",
-            "name": "Winter\u0027s Touch",
+            "name": "Winter's Touch",
             "rarity": "Epic",
             "isunique": false,
             "type": "action",

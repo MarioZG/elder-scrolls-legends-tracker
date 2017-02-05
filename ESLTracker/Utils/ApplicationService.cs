@@ -14,9 +14,9 @@ namespace ESLTracker.Utils
             return new SerializableVersion(new Version(GitVersionInformation.AssemblySemVer));
         }
 
-        public SerializableVersion GetAssemblyInformationalVersion()
+        public string GetAssemblyInformationalVersion()
         {
-            return new SerializableVersion(new Version(GitVersionInformation.InformationalVersion));
+            return string.Format("{0} ({1})", GitVersionInformation.FullSemVer, GitVersionInformation.Sha);
         }
     }
 }

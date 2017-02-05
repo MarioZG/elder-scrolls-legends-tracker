@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ESLTracker.Utils;
 
 namespace ESLTracker
 {
@@ -25,15 +26,15 @@ namespace ESLTracker
         {
             get
             {
-                return Assembly.GetEntryAssembly().CustomAttributes.Where(ca => ca.AttributeType == typeof(AssemblyInformationalVersionAttribute)).FirstOrDefault()?.ConstructorArguments[0].Value.ToString();
+                return TrackerFactory.DefaultTrackerFactory.GetService<IApplicationService>().GetAssemblyInformationalVersion();
             }
         }
 
-        public string FileVersion
+        public SerializableVersion FileVersion
         {
             get
             {
-                return DataModel.Tracker.Instance.Version.ToString();
+                return DataModel.Tracker.Instance.Version;
             }
         }
         public string Address
@@ -85,7 +86,10 @@ namespace ESLTracker
         {
             get
             {
-                return Utils.CardsDatabase.Default.Version.ToString();
+                return string.Format("{0} ({1} from {2:d})",
+                    Utils.CardsDatabase.Default.Version,
+                    Utils.CardsDatabase.Default.VersionInfo,
+                    Utils.CardsDatabase.Default.VersionDate);
             }
         }
 

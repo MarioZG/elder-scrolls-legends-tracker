@@ -46,6 +46,8 @@ namespace ESLTracker.Utils
         }
 
         public Version Version { get; set; }
+        public string VersionInfo { get; set; }
+        public DateTime VersionDate { get; set; }
 
         private CardsDatabase()
         {

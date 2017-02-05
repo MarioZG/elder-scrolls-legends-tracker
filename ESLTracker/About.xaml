@@ -10,14 +10,16 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="About" Width="400" WindowStartupLocation="CenterOwner">
     <StackPanel Margin="5">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+        <DockPanel  HorizontalAlignment="Stretch">
             <Image Height="64" Width="64" Source="/Resources/AppLogo.png" Margin="5" />
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="{Binding AppVersion, StringFormat={}Application version: {0}}" />
-                <TextBlock Text="{Binding FileVersion, StringFormat={}File version: {0:mm}}" />
-                <TextBlock Text="{Binding CardsDatabaseVersion, StringFormat={}Cards database version: {0:mm}}" />
-            </StackPanel>
-        </StackPanel>
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
+                <UniformGrid Columns="1" Rows="3" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding AppVersion, StringFormat={}Application version: {0}}" />
+                    <TextBlock Text="{Binding FileVersion, StringFormat={}Data file version: {0:mm}}" />
+                    <TextBlock Text="{Binding CardsDatabaseVersion, StringFormat={}Cards database version: {0:mm}}" />
+                </UniformGrid>
+            </ScrollViewer>
+        </DockPanel>
         <TextBlock Margin="0,10,0,0" FontSize="16" FontWeight="Bold">TESL Tracker</TextBlock>
         <TextBlock Margin="0,10,0,0">Project <Hyperlink NavigateUri="https://github.com/MarioZG/elder-scrolls-legends-tracker" Click="Hyperlink_Click"> website</Hyperlink></TextBlock>
         <TextBlock Margin="0,10,0,0" TextWrapping="WrapWithOverflow">Any feedback, bug report or feature request are very welcome. Please use <Hyperlink NavigateUri="https://github.com/MarioZG/elder-scrolls-legends-tracker/issues" Click="Hyperlink_Click"> github issue tracker</Hyperlink>
