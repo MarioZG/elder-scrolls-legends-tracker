@@ -18,6 +18,7 @@ namespace ESLTracker.Utils.FileUpdaters
             //do nothing
             //deck.ishidden is false by defualt (boolean)
             SetDeckLastUsed(tracker);
+            doc.InnerXml = SerializationHelper.SerializeXML(tracker);
         }
 
         public void SetDeckLastUsed(ITracker tracker)
