@@ -35,9 +35,35 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        IMessenger messanger;
-        ITracker tracker;
+        private string deckTextSearch;
+        public string DeckTextSearch
+        {
+            get
+            {
+                return DeckTextSearchEntered ? deckTextSearch : "type deck or card name to filter";
+            }
+            set
+            {
+                if (DeckTextSearchEntered)
+                {
+                    SetProperty<string>(ref deckTextSearch, value);
+                    ApplyFilter();
+                }
+                else
+                {
+                    DeckTextSearchEntered = true;
+                }
+            }
+        }
 
+        private bool deckTextSearchEntered;
+        public bool DeckTextSearchEntered
+        {
+            get { return deckTextSearchEntered; }
+            set { deckTextSearchEntered = value; RaisePropertyChangedEvent(); RaisePropertyChangedEvent(nameof(DeckTextSearch)); }
+        }
+
+        #region Commands
         //command for filter toggle button pressed
         public ICommand CommandResetFilterButtonPressed
         {
@@ -72,8 +98,12 @@ namespace ESLTracker.ViewModels.Decks
                       CommandDeleteDeckCanExecute);
             }
         }
+        #endregion
 
         ITrackerFactory trackerFactory;
+        IMessenger messanger;
+        ITracker tracker;
+
 
         public DeckListViewModel() : this (new TrackerFactory())
         {
@@ -115,7 +145,8 @@ namespace ESLTracker.ViewModels.Decks
                     this.lastDeckFilter.ShowFInishedArenaRuns,
                     this.lastDeckFilter.ShowHiddenDecks,
                     this.lastDeckFilter.SelectedClass,
-                    this.lastDeckFilter.FilteredClasses);
+                    this.lastDeckFilter.FilteredClasses, 
+                    this.deckTextSearch);
 
             DeckViewSortOrder sortOrder = trackerFactory.GetSettings().DeckViewSortOrder;
 
@@ -139,9 +170,13 @@ namespace ESLTracker.ViewModels.Decks
             bool showCompletedArenaRuns,
             bool showHiddenDecks,
             DeckClass? selectedClass,
-            IEnumerable<DeckClass> filteredClasses)
+            IEnumerable<DeckClass> filteredClasses,
+            string searchString)
         {
             IEnumerable<Deck> filteredList;
+
+            IDeckService deckService = trackerFactory.GetService<IDeckService>();
+
             if (selectedClass.HasValue)
             {
                 //specific class slected (there might nbe more in filteredclasses propery!!!
@@ -150,6 +185,7 @@ namespace ESLTracker.ViewModels.Decks
                     && ((filteredTypes == null) || (filteredTypes.Contains(d.Type)))
                     && ((showCompletedArenaRuns) || (! d.IsArenaRunFinished()))
                     && ((showHiddenDecks) || (!d.IsHidden))
+                    && ((String.IsNullOrEmpty(searchString)) || (deckService.SearchString(d, searchString)))
                     );
                 return filteredList;
             }
@@ -162,6 +198,7 @@ namespace ESLTracker.ViewModels.Decks
                     && ((filteredTypes == null) || (filteredTypes.Contains(d.Type)))
                     && ((showCompletedArenaRuns) || (!d.IsArenaRunFinished()))
                     && ((showHiddenDecks) || (!d.IsHidden))
+                    && ((String.IsNullOrEmpty(searchString)) || (deckService.SearchString(d, searchString)))
                     );
                 return filteredList;
             }

@@ -101,7 +101,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 false,
                 false,
                 selectedClass, 
-                filteredClasses);
+                filteredClasses,
+                null);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(selectedClass, result.ToList()[0].Class);
@@ -133,7 +134,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 false,
                 false,
                 selectedClass,
-                filteredClasses);
+                filteredClasses,
+                null);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class.Value].Contains(filterAttrib); }));
@@ -163,7 +165,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 false,
                 false,
                 selectedClass,
-                filteredClasses);
+                filteredClasses,
+                null);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return Utils.ClassAttributesHelper.Classes[r.Class.Value].Contains(filterAttrib[0]); }));
@@ -193,7 +196,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 false,
                 false,
                 selectedClass,
-                filteredClasses);
+                filteredClasses,
+                null);
 
             //model is norw filyred
             Assert.AreNotEqual(expectedCount, result.Count());
@@ -209,7 +213,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 false,
                 true,
                 selectedClass,
-                filteredClasses);
+                filteredClasses,
+                null);
 
             Assert.AreEqual(expectedCount, result.Count());
         }
@@ -230,7 +235,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 false,
                 false,
                 null,
-                Utils.ClassAttributesHelper.Classes.Keys);
+                Utils.ClassAttributesHelper.Classes.Keys,
+                null);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.IsTrue(result.All(r => { return typeFilter.Contains(r.Type); }));
@@ -255,7 +261,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 false,
                 false,
                 classFilter, 
-                filteredClasses);
+                filteredClasses,
+                null);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(classFilter, result.ToList()[0].Class);
@@ -327,7 +334,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 showCompletedArenaRuns,
                 false,
                 selectedClass, 
-                filteredClasses);
+                filteredClasses,
+                null);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(deckToShow.DeckId, result.First().DeckId);
@@ -369,7 +377,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 showCompletedArenaRuns,
                 false,
                 selectedClass,
-                filteredClasses);
+                filteredClasses,
+                null);
 
             Assert.AreEqual(expectedCount, result.Count());
             Assert.AreEqual(deckToShow.DeckId, result.First().DeckId);
@@ -392,6 +401,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 false,
                 false,
                 null,
+                null,
                 null);
 
             Assert.AreEqual(expectedCount, result.Count());
@@ -412,6 +422,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 filteredTypes,
                 false,
                 true,
+                null,
                 null,
                 null);
 

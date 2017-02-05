@@ -8,6 +8,16 @@
              xmlns:Controls="clr-namespace:ESLTracker.Controls"  
              xmlns:Messages="clr-namespace:ESLTracker.Utils.Messages"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding DeckTextSearchEntered}" Value="false">
+                    <Setter Property="FontStyle" Value="Italic"/>
+                    <Setter Property="Foreground" Value="Gray"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <DockPanel>
         <Button x:Name="btnResetFilters"  DockPanel.Dock="Left"
                 BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
@@ -21,6 +31,11 @@
                                         BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"  
                                         HorizontalAlignment="Stretch">
             </Controls:DeckClassSelector>
+            <TextBox 
+                Text="{Binding DeckTextSearch, UpdateSourceTrigger=PropertyChanged}"
+                GotFocus="TextBox_GotFocus"
+                LostFocus="TextBox_LostFocus"
+                />
         </StackPanel>
 
     </DockPanel>

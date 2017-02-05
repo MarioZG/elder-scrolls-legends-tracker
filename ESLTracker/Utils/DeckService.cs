@@ -81,5 +81,16 @@ namespace ESLTracker.Utils
                 tracker.ActiveDeck = null;
             }
         }
+
+        public bool SearchString(Deck d, string searchString)
+        {
+            bool ret = d.Name.ToLowerInvariant().Contains(searchString.ToLowerInvariant());
+            if (ret)
+            {
+                return ret;
+            }
+            ret = d.SelectedVersion.Cards.Any(c => c.Card.Name.ToLowerInvariant().Contains(searchString.ToLowerInvariant()));
+            return ret;
+        }
     }
 }
