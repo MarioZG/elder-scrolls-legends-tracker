@@ -86,10 +86,11 @@ namespace ESLTracker
         {
             get
             {
+                ICardsDatabase cardsDB = TrackerFactory.DefaultTrackerFactory.GetService<ICardsDatabase>();
                 return string.Format("{0} ({1} from {2:d})",
-                    Utils.CardsDatabase.Default.Version,
-                    Utils.CardsDatabase.Default.VersionInfo,
-                    Utils.CardsDatabase.Default.VersionDate);
+                    cardsDB.Version,
+                    cardsDB.VersionInfo,
+                    cardsDB.VersionDate);
             }
         }
 
