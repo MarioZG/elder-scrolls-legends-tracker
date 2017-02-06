@@ -229,6 +229,7 @@ namespace ESLTracker.ViewModels
         IMessenger messanger;
         ITracker tracker;
         IDeckService deckService;
+        ISettings settings;
 
         public MainWindowViewModel() : this(new TrackerFactory())
         {
@@ -246,6 +247,7 @@ namespace ESLTracker.ViewModels
             messanger.Register<Utils.Messages.EditSettings>(this, EditSettingsFinished, Utils.Messages.EditSettings.Context.EditFinished);
 
             deckService = trackerFactory.GetService<IDeckService>();
+            settings = trackerFactory.GetService<ISettings>();
 
             this.OverlayWindows.Add(new OverlayToolbar());
             this.OverlayWindows.Add(new DeckOverlay());
@@ -284,7 +286,6 @@ namespace ESLTracker.ViewModels
                 trackerFactory.GetFileManager().SaveDatabase();
                 MainWindow.UpdateOverlay = false;
                 ot.Close();
-                ISettings settings = trackerFactory.GetSettings();
                 settings.LastActiveDeckId = tracker.ActiveDeck?.DeckId;
                 settings.Save();
                 ((App)Application.Current).CloseApplication();

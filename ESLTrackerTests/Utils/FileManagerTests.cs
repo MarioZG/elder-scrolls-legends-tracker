@@ -24,7 +24,7 @@ namespace ESLTracker.Utils.Tests
             settings.Setup(s => s.DataPath).Returns("c:\\some path\\f1\\f2\\");
 
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
 
             Mock<IPathWrapper> pathWrapper = new Mock<IPathWrapper>();
@@ -49,7 +49,7 @@ namespace ESLTracker.Utils.Tests
             settings.Setup(s => s.DataPath).Returns("c:\\some path\\f1\\f2\\");
 
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             Mock<IPathWrapper> pathWrapper = new Mock<IPathWrapper>();
             Mock<IDirectoryWrapper> directoryWrapper = new Mock<IDirectoryWrapper>();
@@ -81,7 +81,7 @@ namespace ESLTracker.Utils.Tests
             settings.Setup(s => s.DataPath).Returns("c:\\some path\\f1\\f2\\");
 
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             Mock<IPathWrapper> pathWrapper = new Mock<IPathWrapper>();
             Mock<IDirectoryWrapper> directoryWrapper = new Mock<IDirectoryWrapper>();

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ESLTracker.Controls;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 
 namespace ESLTracker
@@ -77,7 +78,7 @@ namespace ESLTracker
                 Keyboard.IsKeyDown(Key.RightCtrl))
             {
 
-                TrackerFactory.DefaultTrackerFactory.GetSettings().OverlayDeck_Scale += (args.Delta > 0) ? 0.1 : -0.1;
+                TrackerFactory.DefaultTrackerFactory.GetService<ISettings>().OverlayDeck_Scale += (args.Delta > 0) ? 0.1 : -0.1;
             }
         }
     }

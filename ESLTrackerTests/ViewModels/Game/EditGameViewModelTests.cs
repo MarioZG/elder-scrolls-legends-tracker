@@ -34,7 +34,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
             Mock<ISettings> settings = new Mock<ISettings>();
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
@@ -111,7 +111,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
 
             Mock<ISettings> settings = new Mock<ISettings>();
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
@@ -141,7 +141,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
 
             Mock<ISettings> settings = new Mock<ISettings>();
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
@@ -160,7 +160,7 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             GameOutcome param = GameOutcome.Victory;
 
-            model.UpdateGameData(settings.Object, param);
+            model.UpdateGameData(param);
 
             Assert.IsNotNull(model.Game.ESLVersion);
             Assert.AreEqual(expected.ProductVersion, model.Game.ESLVersion.ToString());
@@ -178,7 +178,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
 
             Mock<ISettings> settings = new Mock<ISettings>();
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             FileVersionInfo expected = FileVersionInfo.GetVersionInfo(Assembly.GetAssembly(this.GetType()).Location);
 
@@ -204,7 +204,7 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             GameOutcome param = GameOutcome.Victory;
 
-            model.UpdateGameData(settings.Object, param);
+            model.UpdateGameData(param);
 
             Assert.IsNotNull(model.Game.ESLVersion);
             Assert.AreEqual(expected.ProductVersion, model.Game.ESLVersion.ToString());
@@ -332,7 +332,7 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             Assert.AreNotEqual(timeConcluded, model.Game.Date);
 
-            model.UpdateGameData(settingsMock.Object, GameOutcome.Victory);
+            model.UpdateGameData(GameOutcome.Victory);
 
             Assert.AreEqual(timeConcluded, model.Game.Date);
         }

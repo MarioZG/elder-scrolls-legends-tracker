@@ -288,7 +288,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             DeckListViewModel model = new DeckListViewModel(trackerFactory.Object);
 

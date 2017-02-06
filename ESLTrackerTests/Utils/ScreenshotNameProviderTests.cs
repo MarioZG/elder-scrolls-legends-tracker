@@ -24,7 +24,7 @@ namespace ESLTracker.Utils.Tests
             settings.Setup(s => s.Packs_ScreenshotNameTemplate)
                 .Returns("Pack_{n:000}_{d:yyyy_MM_dd}-{1:000}_{0:yyyy_MM_dd}");
 
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 12, 23));
 
@@ -53,7 +53,7 @@ namespace ESLTracker.Utils.Tests
             settings.Setup(s => s.Packs_ScreenshotNameTemplate)
                 .Returns("Pack_{d:yyyy_MM_dd}-{0:yyyy_MM_dd}");
 
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(settings.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 12, 23));
 

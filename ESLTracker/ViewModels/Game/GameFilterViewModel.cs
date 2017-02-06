@@ -85,7 +85,7 @@ namespace ESLTracker.ViewModels.Game
         public GameFilterViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
-            this.settings = trackerFactory.GetSettings();
+            this.settings = trackerFactory.GetService<ISettings>();
             this.FilterDateSelectedOption = settings.GamesFilter_SelectedPredefinedDateFilter;
         }
 

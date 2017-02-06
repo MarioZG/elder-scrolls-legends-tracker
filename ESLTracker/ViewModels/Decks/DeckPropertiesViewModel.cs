@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 
@@ -53,6 +54,7 @@ namespace ESLTracker.ViewModels.Decks
         IMessenger messanger;
         ITracker tracker;
         private TrackerFactory trackerFactory;
+        ISettings settings;
 
         public DeckPropertiesViewModel() : this(new TrackerFactory())
         {
@@ -63,6 +65,7 @@ namespace ESLTracker.ViewModels.Decks
             this.trackerFactory = trackerFactory;
             tracker = trackerFactory.GetTracker();
             messanger = trackerFactory.GetMessanger();
+            settings = trackerFactory.GetService<ISettings>();
         }
 
         private void SetDeckName(DeckType newType)
@@ -73,10 +76,10 @@ namespace ESLTracker.ViewModels.Decks
                     Deck.Name = String.Empty;
                     break;
                 case DataModel.Enums.DeckType.VersusArena:
-                    Deck.Name = string.Format(trackerFactory.GetSettings().NewDeck_VersusArenaName, trackerFactory.GetDateTimeNow());
+                    Deck.Name = string.Format(settings.NewDeck_VersusArenaName, trackerFactory.GetDateTimeNow());
                     break;
                 case DataModel.Enums.DeckType.SoloArena:
-                    Deck.Name = string.Format(trackerFactory.GetSettings().NewDeck_SoloArenaName, trackerFactory.GetDateTimeNow());
+                    Deck.Name = string.Format(settings.NewDeck_SoloArenaName, trackerFactory.GetDateTimeNow());
                     break;
                 default:
                     throw new NotImplementedException();

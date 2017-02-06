@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.DataModel;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.ViewModels;
 
@@ -13,8 +14,6 @@ namespace ESLTracker.ViewModels.Packs
 {
     public class OpenPackViewModel : ViewModelBase
     {
-        private TrackerFactory trackerFactory;
-
         private Pack pack;
 
         public Pack Pack
@@ -55,6 +54,9 @@ namespace ESLTracker.ViewModels.Packs
             set { buttonSaveEnabled = value; RaisePropertyChangedEvent(nameof(ButtonSaveEnabled)); }
         }
 
+        private TrackerFactory trackerFactory;
+        ISettings settings;
+
         public OpenPackViewModel() : this(new TrackerFactory())
         {
             
@@ -65,8 +67,9 @@ namespace ESLTracker.ViewModels.Packs
             CommandSave = new RealyAsyncCommand<object>(CommandSaveExecute);
 
             this.trackerFactory = trackerFactory;
-            InitNewPack();
+            settings = trackerFactory.GetService<ISettings>();
 
+            InitNewPack();
         }
 
         private void InitNewPack()
@@ -90,7 +93,7 @@ namespace ESLTracker.ViewModels.Packs
 
             ErrorMessage = null;
 
-            if (trackerFactory.GetSettings().Packs_ScreenshotAfterAdded)
+            if (settings.Packs_ScreenshotAfterAdded)
             {
                 ButtonSaveLabel = "Taking screenshot...";
                 await Task.Factory.StartNew( () => TakePackScreenshot());

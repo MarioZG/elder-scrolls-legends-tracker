@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 
@@ -107,6 +108,7 @@ namespace ESLTracker.ViewModels.Decks
         IMessenger messanger;
         ITracker tracker;
         IDeckService deckService;
+        ISettings settings;
 
         public DeckListViewModel() : this (new TrackerFactory())
         {
@@ -126,6 +128,7 @@ namespace ESLTracker.ViewModels.Decks
             FilteredDecks = new ObservableCollection<Deck>(tracker.Decks);
 
             deckService = trackerFactory.GetService<IDeckService>();
+            settings = trackerFactory.GetService<ISettings>();
         }
 
         private void DeckFilterChanged(DeckListFilterChanged obj)
@@ -156,7 +159,7 @@ namespace ESLTracker.ViewModels.Decks
                     this.lastDeckFilter.FilteredClasses, 
                     this.deckTextSearch);
 
-            DeckViewSortOrder sortOrder = trackerFactory.GetSettings().DeckViewSortOrder;
+            DeckViewSortOrder sortOrder = settings.DeckViewSortOrder;
 
             filteredDecks = filteredDecks.OrderBy( d=> GetPropertyValue(d, sortOrder.ToString()));
 

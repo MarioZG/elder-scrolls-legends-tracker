@@ -12,6 +12,7 @@ using ESLTracker.DataModel;
 using System.Reflection;
 using ESLTracker.Utils.FileUpdaters;
 using System.Xml;
+using ESLTracker.Properties;
 
 namespace ESLTracker.Utils
 {
@@ -21,13 +22,13 @@ namespace ESLTracker.Utils
         {
             get
             {
-                string dp = trackerfactory.GetSettings().DataPath;
+                string dp = settings.DataPath;
                 if(String.IsNullOrWhiteSpace(dp))
                 {
                     dp = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                     dp = Path.Combine(dp, Path.GetFileNameWithoutExtension(AppDomain.CurrentDomain.FriendlyName));
-                    trackerfactory.GetSettings().DataPath = dp;
-                    trackerfactory.GetSettings().Save();
+                    settings.DataPath = dp;
+                    settings.Save();
                 }
                 return dp;
             }
@@ -45,6 +46,7 @@ namespace ESLTracker.Utils
         string ScreenShotFolder = "Screenshot";
 
         ITrackerFactory trackerfactory;
+        ISettings settings;
 
         public FileManager() : this(new TrackerFactory())
         {
@@ -53,6 +55,7 @@ namespace ESLTracker.Utils
         public FileManager(ITrackerFactory trackerfactory)
         {
             this.trackerfactory = trackerfactory;
+            this.settings = trackerfactory.GetService<ISettings>();
         }
 
 
@@ -87,7 +90,7 @@ namespace ESLTracker.Utils
                     }
 
                     //restore active deck
-                    Guid? activeDeckFromSettings = trackerfactory.GetSettings().LastActiveDeckId;
+                    Guid? activeDeckFromSettings = settings.LastActiveDeckId;
                     if ((activeDeckFromSettings != null)
                         && (activeDeckFromSettings != Guid.Empty))
                     {

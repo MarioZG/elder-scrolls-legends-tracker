@@ -70,7 +70,7 @@ namespace ESLTracker.ViewModels.Tests
 
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(new Mock<ISettings>().Object);
 
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
             model.GameType = DataModel.Enums.GameType.VersusArena;
@@ -164,7 +164,7 @@ namespace ESLTracker.ViewModels.Tests
 
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(new Mock<ISettings>().Object);
 
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
             model.FilterDateFrom = new DateTime(2016, 11, 1);
@@ -197,7 +197,7 @@ namespace ESLTracker.ViewModels.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 3, 7));
 
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(new Mock<ISettings>().Object);
 
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
 
@@ -213,7 +213,7 @@ namespace ESLTracker.ViewModels.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 3, 7));
 
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(new Mock<ISettings>().Object);
 
             DateTime expectedFrom = new DateTime(2016, 2, 1);
             DateTime expectedTo = new DateTime(2016, 2, 29);
@@ -233,7 +233,7 @@ namespace ESLTracker.ViewModels.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 3, 7));
 
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(new Mock<ISettings>().Object);
 
             DateTime expectedFrom = new DateTime(2016, 3, 1);
             DateTime expectedTo = new DateTime(2016, 3, 31);
@@ -253,7 +253,7 @@ namespace ESLTracker.ViewModels.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 3, 7));
 
-            trackerFactory.Setup(tf => tf.GetSettings()).Returns(new Mock<ISettings>().Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(new Mock<ISettings>().Object);
 
             DateTime expectedFrom = new DateTime(2016, 3, 1);
             DateTime expectedTo = new DateTime(2016, 3, 7);

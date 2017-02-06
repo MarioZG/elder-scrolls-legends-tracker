@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 
@@ -148,6 +149,7 @@ namespace ESLTracker.ViewModels.Game
         ITrackerFactory trackerFactory;
         IMessenger messanger;
         ITracker tracker;
+        ISettings settings;
 
         public EditGameViewModel() : this(new TrackerFactory())
         {
@@ -163,6 +165,8 @@ namespace ESLTracker.ViewModels.Game
             Game.PropertyChanged += Game_PropertyChanged;
             messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);
             messanger.Register<EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
+
+            this.settings = trackerFactory.GetService<ISettings>();
 
             this.BeginEdit();
         }
@@ -240,7 +244,7 @@ namespace ESLTracker.ViewModels.Game
                 && (outcome.HasValue)
                 && this.Game.OpponentClass.HasValue)
             {
-                UpdateGameData(trackerFactory.GetSettings(), outcome);
+                UpdateGameData(outcome);
 
                 DataModel.Game addedGame = this.Game;
                 tracker.Games.Add(this.Game);
@@ -268,7 +272,7 @@ namespace ESLTracker.ViewModels.Game
 
         }
 
-        internal void UpdateGameData(Properties.ISettings settings, GameOutcome? outcome)
+        internal void UpdateGameData(GameOutcome? outcome)
         {
             this.Game.Deck = tracker.ActiveDeck;
             this.Game.DeckVersionId = tracker.ActiveDeck.SelectedVersionId;

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.Properties;
 
 namespace ESLTracker.Utils
 {
     public class ScreenshotNameProvider
     {
         private ITrackerFactory trackerFactory;
+        ISettings settings;
 
         public enum ScreenShotType
         {
@@ -24,6 +26,7 @@ namespace ESLTracker.Utils
         public ScreenshotNameProvider(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
+            this.settings = trackerFactory.GetService<ISettings>();
         }
 
         public string GetScreenShotName(ScreenShotType type)
@@ -31,9 +34,9 @@ namespace ESLTracker.Utils
             switch (type)
             {
                 case ScreenShotType.Regular:
-                    return GetScreenShotName(type, trackerFactory.GetSettings().General_ScreenshotNameTemplate);
+                    return GetScreenShotName(type, settings.General_ScreenshotNameTemplate);
                 case ScreenShotType.Pack:
-                    return GetScreenShotName(type, trackerFactory.GetSettings().Packs_ScreenshotNameTemplate);
+                    return GetScreenShotName(type, settings.Packs_ScreenshotNameTemplate);
                 default:
                     throw new NotImplementedException("Unknown screenshot type" + type);
             }

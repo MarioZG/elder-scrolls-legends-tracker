@@ -64,11 +64,6 @@ namespace ESLTracker.Utils
             return DateTime.Now;
         }
 
-        public ISettings GetSettings()
-        {
-            return Properties.Settings.Default;
-        }
-
         public IWinAPI GetWinAPI()
         {
             return WinAPI.Default;
