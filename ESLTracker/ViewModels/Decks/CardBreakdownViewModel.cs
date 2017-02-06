@@ -72,7 +72,7 @@ namespace ESLTracker.ViewModels.Decks
                                       Values = new ChartValues<decimal> { count },
                                       StackMode = StackMode.Percentage,
                                       DataLabels = true,
-                                      LabelsPosition = BarLabelPosition.Merged,
+                                      LabelsPosition = BarLabelPosition.Parallel,
                                       Fill = ClassAttributesHelper.DeckAttributeColors[da].ToMediaBrush()
                                   }
                                   );
@@ -134,7 +134,7 @@ namespace ESLTracker.ViewModels.Decks
                               Values = new ChartValues<int> { },
                               //StackMode = StackMode.Percentage,
                               DataLabels = true,
-                              LabelsPosition = BarLabelPosition.Merged,
+                              LabelsPosition = BarLabelPosition.Parallel,
                               Fill = System.Windows.Media.Brushes.LightSkyBlue
                           }
                       );
