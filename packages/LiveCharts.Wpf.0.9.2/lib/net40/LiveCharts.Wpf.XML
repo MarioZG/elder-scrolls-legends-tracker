@@ -220,6 +220,17 @@
             
             </summary>
         </member>
+        <member name="T:LiveCharts.Wpf.Components.DefaultXamlReader">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LiveCharts.Wpf.Components.DefaultXamlReader.DataLabelTemplate">
+            <summary>
+            Creates the specified type.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:LiveCharts.Wpf.Components.IFondeable">
             <summary>
             
@@ -372,6 +383,69 @@
             The value.
             </value>
         </member>
+        <member name="T:LiveCharts.Wpf.IChartLegend">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
+        </member>
+        <member name="P:LiveCharts.Wpf.IChartLegend.Series">
+            <summary>
+            Gets or sets the series.
+            </summary>
+            <value>
+            The series.
+            </value>
+        </member>
+        <member name="T:LiveCharts.Wpf.IChartTooltip">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
+        </member>
+        <member name="P:LiveCharts.Wpf.IChartTooltip.Data">
+            <summary>
+            Gets or sets the data.
+            </summary>
+            <value>
+            The data.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Wpf.IChartTooltip.SelectionMode">
+            <summary>
+            Gets or sets the selection mode.
+            </summary>
+            <value>
+            The selection mode.
+            </value>
+        </member>
+        <member name="T:LiveCharts.Wpf.LogarithmicAxis">
+            <summary>
+            An Logarithmic Axis of a chart
+            </summary>
+            <seealso cref="T:LiveCharts.Wpf.Axis" />
+        </member>
+        <member name="M:LiveCharts.Wpf.LogarithmicAxis.AsCoreElement(LiveCharts.Charts.ChartCore,LiveCharts.AxisOrientation)">
+            <summary>
+            Ases the core element.
+            </summary>
+            <param name="chart">The chart.</param>
+            <param name="source">The source.</param>
+            <returns></returns>
+        </member>
+        <member name="F:LiveCharts.Wpf.LogarithmicAxis.BaseProperty">
+            <summary>
+            The base property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.LogarithmicAxis.Base">
+            <summary>
+            Gets or sets the base.
+            </summary>
+            <value>
+            The base.
+            </value>
+        </member>
         <member name="T:LiveCharts.Wpf.ScatterSeries">
             <summary>
             The Bubble series, draws scatter series, only using X and Y properties or bubble series, if you also use the weight property, this series should be used in a cartesian chart.
@@ -407,6 +481,12 @@
             <summary>
             Gets or sets the min shape diameter, the points using the min weight in the series will have this radius.
             </summary>
+        </member>
+        <member name="M:LiveCharts.Wpf.ScatterSeries.GetPointDiameter">
+            <summary>
+            Gets the point diameter.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:LiveCharts.Wpf.ScatterSeries.GetPointView(LiveCharts.ChartPoint,System.String)">
             <summary>
@@ -793,6 +873,14 @@
             Initializes a new instance of AxisCollection class
             </summary>
         </member>
+        <member name="P:LiveCharts.Wpf.AxesCollection.Chart">
+            <summary>
+            Gets the chart that owns the series.
+            </summary>
+            <value>
+            The chart.
+            </value>
+        </member>
         <member name="T:LiveCharts.Wpf.Axis">
             <summary>
             An Axis of a chart
@@ -807,6 +895,19 @@
             <summary>
             Happens every time an axis range changes by a user event (zooming or panning)
             </summary>
+        </member>
+        <member name="F:LiveCharts.Wpf.Axis.RangeChangedCommandProperty">
+            <summary>
+            The range changed command property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.Axis.RangeChangedCommand">
+            <summary>
+            Gets or sets the range changed command.
+            </summary>
+            <value>
+            The range changed command.
+            </value>
         </member>
         <member name="P:LiveCharts.Wpf.Axis.Model">
             <summary>
@@ -1045,8 +1146,8 @@
         </member>
         <member name="M:LiveCharts.Wpf.Axis.Clean">
             <summary>
-            Cleans this instance.
-            </summary>
+             Cleans this instance.
+             </summary>
         </member>
         <member name="M:LiveCharts.Wpf.Axis.RenderSeparator(LiveCharts.SeparatorElementCore,LiveCharts.Charts.ChartCore)">
             <summary>
@@ -1107,6 +1208,14 @@
             </summary>
             <param name="min">The minimum.</param>
             <param name="max">The maximum.</param>
+        </member>
+        <member name="M:LiveCharts.Wpf.Axis.UpdateChart(System.Boolean,System.Boolean)">
+            <summary>
+            Updates the chart.
+            </summary>
+            <param name="animate">if set to <c>true</c> [animate].</param>
+            <param name="updateNow">if set to <c>true</c> [update now].</param>
+            <returns></returns>
         </member>
         <member name="M:LiveCharts.Wpf.Axis.OnRangeChanged(LiveCharts.Events.RangeChangedEventArgs)">
             <summary>
@@ -1262,6 +1371,45 @@
             <summary>
             Initializes a new instance of the <see cref="T:LiveCharts.Wpf.Gauge"/> class.
             </summary>
+        </member>
+        <member name="F:LiveCharts.Wpf.Gauge.GaugeActiveFillProperty">
+            <summary>
+            The gauge active fill property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.Gauge.GaugeActiveFill">
+            <summary>
+            Gets or sets the gauge active fill, if this property is set, From/to color properties interpolation will be ignored
+            </summary>
+            <value>
+            The gauge active fill.
+            </value>
+        </member>
+        <member name="F:LiveCharts.Wpf.Gauge.LabelsVisibilityProperty">
+            <summary>
+            The labels visibility property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.Gauge.LabelsVisibility">
+            <summary>
+            Gets or sets the labels visibility.
+            </summary>
+            <value>
+            The labels visibility.
+            </value>
+        </member>
+        <member name="F:LiveCharts.Wpf.Gauge.GaugeRenderTransformProperty">
+            <summary>
+            The gauge render transform property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.Gauge.GaugeRenderTransform">
+            <summary>
+            Gets or sets the gauge render transform.
+            </summary>
+            <value>
+            The gauge render transform.
+            </value>
         </member>
         <member name="F:LiveCharts.Wpf.Gauge.Uses360ModeProperty">
             <summary>
@@ -1455,30 +1603,6 @@
             Initializes a new instance of Chart class
             </summary>
         </member>
-        <member name="M:LiveCharts.Wpf.Charts.Base.Chart.MockIt(LiveCharts.Dtos.CoreSize)">
-            <summary>
-            Mocks it.
-            </summary>
-            <param name="size">The size.</param>
-        </member>
-        <member name="M:LiveCharts.Wpf.Charts.Base.Chart.GetCanvasElements">
-            <summary>
-            Gets the canvas elements.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Wpf.Charts.Base.Chart.GetDrawMarginElements">
-            <summary>
-            Gets the draw margin elements.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LiveCharts.Wpf.Charts.Base.Chart.GetCanvas">
-            <summary>
-            Gets the canvas.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="E:LiveCharts.Wpf.Charts.Base.Chart.DataClick">
             <summary>
             The DataClick event is fired when a user click any data point
@@ -1493,6 +1617,45 @@
             <summary>
             This event is fired every time the chart updates.
             </summary>
+        </member>
+        <member name="F:LiveCharts.Wpf.Charts.Base.Chart.DataClickCommandProperty">
+            <summary>
+            The data click command property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.Charts.Base.Chart.DataClickCommand">
+            <summary>
+            Gets or sets the data click command.
+            </summary>
+            <value>
+            The data click command.
+            </value>
+        </member>
+        <member name="F:LiveCharts.Wpf.Charts.Base.Chart.DataHoverCommandProperty">
+            <summary>
+            The data hover command property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.Charts.Base.Chart.DataHoverCommand">
+            <summary>
+            Gets or sets the data hover command.
+            </summary>
+            <value>
+            The data hover command.
+            </value>
+        </member>
+        <member name="F:LiveCharts.Wpf.Charts.Base.Chart.UpdaterTickCommandProperty">
+            <summary>
+            The updater tick command property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.Charts.Base.Chart.UpdaterTickCommand">
+            <summary>
+            Gets or sets the updater tick command.
+            </summary>
+            <value>
+            The updater tick command.
+            </value>
         </member>
         <member name="P:LiveCharts.Wpf.Charts.Base.Chart.Canvas">
             <summary>
@@ -1563,6 +1726,19 @@
             <summary>
             Gets or sets chart zoom behavior
             </summary>
+        </member>
+        <member name="F:LiveCharts.Wpf.Charts.Base.Chart.PanProperty">
+            <summary>
+            The pan property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.Charts.Base.Chart.Pan">
+            <summary>
+            Gets or sets the chart pan, default is Unset, which bases the behavior according to Zoom property
+            </summary>
+            <value>
+            The pan.
+            </value>
         </member>
         <member name="F:LiveCharts.Wpf.Charts.Base.Chart.LegendLocationProperty">
             <summary>
@@ -1928,20 +2104,6 @@
             An <see cref="T:System.Object" /> that represents the converted value.
             </returns>
         </member>
-        <member name="T:LiveCharts.Wpf.IChartLegend">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
-        </member>
-        <member name="P:LiveCharts.Wpf.IChartLegend.Series">
-            <summary>
-            Gets or sets the series.
-            </summary>
-            <value>
-            The series.
-            </value>
-        </member>
         <member name="T:LiveCharts.Wpf.DefaultLegend">
             <summary>
             The default legend control, by default a new instance of this control is created for every chart that requires a legend.
@@ -2040,36 +2202,6 @@
             </returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="T:LiveCharts.Wpf.IChartTooltip">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
-        </member>
-        <member name="P:LiveCharts.Wpf.IChartTooltip.Data">
-            <summary>
-            Gets or sets the data.
-            </summary>
-            <value>
-            The data.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Wpf.IChartTooltip.SelectionMode">
-            <summary>
-            Gets or sets the selection mode.
-            </summary>
-            <value>
-            The selection mode.
-            </value>
-        </member>
-        <member name="P:LiveCharts.Wpf.IChartTooltip.IsWrapped">
-            <summary>
-            Gets or sets a value indicating whether this instance is wrapped.
-            </summary>
-            <value>
-            <c>true</c> if this instance is wrapped; otherwise, <c>false</c>.
-            </value>
-        </member>
         <member name="T:LiveCharts.Wpf.DefaultTooltip">
             <summary>
             The Default Tooltip control, by default any chart that requires a tooltip will create a new instance of this class.
@@ -2082,6 +2214,37 @@
             <summary>
             Initializes a new instance of DefaultTooltip class
             </summary>
+        </member>
+        <member name="M:LiveCharts.Wpf.DefaultTooltip.#cctor">
+            <summary>
+            Initializes the <see cref="T:LiveCharts.Wpf.DefaultTooltip"/> class.
+            </summary>
+        </member>
+        <member name="F:LiveCharts.Wpf.DefaultTooltip.ShowTitleProperty">
+            <summary>
+            The show title property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.DefaultTooltip.ShowTitle">
+            <summary>
+            Gets or sets a value indicating whether the tooltip should show the shared coordinate value in the current tooltip data.
+            </summary>
+            <value>
+              <c>true</c> if [show title]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="F:LiveCharts.Wpf.DefaultTooltip.ShowSeriesProperty">
+            <summary>
+            The show series property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.DefaultTooltip.ShowSeries">
+            <summary>
+            Gets or sets a value indicating whether should show series name and color.
+            </summary>
+            <value>
+              <c>true</c> if [show series]; otherwise, <c>false</c>.
+            </value>
         </member>
         <member name="F:LiveCharts.Wpf.DefaultTooltip.CornerRadiusProperty">
             <summary>
@@ -2245,30 +2408,30 @@
             <summary>
             
             </summary>
-            <seealso cref="T:System.Windows.Data.IValueConverter" />
+            <seealso cref="T:System.Windows.Data.IMultiValueConverter" />
         </member>
-        <member name="M:LiveCharts.Wpf.SharedVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+        <member name="M:LiveCharts.Wpf.SharedVisibilityConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
             <summary>
-            Converts a value.
+            Converts source values to a value for the binding target. The data binding engine calls this method when it propagates the values from source bindings to the binding target.
             </summary>
-            <param name="value">The value produced by the binding source.</param>
+            <param name="values">The array of values that the source bindings in the <see cref="T:System.Windows.Data.MultiBinding" /> produces. The value <see cref="F:System.Windows.DependencyProperty.UnsetValue" /> indicates that the source binding has no value to provide for conversion.</param>
             <param name="targetType">The type of the binding target property.</param>
             <param name="parameter">The converter parameter to use.</param>
             <param name="culture">The culture to use in the converter.</param>
             <returns>
-            A converted value. If the method returns null, the valid null value is used.
+            A converted value.If the method returns null, the valid null value is used.A return value of <see cref="T:System.Windows.DependencyProperty" />.<see cref="F:System.Windows.DependencyProperty.UnsetValue" /> indicates that the converter did not produce a value, and that the binding will use the <see cref="P:System.Windows.Data.BindingBase.FallbackValue" /> if it is available, or else will use the default value.A return value of <see cref="T:System.Windows.Data.Binding" />.<see cref="F:System.Windows.Data.Binding.DoNothing" /> indicates that the binding does not transfer the value or use the <see cref="P:System.Windows.Data.BindingBase.FallbackValue" /> or the default value.
             </returns>
         </member>
-        <member name="M:LiveCharts.Wpf.SharedVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+        <member name="M:LiveCharts.Wpf.SharedVisibilityConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
             <summary>
-            Converts a value.
+            Converts a binding target value to the source binding values.
             </summary>
-            <param name="value">The value that is produced by the binding target.</param>
-            <param name="targetType">The type to convert to.</param>
+            <param name="value">The value that the binding target produces.</param>
+            <param name="targetTypes">The array of types to convert to. The array length indicates the number and types of values that are suggested for the method to return.</param>
             <param name="parameter">The converter parameter to use.</param>
             <param name="culture">The culture to use in the converter.</param>
             <returns>
-            A converted value. If the method returns null, the valid null value is used.
+            An array of values that have been converted from the target value back to the source values.
             </returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
@@ -2442,6 +2605,19 @@
             <summary>
             Gets or sets the slice push out, this property highlights the slice
             </summary>
+        </member>
+        <member name="F:LiveCharts.Wpf.PieSeries.LabelPositionProperty">
+            <summary>
+            The label position property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.PieSeries.LabelPosition">
+            <summary>
+            Gets or sets the label position.
+            </summary>
+            <value>
+            The label position.
+            </value>
         </member>
         <member name="M:LiveCharts.Wpf.PieSeries.GetPointView(LiveCharts.ChartPoint,System.String)">
             <summary>
@@ -2837,6 +3013,12 @@
             Initializes the series colors if they are not set
             </summary>
         </member>
+        <member name="M:LiveCharts.Wpf.StepLineSeries.GetPointDiameter">
+            <summary>
+            Gets the point diameter.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:LiveCharts.Wpf.VerticalStackedAreaSeries">
             <summary>
             Compares trend and proportion, this series must be added in a cartesian chart.
@@ -3005,6 +3187,14 @@
             The splitters collector.
             </value>
         </member>
+        <member name="P:LiveCharts.Wpf.LineSeries.IsNew">
+            <summary>
+            Gets or sets a value indicating whether this instance is new.
+            </summary>
+            <value>
+              <c>true</c> if this instance is new; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="F:LiveCharts.Wpf.LineSeries.PointGeometrySizeProperty">
             <summary>
             The point geometry size property
@@ -3017,7 +3207,7 @@
         </member>
         <member name="F:LiveCharts.Wpf.LineSeries.PointForeroundProperty">
             <summary>
-            The point foreround property
+            The point foreground property
             </summary>
         </member>
         <member name="P:LiveCharts.Wpf.LineSeries.PointForeround">
@@ -3068,6 +3258,12 @@
             Erases series
             </summary>
             <param name="removeFromView"></param>
+        </member>
+        <member name="M:LiveCharts.Wpf.LineSeries.GetPointDiameter">
+            <summary>
+            Gets the point diameter.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:LiveCharts.Wpf.LineSeries.StartSegment(System.Int32,LiveCharts.Dtos.CorePoint)">
             <summary>
@@ -3306,6 +3502,19 @@
             <summary>
             Gets or sets if series should include a label over each data point.
             </summary>
+        </member>
+        <member name="F:LiveCharts.Wpf.Series.DataLabelsTemplateProperty">
+            <summary>
+            The labels template property
+            </summary>
+        </member>
+        <member name="P:LiveCharts.Wpf.Series.DataLabelsTemplate">
+            <summary>
+            Gets or sets the labels template.
+            </summary>
+            <value>
+            The labels template.
+            </value>
         </member>
         <member name="F:LiveCharts.Wpf.Series.FontFamilyProperty">
             <summary>

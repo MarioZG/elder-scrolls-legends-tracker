@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Livecharts</name>
+        <name>LiveCharts</name>
     </assembly>
     <members>
         <member name="T:LiveCharts.AxisCore">
@@ -162,6 +162,11 @@
             Clears the separators.
             </summary>
         </member>
+        <member name="M:LiveCharts.AxisCore.InitializeGarbageCollector">
+            <summary>
+            Initializes the garbage collector.
+            </summary>
+        </member>
         <member name="T:LiveCharts.AxisOrientation">
             <summary>
             Cartesian Axis orientation
@@ -254,6 +259,16 @@
         <member name="F:LiveCharts.BarLabelPosition.Merged">
             <summary>
             Places a labels inside the bar
+            </summary>
+        </member>
+        <member name="F:LiveCharts.BarLabelPosition.Parallel">
+            <summary>
+            Places a labels in a parallel orientation to the bar height.
+            </summary>
+        </member>
+        <member name="F:LiveCharts.BarLabelPosition.Perpendicular">
+            <summary>
+            Places a labels in a perpendicular orientation to the bar height.
             </summary>
         </member>
         <member name="T:LiveCharts.ChartFunctions">
@@ -1151,6 +1166,69 @@
             <typeparam name="T">type to amp</typeparam>
             <returns>a new polar mapper insance</returns>
         </member>
+        <member name="M:LiveCharts.Configurations.Mappers.Pie``1">
+            <summary>
+            PGets a mapper to configure a pie chart
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:LiveCharts.Configurations.PieMapper`1">
+            <summary>
+            Mapper to configure X and Y points
+            </summary>
+            <typeparam name="T">Type to configure</typeparam>
+        </member>
+        <member name="M:LiveCharts.Configurations.PieMapper`1.Evaluate(System.Int32,`0,LiveCharts.ChartPoint)">
+            <summary>
+            Sets values for a specific point
+            </summary>
+            <param name="point">Point to set</param>
+            <param name="value"></param>
+            <param name="key"></param>
+        </member>
+        <member name="M:LiveCharts.Configurations.PieMapper`1.Value(System.Func{`0,System.Double})">
+            <summary>
+            Sets the Y mapper
+            </summary>
+            <param name="predicate">function that pulls Y coordinate</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.PieMapper`1.Value(System.Func{`0,System.Int32,System.Double})">
+            <summary>
+            Sets the Y mapper
+            </summary>
+            <param name="predicate">function that pulls Y coordinate, with value and index as parameters</param>
+            <returns>current mapper instance</returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.PieMapper`1.Stroke(System.Func{`0,System.Object})">
+            <summary>
+            Sets the Stroke of the point
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.PieMapper`1.Stroke(System.Func{`0,System.Int32,System.Object})">
+            <summary>
+            Sets the Stroke of the point
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.PieMapper`1.Fill(System.Func{`0,System.Object})">
+            <summary>
+            Sets the Fill of the point
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LiveCharts.Configurations.PieMapper`1.Fill(System.Func{`0,System.Int32,System.Object})">
+            <summary>
+            Sets the Fill of the point
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
         <member name="T:LiveCharts.Configurations.PolarMapper`1">
             <summary>
             Mapper to configure polar series
@@ -1304,6 +1382,27 @@
             </summary>
             <param name="predicate"></param>
             <returns></returns>
+        </member>
+        <member name="T:LiveCharts.DataLabelViewModel">
+            <summary>
+            Describes a data label view model
+            </summary>
+        </member>
+        <member name="P:LiveCharts.DataLabelViewModel.FormattedText">
+            <summary>
+            Gets or sets the formatted text of the current point
+            </summary>
+            <value>
+            The formatted text.
+            </value>
+        </member>
+        <member name="P:LiveCharts.DataLabelViewModel.Instance">
+            <summary>
+            Gets the instance of the current point.
+            </summary>
+            <value>
+            The instance.
+            </value>
         </member>
         <member name="T:LiveCharts.Defaults.DateTimePoint">
             <summary>
@@ -1956,6 +2055,14 @@
             The zoom.
             </value>
         </member>
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.Pan">
+            <summary>
+            Gets or sets the zoom.
+            </summary>
+            <value>
+            The zoom.
+            </value>
+        </member>
         <member name="P:LiveCharts.Definitions.Charts.IChartView.ZoomingSpeed">
             <summary>
             Gets or sets the zooming speed.
@@ -2012,7 +2119,14 @@
             <c>true</c> if this instance has data click event attached; otherwise, <c>false</c>.
             </value>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:LiveCharts.Definitions.Charts.IChartView.HasDataHoverEventAttached" -->
+        <member name="P:LiveCharts.Definitions.Charts.IChartView.HasDataHoverEventAttached">
+            <summary>
+            Gets a value indicating whether this instance has data hover event attached.
+            </summary>
+            <value>
+            <c>true</c> if this instance has data hover event attached; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="P:LiveCharts.Definitions.Charts.IChartView.Hoverable">
             <summary>
             Gets a value indicating whether this <see cref="T:LiveCharts.Definitions.Charts.IChartView"/> is hoverable.
@@ -2132,6 +2246,20 @@
             </summary>
             <param name="chart">The chart.</param>
             <returns></returns>
+        </member>
+        <member name="T:LiveCharts.Definitions.Charts.ILogarithmicAxisView">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.Definitions.Charts.IAxisView" />
+        </member>
+        <member name="P:LiveCharts.Definitions.Charts.ILogarithmicAxisView.Base">
+            <summary>
+            Gets or sets the base.
+            </summary>
+            <value>
+            The base.
+            </value>
         </member>
         <member name="T:LiveCharts.Definitions.Charts.IPieChart">
             <summary>
@@ -2688,6 +2816,17 @@
             The push out.
             </value>
         </member>
+        <member name="T:LiveCharts.Definitions.Series.IAreaPoint">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LiveCharts.Definitions.Series.IAreaPoint.GetPointDiameter">
+            <summary>
+            Gets the point diameter.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:LiveCharts.Definitions.Series.IRowSeriesView">
             <summary>
             
@@ -2807,6 +2946,14 @@
             </summary>
             <value>
             The actual values.
+            </value>
+        </member>
+        <member name="P:LiveCharts.Definitions.Series.ISeriesView.Title">
+            <summary>
+            Gets the title.
+            </summary>
+            <value>
+            The title.
             </value>
         </member>
         <member name="M:LiveCharts.Definitions.Series.ISeriesView.GetPointView(LiveCharts.ChartPoint,System.String)">
@@ -3426,6 +3573,7 @@
             <summary>
             
             </summary>
+            <param name="sender">The sender.</param>
         </member>
         <member name="T:LiveCharts.Events.RangeChangedHandler">
             <summary>
@@ -3583,6 +3731,31 @@
         <member name="E:LiveCharts.Helpers.NoisyCollection`1.CollectionReset">
             <summary>
             Occurs when [collection reset].
+            </summary>
+        </member>
+        <member name="E:LiveCharts.Helpers.NoisyCollection`1.LiveCharts#Helpers#INoisyCollection#NoisyCollectionChanged">
+            <summary>
+            Occurs when [noisy collection changed].
+            </summary>
+        </member>
+        <member name="E:LiveCharts.Helpers.NoisyCollection`1.NoisyCollectionChanged">
+            <summary>
+            Occurs when [noisy collection changed].
+            </summary>
+        </member>
+        <member name="E:LiveCharts.Helpers.NoisyCollection`1.CollectionChanged">
+            <summary>
+            Occurs when the collection changes.
+            </summary>
+        </member>
+        <member name="E:LiveCharts.Helpers.NoisyCollection`1.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="E:LiveCharts.Helpers.NoisyCollection`1.System#ComponentModel#INotifyPropertyChanged#PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
             </summary>
         </member>
         <member name="P:LiveCharts.Helpers.NoisyCollection`1.Item(System.Int32)">
@@ -3786,10 +3959,17 @@
             <param name="item">item to look for</param>
             <returns></returns>
         </member>
-        <member name="E:LiveCharts.Helpers.NoisyCollection`1.NoisyCollectionChanged">
+        <member name="M:LiveCharts.Helpers.NoisyCollection`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
             <summary>
-            Occurs when [noisy collection changed].
+            Raises the <see cref="E:PropertyChanged" /> event.
             </summary>
+            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:LiveCharts.Helpers.NoisyCollection`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:CollectionChanged" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs"/> instance containing the event data.</param>
         </member>
         <member name="T:LiveCharts.IChartValues">
             <summary>
@@ -3864,6 +4044,18 @@
             Places legend at right
             </summary>
         </member>
+        <member name="T:LiveCharts.LogarithmicAxisCore">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:LiveCharts.AxisCore" />
+        </member>
+        <member name="M:LiveCharts.LogarithmicAxisCore.#ctor(LiveCharts.Definitions.Charts.IAxisView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveCharts.LogarithmicAxisCore"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
         <member name="T:LiveCharts.Maps.LvcMap">
             <summary>
             
@@ -3937,6 +4129,51 @@
             <value>
             The LVC map.
             </value>
+        </member>
+        <member name="T:LiveCharts.PanningOptions">
+            <summary>
+            Chart Panning Options
+            </summary>
+        </member>
+        <member name="F:LiveCharts.PanningOptions.Unset">
+            <summary>
+            By default chart Panning is Unset, this means it will be based the Chart Zooming selection
+            </summary>
+        </member>
+        <member name="F:LiveCharts.PanningOptions.None">
+            <summary>
+            Not panning allowed
+            </summary>
+        </member>
+        <member name="F:LiveCharts.PanningOptions.X">
+            <summary>
+            Panning only in the X axis
+            </summary>
+        </member>
+        <member name="F:LiveCharts.PanningOptions.Y">
+            <summary>
+            Panning only in the Y axis
+            </summary>
+        </member>
+        <member name="F:LiveCharts.PanningOptions.Xy">
+            <summary>
+            Panning in both X and Y axes
+            </summary>
+        </member>
+        <member name="T:LiveCharts.PieLabelPosition">
+            <summary>
+            Describes where a label should be placed
+            </summary>
+        </member>
+        <member name="F:LiveCharts.PieLabelPosition.InsideSlice">
+            <summary>
+            Places the label inside the pie slice
+            </summary>
+        </member>
+        <member name="F:LiveCharts.PieLabelPosition.OutsideSlice">
+            <summary>
+            Places the label outside the pie slice
+            </summary>
         </member>
         <member name="T:LiveCharts.PointTracker">
             <summary>
