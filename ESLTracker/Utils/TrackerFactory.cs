@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
+using ESLTracker.Services;
 using ESLTracker.Utils.IOWrappers;
 
 namespace ESLTracker.Utils
@@ -41,6 +42,14 @@ namespace ESLTracker.Utils
             else if (type == typeof(ISettings))
             {
                 return Properties.Settings.Default as T;
+            }
+            else if (type == typeof(ICardImageService))
+            {
+                return new CardImageService(this) as T;
+            }
+            else if (type == typeof(IResourcesService))
+            {
+                return new ResourcesService() as T;
             }
             else
             {

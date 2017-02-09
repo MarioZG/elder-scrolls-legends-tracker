@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 using ESLTracker.ViewModels;
@@ -21,6 +22,7 @@ namespace ESLTracker.DataModel
     public class CardInstance : ViewModelBase, ICloneable
     {
         private ITrackerFactory trackerFactory;
+        private static ICardImageService cardImageService;
 
         public Guid CardId
         {
@@ -62,7 +64,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return CardImagesHelper.GetCardMiniature(card);
+                return cardImageService.GetCardMiniature(card);
             }
         }
         [XmlIgnore]
@@ -85,7 +87,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return CardImagesHelper.GetRarityBrush(card);
+                return cardImageService.GetRarityBrush(card);
             }
         }
 
@@ -132,6 +134,10 @@ namespace ESLTracker.DataModel
         {
             this.Card = card;
             this.trackerFactory = trackerFactory;
+            if (cardImageService == null)
+            {
+                cardImageService = trackerFactory.GetService<ICardImageService>();
+            }
         }
 
         private void LoadCardFromDataBase(Guid value)

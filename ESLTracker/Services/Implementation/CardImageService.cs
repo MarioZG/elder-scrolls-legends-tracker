@@ -11,16 +11,29 @@ using ESLTracker.DataModel;
 using ESLTracker.Utils.Extensions;
 using Media = System.Windows.Media;
 using ESLTracker.DataModel.Enums;
+//using ESLTracker.Utils;
+using NLog;
+using ESLTracker.Utils;
 
-namespace ESLTracker.Utils
+namespace ESLTracker.Services
 {
-    public class CardImagesHelper
+    public class CardImageService : ICardImageService
     {
-        private static Dictionary<Guid, Media.Brush> CardMiniatureCache = new Dictionary<Guid, Media.Brush>();
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static Media.Brush GetCardMiniature(Card card)
+        private static Dictionary<Guid, Media.Brush> CardMiniatureCache = new Dictionary<Guid, Media.Brush>();
+        IResourcesService resourceService;
+
+        public CardImageService(ITrackerFactory trackerFactory)
         {
-            if ((card != null) && (card != Card.Unknown))
+            resourceService = trackerFactory.GetService<IResourcesService>();
+        }
+
+        public Media.Brush GetCardMiniature(Card card)
+        {
+            Logger.ConditionalTrace("Start GetCardMiniature");
+            Media.Brush returnValue = null;
+            if((card != null) && (card != Card.Unknown))
             {
                 if (!CardMiniatureCache.ContainsKey(card.Id))
                 {
@@ -31,50 +44,61 @@ namespace ESLTracker.Utils
 
                     CardMiniatureCache.Add(card.Id, brush);
                 }
-                return CardMiniatureCache[card.Id];
+                returnValue = CardMiniatureCache[card.Id];
             }
             else
             {
-                return new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
+                returnValue = new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
             }
+            Logger.ConditionalTrace("End GetCardMiniature");
+            return returnValue;
         }
 
-        public static Media.Brush GetRarityBrush(Card card)
+        public Media.Brush GetRarityBrush(Card card)
         {
+            Logger.ConditionalTrace("Start GetRarityBrush");
+            Media.Brush returnValue = null;
             if ((card != null) && (card != Card.Unknown))
             {
                 switch (card.Rarity)
                 {
                     case CardRarity.Common:
-                        return new Media.RadialGradientBrush(
+                        returnValue = new Media.RadialGradientBrush(
                              Media.Color.FromArgb(255, 115, 115, 115),
                              Media.Color.FromArgb(255, 200, 200, 200))
                         { RadiusX = 0.6, RadiusY = 0.6 };
+                        break;
                     case CardRarity.Rare:
-                        return new Media.RadialGradientBrush(
+                        returnValue = new Media.RadialGradientBrush(
                              Media.Color.FromArgb(255, 72, 132, 226),
                              Media.Color.FromArgb(255, 135, 195, 224))
                         { RadiusX = 0.6, RadiusY = 0.6 };
+                        break;
                     case CardRarity.Epic:
-                        return new Media.RadialGradientBrush(
+                        returnValue = new Media.RadialGradientBrush(
                             Media.Color.FromArgb(255, 138, 43, 226),
                             Media.Color.FromArgb(255, 204, 84, 199))
                         { RadiusX = 0.6, RadiusY = 0.6 };
+                        break;
                     case CardRarity.Legendary:
-                        return new Media.RadialGradientBrush(
+                        returnValue = new Media.RadialGradientBrush(
                             Media.Color.FromArgb(255, 240, 154, 35),
                             Media.Color.FromArgb(255, 255, 255, 40))
                         { RadiusX = 0.6, RadiusY = 0.6 };
+                        break;
                     default:
                         throw new NotImplementedException("Unknown card rarity");
                 }
             }
             else
             {
-                return new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
+                returnValue = new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
             }
+            Logger.ConditionalTrace("End GetRarityBrush");
+            return returnValue;
         }
-        private static Media.Brush MergeAttribsAndCArd(Drawing.Bitmap attribsBitmap, Drawing.Bitmap cardBitmap)
+
+        private Media.Brush MergeAttribsAndCArd(Drawing.Bitmap attribsBitmap, Drawing.Bitmap cardBitmap)
         {
             var bitmap = new Drawing.Bitmap(160 + 269, 44);
             using (Drawing.Graphics g = Drawing.Graphics.FromImage(bitmap))
@@ -96,12 +120,12 @@ namespace ESLTracker.Utils
             }
         }
 
-        private static Drawing.Bitmap GetCardSmallImage(Card card)
+        private Drawing.Bitmap GetCardSmallImage(Card card)
         {
             Drawing.Bitmap cardBitmap;
 
             Uri imageUri = new Uri(card.ImageName, UriKind.RelativeOrAbsolute);
-            if (ResourcesHelper.ResourceExists(imageUri))
+            if (resourceService.ResourceExists(imageUri))
             {
                 cardBitmap = new Drawing.Bitmap(Application.GetResourceStream(imageUri).Stream);
             }
@@ -117,7 +141,7 @@ namespace ESLTracker.Utils
             return cardBitmap;
         }
 
-        private static Drawing.Bitmap GetAtrriutesBackground(Card card)
+        private Drawing.Bitmap GetAtrriutesBackground(Card card)
         {
             Drawing.Color colorTo;
             Drawing.Color colorFrom;

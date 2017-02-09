@@ -10,6 +10,7 @@ using ESLTracker.DataModel.Enums;
 using System.Collections.ObjectModel;
 using ESLTrackerTests;
 using System.Reflection;
+using ESLTracker.Services;
 
 namespace ESLTracker.Utils.Tests
 {
@@ -43,14 +44,15 @@ namespace ESLTracker.Utils.Tests
         [TestMethod]
         public void CardsDatabaseTest_EnsureAllCardsHaveImages()
         {
-            foreach(Card card in CardsDatabase.Default.Cards)
+            ResourcesService resService = new ResourcesService();
+            foreach (Card card in CardsDatabase.Default.Cards)
             {
                 Assert.IsNotNull(new CardInstance(card).BackgroundColor, card.Name);
                 Assert.IsNotNull(new CardInstance(card).ForegroundColor, card.Name);
                 Assert.IsNotNull(new CardInstance(card).RarityColor, card.Name);
 
                 Uri imageUri = new Uri(card.ImageName, UriKind.RelativeOrAbsolute);
-                Assert.IsTrue(ResourcesHelper.ResourceExists(imageUri), card.Name);
+                Assert.IsTrue(resService.ResourceExists(imageUri), card.Name);
             }
 
         }

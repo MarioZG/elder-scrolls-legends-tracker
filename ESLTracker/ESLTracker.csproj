@@ -193,8 +193,10 @@
     <Compile Include="RankedProgressChart.xaml.cs">
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\ICardImageService.cs" />
+    <Compile Include="Services\IResourcesService.cs" />
     <Compile Include="Utils\ApplicationService.cs" />
-    <Compile Include="Utils\CardImagesHelper.cs" />
+    <Compile Include="Services\Implementation\CardImageService.cs" />
     <Compile Include="Utils\Converters\CollectionCountToVisibility.cs" />
     <Compile Include="Utils\Converters\DebuggingConverter.cs" />
     <Compile Include="Utils\Converters\GameStatsRowVisibility.cs" />
@@ -222,7 +224,7 @@
     <Compile Include="Utils\NewVersioInfo.cs" />
     <Compile Include="Utils\OverlayWindowRepository.cs" />
     <Compile Include="Utils\PropertiesObservableCollection.cs" />
-    <Compile Include="Utils\ResourcesHelper.cs" />
+    <Compile Include="Services\Implementation\ResourcesService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
