@@ -63,6 +63,7 @@ namespace ESLTracker.Utils
         {
             var requestErrorPolicy = Policy<string>
                         .Handle<System.Net.WebException>()
+                        .Or<ArgumentOutOfRangeException>() //no assets on release
                         .Fallback("");
 
             string url = "https://api.github.com/repos/MarioZG/elder-scrolls-legends-tracker/releases/latest";
