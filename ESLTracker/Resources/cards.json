@@ -1,7 +1,7 @@
 {
-    "Version": "0.5",
-    "VersionInfo": "Game Update 1.61",
-    "VersionDate": "2017-01-25T00:00:00.000Z",
+    "Version": "0.6",
+    "VersionInfo": "February 2017 monthly reward",
+    "VersionDate": "2017-02-28T00:00:00.000Z",
     "Cards": [
         {
             "id": "094f4937-e5db-8a41-e441-1905cd7a1406",
@@ -2329,6 +2329,19 @@
             "health": "4",
             "race": "imperial",
             "text": "Hero of Anvil costs 1 less for each creature summoned this turn."
+        },
+        {
+            "id": "1ccaad69-ab04-dfd2-4c81-dc4a970a3aca",
+            "name": "Heroic Rebirth",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "support",
+            "attributes": "intelligence",
+            "cost": "3",
+            "attack": "0",
+            "health": "0",
+            "race": "",
+            "text": "Activate: Transform a creature in your hand into a random Legend."
         },
         {
             "id": "14821ec2-29d3-f89a-acfd-e0b354df4151",
