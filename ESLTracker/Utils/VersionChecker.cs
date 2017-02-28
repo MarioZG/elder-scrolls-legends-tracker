@@ -98,7 +98,7 @@ namespace ESLTracker.Utils
                         .Handle<System.Net.WebException>()
                         .Fallback(() => { /* do nothing*/});
 
-            string url = "https://raw.githubusercontent.com/MarioZG/elder-scrolls-legends-tracker/v0.6.0/ESLTracker/Resources/cards.json";
+            string url = "https://raw.githubusercontent.com/MarioZG/elder-scrolls-legends-tracker/master/ESLTracker/Resources/cards.json";
             requestErrorPolicy.Execute(() =>
             {
                 IHTTPService httpService = (IHTTPService)trackerFactory.GetService<IHTTPService>();
