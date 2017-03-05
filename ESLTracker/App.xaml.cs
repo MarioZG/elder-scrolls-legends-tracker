@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
 using ESLTracker.Utils;
+using ESLTracker.Services;
 
 namespace ESLTracker
 {
@@ -62,7 +63,7 @@ namespace ESLTracker
 
             CheckSingleInstance();
             CheckDataFile();
-            VersionChecker vc = new VersionChecker(TrackerFactory.DefaultTrackerFactory);
+            IVersionService vc = TrackerFactory.DefaultTrackerFactory.GetService<IVersionService>();
             if (vc.IsNewCardsDBAvailable())
             {
                 vc.GetLatestCardsDB();

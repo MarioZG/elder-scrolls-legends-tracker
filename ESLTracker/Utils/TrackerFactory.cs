@@ -51,6 +51,10 @@ namespace ESLTracker.Utils
             {
                 return new ResourcesService() as T;
             }
+            else if (type == typeof(IVersionService))
+            {
+                return new VersionService(this) as T;
+            }
             else
             {
                 throw new NotImplementedException(typeof(T).Name);

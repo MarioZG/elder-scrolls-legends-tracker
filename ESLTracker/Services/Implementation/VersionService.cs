@@ -4,13 +4,14 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.Utils;
 using Newtonsoft.Json.Linq;
 using Polly;
 using Polly.Fallback;
 
-namespace ESLTracker.Utils
+namespace ESLTracker.Services
 {
-    public class VersionChecker
+    public class VersionService : IVersionService
     {
         private NewVersioInfo appVersionInfo;
         public NewVersioInfo AppVersionInfo {
@@ -26,7 +27,7 @@ namespace ESLTracker.Utils
 
         private ITrackerFactory trackerFactory;
 
-        public VersionChecker(ITrackerFactory trackerFactory)
+        public VersionService(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
         }

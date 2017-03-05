@@ -96,7 +96,7 @@
     <Compile Include="Utils\FileUpdaters\Update_2_0_To_2_1Tests.cs" />
     <Compile Include="Utils\ScreenshotNameProviderTests.cs" />
     <Compile Include="Utils\SerializableVersionTests.cs" />
-    <Compile Include="Utils\VersionCheckerTests.cs" />
+    <Compile Include="Services\VersionServiceTests.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModelTests.cs" />
     <Compile Include="ViewModels\Cards\CardListEditorViewModelTests.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModelTests.cs" />

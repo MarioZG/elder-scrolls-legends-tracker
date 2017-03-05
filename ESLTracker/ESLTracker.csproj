@@ -194,6 +194,7 @@
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\ICardImageService.cs" />
+    <Compile Include="Services\IVersionService.cs" />
     <Compile Include="Services\IResourcesService.cs" />
     <Compile Include="Utils\ApplicationService.cs" />
     <Compile Include="Services\Implementation\CardImageService.cs" />
@@ -275,7 +276,7 @@
     <Compile Include="Utils\SingleInstanceApp.cs" />
     <Compile Include="Utils\SoulGemsHelper.cs" />
     <Compile Include="Utils\TrackerFactory.cs" />
-    <Compile Include="Utils\VersionChecker.cs" />
+    <Compile Include="Services\Implementation\VersionService.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
     <Compile Include="ViewModels\Cards\CardListEditorViewModel.cs" />
     <Compile Include="ViewModels\Decks\CardBreakdownViewModel.cs" />

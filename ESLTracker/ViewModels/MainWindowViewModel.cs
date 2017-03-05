@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.ViewModels.Decks;
@@ -84,7 +85,7 @@ namespace ESLTracker.ViewModels
             set { windowState = value; RaisePropertyChangedEvent("WindowState"); }
         }
 
-        private VersionChecker versionChecker;
+        private IVersionService versionChecker;
         private NewVersioInfo appUpdateVersionInfo;
         public NewVersioInfo AppUpateVersionInfo
         {
@@ -92,7 +93,7 @@ namespace ESLTracker.ViewModels
             {
                 if (appUpdateVersionInfo == null)
                 {
-                    versionChecker = new VersionChecker(trackerFactory);
+                    versionChecker = trackerFactory.GetService<IVersionService>();
                     appUpdateVersionInfo = versionChecker.AppVersionInfo;
                 }
                 return appUpdateVersionInfo;
