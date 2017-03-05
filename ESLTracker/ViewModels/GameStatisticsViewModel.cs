@@ -234,7 +234,7 @@ namespace ESLTracker.ViewModels
 
 
             return result.GroupBy(r => new { r.Deck, r.DeckVersion })
-                .Select(r=> new
+                .Select(r=> new GameStatisticsDeckRow
                 {
                     Deck = r.Key.Deck,
                     DeckVersion = r.Key.DeckVersion,
@@ -387,6 +387,32 @@ namespace ESLTracker.ViewModels
                                         "-" + d.Where(d2 => d2.Outcome == GameOutcome.Defeat && d2.OrderOfPlay == orderOfPlay).Count(),
                             WinPerc = (double)d.Where(g => g.Outcome == GameOutcome.Victory && g.OrderOfPlay == orderOfPlay).Count() / d.Where(g => g.OrderOfPlay == OrderOfPlay.First).Count() * 100
                         });
+        }
+
+        public class GameStatisticsDeckRow
+        {
+            public string Agility { get; set; }
+            public string Archer { get; set; }
+            public string Assassin { get; set; }
+            public string Battlemage { get; set; }
+            public string Crusader { get; set; }
+            public object Deck { get; set; }
+            public SerializableVersion DeckVersion { get; set; }
+            public string Endurance { get; set; }
+            public string FirstWin { get; set; }
+            public string First_Second { get; set; }
+            public string Inteligence { get; set; }
+            public string Mage { get; set; }
+            public string Monk { get; set; }
+            public string Neutral { get; set; }
+            public string Scout { get; set; }
+            public string SecondWin { get; set; }
+            public string Sorcerer { get; set; }
+            public string Spellsword { get; set; }
+            public string Strength { get; set; }
+            public string Total { get; set; }
+            public string Warrior { get; set; }
+            public string Willpower { get; set; }
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using ESLTracker.DataModel;
+using ESLTracker.ViewModels;
 
 namespace ESLTracker.Utils.Converters
 {
@@ -18,7 +19,7 @@ namespace ESLTracker.Utils.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             SerializableVersion selectedVersion = (values[0] as DataRowView)?.Row[1] as SerializableVersion;
-            Deck selectedDeck = (values[0] as DataRowView)?.Row[0] as Deck;
+            Deck selectedDeck = (values[0] as GameStatisticsViewModel.GameStatisticsDeckRow)?.Deck as Deck;
 
             Deck currentDeck = values[1] as Deck;
             SerializableVersion currentVersion = values[2] as SerializableVersion;
