@@ -73,5 +73,34 @@ namespace ESLTracker.Controls
             InitializeComponent();
 
         }
+
+        private string typedChars = String.Empty;
+        private void cbPlayerRank_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var input = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            typedChars += input;
+            DataModel.Enums.PlayerRank rank;
+            if (IsValidPlayerRank(typedChars, out rank))
+            {
+                ((ComboBox)sender).SelectedItem = rank;
+            }
+            else
+            {
+                typedChars = input.ToString(); //try just latest pressed key
+                if (IsValidPlayerRank(typedChars, out rank))
+                {
+                    ((ComboBox)sender).SelectedItem = rank;
+                }
+                else
+                {
+                    typedChars = String.Empty;
+                }
+            }
+        }
+
+        private bool IsValidPlayerRank(string value, out DataModel.Enums.PlayerRank rank)
+        {
+            return Enum.TryParse(value, out rank) && Enum.IsDefined(typeof(DataModel.Enums.PlayerRank), rank);
+        }
     }
 }

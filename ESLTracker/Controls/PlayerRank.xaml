@@ -26,14 +26,15 @@
                  />
         <ComboBox x:Name="cbPlayerRank" 
               ItemsSource="{Binding Source={StaticResource PlayerRankEnum}}"
-                  SelectedItem="{Binding ElementName=rankControl, Path=SelectedRank, Mode=TwoWay}">
+                  SelectedItem="{Binding ElementName=rankControl, Path=SelectedRank, Mode=TwoWay}"
+                  IsTextSearchEnabled="True" PreviewKeyDown="cbPlayerRank_PreviewKeyDown">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding}" />
-                        <TextBlock Text="{Binding StringFormat={} ({0:D})}" 
+                        <TextBlock Text="{Binding StringFormat={}{0:D}-}" 
                             Visibility="{Binding Converter={Converters:PlayerRankLegendToVisibilty}, ConverterParameter=Not}"
                             />
+                        <TextBlock Text="{Binding}" />
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
