@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 
@@ -79,7 +80,7 @@ namespace ESLTracker.ViewModels.Decks
 
         public DeckStatsViewModel(ITrackerFactory trackerFactory)
         {
-            this.messanger = trackerFactory.GetMessanger();
+            this.messanger = trackerFactory.GetService<IMessenger>();
             tracker = trackerFactory.GetTracker();
 
             if (tracker.ActiveDeck != null)

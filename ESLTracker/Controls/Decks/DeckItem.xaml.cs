@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.DataModel;
+using ESLTracker.Services;
 using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.Controls.Decks
@@ -26,7 +27,7 @@ namespace ESLTracker.Controls.Decks
         public DeckItem()
         {
             InitializeComponent();
-            var messanger = new Utils.TrackerFactory().GetMessanger();
+            var messanger = new Utils.TrackerFactory().GetService<IMessenger>();
 
             //need to keep this for refreshing attributes icons - until class have correct binding!
             messanger.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.EditFinished);

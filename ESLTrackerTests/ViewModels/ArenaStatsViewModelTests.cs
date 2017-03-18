@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using ESLTracker.ViewModels.Game;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
+using ESLTracker.Services;
 
 namespace ESLTracker.ViewModels.Tests
 {

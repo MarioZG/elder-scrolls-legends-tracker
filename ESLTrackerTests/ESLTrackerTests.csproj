@@ -80,7 +80,7 @@
     <Compile Include="SettingsTests.cs" />
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="GenerateFileTest.cs" />
-    <Compile Include="Utils\CardsDatabaseTests.cs" />
+    <Compile Include="Services\CardsDatabaseTests.cs" />
     <Compile Include="Utils\ClassAttributesHelperTests.cs" />
     <Compile Include="Utils\Converters\BoolToVisibiltyConverterTests.cs" />
     <Compile Include="Utils\Converters\DeckTypeToArenaRankVisibiltyCollapsedTests.cs" />
@@ -90,7 +90,7 @@
     <Compile Include="Utils\Converters\ToVisibilityConverterTests.cs" />
     <Compile Include="Utils\Converters\VersionToVisibiltyTests.cs" />
     <Compile Include="Utils\DeckImporterTests.cs" />
-    <Compile Include="Utils\DeckServiceTests.cs" />
+    <Compile Include="Services\DeckServiceTests.cs" />
     <Compile Include="Utils\FileManagerTests.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_2_To_2_0Tests.cs" />
     <Compile Include="Utils\FileUpdaters\Update_2_0_To_2_1Tests.cs" />

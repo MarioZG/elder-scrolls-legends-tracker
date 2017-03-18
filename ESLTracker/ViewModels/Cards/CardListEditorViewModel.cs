@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.DataModel;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Cards
@@ -36,7 +37,7 @@ namespace ESLTracker.ViewModels.Cards
         {
             get
             {
-                return trackerFactory.GetCardsDatabase().CardsNames;
+                return cardsDatabase.CardsNames;
             }
         }
 
@@ -59,6 +60,7 @@ namespace ESLTracker.ViewModels.Cards
         }
 
         private ITrackerFactory trackerFactory;
+        private ICardsDatabase cardsDatabase;
 
         public CardListEditorViewModel() : this(TrackerFactory.DefaultTrackerFactory)
         {
@@ -68,6 +70,7 @@ namespace ESLTracker.ViewModels.Cards
         public CardListEditorViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
+            this.cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
         }
 
         private void CommandAddCardToDeckExecute(object obj)

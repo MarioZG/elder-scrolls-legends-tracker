@@ -55,6 +55,10 @@ namespace ESLTracker.Utils
             {
                 return new VersionService(this) as T;
             }
+            else if (type == typeof(IMessenger))
+            {
+                return Messenger.Default as T;
+            }
             else
             {
                 throw new NotImplementedException(typeof(T).Name);
@@ -67,11 +71,6 @@ namespace ESLTracker.Utils
             return Tracker.Instance;
         }
 
-        public IMessenger GetMessanger()
-        {
-            return Messenger.Default;
-        }
-
         public DateTime GetDateTimeNow()
         {
             return DateTime.Now;
@@ -80,13 +79,6 @@ namespace ESLTracker.Utils
         public IWinAPI GetWinAPI()
         {
             return WinAPI.Default;
-        }
-
-        public ICardsDatabase GetCardsDatabase()
-        {
-#pragma warning disable CS0618 // Type or member is obsolete
-            return CardsDatabase.Default;
-#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         public IWrapperProvider GetWrapperProvider()

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 
@@ -160,7 +161,7 @@ namespace ESLTracker.ViewModels.Game
         {
             this.trackerFactory = trackerFactory;
 
-            messanger = trackerFactory.GetMessanger();
+            messanger = trackerFactory.GetService<IMessenger>();
             tracker = trackerFactory.GetTracker();
             Game.PropertyChanged += Game_PropertyChanged;
             messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);

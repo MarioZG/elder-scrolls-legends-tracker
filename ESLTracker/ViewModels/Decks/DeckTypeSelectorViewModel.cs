@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 
@@ -66,7 +67,7 @@ namespace ESLTracker.ViewModels.Decks
         public DeckTypeSelectorViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
-            messanger = trackerFactory.GetMessanger();
+            messanger = trackerFactory.GetService<IMessenger>();
             FilterButtonState = new Dictionary<DeckType, bool>();
             foreach (DeckType a in Enum.GetValues(typeof(DeckType)))
             {

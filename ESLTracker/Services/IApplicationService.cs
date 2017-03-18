@@ -1,4 +1,6 @@
-﻿namespace ESLTracker.Utils
+﻿using ESLTracker.Utils;
+
+namespace ESLTracker.Services
 {
     public interface IApplicationService
     {

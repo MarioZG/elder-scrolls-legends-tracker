@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ESLTracker.DataModel;
 
-namespace ESLTracker.Utils
+namespace ESLTracker.Services
 {
     public interface ICardsDatabase
     {

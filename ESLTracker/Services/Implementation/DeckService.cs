@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
+using ESLTracker.Utils;
 using ESLTracker.ViewModels.Decks;
 
-namespace ESLTracker.Utils
+namespace ESLTracker.Services
 {
     public class DeckService : IDeckService
     {

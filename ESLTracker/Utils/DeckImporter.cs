@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
+using ESLTracker.Services;
 
 namespace ESLTracker.Utils
 {
@@ -17,6 +18,7 @@ namespace ESLTracker.Utils
         private TaskCompletionSource<bool> taskCompletonSource;
 
         private ITrackerFactory trackerFactory;
+        private ICardsDatabase cardsDatabase;
 
         public DeckImporter() : this(TrackerFactory.DefaultTrackerFactory)
         {
@@ -26,6 +28,7 @@ namespace ESLTracker.Utils
         public DeckImporter(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
+            this.cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
         }
 
         public async Task ImportFromText(string importData)
@@ -55,7 +58,7 @@ namespace ESLTracker.Utils
                 int cardCount = GetCardQty(splitedLine);
                 string cardName = GetCardName(splitedLine);
 
-                Card card = trackerFactory.GetCardsDatabase().FindCardByName(cardName);
+                Card card = this.cardsDatabase.FindCardByName(cardName);
 
                 CardInstance cardInstance = new CardInstance(card, trackerFactory);
                 cardInstance.Quantity = cardCount;

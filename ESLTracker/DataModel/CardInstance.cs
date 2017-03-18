@@ -23,6 +23,7 @@ namespace ESLTracker.DataModel
     {
         private ITrackerFactory trackerFactory;
         private static ICardImageService cardImageService;
+        private static ICardsDatabase cardsDatabase;
 
         public Guid CardId
         {
@@ -138,11 +139,15 @@ namespace ESLTracker.DataModel
             {
                 cardImageService = trackerFactory.GetService<ICardImageService>();
             }
+            if (cardsDatabase == null)
+            {
+                cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
+            }
         }
 
         private void LoadCardFromDataBase(Guid value)
         {
-            this.Card = trackerFactory.GetCardsDatabase().FindCardById(value);
+            this.Card = cardsDatabase.FindCardById(value);
         }
 
         public object Clone()

@@ -16,6 +16,7 @@ using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using ESLTracker.Utils.Messages;
+using ESLTracker.Services;
 
 namespace ESLTracker.ViewModels.Game.Tests
 {
@@ -30,7 +31,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         {
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             Mock<IMessenger> messanger = new Mock<IMessenger>();
-            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
+            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(messanger.Object);
             trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
             Mock<ISettings> settings = new Mock<ISettings>();
@@ -108,7 +109,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         {
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             Mock<IMessenger> messanger = new Mock<IMessenger>();
-            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
+            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(messanger.Object);
 
             Mock<ISettings> settings = new Mock<ISettings>();
             trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
@@ -138,7 +139,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         {
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             Mock<IMessenger> messanger = new Mock<IMessenger>();
-            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
+            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(messanger.Object);
 
             Mock<ISettings> settings = new Mock<ISettings>();
             trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
@@ -175,7 +176,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         {
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             Mock<IMessenger> messanger = new Mock<IMessenger>();
-            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messanger.Object);
+            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(messanger.Object);
 
             Mock<ISettings> settings = new Mock<ISettings>();
             trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
@@ -314,7 +315,7 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(timeConcluded);
-            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(new Mock<IMessenger>().Object);
+            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(new Mock<IMessenger>().Object);
             trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
             Mock<ITracker> tracker = new Mock<ITracker>();
@@ -351,7 +352,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
             IMessenger messagnger = Messenger.Default;
-            trackerFactory.Setup(tf => tf.GetMessanger()).Returns(messagnger);
+            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(messagnger);
 
             
 

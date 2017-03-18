@@ -11,6 +11,7 @@ using ESLTracker.DataModel;
 using ESLTrackerTests;
 using System.Xml;
 using ESLTracker.Properties;
+using ESLTracker.Services;
 
 namespace ESLTracker.Utils.Tests
 {

@@ -90,7 +90,7 @@ namespace ESLTracker.Services
                 string versionJSON = httpService.SendGetRequest(url);
                 JObject versions = JObject.Parse(versionJSON);
                 Version latest = new Version(versions["CardsDB"].ToString());
-                return latest > trackerFactory.GetCardsDatabase().Version;
+                return latest > trackerFactory.GetService<ICardsDatabase>().Version;
             });
         }
 

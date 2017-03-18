@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 
@@ -54,12 +55,13 @@ namespace ESLTracker.DataModel
             set
             {
                 activeDeck = value;
-                trackerFactory.GetMessanger().Send(new ActiveDeckChanged(value));
+                messenger.Send(new ActiveDeckChanged(value));
                 RaisePropertyChangedEvent(nameof(ActiveDeck));
             }
         }
 
         private ITrackerFactory trackerFactory;
+        IMessenger messenger;
         public Tracker() : this(TrackerFactory.DefaultTrackerFactory)
         {
 
@@ -68,6 +70,7 @@ namespace ESLTracker.DataModel
         public Tracker(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
+            messenger = trackerFactory.GetService<IMessenger>();
         }
 
         public IEnumerable<Reward> GetRewardsSummaryByType(RewardType type)

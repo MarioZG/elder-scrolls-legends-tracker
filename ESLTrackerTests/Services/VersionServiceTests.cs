@@ -96,7 +96,7 @@ namespace ESLTracker.Utils.Tests
 
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
-            trackerFactory.Setup(tf => tf.GetCardsDatabase()).Returns(cardsDB.Object);
+            trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDB.Object);
 
             VersionService vc = new VersionService(trackerFactory.Object);
             bool actual = vc.IsNewCardsDBAvailable();
@@ -141,7 +141,7 @@ namespace ESLTracker.Utils.Tests
 
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
-            trackerFactory.Setup(tf => tf.GetCardsDatabase()).Returns(cardsDB.Object);
+            trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDB.Object);
 
             VersionService vc = new VersionService(trackerFactory.Object);
             string actual = vc.GetLatestDownladUrl();
@@ -174,7 +174,7 @@ namespace ESLTracker.Utils.Tests
 
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
-            trackerFactory.Setup(tf => tf.GetCardsDatabase()).Returns(cardsDB.Object);
+            trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDB.Object);
 
             VersionService vc = new VersionService(trackerFactory.Object);
             string actual = vc.GetLatestDownladUrl();

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.ViewModels;
 
@@ -26,7 +27,7 @@ namespace ESLTracker.ViewModels.Packs
         {
             get
             {
-                return trackerFactory.GetCardsDatabase().CardsNames;
+                return cardsDatabase.CardsNames;
             }
         }
 
@@ -56,6 +57,7 @@ namespace ESLTracker.ViewModels.Packs
 
         private TrackerFactory trackerFactory;
         ISettings settings;
+        ICardsDatabase cardsDatabase;
 
         public OpenPackViewModel() : this(new TrackerFactory())
         {
@@ -68,6 +70,7 @@ namespace ESLTracker.ViewModels.Packs
 
             this.trackerFactory = trackerFactory;
             settings = trackerFactory.GetService<ISettings>();
+            cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
 
             InitNewPack();
         }

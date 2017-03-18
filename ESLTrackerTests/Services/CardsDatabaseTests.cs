@@ -12,7 +12,7 @@ using ESLTrackerTests;
 using System.Reflection;
 using ESLTracker.Services;
 
-namespace ESLTracker.Utils.Tests
+namespace ESLTracker.Services.Tests
 {
     [TestClass]
     [DeploymentItem("./Resources/cards.json", "./Resources/")]

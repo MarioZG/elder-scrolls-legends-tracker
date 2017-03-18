@@ -10,6 +10,7 @@ using ESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.Utils.Extensions;
+using ESLTracker.Services;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -186,7 +187,7 @@ namespace ESLTracker.ViewModels.Decks
         public DeckEditViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
-            this.messanger = trackerFactory.GetMessanger();
+            this.messanger = trackerFactory.GetService<IMessenger>();
             messanger.Register<EditDeck>(this, EditDeckStart, EditDeck.Context.StartEdit);
         }
 

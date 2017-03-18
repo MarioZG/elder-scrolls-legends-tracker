@@ -196,7 +196,7 @@
     <Compile Include="Services\ICardImageService.cs" />
     <Compile Include="Services\IVersionService.cs" />
     <Compile Include="Services\IResourcesService.cs" />
-    <Compile Include="Utils\ApplicationService.cs" />
+    <Compile Include="Services\Implementation\ApplicationService.cs" />
     <Compile Include="Services\Implementation\CardImageService.cs" />
     <Compile Include="Utils\Converters\CollectionCountToVisibility.cs" />
     <Compile Include="Utils\Converters\DebuggingConverter.cs" />
@@ -207,7 +207,7 @@
     <Compile Include="Utils\Converters\ShowOverlayWindowToBool.cs" />
     <Compile Include="Utils\Converters\ToVisibilityConverter.cs" />
     <Compile Include="Utils\Converters\VersionToVisibilty.cs" />
-    <Compile Include="Utils\DeckService.cs" />
+    <Compile Include="Services\Implementation\DeckService.cs" />
     <Compile Include="Utils\DeckImporter.cs" />
     <Compile Include="Utils\EnumBindingSourceExtension.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
@@ -216,10 +216,10 @@
     <Compile Include="Utils\Extensions\TaskExtensions.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_2_To_2_0.cs" />
     <Compile Include="Utils\FileUpdaters\Update_2_0_To_2_1.cs" />
-    <Compile Include="Utils\HTTPService.cs" />
-    <Compile Include="Utils\IApplicationService.cs" />
-    <Compile Include="Utils\IDeckService.cs" />
-    <Compile Include="Utils\IHTTPService.cs" />
+    <Compile Include="Services\Implementation\HTTPService.cs" />
+    <Compile Include="Services\IApplicationService.cs" />
+    <Compile Include="Services\IDeckService.cs" />
+    <Compile Include="Services\IHTTPService.cs" />
     <Compile Include="Utils\IOverlayWindow.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
     <Compile Include="Utils\NewVersioInfo.cs" />
@@ -229,7 +229,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
-    <Compile Include="Utils\CardsDatabase.cs" />
+    <Compile Include="Services\Implementation\CardsDatabase.cs" />
     <Compile Include="Utils\Converters\ClassToAttributesIcons.cs" />
     <Compile Include="Utils\Converters\PackScreenshotSettingPreview.cs" />
     <Compile Include="Utils\Converters\DeckNameSettingPreview.cs" />
@@ -248,9 +248,9 @@
     <Compile Include="Utils\FileUpdaters\UpdateBase.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_1_To_1_2.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_0_To_1_1.cs" />
-    <Compile Include="Utils\ICardsDatabase.cs" />
+    <Compile Include="Services\ICardsDatabase.cs" />
     <Compile Include="Utils\IFileManager.cs" />
-    <Compile Include="Utils\IMessenger.cs" />
+    <Compile Include="Services\IMessenger.cs" />
     <Compile Include="Utils\IOWrappers\DirectoryWrapper.cs" />
     <Compile Include="Utils\IOWrappers\FileWrapper.cs" />
     <Compile Include="Utils\IOWrappers\IDirectoryWrapper.cs" />
@@ -271,7 +271,7 @@
     <Compile Include="Utils\Messages\EditSettings.cs" />
     <Compile Include="Utils\Messages\EditDeck.cs" />
     <Compile Include="Utils\Messages\EditGame.cs" />
-    <Compile Include="Utils\Messenger.cs" />
+    <Compile Include="Services\Implementation\Messenger.cs" />
     <Compile Include="Utils\SerializableVersion.cs" />
     <Compile Include="Utils\SingleInstanceApp.cs" />
     <Compile Include="Utils\SoulGemsHelper.cs" />

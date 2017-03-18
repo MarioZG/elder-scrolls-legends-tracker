@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using ESLTracker.DataModel;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 
@@ -55,11 +56,11 @@ namespace ESLTracker.Controls.Cards
             {
                 if (((SelectCard)d).CardInstance == null)
                 {
-                    ((SelectCard)d).CardInstance = new CardInstance(TrackerFactory.DefaultTrackerFactory.GetCardsDatabase().FindCardByName(e.NewValue?.ToString()));
+                    ((SelectCard)d).CardInstance = new CardInstance(cardsDatabaseService.FindCardByName(e.NewValue?.ToString()));
                 }
                 else if (((SelectCard)d).CardInstance.Card?.Name != e.NewValue.ToString())
                 {
-                    ((SelectCard)d).CardInstance.Card = TrackerFactory.DefaultTrackerFactory.GetCardsDatabase().FindCardByName(e.NewValue?.ToString());
+                    ((SelectCard)d).CardInstance.Card = cardsDatabaseService.FindCardByName(e.NewValue?.ToString());
                 }
             }
         }
@@ -125,10 +126,17 @@ namespace ESLTracker.Controls.Cards
         public static readonly DependencyProperty MouseLeftClickProperty =
             DependencyProperty.Register("MouseLeftClick", typeof(ICommand), typeof(SelectCard), new PropertyMetadata(null));
 
+        static ICardsDatabase cardsDatabaseService; 
+
+        static SelectCard()
+        {
+            cardsDatabaseService = TrackerFactory.DefaultTrackerFactory.GetService<ICardsDatabase>();
+        }
 
         public SelectCard()
         {
             InitializeComponent();
+
             LayoutRoot.DataContext = this;
             this.IsVisibleChanged += SelectCard_IsVisibleChanged;
         }

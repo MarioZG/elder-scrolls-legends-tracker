@@ -10,6 +10,7 @@ using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.Utils.Extensions;
 using System.Collections.ObjectModel;
+using ESLTracker.Services;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -79,7 +80,7 @@ namespace ESLTracker.ViewModels.Decks
         public DeckPreviewViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
-            this.messanger = trackerFactory.GetMessanger();
+            this.messanger = trackerFactory.GetService<IMessenger>();
         }
 
         internal ObservableCollection<CardInstance> CalculateDeckChanges(ObservableCollection<CardInstance> cards1, ObservableCollection<CardInstance> cards2)

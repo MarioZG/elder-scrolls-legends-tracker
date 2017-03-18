@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.Services;
 using ESLTracker.ViewModels;
 
 namespace ESLTracker.Controls.Game
@@ -33,7 +34,7 @@ namespace ESLTracker.Controls.Game
 
         private void EditGameExecute(object obj)
         {
-            var messanger = new Utils.TrackerFactory().GetMessanger();
+            var messanger = new Utils.TrackerFactory().GetService<IMessenger>();
             messanger.Send(
                 new Utils.Messages.EditGame(this.DataContext as DataModel.Game),
                 Utils.Messages.EditGame.Context.StartEdit);

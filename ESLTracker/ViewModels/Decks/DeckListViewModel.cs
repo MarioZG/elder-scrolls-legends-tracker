@@ -8,6 +8,7 @@ using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 
@@ -116,7 +117,7 @@ namespace ESLTracker.ViewModels.Decks
 
         public DeckListViewModel(ITrackerFactory factory)
         {
-            this.messanger = factory.GetMessanger();
+            this.messanger = factory.GetService<IMessenger>();
             messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
             messanger.Register<EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
             messanger.Register<EditDeck>(this, CommandHideDeckExecute, Utils.Messages.EditDeck.Context.Hide);

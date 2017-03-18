@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.ViewModels;
@@ -44,7 +45,7 @@ namespace ESLTracker
             Task.Run( () =>  UpdateOverlayAsync(this));
             Application.Current.MainWindow = this;
 
-            TrackerFactory.DefaultTrackerFactory.GetMessanger().Register<ApplicationShowBalloonTip>(this, ShowBaloonRequested);
+            TrackerFactory.DefaultTrackerFactory.GetService<IMessenger>().Register<ApplicationShowBalloonTip>(this, ShowBaloonRequested);
 
         }
 

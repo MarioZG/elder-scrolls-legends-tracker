@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 
@@ -64,7 +65,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             this.trackerFactory = trackerFactory;
             tracker = trackerFactory.GetTracker();
-            messanger = trackerFactory.GetMessanger();
+            messanger = trackerFactory.GetService<IMessenger>();
             settings = trackerFactory.GetService<ISettings>();
         }
 

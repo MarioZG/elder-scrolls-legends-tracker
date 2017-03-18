@@ -240,7 +240,7 @@ namespace ESLTracker.ViewModels
         {
             this.trackerFactory = trackerFactory;
             tracker = trackerFactory.GetTracker();
-            messanger = trackerFactory.GetMessanger();
+            messanger = trackerFactory.GetService<IMessenger>();
             messanger.Register<Utils.Messages.EditDeck>(this, EditDeckStart, Utils.Messages.EditDeck.Context.StartEdit);
             messanger.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
             messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
@@ -322,20 +322,20 @@ namespace ESLTracker.ViewModels
             if (winApi.GetEslProcess() == null && ! winApi.IsLauncherProcessRunning())
             {
                 System.Diagnostics.Process.Start("bethesdanet://run/5");
-                trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "Starting game..."));
+                messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "Starting game..."));
                 await Task.Delay(TimeSpan.FromSeconds(60)); //wait 10 sec
                 if (winApi.GetEslProcess() == null)
                 {
-                    trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "There is probelm staring game, please check Bethesda.net Laucher."));
+                    messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "There is probelm staring game, please check Bethesda.net Laucher."));
                 }
             }
             else if (trackerFactory.GetWinAPI().IsLauncherProcessRunning())
             {
-                trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "Bethesda.net Laucher is running - use it to start game."));
+                messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "Bethesda.net Laucher is running - use it to start game."));
             }
             else
             {
-                trackerFactory.GetMessanger().Send(new ApplicationShowBalloonTip("ESL Tracker", "Game is already running"));
+                messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "Game is already running"));
             }
             startingGame = false;
             CommandManager.InvalidateRequerySuggested();

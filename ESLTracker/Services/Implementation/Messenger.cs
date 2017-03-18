@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESLTracker.Utils
+namespace ESLTracker.Services
 {
     /// <summary>
     /// Improved from answer of Dalstroem in stackOverflow!

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Settings
@@ -29,7 +30,7 @@ namespace ESLTracker.ViewModels.Settings
 
         public SettingsPanelViewModel()
         {
-            messanger = new TrackerFactory().GetMessanger();
+            messanger = new TrackerFactory().GetService<IMessenger>();
         }
         private void SaveClicked(object param)
         {

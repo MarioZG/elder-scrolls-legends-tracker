@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ESLTracker.DataModel;
 
-namespace ESLTracker.Utils
+namespace ESLTracker.Services
 {
     public interface IDeckService
     {

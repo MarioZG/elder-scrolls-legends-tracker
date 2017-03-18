@@ -8,6 +8,7 @@ using System.Windows.Input;
 using ESLTracker.Controls.Rewards;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Rewards
@@ -40,7 +41,7 @@ namespace ESLTracker.ViewModels.Rewards
         {
             get
             {
-                return trackerFactory.GetCardsDatabase().CardsNames;
+                return cardsDatabase.CardsNames;
             }
         }
 
@@ -149,6 +150,7 @@ namespace ESLTracker.ViewModels.Rewards
 
 
         private TrackerFactory trackerFactory;
+        ICardsDatabase cardsDatabase;
 
         public AddSingleRewardViewModel() : this(new TrackerFactory())
         {
@@ -158,6 +160,7 @@ namespace ESLTracker.ViewModels.Rewards
         public AddSingleRewardViewModel(TrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
+            cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
         }
 
         internal void Reset()

@@ -9,8 +9,9 @@ using Moq;
 using ESLTracker.Properties;
 using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
+using ESLTracker.Services;
 
-namespace ESLTracker.Utils.Tests
+namespace ESLTracker.Services.Tests
 {
     [TestClass]
     public class DeckServiceTests
