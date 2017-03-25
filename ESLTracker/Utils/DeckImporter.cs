@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
+using System.Text.RegularExpressions;
 
 namespace ESLTracker.Utils
 {
@@ -50,17 +51,32 @@ namespace ESLTracker.Utils
             foreach (string cardLine in importData.Split(new string[] { Environment.NewLine },
                                                      StringSplitOptions.RemoveEmptyEntries))
             {
-                string[] splitedLine = cardLine.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                string cardName = cardLine;
+                int cardCount = 1;
 
-                int cardCount = GetCardQty(splitedLine);
-                string cardName = GetCardName(splitedLine);
+                Regex regex = new Regex("(|-)[0-9]");
+                Match match = regex.Match(cardName);
+                if (match.Success)
+                {
+                    Int32.TryParse(match.Value, out cardCount);
+                    cardName = cardLine.Replace(cardCount.ToString(), "");
+                }
 
                 Card card = trackerFactory.GetCardsDatabase().FindCardByName(cardName);
-
-                CardInstance cardInstance = new CardInstance(card, trackerFactory);
-                cardInstance.Quantity = cardCount;
-
-                Cards.Add(cardInstance);
+                // TODO: Rework for premium
+                var found = false;
+                foreach (var itr in Cards)
+                    if (itr.Card == card)
+                    {
+                        found = true;
+                        itr.Quantity += cardCount;
+                    }
+                if (!found)
+                {
+                    CardInstance cardInstance = new CardInstance(card, trackerFactory);
+                    cardInstance.Quantity = cardCount;
+                    Cards.Add(cardInstance);
+                }
             }
         }
 
@@ -68,27 +84,6 @@ namespace ESLTracker.Utils
         {
             taskCompletonSource.TrySetResult(false);
         }
-
-        public string GetCardName(string[] cardLine)
-        {
-            return String.Join(" ", cardLine.Skip(1));
-        }
-
-        public int GetCardQty(string[] cardLine)
-        {
-            int value;
-            if (Int32.TryParse(cardLine[0], out value))
-            {
-                return value;
-            }
-            else
-            {
-                this.sbErrors.AppendLine(String.Join(" ", cardLine) + ": cannot parse quantity");
-                return 0;
-            }
-        }
-
-
 
         internal void ImportFinished(TaskCompletionSource<bool> tcs)
         {

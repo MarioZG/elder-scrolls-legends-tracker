@@ -59,15 +59,7 @@ namespace ESLTracker.DataModel
         [XmlIgnore]
         public string Text { get; set; }
 
-        public string ImageName
-        {
-            get
-            {
-                Regex rgx = new Regex("[^a-zA-Z0-9]");
-                var name = rgx.Replace(Name, "");
-                return "pack://application:,,,/Resources/Cards/" + name + ".png";
-            }
-        }
+        public string ImageName {get; set;}
 
         private ITrackerFactory trackerFactory;
 
