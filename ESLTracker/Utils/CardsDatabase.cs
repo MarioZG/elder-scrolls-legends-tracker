@@ -111,6 +111,7 @@ namespace ESLTracker.Utils
                  
             }
         }
+        // From http://stackoverflow.com/a/16407272/7754690
         private static string HtmlToPlainText(string html)
         {
             const string tagWhiteSpace = @"(>|$)(\W|\n|\r)+<";//matches one or more (white space or line breaks) between '>' and '<'
