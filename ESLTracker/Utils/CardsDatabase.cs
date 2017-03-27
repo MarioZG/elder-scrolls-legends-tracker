@@ -84,7 +84,9 @@ namespace ESLTracker.Utils
                     {
                         id = id.Replace("-title", "");
                         try{
-                            cards.Where(c => c.Id == Guid.Parse(id)).First().Name = record["value"].ToString();
+                            Card c = FindCardById(Guid.Parse(id));
+                            if (c!=Card.Unknown)
+                                c.Name = record["value"].ToString();
                         }
                         catch { }
                     }
@@ -93,7 +95,9 @@ namespace ESLTracker.Utils
                         id = id.Replace("-game_text", "");
                         try
                         {
-                            cards.Where(c => c.Id == Guid.Parse(id)).First().Text = HtmlToPlainText(record["value"].ToString());
+                            Card c = FindCardById(Guid.Parse(id));
+                            if (c != Card.Unknown)
+                                c.Text = HtmlToPlainText(record["value"].ToString());
                         }
                         catch { }
                     }
