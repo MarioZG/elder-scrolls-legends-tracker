@@ -106,6 +106,8 @@ namespace ESLTracker.DataModel
 
         public SerializableVersion ESLVersion { get; set; }
 
+        public string OpponentDeckTag { get; set; }
+
         public Game() : this(TrackerFactory.DefaultTrackerFactory)
         {
         }

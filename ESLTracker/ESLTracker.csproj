@@ -215,6 +215,7 @@
     <Compile Include="Utils\Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Utils\Extensions\TaskExtensions.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_2_To_2_0.cs" />
+    <Compile Include="Utils\FileUpdaters\Update_2_1_To_2_2.cs" />
     <Compile Include="Utils\FileUpdaters\Update_2_0_To_2_1.cs" />
     <Compile Include="Services\Implementation\HTTPService.cs" />
     <Compile Include="Services\IApplicationService.cs" />

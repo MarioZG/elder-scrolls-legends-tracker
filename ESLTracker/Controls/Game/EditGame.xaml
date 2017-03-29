@@ -11,6 +11,7 @@
              xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks" 
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Game" 
+             xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              x:Class="ESLTracker.Controls.Game.EditGame"
              mc:Ignorable="d" 
              x:Name="editGame"
@@ -49,6 +50,7 @@
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="40*"/>
+            <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
@@ -116,17 +118,22 @@
                   Visibility="{Binding DisplayBonusRound, Converter={Converters:BoolToVisibilty}}" 
                   IsChecked="{Binding Game.BonusRound}"
                   />
-        <Label Content="Notes" Grid.Row="9"/>
-        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Game.Notes}" Grid.Column="1" Grid.Row="9"></TextBox>
-        <Label Content="Game outcome" Grid.Row="10"
+        <Label Content="Opponent Deck Tag" Grid.Row="9"/>
+        <TextBox Text="{Binding Game.OpponentDeckTag}" Grid.Row="9" Grid.Column="1"
+                AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding OpponentDeckTagAutocomplete}" 
+                AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
+            />
+        <Label Content="Notes" Grid.Row="10"/>
+        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Game.Notes}" Grid.Column="1" Grid.Row="10"></TextBox>
+        <Label Content="Game outcome" Grid.Row="11"
                   Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibilty}}"
                />
-        <ComboBox x:Name="cbOutcome" Grid.Row="10" Grid.Column="1"
+        <ComboBox x:Name="cbOutcome" Grid.Row="11" Grid.Column="1"
                   Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibilty}}"
                   ItemsSource="{Binding Source={StaticResource GameOutcomeEnum}}" 
                   SelectedItem="{Binding Game.Outcome}"
                    />
-        <UniformGrid Rows="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11" Margin="5,15,5,10"
+        <UniformGrid Rows="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="12" Margin="5,15,5,10"
                     Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibilty}}">
             <Button x:Name="btnCancelChanges" 
                     Content="Cancel"
@@ -137,7 +144,7 @@
                     Command="{Binding CommandButtonSaveChanges}">
             </Button>
         </UniformGrid>
-        <UniformGrid Rows="1" Grid.Column="1" Grid.Row="11"
+        <UniformGrid Rows="1" Grid.Column="1" Grid.Row="12"
                      Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibilty}, ConverterParameter=not}">
             <Button x:Name="btnVicotry" Content="Victory"
                     Command="{Binding CommandButtonCreate}"

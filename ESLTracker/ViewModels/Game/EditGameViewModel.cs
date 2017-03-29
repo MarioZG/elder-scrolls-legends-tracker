@@ -99,6 +99,14 @@ namespace ESLTracker.ViewModels.Game
             set { errorMessage = value; RaisePropertyChangedEvent(nameof(ErrorMessage)); }
         }
 
+        public IEnumerable<string> OpponentDeckTagAutocomplete
+        {
+            get
+            {
+                return tracker.DeckTags;
+            }
+        }
+
         public ICommand CommandButtonCreate
         {
             get

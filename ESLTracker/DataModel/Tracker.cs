@@ -39,7 +39,7 @@ namespace ESLTracker.DataModel
   
 
         [XmlIgnore]
-        public static SerializableVersion CurrentFileVersion = new SerializableVersion(2, 1);
+        public static SerializableVersion CurrentFileVersion = new SerializableVersion(2, 2);
 
         // binding!!!
 
@@ -57,6 +57,15 @@ namespace ESLTracker.DataModel
                 activeDeck = value;
                 messenger.Send(new ActiveDeckChanged(value));
                 RaisePropertyChangedEvent(nameof(ActiveDeck));
+            }
+        }
+
+        [XmlIgnore]
+        public IEnumerable<string> DeckTags
+        {
+            get
+            {
+                return Games.Select(g => g.OpponentDeckTag).Distinct().Where(s => ! String.IsNullOrWhiteSpace(s)).OrderBy(s => s).ToList();
             }
         }
 

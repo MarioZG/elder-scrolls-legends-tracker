@@ -13,6 +13,8 @@ namespace ESLTracker.DataModel
         List<Reward> Rewards { get; set; }
         ObservableCollection<Pack> Packs { get; set; }
 
+        IEnumerable<string> DeckTags { get; }
+
         IEnumerable<Reward> GetRewardsSummaryByType(RewardType type);
     }
 }
