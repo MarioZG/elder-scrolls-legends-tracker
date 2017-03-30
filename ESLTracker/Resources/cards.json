@@ -4567,6 +4567,19 @@
             "text": "Summon: If you have more health than your opponent, the next card you play this turn costs 6 less."
         },
         {
+            "id": "168198e7-5104-f5c3-9f1f-5f626479d91d",
+            "name": "Sower of Revenge",
+            "rarity": "Epic",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "strength,endurance",
+            "cost": "5",
+            "attack": "5",
+            "health": "5",
+            "race": "daedra",
+            "text": "Guard.\r\n Last Gasp: Deals 5 damage to enemy player."
+        },
+        {
             "id": "273b6c42-b522-6ef2-446e-2d2eede0c146",
             "name": "Sparking Spider",
             "rarity": "Common",
