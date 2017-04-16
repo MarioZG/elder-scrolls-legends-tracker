@@ -1,7 +1,7 @@
 {
-    "Version": "0.7",
-    "VersionInfo": "March 2017 monthly reward",
-    "VersionDate": "2017-03-30T00:00:00.000Z",
+    "Version": "0.8",
+    "VersionInfo": "Game Update 1.63 - The Fall of the Dark Brotherhood",
+    "VersionDate": "2017-04-06T00:00:00.000Z",
     "Cards": [
         {
             "id": "094f4937-e5db-8a41-e441-1905cd7a1406",
@@ -303,6 +303,19 @@
             "text": "+3/+0. Summon: Give the wielder Cover at the end of turn."
         },
         {
+            "id": "7f74e516-d2e1-11e6-bf26-cec0c932ce01",
+            "name": "Astrid",
+            "rarity": "Legendary",
+            "isunique": true,
+            "type": "creature",
+            "attributes": "agility",
+            "cost": "3",
+            "attack": "2",
+            "health": "3",
+            "race": "nord",
+            "text": "Lethal\r\nFriendly Lethal creatures have Slay: Put a Completed Contract into your hand."
+        },
+        {
             "id": "49c26ce1-db15-b23e-885d-00ffb01b92e9",
             "name": "Auridon Paladin",
             "rarity": "Common",
@@ -550,6 +563,32 @@
             "text": "Summon: Draw a Blood Magic Spell. When Blood Magic Lord attacks and destroys a creature, draw a Blood Magic Spell."
         },
         {
+            "id": "519f02a7-3180-4637-b922-f471cba5aa15",
+            "name": "Blood Pact Messenger",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "willpower",
+            "cost": "2",
+            "attack": "1",
+            "health": "1",
+            "race": "khajiit",
+            "text": " Pilfer: Draw two cards. Sacrifice Blood Pact Messenger at the end of the turn."
+        },
+        {
+            "id": "c6758770-9b9d-11e6-9f33-a24fc0d9649c",
+            "name": "Blood Sorceress",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "intelligence",
+            "cost": "1",
+            "attack": "2",
+            "health": "1",
+            "race": "redguard",
+            "text": " At the start of your turn, if you have 7 or more max magicka, deal 5 damage to your opponent."
+        },
+        {
             "id": "cffca262-39e5-a9bc-2782-fa081ba832b5",
             "name": "Bog Lurcher",
             "rarity": "Rare",
@@ -613,6 +652,32 @@
             "health": "0",
             "race": "",
             "text": "Draw a copy of a friendly creature."
+        },
+        {
+            "id": "8a5e1bc8-ce4a-11e6-9d9d-cec0c932ce01",
+            "name": "Brotherhood Sanctuary",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "support",
+            "attributes": "agility",
+            "cost": "1",
+            "attack": "",
+            "health": "",
+            "race": "",
+            "text": " When a friendly creature Slays, it receives its reward an extra time."
+        },
+        {
+            "id": "751b4dc6-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Brotherhood Slayer",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "agility",
+            "cost": "3",
+            "attack": "3",
+            "health": "3",
+            "race": "woodelf",
+            "text": " Prophecy\r\nSlay: Put a Completed Contract into your hand."
         },
         {
             "id": "c6c6b50a-fa2a-0e85-5751-b4fcb3cde9e5",
@@ -771,6 +836,19 @@
             "text": "Regenerate"
         },
         {
+            "id": "751b50a0-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Chanter of Akatosh",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "willpower",
+            "cost": "5",
+            "attack": "1",
+            "health": "2",
+            "race": "imperial",
+            "text": " After you play an action, summon a random creature from your deck with the same cost."
+        },
+        {
             "id": "9ff1357e-ce69-a9e1-3935-7cd62585a19a",
             "name": "Chaurus Reaper",
             "rarity": "Common",
@@ -836,6 +914,19 @@
             "text": "Charge"
         },
         {
+            "id": "751b5226-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Cicero the Betrayer",
+            "rarity": "Legendary",
+            "isunique": true,
+            "type": "creature",
+            "attributes": "endurance",
+            "cost": "6",
+            "attack": "1",
+            "health": "6",
+            "race": "imperial",
+            "text": "Lethal\r\nSlay: Draw two cards.\r\nCicero can attack friendly creatures."
+        },
+        {
             "id": "36237bad-224d-f1e3-e05a-4e693b86ecd4",
             "name": "Close Call",
             "rarity": "Common",
@@ -860,6 +951,19 @@
             "health": "3",
             "race": "highelf",
             "text": "Prophecy. Summon: Give a creature -4/-0 this turn."
+        },
+        {
+            "id": "8a5e197a-ce4a-11e6-9d9d-cec0c932ce01",
+            "name": "Corsair Ship",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "support",
+            "attributes": "intelligence",
+            "cost": "4",
+            "attack": "",
+            "health": "",
+            "race": "",
+            "text": "Summon: Summon a 1/1 Corsair.\r\nWhen you summon a creature, equip it with a Steel Dagger."
         },
         {
             "id": "7fd9ae3b-8ccb-3dfb-d0d9-6dbb37559882",
@@ -1005,6 +1109,19 @@
             "text": "Ward. After Daggerfall Mage loses a Ward, put a Tome of Alteration into your hand."
         },
         {
+            "id": "751b45ba-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Daggers in the Dark",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "action",
+            "attributes": "intelligence",
+            "cost": "0",
+            "attack": "",
+            "health": "",
+            "race": "",
+            "text": "Equip a Steel Dagger to a random friendly creature in each lane."
+        },
+        {
             "id": "82a5a3ec-0a24-3c1b-42eb-844848f8fe6c",
             "name": "Dagi-raht Mystic",
             "rarity": "Epic",
@@ -1029,6 +1146,19 @@
             "health": "2",
             "race": "khajiit",
             "text": "Prophecy, Pilfer: +1/+1"
+        },
+        {
+            "id": "dca9eab2-d613-4401-9ae9-19494f0b1dc8",
+            "name": "Dark Guardian",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "endurance",
+            "cost": "3",
+            "attack": "2",
+            "health": "5",
+            "race": "skeleton",
+            "text": "Guard\r\nWhen your opponent draws a Prophecy from a rune being destroyed, draw a card."
         },
         {
             "id": "6c894dd5-5e63-d965-e62a-ea55c13acded",
@@ -1499,6 +1629,19 @@
             "text": "Summon: Draw a card if an enemy rune has been destroyed this game."
         },
         {
+            "id": "9edea6a2-da08-11e6-bf26-cec0c932ce01",
+            "name": "Eclipse Baroness",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "agility",
+            "cost": "8",
+            "attack": "5",
+            "health": "5",
+            "race": "darkelf",
+            "text": "Summon and Last Gasp: Draw a card and reduce its cost by 2."
+        },
+        {
             "id": "c37abb3f-5b5f-50cd-7a26-ac14a183f766",
             "name": "Edict of Azura",
             "rarity": "Epic",
@@ -1694,6 +1837,19 @@
             "text": "Summon: Destroy all wounded enemy creatures in this lane."
         },
         {
+            "id": "8a5e1b00-ce4a-11e6-9d9d-cec0c932ce01",
+            "name": "Falkreath Defiler",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "endurance",
+            "cost": "4",
+            "attack": "3",
+            "health": "3",
+            "race": "imperial",
+            "text": " Slay: Summon a creature from your discard pile."
+        },
+        {
             "id": "697a00e8-3b77-7bb0-691e-eae07c7cc656",
             "name": "Farsight Nereid",
             "rarity": "Common",
@@ -1783,6 +1939,19 @@
             "health": "4",
             "race": "orc",
             "text": "Prophecy, Guard"
+        },
+        {
+            "id": "53ed8864-6ce8-4e73-855a-c7bd98ff2bb9",
+            "name": "Fell the Mighty",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "action",
+            "attributes": "strength",
+            "cost": "4",
+            "attack": "",
+            "health": "",
+            "race": "",
+            "text": "Destroy a creature with 4 power or more."
         },
         {
             "id": "22488ca5-0eec-98f0-8325-109cb13836b5",
@@ -1889,6 +2058,19 @@
             "text": "Summon: +1/+1 for each creature in your discard pile."
         },
         {
+            "id": "751b8110-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Flesh Sculpture",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "support",
+            "attributes": "neutral",
+            "cost": "3",
+            "attack": "",
+            "health": "",
+            "race": "",
+            "text": "Uses:2\r\nActivate: Transform each card in your hand into a random card."
+        },
+        {
             "id": "8c917665-c7e0-ae6a-8861-a728bc24def0",
             "name": "Forsaken Champion",
             "rarity": "Epic",
@@ -1965,6 +2147,19 @@
             "health": "1",
             "race": "redguard",
             "text": "When you equip an item to another creature, equip a copy of it to Gardener of Swords."
+        },
+        {
+            "id": "751b5b04-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Garnag, Dark Adherent",
+            "rarity": "Legendary",
+            "isunique": true,
+            "type": "creature",
+            "attributes": "strength",
+            "cost": "4",
+            "attack": "4",
+            "health": "5",
+            "race": "orc",
+            "text": "Breakthrough\r\nPlayers can’t have more than 7 magicka."
         },
         {
             "id": "c4b9f457-1182-2723-cfe7-66eeb93ef6ba",
@@ -2110,6 +2305,32 @@
             "text": "Prophecy. Summon: Deal 1 damage to all enemy creatures in this lane."
         },
         {
+            "id": "ca46dfa0-21b1-409c-85df-e9c73761da7e",
+            "name": "Grand Ball",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "action",
+            "attributes": "agility",
+            "cost": "2",
+            "attack": "",
+            "health": "",
+            "race": "",
+            "text": "Move all friendly creatures."
+        },
+        {
+            "id": "9edeaa80-da08-11e6-bf26-cec0c932ce01",
+            "name": "Gravesinger",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "endurance",
+            "cost": "10",
+            "attack": "6",
+            "health": "6",
+            "race": "imperial",
+            "text": " At the start of your turn, summon the highest cost creature from your discard pile and give it Charge. At the end of the turn, put it on the bottom of your deck."
+        },
+        {
             "id": "08af31c9-d78b-aa05-8acd-8bfac0d1789e",
             "name": "Graystone Ravager",
             "rarity": "Common",
@@ -2173,6 +2394,19 @@
             "health": "2",
             "race": "skeleton",
             "text": "When a creature in this lane is destroyed, Grim Champion gains +1/+1."
+        },
+        {
+            "id": "751b62f2-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Gristlehide Dreugh",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "neutral",
+            "cost": "5",
+            "attack": "3",
+            "health": "5",
+            "race": "dreugh",
+            "text": "When Gristlehide Dreugh takes damage and survives, draw a card."
         },
         {
             "id": "2b54b76e-76d2-7a25-925f-c8b0db06bfca",
@@ -2734,6 +2968,32 @@
             "text": "Other friendly creatures can't be Silenced."
         },
         {
+            "id": "751b7f94-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Knife to the Throat",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "action",
+            "attributes": "neutral",
+            "cost": "4",
+            "attack": "",
+            "health": "",
+            "race": "",
+            "text": "Silence a creature. Draw a card."
+        },
+        {
+            "id": "751b84f8-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Knight of the Hour",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "willpower",
+            "cost": "5",
+            "attack": "3",
+            "health": "3",
+            "race": "imperial",
+            "text": "Prophecy,Guard\r\nSummon: You gain 3 health."
+        },
+        {
             "id": "e23f120d-29f9-6b6a-aec9-aa6060acb4b5",
             "name": "Kvatch Soldier",
             "rarity": "Common",
@@ -2849,6 +3109,19 @@
             "health": "3",
             "race": "breton",
             "text": "When you summon another creature in this lane, give it a Ward."
+        },
+        {
+            "id": "8a5e17b8-ce4a-11e6-9d9d-cec0c932ce01",
+            "name": "Little Girl",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "endurance",
+            "cost": "4",
+            "attack": "0",
+            "health": "2",
+            "race": "vampire",
+            "text": "At the start of your turn, Little Girl Changes into a 5/5 Ageless Vampire with Drain."
         },
         {
             "id": "319fbc49-7bc7-6abe-0d92-3e20d3257bc1",
@@ -3018,6 +3291,19 @@
             "health": "4",
             "race": "nord",
             "text": "When Markarth Bannerman attacks, put two 1/1 Nord Firebrands with Charge into your hand."
+        },
+        {
+            "id": "ff8e58d0-ed59-11e6-9598-0800200c9a66",
+            "name": "Marked Man",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "willpower",
+            "cost": "1",
+            "attack": "1",
+            "health": "1",
+            "race": "imperial",
+            "text": "Summon: Put a 0/2 Makeshift Defenses with Guard into your hand."
         },
         {
             "id": "782633a2-4159-379e-6062-d4417a65de81",
@@ -3670,6 +3956,32 @@
             "text": "When Pahmar-raht Renegade attacks and destroys a creature, draw a card."
         },
         {
+            "id": "751b43d0-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Palace Conspirator",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "intelligence",
+            "cost": "2",
+            "attack": "2",
+            "health": "2",
+            "race": "darkelf",
+            "text": "Summon: Draw a card, then discard a card."
+        },
+        {
+            "id": "9dde53af-31a1-4dbe-bd0d-d58af40fdaf0",
+            "name": "Penitus Oculatus Agent",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "willpower",
+            "cost": "3",
+            "attack": "2",
+            "health": "3",
+            "race": "imperial",
+            "text": "Summon: Steal a creature's Keywords."
+        },
+        {
             "id": "81d12724-5fe4-fe56-cdb2-aa68f8031148",
             "name": "Piercing Javelin",
             "rarity": "Common",
@@ -3774,6 +4086,19 @@
             "text": "Prophecy. Summon: Gain 2 health."
         },
         {
+            "id": "751b58b6-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Protector of the Innocent",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "strength",
+            "cost": "2",
+            "attack": "3",
+            "health": "2",
+            "race": "nord",
+            "text": "Prophecy,Guard"
+        },
+        {
             "id": "2b107ef3-f201-46e1-8a4d-7bdc64bebc92",
             "name": "Queen Barenziah",
             "rarity": "Legendary",
@@ -3785,6 +4110,19 @@
             "health": "3",
             "race": "darkelf",
             "text": "Drain. Summon: Give all other friendly creatures in this lane Guard."
+        },
+        {
+            "id": "751b6b44-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Quicksilver Crossbow",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "item",
+            "attributes": "strength",
+            "cost": "3",
+            "attack": "",
+            "health": "",
+            "race": "",
+            "text": "+1/+1>Summon: The wielder deals 1 damage."
         },
         {
             "id": "fc825917-5466-7016-b903-4b0eadb87cfb",
@@ -4164,6 +4502,32 @@
             "text": "Guard. Last Gasp: Summon a 2/1 Mournhold Guardian with Guard."
         },
         {
+            "id": "751b76fc-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Sanctuary Pet",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "agility",
+            "cost": "3",
+            "attack": "2",
+            "health": "2",
+            "race": "spider",
+            "text": "Lethal\r\nSummon: Shackle an enemy creature in this lane."
+        },
+        {
+            "id": "751b60b8-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Sanctuary Raid",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "action",
+            "attributes": "willpower",
+            "cost": "7",
+            "attack": "0",
+            "health": "0",
+            "race": "",
+            "text": "Destroy an enemy creature. Give all friendly creatures in its lane +1/+1."
+        },
+        {
             "id": "61653fce-e427-7791-3402-ce3eb0851bc4",
             "name": "Savage Ogre",
             "rarity": "Common",
@@ -4266,6 +4630,19 @@
             "health": "4",
             "race": "argonian",
             "text": "Summon: Silence another creature or destroy an enemy support card."
+        },
+        {
+            "id": "751b792c-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Shadowmere",
+            "rarity": "Legendary",
+            "isunique": true,
+            "type": "creature",
+            "attributes": "neutral",
+            "cost": "1",
+            "attack": "1",
+            "health": "1",
+            "race": "beast",
+            "text": "Charge\r\nLast Gasp: Shuffle Shadowmere into your deck, give it +3/+3, and increase its cost by 3."
         },
         {
             "id": "48bf5093-fda3-817c-642d-4a0f51ec4695",
@@ -4385,6 +4762,19 @@
             "text": "Summon: Deal 1 damage to all other creatures in this lane."
         },
         {
+            "id": "751b622a-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Skeever Infestation",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "action",
+            "attributes": "strength",
+            "cost": "3",
+            "attack": "0",
+            "health": "0",
+            "race": "",
+            "text": "Summon a Skeever in each lane with power and health equal to the number of Infestations you've played. Shuffle two copies of this into your deck."
+        },
+        {
             "id": "ba78d3d8-173a-76d6-bff8-36f9b1701e3c",
             "name": "Skilled Blacksmith",
             "rarity": "Rare",
@@ -4435,6 +4825,19 @@
             "health": "2",
             "race": "khajiit",
             "text": "Summon: Give a creature Lethal."
+        },
+        {
+            "id": "b929efbe-7eb7-42c5-a30c-10fbab2d5814",
+            "name": "Skooma Underboss",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "agility",
+            "cost": "2",
+            "attack": "2",
+            "health": "3",
+            "race": "khajiit",
+            "text": "Friendly Pilfer abilities are also Slay abilities."
         },
         {
             "id": "b28bd68a-c91e-f236-6dc1-21e31826ab46",
@@ -4593,6 +4996,32 @@
             "text": "Prophecy, Guard"
         },
         {
+            "id": "751b71c0-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Speaker Terenus",
+            "rarity": "Legendary",
+            "isunique": true,
+            "type": "creature",
+            "attributes": "intelligence",
+            "cost": "10",
+            "attack": "6",
+            "health": "6",
+            "race": "imperial",
+            "text": "After you play an action, put a random action into your hand."
+        },
+        {
+            "id": "751b4696-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Spear of Embers",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "item",
+            "attributes": "intelligence",
+            "cost": "5",
+            "attack": "0",
+            "health": "0",
+            "race": "",
+            "text": "Prophecy\r\n+3/+3\r\nInstead of equipping Spear of Embers, you may throw it at an enemy creature to deal 3 damage."
+        },
+        {
             "id": "5c682a05-c61c-9a11-c680-f6b2f8a3612a",
             "name": "Spider Daedra",
             "rarity": "Legendary",
@@ -4671,6 +5100,19 @@
             "text": ""
         },
         {
+            "id": "751b6bf8-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Stalking Shadowscale",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "endurance",
+            "cost": "3",
+            "attack": "3",
+            "health": "4",
+            "race": "argonian",
+            "text": "Slay: +1/+1"
+        },
+        {
             "id": "f0584f66-a6bc-7147-efc3-a5605f8f2fa7",
             "name": "Stalwart Ally",
             "rarity": "Common",
@@ -4721,6 +5163,19 @@
             "health": "1",
             "race": "daedra",
             "text": ""
+        },
+        {
+            "id": "751b684c-b11c-11e6-80f5-76304dec7eb7",
+            "name": "Stealer of Secrets",
+            "rarity": "Common",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "intelligence",
+            "cost": "4",
+            "attack": "3",
+            "health": "1",
+            "race": "highelf",
+            "text": "Ward\r\nSummon: +1/+1 for each action in your discard pile."
         },
         {
             "id": "054c81f3-cbd1-44bd-87e1-ec7e8c981158",
@@ -5022,6 +5477,32 @@
             "text": "Charge, Lethal"
         },
         {
+            "id": "751b6ec8-b11c-11e6-80f5-76304dec7eb7",
+            "name": "The Black Dragon",
+            "rarity": "Legendary",
+            "isunique": true,
+            "type": "creature",
+            "attributes": "willpower",
+            "cost": "4",
+            "attack": "5",
+            "health": "5",
+            "race": "imperial",
+            "text": "Immune to Lethal.\r\nSlay: Discard all copies of the slain creature from the opponent’s deck."
+        },
+        {
+            "id": "7f74e0c0-d2e1-11e6-bf26-cec0c932ce01",
+            "name": "The Night Mother",
+            "rarity": "Legendary",
+            "isunique": true,
+            "type": "support",
+            "attributes": "neutral",
+            "cost": "2",
+            "attack": "0",
+            "health": "0",
+            "race": "",
+            "text": "Activate: Summon a 0/1 Target with Guard for your opponent.\r\nWhen 20 enemy creatures have died, deal 20 damage to your opponent, gain 20 health, and draw up to 10 cards."
+        },
+        {
             "id": "4b692a01-283c-8aa6-b655-5e6dff094294",
             "name": "Thievery",
             "rarity": "Common",
@@ -5204,6 +5685,19 @@
             "text": "Prophecy, Breakthrough, Guard"
         },
         {
+            "id": "7f74e6f6-d2e1-11e6-bf26-cec0c932ce01",
+            "name": "Underworld Vigilante",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "strength",
+            "cost": "5",
+            "attack": "4",
+            "health": "1",
+            "race": "woodelf",
+            "text": "Charge\r\nSummon: All enemy creatures in this lane lose Cover."
+        },
+        {
             "id": "bed7199f-d5a0-3edd-bbef-ac7fbc552c2b",
             "name": "Ungolim the Listener",
             "rarity": "Legendary",
@@ -5215,6 +5709,19 @@
             "health": "1",
             "race": "woodelf",
             "text": "Summon: Shuffle three Brotherhood Assassins into your deck."
+        },
+        {
+            "id": "f7ebbd0a-adaf-11e6-80f5-76304dec7eb7",
+            "name": "Unstoppable Rage",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "action",
+            "attributes": "strength",
+            "cost": "7",
+            "attack": "0",
+            "health": "0",
+            "race": "",
+            "text": "A friendly creature deals damage equal to its power to all other creatures in its lane."
         },
         {
             "id": "1d723109-00b7-8371-a3ac-5e250e8848ed",
@@ -5527,6 +6034,19 @@
             "health": "4",
             "race": "orc",
             "text": "Breakthrough. Summon: Give Wood Orc Headhunter Charge if you have another friendly Orc."
+        },
+        {
+            "id": "d3ad93ae-898b-4f58-86ab-3dacaf7ceb95",
+            "name": "Wrath of Sithis",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "endurance",
+            "cost": "6",
+            "attack": "5",
+            "health": "6",
+            "race": "spirit",
+            "text": "Summon: Your opponent’s cards cost 1 more next turn."
         },
         {
             "id": "051cda36-f0ac-8606-0c05-ef9f3e606ca6",
