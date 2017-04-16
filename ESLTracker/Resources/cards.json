@@ -222,7 +222,7 @@
             "attack": "1",
             "health": "4",
             "race": "argonian",
-            "text": "Lethal. When Archein Venomtongue attacks and destroys a creature, gain +1 max magicka."
+            "text": "Lethal\r\nSlay: Gain +1 max magicka."
         },
         {
             "id": "2dc4da86-b41f-039f-af2a-cffdab93adb1",
@@ -274,7 +274,7 @@
             "attack": "1",
             "health": "4",
             "race": "highelf",
-            "text": "When you play an action, a random friendly creature gets +1/+1."
+            "text": "After you play an action, a random friendly creature gets +1/+1."
         },
         {
             "id": "33f56f09-756b-f822-203a-12b700ab760e",
@@ -560,7 +560,7 @@
             "attack": "6",
             "health": "6",
             "race": "vampire",
-            "text": "Summon: Draw a Blood Magic Spell. When Blood Magic Lord attacks and destroys a creature, draw a Blood Magic Spell."
+            "text": "Summon and Slay: Put a Blood Magic Spell into your hand."
         },
         {
             "id": "519f02a7-3180-4637-b922-f471cba5aa15",
@@ -638,7 +638,7 @@
             "attack": "1",
             "health": "1",
             "race": "breton",
-            "text": "Ward. After Breton Conjurer loses a Ward, summon a 5/5 Frost Atronach with Guard."
+            "text": " Ward\r\nAfter Breton Conjurer's Ward is broken, summon a 5/5 Frost Atronach with Guard."
         },
         {
             "id": "4a2815e6-7f17-540d-b20c-7e0bbf6b0d7a",
@@ -898,7 +898,7 @@
             "attack": "6",
             "health": "7",
             "race": "werewolf",
-            "text": "When Child of Hircine attacks and destroys a creature, it may attack again this turn."
+            "text": "Slay: May attack again this turn."
         },
         {
             "id": "c087de0b-bb21-ea87-9569-b62fd2391080",
@@ -1041,7 +1041,7 @@
             "attack": "1",
             "health": "1",
             "race": "highelf",
-            "text": "When you play an action, Crystal Tower Crafter gets +1/+1."
+            "text": "After you play an action, Crystal Tower Crafter gets +1/+1."
         },
         {
             "id": "aac702af-dc1d-3aa7-8e77-e811c4039333",
@@ -1106,7 +1106,7 @@
             "attack": "2",
             "health": "2",
             "race": "breton",
-            "text": "Ward. After Daggerfall Mage loses a Ward, put a Tome of Alteration into your hand."
+            "text": "Ward. After Daggerfall Mage's Ward is broken, put a Tome of Alteration into your hand."
         },
         {
             "id": "751b45ba-b11c-11e6-80f5-76304dec7eb7",
@@ -2588,7 +2588,7 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "All lanes become Shadow lanes. Friendly creatures have +1/+0. "
+            "text": "Summon: All Field Lanes become Shadow Lanes.\r\nFriendly creatures have +1/+0."
         },
         {
             "id": "2f0a6ea0-7fe0-93bb-9958-781174559847",
@@ -2757,7 +2757,7 @@
             "attack": "1",
             "health": "1",
             "race": "breton",
-            "text": "Ward. After Iliac Sorcerer loses a Ward, double his power."
+            "text": "Ward\r\nAfter Iliac Sorcerer's Ward is broken, double his power."
         },
         {
             "id": "3c9bdcc6-212a-0f59-2828-c7a9cb7e46eb",
@@ -2913,7 +2913,7 @@
             "attack": "4",
             "health": "5",
             "race": "nord",
-            "text": "When Initiate of Hircine attacks and destroys a creature, she may attack again this turn."
+            "text": "Slay: May attack again this turn."
         },
         {
             "id": "d0761488-7d73-d263-15ef-464dff6dd254",
@@ -3095,7 +3095,7 @@
             "attack": "4",
             "health": "4",
             "race": "highelf",
-            "text": "When you play an action, deal 2 damage to your opponent."
+            "text": "After you play an action, deal 2 damage to your opponent."
         },
         {
             "id": "05618f90-2c51-a31e-3e5a-737ec8e14ae8",
@@ -3160,7 +3160,7 @@
             "attack": "1",
             "health": "5",
             "race": "imperial",
-            "text": "Lethal. When another friendly creature attacks and destroys a creature, give it +2/+2."
+            "text": "Lethal\r\nWhen another friendly creature Slays, give it +2/+2."
         },
         {
             "id": "6aececba-9f30-2492-9b25-32a19e913b19",
@@ -3771,7 +3771,7 @@
             "attack": "8",
             "health": "8",
             "race": "vampire",
-            "text": "Drain. When Night Talon Lord attacks and destroys a creature, summon that creature."
+            "text": "Drain\r\nSlay: Summon the slain creature."
         },
         {
             "id": "6d896056-05f6-b5b1-1ff9-d132899fb724",
@@ -3953,7 +3953,7 @@
             "attack": "4",
             "health": "6",
             "race": "khajiit",
-            "text": "When Pahmar-raht Renegade attacks and destroys a creature, draw a card."
+            "text": "Slay: Draw a card."
         },
         {
             "id": "751b43d0-b11c-11e6-80f5-76304dec7eb7",
@@ -4707,7 +4707,7 @@
             "attack": "3",
             "health": "3",
             "race": "breton",
-            "text": "Breakthrough, Ward. After Shornhelm Champion loses a Ward, he gains +3/+3."
+            "text": "Breakthrough, Ward\r\nAfter Shornhelm Champion's Ward is broken, he gains +3/+3."
         },
         {
             "id": "3980371e-8e1c-7d8c-eded-64196401a012",
