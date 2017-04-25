@@ -223,6 +223,7 @@
     <Compile Include="Services\IHTTPService.cs" />
     <Compile Include="Utils\IOverlayWindow.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
+    <Compile Include="Utils\Messages\NewDeckTagCreated.cs" />
     <Compile Include="Utils\NewVersioInfo.cs" />
     <Compile Include="Utils\OverlayWindowRepository.cs" />
     <Compile Include="Utils\PropertiesObservableCollection.cs" />

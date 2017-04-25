@@ -75,6 +75,14 @@ namespace ESLTracker.ViewModels.Decks
             tracker = trackerFactory.GetTracker();
             messanger = trackerFactory.GetService<IMessenger>();
             settings = trackerFactory.GetService<ISettings>();
+
+            messanger.Register<NewDeckTagCreated>(this, RefreshDeckTagsList);
+
+        }
+
+        private void RefreshDeckTagsList(NewDeckTagCreated obj)
+        {
+            RaisePropertyChangedEvent(nameof(DeckTagAutocomplete));
         }
 
         private void SetDeckName(DeckType newType)

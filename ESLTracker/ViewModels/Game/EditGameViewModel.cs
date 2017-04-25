@@ -174,7 +174,7 @@ namespace ESLTracker.ViewModels.Game
             Game.PropertyChanged += Game_PropertyChanged;
             messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);
             messanger.Register<EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
-
+            messanger.Register<NewDeckTagCreated>(this, RefreshTagsList);
             this.settings = trackerFactory.GetService<ISettings>();
 
             this.BeginEdit();
@@ -227,6 +227,13 @@ namespace ESLTracker.ViewModels.Game
             {
                 RaisePropertyChangedEvent(nameof(SummaryText));
                 ShowWinsVsClass(this.Game.OpponentClass);
+            }
+            else if (e.PropertyName == nameof(Game.OpponentDeckTag))
+            {
+                if (! tracker.DeckTags.Contains(Game.OpponentDeckTag))
+                {
+                    messanger.Send(new NewDeckTagCreated());
+                }
             }
         }
 
@@ -403,6 +410,11 @@ namespace ESLTracker.ViewModels.Game
                 this.BeginEdit();
                 RaisePropertyChangedEvent("");
             }
+        }
+
+        private void RefreshTagsList(NewDeckTagCreated obj)
+        {
+            RaisePropertyChangedEvent(nameof(OpponentDeckTagAutocomplete));
         }
 
         public void CommandButtonSaveChangesExecute(object parameter)
