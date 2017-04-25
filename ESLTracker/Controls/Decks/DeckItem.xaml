@@ -33,7 +33,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=Type}" />
-                <TextBlock Text="{Binding Path=ArenaRank, StringFormat={} (Rank {0} ({0:D}))}" 
+                <TextBlock Text="{Binding Path=ArenaRank, StringFormat={} ({0} ({0:D}))}" 
                            Visibility="{Binding Type, Converter={Converters:DeckTypeToArenaRankVisibilty}}"
                        />
                 <TextBlock FontStyle="Italic" Margin="5,0,0,0" Text="{Binding Path=DeckTag}" />

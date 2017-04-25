@@ -51,7 +51,7 @@ namespace ESLTrackerTests
                 { typeof(PlayerRank?), PlayerRank.TheMage},
                 { typeof(int?), 234},
                 { typeof(int), 2234},
-                { typeof(ArenaRank?), ArenaRank.Level5},
+                { typeof(ArenaRank?), ArenaRank.Warrior},
                 { typeof(SerializableVersion), new SerializableVersion(1,2,3,4)},
                 { typeof(ObservableCollection<DeckVersion>), new ObservableCollection<DeckVersion>() {new DeckVersion() { Version = new SerializableVersion(1,2) } } },
                 { typeof(ObservableCollection<CardInstance>), new ObservableCollection<CardInstance>() {new CardInstance(new Card() {Name = "Card start" }) } },

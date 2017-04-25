@@ -5,22 +5,22 @@ namespace ESLTracker.DataModel.Enums
     public enum ArenaRank
     {
         [XmlEnum("1")]
-        Level1 = 1,
+        GrandChampion = 1,
         [XmlEnum("2")]
-        Level2,
+        Champion,
         [XmlEnum("3")]
-        Level3,
+        Hero,
         [XmlEnum("4")]
         Gladiator,
         [XmlEnum("5")]
-        Level5,
+        Warrior,
         [XmlEnum("6")]
-        Level6,
+        Myrmidon,
         [XmlEnum("7")]
-        Level7,
+        Bloodletter,
         [XmlEnum("8")]
         Brawler,
         [XmlEnum("9")]
-        Level9
+        PitDog
     }
 }
