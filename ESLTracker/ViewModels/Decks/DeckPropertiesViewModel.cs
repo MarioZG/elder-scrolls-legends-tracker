@@ -50,6 +50,14 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        public IEnumerable<string> DeckTagAutocomplete
+        {
+            get
+            {
+                return tracker.DeckTags;
+            }
+        }
+
         public IDeckClassSelectorViewModel DeckClassModel { get; set; }
 
         IMessenger messanger;

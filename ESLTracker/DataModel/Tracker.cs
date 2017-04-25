@@ -65,7 +65,9 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return Games.Select(g => g.OpponentDeckTag).Distinct().Where(s => ! String.IsNullOrWhiteSpace(s)).OrderBy(s => s).ToList();
+                var tags = Games.Select(g => g.OpponentDeckTag).Distinct().Where(s => ! String.IsNullOrWhiteSpace(s));
+                tags = tags.Union(Decks.Select(d => d.DeckTag)).Distinct().Where(s => !String.IsNullOrWhiteSpace(s));
+                return tags.OrderBy(s => s).ToList();
             }
         }
 

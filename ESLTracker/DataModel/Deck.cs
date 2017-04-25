@@ -114,6 +114,10 @@ namespace ESLTracker.DataModel
             }
         }
 
+        /// <summary>
+        /// user tag for deck: aggro, control etc...
+        /// </summary>
+        public string DeckTag { get; set; }
 
         private ITrackerFactory trackerFactory; //cannot be ITracker, as we need to load it first - stack overflow when database is loading
 
