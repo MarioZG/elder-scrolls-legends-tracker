@@ -474,6 +474,7 @@ namespace ESLTracker.ViewModels.Game
             Game.PlayerLegendRank = savedState.PlayerLegendRank;
             Game.PlayerRank = savedState.PlayerRank;
             Game.Type = savedState.Type;
+            Game.OpponentDeckTag = savedState.OpponentDeckTag;
         }
 
         internal bool IsDirty()

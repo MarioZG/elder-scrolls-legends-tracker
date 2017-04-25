@@ -119,10 +119,10 @@
                   IsChecked="{Binding Game.BonusRound}"
                   />
         <Label Content="Opponent Deck Tag" Grid.Row="9"/>
-        <TextBox Text="{Binding Game.OpponentDeckTag}" Grid.Row="9" Grid.Column="1"
-                AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding OpponentDeckTagAutocomplete}" 
-                AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
-            />
+        <ComboBox Grid.Row="9" Grid.Column="1" 
+                  IsEditable="True" 
+                  Text="{Binding Game.OpponentDeckTag}" 
+                  ItemsSource="{Binding OpponentDeckTagAutocomplete}" />
         <Label Content="Notes" Grid.Row="10"/>
         <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Game.Notes}" Grid.Column="1" Grid.Row="10"></TextBox>
         <Label Content="Game outcome" Grid.Row="11"
