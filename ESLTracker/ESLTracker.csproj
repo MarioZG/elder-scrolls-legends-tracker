@@ -147,6 +147,9 @@
     <Compile Include="Controls\Decks\ImportText.xaml.cs">
       <DependentUpon>ImportText.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GameStatistics\ViewOptions.xaml.cs">
+      <DependentUpon>ViewOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Game\GameFilter.xaml.cs">
       <DependentUpon>GameFilter.xaml</DependentUpon>
     </Compile>
@@ -430,6 +433,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Decks\ImportText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\GameStatistics\ViewOptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

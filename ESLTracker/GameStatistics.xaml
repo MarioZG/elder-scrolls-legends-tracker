@@ -34,19 +34,6 @@
         </Expander>
         <Expander DockPanel.Dock="Top" IsExpanded="False" Header="Games breakdown" Style="{DynamicResource ExpanderHeaderText}">
             <StackPanel Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
-                <StackPanel Margin="5,5,5,5" Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Center" Margin="0,0,5,0" Text="Group by "/>
-                    <ComboBox SelectedValue="{Binding GroupBy}" SelectedValuePath="Tag">
-                        <ComboBoxItem Content="Deck" Tag="Deck"/>
-                        <ComboBoxItem Content="Deck Class" Tag="Deck.Class"/>
-                    </ComboBox>
-                    <TextBlock VerticalAlignment="Center" Margin="5,0,5,0" Text="Show as "/>
-                    <ComboBox SelectedValue="{Binding ValueToShow}" SelectedValuePath="Tag">
-                        <ComboBoxItem Content="Victory-Defeat" Tag="Win"/>
-                        <ComboBoxItem Content="Victory %" Tag="WinPerc"/>
-                    </ComboBox>
-                    <CheckBox Content="Include hidden decks" IsChecked="{Binding IncludeHiddenDecks}" />
-                </StackPanel>
                 <DataGrid 
                 x:Name="dataGrid"
                 DataContext="{Binding DisplayDataSource}" 

@@ -169,13 +169,15 @@ namespace ESLTracker.ViewModels
             var result = GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
                             (g) => g.DeckVersion.Version,
-                            (g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString());
+                            (g) => g.OpponentDeckTag);
+                //            (g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString());
             //add totoal for deck
             result = result.Union(
                         GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
                             (g) => TOTAL_ROW_VERSION,
-                            (g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString()));
+                            (g) => g.OpponentDeckTag));
+            //(g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString()));
 
             //union totoal for all deck versoons
             result = result.Union(

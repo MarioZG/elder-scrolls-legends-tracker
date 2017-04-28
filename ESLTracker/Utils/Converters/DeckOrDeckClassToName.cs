@@ -22,6 +22,14 @@ namespace ESLTracker.Utils.Converters
             {
                 return ClassAttributesHelper.Classes[(DeckClass)value].ToString();
             }
+            else if (value is string)
+            {
+                return value as string;
+            }
+            else if (value == null)
+            {
+                return "<no tag>";
+            }
             else
             {
                 throw new ArgumentOutOfRangeException("DeckOrDeckClassToName received unexpetced type" + value.GetType().Name);

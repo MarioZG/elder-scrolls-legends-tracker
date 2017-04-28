@@ -22,6 +22,14 @@ namespace ESLTracker.Utils.Converters
             {
                 return ClassAttributesHelper.Classes[(DeckClass)value].ImageSources;
             }
+            else if (value is string)
+            {
+                return String.Empty;
+            }
+            else if (value == null)
+            {
+                return String.Empty;
+            }
             else
             {
                 throw new ArgumentOutOfRangeException("DeckOrDeckClassToAttributes received unexpetced type" + value.GetType().Name);
