@@ -1,4 +1,4 @@
-﻿<Window x:Class="ESLTracker.GameStatistics"
+﻿<Window xmlns:GameStatistics="clr-namespace:ESLTracker.Controls.GameStatistics"  x:Class="ESLTracker.GameStatistics"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -34,94 +34,8 @@
         </Expander>
         <Expander DockPanel.Dock="Top" IsExpanded="False" Header="Games breakdown" Style="{DynamicResource ExpanderHeaderText}">
             <StackPanel Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
-                <DataGrid 
-                x:Name="dataGrid"
-                DataContext="{Binding DisplayDataSource}" 
-                ItemsSource="{Binding}" 
-                AutoGenerateColumns="False" 
-                GridLinesVisibility="Horizontal"
-                CanUserAddRows="False"
-                CanUserDeleteRows="False">
-                    <DataGrid.Resources>
-                        <Style TargetType="{x:Type DataGridCell}" >
-                            <Setter Property="FontWeight" Value="Normal"/>
-                            <Style.Triggers>
-                                <!-- TOTAL row in bold-->
-                                <DataTrigger Binding="{Binding Deck.Notes}" Value="SUMMARYROW">
-                                    <Setter Property="FontWeight" Value="ExtraBold"/>
-                                </DataTrigger>
-                                <!-- change sel ted row background-->
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Background" Value="AliceBlue" />
-                                    <Setter Property="BorderBrush" Value="{x:Null}" />
-                                    <Setter Property="Foreground" Value="Black" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataGrid.Resources>
-                    <DataGrid.Columns>
-                        <DataGridTemplateColumn CanUserSort="False">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" 
-                                                Visibility="{Binding DeckVersion, ConverterParameter=0.0, Converter={Converters:VersionToVisibilty}}">
-                                        <ItemsControl ItemsSource="{Binding Path=Deck, Converter={Converters:DeckOrDeckClassToAttributes}}" BorderThickness="0"
-                                                    ToolTip="{Binding Deck, Converter={Converters:DeckOrDeckClassToName}}">
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <WrapPanel IsItemsHost="True" />
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Image Width="15" Source="{Binding}"></Image>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn CanUserSort="False">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel HorizontalAlignment="Right">
-                                        <TextBlock Text="{Binding Deck, Converter={Converters:DeckOrDeckClassToName}}"
-                                                   Visibility="{Binding DeckVersion, ConverterParameter=0.0, Converter={Converters:VersionToVisibilty}}"
-                                                   />
-                                        <TextBlock Text="{Binding DeckVersion, StringFormat={}v{0:MM}}" HorizontalAlignment="Right" TextAlignment="Right"
-                                                    Visibility="{Binding DeckVersion, ConverterParameter=not-0.0, Converter={Converters:VersionToVisibilty}}"
-                                                    />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn CanUserSort="False" Binding="{Binding Total}"/>
-                        <DataGridTextColumn Visibility="Collapsed" x:Name="classColumnsPlaceholder" />
-                        <DataGridTextColumn Header="1st-2nd" CanUserSort="False" Binding="{Binding First_Second}" />
-                        <DataGridTextColumn Header="1st % wins" CanUserSort="False" Binding="{Binding FirstWin}" />
-                        <DataGridTextColumn Header="2nd % wins" CanUserSort="False" Binding="{Binding SecondWin}" />                        
-                    </DataGrid.Columns>
-                    <DataGrid.RowStyle>
-                        <Style TargetType="{x:Type DataGridRow}">
-                            <Style.Triggers>
-                                <DataTrigger  Value="False">
-                                    <DataTrigger.Binding>
-                                        <MultiBinding Converter="{Converters:GameStatsRowVisibility}">
-                                            <MultiBinding.Bindings>
-                                                <Binding Path="SelectedItem" ElementName="dataGrid" />
-                                                <Binding Path="Deck" /><!--current item deck-->
-                                                <Binding Path="DeckVersion" /><!--current item deck version-->
-                                                <Binding Path="DataContext.TOTAL_ROW_VERSION" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Window}}" />
-                                            </MultiBinding.Bindings>
-                                        </MultiBinding>
-                                    </DataTrigger.Binding>   
-                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataGrid.RowStyle>
-                </DataGrid>
+                <GameStatistics:ViewOptions />
+                <GameStatistics:GamesStatsDataGrid />
             </StackPanel>
         </Expander>
         <Expander DockPanel.Dock="Top" IsExpanded="False" Header="Opponent class heatmap" Style="{DynamicResource ExpanderHeaderText}">
