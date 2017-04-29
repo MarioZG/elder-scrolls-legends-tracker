@@ -13,7 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.DataModel;
+using ESLTracker.Services;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Converters;
+using ESLTracker.ViewModels;
 
 namespace ESLTracker.Controls.GameStatistics
 {
@@ -22,9 +25,83 @@ namespace ESLTracker.Controls.GameStatistics
     /// </summary>
     public partial class GamesStatsDataGrid : UserControl
     {
+
+        private List<DataGridTextColumn> dynamicColumns = new List<DataGridTextColumn>();
+
         public GamesStatsDataGrid()
         {
             InitializeComponent();
+
+            CreateClassColumns();
+
+            IMessenger messenger = TrackerFactory.DefaultTrackerFactory.GetService<IMessenger>();
+            messenger.Register<Utils.Messages.GameStatsOpponentGroupByChanged>(this, UpdateGridHeaders);
+        }
+
+        private void UpdateGridHeaders(Utils.Messages.GameStatsOpponentGroupByChanged obj)
+        {
+            foreach (var col in dynamicColumns)
+            {
+                this.dataGrid.Columns.Remove(col);
+            }
+            dynamicColumns.Clear();
+
+            if (obj.OpponentGroupBy == "class")
+            {
+                CreateClassColumns();
+            }
+            else if (obj.OpponentGroupBy == "opponentDeckTag")
+            {
+                CreateTagColumns(obj.Tags);
+            }
+            else
+            {
+                throw new NotImplementedException("opponent headers missing for " + obj.OpponentGroupBy);
+            }
+        }
+
+        private void CreateTagColumns(IEnumerable<string> tags)
+        {
+            int totalColumnIndex = this.dataGrid.Columns.IndexOf(this.classColumnsPlaceholder);
+
+            GameStatsGetOpponentTagValue converter = new GameStatsGetOpponentTagValue();
+            foreach (string tag in tags)
+            {
+                DataGridTextColumn col = new DataGridTextColumn();
+                col.Header = tag;
+                col.Binding = new Binding("Tags")
+                            { Mode = BindingMode.OneTime,
+                            Converter = converter,
+                            ConverterParameter = tag};
+               // col.Binding = new Binding("Tags[0]")
+                col.CanUserSort = false;
+
+                //DataTemplate cardLayout = new DataTemplate();
+                //cardLayout.DataType = typeof(GamesStatsDataGrid);
+
+                ////set up the stack panel
+                //FrameworkElementFactory spFactory = new FrameworkElementFactory(typeof(StackPanel));
+                //spFactory.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
+                //spFactory.SetValue(StackPanel.ToolTipProperty, tag);
+
+                ////set up the card holder textblock
+                //FrameworkElementFactory cardHolder = new FrameworkElementFactory(typeof(Image));
+                //cardHolder.SetValue(Image.SourceProperty, new BitmapImage(new Uri(da.ImageSources.First(), UriKind.Absolute)));
+                //cardHolder.SetValue(Image.WidthProperty, 16.0);
+                //spFactory.AppendChild(cardHolder);
+
+                ////set the visual tree of the data template
+                //cardLayout.VisualTree = spFactory;
+
+                //col.HeaderTemplate = cardLayout;
+
+                dynamicColumns.Add(col);
+                this.dataGrid.Columns.Insert(++totalColumnIndex, col);
+            }
+        }
+
+        private void CreateClassColumns()
+        {
             int totalColumnIndex = this.dataGrid.Columns.IndexOf(this.classColumnsPlaceholder);
 
             foreach (DeckAttributes da in ClassAttributesHelper.Classes.Values)
@@ -62,9 +139,9 @@ namespace ESLTracker.Controls.GameStatistics
 
                 col.HeaderTemplate = cardLayout;
 
-            //    this.dataGrid.Columns.Insert(++totalColumnIndex, col);
+                dynamicColumns.Add(col);
+                this.dataGrid.Columns.Insert(++totalColumnIndex, col);
             }
-
         }
     }
 }

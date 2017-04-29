@@ -7,6 +7,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using LiveCharts;
 using LiveCharts.Defaults;
@@ -16,6 +17,8 @@ namespace ESLTracker.ViewModels
 {
     public class GameStatisticsViewModel : Game.GameFilterViewModel
     {
+
+        public event EventHandler OpponentGropuByChanged;
 
         public int Victories
         {
@@ -85,6 +88,19 @@ namespace ESLTracker.ViewModels
             set { groupBy = value; RaiseDataPropertyChange(); }
         }
 
+        private string gropuByOpponent = "class";
+
+        public string GroupByOpponent
+        {
+            get { return gropuByOpponent; }
+            set { SetProperty(ref gropuByOpponent, value, String.Empty, UpdateHeaders); }
+        }
+
+        private void UpdateHeaders()
+        {
+
+        }
+
         private string valueToShow = "Win";
 
         public string ValueToShow
@@ -101,7 +117,6 @@ namespace ESLTracker.ViewModels
             set { includeHiddenDecks = value; RaiseDataPropertyChange(); }
         }
 
-
         private ChartValues<HeatPoint> opponentClassHeatMap;
         public ChartValues<HeatPoint> OpponentClassHeatMap
         {
@@ -113,7 +128,8 @@ namespace ESLTracker.ViewModels
         public Func<double, string> FormatterFirst { get; set; }
         public Func<double, string> FormatterSecond { get; set; }
         public Func<ChartPoint, string> HeatLabelPoint { get; set; }
-       
+
+        IMessenger messenger;
 
         public GameStatisticsViewModel() : this(TrackerFactory.DefaultTrackerFactory)
         {
@@ -122,6 +138,9 @@ namespace ESLTracker.ViewModels
 
         public GameStatisticsViewModel(ITrackerFactory trackerFactory) : base(trackerFactory)
         {
+
+            messenger = trackerFactory.GetService<IMessenger>();
+
             this.gameType = GameType.PlayRanked;
             Formatter = x => TotalGames > 0 ? Math.Round((double)x / TotalGames * 100, 0) + " %" : "- %";
             FormatterFirst = x => OrderOfPlayFirst > 0 ? Math.Round((double)x / OrderOfPlayFirst * 100, 0) + " %" : "- %";
@@ -169,15 +188,13 @@ namespace ESLTracker.ViewModels
             var result = GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
                             (g) => g.DeckVersion.Version,
-                            (g) => g.OpponentDeckTag);
-                //            (g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString());
+                            (g) => GetOpponentGroupMethod(g));
             //add totoal for deck
             result = result.Union(
                         GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
                             (g) => TOTAL_ROW_VERSION,
-                            (g) => g.OpponentDeckTag));
-            //(g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString()));
+                           (g) => GetOpponentGroupMethod(g)));
 
             //union totoal for all deck versoons
             result = result.Union(
@@ -212,7 +229,7 @@ namespace ESLTracker.ViewModels
                          GetBreakDownByDeck(
                             (g) => totalDeck,
                             (g) => TOTAL_ROW_VERSION,
-                            (g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString()));
+                            (g) => GetOpponentGroupMethod(g)));
 
             //totoal for toal row
             result = result.Union(
@@ -228,39 +245,62 @@ namespace ESLTracker.ViewModels
             var totalOpponents = GetBreakDownByOpponentClass(
                                     (g) => totalOpponentDeck,
                                     (g) => TOTAL_ROW_VERSION,
-                                    (g) => ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString());
+                                    (g) => GetOpponentGroupMethod(g));
 
-            result = result.Union(totalOpponents);
+            result = result.Union(totalOpponents); 
 
             CreateOpponentHeatMapData(totalOpponents);
 
+            var tags = result.Select(r => r.Opp).Where(s =>
+                       s != "Total" && s != "First_Second"
+                       && s != "FirstWin" && s != "SecondWin"
+                    ).Distinct();
 
-            return result.GroupBy(r => new { r.Deck, r.DeckVersion })
-                .Select(r=> new GameStatisticsDeckRow
+            messenger.Send(new Utils.Messages.GameStatsOpponentGroupByChanged()
+            {
+                OpponentGroupBy = gropuByOpponent,
+                Tags = tags
+            });
+
+            var returnList = result.GroupBy(r => new { r.Deck, r.DeckVersion })
+                .Select(r =>
                 {
-                    Deck = r.Key.Deck,
-                    DeckVersion = r.Key.DeckVersion,
-                    Neutral = GetResultToShow(r, "Neutral"),
-                    Strength = GetResultToShow(r, "Strength"),
-                    Inteligence = GetResultToShow(r, "Inteligence"),
-                    Willpower = GetResultToShow(r, "Willpower"),
-                    Agility = GetResultToShow(r, "Agility"),
-                    Endurance = GetResultToShow(r, "Endurance"),
-                    Archer = GetResultToShow(r, "Archer"),
-                    Assassin = GetResultToShow(r, "Assassin"),
-                    Battlemage = GetResultToShow(r, "Battlemage"),
-                    Crusader = GetResultToShow(r, "Crusader"),
-                    Mage = GetResultToShow(r, "Mage"),
-                    Monk = GetResultToShow(r, "Monk"),
-                    Scout = GetResultToShow(r, "Scout"),
-                    Sorcerer = GetResultToShow(r, "Sorcerer"),
-                    Spellsword = GetResultToShow(r, "Spellsword"),
-                    Warrior = GetResultToShow(r, "Warrior"),
-                    Total = GetResultToShow(r, "Total"),
-                    First_Second = GetResultToShow(r, "First_Second"),
-                    FirstWin = GetResultToShow(r, "FirstWin"),
-                    SecondWin = GetResultToShow(r, "SecondWin"),
+                    var ret = new GameStatisticsDeckRow
+                    {
+                        Deck = r.Key.Deck,
+                        DeckVersion = r.Key.DeckVersion,
+                        Neutral = GetResultToShow(r, "Neutral"),
+                        Strength = GetResultToShow(r, "Strength"),
+                        Inteligence = GetResultToShow(r, "Inteligence"),
+                        Willpower = GetResultToShow(r, "Willpower"),
+                        Agility = GetResultToShow(r, "Agility"),
+                        Endurance = GetResultToShow(r, "Endurance"),
+                        Archer = GetResultToShow(r, "Archer"),
+                        Assassin = GetResultToShow(r, "Assassin"),
+                        Battlemage = GetResultToShow(r, "Battlemage"),
+                        Crusader = GetResultToShow(r, "Crusader"),
+                        Mage = GetResultToShow(r, "Mage"),
+                        Monk = GetResultToShow(r, "Monk"),
+                        Scout = GetResultToShow(r, "Scout"),
+                        Sorcerer = GetResultToShow(r, "Sorcerer"),
+                        Spellsword = GetResultToShow(r, "Spellsword"),
+                        Warrior = GetResultToShow(r, "Warrior"),
+                        Total = GetResultToShow(r, "Total"),
+                        First_Second = GetResultToShow(r, "First_Second"),
+                        FirstWin = GetResultToShow(r, "FirstWin"),
+                        SecondWin = GetResultToShow(r, "SecondWin")
+                    };
+                    foreach(string t in tags)
+                    {
+                        ret.Tags.Add(t, GetResultToShow(r, t));
+                    }
+                    return ret;
                 });
+
+
+
+
+            return returnList;
         }
 
         private string GetResultToShow(
@@ -275,13 +315,16 @@ namespace ESLTracker.ViewModels
         {
             opponentClassHeatMap = new ChartValues<HeatPoint>();
 
-            foreach (var r in totalOpponents)
+            if (gropuByOpponent == "class")
             {
-                DeckClass dc = (DeckClass)Enum.Parse(typeof(DeckClass), r.Opp);
-                DataModel.DeckAttributes da = ClassAttributesHelper.Classes[dc];
-                DeckAttribute da1 = da[0];
-                DeckAttribute da2 = (da.Count > 1 ? da[1] : da[0]);
-                opponentClassHeatMap.Add(new HeatPoint((int)da1, (int)da2, Int32.Parse(r.Win)));
+                foreach (var r in totalOpponents)
+                {
+                    DeckClass dc = (DeckClass)Enum.Parse(typeof(DeckClass), r.Opp);
+                    DataModel.DeckAttributes da = ClassAttributesHelper.Classes[dc];
+                    DeckAttribute da1 = da[0];
+                    DeckAttribute da2 = (da.Count > 1 ? da[1] : da[0]);
+                    opponentClassHeatMap.Add(new HeatPoint((int)da1, (int)da2, Int32.Parse(r.Win)));
+                }
             }
         }
 
@@ -391,6 +434,18 @@ namespace ESLTracker.ViewModels
                         });
         }
 
+        private string GetOpponentGroupMethod(DataModel.Game g)
+        {
+            if (this.gropuByOpponent == "opponentDeckTag")
+            {
+                return g.OpponentDeckTag == null ? "<none>" : g.OpponentDeckTag;
+            }
+            else
+            {
+                return ClassAttributesHelper.Classes[g.OpponentClass.Value].ToString();
+            }
+        }
+
         public class GameStatisticsDeckRow
         {
             public string Agility { get; set; }
@@ -415,6 +470,7 @@ namespace ESLTracker.ViewModels
             public string Total { get; set; }
             public string Warrior { get; set; }
             public string Willpower { get; set; }
+            public Dictionary<string, string> Tags { get; set; } = new Dictionary<string, string>();
         }
     }
 }

@@ -206,6 +206,7 @@
     <Compile Include="Services\Implementation\CardImageService.cs" />
     <Compile Include="Utils\Converters\CollectionCountToVisibility.cs" />
     <Compile Include="Utils\Converters\DebuggingConverter.cs" />
+    <Compile Include="Utils\Converters\GameStatsGetOpponentTagValue.cs" />
     <Compile Include="Utils\Converters\GameStatsRowVisibility.cs" />
     <Compile Include="Utils\Converters\InvertibleConverter.cs" />
     <Compile Include="Utils\Converters\MarkupConverter.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Services\IHTTPService.cs" />
     <Compile Include="Utils\IOverlayWindow.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
+    <Compile Include="Utils\Messages\GameStatsOpponentGroupByChanged.cs" />
     <Compile Include="Utils\Messages\NewDeckTagCreated.cs" />
     <Compile Include="Utils\NewVersioInfo.cs" />
     <Compile Include="Utils\OverlayWindowRepository.cs" />
