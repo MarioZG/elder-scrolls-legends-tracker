@@ -1,6 +1,6 @@
 {
-    "Version": "0.8",
-    "VersionInfo": "Game Update 1.63 - The Fall of the Dark Brotherhood",
+    "Version": "0.9",
+    "VersionInfo": "April 2017 monthy card",
     "VersionDate": "2017-04-06T00:00:00.000Z",
     "Cards": [
         {
@@ -846,7 +846,20 @@
             "attack": "1",
             "health": "2",
             "race": "imperial",
-            "text": " After you play an action, summon a random creature from your deck with the same cost."
+            "text": "After you play an action, summon a random creature from your deck with the same cost."
+        },
+        {
+            "id": "e62d3ccb-6650-11e6-bdf4-0800200c9a66",
+            "name": "Chaurus Breeding Pit",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "action",
+            "attributes": "agility",
+            "cost": "10",
+            "attack": "0",
+            "health": "0",
+            "race": "",
+            "text": "Summon a Chaurus Reaper in each lane."
         },
         {
             "id": "9ff1357e-ce69-a9e1-3935-7cd62585a19a",
