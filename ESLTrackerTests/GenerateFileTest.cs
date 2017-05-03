@@ -44,13 +44,27 @@ namespace ESLTrackerTests
                 "Bradly    "
             };
 
+            string[] deckTags = {
+                "Taahra             ",
+                "Bhiila             ",
+                "Atrassi            ",
+                "Nairanirr          ",
+                "Ahjiarra           ",
+                "Nisaraji Hamnurabi ",
+                "Addhjadhi Zahjspoor",
+                "Adannabi Rahknaihn",
+                "Faaji Baramanni   ",
+                "Abaneena Khaohin  "
+            };
+
             foreach (string name in names)
             {
                 Deck d = Deck.CreateNewDeck(name);
                 d.Type = (DeckType)rand.Next(2);
                 d.Class = (DeckClass)rand.Next(16);
                 d.CreatedDate = DateTime.Now.AddHours(-1 * rand.Next(5000));
-                d.IsHidden = rand.Next(2) % 2 == 1;
+                d.IsHidden = rand.Next(4) < 1 ; //1/4 that is hidden
+                d.DeckTag = deckTags[rand.Next(deckTags.Length)];
 
                 int versions = rand.Next(10);
                 for (int i = 0; i < versions; i++)
@@ -63,7 +77,7 @@ namespace ESLTrackerTests
                         version.Cards.Add(new CardInstance(c));
                     }
 
-                    int gamesCount = rand.Next(100);
+                    int gamesCount = rand.Next(300);
                     for (; gamesCount > 0; gamesCount--)
                     {
                         Game g = new Game();
@@ -74,6 +88,7 @@ namespace ESLTrackerTests
                         g.OpponentName = "opp1";
                         g.OrderOfPlay = (OrderOfPlay)rand.Next(2);
                         g.Outcome = (GameOutcome)rand.Next(3);
+                        g.OpponentDeckTag = deckTags[rand.Next(deckTags.Length)];
                         switch (d.Type)
                         {
                             case DeckType.Constructed:
