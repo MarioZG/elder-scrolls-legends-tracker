@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using ESLTracker.DataModel;
 using ESLTracker.Services;
 using ESLTracker.Utils;
@@ -40,6 +41,17 @@ namespace ESLTracker.Controls.GameStatistics
 
         private void UpdateGridHeaders(Utils.Messages.GameStatsOpponentGroupByChanged obj)
         {
+            this.dataGrid.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Background,
+                    new Action(delegate ()
+                    {
+                        UpdateGridHeadersExecute(obj);
+                    })
+                );
+        }
+
+        private void UpdateGridHeadersExecute(Utils.Messages.GameStatsOpponentGroupByChanged obj)
+        { 
             foreach (var col in dynamicColumns)
             {
                 this.dataGrid.Columns.Remove(col);

@@ -185,6 +185,12 @@ namespace ESLTracker.ViewModels
 
         public override dynamic GetDataSet()
         {
+            var task = new NotifyTaskCompletion<dynamic>(new Task<dynamic>(GetDataSetExecute));
+            task.Task.Start();
+            return task;
+        }
+        private dynamic GetDataSetExecute()
+        {
             Logger.ConditionalTrace("GetDataSet START");
 
             Logger.ConditionalTrace("breakdawn  by deck");
@@ -303,7 +309,7 @@ namespace ESLTracker.ViewModels
                     return ret;
                 });
 
-            Logger.ConditionalTrace("Execute query");
+            Logger.ConditionalTrace("excute query");
             returnList = returnList.ToList();
             Logger.ConditionalTrace("FINISHED");
             return returnList;
