@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,18 +13,19 @@ using ESLTracker.Utils;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using NLog;
 
 namespace ESLTracker.ViewModels
 {
     public class GameStatisticsViewModel : Game.GameFilterViewModel
     {
-
-        public event EventHandler OpponentGropuByChanged;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public int Victories
         {
             get
             {
+                Logger.ConditionalTrace("Get victories");
                 return GamesList.Where(g => g.Outcome == GameOutcome.Victory).Count();
             }
         }
@@ -183,28 +185,29 @@ namespace ESLTracker.ViewModels
 
         public override dynamic GetDataSet()
         {
+            Logger.ConditionalTrace("GetDataSet START");
 
-            //breakdawn  by deck
+            Logger.ConditionalTrace("breakdawn  by deck");
             var result = GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
                             (g) => g.DeckVersion.Version,
                             (g) => GetOpponentGroupMethod(g));
-            //add totoal for deck
+
+            Logger.ConditionalTrace("add totoal for deck");
             result = result.Union(
                         GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
                             (g) => TOTAL_ROW_VERSION,
                            (g) => GetOpponentGroupMethod(g)));
 
-            //union totoal for all deck versoons
+            Logger.ConditionalTrace("union totoal for all deck versoons");
             result = result.Union(
                          GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
                             (g) => TOTAL_ROW_VERSION,
                             (g) => "Total"));
 
-
-            //union totoal for each deck version
+            Logger.ConditionalTrace("union totoal for each deck version");
             result = result.Union(
                          GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
@@ -215,14 +218,14 @@ namespace ESLTracker.ViewModels
                          result,
                          (g) => g.DeckVersion.Version);
 
-            //add % of games you went first
+            Logger.ConditionalTrace("add % of games you went first");
             result = FirstSecondStats(
                          result,
                          (g) => TOTAL_ROW_VERSION);
 
             result = result.OrderBy(r => r.Deck).ThenBy(r => r.DeckVersion);
 
-            //add total row for all decks
+            Logger.ConditionalTrace("add total row for all decks");
             object totalDeck = Deck.CreateNewDeck(trackerFactory, "TOTAL");
 
             result = result.Union(
@@ -231,7 +234,7 @@ namespace ESLTracker.ViewModels
                             (g) => TOTAL_ROW_VERSION,
                             (g) => GetOpponentGroupMethod(g)));
 
-            //totoal for toal row
+            Logger.ConditionalTrace("totoal for toal row");
             result = result.Union(
                         GetBreakDownByDeck(
                             (g) => totalDeck,
@@ -239,7 +242,7 @@ namespace ESLTracker.ViewModels
                             (g) => "Total"));
 
             //add % of opponents decks
-            //add total row for all decks
+            Logger.ConditionalTrace("add total row for all decks");
             object totalOpponentDeck = Deck.CreateNewDeck(trackerFactory, "Opponent class %");
 
             var totalOpponents = GetBreakDownByOpponentClass(
@@ -247,10 +250,12 @@ namespace ESLTracker.ViewModels
                                     (g) => TOTAL_ROW_VERSION,
                                     (g) => GetOpponentGroupMethod(g));
 
-            result = result.Union(totalOpponents); 
+            result = result.Union(totalOpponents);
 
+            Logger.ConditionalTrace("create heat map data");
             CreateOpponentHeatMapData(totalOpponents);
 
+            Logger.ConditionalTrace("select tags");
             var tags = result.Select(r => r.Opp).Where(s =>
                        s != "Total" && s != "First_Second"
                        && s != "FirstWin" && s != "SecondWin"
@@ -262,6 +267,7 @@ namespace ESLTracker.ViewModels
                 Tags = tags
             });
 
+            Logger.ConditionalTrace("final group by results");
             var returnList = result.GroupBy(r => new { r.Deck, r.DeckVersion })
                 .Select(r =>
                 {
@@ -297,9 +303,9 @@ namespace ESLTracker.ViewModels
                     return ret;
                 });
 
-
-
-
+            Logger.ConditionalTrace("Execute query");
+            returnList = returnList.ToList();
+            Logger.ConditionalTrace("FINISHED");
             return returnList;
         }
 
@@ -308,7 +314,7 @@ namespace ESLTracker.ViewModels
             string header)
         {
             return valueToShow == "Win" ? rows.Where(gg => gg.Opp == header).FirstOrDefault().Win :
-                                            (!double.IsNaN(rows.Where(gg => gg.Opp == header).FirstOrDefault().WinPerc) ? Math.Round(rows.Where(gg => gg.Opp == "Neutral").FirstOrDefault().WinPerc, 0).ToString() : "");
+                                            (!double.IsNaN(rows.Where(gg => gg.Opp == header).FirstOrDefault().WinPerc) ? Math.Round(rows.Where(gg => gg.Opp == header).FirstOrDefault().WinPerc, 0).ToString() : "");
         }
 
         private void CreateOpponentHeatMapData(IEnumerable<DeckStatsDataRecord> totalOpponents)
@@ -354,6 +360,7 @@ namespace ESLTracker.ViewModels
             return result;
         }
 
+        [DebuggerDisplay("Deck={Deck};Ver={DeckVersion};Opp={Opp};Win={Win};WinPerc={WinPerc}")]
         private struct DeckStatsDataRecord
         {
             public object Deck;
