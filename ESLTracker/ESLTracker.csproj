@@ -588,82 +588,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\RewardType\Gold.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\RewardType\Card.png" />
-    <Resource Include="Resources\RewardType\Pack.png" />
-    <Resource Include="Resources\RewardType\Soulgem.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\closeicon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\WindowIcons\collapse.png" />
-    <Resource Include="Resources\WindowIcons\expand.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\DeckAttribute\agility.png" />
-    <Resource Include="Resources\DeckAttribute\endurance.png" />
-    <Resource Include="Resources\DeckAttribute\intelligence.png" />
-    <Resource Include="Resources\DeckAttribute\strength.png" />
-    <Resource Include="Resources\DeckAttribute\willpower.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\DeckAttribute\neutral.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\WindowIcons\close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\TrayIcon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\WindowIcons\printScreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Temp\all attribs.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Temp\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\WindowIcons\mainForm.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\newDeck.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\exit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\runESL.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\statistics.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Cards\abeceannavigator.png" />
     <Resource Include="Resources\Cards\adoringfan.png" />
     <Resource Include="Resources\Cards\afflictedalit.png" />
@@ -687,6 +611,7 @@
     <Resource Include="Resources\Cards\artaeumsavant.png" />
     <Resource Include="Resources\Cards\ashservant.png" />
     <Resource Include="Resources\Cards\assassinsbow.png" />
+    <Resource Include="Resources\Cards\astrid.png" />
     <Resource Include="Resources\Cards\auridonpaladin.png" />
     <Resource Include="Resources\Cards\auroransentry.png" />
     <Resource Include="Resources\Cards\ayrenn.png" />
@@ -842,6 +767,7 @@
     <Resource Include="Resources\Cards\heirloomgreatsword.png" />
     <Resource Include="Resources\Cards\helgensquadleader.png" />
     <Resource Include="Resources\Cards\helstromfootpad.png" />
+    <Resource Include="Resources\Cards\heroicrebirth.png" />
     <Resource Include="Resources\Cards\heroofanvil.png" />
     <Resource Include="Resources\Cards\hiddentrail.png" />
     <Resource Include="Resources\Cards\highkingemeric.png" />
@@ -941,8 +867,8 @@
     <Resource Include="Resources\Cards\orbofvaermina.png" />
     <Resource Include="Resources\Cards\orcclancaptain.png" />
     <Resource Include="Resources\Cards\orcclanshaman.png" />
-    <Resource Include="Resources\Cards\orcishwarhammer.png" />
     <Resource Include="Resources\Cards\orcclansman.png" />
+    <Resource Include="Resources\Cards\orcishwarhammer.png" />
     <Resource Include="Resources\Cards\packwolf.png" />
     <Resource Include="Resources\Cards\pahmarrahtrenegade.png" />
     <Resource Include="Resources\Cards\piercingjavelin.png" />
@@ -1022,6 +948,7 @@
     <Resource Include="Resources\Cards\staffofsparks.png" />
     <Resource Include="Resources\Cards\stalkingcrocodile.png" />
     <Resource Include="Resources\Cards\stalwartally.png" />
+    <Resource Include="Resources\Cards\stampedesentinel.png" />
     <Resource Include="Resources\Cards\stampedingmammoth.png" />
     <Resource Include="Resources\Cards\starvedhunger.png" />
     <Resource Include="Resources\Cards\steelscimitar.png" />
@@ -1091,12 +1018,83 @@
     <Resource Include="Resources\Cards\wrothgarkingpin.png" />
     <Resource Include="Resources\Cards\yewshield.png" />
     <Resource Include="Resources\Cards\youngmammoth.png" />
+    <Resource Include="Resources\RewardType\Gold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RewardType\Card.png" />
+    <Resource Include="Resources\RewardType\Pack.png" />
+    <Resource Include="Resources\RewardType\Soulgem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\closeicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowIcons\collapse.png" />
+    <Resource Include="Resources\WindowIcons\expand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DeckAttribute\agility.png" />
+    <Resource Include="Resources\DeckAttribute\endurance.png" />
+    <Resource Include="Resources\DeckAttribute\intelligence.png" />
+    <Resource Include="Resources\DeckAttribute\strength.png" />
+    <Resource Include="Resources\DeckAttribute\willpower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DeckAttribute\neutral.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowIcons\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TrayIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowIcons\printScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Temp\all attribs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Temp\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowIcons\mainForm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\newDeck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\runESL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MenuIcons\statistics.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\AppLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Cards\stampedesentinel.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\MenuIcons\hide.png" />
@@ -1105,7 +1103,47 @@
     <Resource Include="Resources\MenuIcons\visible.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Cards\heroicrebirth.png" />
+    <Resource Include="Resources\Cards\bloodpactmessenger.png" />
+    <Resource Include="Resources\Cards\bloodsorceress.png" />
+    <Resource Include="Resources\Cards\brotherhoodsanctuary.png" />
+    <Resource Include="Resources\Cards\brotherhoodslayer.png" />
+    <Resource Include="Resources\Cards\chanterofakatosh.png" />
+    <Resource Include="Resources\Cards\chaurusbreedingpit.png" />
+    <Resource Include="Resources\Cards\cicerothebetrayer.png" />
+    <Resource Include="Resources\Cards\corsairship.png" />
+    <Resource Include="Resources\Cards\daggersinthedark.png" />
+    <Resource Include="Resources\Cards\darkguardian.png" />
+    <Resource Include="Resources\Cards\eclipsebaroness.png" />
+    <Resource Include="Resources\Cards\falkreathdefiler.png" />
+    <Resource Include="Resources\Cards\fellthemighty.png" />
+    <Resource Include="Resources\Cards\fleshsculpture.png" />
+    <Resource Include="Resources\Cards\garnagdarkadherent.png" />
+    <Resource Include="Resources\Cards\grandball.png" />
+    <Resource Include="Resources\Cards\gravesinger.png" />
+    <Resource Include="Resources\Cards\gristlehidedreugh.png" />
+    <Resource Include="Resources\Cards\knifetothethroat.png" />
+    <Resource Include="Resources\Cards\knightofthehour.png" />
+    <Resource Include="Resources\Cards\littlegirl.png" />
+    <Resource Include="Resources\Cards\markedman.png" />
+    <Resource Include="Resources\Cards\palaceconspirator.png" />
+    <Resource Include="Resources\Cards\penitusoculatusagent.png" />
+    <Resource Include="Resources\Cards\protectoroftheinnocent.png" />
+    <Resource Include="Resources\Cards\quicksilvercrossbow.png" />
+    <Resource Include="Resources\Cards\sanctuarypet.png" />
+    <Resource Include="Resources\Cards\sanctuaryraid.png" />
+    <Resource Include="Resources\Cards\shadowmere.png" />
+    <Resource Include="Resources\Cards\skeeverinfestation.png" />
+    <Resource Include="Resources\Cards\skoomaunderboss.png" />
+    <Resource Include="Resources\Cards\sowerofrevenge.png" />
+    <Resource Include="Resources\Cards\speakerterenus.png" />
+    <Resource Include="Resources\Cards\spearofembers.png" />
+    <Resource Include="Resources\Cards\stalkingshadowscale.png" />
+    <Resource Include="Resources\Cards\stealerofsecrets.png" />
+    <Resource Include="Resources\Cards\theblackdragon.png" />
+    <Resource Include="Resources\Cards\thenightmother.png" />
+    <Resource Include="Resources\Cards\underworldvigilante.png" />
+    <Resource Include="Resources\Cards\unstoppablerage.png" />
+    <Resource Include="Resources\Cards\wrathofsithis.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
