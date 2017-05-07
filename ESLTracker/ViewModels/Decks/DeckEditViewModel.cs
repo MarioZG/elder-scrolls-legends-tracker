@@ -247,6 +247,7 @@ namespace ESLTracker.ViewModels.Decks
             Deck.CopyHistory(savedState.History);
             Deck.IsHidden = savedState.IsHidden;
             Deck.LastUsed = savedState.LastUsed;
+            Deck.DeckTag = savedState.DeckTag;
             savedState = null;
             RaisePropertyChangedEvent(nameof(Deck));
         }
