@@ -6,18 +6,18 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.GameStatistics"
              mc:Ignorable="d">
     <StackPanel Margin="5,5,5,5" Orientation="Horizontal">
-        <TextBlock VerticalAlignment="Center" Margin="0,0,5,0" Text="Group by "/>
+        <TextBlock VerticalAlignment="Center" Margin="0,0,5,0" Text="Group YOUR decks by "/>
         <ComboBox SelectedValue="{Binding GroupBy}" SelectedValuePath="Tag">
             <ComboBoxItem Content="Deck" Tag="Deck"/>
             <ComboBoxItem Content="Deck Class" Tag="Deck.Class"/>
             <ComboBoxItem Content="Deck Tag" Tag="Deck.DeckTag"/>
         </ComboBox>
-        <TextBlock VerticalAlignment="Center" Margin="5,0,5,0" Text="Show as "/>
+        <TextBlock VerticalAlignment="Center" Margin="5,0,5,0" Text=" Show results as "/>
         <ComboBox SelectedValue="{Binding ValueToShow}" SelectedValuePath="Tag">
             <ComboBoxItem Content="Victory-Defeat" Tag="Win"/>
             <ComboBoxItem Content="Victory %" Tag="WinPerc"/>
         </ComboBox>
-        <TextBlock VerticalAlignment="Center" Margin="5,0,5,0" Text="Opponent grouped by "/>
+        <TextBlock VerticalAlignment="Center" Margin="5,0,5,0" Text="Group OPPONENT by "/>
         <ComboBox SelectedValue="{Binding GroupByOpponent}" SelectedValuePath="Tag">
             <ComboBoxItem Content="Opponent class" Tag="class"/>
             <ComboBoxItem Content="Opponent tag" Tag="opponentDeckTag"/>
