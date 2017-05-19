@@ -220,6 +220,8 @@
     <Compile Include="Utils\Converters\VersionToVisibilty.cs" />
     <Compile Include="Services\Implementation\DeckService.cs" />
     <Compile Include="Utils\DeckImporter.cs" />
+    <Compile Include="Utils\DiagnosticsWrappers\IProcessWrapper.cs" />
+    <Compile Include="Utils\DiagnosticsWrappers\ProcessWrapper.cs" />
     <Compile Include="Utils\EnumBindingSourceExtension.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
     <Compile Include="Utils\Extensions\DependencyObjectExtensions.cs" />

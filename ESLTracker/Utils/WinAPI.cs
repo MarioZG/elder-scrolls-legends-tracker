@@ -1,17 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using ESLTracker.Utils.DiagnosticsWrappers;
+using NLog;
 
 namespace ESLTracker.Utils
 {
     public class WinAPI : IWinAPI
     {
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+        private IProcessWrapper processWrapper;
+        private const string ESLExeProcessName = "The Elder Scrolls Legends";
+        private const string LauncherProcessName = "BethesdaNetLauncher";
 
         public static IWinAPI Default { get; } = new WinAPI();
+
+
+        public WinAPI() : this(new ProcessWrapper())
+        {
+        }
+
+        public WinAPI(IProcessWrapper processWrapper)
+        {
+            this.processWrapper = processWrapper;
+        }
+
 
         [StructLayout(LayoutKind.Sequential)]
         public struct Rect
@@ -34,8 +48,8 @@ namespace ESLTracker.Utils
         public bool IsGameActive()
         {
             IntPtr fw = GetForegroundWindow();
-            Process eslProcess = GetEslProcess();
-            IntPtr eslw = eslProcess == null ? IntPtr.Zero : eslProcess.MainWindowHandle;
+            Process proc = GetEslProcess();
+            IntPtr eslw = proc == null ? IntPtr.Zero : proc.MainWindowHandle;
             return fw == eslw;
         }
 
@@ -45,7 +59,14 @@ namespace ESLTracker.Utils
             if ((eslProcess == null)
                 || (eslProcess.HasExited))
             {
-                eslProcess = Process.GetProcesses().Where(p => p.MainWindowTitle == "The Elder Scrolls: Legends").FirstOrDefault();
+                try
+                {
+                    eslProcess = processWrapper.GetProcessesByName(ESLExeProcessName).FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Info(ex, "Exception while getting ESL process");
+                }
             }
             return eslProcess;
         }
@@ -57,8 +78,16 @@ namespace ESLTracker.Utils
 
         public bool IsLauncherProcessRunning()
         {
-            return Process.GetProcesses().Where(p => p.ProcessName == "BethesdaNetLauncher").FirstOrDefault() != null;
-
+            bool ret = false;
+            try
+            {
+                ret = processWrapper.GetProcessesByName(LauncherProcessName).FirstOrDefault() != null;
+            }
+            catch (Exception ex)
+            {
+                Logger.Info(ex, "Exception while getting Launcher process");
+            }
+            return ret;
         }
     }
 }
