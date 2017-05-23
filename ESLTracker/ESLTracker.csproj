@@ -182,6 +182,9 @@
     <Compile Include="Controls\Rewards\RewardItemList.xaml.cs">
       <DependentUpon>RewardItemList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Settings\GeneralSettings.xaml.cs">
+      <DependentUpon>GeneralSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Settings\OpenPackSettings.xaml.cs">
       <DependentUpon>OpenPackSettings.xaml</DependentUpon>
     </Compile>
@@ -503,6 +506,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Rewards\RewardItemList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Settings\GeneralSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

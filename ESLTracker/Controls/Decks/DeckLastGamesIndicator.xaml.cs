@@ -42,6 +42,11 @@ namespace ESLTracker.Controls.Decks
             {
                 control.grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star)});
             }
+            DataModel.Deck deck = d.GetValue(DeckProperty) as DataModel.Deck;
+            if (deck != null)
+            {
+                RefreshLastGamesIndicator(deck, control);
+            }
         }
 
         public DataModel.Deck Deck

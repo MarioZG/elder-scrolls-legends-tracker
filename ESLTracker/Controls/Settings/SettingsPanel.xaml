@@ -29,62 +29,7 @@
     <StackPanel>
         <Expander Header="General settings" IsExpanded="True"
                   HeaderTemplate="{StaticResource expanderHeader}" >
-            <StackPanel Orientation="Vertical" Margin="10,10,10,10">
-                <CheckBox x:Name="checkBox" Content="Minimise on close" HorizontalAlignment="Left" 
-                        Margin="5,5,5,5"
-                        ToolTip="When checked, close window button on main form will minimise application"
-                        IsChecked="{Binding Path=MinimiseOnClose, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
-                  />
-                <StackPanel Orientation="Horizontal" Margin="5,5,5,5" ToolTip="Folder where application data is stored">
-                    <TextBox IsReadOnly="True"
-                     Text="{Binding Path=DataPath, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
-                     />
-                    <Button Content="Open Data Folder" Command="{Binding CommandOpenDataFolder}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5,5,5,5" ToolTip="Deck delete mode">
-                    <TextBlock
-                        Text="Deck delete mode "
-                     />
-                    <ComboBox 
-                        ItemsSource="{Binding Source={Utils:EnumBindingSource {x:Type Deck:DeckDeleteMode}}}"
-                        SelectedItem="{Binding Path=DeckDeleteMode, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5,5,5,5" ToolTip="Deck delete mode">
-                    <TextBlock
-                        Text="Deck order in list "
-                     />
-                    <ComboBox 
-                        ItemsSource="{Binding Source={Utils:EnumBindingSource {x:Type Deck:DeckViewSortOrder}}}"
-                        SelectedItem="{Binding Path=DeckViewSortOrder, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"/>
-                </StackPanel>
-                <Grid Margin="10,10,10,10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="20*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30*"/>
-                        <ColumnDefinition Width="70*"/>
-                        <ColumnDefinition Width="5*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="1" Content="Screenshot file name template"/>
-                    <TextBox x:Name="screenshotFileName" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1"
-                        ToolTip="Default name for Versus arena deck"
-                        Text="{Binding General_ScreenshotNameTemplate, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
-                  />
-                    <ToggleButton x:Name="nameTemplate" Content=" ? " Grid.Column="2" Grid.Row="1" IsChecked="False"/>
-                    <TextBlock x:Name="Help" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
-                        Visibility="{Binding IsChecked, ElementName=nameTemplate, Converter={Converters:BoolToVisibilty}}">
-                                Variables:<LineBreak/>
-                                {d} or {0} for date<LineBreak/>
-                                See c# formatting for format help
-                    </TextBlock>
-                    <Label Grid.Row="3" Content="Preview" HorizontalAlignment="Right"/>
-                    <TextBlock Margin="5,5,5,5" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Text="{Binding ElementName=screenshotFileName, Path=Text, Converter={Converters:DeckNameSettingPreview}}"/>
-                </Grid>
-            </StackPanel>
+            <Settings:GeneralSettings />
         </Expander>
         <Expander Header="Arena decks" IsExpanded="False"
                   HeaderTemplate="{StaticResource expanderHeader}" >

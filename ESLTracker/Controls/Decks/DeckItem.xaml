@@ -24,7 +24,11 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <local:DeckLastGamesIndicator GamesCount="{Binding Path=DeckViewLastGamesIndicatorCount, Source={x:Static Properties:Settings.Default}}" Deck="{Binding}" DockPanel.Dock="Bottom"/>
+        <local:DeckLastGamesIndicator
+            Visibility="{Binding Path=DeckViewLastGamesIndicatorShow, Source={x:Static Properties:Settings.Default}, Converter={Converters:BoolToVisibilty}}"
+            GamesCount="{Binding Path=DeckViewLastGamesIndicatorCount, Source={x:Static Properties:Settings.Default}}" 
+            Deck="{Binding}" 
+            DockPanel.Dock="Bottom"/>
         <StackPanel Margin="10,0,0,0">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource DeckName}" Text="{Binding Name}" />
