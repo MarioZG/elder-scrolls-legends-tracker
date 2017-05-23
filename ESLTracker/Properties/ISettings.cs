@@ -42,6 +42,9 @@ namespace ESLTracker.Properties
         ViewModels.Decks.DeckDeleteMode DeckDeleteMode { get; set; }
         ViewModels.Decks.DeckViewSortOrder DeckViewSortOrder { get; set; }
 
+        bool DeckViewLastGamesIndicatorShow { get; set; }
+        int DeckViewLastGamesIndicatorCount { get; set; }
+
         void Save();
     }
 }

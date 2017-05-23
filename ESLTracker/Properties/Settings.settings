@@ -74,5 +74,11 @@
     <Setting Name="DeckViewSortOrder" Type="ESLTracker.ViewModels.Decks.DeckViewSortOrder" Scope="User">
       <Value Profile="(Default)">Name</Value>
     </Setting>
+    <Setting Name="DeckViewLastGamesIndicatorShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DeckViewLastGamesIndicatorCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

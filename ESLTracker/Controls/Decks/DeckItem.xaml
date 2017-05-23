@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+             xmlns:Properties="clr-namespace:ESLTracker.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="70" d:DesignWidth="200">
     <UserControl.Resources>
@@ -23,6 +24,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <local:DeckLastGamesIndicator GamesCount="{Binding Path=DeckViewLastGamesIndicatorCount, Source={x:Static Properties:Settings.Default}}" Deck="{Binding}" DockPanel.Dock="Bottom"/>
         <StackPanel Margin="10,0,0,0">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource DeckName}" Text="{Binding Name}" />
@@ -47,5 +49,6 @@
             </StackPanel>
             <TextBlock Text="{Binding Path=WinRatio, StringFormat={}{0} %}" />
         </StackPanel>
+
     </DockPanel>
 </UserControl>

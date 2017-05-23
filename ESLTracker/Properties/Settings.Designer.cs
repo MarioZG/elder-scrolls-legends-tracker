@@ -310,5 +310,29 @@ namespace ESLTracker.Properties {
                 this["DeckViewSortOrder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DeckViewLastGamesIndicatorShow {
+            get {
+                return ((bool)(this["DeckViewLastGamesIndicatorShow"]));
+            }
+            set {
+                this["DeckViewLastGamesIndicatorShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int DeckViewLastGamesIndicatorCount {
+            get {
+                return ((int)(this["DeckViewLastGamesIndicatorCount"]));
+            }
+            set {
+                this["DeckViewLastGamesIndicatorCount"] = value;
+            }
+        }
     }
 }
