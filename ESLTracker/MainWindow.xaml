@@ -121,7 +121,8 @@
             </Menu>
             <Grid>
                 <Grid VerticalAlignment="Top" Panel.ZIndex="2"
-                        Visibility="{Binding SettingsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
+                      d:IsHidden="true"
+                      Visibility="{Binding SettingsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                     <Settings:SettingsPanel x:Name="settingsPanel" Style="{DynamicResource ModalControlInWindow}" />
                 </Grid>
                 <DockPanel>

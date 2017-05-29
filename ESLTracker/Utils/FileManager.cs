@@ -14,6 +14,7 @@ using ESLTracker.Utils.FileUpdaters;
 using System.Xml;
 using ESLTracker.Properties;
 using ESLTracker.Services;
+using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.Utils
 {
@@ -368,7 +369,7 @@ namespace ESLTracker.Utils
         {
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                foreach (Type type in assembly.GetTypes())
+                foreach (Type type in assembly.GetTypesSafely())
                 {
                     SerializableVersion upgradeFrom = type.GetCustomAttributes(typeof(SerializableVersion), true).FirstOrDefault() as SerializableVersion;
                     if (upgradeFrom == currentFileVersion)

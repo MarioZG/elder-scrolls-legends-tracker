@@ -229,6 +229,7 @@
     <Compile Include="Utils\DiagnosticsWrappers\IProcessWrapper.cs" />
     <Compile Include="Utils\DiagnosticsWrappers\ProcessWrapper.cs" />
     <Compile Include="Utils\EnumBindingSourceExtension.cs" />
+    <Compile Include="Utils\Extensions\AssemblyExtensions.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
     <Compile Include="Utils\Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Utils\Extensions\ObservableCollectionExtensions.cs" />

@@ -57,8 +57,15 @@ namespace ESLTracker.Services
 
         public static CardsDatabase LoadCardsDatabase(string datbasePath)
         {
-            CardsDatabase database = SerializationHelper.DeserializeJson<CardsDatabase>(System.IO.File.ReadAllText(datbasePath));
-            return database;
+            if (new Utils.IOWrappers.FileWrapper().Exists(datbasePath))
+            {
+                CardsDatabase database = SerializationHelper.DeserializeJson<CardsDatabase>(System.IO.File.ReadAllText(datbasePath));
+                return database;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Card FindCardByName(string name)

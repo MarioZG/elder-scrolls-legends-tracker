@@ -148,6 +148,7 @@ namespace ESLTracker.ViewModels.Decks
 
         private void ApplyFilter()
         {
+            //System.Diagnostics.Debugger.Launch();
             Deck activeDeck = tracker.ActiveDeck; //we loose it when FilteredDecks.Clear();
             FilteredDecks.Clear();
 
