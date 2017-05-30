@@ -1,7 +1,7 @@
 {
-    "Version": "0.9",
-    "VersionInfo": "April 2017 monthy card",
-    "VersionDate": "2017-04-06T00:00:00.000Z",
+    "Version": "0.10",
+    "VersionInfo": "May 2017 monthy card",
+    "VersionDate": "2017-05-30T00:00:00.000Z",
     "Cards": [
         {
             "id": "094f4937-e5db-8a41-e441-1905cd7a1406",
@@ -27,7 +27,7 @@
             "attack": "0",
             "health": "1",
             "race": "woodelf",
-            "text": "Prophecy, Guard. Last Gasp: Adoring Fan will return. Adoring Fan can't be Silenced."
+            "text": "Prophecy, Guard\r\nImmune to SilenceLast Gasp: Adoring Fan will return."
         },
         {
             "id": "90f7dc80-21ed-d0c6-dfca-10f82e990600",
@@ -313,7 +313,7 @@
             "attack": "2",
             "health": "3",
             "race": "nord",
-            "text": "Lethal\r\nFriendly Lethal creatures have Slay: Put a Completed Contract into your hand."
+            "text": "Lethal\r\nFriendly Lethal creatures have \"Slay: Put a Completed Contract into your hand.\""
         },
         {
             "id": "49c26ce1-db15-b23e-885d-00ffb01b92e9",
@@ -4112,6 +4112,19 @@
             "text": "Prophecy,Guard"
         },
         {
+            "id": "277bbf44-3f25-4fc5-96c9-6642aaa83de6",
+            "name": "Protector of the Mane",
+            "rarity": "Rare",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "willpower,agility",
+            "cost": "5",
+            "attack": "4",
+            "health": "4",
+            "race": "khajiit",
+            "text": "Drain, Guard\r\nWhen you gain health, Protector of the Mane gains +1/+1."
+        },
+        {
             "id": "2b107ef3-f201-46e1-8a4d-7bdc64bebc92",
             "name": "Queen Barenziah",
             "rarity": "Legendary",
@@ -4330,7 +4343,7 @@
             "attack": "2",
             "health": "1",
             "race": "nord",
-            "text": "When an enemy rune is destroyed, deal 1 damage to your opponent."
+            "text": "After an enemy rune is destroyed, deal 1 damage to your opponent."
         },
         {
             "id": "c9b653ad-f51d-55e6-0d4f-98c907dd3ad5",
@@ -5552,7 +5565,7 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Friendly creatures have Pilfer: +1/+1. "
+            "text": "Friendly creatures have \"Pilfer: +1/+1.\""
         },
         {
             "id": "1c47b056-8fea-1987-f84a-7feeb75aed8f",
