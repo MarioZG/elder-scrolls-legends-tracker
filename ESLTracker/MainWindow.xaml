@@ -156,10 +156,10 @@
                         <Decks:DeckEdit
                             Deck="{Binding Source={x:Static DataModel:Tracker.Instance}, Path=ActiveDeck}"/>
                     </WrapPanel>
-                    <WrapPanel 
+                    <StackPanel 
                         Visibility="{Binding EditGameVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
-                        <Game:EditGame IsEditControl="True" />
-                    </WrapPanel>
+                            <Game:EditGame IsEditControl="True" />
+                    </StackPanel>
                 </DockPanel>
             </Grid>
         </DockPanel>
