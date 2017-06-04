@@ -160,6 +160,9 @@
     <Compile Include="Controls\GameStatistics\ViewOptions.xaml.cs">
       <DependentUpon>ViewOptions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Game\ChangeGameDeck.xaml.cs">
+      <DependentUpon>ChangeGameDeck.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Game\GameFilter.xaml.cs">
       <DependentUpon>GameFilter.xaml</DependentUpon>
     </Compile>
@@ -309,6 +312,7 @@
     <Compile Include="ViewModels\Decks\DeckViewSortOrder.cs" />
     <Compile Include="ViewModels\Decks\ImportTextViewModel.cs" />
     <Compile Include="ViewModels\GameStatisticsViewModel.cs" />
+    <Compile Include="ViewModels\Game\ChangeGameDeckViewModel.cs" />
     <Compile Include="ViewModels\Game\GameFilterViewModel.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
     <Compile Include="Controls\DeckClassSelector.xaml.cs">
@@ -463,6 +467,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\GameStatistics\ViewOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Game\ChangeGameDeck.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1162,6 +1170,7 @@
     <Resource Include="Resources\Cards\unstoppablerage.png" />
     <Resource Include="Resources\Cards\wrathofsithis.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
   <Import Project="..\build\versions.targets" Condition="Exists('..\build\versions.targets')" />

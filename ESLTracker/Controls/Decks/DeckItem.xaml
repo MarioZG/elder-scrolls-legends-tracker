@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ESLTracker.Controls.Decks.DeckItem"
+﻿<UserControl xmlns:Game="clr-namespace:ESLTracker.Controls.Game"  x:Class="ESLTracker.Controls.Decks.DeckItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:Properties="clr-namespace:ESLTracker.Properties"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="70" d:DesignWidth="200">
     <UserControl.Resources>
@@ -36,6 +37,26 @@
                     Style="{StaticResource DeckName}" 
                     Visibility="{Binding Type, ConverterParameter=not, Converter={Converters:DeckTypeToArenaRankVisibilty}}"
                     Text="{Binding SelectedVersion.Version, StringFormat={} (v{0:MM})}" />
+                <ToggleButton 
+                    x:Name="tbChangeDeck" 
+                    ToolTip="Move game to other deck"
+                    IsChecked="{Binding DataContext.IsDeckSelectorVisible, ElementName=changeDeck, Mode=TwoWay}" 
+                    BorderThickness="0" 
+                    Background="{x:Null}" 
+                    Visibility="{Binding IsEditControl, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl},AncestorLevel=2}, Converter={Converters:BoolToVisibilty}, FallbackValue=Collapsed}"
+                >
+                    <fa:ImageAwesome 
+                    Icon="ShareSquareOutline" 
+                    Width="12" 
+                    Margin="5" 
+                    VerticalAlignment="Center"
+                />
+                </ToggleButton>
+            </StackPanel>
+            <StackPanel>
+                <Game:ChangeGameDeck
+                    x:Name="changeDeck"
+                    Visibility="{Binding IsDeckSelectorVisible, Converter={Converters:BoolToVisibilty}}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=Type}" />
