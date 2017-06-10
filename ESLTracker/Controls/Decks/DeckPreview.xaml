@@ -7,6 +7,7 @@
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks" 
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters" 
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors" 
+             xmlns:Rewards="clr-namespace:ESLTracker.Controls.Rewards"
              mc:Ignorable="d" 
              x:Name="deckPreview">
     <UserControl.DataContext>
@@ -83,6 +84,12 @@
             </TabItem>
             <TabItem Header="Games">
                 <local:DeckStats Background="{x:Static SystemColors.WindowBrush}"/>
+            </TabItem>
+            <TabItem Header="Rewards">
+                <Rewards:RewardItemList DockPanel.Dock="Top"
+                    PanelOrientation="Horizontal"
+                    GroupBy="Date"
+                    DataContext="{Binding ActiveDeckRewards}" />
             </TabItem>
         </TabControl>
     </DockPanel>

@@ -82,7 +82,8 @@ namespace ESLTracker.ViewModels.Rewards
                 && (this.RewardReason == DataModel.Enums.RewardReason.VersusArena);
             bool matchSolo = (tracker.ActiveDeck.Type == DeckType.SoloArena)
                 && (this.RewardReason == DataModel.Enums.RewardReason.SoloArena);
-            return matchSolo || matchVersus ;
+            bool gauntlet = (this.RewardReason == DataModel.Enums.RewardReason.Gauntlet);
+            return matchSolo || matchVersus || gauntlet;
         }
 
         private ITrackerFactory trackerFactory;

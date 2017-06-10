@@ -13,6 +13,6 @@ namespace ESLTracker.DataModel.Enums
         VersusArena,
         SoloArena,
         ChaosArena,
-        GauntletRumble
+        Gauntlet
     }
 }

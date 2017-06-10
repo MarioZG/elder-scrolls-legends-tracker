@@ -336,7 +336,7 @@ namespace ESLTracker.ViewModels.Game
                 switch (tracker.ActiveDeck.Type)
                 {
                     case DeckType.Constructed:
-                        allowedGameTypes = new List<GameType>() { GameType.PlayCasual, GameType.PlayRanked, GameType.GauntletRumble };
+                        allowedGameTypes = new List<GameType>() { GameType.PlayCasual, GameType.PlayRanked, GameType.Gauntlet };
                         if (( this.game.Type.HasValue) && (! allowedGameTypes.Contains(this.Game.Type.Value)))
                         {
                             this.Game.Type = null;

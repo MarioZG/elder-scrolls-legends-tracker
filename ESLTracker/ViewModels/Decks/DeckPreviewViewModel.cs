@@ -69,8 +69,19 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        private ObservableCollection<DataModel.Reward> activeDeckRewards;
+        public ObservableCollection<DataModel.Reward> ActiveDeckRewards
+        {
+            get
+            {
+                return  new ObservableCollection<Reward>(tracker.Rewards.Where(r => r.ArenaDeckId == tracker.ActiveDeck.DeckId));
+
+            }
+        }
+
         private ITrackerFactory trackerFactory;
         private IMessenger messanger;
+        private ITracker tracker;
 
         public DeckPreviewViewModel() : this(TrackerFactory.DefaultTrackerFactory)
         {
@@ -81,6 +92,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             this.trackerFactory = trackerFactory;
             this.messanger = trackerFactory.GetService<IMessenger>();
+            this.tracker = trackerFactory.GetTracker();
         }
 
         internal ObservableCollection<CardInstance> CalculateDeckChanges(ObservableCollection<CardInstance> cards1, ObservableCollection<CardInstance> cards2)

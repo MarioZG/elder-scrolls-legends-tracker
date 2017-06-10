@@ -48,19 +48,7 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        private ObservableCollection<DataModel.Reward> activeDeckRewards;
-        public ObservableCollection<DataModel.Reward> ActiveDeckRewards
-        {
-            get
-            {
-                return activeDeckRewards;
-            }
-            set
-            {
-                activeDeckRewards = value;
-                RaisePropertyChangedEvent("ActiveDeckRewards");
-            }
-        }
+
 
         public bool showControl = true;
         public bool ShowControl
@@ -105,7 +93,6 @@ namespace ESLTracker.ViewModels.Decks
         {
             WinRatioVsClass = tracker.ActiveDeck.GetDeckVsClass();
             ActiveDeckGames = new ObservableCollection<DataModel.Game>(tracker.ActiveDeck.DeckGames.OrderByDescending(g=> g.Date));
-            ActiveDeckRewards = new ObservableCollection<Reward>(tracker.Rewards.Where(r => r.ArenaDeckId == tracker.ActiveDeck.DeckId));
             RaisePropertyChangedEvent("WinRatioVsClass");
 
             //hide if no games

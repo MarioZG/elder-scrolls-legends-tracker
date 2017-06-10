@@ -13,6 +13,7 @@ namespace ESLTracker.DataModel.Enums
         VersusArena,
         SoloArena,
         SeasonRewards,
-        LevelUp
+        LevelUp,
+        Gauntlet
     }
 }
