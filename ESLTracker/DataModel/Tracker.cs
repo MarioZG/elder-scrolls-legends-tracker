@@ -39,7 +39,7 @@ namespace ESLTracker.DataModel
   
 
         [XmlIgnore]
-        public static SerializableVersion CurrentFileVersion = new SerializableVersion(2, 2);
+        public static SerializableVersion CurrentFileVersion = new SerializableVersion(2, 3);
 
         // binding!!!
 
