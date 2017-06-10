@@ -11,6 +11,8 @@ namespace ESLTracker.DataModel.Enums
         PlayCasual,
         PlayRanked,
         VersusArena,
-        SoloArena
+        SoloArena,
+        ChaosArena,
+        GauntletRumble
     }
 }

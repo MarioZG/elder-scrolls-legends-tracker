@@ -336,7 +336,7 @@ namespace ESLTracker.ViewModels.Game
                 switch (tracker.ActiveDeck.Type)
                 {
                     case DeckType.Constructed:
-                        allowedGameTypes = new List<GameType>() { GameType.PlayCasual, GameType.PlayRanked };
+                        allowedGameTypes = new List<GameType>() { GameType.PlayCasual, GameType.PlayRanked, GameType.GauntletRumble };
                         if (( this.game.Type.HasValue) && (! allowedGameTypes.Contains(this.Game.Type.Value)))
                         {
                             this.Game.Type = null;
@@ -352,7 +352,7 @@ namespace ESLTracker.ViewModels.Game
                         {
                             savedState.Type = GameType.VersusArena;
                         }
-                        allowedGameTypes = new List<GameType>() { GameType.VersusArena };
+                        allowedGameTypes = new List<GameType>() { GameType.VersusArena, GameType.ChaosArena };
                         break;
                     case DeckType.SoloArena:
                         this.Game.Type = GameType.SoloArena;
