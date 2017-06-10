@@ -17,11 +17,10 @@ namespace ESLTracker.Utils.Tests
         [TestMethod()]
         public void GetEslProcessTest_exceptionThrown()
         {
-            WinAPI winApi = new WinAPI();
             Mock<IProcessWrapper> procWrap = new Mock<IProcessWrapper>();
+            procWrap.Setup(pw => pw.GetProcessesByName(It.IsAny<string>())).Throws(new System.ComponentModel.Win32Exception(2147467259, "Access is denied"));
 
-            procWrap.Setup(pw => pw.GetProcesses()).Throws(new System.ComponentModel.Win32Exception(2147467259, "Access is denied"));
-
+            WinAPI winApi = new WinAPI(procWrap.Object);
             Process p = winApi.GetEslProcess();
 
             Assert.IsNull(p);
