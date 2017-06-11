@@ -45,6 +45,11 @@ namespace ESLTracker.Properties
         bool DeckViewLastGamesIndicatorShow { get; set; }
         int DeckViewLastGamesIndicatorCount { get; set; }
 
+        string VersionCheck_VersionsUrl { get; set; }
+        string VersionCheck_LatestBuildUrl { get; set; }
+        string VersionCheck_CardsDBUrl { get; set; }
+        string VersionCheck_LatestBuildUserUrl { get; set; }
+
         void Save();
     }
 }

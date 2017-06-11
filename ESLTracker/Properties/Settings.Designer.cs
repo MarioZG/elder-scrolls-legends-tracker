@@ -334,5 +334,56 @@ namespace ESLTracker.Properties {
                 this["DeckViewLastGamesIndicatorCount"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/MarioZG/elder-scrolls-legends-tracker/master/Bu" +
+            "ild/versions.json")]
+        public string VersionCheck_VersionsUrl {
+            get {
+                return ((string)(this["VersionCheck_VersionsUrl"]));
+            }
+            set {
+                this["VersionCheck_VersionsUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://api.github.com/repos/MarioZG/elder-scrolls-legends-tracker/releases/lates" +
+            "t")]
+        public string VersionCheck_LatestBuildUrl {
+            get {
+                return ((string)(this["VersionCheck_LatestBuildUrl"]));
+            }
+            set {
+                this["VersionCheck_LatestBuildUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/MarioZG/elder-scrolls-legends-tracker/master/ES" +
+            "LTracker/Resources/cards.json")]
+        public string VersionCheck_CardsDBUrl {
+            get {
+                return ((string)(this["VersionCheck_CardsDBUrl"]));
+            }
+            set {
+                this["VersionCheck_CardsDBUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/MarioZG/elder-scrolls-legends-tracker/releases/latest")]
+        public string VersionCheck_LatestBuildUserUrl {
+            get {
+                return ((string)(this["VersionCheck_LatestBuildUserUrl"]));
+            }
+            set {
+                this["VersionCheck_LatestBuildUserUrl"] = value;
+            }
+        }
     }
 }

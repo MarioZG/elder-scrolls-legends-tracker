@@ -399,7 +399,7 @@ namespace ESLTracker.Utils
             fileWrapper.Move(fileName, backupFileName);
 
             fileWrapper.WriteAllText(fileName, newContent);
-            trackerfactory.GetService<ICardsDatabase>().RealoadDB();
+            cardsDatabase.RealoadDB();
         }
 
 

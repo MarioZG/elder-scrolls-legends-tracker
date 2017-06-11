@@ -4,8 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 using Newtonsoft.Json.Linq;
+using NLog;
 using Polly;
 using Polly.Fallback;
 
@@ -13,6 +15,8 @@ namespace ESLTracker.Services
 {
     public class VersionService : IVersionService
     {
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+
         private NewVersioInfo appVersionInfo;
         public NewVersioInfo AppVersionInfo {
             get
@@ -26,10 +30,12 @@ namespace ESLTracker.Services
         }      
 
         private ITrackerFactory trackerFactory;
+        private ISettings settings;
 
         public VersionService(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
+            this.settings = trackerFactory.GetService<ISettings>();
         }
 
         public NewVersioInfo CheckNewAppVersionAvailable()
@@ -41,7 +47,7 @@ namespace ESLTracker.Services
                                         IsAvailable = false
                                     });
 
-            string url = "https://raw.githubusercontent.com/MarioZG/elder-scrolls-legends-tracker/master/Build/versions.json";
+            string url = settings.VersionCheck_VersionsUrl;
             IHTTPService httpService = (IHTTPService)trackerFactory.GetService<IHTTPService>();
 
             return requestErrorPolicy.Execute(() =>
@@ -67,7 +73,7 @@ namespace ESLTracker.Services
                         .Or<ArgumentOutOfRangeException>() //no assets on release
                         .Fallback("");
 
-            string url = "https://api.github.com/repos/MarioZG/elder-scrolls-legends-tracker/releases/latest";
+            string url = settings.VersionCheck_LatestBuildUrl;
             return requestErrorPolicy.Execute(() =>
             {
                 IHTTPService httpService = (IHTTPService)trackerFactory.GetService<IHTTPService>();
@@ -83,7 +89,7 @@ namespace ESLTracker.Services
                                 .Handle<System.Net.WebException>()
                                 .Fallback(false);
 
-            string url = "https://raw.githubusercontent.com/MarioZG/elder-scrolls-legends-tracker/master/Build/versions.json";
+            string url = settings.VersionCheck_VersionsUrl;
             return requestErrorPolicy.Execute(() =>
             {
                 IHTTPService httpService = (IHTTPService)trackerFactory.GetService<IHTTPService>();
@@ -96,16 +102,24 @@ namespace ESLTracker.Services
 
         public void GetLatestCardsDB()
         {
+            string url = settings.VersionCheck_CardsDBUrl;
             var requestErrorPolicy = Policy
                         .Handle<System.Net.WebException>()
-                        .Fallback(() => { /* do nothing*/});
-
-            string url = "https://raw.githubusercontent.com/MarioZG/elder-scrolls-legends-tracker/master/ESLTracker/Resources/cards.json";
+                        .Fallback(
+                            () => { /* do nothing*/},
+                            (ex) => {
+                                Logger.Trace(ex, "Exception when retreiving cards DB from {0}", url);
+                                Logger log = LogManager.GetLogger(App.UserInfoLogger);
+                                log.Info(ex.Message);
+                            }
+                        );
             requestErrorPolicy.Execute(() =>
             {
+                Logger.Trace("Start retreiving cards DB from {0}", url);
                 IHTTPService httpService = (IHTTPService)trackerFactory.GetService<IHTTPService>();
                 string cardsDBContent = httpService.SendGetRequest(url);
                 trackerFactory.GetFileManager().UpdateCardsDB(cardsDBContent);
+                Logger.Trace("Finished retreiving cards DB from {0}", url);
             });
         }
 

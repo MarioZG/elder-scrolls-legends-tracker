@@ -11,6 +11,7 @@ using ESLTracker.Properties;
 using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
+using ESLTracker.Utils.NLog;
 using ESLTracker.ViewModels.Decks;
 
 namespace ESLTracker.ViewModels
@@ -85,18 +86,12 @@ namespace ESLTracker.ViewModels
             set { windowState = value; RaisePropertyChangedEvent("WindowState"); }
         }
 
-        private IVersionService versionChecker;
-        private NewVersioInfo appUpdateVersionInfo;
-        public NewVersioInfo AppUpateVersionInfo
+        public List<DismissableMessage> UserInfo
         {
-            get
-            {
-                if (appUpdateVersionInfo == null)
-                {
-                    versionChecker = trackerFactory.GetService<IVersionService>();
-                    appUpdateVersionInfo = versionChecker.AppVersionInfo;
-                }
-                return appUpdateVersionInfo;
+            get {
+                var list = ((Utils.NLog.UserInfoLoggerTarget)NLog.LogManager.Configuration.FindTargetByName(App.UserInfoLogger)).Logs;
+                list.CollectionChanged += (sender, collection) => { RaisePropertyChangedEvent(nameof(UserInfo)); };
+                return list.ToList();
             }
         }
 
@@ -172,11 +167,6 @@ namespace ESLTracker.ViewModels
         public ICommand CommandAbout
         {
             get { return new RelayCommand(new Action<object>(CommandAboutExecute)); }
-        }
-
-        public ICommand CommandCloseNewVersionInfo
-        {
-            get { return new RelayCommand(new Action<object>(CommandCloseNewVersionInfoExecute)); }
         }
 
         public ICommand CommandManageOverlayWindow
@@ -424,12 +414,6 @@ namespace ESLTracker.ViewModels
             this.DeckPreviewVisible = true;
             this.DeckListVisible = true;
             this.AllowCommands = true;
-        }
-
-        private void CommandCloseNewVersionInfoExecute(object obj)
-        {
-            this.AppUpateVersionInfo.IsAvailable = false;
-            RaisePropertyChangedEvent(nameof(AppUpateVersionInfo));
         }
 
         private void CommandManageOverlayWindowExecute(object obj)

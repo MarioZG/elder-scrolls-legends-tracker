@@ -80,5 +80,17 @@
     <Setting Name="DeckViewLastGamesIndicatorCount" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
+    <Setting Name="VersionCheck_VersionsUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://raw.githubusercontent.com/MarioZG/elder-scrolls-legends-tracker/master/Build/versions.json</Value>
+    </Setting>
+    <Setting Name="VersionCheck_LatestBuildUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://api.github.com/repos/MarioZG/elder-scrolls-legends-tracker/releases/latest</Value>
+    </Setting>
+    <Setting Name="VersionCheck_CardsDBUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://raw.githubusercontent.com/MarioZG/elder-scrolls-legends-tracker/master/ESLTracker/Resources/cards.json</Value>
+    </Setting>
+    <Setting Name="VersionCheck_LatestBuildUserUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://github.com/MarioZG/elder-scrolls-legends-tracker/releases/latest</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

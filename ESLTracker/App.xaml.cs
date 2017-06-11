@@ -10,6 +10,9 @@ using System.Windows;
 using System.Windows.Markup;
 using ESLTracker.Utils;
 using ESLTracker.Services;
+using NLog;
+using NLog.Config;
+using ESLTracker.Properties;
 
 namespace ESLTracker
 {
@@ -20,6 +23,11 @@ namespace ESLTracker
     {
         public bool IsApplicationClosing { get; set; } = false;
         SingleInstanceApp singleInstance;
+        internal const string UserInfoLogger = "UserInfoLogger";
+        private const string NewVersionAvailable = "New version of tracker is available.";
+        private const string OpenChangelog = "Open changelog";
+        private const string Download = "Download";
+        private const string CardsDatabaseUpdated = "Cards database has been updated to latest version";
 
         static App()
         {
@@ -52,6 +60,10 @@ namespace ESLTracker
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+
+            ConfigurationItemFactory.Default.Targets
+                .RegisterDefinition("UserInfoLogger", typeof(ESLTracker.Utils.NLog.UserInfoLoggerTarget));
+
             AppDomain.CurrentDomain.UnhandledException += (s, ex) =>
                 HandleUnhandledException((Exception)ex.ExceptionObject, "AppDomain.CurrentDomain.UnhandledException");
 
@@ -64,9 +76,21 @@ namespace ESLTracker
             CheckSingleInstance();
             CheckDataFile();
             IVersionService vc = TrackerFactory.DefaultTrackerFactory.GetService<IVersionService>();
+            var settings = TrackerFactory.DefaultTrackerFactory.GetService<ISettings>();
+            var newVersion = vc.CheckNewAppVersionAvailable();
+            if (newVersion.IsAvailable)
+            {
+                Logger userInfo = LogManager.GetLogger(App.UserInfoLogger);
+                userInfo.Info(NewVersionAvailable, new Dictionary<string, string> {
+                    { OpenChangelog, settings.VersionCheck_LatestBuildUserUrl },
+                    { Download, newVersion.DownloadUrl }
+                });
+            }
             if (vc.IsNewCardsDBAvailable())
             {
                 vc.GetLatestCardsDB();
+                Logger log = LogManager.GetLogger(App.UserInfoLogger);
+                log.Info(CardsDatabaseUpdated);
             }
         }
 
@@ -102,7 +126,7 @@ namespace ESLTracker
             if (!singleInstance.CheckInstance())
             {
                 MessageBox.Show("ESL Tracker is alrady running", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                App.Current.Shutdown();
+                Application.Current.Shutdown();
             }
         }
     }

@@ -254,6 +254,8 @@
     <Compile Include="Utils\Messages\GameStatsOpponentGroupByChanged.cs" />
     <Compile Include="Utils\Messages\NewDeckTagCreated.cs" />
     <Compile Include="Utils\NewVersioInfo.cs" />
+    <Compile Include="Utils\NLog\DismissableMessage.cs" />
+    <Compile Include="Utils\NLog\UserInfoLoggerTarget.cs" />
     <Compile Include="Utils\OverlayWindowRepository.cs" />
     <Compile Include="Utils\PropertiesObservableCollection.cs" />
     <Compile Include="Services\Implementation\ResourcesService.cs" />

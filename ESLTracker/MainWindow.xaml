@@ -12,6 +12,7 @@
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         xmlns:Properties="clr-namespace:ESLTracker.Properties" 
         xmlns:Controls="clr-namespace:ESLTracker.Controls" 
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         x:Name="mainWindow"
         Title="ESL Tracker" Height="553.805" SizeToContent="Width"
@@ -127,18 +128,52 @@
                 </Grid>
                 <DockPanel>
                     <DockPanel                            
-                            DockPanel.Dock="Top"
+                        DockPanel.Dock="Top"
                         HorizontalAlignment="Stretch"
-                            Visibility="{Binding AppUpateVersionInfo.IsAvailable, Converter={Converters:BoolToVisibilty}}" 
-                            Background="DarkRed">
-                        <TextBlock Foreground="White" DockPanel.Dock="Left" FontSize="12">
-                            New version of tracker is available.
-                            <Controls:ClickableUrl Foreground="White" NavigateUri="https://github.com/MarioZG/elder-scrolls-legends-tracker/releases/latest">Open changelog </Controls:ClickableUrl>
-                            <Controls:ClickableUrl Foreground="White" NavigateUri="{Binding AppUpateVersionInfo.DownloadUrl}">Download</Controls:ClickableUrl>
-                        </TextBlock>
-                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right" Padding="4,0,4,0">
-                            <Hyperlink Foreground="White" Command="{Binding CommandCloseNewVersionInfo}"> X </Hyperlink>
-                        </TextBlock>                       
+                        Background="DarkRed"
+                        >
+                        <ItemsControl ItemsSource="{Binding UserInfo}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Left"
+                                            ToolTip="Dismiss"                                            
+                                            BorderThickness="2"
+                                            BorderBrush="{x:Null}"
+                                            Background="{x:Null}"
+                                            Foreground="White"
+                                            fa:Awesome.Content="WindowClose"
+                                            Margin="0,0,3,0"
+                                            Command="{Binding DismissCommand}"
+                                            CommandParameter="{Binding}"/>
+                                        <TextBlock 
+                                            HorizontalAlignment="Stretch" 
+                                            Text="{Binding Message}" 
+                                            Foreground="White"
+                                            Margin="0,0,3,0"
+                                            FontSize="12">
+                                        </TextBlock>
+                                        <ItemsControl ItemsSource="{Binding ClickableUrls}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                        <Controls:ClickableUrl Foreground="White" NavigateUri="{Binding Value}">
+                                                            <TextBlock Text="{Binding Key}" Margin="0,0,3,0"></TextBlock>
+                                                        </Controls:ClickableUrl>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </DockPanel>
                     <WrapPanel 
                             DockPanel.Dock="Left"
