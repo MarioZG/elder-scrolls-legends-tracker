@@ -7,12 +7,25 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using ESLTracker.Services;
+using ESLTracker.Properties;
 
 namespace ESLTracker.Utils.Tests
 {
     [TestClass]
     public class VersionCheckerTests
     {
+        Mock<ISettings> settings;
+
+        [TestInitialize]
+        public void TestInit()
+        {
+            settings = new Mock<ISettings>();
+            settings.Setup(s => s.VersionCheck_CardsDBUrl).Returns(String.Empty);
+            settings.Setup(s => s.VersionCheck_LatestBuildUrl).Returns(String.Empty);
+            settings.Setup(s => s.VersionCheck_LatestBuildUserUrl).Returns(String.Empty);
+            settings.Setup(s => s.VersionCheck_VersionsUrl).Returns(String.Empty);
+        }
+
         [TestMethod]
         public void IsNewApplicationVersionAvailableTest001()
         {
@@ -28,6 +41,7 @@ namespace ESLTracker.Utils.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
             trackerFactory.Setup(tf => tf.GetService<IApplicationService>()).Returns(appService.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             VersionService vc = new VersionService(trackerFactory.Object);
             bool actual = vc.CheckNewAppVersionAvailable().IsAvailable;
@@ -51,6 +65,7 @@ namespace ESLTracker.Utils.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
             trackerFactory.Setup(tf => tf.GetService<IApplicationService>()).Returns(appService.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             VersionService vc = new VersionService(trackerFactory.Object);
             bool actual = vc.CheckNewAppVersionAvailable().IsAvailable;
@@ -74,6 +89,7 @@ namespace ESLTracker.Utils.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
             trackerFactory.Setup(tf => tf.GetService<IApplicationService>()).Returns(appService.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             VersionService vc = new VersionService(trackerFactory.Object);
             bool actual = vc.CheckNewAppVersionAvailable().IsAvailable;
@@ -97,6 +113,7 @@ namespace ESLTracker.Utils.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
             trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDB.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             VersionService vc = new VersionService(trackerFactory.Object);
             bool actual = vc.IsNewCardsDBAvailable();
@@ -142,6 +159,7 @@ namespace ESLTracker.Utils.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
             trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDB.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             VersionService vc = new VersionService(trackerFactory.Object);
             string actual = vc.GetLatestDownladUrl();
@@ -175,6 +193,7 @@ namespace ESLTracker.Utils.Tests
             Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
             trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
             trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDB.Object);
+            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             VersionService vc = new VersionService(trackerFactory.Object);
             string actual = vc.GetLatestDownladUrl();
