@@ -69,12 +69,11 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        private ObservableCollection<DataModel.Reward> activeDeckRewards;
         public ObservableCollection<DataModel.Reward> ActiveDeckRewards
         {
             get
             {
-                return  new ObservableCollection<Reward>(tracker.Rewards.Where(r => r.ArenaDeckId == tracker.ActiveDeck.DeckId));
+                return  new ObservableCollection<Reward>(tracker.Rewards.Where(r => r.ArenaDeckId == tracker.ActiveDeck?.DeckId));
 
             }
         }
