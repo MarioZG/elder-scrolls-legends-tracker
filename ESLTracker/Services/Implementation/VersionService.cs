@@ -40,14 +40,14 @@ namespace ESLTracker.Services
 
         public NewVersioInfo CheckNewAppVersionAvailable()
         {
+            string url = settings.VersionCheck_VersionsUrl;
+
             var requestErrorPolicy = Policy<NewVersioInfo>
                                     .Handle<System.Net.WebException>()
-                                    .Fallback(new NewVersioInfo()
-                                    {
-                                        IsAvailable = false
-                                    });
+                                    .Fallback(
+                                        new NewVersioInfo() { IsAvailable = false }
+                                    );
 
-            string url = settings.VersionCheck_VersionsUrl;
             IHTTPService httpService = (IHTTPService)trackerFactory.GetService<IHTTPService>();
 
             return requestErrorPolicy.Execute(() =>
@@ -100,14 +100,15 @@ namespace ESLTracker.Services
             });
         }
 
-        public void GetLatestCardsDB()
+        public ICardsDatabase GetLatestCardsDB()
         {
             string url = settings.VersionCheck_CardsDBUrl;
+            ICardsDatabase returnValue = null;
             var requestErrorPolicy = Policy
                         .Handle<System.Net.WebException>()
                         .Fallback(
-                            () => { /* do nothing*/},
-                            (ex) => {
+                            () => { returnValue = trackerFactory.GetService<ICardsDatabase>();  },
+                            (ex, context) => {
                                 Logger.Trace(ex, "Exception when retreiving cards DB from {0}", url);
                                 Logger log = LogManager.GetLogger(App.UserInfoLogger);
                                 log.Info(ex.Message);
@@ -116,11 +117,14 @@ namespace ESLTracker.Services
             requestErrorPolicy.Execute(() =>
             {
                 Logger.Trace("Start retreiving cards DB from {0}", url);
-                IHTTPService httpService = (IHTTPService)trackerFactory.GetService<IHTTPService>();
+                IHTTPService httpService = trackerFactory.GetService<IHTTPService>();
                 string cardsDBContent = httpService.SendGetRequest(url);
-                trackerFactory.GetFileManager().UpdateCardsDB(cardsDBContent);
+                ICardsDatabase cardsDB = trackerFactory.GetFileManager().UpdateCardsDB(cardsDBContent);
                 Logger.Trace("Finished retreiving cards DB from {0}", url);
+                returnValue = cardsDB;
             });
+
+            return returnValue;
         }
 
     }

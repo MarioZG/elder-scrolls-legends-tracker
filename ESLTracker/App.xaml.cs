@@ -27,7 +27,7 @@ namespace ESLTracker
         private const string NewVersionAvailable = "New version of tracker is available.";
         private const string OpenChangelog = "Open changelog";
         private const string Download = "Download";
-        private const string CardsDatabaseUpdated = "Cards database has been updated to latest version";
+        private const string CardsDatabaseUpdated = "Cards database has been updated to latest version (v{0} from {1}: {2})";
 
         static App()
         {
@@ -88,9 +88,9 @@ namespace ESLTracker
             }
             if (vc.IsNewCardsDBAvailable())
             {
-                vc.GetLatestCardsDB();
+                ICardsDatabase cardsDB = vc.GetLatestCardsDB();
                 Logger log = LogManager.GetLogger(App.UserInfoLogger);
-                log.Info(CardsDatabaseUpdated);
+                log.Info(CardsDatabaseUpdated, new object[] { cardsDB.Version, cardsDB.VersionDate.ToShortDateString(), cardsDB.VersionInfo });
             }
         }
 

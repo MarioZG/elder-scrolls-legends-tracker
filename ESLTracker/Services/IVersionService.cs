@@ -7,7 +7,7 @@ namespace ESLTracker.Services
         NewVersioInfo AppVersionInfo { get; }
 
         NewVersioInfo CheckNewAppVersionAvailable();
-        void GetLatestCardsDB();
+        ICardsDatabase GetLatestCardsDB();
         bool IsNewCardsDBAvailable();
     }
 }

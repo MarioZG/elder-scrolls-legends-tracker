@@ -20,13 +20,16 @@ namespace ESLTracker.Services
 
         public string SendGetRequest(string url)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.UserAgent = "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:18.0) Gecko/20100101 Firefox/18.0";
-            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-            request.Method = "GET";
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            var request = WebRequest.Create(url);
+            if (request is HttpWebRequest)
+            {
+                var webRequest = request as HttpWebRequest;
+                webRequest.UserAgent = "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:18.0) Gecko/20100101 Firefox/18.0";
+                webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                webRequest.Method = "GET";
+                webRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            }
+            var response = request.GetResponse();
             string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
             return responseString;

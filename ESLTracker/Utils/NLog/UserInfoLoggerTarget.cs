@@ -19,7 +19,7 @@ namespace ESLTracker.Utils.NLog
         {
             string logMessage = this.Layout.Render(logEvent);
             Logs.Add(new DismissableMessage(
-                logEvent.Message,
+                logEvent.FormattedMessage,
                 new RealyAsyncCommand<object>(DismissMessage),
                 logEvent.Parameters?[0] as Dictionary<string, string>
                 ));

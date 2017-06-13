@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ESLTracker.DataModel;
+using ESLTracker.Services;
 
 namespace ESLTracker.Utils
 {
@@ -8,6 +9,6 @@ namespace ESLTracker.Utils
         void SaveDatabase();
         Tracker LoadDatabase(bool throwDataFileException = false);
         Task SaveScreenShot(string fileName);
-        void UpdateCardsDB(string newContent);
+        ICardsDatabase UpdateCardsDB(string newContent);
     }
 }

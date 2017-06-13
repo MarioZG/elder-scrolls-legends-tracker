@@ -162,9 +162,9 @@
                                             </ItemsControl.ItemsPanel>
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock>
+                                                    <TextBlock Margin="0,0,5,0">
                                                         <Controls:ClickableUrl Foreground="White" NavigateUri="{Binding Value}">
-                                                            <TextBlock Text="{Binding Key}" Margin="0,0,3,0"></TextBlock>
+                                                            <TextBlock Text="{Binding Key}"></TextBlock>
                                                         </Controls:ClickableUrl>
                                                     </TextBlock>
                                                 </DataTemplate>

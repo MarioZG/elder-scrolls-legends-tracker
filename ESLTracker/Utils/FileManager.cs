@@ -380,7 +380,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        public void UpdateCardsDB(string newContent)
+        public ICardsDatabase UpdateCardsDB(string newContent)
         {
             string fileName = ".\\Resources\\cards.json";
             IFileWrapper fileWrapper = trackerfactory.GetService<IFileWrapper>();
@@ -400,6 +400,7 @@ namespace ESLTracker.Utils
 
             fileWrapper.WriteAllText(fileName, newContent);
             cardsDatabase.RealoadDB();
+            return cardsDatabase;
         }
 
 
