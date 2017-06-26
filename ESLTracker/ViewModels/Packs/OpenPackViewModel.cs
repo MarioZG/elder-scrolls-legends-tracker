@@ -86,7 +86,9 @@ namespace ESLTracker.ViewModels.Packs
                     { new CardInstance(), new CardInstance(), new CardInstance(),
                       new CardInstance(), new CardInstance(), new CardInstance()},
                     true);
+            Pack.CardSet = GetDefaultPackSet();
         }
+
 
         private async Task<object> CommandSaveExecute(object obj)
         {
@@ -111,6 +113,8 @@ namespace ESLTracker.ViewModels.Packs
             Pack.DateOpened = trackerFactory.GetDateTimeNow();
             tracker.Packs.Add(Pack);
             await Task.Factory.StartNew(() => trackerFactory.GetFileManager().SaveDatabase());
+            settings.Packs_LastOpenedPackSetId = Pack.CardSet.Id;
+            settings.Save();
             InitNewPack();
 
             ButtonSaveLabel = "Save";
@@ -123,6 +127,11 @@ namespace ESLTracker.ViewModels.Packs
         {
             string fileName = new ScreenshotNameProvider().GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack);
             await trackerFactory.GetFileManager().SaveScreenShot(fileName);
+        }
+
+        private CardSet GetDefaultPackSet()
+        {
+            return cardsDatabase.FindCardSetById(settings.Packs_LastOpenedPackSetId);
         }
     }
 }

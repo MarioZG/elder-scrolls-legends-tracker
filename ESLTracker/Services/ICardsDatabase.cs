@@ -17,5 +17,6 @@ namespace ESLTracker.Services
         Card FindCardById(Guid value);
         Card FindCardByName(string name);
         void RealoadDB();
+        CardSet FindCardSetById(Guid? value);
     }
 }

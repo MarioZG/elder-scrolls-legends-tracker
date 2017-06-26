@@ -92,5 +92,8 @@
     <Setting Name="VersionCheck_LatestBuildUserUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://github.com/MarioZG/elder-scrolls-legends-tracker/releases/latest</Value>
     </Setting>
+    <Setting Name="Packs_LastOpenedPackSetId" Type="System.Nullable&lt;System.Guid&gt;" Scope="User">
+      <Value Profile="(Default)">00000000-0000-0000-0000-000000000000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -50,6 +50,8 @@ namespace ESLTracker.Properties
         string VersionCheck_CardsDBUrl { get; set; }
         string VersionCheck_LatestBuildUserUrl { get; set; }
 
+        Guid? Packs_LastOpenedPackSetId { get; set; }
+
         void Save();
     }
 }

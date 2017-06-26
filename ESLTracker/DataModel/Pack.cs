@@ -15,8 +15,12 @@ namespace ESLTracker.DataModel
 
         public DateTime DateOpened { get; set; }
 
-        public CardSet CardSet { get; set; }
-
+        private CardSet cardSet;
+        public CardSet CardSet
+        {
+            get { return cardSet; }
+            set { SetProperty<CardSet>(ref cardSet, value); }
+        }
         public int SoulGemsValue
         {
             get

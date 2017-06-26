@@ -95,5 +95,17 @@ namespace ESLTracker.Services
         {
             _instance = LoadCardsDatabase("./Resources/cards.json");
         }
+
+        public CardSet FindCardSetById(Guid? value)
+        {
+            if (value.HasValue)
+            {
+                return CardSets.Where(c => c.Id == value).SingleOrDefault();
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
