@@ -55,6 +55,11 @@ namespace ESLTracker.ViewModels.Packs
             set { buttonSaveEnabled = value; RaisePropertyChangedEvent(nameof(ButtonSaveEnabled)); }
         }
 
+        public IEnumerable<CardSet> PackSetAutocomplete
+        {
+            get { return cardsDatabase.CardSets.Where(cs => cs.HasPacks).ToList(); }
+        }
+
         private TrackerFactory trackerFactory;
         ISettings settings;
         ICardsDatabase cardsDatabase;
