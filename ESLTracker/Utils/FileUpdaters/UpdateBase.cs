@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using ESLTracker.DataModel;
+using NLog;
 
 namespace ESLTracker.Utils.FileUpdaters
 {
     public abstract class UpdateBase : IFileUpdater
     {
-        public abstract SerializableVersion TargetVersion { get; }
+        protected static Logger Logger = LogManager.GetCurrentClassLogger();
 
+        public abstract SerializableVersion TargetVersion { get; }
+        
         public bool UpdateFile(string filePath, Tracker tracker)
         {
             XmlDocument doc = new XmlDocument();
