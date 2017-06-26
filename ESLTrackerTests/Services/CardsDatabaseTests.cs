@@ -62,6 +62,7 @@ namespace ESLTracker.Services.Tests
         {
             string json = @"[{""name"":""Abecean Navigator"",
                               ""rarity"":""Common"",
+                              ""set"": ""Dark Brotherhood"",  
                               ""isunique"":""true"",
                               ""type"":""creature"",
                               ""attributes"":""intelligence, willpower"",
@@ -81,6 +82,21 @@ namespace ESLTracker.Services.Tests
             Assert.AreEqual(1, card.Health);
             Assert.AreEqual("highelf", card.Race);
             Assert.AreEqual("Card text", card.Text);
+            Assert.AreEqual("Dark Brotherhood", card.Set.Name);
+        }
+
+        [TestMethod]
+        public void DeserialiseCardSet001_StandardCardSet()
+        {
+            Guid g = Guid.NewGuid();
+            string json = @"[{""name"":""Heros Of testing"",
+                              ""id"":"""+g+@""",
+                              ""haspacks"": ""true""}]";
+            var cardSet = SerializationHelper.DeserializeJson<IEnumerable<CardSet>>(json).First();
+
+            Assert.AreEqual("Heros Of testing", cardSet.Name);
+            Assert.AreEqual(true, cardSet.HasPacks);
+            Assert.AreEqual(g, cardSet.Id);
         }
     }
 }

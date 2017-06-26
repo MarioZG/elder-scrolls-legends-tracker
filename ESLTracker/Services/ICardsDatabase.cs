@@ -12,6 +12,7 @@ namespace ESLTracker.Services
         Version Version { get; set; }
         string VersionInfo { get; set; }
         DateTime VersionDate { get; set; }
+        IEnumerable<CardSet> CardSets { get; }
 
         Card FindCardById(Guid value);
         Card FindCardByName(string name);

@@ -50,6 +50,19 @@ namespace ESLTracker.Services
         public string VersionInfo { get; set; }
         public DateTime VersionDate { get; set; }
 
+        IEnumerable<CardSet> cardSets;
+        public IEnumerable<CardSet> CardSets
+        {
+            get
+            {
+                return cardSets;
+            }
+            set
+            {
+                cardSets = value;
+            }
+        }
+
         private CardsDatabase()
         {
 

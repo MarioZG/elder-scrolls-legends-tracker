@@ -2,6 +2,28 @@
   "Version": "0.11",
   "VersionInfo": "June 2017 monthy card",
   "VersionDate": "2017-06-26T00:00:00Z",
+  "CardSets": [
+    {
+      "name": "Core",
+      "id": "465eaa88-4221-4b59-b624-2e86d024e479",
+      "haspacks": "true"
+    },
+    {
+      "name": "Promotional",
+      "id": "5e741110-b2dd-46ad-9dd6-94667454aea0",
+      "haspacks": "false"
+    },
+    {
+      "name": "Dark Brotherhood",
+      "id": "7e28ac4f-20d8-40f0-b7d0-e52555e0048c",
+      "haspacks": "false"
+    },
+    {
+      "name": "Heroes of Skyrim",
+      "id": "fbbef42b-c7ca-4b4c-aa5d-8e23c5524cc6",
+      "haspacks": "true"
+    }
+  ],
   "Cards": [
     {
       "id": "094f4937-e5db-8a41-e441-1905cd7a1406",
@@ -6152,5 +6174,5 @@
       "race": "mammoth",
       "text": "Breakthrough"
     }
-  ] 
+  ]
 }
