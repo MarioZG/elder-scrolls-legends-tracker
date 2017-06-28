@@ -196,6 +196,7 @@
     </Compile>
     <Compile Include="DataModel\Card.cs" />
     <Compile Include="DataModel\CardInstance.cs" />
+    <Compile Include="DataModel\CardSet.cs" />
     <Compile Include="DataModel\DeckVersion.cs" />
     <Compile Include="DataModel\Enums\ArenaRank.cs" />
     <Compile Include="DataModel\Enums\CardRarity.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Utils\FileUpdaters\Update_2_0_To_2_1.cs" />
     <Compile Include="Utils\FileUpdaters\Update_2_2_To_2_3.cs" />
     <Compile Include="Utils\FileUpdaters\Update_2_1_To_2_2.cs" />
+    <Compile Include="Utils\FileUpdaters\Update_2_3_To_3_0.cs" />
     <Compile Include="Utils\IOverlayWindow.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
     <Compile Include="Utils\Messages\GameStatsOpponentGroupByChanged.cs" />
