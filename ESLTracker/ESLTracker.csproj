@@ -1179,6 +1179,12 @@
   <ItemGroup>
     <Resource Include="Resources\Cards\conjurationtutor.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Sets\Core.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Sets\HeroesofSkyrim.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
   <Import Project="..\build\versions.targets" Condition="Exists('..\build\versions.targets')" />
