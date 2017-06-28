@@ -60,7 +60,7 @@ namespace ESLTracker.DataModel
         public string Text { get; set; }
 
         [XmlIgnore]
-        public CardSet Set { get; set; }
+        public string Set { get; set; }
 
         public string ImageName
         {

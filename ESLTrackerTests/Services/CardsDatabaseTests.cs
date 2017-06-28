@@ -82,7 +82,7 @@ namespace ESLTracker.Services.Tests
             Assert.AreEqual(1, card.Health);
             Assert.AreEqual("highelf", card.Race);
             Assert.AreEqual("Card text", card.Text);
-            Assert.AreEqual("Dark Brotherhood", card.Set.Name);
+            Assert.AreEqual("Dark Brotherhood", card.Set);
         }
 
         [TestMethod]
