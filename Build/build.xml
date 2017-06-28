@@ -57,7 +57,7 @@ target BuildMaster
 		<MSBuild Projects="@(ProjectToBuild)" Properties="Configuration=Release" />
 	</Target>
 	<Target Name="ExecuteTests" DependsOnTargets="Compile">
-		<Exec Command='"c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe"  /resultsfile:$(BuildDir)\tests.trx /testcontainer:$(BuildDir)\ESLTrackerTests\ESLTrackerTests.dll' />
+		<Exec Command='"c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\MSTest.exe"  /resultsfile:$(BuildDir)\tests.trx /testcontainer:$(BuildDir)\ESLTrackerTests\ESLTrackerTests.dll' />
 	</Target>
 	<Target Name="CopyBinaries" DependsOnTargets="Compile">
 		<!-- versiopn still should be latest master-->
