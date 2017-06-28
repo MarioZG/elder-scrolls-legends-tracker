@@ -1,7 +1,7 @@
-"C:\Program Files (x86)\MSBuild\15.0\bin\msbuild" build.xml /fl /target:ReleaseLatest
+"c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe" build.xml /fl /target:ReleaseLatest
 echo off
 if %errorlevel% gtr 0 goto error
 echo on
-"C:\Program Files (x86)\MSBuild\15.0\bin\msbuild" build.xml /target:CleanUp
+"c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe" build.xml /target:CleanUp
 :error
 pause
