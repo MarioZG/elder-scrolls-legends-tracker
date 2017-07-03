@@ -309,19 +309,23 @@ namespace ESLTracker.ViewModels
             IWinAPI winApi = trackerFactory.GetWinAPI();
             bool isLauncherRunning = winApi.IsLauncherProcessRunning();
 
-            if (winApi.GetEslProcess() == null && ! winApi.IsLauncherProcessRunning())
+            if (winApi.GetEslProcess() == null)
             {
-                System.Diagnostics.Process.Start("bethesdanet://run/5");
-                messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "Starting game..."));
-                await Task.Delay(TimeSpan.FromSeconds(60)); //wait 10 sec
-                if (winApi.GetEslProcess() == null)
+                var proc = trackerFactory.GetService<ILauncherService>().StartGame();
+                if (proc != null)
                 {
-                    messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "There is probelm staring game, please check Bethesda.net Laucher."));
+                    var launcher = proc.StartInfo.FileName.Substring(0, proc.StartInfo.FileName.IndexOf(":", StringComparison.InvariantCulture));
+                    messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "Starting game using " + launcher));
+                    await Task.Delay(TimeSpan.FromSeconds(60)); //wait 10 sec
+                    if (winApi.GetEslProcess() == null)
+                    {
+                        messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "There is problem staring game, please check " + launcher));
+                    }
                 }
-            }
-            else if (trackerFactory.GetWinAPI().IsLauncherProcessRunning())
-            {
-                messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "Bethesda.net Laucher is running - use it to start game."));
+                else
+                {
+                    messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "No installed launcher detected (BethesdaNet or Steam)."));
+                }
             }
             else
             {

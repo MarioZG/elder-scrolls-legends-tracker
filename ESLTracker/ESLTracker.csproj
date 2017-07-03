@@ -214,10 +214,12 @@
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\ICardImageService.cs" />
+    <Compile Include="Services\ILauncherService.cs" />
     <Compile Include="Services\IVersionService.cs" />
     <Compile Include="Services\IResourcesService.cs" />
     <Compile Include="Services\Implementation\ApplicationService.cs" />
     <Compile Include="Services\Implementation\CardImageService.cs" />
+    <Compile Include="Services\Implementation\LauncherService.cs" />
     <Compile Include="Utils\Converters\CollectionCountToVisibility.cs" />
     <Compile Include="Utils\Converters\DebuggingConverter.cs" />
     <Compile Include="Utils\Converters\GameStatsGetOpponentTagValue.cs" />

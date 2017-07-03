@@ -59,6 +59,10 @@ namespace ESLTracker.Utils
             {
                 return Messenger.Default as T;
             }
+            else if (type == typeof(ILauncherService))
+            {
+                return new LauncherService() as T;
+            }
             else
             {
                 throw new NotImplementedException(typeof(T).Name);
