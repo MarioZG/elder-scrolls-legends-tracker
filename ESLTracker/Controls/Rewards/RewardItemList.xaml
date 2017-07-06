@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Rewards"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:Cards="clr-namespace:ESLTracker.Controls.Cards"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              x:Name="rewardItemList"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -35,12 +36,46 @@
         </ListView.GroupStyle>
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
-                <StackPanel Orientation="{Binding PanelOrientation,ElementName=rewardItemList}"></StackPanel>
+                <StackPanel Orientation="{Binding PanelOrientation,ElementName=rewardItemList}" HorizontalAlignment="Stretch"></StackPanel>
             </ItemsPanelTemplate>
         </ListView.ItemsPanel>
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListBoxItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+            </Style>
+        </ListView.ItemContainerStyle>
         <ListView.ItemTemplate>
             <DataTemplate>
-                <StackPanel Orientation="Horizontal">
+                <DockPanel LastChildFill="False">
+                    <Button x:Name="btnDelete" Margin="0,5,0,5"
+                                KeyboardNavigation.IsTabStop="False"
+                                DockPanel.Dock="Right"
+                                ToolTip="Remove pile"
+                                BorderBrush="{x:Null}"
+                                Background="{x:Null}"
+                                Foreground="White"
+                                Visibility="{Binding ShowCommands,ElementName=rewardItemList, Converter={Converters:BoolToVisibilty}}"
+                                Command="{Binding DataContext.CommandDeleteReward, RelativeSource={RelativeSource AncestorType={x:Type local:RewardSet}}}"
+                                CommandParameter="{Binding}">
+                        <Button.Content>
+                            <fa:ImageAwesome Foreground="DimGray" Icon="Remove" Height="12"/>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="btnAdd" Margin="0,5,0,5"
+                                KeyboardNavigation.IsTabStop="False"
+                                DockPanel.Dock="Right"
+                                ToolTip="Goto edit pile"
+                                BorderBrush="{x:Null}"
+                                Background="{x:Null}"
+                                Foreground="Gray"
+                                Visibility="{Binding ShowCommands,ElementName=rewardItemList, Converter={Converters:BoolToVisibilty}}"
+                                Command="{Binding DataContext.CommandEditReward, RelativeSource={RelativeSource AncestorType={x:Type local:RewardSet}}}"
+                                CommandParameter="{Binding}">
+                        <Button.Content>
+                            <fa:ImageAwesome Foreground="DimGray" Icon="ShareSquareOutline" Height="12"/>
+                        </Button.Content>
+                    </Button>
+                    <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="5,0,5,0" FontSize="16" FontWeight="SemiBold" Text="{Binding Quantity}" />
                     <Image Width="25" Source="{Binding TypeIcon}" ToolTip="{Binding Type}"
                            Visibility="{Binding CardInstance, Converter={Converters:ObjectToVisibilty}, ConverterParameter=not}"/>
@@ -55,25 +90,27 @@
                         <TextBlock Text="{Binding Comment}" 
                                   Visibility="{Binding Comment, Converter={Converters:StringNonEmptyToVisibiltyCollapsedConverter}}" />
                         <TextBlock Text="{Binding RewardQuestGuild}"
-                                  Visibility="{Binding RewardQuestGuild, Converter={Converters:ObjectToVisibilty}}" />
-                    </StackPanel>
+                                  Visibility="{Binding RewardQuestGuild, Converter={Converters:ObjectToVisibilty}}" />                        
+                    </StackPanel> 
                 </StackPanel>
+                </DockPanel>
             </DataTemplate>
         </ListView.ItemTemplate>
         <ListView.ContextMenu>
-            <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag.DataContext, RelativeSource={RelativeSource Self}}">
+            <ContextMenu Visibility="{Binding ShowCommands,ElementName=rewardItemList, Converter={Converters:BoolToVisibilty}}"
+                         DataContext="{Binding Path=PlacementTarget.Tag.DataContext, RelativeSource={RelativeSource Self}}">
                 <MenuItem Header="Edit" 
                           Command="{Binding CommandEditReward}"
                           CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
                     <MenuItem.Icon>
-                        <Image Source="/Resources/MenuIcons/edit.png"/>
+                        <fa:ImageAwesome Foreground="DimGray" Icon="Plus" Height="12"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Delete" 
                           Command="{Binding CommandDeleteReward}"
                           CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
                     <MenuItem.Icon>
-                        <Image Source="/Resources/MenuIcons/delete.png"/>
+                        <fa:ImageAwesome Foreground="DimGray" Icon="Remove" Height="12"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </ContextMenu>

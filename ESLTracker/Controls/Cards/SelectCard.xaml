@@ -7,7 +7,7 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
              xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"            
              x:Name="seletCard"
              d:DesignWidth="300">
     <UserControl.Resources>
@@ -56,6 +56,8 @@
     </UserControl.Resources>
     <Button x:Name="LayoutRoot"
             HorizontalContentAlignment="Stretch" 
+            FocusManager.IsFocusScope="False"
+            FocusManager.FocusedElement="{Binding ElementName=txtName}"
             ToolTipService.IsEnabled="{Binding CardInstance.Card, Converter={Converters:ObjectToBool}}"
             Command="{Binding MouseLeftClick, ElementName=seletCard}" CommandParameter="{Binding CardInstance}">
         <DockPanel >
@@ -123,7 +125,6 @@
                     BorderBrush="{x:Null}"
                     BorderThickness="0" 
                      Foreground="{Binding CardInstance.ForegroundColor}" 
-                     TabIndex="0"
                      x:Name="txtName"
                      Height="25"
                      Text="{Binding Path=CardName, Mode=TwoWay}" 

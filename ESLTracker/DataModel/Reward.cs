@@ -6,7 +6,7 @@ using ESLTracker.ViewModels;
 
 namespace ESLTracker.DataModel
 {
-    public class Reward 
+    public class Reward : ViewModelBase
     {
         public Reward() : this(TrackerFactory.DefaultTrackerFactory)
         {
@@ -18,8 +18,25 @@ namespace ESLTracker.DataModel
         }
 
         public RewardReason Reason { get; set; }
-        public RewardType Type { get; set; }
-        public int Quantity { get; set; }
+
+        private RewardType type;
+        public RewardType Type
+        {
+            get { return type; }
+            set {
+                SetProperty(ref type, value);
+                RaisePropertyChangedEvent(nameof(TypeIcon));
+            }
+        }
+
+        private int quantity;
+
+        public int Quantity
+        {
+            get { return quantity; }
+            set { SetProperty(ref quantity, value); }
+        }
+
         public string Comment { get; set; }
         public DateTime Date { get; set; }
 

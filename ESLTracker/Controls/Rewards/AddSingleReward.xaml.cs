@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.ViewModels.Rewards;
+using ESLTracker.DataModel;
 
 namespace ESLTracker.Controls.Rewards
 {
@@ -23,57 +24,17 @@ namespace ESLTracker.Controls.Rewards
     /// </summary>
     public partial class AddSingleReward : UserControl
     {
-
-        new public AddSingleRewardViewModel DataContext
-        {
-            get
-            {
-                return (AddSingleRewardViewModel)base.DataContext;
-            }
-            set
-            {
-                base.DataContext = value;
-            }
-        }
-
-        public int EditModeWidth
-        {
-            get { return (int)GetValue(EditModeWidthProperty); }
-            set { SetValue(EditModeWidthProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for EditModeWidth.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty EditModeWidthProperty =
-            DependencyProperty.Register("EditModeWidth", typeof(int), typeof(AddSingleReward), new PropertyMetadata(100));
-
-
-
         public AddSingleReward()
         {
             InitializeComponent();
-
-            var nameOfPropertyInVm = "EditModeWidth";
-            var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
-            this.SetBinding(EditModeWidthProperty, binding);
         }
 
-       //use to be able to pass type from xaml - research better way!
-        public RewardType Type {
-            get { return this.DataContext.Reward.Type; }
-            set
-            {
-                this.DataContext.SetRewardType(value);
-            }
-        }
-
-        public IRewardSetViewModel ParentDataContext
+        private void control_GotFocus(object sender, RoutedEventArgs e)
         {
-            get { return this.DataContext.ParentDataContext; }
-            set
+            if (((AddSingleRewardViewModel)this.DataContext).CardSelectionVisible)
             {
-                this.DataContext.ParentDataContext = value;
+               FocusManager.SetFocusedElement(this, this.cardSelect);
             }
         }
-            
     }
 }

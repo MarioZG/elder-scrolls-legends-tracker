@@ -15,6 +15,28 @@ namespace ESLTracker.Utils.Behaviors
     /// </summary>
     public static class FocusExtension
     {
+
+        static FocusExtension()
+        {
+            //https://stackoverflow.com/a/2553297/1250796
+            //EventManager.RegisterClassHandler(typeof(TextBox), TextBox.PreviewMouseLeftButtonDownEvent,
+            //    new MouseButtonEventHandler(SelectivelyIgnoreMouseButton));
+            EventManager.RegisterClassHandler(typeof(TextBox), TextBox.GotKeyboardFocusEvent,
+                new RoutedEventHandler(SelectAllText));
+            EventManager.RegisterClassHandler(typeof(TextBox), TextBox.MouseDoubleClickEvent,
+                new RoutedEventHandler(SelectAllText));
+        }
+
+        public static void SelectAllText(object sender, RoutedEventArgs e)
+        {
+            var textBox = e.OriginalSource as TextBox;
+            if ((textBox != null) && ((bool)textBox.GetValue(SelectAllOnFocus)))
+            {
+                if (textBox != null)
+                    textBox.SelectAll();
+            }
+        }
+
         public static bool GetIsFocused(DependencyObject obj)
         {
             return (bool)obj.GetValue(IsFocusedProperty);

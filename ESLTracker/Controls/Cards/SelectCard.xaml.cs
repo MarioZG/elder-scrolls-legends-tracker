@@ -145,7 +145,7 @@ namespace ESLTracker.Controls.Cards
         //http://stackoverflow.com/questions/9535784/setting-default-keyboard-focus-on-loading-a-usercontrol
         private void SelectCard_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (this.Focusable && ((bool)e.NewValue == true))
+            if (this.IsKeyboardFocusWithin && this.Focusable && ((bool)e.NewValue == true))
             {
                 Dispatcher.BeginInvoke(
                 DispatcherPriority.ContextIdle,

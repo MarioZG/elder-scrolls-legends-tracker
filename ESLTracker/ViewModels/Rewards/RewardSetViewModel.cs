@@ -12,19 +12,28 @@ using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Rewards
 {
-    public class RewardSetViewModel : ViewModelBase, IRewardSetViewModel
+    public class RewardSetViewModel : ViewModelBase
     {
-        ObservableCollection<Reward> rewards;
-        public ObservableCollection<Reward> Rewards
+        PropertiesObservableCollection<Reward> rewards;
+
+        public PropertiesObservableCollection<Reward> RewardsAdded
         {
             get
             {
-                return rewards;
+                return new PropertiesObservableCollection<Reward>(rewards.Where( r=> 
+                                 r.Quantity > 0 //thers qty 
+                                 && (r.Type != RewardType.Card || r.CardInstance.HasCard)),  //if card, ensure selected
+                    Rewards_CollectionChanged);
             }
-            set
+        }
+
+        public PropertiesObservableCollection<AddSingleRewardViewModel> RewardsEditor
+        {
+            get
             {
-                rewards = value;
-                RaisePropertyChangedEvent("Rewards");
+                return new PropertiesObservableCollection<AddSingleRewardViewModel>(
+                    rewards.Where( r=> r.Reason == rewardReason).Select( r=> new AddSingleRewardViewModel(trackerFactory) { Reward = r, ParentRewardViewModel = this}),
+                    Rewards_CollectionChanged);
             }
         }
 
@@ -38,8 +47,8 @@ namespace ESLTracker.ViewModels.Rewards
             set
             {
                 rewardReason = value;
-                RaisePropertyChangedEvent("RewardReason");
-                RaisePropertyChangedEvent("ArenaDeckVisible");
+                RaisePropertyChangedEvent(nameof(RewardReason));
+                RaisePropertyChangedEvent(nameof(ArenaDeckVisible));
                 RewardReasonChanged();
             }
         }
@@ -47,29 +56,15 @@ namespace ESLTracker.ViewModels.Rewards
         Deck arenaDeck;
         public Deck ArenaDeck
         {
-            get
-            {
-                return arenaDeck;
-            }
-            set
-            {
-                arenaDeck = value;
-                RaisePropertyChangedEvent("ArenaDeck");
-            }
+            get { return arenaDeck; }
+            set { SetProperty(ref arenaDeck, value); }
         }
 
         Visibility arenaDeckVisible;
         public Visibility ArenaDeckVisible
         {
-            get
-            {
-                return LinkRewardToDeck() ? Visibility.Visible : Visibility.Collapsed;
-            }
-            set
-            {
-                arenaDeckVisible = value;
-                RaisePropertyChangedEvent("ArenaDeckVisible"); 
-            }
+            get { return arenaDeckVisible; }
+            set { SetProperty(ref arenaDeckVisible, value); }
         }
 
         private bool LinkRewardToDeck()
@@ -99,7 +94,22 @@ namespace ESLTracker.ViewModels.Rewards
         {
             this.trackerFactory = trackerFactory;
             tracker = trackerFactory.GetTracker();
-            Rewards = new ObservableCollection<Reward>();
+            rewards = new PropertiesObservableCollection<Reward>(CreateEmptySet(), Rewards_CollectionChanged);
+        }
+
+        private void Rewards_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            RaisePropertyChangedEvent(nameof(RewardsAdded));
+        }
+
+        private IEnumerable<Reward> CreateEmptySet()
+        {
+            return new Reward[] {
+                new Reward() { Type = RewardType.Gold },
+                new Reward() { Type = RewardType.SoulGem },
+                new Reward() { Type = RewardType.Pack },
+                new Reward() { Type = RewardType.Card }
+            };
         }
 
         //command for done  button - add grid values to xml file
@@ -120,7 +130,7 @@ namespace ESLTracker.ViewModels.Rewards
 
         public void DoneClicked(object param)
         {
-            var newRewards = Rewards.Where(r => !tracker.Rewards.Contains(r));
+            var newRewards = RewardsAdded.Where(r => !tracker.Rewards.Contains(r));
             //fix up excaly same date
             DateTime date = trackerFactory.GetDateTimeNow();
             foreach (Reward r in newRewards)
@@ -129,55 +139,34 @@ namespace ESLTracker.ViewModels.Rewards
             }
             trackerFactory.GetTracker().Rewards.AddRange(newRewards);
             trackerFactory.GetFileManager().SaveDatabase();
-            Rewards.Clear();
+
+            rewards.Clear();
+            rewards = new PropertiesObservableCollection<Reward>(CreateEmptySet(), Rewards_CollectionChanged);
             RewardReason = null;
+            RefreshRewardLists();
         }
 
         public bool CanExecuteDone(object param)
         {
-            //return false;
-            //null passd when control deactivaed, control view model when activated
-            return this.activeControl == null;
+            return RewardsAdded.Count > 0;
         }
-
-        //managing AddSingleReward Controls
-        List<AddSingleRewardViewModel> rewardControls = new List<AddSingleRewardViewModel>();
-
-        AddSingleRewardViewModel activeControl;
-
-        public void RegisterControl(AddSingleRewardViewModel c)
-        {
-            rewardControls.Add(c);
-        }
-
-        public void SetActiveControl(AddSingleRewardViewModel activeControl)
-        {
-            this.activeControl = activeControl;
-            CommandManager.InvalidateRequerySuggested();
-            if (activeControl != null)
-            {
-                activeControl.IsInEditMode = true;
-                activeControl.ControlWidth = activeControl.EditModeWidth;
-                activeControl.GuildSelectionVisible = this.RewardReason == DataModel.Enums.RewardReason.Quest;
-            }
-
-            //reset other controls
-            foreach (AddSingleRewardViewModel asr in rewardControls.Where( c=> c != activeControl))
-            {
-                    asr.Reset();
-
-                    //when no controls active set visible, when one active, set other to collapsed
-                    asr.Visibility = activeControl == null ? Visibility.Visible : Visibility.Collapsed;
-            }
-        }
-        //end of managing single reward controls
 
         public void RewardReasonChanged()
         {
-            foreach (AddSingleRewardViewModel asr in rewardControls)
+            if (! rewardReason.HasValue)
             {
-                asr.Reset();
-                asr.Visibility = Visibility.Visible;
+                return;
+            }
+
+            //add poteicallly missing if we are coming back
+            IEnumerable<RewardType> possibletypes = (RewardType[])Enum.GetValues(typeof(RewardType));
+            var typesAdded = rewards.Where(r => r.Reason == rewardReason).Select(r => r.Type).Distinct();
+            if (typesAdded.Count() < possibletypes.Count())
+            {
+                foreach (RewardType rt in possibletypes.Except(typesAdded))
+                {
+                    AddNewReward(rt);
+                }
             }
 
             if (! LinkRewardToDeck())
@@ -188,44 +177,117 @@ namespace ESLTracker.ViewModels.Rewards
             else {
                 this.ArenaDeck = tracker.ActiveDeck;
             }
+
+            RaisePropertyChangedEvent(nameof(RewardsEditor));
         }
 
-        public void AddReward(Reward reward)
+        internal void AddNewReward(RewardType rt)
         {
-            if (reward != null)
+            var indexToInsert = -1;
+            indexToInsert = FindIndexToInsert(rt);
+
+            if (indexToInsert > -1)
             {
-                reward.Reason = this.RewardReason.Value;
-                reward.ArenaDeck = ArenaDeck;
-                //hack to force UI update
-                if (Rewards.Contains(reward))
+                rewards.Insert(indexToInsert, new Reward(trackerFactory) { Type = rt, Reason = rewardReason.Value });
+            }
+            else
+            {
+                rewards.Add(new Reward(trackerFactory) { Type = rt, Reason = rewardReason.Value });
+            }
+            RaisePropertyChangedEvent(nameof(RewardsEditor));
+        }
+
+        /// <summary>
+        /// find last of same type and reason
+        ///if found, inster after
+        ///if not
+        ///..find any of higher type of this reson, insert before
+        ///..if not found, find any lower and insert after
+        ///..fallback - append to end
+        /// </summary>
+        /// <param name="rt"></param>
+        /// <returns></returns>
+        private int FindIndexToInsert(RewardType rt)
+        {
+            int indexToInsert;
+            int index = RewardsEditor.Where(r => r.Reward.Type == rt)
+                                   .Select(r => rewards.IndexOf(r.Reward))
+                                   .OrderByDescending(i => i)
+                                   .DefaultIfEmpty(-1)
+                                   .FirstOrDefault();
+
+            if (index > -1)
+            {
+                indexToInsert = index + 1;
+            }
+            else
+            {
+                index = RewardsEditor.Where(r => (int)r.Reward.Type > (int)rt)
+                                .Select(r => rewards.IndexOf(r.Reward))
+                                .OrderBy(i => i)
+                                .DefaultIfEmpty(-1)
+                                .FirstOrDefault();
+                if (index > -1)
                 {
-                    int index = Rewards.IndexOf(reward);
-                    Rewards.Remove(reward);
-                    Rewards.Insert(index, reward);
+                    indexToInsert = index;
                 }
                 else
                 {
-                    Rewards.Add(reward);
+                    index = RewardsEditor.Where(r => (int)r.Reward.Type < (int)rt)
+                        .Select(r => rewards.IndexOf(r.Reward))
+                        .OrderByDescending(i => i)
+                        .DefaultIfEmpty(-1)
+                        .FirstOrDefault();
+                    if (index > -1)
+                    {
+                        indexToInsert = index + 1;
+                    }
+                    else
+                    {
+                        indexToInsert = -1;
+                    }
                 }
             }
+
+            return indexToInsert;
         }
 
-        private void DeleteReward(object obj)
+        internal void DeleteReward(object obj)
         {
-            if (obj is Reward)
+            Reward reward = obj as Reward;
+            if (reward != null)
             {
-                this.Rewards.Remove(obj as Reward);
+                if ((reward.Reason != rewardReason) ||
+                    (RewardsEditor.Where(r => r.Reward.Type == reward.Type).Count() > 1) //more than one current type
+                    )
+                {
+                    this.rewards.Remove(obj as Reward);
+                }
+                else
+                {
+                    reward.Quantity = 0;
+                    if (reward.CardInstance != null)
+                    {
+                        reward.CardInstance.Card = Card.Unknown;
+                    }
+                }
             }
+            RefreshRewardLists();
         }
 
         private void EditReward(object obj)
         {
             Reward reward = (Reward)obj;
-            foreach (AddSingleRewardViewModel asr in rewardControls.Where(c => c.Reward.Type == reward.Type))
+            if (rewardReason != reward.Reason)
             {
-                asr.Reward = reward;
-                SetActiveControl(asr);
+                RewardReason = reward.Reason; //jjust ensure is visible
             }                
+        }
+
+        private void RefreshRewardLists()
+        {
+            RaisePropertyChangedEvent(nameof(RewardsEditor));
+            RaisePropertyChangedEvent(nameof(RewardsAdded));
         }
     }
 }

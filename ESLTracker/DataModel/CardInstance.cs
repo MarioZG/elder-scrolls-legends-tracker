@@ -112,7 +112,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return string.Format("Card={0};IsPremium={1};Qty={2}", Card.Name, IsPremium, Quantity);
+                return string.Format("Card={0};IsPremium={1};Qty={2}", Card?.Name, IsPremium, Quantity);
             }
         }
 

@@ -28,14 +28,26 @@ namespace ESLTracker.Controls.Rewards
         public RewardSet()
         {
             InitializeComponent();
-
-            //this is ugly - need to research proper binding!
-            this.rewardCard.ParentDataContext = this.DataContext as RewardSetViewModel;
-            this.rewardGold.ParentDataContext = this.DataContext as RewardSetViewModel;
-            this.rewardPack.ParentDataContext = this.DataContext as RewardSetViewModel;
-            this.rewardSoulGem.ParentDataContext = this.DataContext as RewardSetViewModel;
-
+            editorControls.ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
         }
 
+        // ensure focus on first element in reward lists
+        private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
+        {
+            if (editorControls.ItemContainerGenerator.Status == System.Windows.Controls.Primitives.GeneratorStatus.ContainersGenerated)
+            {
+                ContentPresenter cp = (ContentPresenter)editorControls.ItemContainerGenerator.ContainerFromIndex(0);
+                if (cp != null)
+                {
+                    cp.Loaded += Cp_Loaded;
+                }
+            }
+        }
+
+        // ensure focus on first element in reward lists
+        private void Cp_Loaded(object sender, RoutedEventArgs e)
+        {
+            WindowExtensions.FindVisualChildren<TextBox>(sender as DependencyObject)?.First()?.Focus();
+        }
     }
 }

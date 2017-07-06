@@ -9,11 +9,12 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Rewards"
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              Margin="{Binding Margin}"
              Visibility="{Binding Visibility}"
-             Width="{Binding ControlWidth}"
-
+             FocusManager.FocusedElement="{Binding ElementName=dockPanel}"
+             GotFocus="control_GotFocus"
              MinWidth="100"
              x:Name="control"
 >
@@ -25,74 +26,63 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <ViewModels:AddSingleRewardViewModel/>
-    </UserControl.DataContext>
-    <Grid>
-        <Image x:Name="imageClose" HorizontalAlignment="Right" VerticalAlignment="Top" Height="14" Width="14" 
-               Source="pack://application:,,,/Resources/closeicon.png" 
-               Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibilty}, ConverterParameter=hidden}"
-               Panel.ZIndex="100">
-            <Image.InputBindings>
-                <MouseBinding MouseAction="LeftClick" Command="{Binding CommandCloseClicked}"/>
-            </Image.InputBindings>
-        </Image>
-        <StackPanel>
-            <Image x:Name="image" Height="100" Width="100" Margin="0,0,0,10"
-               Source="{Binding BackgroundImagePath}"
-              >
-                <Image.InputBindings>
-                    <MouseBinding MouseAction="LeftClick" Command="{Binding CommandControlClicked}"/>
-                </Image.InputBindings>
-            </Image>
-            <StackPanel VerticalAlignment="Center" Opacity="60"
-                    Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibilty}}"
-               >
-                <DockPanel>
-                    <Label Content="Quantity " DockPanel.Dock="Left"/>
-                    <TextBox x:Name="txtQuantity" 
-                     Text="{Binding Reward.Quantity}"
-                     Behaviors:FocusExtension.IsFocused="{Binding QtyFocus, Mode=TwoWay}"
-                     Behaviors:FocusExtension.SelectAllOnFocus="True"
-                     Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibilty}, ConverterParameter=hidden}"/>
-                </DockPanel>
-                <DockPanel>
-                    <Label DockPanel.Dock="Top"
-                           Content="Card " 
 
-                           Visibility="{Binding CardSelectionVisible, Converter={Converters:BoolToVisibilty}}"/>
-                    <Viewbox MaxWidth="180" StretchDirection="DownOnly" Stretch="Uniform">
-                        <Cards:SelectCard MinWidth="180"
-                                    Focusable="True"
-                                      CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
-                                      CardNameAutocomplete="{Binding CardNamesList}"
-                                           ShowIsPremium="True"
-                                        Visibility="{Binding CardSelectionVisible, Converter={Converters:BoolToVisibilty}}"/>
-                    </Viewbox>
-                </DockPanel>
-                <DockPanel>
-                    <Label Content="Note" DockPanel.Dock="Top"/>
-                    <TextBox x:Name="txtComment" HorizontalAlignment="Stretch"
-                         AcceptsReturn="True" MinWidth="{Binding MinWidth, ElementName=control}" MaxWidth="{Binding ControlWidth}"
-                         Text="{Binding Reward.Comment}"
-                         Behaviors:FocusExtension.IsFocused="{Binding CommentsFocus, Mode=TwoWay}"
-                         Behaviors:FocusExtension.SelectAllOnFocus="True"
-                         Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibilty}, ConverterParameter=hidden}"/>
-                </DockPanel>
-                <DockPanel>
-                    <Label Content="Guild" DockPanel.Dock="Left"
-                       Visibility="{Binding GuildSelectionVisible, Converter={Converters:BoolToVisibilty}}"
-                    />
-                    <ComboBox x:Name="cbGuild" HorizontalAlignment="Stretch" 
-                      SelectedItem="{Binding Reward.RewardQuestGuild}"
-                      ItemsSource="{Binding Source={StaticResource GuildEnum}}"
-                      Visibility="{Binding GuildSelectionVisible, Converter={Converters:BoolToVisibilty}}"/>
-                </DockPanel>
-                <Button x:Name="btnAdd" Content="Add"  Margin="0,5,0,5"
-                    Grid.Row="6" Grid.ColumnSpan="2"
-                    Visibility="{Binding IsInEditMode, Converter={Converters:BoolToVisibilty}, ConverterParameter=hidden}"
-                    Command="{Binding CommandAddButtonPressed}"/>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+
+
+    <DockPanel LastChildFill="False" x:Name="dockPanel">
+        <Image x:Name="image" Height="24" Width="24" Margin="0,0,0,10"
+               Source="{Binding Reward.TypeIcon}"
+              >
+        </Image>
+        <TextBlock Width="60" Text="{Binding Reward.Type}"></TextBlock>
+        <TextBox x:Name="txtQuantity" 
+                Text="{Binding Reward.Quantity}"
+                Height="20"
+                MinWidth="32"
+                 TabIndex="{Binding Reward.Type}"
+                Behaviors:FocusExtension.SelectAllOnFocus="True"/>
+        <Viewbox MaxWidth="180" StretchDirection="DownOnly" Stretch="Uniform">
+            <Cards:SelectCard 
+                            x:Name="cardSelect"
+                            TabIndex="0"
+                            MinWidth="180"
+                            Focusable="True"
+                            CardInstance="{Binding Reward.CardInstance, Mode=TwoWay}"
+                            CardNameAutocomplete="{Binding CardNamesList}"
+                            ShowIsPremium="True"
+                            Visibility="{Binding CardSelectionVisible, Converter={Converters:BoolToVisibilty}}"/>
+        </Viewbox>
+
+        <Button x:Name="btnDelete" Margin="0,5,0,5"
+                KeyboardNavigation.IsTabStop="False"
+                DockPanel.Dock="Right"
+                ToolTip="Remove or clear pile"
+                Grid.Row="6" 
+                Grid.ColumnSpan="2"
+                BorderBrush="{x:Null}"
+                Background="{x:Null}"
+                Foreground="White"
+                Command="{Binding CommandDeleteClicked}"
+                CommandParameter="{Binding Reward}">
+            <Button.Content>
+                <fa:ImageAwesome Foreground="DimGray" Icon="Remove" Height="12"/>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnAdd" Margin="0,5,0,5"
+                KeyboardNavigation.IsTabStop="False"
+                DockPanel.Dock="Right"
+                ToolTip="Add another pile"
+                Grid.Row="6" 
+                Grid.ColumnSpan="2"
+                BorderBrush="{x:Null}"
+                Background="{x:Null}"
+                Foreground="Gray"
+                Command="{Binding CommandAddButtonPressed}"
+                CommandParameter="{Binding Reward.Type}">
+            <Button.Content>
+                <fa:ImageAwesome Foreground="DimGray" Icon="Plus" Height="12"/>
+            </Button.Content>
+        </Button>
+    </DockPanel>
+
 </UserControl>

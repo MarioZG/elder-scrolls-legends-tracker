@@ -15,26 +15,22 @@ namespace ESLTracker.ViewModels.Rewards
 {
     public class AddSingleRewardViewModel : ViewModelBase
     {
-        private Reward reward = new Reward();
+        private Reward reward;
         public Reward Reward
         {
             get { return reward; }
-            set { reward = value; RaisePropertyChangedEvent("Reward");  }
+            set {
+                SetProperty(ref reward, value);
+                
+                InitTypeSpecifics(this.reward.Type);
+            }
         }
 
-
-        private bool guildSelectionVisible;
-        public bool GuildSelectionVisible
-        {
-            get { return guildSelectionVisible && isInEditMode && reward.Type == RewardType.Gold; }
-            set { guildSelectionVisible = value; RaisePropertyChangedEvent("GuildSelectionVisible"); }
-        }
-        
         private bool cardSelectionVisible;
         public bool CardSelectionVisible
         {
-            get { return cardSelectionVisible && isInEditMode && reward.Type == RewardType.Card; }
-            set { cardSelectionVisible = value; RaisePropertyChangedEvent("CardSelectionVisible"); }
+            get { return cardSelectionVisible && reward.Type == RewardType.Card; }
+            set { SetProperty(ref cardSelectionVisible, value); }
         }
 
         public IEnumerable<string> CardNamesList
@@ -54,50 +50,7 @@ namespace ESLTracker.ViewModels.Rewards
             }
         }
 
-        private bool isInEditMode;
-        public bool IsInEditMode
-        {
-            get { return isInEditMode; }
-            set { isInEditMode = value;
-                Visibility = Visibility.Visible;
-                RaisePropertyChangedEvent("IsInEditMode");
-                RaisePropertyChangedEvent("GuildSelectionVisible");
-                RaisePropertyChangedEvent("CardSelectionVisible");
-            }
-        }
-
-        private bool qtyFocus;
-        public bool QtyFocus
-        {
-            get { return qtyFocus; }
-            set
-            {
-                qtyFocus = value;
-                RaisePropertyChangedEvent("QtyFocus");
-            }
-        }
-
-        private bool commentsFocus;
-        public bool CommentsFocus
-        {
-            get { return commentsFocus; }
-            set
-            {
-                commentsFocus = value;
-                RaisePropertyChangedEvent("CommentsFocus");
-            }
-        }
-
-        private bool selectCardFocus;
-        public bool SelectCardFocus
-        {
-            get { return selectCardFocus; }
-            set
-            {
-                selectCardFocus = value;
-                RaisePropertyChangedEvent(nameof(SelectCardFocus));
-            }
-        }
+        public RewardSetViewModel ParentRewardViewModel { get; set; }
 
         //command for add button
         public ICommand CommandAddButtonPressed
@@ -105,77 +58,24 @@ namespace ESLTracker.ViewModels.Rewards
             get { return new RelayCommand(new Action<object>(AddClicked)); }
         }
 
-        //command when control is cliked
-        public ICommand CommandControlClicked
-        {
-            get { return new RelayCommand(new Action<object>(ControlActivated)); }
-        }
-
         //command command for close icon
-        public ICommand CommandCloseClicked
+        public ICommand CommandDeleteClicked
         {
-            get { return new RelayCommand(new Action<object>(CloseClicked)); }
+            get { return new RelayCommand(new Action<object>(DeleteClicked)); }
         }
 
-        IRewardSetViewModel parentDataContext;
-        public IRewardSetViewModel ParentDataContext
-        {
-            get { return parentDataContext; }
-            set
-            {
-                parentDataContext = value;
-                parentDataContext.RegisterControl(this);
-            }
-        }
-
-        private Visibility visibility;
-        public Visibility Visibility
-        {
-            get { return visibility; }
-            set
-            {
-                visibility = value;
-                RaisePropertyChangedEvent("Visibility");
-            }
-        }
-
-        private int controlWidth;
-        public int ControlWidth
-        {
-            get { return controlWidth; }
-            set { controlWidth = value; RaisePropertyChangedEvent(nameof(ControlWidth)); }
-        }
-
-        public int EditModeWidth { get; set; }
-
-
-        private TrackerFactory trackerFactory;
+        private ITrackerFactory trackerFactory;
         ICardsDatabase cardsDatabase;
 
-        public AddSingleRewardViewModel() : this(new TrackerFactory())
+        public AddSingleRewardViewModel() : this(TrackerFactory.DefaultTrackerFactory)
         {
 
         }
 
-        public AddSingleRewardViewModel(TrackerFactory trackerFactory)
+        public AddSingleRewardViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
             cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
-        }
-
-        internal void Reset()
-        {
-            this.IsInEditMode = false;
-            this.Reward = new Reward()
-            {
-                Quantity = 0,
-                Comment = String.Empty,
-                RewardQuestGuild = null,
-                Type = reward.Type,
-                CardInstance = null
-            };
-            InitTypeSpecifics(this.reward.Type);
-            this.ControlWidth = 0; //will set to min width
         }
 
         private void InitTypeSpecifics(RewardType value)
@@ -183,22 +83,20 @@ namespace ESLTracker.ViewModels.Rewards
             switch (reward.Type)
             {
                 case RewardType.Gold:
-                    GuildSelectionVisible = true;
                     CardSelectionVisible = false;
                     break;
                 case RewardType.SoulGem:
-                    GuildSelectionVisible = false;
                     CardSelectionVisible = false;
                     break;
                 case RewardType.Pack:
-                    this.reward.Quantity = 1;
-                    GuildSelectionVisible = false;
                     CardSelectionVisible = false;
                     break;
                 case RewardType.Card:
-                    this.reward.Quantity = 1;
-                    Reward.CardInstance = new CardInstance(this.trackerFactory);
-                    GuildSelectionVisible = false;
+                    if (Reward.CardInstance == null)
+                    {
+                        Reward.CardInstance = new CardInstance(this.trackerFactory);
+                        Reward.CardInstance.PropertyChanged += Reward_PropertyChanged;
+                    }
                     CardSelectionVisible = true;
                     break;
                 default:
@@ -209,32 +107,24 @@ namespace ESLTracker.ViewModels.Rewards
 
         public void AddClicked(object param)
         {
-            ParentDataContext.AddReward(reward);
-            this.ParentDataContext.SetActiveControl(null);
-            Reset();
+            ParentRewardViewModel.AddNewReward((RewardType)param);
         }
 
-        public void ControlActivated(object param)
+        public void DeleteClicked(object param)
         {
-            //do not set any props here, use SetActiveControl() of RewardsSet, for better testing!
-            this.ParentDataContext.SetActiveControl(this);
-
-            this.QtyFocus = reward.Type == RewardType.Gold || reward.Type == RewardType.SoulGem;
-            this.CommentsFocus = reward.Type == RewardType.Pack;
-            this.SelectCardFocus = reward.Type == RewardType.Card;
+            ParentRewardViewModel.DeleteReward(param as Reward);
         }
 
-        public void CloseClicked(object param)
+        private void Reward_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            Reset();
-            this.ParentDataContext.SetActiveControl(null);
+            if (String.IsNullOrEmpty(e.PropertyName) || (e.PropertyName == nameof(reward.CardInstance)))
+            {
+                if (Reward.Quantity == 0) //do not update when already modified 
+                {
+                    Reward.Quantity = 1;
+                }
+                RaisePropertyChangedEvent(nameof(Reward)); //udate ui
+            }
         }
-
-        internal void SetRewardType(RewardType value)
-        {
-            this.Reward.Type = value;
-            RaisePropertyChangedEvent("BackgroundImagePath");
-        }
-
     }
 }

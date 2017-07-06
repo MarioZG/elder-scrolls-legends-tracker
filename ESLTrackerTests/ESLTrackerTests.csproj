@@ -109,8 +109,6 @@
     <Compile Include="ViewModels\Decks\EditDeckViewModelTests.cs" />
     <Compile Include="ViewModels\Game\EditGameViewModelTests.cs" />
     <Compile Include="ViewModels\Game\RankedProgressChartViewModelTests.cs" />
-    <Compile Include="ViewModels\Rewards\AddSingleRewardViewModelTests.cs" />
-    <Compile Include="ViewModels\Rewards\RewardSetViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ESLTracker\ESLTracker.csproj">
@@ -120,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\Rewards\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -9,6 +9,8 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Rewards"
              xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks"  
+             FocusManager.IsFocusScope="True"
+             FocusManager.FocusedElement="{Binding ElementName=cbReason}"
              mc:Ignorable="d">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="RewardReasonEnum" MethodName="GetValues"
@@ -35,22 +37,33 @@
                         DataContext="{Binding ArenaDeck}"
             />
         </StackPanel>
-        <Grid  x:Name="grid" HorizontalAlignment="Center"
-              Visibility="{Binding ElementName=cbReason, Path=SelectedItem, Converter={Converters:ObjectToVisibilty}, ConverterParameter=Hidden}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <local:AddSingleReward ToolTip="Click to add gold" Grid.Column="0" Grid.Row="0" x:Name="rewardGold" Type="Gold"/>
-            <local:AddSingleReward ToolTip="Click to add soul gems" Grid.Column="1" Grid.Row="0" x:Name="rewardSoulGem" Type="SoulGem"/>
-            <local:AddSingleReward ToolTip="Click to add pack" Grid.Column="0" Grid.Row="1" x:Name="rewardPack" Type="Pack" />
-            <local:AddSingleReward EditModeWidth="190" ToolTip="Click to add card" Grid.Column="1" Grid.Row="1" x:Name="rewardCard" Type="Card" />
-        </Grid>
-        <local:RewardItemList DataContext="{Binding Rewards}" GroupBy="Reason" />
+
+        <ItemsControl 
+             
+            x:Name="editorControls"
+            ItemsSource="{Binding RewardsEditor}" 
+            KeyboardNavigation.IsTabStop="False"
+            Visibility="{Binding SelectedItem, ElementName=cbReason,Converter={Converters:ObjectToVisibilty}}"
+            >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="1"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+
+                <DataTemplate>
+                    <local:AddSingleReward 
+                        ToolTip="Click to add gold" 
+                        DataContext="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <local:RewardItemList 
+            DataContext="{Binding RewardsAdded}" 
+            GroupBy="Reason"
+            ShowCommands="True"
+            KeyboardNavigation.ControlTabNavigation="None" />
         <Button 
             x:Name="button" 
             Content="Done" 

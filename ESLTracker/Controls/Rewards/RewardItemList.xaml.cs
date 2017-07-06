@@ -33,6 +33,19 @@ namespace ESLTracker.Controls.Rewards
 
 
 
+        public bool ShowCommands
+        {
+            get { return (bool)GetValue(ShowCommandsProperty); }
+            set { SetValue(ShowCommandsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowCommands.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowCommandsProperty =
+            DependencyProperty.Register("ShowCommands", typeof(bool), typeof(RewardItemList), new PropertyMetadata(false));
+
+
+
+
         public string GroupBy
         {
             get { return (string)GetValue(GroupByProperty); }
@@ -52,7 +65,6 @@ namespace ESLTracker.Controls.Rewards
         public RewardItemList()
         {
             InitializeComponent();
-            //this.Resources
         }
     }
 }
