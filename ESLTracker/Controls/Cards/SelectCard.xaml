@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Cards"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
-             xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
+             xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete"
              mc:Ignorable="d"            
              x:Name="seletCard"
              d:DesignWidth="300">

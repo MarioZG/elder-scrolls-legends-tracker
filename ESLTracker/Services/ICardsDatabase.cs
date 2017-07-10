@@ -8,7 +8,6 @@ namespace ESLTracker.Services
     public interface ICardsDatabase
     {
         IEnumerable<Card> Cards { get; }
-        IEnumerable<string> CardsNames { get; }
         Version Version { get; set; }
         string VersionInfo { get; set; }
         DateTime VersionDate { get; set; }
@@ -18,5 +17,7 @@ namespace ESLTracker.Services
         Card FindCardByName(string name);
         void RealoadDB();
         CardSet FindCardSetById(Guid? value);
+        CardSet FindCardSetByName(string value);
+        IEnumerable<string> GetCardsNames(string setFilter = null);
     }
 }

@@ -37,7 +37,7 @@ namespace ESLTracker.ViewModels.Cards
         {
             get
             {
-                return cardsDatabase.CardsNames;
+                return cardsDatabase.GetCardsNames();
             }
         }
 

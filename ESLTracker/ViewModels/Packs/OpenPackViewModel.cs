@@ -20,14 +20,31 @@ namespace ESLTracker.ViewModels.Packs
         public Pack Pack
         {
             get { return pack; }
-            set { pack = value; RaisePropertyChangedEvent(nameof(Pack)); }
+            set {
+                pack = value;
+                pack.PropertyChanged += Pack_PropertyChanged;
+                RaisePropertyChangedEvent(nameof(Pack));
+            }
+        }
+
+        private void Pack_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(pack.CardSet))
+            {
+
+                RaisePropertyChangedEvent(nameof(CardNamesList));
+                Pack.Cards = new ObservableCollection<CardInstance>(new List<CardInstance>()
+                    { new CardInstance(), new CardInstance(), new CardInstance(),
+                      new CardInstance(), new CardInstance(), new CardInstance()});
+                RaisePropertyChangedEvent(String.Empty);
+            }
         }
 
         public IEnumerable<string> CardNamesList
         {
             get
             {
-                return cardsDatabase.CardsNames;
+                return cardsDatabase.GetCardsNames(pack?.CardSet?.Name);
             }
         }
 

@@ -26,13 +26,6 @@ namespace ESLTracker.Services
             }
         }
 
-        public IEnumerable<string> CardsNames {
-            get
-            {
-                return Cards.Select(c => c.Name);
-            }
-        }
-
         IEnumerable<Card> cards;
         public IEnumerable<Card> Cards
         {
@@ -106,6 +99,16 @@ namespace ESLTracker.Services
             {
                 return null;
             }
+        }
+
+        public CardSet FindCardSetByName(string value)
+        {
+            return CardSets.Where(c => c.Name == value).SingleOrDefault();
+        }
+
+        public IEnumerable<string> GetCardsNames(string setFilter = null)
+        {
+            return Cards.Where(c => String.IsNullOrEmpty(setFilter) || (c.Set == setFilter)).Select(c => c.Name);
         }
     }
 }

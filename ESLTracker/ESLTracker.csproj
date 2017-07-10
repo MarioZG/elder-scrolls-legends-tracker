@@ -98,10 +98,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WPFTextBoxAutoComplete, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WPFTextBoxAutoComplete.1.0.2\lib\net40\WPFTextBoxAutoComplete.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -220,6 +216,7 @@
     <Compile Include="Services\Implementation\ApplicationService.cs" />
     <Compile Include="Services\Implementation\CardImageService.cs" />
     <Compile Include="Services\Implementation\LauncherService.cs" />
+    <Compile Include="Utils\Behaviors\AutoCompleteBehavior.cs" />
     <Compile Include="Utils\Converters\CollectionCountToVisibility.cs" />
     <Compile Include="Utils\Converters\DebuggingConverter.cs" />
     <Compile Include="Utils\Converters\GameStatsGetOpponentTagValue.cs" />
