@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,6 +13,8 @@ namespace WPFTextBoxAutoComplete
 {
     public static class AutoCompleteBehavior
     {
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+
         private static TextChangedEventHandler onTextChanged = new TextChangedEventHandler(OnTextChanged);
         private static KeyEventHandler onKeyDown = new KeyEventHandler(OnPreviewKeyDown);
         
@@ -72,10 +75,10 @@ namespace WPFTextBoxAutoComplete
                 tb.PreviewKeyDown += onKeyDown;
             }
         }
-        #endregion
+            #endregion
 
-        #region String Comparison
-        public static StringComparison GetAutoCompleteStringComparison(DependencyObject obj)
+            #region String Comparison
+            public static StringComparison GetAutoCompleteStringComparison(DependencyObject obj)
         {
             return (StringComparison)obj.GetValue(AutoCompleteStringComparison);
         }
@@ -93,20 +96,48 @@ namespace WPFTextBoxAutoComplete
         /// <param name="e"></param>
         static void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key != Key.Enter)
-                return;
-
             TextBox tb = e.OriginalSource as TextBox;
             if (tb == null)
                 return;
 
-            //If we pressed enter and if the selected text goes all the way to the end, move our caret position to the end
-            if (tb.SelectionLength > 0 && (tb.SelectionStart + tb.SelectionLength == tb.Text.Length))
+            Logger.Trace($"OnPreviewKeyDown: tb.text={tb.Text};tb.caret index={tb.CaretIndex};tb.selstart={tb.SelectionStart};tb.sellen={tb.SelectionLength};");
+            if (e.Key == Key.Enter)
             {
-                tb.SelectionStart = tb.CaretIndex = tb.Text.Length;
-                tb.SelectionLength = 0;
+
+                //If we pressed enter and if the selected text goes all the way to the end, move our caret position to the end
+                if (tb.SelectionLength > 0 && (tb.SelectionStart + tb.SelectionLength == tb.Text.Length))
+                {
+                    tb.SelectionStart = tb.CaretIndex = tb.Text.Length;
+                    tb.SelectionLength = 0;
+                }
+            }
+            else if (e.Key == Key.Down)
+            {
+                e.Handled = true;
+
+                string match = GetNextSuggestion(tb, false);
+
+                //Nothing.  Leave 'em alone
+                if (!String.IsNullOrEmpty(match))
+                {
+                    SuggestMatch(tb, match);
+                }
+            }
+            else if (e.Key == Key.Up)
+            {
+                e.Handled = true;
+
+                string match = GetNextSuggestion(tb, true);
+
+                //Nothing.  Leave 'em alone
+                if (!String.IsNullOrEmpty(match))
+                {
+                    SuggestMatch(tb, match);
+                }
             }
         }
+
+
 
         /// <summary>
         /// Search for auto-completion suggestions.
@@ -123,46 +154,87 @@ namespace WPFTextBoxAutoComplete
                 return;
 
             TextBox tb = e.OriginalSource as TextBox;
+
+            Logger.Trace($"OnTextChanged: tb.text={tb.Text};tb.caret index={tb.CaretIndex};tb.selstart={tb.SelectionStart};tb.sellen={tb.SelectionLength};");
+
             if (sender == null)
                 return;
 
+            String match = GetCurrentSuggestions(tb).FirstOrDefault();
+
+            if (!String.IsNullOrEmpty(match))
+            {
+                SuggestMatch(tb, match);
+            }
+        }
+
+        private static IEnumerable<string> GetCurrentSuggestions(TextBox tb)
+        {
+            IEnumerable<string> suggestions = new List<string>();
             IEnumerable<String> values = GetAutoCompleteItemsSource(tb);
+
             //No reason to search if we don't have any values.
             if (values == null)
-                return;
+                return suggestions;
 
+            string text = tb.Text.Substring(0, tb.CaretIndex);
             //No reason to search if there's nothing there.
-            if (String.IsNullOrEmpty(tb.Text))
-                return;
+            if (String.IsNullOrEmpty(text))
+                return suggestions;
 
-            Int32 textLength = tb.Text.Length;
+            Int32 textLength = text.Length;
 
             StringComparison comparer = GetAutoCompleteStringComparison(tb);
             //Do search and changes here.
-            String match =
-            (
-                from
-                    value
-                in
+            suggestions = 
                 (
-                    from subvalue
-                    in values
-                    where subvalue != null && subvalue.Length >= textLength
-                    select subvalue
-                )
-                where value.Substring(0, textLength).Equals(tb.Text, comparer)
-                select value
-            ).FirstOrDefault();
+                    from
+                        value
+                    in
+                    (
+                        from subvalue
+                        in values
+                        where subvalue != null && subvalue.Length >= textLength
+                        select subvalue
+                    )
+                    where value.Substring(0, textLength).Equals(text, comparer)
+                    select value
+                );
 
-            //Nothing.  Leave 'em alone
+            return suggestions;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tb"></param>
+        /// <param name="direction">1 - next, key down; -1 - prev, key up</param>
+        /// <returns></returns>
+        private static string GetNextSuggestion(TextBox tb, bool reverse)
+        {
+            var suggestions = GetCurrentSuggestions(tb);
+            if (reverse)
+            {
+                suggestions = suggestions.Reverse();
+            }
+            String match = suggestions.Where(s => s.CompareTo(tb.Text) == (reverse ? -1 : 1)).FirstOrDefault();
+
             if (String.IsNullOrEmpty(match))
-                return;
+            {
+                //cycle through - get first
+                match = suggestions.FirstOrDefault();
+            }
 
+            return match;
+        }
+
+        private static void SuggestMatch(TextBox tb, string match)
+        {
+            int caretIndex = tb.CaretIndex;
             tb.TextChanged -= onTextChanged;
             tb.Text = match;
-            tb.CaretIndex = textLength;
-            tb.SelectionStart = textLength;
-            tb.SelectionLength = (match.Length - textLength);
+            tb.CaretIndex = tb.SelectionStart = caretIndex;
+            tb.SelectionLength = (match.Length - caretIndex);
             tb.TextChanged += onTextChanged;
         }
     }
