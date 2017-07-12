@@ -163,18 +163,21 @@ namespace ESLTracker.Controls.Cards
         /// <param name="e"></param>
         void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key != Key.Enter)
-                return;
+            if (e.Key == Key.P && Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                this.CardInstance.IsPremium = true;
+            }
+            else if (e.Key == Key.Enter)
+            {
+                TextBox tb = e.OriginalSource as TextBox;
+                if (tb == null)
+                    return;
 
-            TextBox tb = e.OriginalSource as TextBox;
-            if (tb == null)
-                return;
-
-            //validate card name
-            CardNameChanged(
-                this as DependencyObject, 
-                new DependencyPropertyChangedEventArgs(CardNameProperty, tb.Text, tb.Text));
-
+                //validate card name
+                CardNameChanged(
+                    this as DependencyObject,
+                    new DependencyPropertyChangedEventArgs(CardNameProperty, tb.Text, tb.Text));
+            }
         }
 
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
