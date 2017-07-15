@@ -87,7 +87,7 @@
             </TabItem>
             <TabItem Header="Rewards">
                 <Rewards:RewardItemList DockPanel.Dock="Top"
-                    PanelOrientation="Horizontal"
+                    PanelOrientation="Vertical"
                     GroupBy="Date"
                     DataContext="{Binding ActiveDeckRewards}" />
             </TabItem>
