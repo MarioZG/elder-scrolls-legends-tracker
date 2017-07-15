@@ -48,7 +48,6 @@ namespace ESLTracker.ViewModels.Rewards
             {
                 rewardReason = value;
                 RaisePropertyChangedEvent(nameof(RewardReason));
-                RaisePropertyChangedEvent(nameof(ArenaDeckVisible));
                 RewardReasonChanged();
             }
         }
@@ -58,13 +57,6 @@ namespace ESLTracker.ViewModels.Rewards
         {
             get { return arenaDeck; }
             set { SetProperty(ref arenaDeck, value); }
-        }
-
-        Visibility arenaDeckVisible;
-        public Visibility ArenaDeckVisible
-        {
-            get { return arenaDeckVisible; }
-            set { SetProperty(ref arenaDeckVisible, value); }
         }
 
         private bool LinkRewardToDeck()
@@ -136,6 +128,7 @@ namespace ESLTracker.ViewModels.Rewards
             foreach (Reward r in newRewards)
             {
                 r.Date = date;
+                r.ArenaDeck = ArenaDeck;
             }
             trackerFactory.GetTracker().Rewards.AddRange(newRewards);
             trackerFactory.GetFileManager().SaveDatabase();
@@ -153,32 +146,32 @@ namespace ESLTracker.ViewModels.Rewards
 
         public void RewardReasonChanged()
         {
-            if (! rewardReason.HasValue)
-            {
-                return;
-            }
 
-            //add poteicallly missing if we are coming back
-            IEnumerable<RewardType> possibletypes = (RewardType[])Enum.GetValues(typeof(RewardType));
-            var typesAdded = rewards.Where(r => r.Reason == rewardReason).Select(r => r.Type).Distinct();
-            if (typesAdded.Count() < possibletypes.Count())
-            {
-                foreach (RewardType rt in possibletypes.Except(typesAdded))
-                {
-                    AddNewReward(rt);
-                }
-            }
-
-            if (! LinkRewardToDeck())
+            if (!LinkRewardToDeck())
             {
                 this.ArenaDeck = null;
-                this.ArenaDeckVisible = Visibility.Collapsed;
             }
-            else {
+            else
+            {
                 this.ArenaDeck = tracker.ActiveDeck;
             }
 
-            RaisePropertyChangedEvent(nameof(RewardsEditor));
+            if (rewardReason.HasValue)
+            {
+
+                //add poteicallly missing if we are coming back
+                IEnumerable<RewardType> possibletypes = (RewardType[])Enum.GetValues(typeof(RewardType));
+                var typesAdded = rewards.Where(r => r.Reason == rewardReason).Select(r => r.Type).Distinct();
+                if (typesAdded.Count() < possibletypes.Count())
+                {
+                    foreach (RewardType rt in possibletypes.Except(typesAdded))
+                    {
+                        AddNewReward(rt);
+                    }
+                }
+
+                RaisePropertyChangedEvent(nameof(RewardsEditor));
+            }
         }
 
         internal void AddNewReward(RewardType rt)

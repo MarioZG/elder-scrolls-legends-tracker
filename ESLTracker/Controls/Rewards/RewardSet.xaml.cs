@@ -47,7 +47,11 @@ namespace ESLTracker.Controls.Rewards
         // ensure focus on first element in reward lists
         private void Cp_Loaded(object sender, RoutedEventArgs e)
         {
-            WindowExtensions.FindVisualChildren<TextBox>(sender as DependencyObject)?.First()?.Focus();
+            var textBoxes = WindowExtensions.FindVisualChildren<TextBox>(sender as DependencyObject);
+            if (textBoxes?.Count() > 0)
+            {
+                textBoxes.First()?.Focus();
+            }
         }
     }
 }

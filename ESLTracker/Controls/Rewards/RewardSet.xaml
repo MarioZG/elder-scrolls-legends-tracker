@@ -32,7 +32,7 @@
                 ItemsSource="{Binding Source={StaticResource RewardReasonEnum}}"
                 SelectedItem="{Binding RewardReason}"
             />
-        <StackPanel Visibility="{Binding ArenaDeckVisible}">            
+        <StackPanel Visibility="{Binding ArenaDeck, Converter={Converters:ObjectToVisibilty}}">            
         <Decks:DeckItem x:Name="arenaDeck" 
                         DataContext="{Binding ArenaDeck}"
             />
