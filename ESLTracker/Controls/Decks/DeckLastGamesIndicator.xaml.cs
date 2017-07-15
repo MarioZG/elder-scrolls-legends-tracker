@@ -81,6 +81,7 @@ namespace ESLTracker.Controls.Decks
                 .Select(g => g.Outcome == DataModel.Enums.GameOutcome.Victory)
                 .ToList();
             int col = 0;
+            control.grid.Children.Clear();
             foreach (bool win in wins)
             {
                 Rectangle r = new Rectangle();
