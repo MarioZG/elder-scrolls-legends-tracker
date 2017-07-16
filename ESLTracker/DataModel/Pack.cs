@@ -47,13 +47,17 @@ namespace ESLTracker.DataModel
 
             if (raiseChangeEventsOnCards)
             {
-                Cards.CollectionChanged += Cards_CollectionChanged;
+                SetUpChangeEvents();
             }
+        }
 
-            if ((startringCards != null) && raiseChangeEventsOnCards)
+        internal void SetUpChangeEvents()
+        {
+            Cards.CollectionChanged += Cards_CollectionChanged;
+
+            if (Cards != null)
             {
                 Cards.All(c => { c.PropertyChanged += CardInstance_PropertyChanged; return true; });
-
             }
         }
 

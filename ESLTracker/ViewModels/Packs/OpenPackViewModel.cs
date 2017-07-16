@@ -36,6 +36,7 @@ namespace ESLTracker.ViewModels.Packs
                 Pack.Cards = new ObservableCollection<CardInstance>(new List<CardInstance>()
                     { new CardInstance(), new CardInstance(), new CardInstance(),
                       new CardInstance(), new CardInstance(), new CardInstance()});
+                Pack.SetUpChangeEvents();
                 RaisePropertyChangedEvent(String.Empty);
             }
         }
