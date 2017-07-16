@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ESLTracker.Utils;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace ESLTracker.Services
     public interface ILauncherService
     {
 
-        Process StartGame();
+        Task<Process> StartGame(IWinAPI winApi, IMessenger messanger);
         bool IsSteamInstalled();
         bool IsBethesdaLauncherInstalled();
     }

@@ -221,6 +221,7 @@ namespace ESLTracker.ViewModels
         ITracker tracker;
         IDeckService deckService;
         ISettings settings;
+        IWinAPI winApi;
 
         public MainWindowViewModel() : this(new TrackerFactory())
         {
@@ -239,6 +240,8 @@ namespace ESLTracker.ViewModels
 
             deckService = trackerFactory.GetService<IDeckService>();
             settings = trackerFactory.GetService<ISettings>();
+            winApi = trackerFactory.GetWinAPI();
+
 
             this.OverlayWindows.Add(new OverlayToolbar());
             this.OverlayWindows.Add(new DeckOverlay());
@@ -306,31 +309,9 @@ namespace ESLTracker.ViewModels
         {
             startingGame = true;
             CommandManager.InvalidateRequerySuggested();
-            IWinAPI winApi = trackerFactory.GetWinAPI();
-            bool isLauncherRunning = winApi.IsLauncherProcessRunning();
 
-            if (winApi.GetEslProcess() == null)
-            {
-                var proc = trackerFactory.GetService<ILauncherService>().StartGame();
-                if (proc != null)
-                {
-                    var launcher = proc.StartInfo.FileName.Substring(0, proc.StartInfo.FileName.IndexOf(":", StringComparison.InvariantCulture));
-                    messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "Starting game using " + launcher));
-                    await Task.Delay(TimeSpan.FromSeconds(60)); //wait 10 sec
-                    if (winApi.GetEslProcess() == null)
-                    {
-                        messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "There is problem staring game, please check " + launcher));
-                    }
-                }
-                else
-                {
-                    messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "No installed launcher detected (BethesdaNet or Steam)."));
-                }
-            }
-            else
-            {
-                messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "Game is already running"));
-            }
+            var proc = trackerFactory.GetService<ILauncherService>().StartGame(this.winApi, this.messanger);
+
             startingGame = false;
             CommandManager.InvalidateRequerySuggested();
             return null;
@@ -339,7 +320,8 @@ namespace ESLTracker.ViewModels
         private bool CommandRunGameCanExecute(object arg)
         {
             IWinAPI winApi = trackerFactory.GetWinAPI();
-            return ! startingGame && winApi.GetEslProcess() == null;
+            return (! startingGame)
+                && ( winApi.GetEslProcess() == null);
         }
 
         public void EditSettings(object parameter)

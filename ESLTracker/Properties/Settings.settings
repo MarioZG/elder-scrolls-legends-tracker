@@ -95,5 +95,8 @@
     <Setting Name="Packs_LastOpenedPackSetId" Type="System.Nullable&lt;System.Guid&gt;" Scope="User">
       <Value Profile="(Default)">00000000-0000-0000-0000-000000000000</Value>
     </Setting>
+    <Setting Name="General_StartGameWithTracker" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

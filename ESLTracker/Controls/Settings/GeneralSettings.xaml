@@ -17,6 +17,11 @@
                         ToolTip="When checked, close window button on main form will minimise application"
                         IsChecked="{Binding Path=MinimiseOnClose, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                   />
+        <CheckBox Content="Start Game With Tracker" HorizontalAlignment="Left" 
+                        Margin="5,5,5,5"
+                        ToolTip="When checked, close window button on main form will minimise application"
+                        IsChecked="{Binding Path=General_StartGameWithTracker, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                  />
         <StackPanel Orientation="Horizontal" Margin="5,5,5,5" ToolTip="Folder where application data is stored">
             <TextBox IsReadOnly="True"
                      Text="{Binding Path=DataPath, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"

@@ -92,6 +92,13 @@ namespace ESLTracker
                 Logger log = LogManager.GetLogger(App.UserInfoLogger);
                 log.Info(CardsDatabaseUpdated, new object[] { cardsDB.Version, cardsDB.VersionDate.ToShortDateString(), cardsDB.VersionInfo });
             }
+
+            if (settings.General_StartGameWithTracker)
+            {
+                TrackerFactory.DefaultTrackerFactory.GetService<ILauncherService>().StartGame(
+                    TrackerFactory.DefaultTrackerFactory.GetWinAPI(),
+                    TrackerFactory.DefaultTrackerFactory.GetService<IMessenger>());
+            }
         }
 
         private static void CheckDataFile()

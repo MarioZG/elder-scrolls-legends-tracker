@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.Utils.DiagnosticsWrappers;
+using ESLTracker.Utils;
+using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.Services
 {
@@ -28,8 +30,38 @@ namespace ESLTracker.Services
             return key != null;
         }
 
-        public Process StartGame()
+
+        public async Task<Process> StartGame(IWinAPI winApi, IMessenger messanger)
         {
+            bool isLauncherRunning = winApi.IsLauncherProcessRunning();
+            Process proc = null;
+            if (winApi.GetEslProcess() == null)
+            {
+                proc = LaunchGameFromPlatform();
+                if (proc != null)
+                {
+                    var launcher = proc.StartInfo.FileName.Substring(0, proc.StartInfo.FileName.IndexOf(":", StringComparison.InvariantCulture));
+                    messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "Starting game using " + launcher));
+                    await Task.Delay(TimeSpan.FromSeconds(60)); //wait 10 sec
+                    if (winApi.GetEslProcess() == null)
+                    {
+                        messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "There is problem staring game, please check " + launcher));
+                    }
+                }
+                else
+                {
+                    messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "No installed launcher detected (BethesdaNet or Steam)."));
+                }
+            }
+            else
+            {
+                messanger.Send(new ApplicationShowBalloonTip("ESL Tracker", "Game is already running"));
+            }
+            return proc;
+        }
+
+        private Process LaunchGameFromPlatform()
+        { 
             if (IsBethesdaLauncherInstalled())
             {
                 return new ProcessWrapper().Start(BethesdaLaunch);

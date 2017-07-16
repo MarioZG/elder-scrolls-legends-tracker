@@ -52,6 +52,8 @@ namespace ESLTracker.Properties
 
         Guid? Packs_LastOpenedPackSetId { get; set; }
 
+        bool General_StartGameWithTracker { get; set; }
+
         void Save();
     }
 }
