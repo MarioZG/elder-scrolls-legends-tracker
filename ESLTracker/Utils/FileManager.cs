@@ -251,7 +251,7 @@ namespace ESLTracker.Utils
 
         public Task SaveScreenShot(string fileName)
         {
-            IntPtr? eslHandle = trackerfactory.GetWinAPI().GetEslProcess()?.MainWindowHandle;
+            IntPtr? eslHandle = trackerfactory.GetService<IWinAPI>().GetEslProcess()?.MainWindowHandle;
             if (eslHandle.HasValue)
             {
                 var rect = new WinAPI.Rect();

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using ESLTracker.Utils.DiagnosticsWrappers;
 using NLog;
 
-namespace ESLTracker.Utils
+namespace ESLTracker.Services
 {
     public class WinAPI : IWinAPI
     {
@@ -13,9 +13,6 @@ namespace ESLTracker.Utils
         private IProcessWrapper processWrapper;
         private const string ESLExeProcessName = "The Elder Scrolls Legends";
         private const string LauncherProcessName = "BethesdaNetLauncher";
-
-        public static IWinAPI Default { get; } = new WinAPI();
-
 
         public WinAPI() : this(new ProcessWrapper())
         {

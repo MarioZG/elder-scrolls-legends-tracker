@@ -46,7 +46,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             Mock<IWinAPI> winApi = new Mock<IWinAPI>();
             winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);
 
-            trackerFactory.Setup(tf => tf.GetWinAPI()).Returns(winApi.Object);
+            trackerFactory.Setup(tf => tf.GetService<IWinAPI>()).Returns(winApi.Object);
 
             Mock<IFileManager> fileManager = new Mock<IFileManager>();
 
@@ -154,7 +154,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             Mock<IWinAPI> winApi = new Mock<IWinAPI>();
             winApi.Setup(w => w.GetEslFileVersionInfo()).Returns(expected);
 
-            trackerFactory.Setup(tf => tf.GetWinAPI()).Returns(winApi.Object);
+            trackerFactory.Setup(tf => tf.GetService<IWinAPI>()).Returns(winApi.Object);
 
 
             EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
@@ -199,7 +199,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             //ensure not running
             winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);
 
-            trackerFactory.Setup(tf => tf.GetWinAPI()).Returns(winApi.Object);
+            trackerFactory.Setup(tf => tf.GetService<IWinAPI>()).Returns(winApi.Object);
 
             EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
 
@@ -325,7 +325,7 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             Mock<IWinAPI> winApi = new Mock<IWinAPI>();
             winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);
-            trackerFactory.Setup(tf => tf.GetWinAPI()).Returns(winApi.Object);
+            trackerFactory.Setup(tf => tf.GetService<IWinAPI>()).Returns(winApi.Object);
 
             EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
 

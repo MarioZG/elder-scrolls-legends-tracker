@@ -95,9 +95,9 @@ namespace ESLTracker
 
             if (settings.General_StartGameWithTracker)
             {
-                TrackerFactory.DefaultTrackerFactory.GetService<ILauncherService>().StartGame(
-                    TrackerFactory.DefaultTrackerFactory.GetWinAPI(),
-                    TrackerFactory.DefaultTrackerFactory.GetService<IMessenger>());
+                var winApi = TrackerFactory.DefaultTrackerFactory.GetService<IWinAPI>();
+                var messanger = TrackerFactory.DefaultTrackerFactory.GetService<IMessenger>();
+                TrackerFactory.DefaultTrackerFactory.GetService<ILauncherService>().StartGame(winApi, messanger);
             }
         }
 

@@ -240,7 +240,7 @@ namespace ESLTracker.ViewModels
 
             deckService = trackerFactory.GetService<IDeckService>();
             settings = trackerFactory.GetService<ISettings>();
-            winApi = trackerFactory.GetWinAPI();
+            winApi = trackerFactory.GetService<IWinAPI>();
 
 
             this.OverlayWindows.Add(new OverlayToolbar());
@@ -319,7 +319,6 @@ namespace ESLTracker.ViewModels
 
         private bool CommandRunGameCanExecute(object arg)
         {
-            IWinAPI winApi = trackerFactory.GetWinAPI();
             return (! startingGame)
                 && ( winApi.GetEslProcess() == null);
         }

@@ -159,6 +159,7 @@ namespace ESLTracker.ViewModels.Game
         IMessenger messanger;
         ITracker tracker;
         ISettings settings;
+        IWinAPI winApi;
 
         public EditGameViewModel() : this(new TrackerFactory())
         {
@@ -176,6 +177,7 @@ namespace ESLTracker.ViewModels.Game
             messanger.Register<EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
             messanger.Register<NewDeckTagCreated>(this, RefreshTagsList);
             this.settings = trackerFactory.GetService<ISettings>();
+            this.winApi = trackerFactory.GetService<IWinAPI>();
 
             this.BeginEdit();
         }
@@ -294,7 +296,7 @@ namespace ESLTracker.ViewModels.Game
             this.Game.DeckVersionId = tracker.ActiveDeck.SelectedVersionId;
             this.Game.Outcome = outcome.Value;
             this.Game.Date = trackerFactory.GetDateTimeNow(); //game date - when it concluded (we dont know when it started)
-            FileVersionInfo fvi = trackerFactory.GetWinAPI().GetEslFileVersionInfo();
+            FileVersionInfo fvi = winApi.GetEslFileVersionInfo();
             if (fvi != null)
             {
                 this.Game.ESLVersion = new SerializableVersion(fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);

@@ -63,6 +63,10 @@ namespace ESLTracker.Utils
             {
                 return new LauncherService() as T;
             }
+            else if (type == typeof(IWinAPI))
+            {
+                return new WinAPI() as T;
+            }
             else
             {
                 throw new NotImplementedException(typeof(T).Name);
@@ -78,11 +82,6 @@ namespace ESLTracker.Utils
         public DateTime GetDateTimeNow()
         {
             return DateTime.Now;
-        }
-
-        public IWinAPI GetWinAPI()
-        {
-            return WinAPI.Default;
         }
 
         public IWrapperProvider GetWrapperProvider()

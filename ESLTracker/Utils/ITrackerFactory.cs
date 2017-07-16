@@ -15,7 +15,6 @@ namespace ESLTracker.Utils
         T GetService<T>() where T : class;
         ITracker GetTracker();
         DateTime GetDateTimeNow();
-        IWinAPI GetWinAPI();
         IWrapperProvider GetWrapperProvider();
         IFileManager GetFileManager();
         Guid GetNewGuid();
