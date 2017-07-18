@@ -1,7 +1,7 @@
 {
-  "Version": "0.12",
-  "VersionInfo": "Heroes of Skyrim expansion",
-  "VersionDate": "2017-06-28T00:00:00Z",
+  "Version": "0.13",
+  "VersionInfo": "patch 1.65.2",
+  "VersionDate": "2017-07-18T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -92,7 +92,7 @@
       "cost": "7",
       "attack": "3",
       "health": "3",
-      "race": "beast",
+      "race": "nord",
       "text": "Summon: Deal 1 damage.\r\nBeast Form: +2/+2 and destroy a Wounded creature."
     },
     {
@@ -134,7 +134,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "beast",
+      "race": "nord",
       "text": "Beast Form: +1/+1 and draw a card."
     },
     {
@@ -653,7 +653,7 @@
       "attack": "3",
       "health": "5",
       "race": "khajiit",
-      "text": "Summon: Other friendly creatures in this lane have \"Pilfer: Draw a card\" this turn."
+      "text": "Summon: Other friendly creatures in this lane gain \"Pilfer: Draw a card\" this turn."
     },
     {
       "id": "39ddb301-92a3-00ad-a820-9b3011a566d0",
@@ -793,7 +793,7 @@
       "attack": "7",
       "health": "4",
       "race": "giant",
-      "text": "Breakthrough\r\nSummon: Unsummon a creature, or destroy an enemy support."
+      "text": "Breakthrough\r\nSummon: Unsummon a creature in this lane, or destroy an enemy support."
     },
     {
       "id": "f27053db-0668-4429-be45-1cfa99368307",
@@ -1478,7 +1478,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "beast",
+      "race": "nord",
       "text": "Prophecy\r\nBeast Form: +2/+1"
     },
     {
@@ -1576,7 +1576,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "werewolf",
+      "race": "nord",
       "text": ""
     },
     {
@@ -1604,7 +1604,7 @@
       "cost": "6",
       "attack": "1",
       "health": "2",
-      "race": "breton",
+      "race": "redguard",
       "text": "Summon: Summon a 5/5 Frost Atronach with Guard."
     },
     {
@@ -1983,7 +1983,7 @@
       "attack": "3",
       "health": "3",
       "race": "nord",
-      "text": "When an enemy rune is destroyed, you gain 3 health."
+      "text": "After an enemy rune is destroyed, you gain 3 health."
     },
     {
       "id": "de805806-1c16-190e-86b3-d1c1aae90006",
@@ -2613,7 +2613,7 @@
       "attack": "5",
       "health": "5",
       "race": "dragon",
-      "text": "Summon: Give each creature in your deck a random Keyword."
+      "text": "When you draw a creature, give it a random Keyword."
     },
     {
       "id": "9edea6a2-da08-11e6-bf26-cec0c932ce01",
@@ -3452,7 +3452,7 @@
       "cost": "2",
       "attack": "3",
       "health": "1",
-      "race": "",
+      "race": "falmer",
       "text": "Prophecy\r\nSummon: Give a creature Cover."
     },
     {
@@ -3676,7 +3676,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "beast",
+      "race": "nord",
       "text": "Beast Form: +1/+1 and Drain."
     },
     {
@@ -5580,7 +5580,7 @@
       "cost": "6",
       "attack": "5",
       "health": "3",
-      "race": "",
+      "race": "falmer",
       "text": "When Nightprowler gains Cover, draw a card."
     },
     {
@@ -5945,7 +5945,7 @@
       "attack": "3",
       "health": "3",
       "race": "imperial",
-      "text": "Summon: Give creatures in your deck +2/+2."
+      "text": "Summon: Give creatures in your deck +1/+1."
     },
     {
       "id": "acd58013-1d8e-49ef-1229-df1cb8384afe",
@@ -6756,7 +6756,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "",
+      "race": "falmer",
       "text": "Summon: Give a friendly creature Cover. Your opponent can't target it with actions until your next turn."
     },
     {
@@ -6924,7 +6924,7 @@
       "cost": "4",
       "attack": "4",
       "health": "3",
-      "race": "",
+      "race": "falmer",
       "text": "Summon: Draw a card if you have two other (Agility) creatures."
     },
     {
@@ -8730,7 +8730,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "beast",
+      "race": "nord",
       "text": "Beast Form: +2/+2, Guard, and Regenerate."
     },
     {
@@ -9069,5 +9069,5 @@
       "race": "mammoth",
       "text": "Breakthrough"
     }
-  ]
+  ] 
 }
