@@ -217,5 +217,29 @@ namespace ESLTracker.Utils.Tests
             cardsDatabase.Verify(m => m.RealoadDB(), Times.Once);
 
         }
+
+        [TestMethod()]
+        public void UpdateCardsDBTest002_EnsureNewObjectIsReturned()
+        {
+            string newFileContent = "{some json}";
+
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+
+            Mock<ICardsDatabase> newCardsDatabase = new Mock<ICardsDatabase>();
+
+            Mock<IFileWrapper> fileWrapper = new Mock<IFileWrapper>();
+            trackerFactory.Setup(tf => tf.GetService<IFileWrapper>()).Returns(fileWrapper.Object);
+
+            Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
+            cardsDatabase.Setup(cd => cd.RealoadDB()).Returns(newCardsDatabase.Object);
+            trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDatabase.Object);
+
+            FileManager fm = new FileManager(trackerFactory.Object);
+
+            ICardsDatabase actual = fm.UpdateCardsDB(newFileContent);
+
+            Assert.AreSame(newCardsDatabase.Object, actual);
+
+        }
     }
 }

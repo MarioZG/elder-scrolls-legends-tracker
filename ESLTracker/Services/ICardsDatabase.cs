@@ -15,7 +15,7 @@ namespace ESLTracker.Services
 
         Card FindCardById(Guid value);
         Card FindCardByName(string name);
-        void RealoadDB();
+        ICardsDatabase RealoadDB();
         CardSet FindCardSetById(Guid? value);
         CardSet FindCardSetByName(string value);
         IEnumerable<string> GetCardsNames(string setFilter = null);

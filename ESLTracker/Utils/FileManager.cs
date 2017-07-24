@@ -399,8 +399,7 @@ namespace ESLTracker.Utils
             fileWrapper.Move(fileName, backupFileName);
 
             fileWrapper.WriteAllText(fileName, newContent);
-            cardsDatabase.RealoadDB();
-            return cardsDatabase;
+            return cardsDatabase.RealoadDB();
         }
 
 

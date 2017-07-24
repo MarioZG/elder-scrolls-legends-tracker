@@ -84,9 +84,10 @@ namespace ESLTracker.Services
             return Cards.Where(c => c.Id == value).DefaultIfEmpty(Card.Unknown).FirstOrDefault();
         }
 
-        public void RealoadDB()
+        public ICardsDatabase RealoadDB()
         {
             _instance = LoadCardsDatabase("./Resources/cards.json");
+            return _instance;
         }
 
         public CardSet FindCardSetById(Guid? value)
