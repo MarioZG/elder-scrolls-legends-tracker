@@ -11,13 +11,30 @@ namespace ESLTracker.ViewModels.Packs
 {
     public class PacksStatsViewModel : ViewModelBase
     {
+        private IEnumerable<Pack> orderedPacks;
+
         public IEnumerable<Pack> OrderedPacks
         {
             get
             {
-                return trackerFactory.GetTracker().Packs.OrderByDescending(p => p.DateOpened);
+                if (orderedPacks == null)
+                {
+                    orderedPacks = trackerFactory.GetTracker().Packs.OrderByDescending(p => p.DateOpened);
+                }
+                return orderedPacks;
             }
-        }
+            set {
+                if (value != null)
+                {
+                    orderedPacks = value;
+                }
+                else
+                {
+                    orderedPacks = trackerFactory.GetTracker().Packs.OrderByDescending(p => p.DateOpened);
+                }
+                RaisePropertyChangedEvent(String.Empty);
+            }
+        }        
 
         public int PacksSinceLegendary
         {
@@ -82,6 +99,57 @@ namespace ESLTracker.ViewModels.Packs
             }
         }
 
+        public int NumberOfPacks
+        {
+            get
+            {
+                return OrderedPacks.Count();
+            }
+        }
+
+        public double SoulgemValueTotal
+        {
+            get
+            {
+                return OrderedPacks.Sum(p => p.SoulGemsValue);
+            }
+        }
+
+        public double? SoulgemValueAvg
+        {
+            get
+            {
+                var count = OrderedPacks.Count();
+                return count > 0 ? (double?)Math.Round((SoulgemValueTotal / count), 0) : null;
+            }
+        }
+
+        public int? SoulgemValueMax
+        {
+            get
+            {
+                var count = OrderedPacks.Count();
+                return count > 0 ? (int?)OrderedPacks.Max(p => p.SoulGemsValue) : null;
+            }
+        }
+
+        public int NumberOfPremiums
+        {
+            get
+            {
+                return OrderedPacks.SelectMany(p => p.Cards).Where(ci => ci.IsPremium).Count();
+            }
+        }
+        public double? NumberOfPremiumsPercentage
+        {
+            get
+            {
+                var totalCount = OrderedPacks.SelectMany(p => p.Cards).Count();
+                var premiumCount = OrderedPacks.SelectMany(p => p.Cards).Where(ci => ci.IsPremium).Count();
+                return totalCount > 0 ? (double?)Math.Round( (double)premiumCount/totalCount, 2) : null;
+            }
+        }
+
         private TrackerFactory trackerFactory;
 
         public PacksStatsViewModel() : this(new TrackerFactory())
@@ -97,7 +165,7 @@ namespace ESLTracker.ViewModels.Packs
 
         private void Packs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            RaisePropertyChangedEvent("");
+            RaisePropertyChangedEvent(String.Empty);
         }
 
         private int PacksSince(Func<CardInstance, bool> filter)

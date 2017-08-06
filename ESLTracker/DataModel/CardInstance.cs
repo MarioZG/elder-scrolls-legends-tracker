@@ -88,7 +88,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return cardImageService.GetRarityBrush(card);
+                return cardImageService.GetRarityBrush(card?.Rarity);
             }
         }
 

@@ -1,8 +1,8 @@
-﻿using ESLTracker.DataModel;
+﻿using ESLTracker.Controls.Packs;
+using ESLTracker.DataModel;
 using ESLTracker.ViewModels.Packs;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +16,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ESLTracker.Controls.Packs
+namespace ESLTracker.Controls.PackStatistics
 {
     /// <summary>
-    /// Interaction logic for PacksStats.xaml
+    /// Interaction logic for OpeningPackSummaryForPeriod.xaml
     /// </summary>
-    public partial class PacksStats : UserControl
+    public partial class OpeningPackSummaryForPeriod : UserControl
     {
+        public OpeningPackSummaryForPeriod()
+        {
+            InitializeComponent();
+        }
 
         new public PacksStatsViewModel DataContext
         {
@@ -44,16 +48,11 @@ namespace ESLTracker.Controls.Packs
 
         // Using a DependencyProperty as the backing store for PacksData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PacksDataProperty =
-            DependencyProperty.Register("PacksData", typeof(IEnumerable<Pack>), typeof(PacksStats), new PropertyMetadata(new List<Pack>(), PacksDataChanged));
+            DependencyProperty.Register("PacksData", typeof(IEnumerable<Pack>), typeof(OpeningPackSummaryForPeriod), new PropertyMetadata(new List<Pack>(), PacksDataChanged));
 
         private static void PacksDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((PacksStats)d).DataContext.OrderedPacks = (IEnumerable<Pack>)e.NewValue;
-        }
-
-        public PacksStats()
-        {
-            InitializeComponent();
+            ((OpeningPackSummaryForPeriod)d).DataContext.OrderedPacks = (IEnumerable<Pack>)e.NewValue;
         }
     }
 }

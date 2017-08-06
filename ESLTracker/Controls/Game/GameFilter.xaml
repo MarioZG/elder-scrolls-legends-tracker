@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ESLTracker.Controls.Game.GameFilter"
+﻿<UserControl xmlns:Controls="clr-namespace:ESLTracker.Controls"  x:Class="ESLTracker.Controls.Game.GameFilter"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,15 +11,6 @@
             <ComboBox 
                     ItemsSource="{Binding GameTypeSeletorValues}" SelectedItem="{Binding GameType, Mode=TwoWay}"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="5,5,5,10">
-            <Label Content="Date filter. Select predefined:"/>
-            <ComboBox DockPanel.Dock="Top" 
-                      ItemsSource="{Binding FilterDateOptions}"
-                      SelectedItem="{Binding FilterDateSelectedOption}"
-                      />
-            <Label Content=" or choose any range"/>
-            <DatePicker x:Name="dtFrom" SelectedDate="{Binding FilterDateFrom, Mode=TwoWay}"/>
-            <DatePicker x:Name="dtTo" SelectedDate="{Binding FilterDateTo, Mode=TwoWay}"/>
-        </StackPanel>
+        <Controls:StatisticsDateFilter />
     </DockPanel>
 </UserControl>

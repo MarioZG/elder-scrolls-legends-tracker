@@ -90,6 +90,11 @@
                     <MenuItem Header="Arena runs" Command="{Binding CommandShowArenaStats}" />
                     <MenuItem Header="Games" Command="{Binding CommandShowGamesStats}" />
                     <MenuItem Header="Ranked progress" Command="{Binding CommandShowRankedProgress}" />
+                    <MenuItem Header="Pack opening" Command="{Binding CommandShowPackOpening}">
+                        <MenuItem.Icon>
+                            <fa:ImageAwesome Icon="PieChart"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Overlays">
                     <MenuItem Command="{Binding CommandManageOverlayWindow}" CommandParameter="{x:Type local:OverlayToolbar}" IsCheckable="true" Header="Add game/reward/pack" IsChecked="{Binding OverlayWindows, Converter={Converters:ShowOverlayWindowToBool},  ConverterParameter={x:Type local:OverlayToolbar}}"/>

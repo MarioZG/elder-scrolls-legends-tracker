@@ -170,9 +170,9 @@ namespace ESLTracker.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("All")]
-        public global::ESLTracker.ViewModels.Game.PredefinedDateFilter GamesFilter_SelectedPredefinedDateFilter {
+        public global::ESLTracker.ViewModels.Enums.PredefinedDateFilter GamesFilter_SelectedPredefinedDateFilter {
             get {
-                return ((global::ESLTracker.ViewModels.Game.PredefinedDateFilter)(this["GamesFilter_SelectedPredefinedDateFilter"]));
+                return ((global::ESLTracker.ViewModels.Enums.PredefinedDateFilter)(this["GamesFilter_SelectedPredefinedDateFilter"]));
             }
             set {
                 this["GamesFilter_SelectedPredefinedDateFilter"] = value;

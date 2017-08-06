@@ -63,13 +63,11 @@
       <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LiveCharts, Version=0.9.2.0, Culture=neutral, PublicKeyToken=c5935629d38af058, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiveCharts.0.9.2\lib\net45\LiveCharts.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
-    <Reference Include="LiveCharts.Wpf, Version=0.9.2.0, Culture=neutral, PublicKeyToken=3b585c2a5f1a92c1, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiveCharts.Wpf.0.9.2\lib\net45\LiveCharts.Wpf.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -172,6 +170,12 @@
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\OverlayWindowBase.cs" />
+    <Compile Include="Controls\PackStatistics\OpeningPackStatsWindow.xaml.cs">
+      <DependentUpon>OpeningPackStatsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PackStatistics\OpeningPackSummaryForPeriod.xaml.cs">
+      <DependentUpon>OpeningPackSummaryForPeriod.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Packs\OpenPack.xaml.cs">
       <DependentUpon>OpenPack.xaml</DependentUpon>
     </Compile>
@@ -189,6 +193,9 @@
     </Compile>
     <Compile Include="Controls\Settings\SettingsPanel.xaml.cs">
       <DependentUpon>SettingsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatisticsDateFilter.xaml.cs">
+      <DependentUpon>StatisticsDateFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModel\Card.cs" />
     <Compile Include="DataModel\CardInstance.cs" />
@@ -216,6 +223,8 @@
     <Compile Include="Services\Implementation\ApplicationService.cs" />
     <Compile Include="Services\Implementation\CardImageService.cs" />
     <Compile Include="Services\Implementation\LauncherService.cs" />
+    <Compile Include="Services\IWinDialogs.cs" />
+    <Compile Include="Services\Implementation\WinDialogs.cs" />
     <Compile Include="Utils\Behaviors\AutoCompleteBehavior.cs" />
     <Compile Include="Utils\Converters\CollectionCountToVisibility.cs" />
     <Compile Include="Utils\Converters\DebuggingConverter.cs" />
@@ -235,6 +244,7 @@
     <Compile Include="Utils\Extensions\AssemblyExtensions.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
     <Compile Include="Utils\Extensions\DependencyObjectExtensions.cs" />
+    <Compile Include="Utils\Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Utils\Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Utils\Extensions\TaskExtensions.cs" />
     <Compile Include="Services\Implementation\HTTPService.cs" />
@@ -315,6 +325,7 @@
     <Compile Include="ViewModels\Decks\DeckPreviewViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckViewSortOrder.cs" />
     <Compile Include="ViewModels\Decks\ImportTextViewModel.cs" />
+    <Compile Include="ViewModels\FilterDateViewModel.cs" />
     <Compile Include="ViewModels\GameStatisticsViewModel.cs" />
     <Compile Include="ViewModels\Game\ChangeGameDeckViewModel.cs" />
     <Compile Include="ViewModels\Game\GameFilterViewModel.cs" />
@@ -370,12 +381,13 @@
     <Compile Include="ViewModels\Decks\DeckPropertiesViewModel.cs" />
     <Compile Include="ViewModels\Decks\IDeckTypeSelectorViewModel.cs" />
     <Compile Include="ViewModels\Game\EditGameViewModel.cs" />
-    <Compile Include="ViewModels\Game\PredefinedDateFilter.cs" />
+    <Compile Include="ViewModels\Enums\PredefinedDateFilter.cs" />
     <Compile Include="ViewModels\Game\RankedProgressChartViewModel.cs" />
     <Compile Include="ViewModels\IAsyncCommand.cs" />
     <Compile Include="ViewModels\IDeckClassSelectorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NotifyTaskCompletion.cs" />
+    <Compile Include="ViewModels\PackStatistics\OpeningPackStatsWindowViewModel.cs" />
     <Compile Include="ViewModels\Packs\OpenPackViewModel.cs" />
     <Compile Include="ViewModels\Packs\PacksStatsViewModel.cs" />
     <Compile Include="ViewModels\RealyAsyncCommand.cs" />
@@ -502,6 +514,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\PackStatistics\OpeningPackStatsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PackStatistics\OpeningPackSummaryForPeriod.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Packs\OpenPack.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -531,6 +551,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Settings\SettingsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\StatisticsDateFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

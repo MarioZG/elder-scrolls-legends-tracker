@@ -24,7 +24,7 @@ namespace ESLTracker.Properties
         bool UpgradeRequired { get; set; }
 
         //games filter settings
-        ViewModels.Game.PredefinedDateFilter GamesFilter_SelectedPredefinedDateFilter { get; set; }
+        ViewModels.Enums.PredefinedDateFilter GamesFilter_SelectedPredefinedDateFilter { get; set; }
         TimeSpan GamesFilter_DayCutoffTime { get; set; }
 
         //make screenshot when pack is confirmed

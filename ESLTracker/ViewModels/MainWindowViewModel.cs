@@ -154,6 +154,13 @@ namespace ESLTracker.ViewModels
             get { return new RelayCommand(new Action<object>(CommandShowRankedProgressExecute)); }
         }
 
+        public ICommand CommandShowPackOpening
+        {
+            get { return new RelayCommand(new Action<object>(CommandShowPackOpeningExecute)); }
+        }
+
+
+
         public ICommand CommandEditDeck
         {
             get
@@ -366,6 +373,11 @@ namespace ESLTracker.ViewModels
         private void CommandShowRankedProgressExecute(object obj)
         {
             new RankedProgressChart().Show();
+        }
+
+        private void CommandShowPackOpeningExecute(object obj)
+        {
+            new ESLTracker.Controls.PackStatistics.OpeningPackStatsWindow().Show();
         }
 
         private bool CommandEditDeckCanExecute(object arg)

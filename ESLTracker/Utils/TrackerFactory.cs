@@ -67,6 +67,10 @@ namespace ESLTracker.Utils
             {
                 return new WinAPI() as T;
             }
+            else if (type == typeof(IWinDialogs))
+            {
+                return new WinDialogs() as T;
+            }
             else
             {
                 throw new NotImplementedException(typeof(T).Name);

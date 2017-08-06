@@ -54,13 +54,13 @@ namespace ESLTracker.Services
             return returnValue;
         }
 
-        public Media.Brush GetRarityBrush(Card card)
+        public Media.Brush GetRarityBrush(CardRarity? rarity)
         {
             Logger.ConditionalTrace("Start GetRarityBrush");
             Media.Brush returnValue = null;
-            if ((card != null) && (card != Card.Unknown))
+            if (rarity.HasValue)
             {
-                switch (card.Rarity)
+                switch (rarity)
                 {
                     case CardRarity.Common:
                         returnValue = new Media.RadialGradientBrush(

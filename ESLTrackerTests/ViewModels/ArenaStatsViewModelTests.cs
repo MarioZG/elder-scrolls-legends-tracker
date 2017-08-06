@@ -14,6 +14,7 @@ using ESLTracker.ViewModels.Game;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Services;
+using ESLTracker.ViewModels.Enums;
 
 namespace ESLTracker.ViewModels.Tests
 {
@@ -204,8 +205,8 @@ namespace ESLTracker.ViewModels.Tests
 
             model.SetDateFilters(PredefinedDateFilter.All);
 
-            Assert.IsNull(model.FilterDateFrom);
-            Assert.IsNull(model.FilterDateTo);
+            Assert.AreEqual(new DateTime(2016, 1, 1) , model.FilterDateFrom);
+            Assert.AreEqual(DateTime.Now.Date.AddDays(1), model.FilterDateTo);
         }
 
         [TestMethod()]
