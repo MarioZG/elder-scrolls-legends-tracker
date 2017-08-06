@@ -93,7 +93,7 @@ namespace ESLTracker.ViewModels
                     break;
                 case PredefinedDateFilter.Today:
                     filterDateFrom = today.Date;
-                    filterDateTo = today.Date;
+                    filterDateTo = today.Date.AddDays(1);
                     break;
                 case PredefinedDateFilter.Last7Days:
                     filterDateFrom = today.AddDays(-6);
