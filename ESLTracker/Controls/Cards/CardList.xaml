@@ -22,7 +22,9 @@
     <ItemsControl
         PreviewMouseWheel="ItemsControl_PreviewMouseWheel"
         Style="{StaticResource ItemsControlVirtualizedStyle}"
-        ItemsSource="{Binding Source={StaticResource cardsCollectionView}}">
+        x:Name="itemsList"
+        Loaded="itemsList_Loaded"
+        ItemsSource="{Binding }">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <local:SelectCard                     

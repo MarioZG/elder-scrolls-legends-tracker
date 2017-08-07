@@ -7,6 +7,7 @@ using LiveCharts.Wpf;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -46,6 +47,8 @@ namespace ESLTracker.ViewModels.PackStatistics
             RaisePropertyChangedEvent(nameof(PieChartByClass));
             RaisePropertyChangedEvent(nameof(PieChartByRarity));
             RaisePropertyChangedEvent(nameof(PieChartPremiumByRarity));
+            RaisePropertyChangedEvent(nameof(Top10Cards));
+            RaisePropertyChangedEvent(nameof(GetPacksInDateRange));
         }
 
         public dynamic PieChartByClass
@@ -126,6 +129,24 @@ namespace ESLTracker.ViewModels.PackStatistics
 
                 sc.AddRange(data);
                 return sc;
+            }
+        }
+
+        private ObservableCollection<CardInstance> top10Cards = new ObservableCollection<CardInstance>();
+        public dynamic Top10Cards
+        {
+            get
+            {
+                Logger.Trace($"Top10Cards");
+                var rawData = ((IEnumerable<CardInstance>)GetDataSet())
+                    .GroupBy(ci => ci.Card)
+                    .Select(ci => new CardInstance() { Card = ci.Key, Quantity = ci.Count() })
+                    .OrderByDescending(cis => cis.Quantity)
+                    .Take(10);
+
+                top10Cards.Clear();
+                rawData.All(ci => { top10Cards.Add(ci); return true; });
+                return top10Cards;
             }
         }
 

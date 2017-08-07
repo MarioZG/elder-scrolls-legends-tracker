@@ -1,4 +1,4 @@
-﻿<Window xmlns:Controls="clr-namespace:ESLTracker.Controls" 
+﻿<Window xmlns:Cards="clr-namespace:ESLTracker.Controls.Cards"  xmlns:Controls="clr-namespace:ESLTracker.Controls" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,7 +11,7 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         x:Name="openingPacksWindow"
-        Title="Opening Packs Statistics" Height="500" Width="800">
+        Title="Opening Packs Statistics" Height="700" Width="800">
     <Window.DataContext>
         <ViewModels:OpeningPackStatsWindowViewModel/>
     </Window.DataContext>
@@ -64,9 +64,26 @@
         </DockPanel>
 
         <StackPanel>
-            <local:OpeningPackSummaryForPeriod 
-                PacksData="{Binding DataContext.GetPacksInDateRange, ElementName=openingPacksWindow, Mode=OneWay}"
-                Margin="10,10,0,20"/>
+            <DockPanel>
+                <local:OpeningPackSummaryForPeriod 
+                    DockPanel.Dock="Left"
+                    PacksData="{Binding DataContext.GetPacksInDateRange, ElementName=openingPacksWindow, Mode=OneWay}"
+                    Margin="10,10,0,20"/>
+                <TextBlock 
+                    HorizontalAlignment="Right"
+                    DockPanel.Dock="Top"
+                    Margin="0,0,30,0"
+                    Text="Most popular cards"
+                    Style="{StaticResource ChartHeader}"  />
+                <Cards:CardList 
+                    HorizontalAlignment="Right"
+                    DockPanel.Dock="Right"
+                    MaxWidth="200" 
+                    Margin="10,10,30,20"
+                    SortingProperties="Quantity"
+                    SortingDirections="D"
+                    DataContext="{Binding DataContext.Top10Cards, ElementName=openingPacksWindow}"  />
+            </DockPanel>
             <UniformGrid Columns="3" Margin="0,0,0,10">
                 <TextBlock Text="Cards by Class"
                            Style="{StaticResource ChartHeader}" />
@@ -76,17 +93,17 @@
                            Style="{StaticResource ChartHeader}"  />
             </UniformGrid>
             <UniformGrid Columns="3">
-                <lvc:PieChart Height="100" LegendLocation="Right"  Series="{Binding PieChartByClass}">
+                <lvc:PieChart Height="150" LegendLocation="Right"  Series="{Binding PieChartByClass}">
                     <lvc:PieChart.DataTooltip>
                         <lvc:DefaultTooltip SelectionMode="OnlySender" Background="LightGray"/>
                     </lvc:PieChart.DataTooltip>
                 </lvc:PieChart>
-                <lvc:PieChart Height="100" LegendLocation="Right" Series="{Binding PieChartByRarity}">
+                <lvc:PieChart Height="150" LegendLocation="Right" Series="{Binding PieChartByRarity}">
                     <lvc:PieChart.DataTooltip>
                         <lvc:DefaultTooltip SelectionMode="OnlySender" Background="LightGray"/>
                     </lvc:PieChart.DataTooltip>
                 </lvc:PieChart>
-                <lvc:PieChart Height="100" LegendLocation="Right" Series="{Binding PieChartPremiumByRarity}">
+                <lvc:PieChart Height="150" LegendLocation="Right" Series="{Binding PieChartPremiumByRarity}">
                     <lvc:PieChart.DataTooltip>
                         <lvc:DefaultTooltip SelectionMode="OnlySender" Background="LightGray"/>
                     </lvc:PieChart.DataTooltip>
