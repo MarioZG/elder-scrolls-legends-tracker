@@ -61,6 +61,7 @@ namespace ESLTracker.ViewModels.PackStatistics
                 decimal totalCount = rawData.Sum( d=> d.Qty);
                 var data = rawData
                     .GroupBy(c => c.Attribute)
+                    .OrderBy(c => c.Key)
                     .Select(c => new PieSeries
                     {
                         Title = $"{ c.Key.ToString()} { Math.Round(c.Sum(d => d.Qty) / totalCount * 100, 2)}% ({c.Sum(d => d.Qty).ToString("0.#")})",
@@ -87,6 +88,7 @@ namespace ESLTracker.ViewModels.PackStatistics
                 int totalCount = rawData.Count();
                 var data = rawData
                     .GroupBy(c => c)
+                    .OrderBy(c=> c.Key)
                     .Select(c => new PieSeries
                     {
                         Title = $"{ c.Key.ToString()} { Math.Round((decimal)c.Count()/totalCount*100, 2)}% ({c.Count()})",
@@ -115,6 +117,7 @@ namespace ESLTracker.ViewModels.PackStatistics
                 int totalCount = rawData.Count();
                 var data = rawData
                     .GroupBy(c => c)
+                    .OrderBy(c => c.Key)
                     .Select(c => new PieSeries
                     {
                         Title = $"{ c.Key.ToString()} { Math.Round((decimal)c.Count() / totalCount * 100, 2)}% ({c.Count()})",
