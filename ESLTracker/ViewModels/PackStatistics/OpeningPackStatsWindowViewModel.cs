@@ -57,15 +57,15 @@ namespace ESLTracker.ViewModels.PackStatistics
             {
                 Logger.Trace($"PieChartByClass");
                 var rawData = ((IEnumerable<CardInstance>)GetDataSet())
-                    .SelectMany(c => c.Card.Attributes);
-                int totalCount = rawData.Count();
+                    .SelectMany(c => c.Card.Attributes, ( ci, a) => new { Attribute = a, Qty = (decimal) 1 / ci.Card.Attributes.Count});
+                decimal totalCount = rawData.Sum( d=> d.Qty);
                 var data = rawData
-                    .GroupBy(c => c)
+                    .GroupBy(c => c.Attribute)
                     .Select(c => new PieSeries
                     {
-                        Title = $"{ c.Key.ToString()} { Math.Round((decimal)c.Count() / totalCount * 100, 2)}% ({c.Count()})",
+                        Title = $"{ c.Key.ToString()} { Math.Round(c.Sum(d => d.Qty) / totalCount * 100, 2)}% ({c.Sum(d => d.Qty).ToString("0.#")})",
                         Fill = ClassAttributesHelper.DeckAttributeColors[c.Key].ToMediaBrush(),
-                        Values = new ChartValues<int>() { c.Count() },
+                        Values = new ChartValues<decimal>() { c.Sum(d => d.Qty) },
                         DataLabels = false,
                         LabelPoint = chartPoint => string.Format("{0:P}", chartPoint.Participation)
                     });
