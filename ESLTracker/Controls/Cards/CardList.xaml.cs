@@ -82,6 +82,7 @@ namespace ESLTracker.Controls.Cards
             ICollectionView defaultView = CollectionViewSource.GetDefaultView(itemsList.ItemsSource);
             if ((defaultView != null) && (! String.IsNullOrWhiteSpace(SortingProperties)))
             {
+                defaultView.SortDescriptions.Clear();
                 var sortingDirections = SortingDirections.Split(new char[] { '-' });
                 int i = 0;
                 foreach (var sort in SortingProperties.Split(new char[] { '-' }))

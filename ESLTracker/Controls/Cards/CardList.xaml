@@ -24,7 +24,7 @@
         Style="{StaticResource ItemsControlVirtualizedStyle}"
         x:Name="itemsList"
         Loaded="itemsList_Loaded"
-        ItemsSource="{Binding }">
+        ItemsSource="{Binding Source={StaticResource cardsCollectionView}}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <local:SelectCard                     
