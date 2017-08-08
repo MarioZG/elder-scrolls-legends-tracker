@@ -259,6 +259,7 @@
     <Compile Include="Utils\FileUpdaters\Update_2_0_To_2_1.cs" />
     <Compile Include="Utils\FileUpdaters\Update_2_2_To_2_3.cs" />
     <Compile Include="Utils\FileUpdaters\Update_2_1_To_2_2.cs" />
+    <Compile Include="Utils\FileUpdaters\Update_3_0_To_3_1.cs" />
     <Compile Include="Utils\FileUpdaters\Update_2_3_To_3_0.cs" />
     <Compile Include="Utils\IOverlayWindow.cs" />
     <Compile Include="Utils\Messages\ApplicationShowBalloonTip.cs" />
