@@ -171,7 +171,7 @@ namespace ESLTracker.ViewModels.PackStatistics
             get
             {
                 return trackerFactory.GetTracker().Packs
-                                .Where(p => p.DateOpened > this.FilterDateFrom && p.DateOpened < this.FilterDateTo);
+                                .Where(p => p.DateOpened > this.FilterDateFrom && p.DateOpened.Date <= this.FilterDateTo.Date);
             }
         }
 

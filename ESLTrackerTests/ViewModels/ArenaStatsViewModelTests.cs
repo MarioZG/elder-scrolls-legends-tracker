@@ -170,7 +170,7 @@ namespace ESLTracker.ViewModels.Tests
 
             ArenaStatsViewModel model = new ArenaStatsViewModel(trackerFactory.Object);
             model.FilterDateFrom = new DateTime(2016, 11, 1);
-            model.FilterDateTo = null;
+            model.FilterDateTo = DateTime.Today.Date;
             model.GameType = DataModel.Enums.GameType.VersusArena;
 
             var result = model.GetDataSet();
@@ -206,7 +206,7 @@ namespace ESLTracker.ViewModels.Tests
             model.SetDateFilters(PredefinedDateFilter.All);
 
             Assert.AreEqual(new DateTime(2016, 1, 1) , model.FilterDateFrom);
-            Assert.AreEqual(DateTime.Now.Date.AddDays(1), model.FilterDateTo);
+            Assert.AreEqual(DateTime.Now.Date, model.FilterDateTo);
         }
 
         [TestMethod()]

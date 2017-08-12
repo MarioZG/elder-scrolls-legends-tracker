@@ -12,9 +12,9 @@ namespace ESLTracker.ViewModels
     public abstract class FilterDateViewModel : ViewModelBase
     {
         protected DateTime? filterDateFrom;
-        public DateTime? FilterDateFrom
+        public DateTime FilterDateFrom
         {
-            get { return filterDateFrom.HasValue ? filterDateFrom : new DateTime(2016, 1, 1) ; }
+            get { return filterDateFrom.HasValue ? filterDateFrom.Value : new DateTime(2016, 1, 1) ; }
             set {
                 filterDateFrom = value;
                 filterDateSelectedOption = PredefinedDateFilter.Custom;
@@ -24,9 +24,9 @@ namespace ESLTracker.ViewModels
         }
 
         protected DateTime? filterDateTo;
-        public DateTime? FilterDateTo
+        public DateTime FilterDateTo
         {
-            get { return filterDateTo.HasValue ? filterDateTo : DateTime.Today.Date.AddDays(1); }
+            get { return filterDateTo.HasValue ? filterDateTo.Value : DateTime.Today.Date; }
             set {
                 filterDateTo = value;
                 filterDateSelectedOption = PredefinedDateFilter.Custom;
@@ -93,7 +93,7 @@ namespace ESLTracker.ViewModels
                     break;
                 case PredefinedDateFilter.Today:
                     filterDateFrom = today.Date;
-                    filterDateTo = today.Date.AddDays(1);
+                    filterDateTo = today.Date;
                     break;
                 case PredefinedDateFilter.Last7Days:
                     filterDateFrom = today.AddDays(-6);

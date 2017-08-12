@@ -175,7 +175,7 @@ namespace ESLTracker.ViewModels
                     .Where(g => (g.OpponentClass.HasValue)
                         && (g.Type == this.gameType)
                         && ((filterDateFrom == null) || (g.Date.Date >= filterDateFrom.Value.Date))
-                        && ((FilterDateTo == null) || (g.Date.Date <= FilterDateTo.Value.Date))
+                        && ((FilterDateTo == null) || (g.Date.Date <= FilterDateTo.Date))
                         && ((includeHiddenDecks) || (! g.Deck.IsHidden))
                         );
             }
