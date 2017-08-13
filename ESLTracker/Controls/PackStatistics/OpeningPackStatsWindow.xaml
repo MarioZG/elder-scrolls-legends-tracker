@@ -62,7 +62,25 @@
                 </Button>
             </StackPanel>
         </DockPanel>
-
+        <StackPanel DockPanel.Dock="Top" 
+                    HorizontalAlignment="Left" 
+                    Orientation="Horizontal"
+                    Margin="10,0,0,0">
+            <TextBlock Text="Filter by sets:   " VerticalAlignment="Center"/>
+            <ComboBox
+                      IsEditable="False" 
+                      SelectedItem="{Binding PackSetFilter}"
+                      ItemsSource="{Binding PackSetAutocomplete}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding ImagePath}" Width="16" Height="16" Margin="0,2,5,2" />
+                            <TextBlock Text="{Binding Name, FallbackValue=All2, TargetNullValue=All3}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
         <StackPanel>
             <DockPanel>
                 <local:OpeningPackSummaryForPeriod 

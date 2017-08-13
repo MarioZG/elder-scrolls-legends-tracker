@@ -71,10 +71,12 @@ namespace ESLTrackerTests
                 {
                     DeckVersion version = d.CreateVersion(1, i + 1, d.CreatedDate.AddDays(i));
                     int cardCount = 30 + rand.Next(40);
-                    for (; cardCount > 0; cardCount--)
+                    for (; cardCount > 0;)
                     {
                         Card c = CardsDatabase.Default.Cards.ElementAt(rand.Next(CardsDatabase.Default.Cards.Count()));
-                        version.Cards.Add(new CardInstance(c));
+                        int qty = rand.Next(1, 3);
+                        version.Cards.Add(new CardInstance(c) { Quantity = qty });
+                        cardCount -= qty;
                     }
 
                     int gamesCount = rand.Next(300);
@@ -108,6 +110,27 @@ namespace ESLTrackerTests
                     }
                 }
                 tracker.Decks.Add(d);
+            }
+
+            int packsCount = rand.Next(100, 300);
+            var sets = CardsDatabase.Default.CardSets.Where(cs => cs.HasPacks);
+            for (int i = 0; i < packsCount; i++)
+            {
+                Pack p = new Pack();
+                p.DateOpened = DateTime.Now.AddDays(-1 * rand.Next(365));
+
+                p.CardSet = sets.ElementAt(rand.Next(sets.Count()));
+
+                var cards = CardsDatabase.Default.Cards.Where(c => c.Set == p.CardSet.Name);
+
+                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
+                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
+                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
+                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
+                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
+                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
+
+                tracker.Packs.Add(p);
             }
 
             tracker.Version = Tracker.CurrentFileVersion;

@@ -25,8 +25,24 @@ namespace ESLTracker.ViewModels.PackStatistics
 
         public string TargetCsvFile { get; set; }
 
+        private readonly CardSet AllFilter = new CardSet() { Name = "All"};
+
+        private CardSet packSetFilter;
+        public CardSet PackSetFilter
+        {
+            get { return packSetFilter; }
+            set { SetProperty<CardSet>(ref packSetFilter, value) ; RaiseDataPropertyChange(); }
+        }
+
+        public IEnumerable<CardSet> PackSetAutocomplete
+        {
+            get { return new CardSet[] { AllFilter }.Union(cardsDatabase.CardSets.Where(cs => cs.HasPacks)).ToList(); }
+        }
+
         private ICardImageService cardImageService;
         private IWinDialogs winDialogs;
+        private ICardsDatabase cardsDatabase;
+
         public OpeningPackStatsWindowViewModel() : this(new TrackerFactory())
         {
 
@@ -36,9 +52,12 @@ namespace ESLTracker.ViewModels.PackStatistics
         {
             cardImageService = trackerFactory.GetService<ICardImageService>();
             winDialogs = trackerFactory.GetService<IWinDialogs>();
+            cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
 
             CommandExportToCsv = new RealyAsyncCommand<object>(CommandExportToCsvExecute);
             CommandOpenCsv = new RealyAsyncCommand<object>(CommandOpenCsvExcute);
+
+            packSetFilter = AllFilter;
         }
 
         protected override void RaiseDataPropertyChange()
@@ -171,7 +190,9 @@ namespace ESLTracker.ViewModels.PackStatistics
             get
             {
                 return trackerFactory.GetTracker().Packs
-                                .Where(p => p.DateOpened > this.FilterDateFrom && p.DateOpened.Date <= this.FilterDateTo.Date);
+                                .Where(p => (p.DateOpened > this.FilterDateFrom) 
+                                    && (p.DateOpened.Date <= this.FilterDateTo.Date)
+                                    && (PackSetFilter?.Id == Guid.Empty || p.CardSet.Id == PackSetFilter.Id));
             }
         }
 

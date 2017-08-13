@@ -176,6 +176,9 @@
     <Compile Include="Controls\PackStatistics\OpeningPackSummaryForPeriod.xaml.cs">
       <DependentUpon>OpeningPackSummaryForPeriod.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PackStatistics\SetFilter.xaml.cs">
+      <DependentUpon>SetFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Packs\OpenPack.xaml.cs">
       <DependentUpon>OpenPack.xaml</DependentUpon>
     </Compile>
@@ -520,6 +523,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\PackStatistics\OpeningPackSummaryForPeriod.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PackStatistics\SetFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
