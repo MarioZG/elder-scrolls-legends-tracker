@@ -1,7 +1,7 @@
 {
-  "Version": "0.15",
-  "VersionInfo": "Patch 1.66 changes",
-  "VersionDate": "2017-08-02T00:00:00Z",
+  "Version": "0.16",
+  "VersionInfo": "Patch 1.66.1 changes",
+  "VersionDate": "2017-08-23T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -303,7 +303,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: Give the top creature of your deck +4/+4."
+      "text": "+4/+4\r\nSummon: Give the top creature of your deck +4/+4."
     },
     {
       "id": "979ba718-9bb1-11e6-80f5-76304dec7eb7",
@@ -541,7 +541,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: Give the wielder Cover at the end of turn."
+      "text": "+3/+0\r\nSummon: Give the wielder Cover at the end of turn."
     },
     {
       "id": "1472842b-a646-4a5c-9236-c354b9dd1f9d",
@@ -1003,7 +1003,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: Silence another creature."
+      "text": "+1/+0\r\nSummon: Silence another creature."
     },
     {
       "id": "a8d2d0e0-0618-d17d-ddac-3263a45eac9b",
@@ -1141,7 +1141,7 @@
       "attributes": "agility",
       "cost": "5",
       "attack": "4",
-      "health": "4",
+      "health": "5",
       "race": "nord",
       "text": "Drain\r\nWhen a friendly creature Pilfers or Drains, gain 1 magicka this turn."
     },
@@ -1171,7 +1171,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "Summon a 3/3 Sovngarde Hero."
     },
     {
       "id": "1c9a97a5-99ab-159c-8118-e81aad88ff64",
@@ -1519,7 +1519,7 @@
       "attributes": "willpower",
       "cost": "3",
       "attack": "2",
-      "health": "4",
+      "health": "5",
       "race": "nord",
       "text": "When you summon a Dragon, Cliffside Lookout gains +1/+1."
     },
@@ -1569,14 +1569,14 @@
       "id": "40813eec-294a-4f53-b5ba-2b68bd286468",
       "name": "Companion Harbinger",
       "rarity": "Rare",
-      "set": "Heroes of Skyrim",
+      "set": "Heroes of Skyrim",  
       "isunique": false,
       "type": "creature",
       "attributes": "endurance",
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "werewolf",
       "text": ""
     },
     {
@@ -1590,7 +1590,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "beast",
+      "race": "nord",
       "text": "Beast Form: Give friendly Werewolves +1/+1."
     },
     {
@@ -1829,7 +1829,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "Lethal"
+      "text": "Lethal\r\n+1/+1"
     },
     {
       "id": "e3160960-08bb-bb60-a177-994cc71a3598",
@@ -1955,7 +1955,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: Destroy an enemy Undead."
+      "text": "+4/+4\r\nSummon: Destroy an enemy Undead."
     },
     {
       "id": "5519cfce-5e20-5a4b-a643-2ee2a480ea78",
@@ -2091,7 +2091,7 @@
       "isunique": false,
       "type": "action",
       "attributes": "willpower",
-      "cost": "1",
+      "cost": "2",
       "attack": "0",
       "health": "0",
       "race": "",
@@ -2235,7 +2235,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: Trigger the wielder’s summon ability."
+      "text": "+2/+2\r\nSummon: Trigger the wielder’s summon ability."
     },
     {
       "id": "5b56a0e2-f88f-11e6-bc64-92361f002671",
@@ -2249,7 +2249,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: +2/+2 if you have a Dragon in your discard pile."
+      "text": "+2/+2\r\nSummon: +2/+2 if you have a Dragon in your discard pile."
     },
     {
       "id": "c6758a2c-9b9d-11e6-9f33-a24fc0d9649c",
@@ -2305,7 +2305,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "Give an enemy creature -1/-1."
     },
     {
       "id": "979ba8a8-9bb1-11e6-80f5-76304dec7eb7",
@@ -2403,7 +2403,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "+3/+3"
     },
     {
       "id": "04cd8634-6fee-11e6-8b77-86f30ca893d3",
@@ -2487,7 +2487,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "+5/+5"
     },
     {
       "id": "12ec02ca-b7c2-c6ec-d1bc-c0d7da80f803",
@@ -2795,7 +2795,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: Draw a card. The wielder has Cover until it attacks."
+      "text": "+0/+1\r\nSummon: Draw a card. The wielder has Cover until it attacks."
     },
     {
       "id": "ef93d81c-02d6-4941-ac22-22cdd76a5ce2",
@@ -2837,7 +2837,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: Draw a card."
+      "text": "+0/+3\r\nSummon: Draw a card."
     },
     {
       "id": "541abeb0-09bc-11e7-9598-0800200c9a66",
@@ -2903,7 +2903,7 @@
       "isunique": false,
       "type": "creature",
       "attributes": "intelligence",
-      "cost": "9",
+      "cost": "10",
       "attack": "3",
       "health": "3",
       "race": "breton",
@@ -3117,7 +3117,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "Deal 2 damage to a creature."
     },
     {
       "id": "9942f13d-7712-ad33-a402-4a3cf1637a58",
@@ -3411,7 +3411,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: You gain 4 health."
+      "text": "+0/+4\r\nSummon: You gain 4 health."
     },
     {
       "id": "919775ec-9e51-042a-e985-41c13570a774",
@@ -3747,7 +3747,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "Regenerate"
+      "text": "Regenerate\r\n+1/+3"
     },
     {
       "id": "2117593f-819b-91ef-f0a7-c74da3e7f098",
@@ -3817,7 +3817,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "+4/+1"
     },
     {
       "id": "d773e6e8-e309-e9b8-3d23-f68a63acbed6",
@@ -3831,7 +3831,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nLast Gasp: Returns to your hand."
+      "text": "+5/+0\r\nLast Gasp: Returns to your hand."
     },
     {
       "id": "b9d9519e-c647-bc0a-946f-3ab042a5ca50",
@@ -4195,7 +4195,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "+0/+6"
     },
     {
       "id": "979ba3d0-9bb1-11e6-80f5-76304dec7eb7",
@@ -4275,7 +4275,7 @@
       "isunique": false,
       "type": "action",
       "attributes": "willpower",
-      "cost": "1",
+      "cost": "2",
       "attack": "0",
       "health": "0",
       "race": "",
@@ -4307,7 +4307,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "Breakthrough"
+      "text": "Breakthrough\r\n+1/+1"
     },
     {
       "id": "a05697fa-29ed-6e07-4440-c0a0935e3aaf",
@@ -4629,7 +4629,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "Guard"
+      "text": "Guard\r\n+1/+3"
     },
     {
       "id": "883566ba-943e-e52f-c9f0-041ae5846cb5",
@@ -4811,7 +4811,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nThe wielder is immune to Silence."
+      "text": "+1/+2\r\nThe wielder is immune to Silence."
     },
     {
       "id": "f067e546-5279-11e6-bdf4-0800200c9a66",
@@ -4839,7 +4839,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: Shackle an enemy creature."
+      "text": "+2/+1\r\nSummon: Shackle an enemy creature."
     },
     {
       "id": "c90316fa-431f-298d-e586-e537815cab56",
@@ -4923,7 +4923,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "+0/+3"
     },
     {
       "id": "49661a9c-a70b-7017-f83e-c7b807fc6d6e",
@@ -5035,7 +5035,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: Give this creature's Keywords to each other friendly creature."
+      "text": "+3/+3\r\nSummon: Give this creature's Keywords to each other friendly creature."
     },
     {
       "id": "cd8efed9-dc06-ba4d-d751-af1c157493b3",
@@ -5749,7 +5749,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "Breakthrough"
+      "text": "Breakthrough\r\n+3/+3"
     },
     {
       "id": "e62d15b0-6650-11e6-bdf4-0800200c9a66",
@@ -6049,7 +6049,7 @@
       "id": "751b6b44-b11c-11e6-80f5-76304dec7eb7",
       "name": "Quicksilver Crossbow",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Core",  
       "isunique": false,
       "type": "item",
       "attributes": "strength",
@@ -6469,7 +6469,7 @@
       "id": "728a3472-f34e-94f9-e22e-83c668f9dea5",
       "name": "Ring of Imaginary Might",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Core",  
       "isunique": false,
       "type": "item",
       "attributes": "endurance",
@@ -6673,7 +6673,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "Ward"
+      "text": "Ward\r\n+4/+0"
     },
     {
       "id": "efda54db-d074-8bca-c88e-d6520b651ca4",
@@ -6823,11 +6823,11 @@
       "isunique": false,
       "type": "item",
       "attributes": "strength",
-      "cost": "2",
+      "cost": "3",
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: An enemy creature loses Guard."
+      "text": "+2/+2\r\nSummon: An enemy creature loses Guard."
     },
     {
       "id": "67f42b2e-030e-9e7a-4513-ed3d75787dbc",
@@ -7149,7 +7149,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: Give the wielder Drain this turn."
+      "text": "+1/+1\r\nSummon: Give the wielder Drain this turn."
     },
     {
       "id": "8e940763-947b-9b1d-1969-37518fdd159c",
@@ -7257,11 +7257,11 @@
       "isunique": false,
       "type": "action",
       "attributes": "endurance",
-      "cost": "2",
+      "cost": "3",
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "Draw a creature from your discard pile."
     },
     {
       "id": "63b0d911-5fdc-2c83-d900-dd63448f2538",
@@ -7337,7 +7337,7 @@
       "id": "751b4696-b11c-11e6-80f5-76304dec7eb7",
       "name": "Spear of Embers",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Core",  
       "isunique": false,
       "type": "item",
       "attributes": "intelligence",
@@ -7443,7 +7443,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nWhen the wielder attacks, it deals 1 damage to all enemy creatures in this lane."
+      "text": "+3/+0\r\nWhen the wielder attacks, it deals 1 damage to all enemy creatures in this lane."
     },
     {
       "id": "6413ecd2-81f4-88c7-810b-572011cce09f",
@@ -7555,7 +7555,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "+2/+2"
     },
     {
       "id": "42e39126-215a-0c6d-4be1-2f23c6956479",
@@ -7569,7 +7569,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "+3/+0"
     },
     {
       "id": "a0c49d4e-04af-4efc-a223-b2afd6d69074",
@@ -7915,7 +7915,7 @@
       "isunique": false,
       "type": "creature",
       "attributes": "intelligence",
-      "cost": "9",
+      "cost": "10",
       "attack": "3",
       "health": "3",
       "race": "breton",
@@ -8126,8 +8126,8 @@
       "type": "creature",
       "attributes": "intelligence",
       "cost": "5",
-      "attack": "5",
-      "health": "5",
+      "attack": "4",
+      "health": "4",
       "race": "khajiit",
       "text": "Summon: See a vision of two of your opponent's cards. Guess which one is in their hand. If you're right, draw a copy of it."
     },
@@ -8227,7 +8227,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "\r\nSummon: Draw a card."
+      "text": "+2/+2\r\nSummon: Draw a card."
     },
     {
       "id": "f7be8749-b993-1278-312d-071c6d03f148",
@@ -8479,7 +8479,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": ""
+      "text": "Unsummon an enemy creature with power 3 or less."
     },
     {
       "id": "f7ebbd0a-adaf-11e6-80f5-76304dec7eb7",
@@ -9065,7 +9065,7 @@
       "attributes": "neutral",
       "cost": "3",
       "attack": "3",
-      "health": "2",
+      "health": "3",
       "race": "nord",
       "text": "When Young Dragonborn Slays a Dragon, put a random Shout into your hand.\r\nAfter you play a Shout, Young Dragonborn gains +1/+1."
     },
