@@ -12,19 +12,31 @@
     <UserControl.Resources>
     </UserControl.Resources>
     <DockPanel HorizontalAlignment="Stretch">
-        <ItemsControl ItemsSource="{Binding Path=Attributes.ImageSources}" BorderThickness="0"
-                      ToolTip="{Binding Class}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Image Width="15" Source="{Binding}"></Image>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <StackPanel DockPanel.Dock="Left">
+            <ItemsControl ItemsSource="{Binding Path=Attributes.ImageSources}" BorderThickness="0"
+                          ToolTip="{Binding Class}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Image Width="15" Source="{Binding}"></Image>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <fa:ImageAwesome 
+                Icon="Globe" 
+                Width="9" 
+                Margin="5" 
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Foreground="Gray"
+                Visibility="{Binding IsWebDeck, Converter={Converters:BoolToVisibilty}}"
+                ToolTip="{Binding DeckUrl}"
+            />
+        </StackPanel>
         <local:DeckLastGamesIndicator
             Visibility="{Binding Path=DeckViewLastGamesIndicatorShow, Source={x:Static Properties:Settings.Default}, Converter={Converters:BoolToVisibilty}}"
             GamesCount="{Binding Path=DeckViewLastGamesIndicatorCount, Source={x:Static Properties:Settings.Default}}" 
@@ -45,7 +57,7 @@
                     Background="{x:Null}" 
                     Visibility="{Binding IsEditControl, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl},AncestorLevel=2}, Converter={Converters:BoolToVisibilty}, FallbackValue=Collapsed}"
                 >
-                    <fa:ImageAwesome 
+                <fa:ImageAwesome 
                     Icon="ShareSquareOutline" 
                     Width="12" 
                     Margin="5" 

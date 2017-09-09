@@ -116,10 +116,20 @@ namespace ESLTracker.DataModel
 
         private string deckUrl;
 
+        [XmlAttribute]
         public string DeckUrl
         {
             get { return deckUrl; }
             set { SetProperty<string>(ref deckUrl, value); }
+        }
+
+        [XmlIgnore]
+        public bool IsWebDeck
+        {
+            get
+            {
+                return ! String.IsNullOrWhiteSpace(deckUrl);
+            }
         }
 
 
