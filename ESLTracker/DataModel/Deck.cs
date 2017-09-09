@@ -25,7 +25,13 @@ namespace ESLTracker.DataModel
             set { type = value; RaisePropertyChangedEvent("Type"); }
         }
 
-        public string Name { get; set; }
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { SetProperty<string>(ref name, value); }
+        }
 
         [XmlIgnore]
         public DeckAttributes Attributes
@@ -43,7 +49,13 @@ namespace ESLTracker.DataModel
             }
         }
 
-        public DeckClass? Class { get; set; }
+        private DeckClass? deckClass;
+        public DeckClass? Class
+        {
+            get { return deckClass; }
+            set { SetProperty<DeckClass?>(ref deckClass, value); }
+        }
+
         public string Notes { get; set; }
         public DateTime CreatedDate { get; set; }
         public ArenaRank? ArenaRank { get; set; }

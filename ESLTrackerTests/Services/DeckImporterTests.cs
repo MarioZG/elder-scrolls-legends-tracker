@@ -62,6 +62,53 @@ namespace ESLTracker.Services.Tests
             di.ImportFromTextProcess(data);
 
             Assert.IsTrue(di.Cards.Count > 0);
+            Assert.AreEqual(50, di.Cards.Sum( c=> c.Quantity));
+        }
+
+        [TestMethod()]
+        [DeploymentItem("./Services/Data/DeckImportTest002.txt", "./Services/Data/")]
+        public void FindCardsDataTest002_SampleDeckWithTitle()
+        {
+            string data = File.ReadAllText("./Services/Data/DeckImportTest002.txt");
+            string expectedName = "CVH's Reanimator Control Rage Warrior";
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
+
+            cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new DataModel.Card());
+            trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDatabase.Object);
+
+            var di = new DeckImporter(trackerFactory.Object);
+            di.Cards = new List<DataModel.CardInstance>();
+            data = di.FindCardsData(data);
+            di.ImportFromTextProcess(data);
+
+
+            Assert.IsTrue(di.Cards.Count > 0);
+            Assert.AreEqual(50, di.Cards.Sum(c => c.Quantity));
+            Assert.AreEqual(expectedName, di.DeckName);
+        }
+
+        [TestMethod()]
+        [DeploymentItem("./Services/Data/DeckImportTest003.txt", "./Services/Data/")]
+        public void FindCardsDataTest003_SampleDeckWithTitleWithBraces()
+        {
+            string data = File.ReadAllText("./Services/Data/DeckImportTest003.txt");
+            string expectedName = "Control Resummon Monk (Rank 5~)";
+            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
+
+            cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new DataModel.Card());
+            trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDatabase.Object);
+
+            var di = new DeckImporter(trackerFactory.Object);
+            di.Cards = new List<DataModel.CardInstance>();
+            data = di.FindCardsData(data);
+            di.ImportFromTextProcess(data);
+
+
+            Assert.IsTrue(di.Cards.Count > 0);
+            Assert.AreEqual(50, di.Cards.Sum(c => c.Quantity));
+            Assert.AreEqual(expectedName, di.DeckName);
         }
     }
 }

@@ -1,0 +1,2165 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<!--Meta-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Ashcorp">
+<meta http-equiv="content-language" content="en" />
+
+<meta property="og:site_name" content="Legends Decks"/>
+
+
+<!-- CSS -->
+<link type="text/css" href="https://www.legends-decks.com/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" media="screen" type="text/css" href="https://www.legends-decks.com/css/template.css?v=10" /> 
+<link rel="stylesheet" media="screen" type="text/css" href="https://www.legends-decks.com/css/legends.css?v=13" /> 
+
+<!-- Thumb Image-->
+<link rel="shortcut icon" href="https://www.legends-decks.com/interface/thumbs_0.png" />
+
+<!-- JS -->	
+<script type="text/javascript">var root = "https://www.legends-decks.com";</script>
+<script type="text/javascript" src="https://www.legends-decks.com/js/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.legends-decks.com/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.legends-decks.com/js/javascript.js?v=16"></script>
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#222",
+      "text": "#ffffff"
+    },
+    "button": {
+      "background": "#816A52",
+      "text": "#ffffff"
+    }
+  },
+  "position": "bottom-right",
+  "content": {
+	"message": "We use cookies to offer content and advertisements, as well as features for social media and to analyse our website traffic.<br/>We also share information about the use of our site with our partners for social media, advertising and analysis.<br/>By using our services, you agree to our use of cookies.",
+    "href": "https://www.legends-decks.com/privacy-policy"
+  },
+  "law": {
+      "regionalLaw": false,
+    },
+})});
+</script>
+<style>.cc-message{font-size:12px;}</style>	<script type="text/javascript" src="https://www.legends-decks.com/js/chart.js"></script>
+	<script type="text/javascript">
+// Preload
+	function preloadimages(arr){
+		var newimages=[]
+		var arr=(typeof arr!="object")? [arr] : arr 
+		for (var i=0; i<arr.length; i++){
+			newimages[i]=new Image()
+			newimages[i].src=arr[i]
+		}
+	}		
+	preloadimages(['https://www.legends-decks.com/img_cards/rapidshot.png','https://www.legends-decks.com/img_cards/protectoroftheinnocent.png','https://www.legends-decks.com/img_cards/windkeepspellsword.png','https://www.legends-decks.com/img_cards/darkguardian.png','https://www.legends-decks.com/img_cards/quicksilvercrossbow.png','https://www.legends-decks.com/img_cards/skavenpyromancer.png','https://www.legends-decks.com/img_cards/soultear.png','https://www.legends-decks.com/img_cards/archeinvenomtongue.png','https://www.legends-decks.com/img_cards/falkreathdefiler.png','https://www.legends-decks.com/img_cards/lucienlachance.png','https://www.legends-decks.com/img_cards/merchantscamel.png','https://www.legends-decks.com/img_cards/shadowfenpriest.png','https://www.legends-decks.com/img_cards/sowerofrevenge.png','https://www.legends-decks.com/img_cards/nightshadow.png','https://www.legends-decks.com/img_cards/nahagliiv.png','https://www.legends-decks.com/img_cards/unstoppablerage.png','https://www.legends-decks.com/img_cards/skeletaldragon.png','https://www.legends-decks.com/img_cards/bloodmagiclord.png','https://www.legends-decks.com/img_cards/odahviing.png','https://www.legends-decks.com/img_cards/paarthurnax.png',]);
+		
+$(document).ready(function(){
+	var hash = document.location.hash;
+
+	// Mana Chart
+	var databarchart = {
+		labels: ["0", "1", "2", "3", "4", "5", "6", "7+"],
+		datasets: [{
+			label: "Minions",
+			fillColor: "#FFF3DF",
+			strokeColor: "rgba(220,220,220,1)",
+			pointColor: "rgba(220,220,220,1)",
+			pointStrokeColor: "#fff",
+			pointHighlightFill: "#fff",
+			pointHighlightStroke: "rgba(220,220,220,1)",
+			data: [0, 3, 6, 12, 9, 5, 3, 12]
+		}]
+	};
+	
+	var optionsbarchart = {
+		showTooltips: false,
+		scaleLineColor: 'transparent',
+		scaleShowLabels: false,
+		responsive: true,
+		scaleShowHorizontalLines: false,
+		scaleShowVerticalLines: true,
+		scaleFontColor: "#FFF",
+		barShowStroke : false,
+		scaleFontSize: 16,
+		scaleGridLineColor : "#444",
+		barValueSpacing : 2,
+	};
+	
+	var manachart = $("#manachart").get(0).getContext("2d");
+	window.myBarChart = new Chart(manachart).Bar(databarchart, optionsbarchart);
+	
+	// Create Attributes Chart
+	 var datadoughnutchartattributes = [{
+			value: 5,
+			color:"#FFF3DF",
+			highlight: "#FFF3DF",
+			label: "Neutral"
+		},{
+			value:  18,
+			color: "#cd3f23",
+			highlight: "#cd3f23",
+			label: "Strength"
+		},{
+			value: 0,
+			color: "#31973c",
+			highlight: "#31973c",
+			label: "Agility"
+		},{
+			value: 0,
+			color: "#45abe4",
+			highlight: "#45abe4",
+			label: "Intelligence"
+		},{
+			value: 0,
+			color: "#c3b03a",
+			highlight: "#c3b03a",
+			label: "Willpower"
+		},{
+			value: 30,
+			color: "#9d3ff6",
+			highlight: "#9d3ff6",
+			label: "Endurance"
+		}]
+	
+	var optionsdoughnutchartattributes = {
+		responsive: true,
+		segmentShowStroke : false,
+		animationEasing : "easeOut",
+		animationSteps : 30,
+	};
+	
+	var typechartattribute = $("#attributechart").get(0).getContext("2d");
+	window.myDoughnutChartAttribute = new Chart(typechartattribute).Doughnut(datadoughnutchartattributes,optionsdoughnutchartattributes);
+	
+	// Type Chart
+		 var datadoughnutchart = [{
+			value: 38,
+			color:"#816A52",
+			highlight: "#816A52",
+			label: "Creatures"
+		},{
+			value: 9,
+			color: "#7891BF",
+			highlight: "#7891BF",
+			label: "Actions"
+		},{
+			value: 3,
+			color: "#A04326",
+			highlight: "#A04326",
+			label: "Items"
+		},{
+			value: 0,
+			color: "#FFF3DF",
+			highlight: "#FFF3DF",
+			label: "Supports"
+		}]
+	
+	var optionsdoughnutchart = {
+		responsive: true,
+		 segmentShowStroke : false,
+		 animationEasing : "easeOut",
+		 animationSteps : 30,
+	};
+
+	var typechart = $("#typechart").get(0).getContext("2d");
+	window.myDoughnutChart = new Chart(typechart).Doughnut(datadoughnutchart,optionsdoughnutchart);
+})
+
+	// Copy to clipboard
+	$.fn.modal.Constructor.prototype.enforceFocus = function() {}; // Bootstrap hack
+	function copyToClipboard(element) {
+		var text = $(element).clone().find('br').prepend('\r\n').end().text()
+		element = $('<textarea>').appendTo('body').val(text).select()
+
+		document.execCommand("copy");
+
+		$('#suc').show();
+	
+	}
+	</script>
+	<title>CVH's Reanimator Control Rage Warrior  - Warrior Deck - Control - Legends Decks - The Elder Scrolls: Legends</title>
+		<meta name="description" content="CVH's Reanimator Control Rage Warrior  - Warrior Deck - Control - Legends Decks - The Elder Scrolls: Legends" />
+		<meta name="keywords" content="Warrior, deck, decks, deck list, lists, esl,tesl,legends,elder scrolls,decks,deck,list,elder,scroll,scrolls,cards,card,news"/>
+		<meta property="og:title" content="CVH's Reanimator Control Rage Warrior  - Warrior Deck - Control - Legends Decks - The Elder Scrolls: Legends"/>
+		<meta property="og:url" content="http://www.legends-decks.com/deck/19201/cvhs-reanimator-control-rage-warrior-"/>
+		<meta property="og:description" content="CVH's Reanimator Control Rage Warrior  - Warrior Deck - Control - Legends Decks - The Elder Scrolls: Legends" />
+		<meta property="og:image" content="https://www.legends-decks.com/interface/images_classes/warrior.jpg" />
+</head>
+<body>
+<div class="modal fade" id="deckModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="panel panel-primary">
+			<a data-dismiss="modal" class="dismiss_box">X</a>
+			<div class="panel-body">
+				<div class="center">
+					<h3>Universal Deck Tracker Export</h3>
+				</div>
+				</br>
+				</br>
+				<div class="submit_description">
+					<b class="white">How to use:</b>
+					<ul>
+						<li>Download the latest version of <a href="https://github.com/extesy/DeckTracker/releases" target="_blank">Universal Deck Tracker by extesy</a> (the .exe).</li>
+						<li>Launch The Elder Scrolls: Legends and Universal Deck Tracker</li>
+						<li>Copy the deck list below</li>
+						<li>Click the Import Deck button on Universal Deck Tracker and paste there.</li>
+						<li>Profit!</li>
+					</ul>
+				</div>
+				<div class="well_full" id="clipcopy">###CVH's Reanimator Control Rage Warrior ###<br/>3 Rapid Shot (Set1 #1757)<br/>3 Protector of the Innocent (Set2 #2267)<br/>3 Wind Keep Spellsword (Set1 #1567)<br/>3 Dark Guardian (Set2 #2017)<br/>3 Quicksilver Crossbow (Set2 #2272)<br/>3 Skaven Pyromancer (Set1 #1143)<br/>3 Soul Tear (Set3 #3055)<br/>2 Archein Venomtongue (Set1 #1627)<br/>3 Falkreath Defiler (Set2 #2257)<br/>1 Lucien Lachance (Set1 #1776)<br/>3 Merchant's Camel (Set999 #1578)<br/>2 Shadowfen Priest (Set1 #1526)<br/>3 Sower of Revenge (Set999 #1807)<br/>3 Night Shadow (Set1 #1695)<br/>1 Nahagliiv (Set1 #1559)<br/>3 Unstoppable Rage (Set2 #2346)<br/>3 Skeletal Dragon (Set3 #2131)<br/>3 Blood Magic Lord (Set1 #1705)<br/>1 Odahviing (Set1 #1768)<br/>1 Paarthurnax (Set3 #2080)<br/></div>
+				<br/>
+				<button class="btn btn-default large_button" onclick="copyToClipboard('#clipcopy')">Copy to Clipboard</button>
+				</br>
+				<div class="alert alert-dismissible alert-success" style="display:none" id="suc">
+					<button type="button" class="close" data-dismiss="alert">X</button>
+					<p>Deck List Copied!</p>
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="bbModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="panel panel-primary">
+			<a data-dismiss="modal" class="dismiss_box">X</a>
+			<div class="panel-body">
+				<div class="center">
+					<h3>CVH's Reanimator Control Rage Warrior </h3>
+				</div>
+				<div class="well_full">
+3 [card]Rapid Shot[/card]<br/>3 [card]Protector of the Innocent[/card]<br/>3 [card]Wind Keep Spellsword[/card]<br/>3 [card]Dark Guardian[/card]<br/>3 [card]Quicksilver Crossbow[/card]<br/>3 [card]Skaven Pyromancer[/card]<br/>3 [card]Soul Tear[/card]<br/>2 [card]Archein Venomtongue[/card]<br/>3 [card]Falkreath Defiler[/card]<br/>1 [card]Lucien Lachance[/card]<br/>3 [card]Merchant's Camel[/card]<br/>2 [card]Shadowfen Priest[/card]<br/>3 [card]Sower of Revenge[/card]<br/>3 [card]Night Shadow[/card]<br/>1 [card]Nahagliiv[/card]<br/>3 [card]Unstoppable Rage[/card]<br/>3 [card]Skeletal Dragon[/card]<br/>3 [card]Blood Magic Lord[/card]<br/>1 [card]Odahviing[/card]<br/>1 [card]Paarthurnax[/card]<br/>				
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<nav class="navbar navbar-default custom_network_navbar hidden-xs">
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li><img src="https://www.legends-decks.com/interface/ashcorp.png" alt="Ashcorp" class="network_logo"/></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ashcorp Network <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a target="_blank" href="http://www.hearthstonetopdeck.com"><img src="https://www.legends-decks.com/interface/hs_logo.png" alt="Hearthstone Top Deck" class="sites_logo" />&nbsp;&nbsp;Hearthstone Top Deck</a></li>
+					</ul>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+
+					<li><a href="https://www.legends-decks.com/collection-manager"><u>Collection Manager</u></a></li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#addCardModal" onclick="loadCardModal()">
+							<span class="glyphicon glyphicon-plus"></span>
+						</a>
+					</li>	
+					<li>
+						<a href="#" data-toggle="modal" data-target="#importModal">
+							<span class="glyphicon glyphicon-import"></span>
+						</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" onclick="refreshMail()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<span class="glyphicon glyphicon-envelope"></span>
+						</a>
+						<ul class="dropdown-menu network_nav_dropdown" role="menu" id="pm_notif_box">
+							<li class="li_loading" id="pm_notif_box_loading"></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" onclick="refreshNotif('1497788119')" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<span class="glyphicon glyphicon-globe"></span>
+						</a>
+						<ul class="dropdown-menu network_nav_dropdown" role="menu" id="notif_notif_box">
+							<li class="li_loading" id="notif_notif_box_loading"></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">MarioZG<span class="caret"></span></a>
+							<ul class="dropdown-menu network_nav_dropdown" role="menu">
+								<li>
+									<a href="https://www.legends-decks.com/profile/6160">
+										<div class="network_nav_avatar">
+											<div class="avatar" style="background-image:url('https://www.legends-decks.com/img_profile/0-unknown.jpg')">
+											</div>
+										</div>
+										<div class="network_nav_username">
+											<span class="midlarge">MarioZG</span>
+												<br/>
+											<span class="light">
+												LEVEL: <b>8</b>
+											</span>&nbsp;
+											<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="star_navbar" alt="2" />
+										</div>
+									</a>
+								</li>
+								<li class="divider"></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/overview"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;My Account</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/decks"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;My Decks</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/collection"><span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;My Collection</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/saved"><span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;Saved Decks</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/mailbox#prmenu"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Mail-Box</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/notifications#prmenu"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Notifications</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/wall#prmenu"><span class="glyphicon glyphicon-align-justify"></span>&nbsp;&nbsp;Wall</a></li>
+								<li class="divider"></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/settings#prmenu"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Settings</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/avatar#prmenu"><span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;Change Avatar</a></li>
+								<li class="divider"></li>
+								<li><a href="https://www.legends-decks.com/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Log Out</a></li>
+							</ul>
+					</li>
+		</ul>
+	</div>
+</nav>	<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="panel panel-primary" id="loadingModal">
+				<a data-dismiss="modal" class="dismiss_box">X</a>
+				<div class="panel-body">
+					<div class="row center">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h3>Import your Collection</h3>
+							
+							<div class="blacker_well margintop" style="text-align:left;">
+								<b class="white">How to use:</b>
+								<br/>
+								<ul>
+									<li>Download the latest version of <a href="https://github.com/extesy/DeckTracker/releases" target="_blank">Universal Deck Tracker by extesy</a> (the .exe).</li>
+									<li>Launch The Elder Scrolls: Legends and Universal Deck Tracker</li>
+									<li>Click "Export Full Collection" on Universal Deck Tracker</li>
+									<li>Paste the result below and click "Import Collection"</li>
+									<li>Profit!</li>
+								</ul>
+							</div>
+							<br/>
+							<textarea name="import_col" id="import_col" class="form-control nomarkitup small" placeholder="Paste Universal Deck Tracker data here (CTRL+V / CMD+V)"></textarea>
+							<br/>
+							<button onclick="importCollection()" class="form-control">Import Collection</button>
+							<br/>
+							<div id="col_message"></div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="addCardModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="panel panel-primary" id="loadingModal">
+				<a data-dismiss="modal" class="dismiss_box">X</a>
+				<div class="panel-body">
+					<div class="row center">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h3>Add cards to your collection</h3>
+							
+							<div id="modal_card_data" class="blacker_well marginbottom" style="text-align:left;padding-bottom:30px;">
+							</div>
+							
+							<input type="checkbox" name="above_limit" id="above_limit" checked />&nbsp;Don't go over 3 copies (or 1 copy for uniques).
+							<input type="submit" class="btn btn-default large_button margintop" name="add_card_submit" onclick="submitAddCard()" value="Add Cards"/>
+							
+							<div class="blacker_well small margintop" style="text-align:left;">
+								<b class="white">Tips:</b>
+								<br/>
+								<ul>
+									<li>Each Card you select will be added to your collection.</li>
+									<li>If you want to add 2 copies of the same card, just select it twice.</li>
+									<li>If you don't want a card to be added because you probably have the complete set (3 copies, or 1 for uniques) and will soul trap it in-game, just check the "limit" checkbox (checked by default).</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	
+
+<div class="modal fade" id="messagesModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="panel panel-primary">
+			<a data-dismiss="modal" class="dismiss_box">X</a>
+			<div class="panel-body">
+				<img src="https://www.legends-decks.com/interface/ashcorp_logo.png" alt="logo" class="the_logo the_logo_forms"/>
+				<div class="row center" id="messageModal"></div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<nav class="navbar navbar-default custom_menu_navbar">
+	<div class="max_container container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			 </button>
+			<button type="button" class="navbar-toggle collapsed toggle_network" data-toggle="collapse" data-target="#networkbar_small" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle User</span>
+				<span class="glyphicon glyphicon-user"></span>
+			</button>
+			
+			<button type="button" class="navbar-toggle collapsed toggle_network" data-toggle="modal" data-target="#addCardModal" onclick="loadCardModal()" aria-controls="navbar">
+				<span class="sr-only">Toggle Add Card Modal</span>
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+		
+			<a class="navbar-brand" href="https://www.legends-decks.com/index"><img src="https://www.legends-decks.com/interface/logo.png" alt="logo" class="the_logo_nav"/></a>
+		</div>
+		<div id="navbar" class="collapse navbar-collapse no_overflow">
+			<ul class="nav navbar-nav">
+				<li ><a href="https://www.legends-decks.com/deck-builder">Deck Builder</a></li>
+				<li class="dropdown " >
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Decks <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="https://www.legends-decks.com/decks/all/1/rating-down">Hottest decks</a></li>
+							<li><a href="https://www.legends-decks.com/decks/all/1/date-down">Latest decks</a></li>
+							<li class="divider"></li>
+							<li><a href="https://www.legends-decks.com/decks/all/1/date-down/week?f-search=&f-type=&f-patch=&f-pve=only&f-spec-pve=0&filters=Filter">PvE / Story Decks</a></li>
+							<li class="divider"></li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/archer">								
+									<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+												
+									Archer decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/assassin">								
+									<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+												
+									Assassin decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/battlemage">								
+									<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+												
+									Battlemage decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/crusader">								
+									<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+												
+									Crusader decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/mage">								
+									<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+												
+									Mage decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/monk">								
+									<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+												
+									Monk decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/scout">								
+									<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+												
+									Scout decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/sorcerer">								
+									<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+												
+									Sorcerer decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/spellsword">								
+									<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+												
+									Spellsword decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/warrior">								
+									<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+												
+									Warrior decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/strength">								
+									<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+												
+									Strength decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/intelligence">								
+									<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+												
+									Intelligence decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/willpower">								
+									<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+												
+									Willpower decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/agility">								
+									<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+												
+									Agility decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/endurance">								
+									<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+												
+									Endurance decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/neutral">								
+									<img src="https://www.legends-decks.com/interface/neutral.png" alt="neutral" class="small_class"/>
+												
+									Neutral decks
+								</a>
+							</li>
+						
+						</ul>
+				</li>
+				<li class="dropdown" >
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="https://www.legends-decks.com/featured-articles">Featured Articles</a></li>
+							<li class="divider"></li>
+							<li><a href="https://www.legends-decks.com/articles/all/1/rating-down">Hottest Articles</a></li>
+							<li><a href="https://www.legends-decks.com/articles/all/1/date-down">Latest Articles</a></li>
+							<li class="divider"></li>
+							<li><a href="https://www.legends-decks.com/create-article">Create your Article</a></li>
+						</ul>
+				</li>
+				<li class="dropdown" >
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cards <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="https://www.legends-decks.com/cards">All Cards</a></li>
+							<li class="divider"></li>
+									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=base&filters=Filter">Core Set</a></li>
+									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=monthly&filters=Filter">Monthly Reward</a></li>
+									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=madhouse&filters=Filter">Madhouse Collection</a></li>
+									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=darkbrotherhood&filters=Filter">The Fall of the Dark Brotherhood</a></li>
+									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=skyrim&filters=Filter">Heroes of Skyrim</a></li>
+						</ul>
+				</li>
+				<li ><a href="https://www.legends-decks.com/streams">Streams</a></li>
+				<li ><a href="https://www.legends-decks.com/tournaments">Tournaments</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tools <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li ><a href="https://www.legends-decks.com/deck-builder">Deck Builder</a></li>
+							<li ><a href="https://www.legends-decks.com/collection-manager">Collection Manager</a></li>
+							<li ><a href="https://www.legends-decks.com/collection-import">Collection Importer</a></li>
+							<li class="divider"></li>
+							<li><a href="https://www.legends-decks.com/arena-simulator">Arena Simulator</a></li>
+						</ul>
+				</li>
+				<li class="dropdown " >
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Forum <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="https://www.legends-decks.com/forum">Forum</a></li>
+							<li><a href="https://www.legends-decks.com/all-threads/1/hottest">Hottest Threads</a></li>
+							<li><a href="https://www.legends-decks.com/all-threads/1/latest">Latest Threads</a></li>
+							<li class="divider"></li>
+							<li><a href="https://www.legends-decks.com/saved-threads">Saved Threads</a></li>
+						</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span>&nbsp;<span class="glyphicon glyphicon-search"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<form class="navbar-form navbar-left hidden-sm" role="search" method="get" action="https://www.legends-decks.com/search.php">
+									<div class="form-group">
+										<input class="form-control" placeholder="Search" type="text" name="q">
+										<button type="submit" class="btn btn-default searchbutton">&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+									</div>
+								</form>
+							</li>
+						</ul>
+				</li>
+			</ul>
+		</div>
+		
+		<div id="networkbar_small" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav hidden-lg hidden-sm hidden-md visible-xs">
+				<li>
+					<a href="https://www.legends-decks.com/profile/6160">
+						<div class="network_nav_avatar">
+							<div class="avatar" style="background-image:url('https://www.legends-decks.com/img_profile/0-unknown.jpg')">
+							</div>
+						</div>
+						<div class="network_nav_username">
+															<span class="midlarge">MarioZG</span>
+									<br/>
+								<span class="light">
+									LEVEL: <b>8</b>
+								</span>&nbsp;
+							<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="star_navbar" alt="2" />
+						</div>
+					</a>
+				</li>
+				<li class="divider"></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/overview#prmenu"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;My Account</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/decks"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;My Decks</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/collection"><span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;My Collection</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/saved"><span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;Saved Decks</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/mailbox#prmenu"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Mail-Box</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/notifications#prmenu"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Notifications</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/wall#prmenu"><span class="glyphicon glyphicon-align-justify"></span>&nbsp;&nbsp;Wall</a></li>
+				<li class="divider"></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/settings#prmenu"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Settings</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/avatar#prmenu"><span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;Change Avatar</a></li>
+				<li class="divider"></li>
+				<li><a href="https://www.legends-decks.com/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Log Out</a></li>
+			</ul>
+		</div> 
+	</div>
+</nav>	<div class="wrapper">
+		<div class="container">
+			<ul class="breadcrumb hidden-xs">
+				<li><a href="https://www.legends-decks.com/index">Home</a></li>
+				<li><a href="https://www.legends-decks.com/decks/1/latest">Decks</a></li>
+				<li><a href="https://www.legends-decks.com/decks/warrior/1/latest">Warrior</a></li>
+				<li class="active">CVH's Reanimator Control Rage Warrior </li>
+			</ul>		
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-push-8 col-md-push-8">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h1 class="panel-title">Deck List</h1>
+								</div>
+								<div class="panel-body">
+									<div class="center copper midlarge marginbottom">
+										<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="large_class" />
+												<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="large_class" />
+		
+										<br/>
+										<span class="large">Warrior deck</span><br/>
+										Control									</div>
+									<div class="deck_page_total_cards center">
+										50 cards
+									</div>
+									<div id="deck">
+	
+											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/301/rapidshot">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/rapidshot.png')">
+													<span class="gradient">
+														<span class="mana">
+															1														</span>
+														<span class="name strength">
+															Rapid Shot 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/rapidshot.png" alt="Rapid Shot"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/493/protectoroftheinnocent">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/protectoroftheinnocent.png')">
+													<span class="gradient">
+														<span class="mana">
+															2														</span>
+														<span class="name strength">
+															Protector of the Innocent 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/protectoroftheinnocent.png" alt="Protector of the Innocent"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/140/windkeepspellsword">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/windkeepspellsword.png')">
+													<span class="gradient">
+														<span class="mana">
+															2														</span>
+														<span class="name endurance">
+															Wind Keep Spellsword 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/windkeepspellsword.png" alt="Wind Keep Spellsword"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/494/darkguardian">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/darkguardian.png')">
+													<span class="gradient">
+														<span class="mana">
+															3														</span>
+														<span class="name endurance">
+															Dark Guardian 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/darkguardian.png" alt="Dark Guardian"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/507/quicksilvercrossbow">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/quicksilvercrossbow.png')">
+													<span class="gradient">
+														<span class="mana">
+															3														</span>
+														<span class="name strength">
+															Quicksilver Crossbow 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/quicksilvercrossbow.png" alt="Quicksilver Crossbow"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/313/skavenpyromancer">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/skavenpyromancer.png')">
+													<span class="gradient">
+														<span class="mana">
+															3														</span>
+														<span class="name strength">
+															Skaven Pyromancer 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/skavenpyromancer.png" alt="Skaven Pyromancer"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/653/soultear">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/soultear.png')">
+													<span class="gradient">
+														<span class="mana">
+															3														</span>
+														<span class="name endurance">
+															Soul Tear 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/soultear.png" alt="Soul Tear"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_rare" href="https://www.legends-decks.com/card/76/archeinvenomtongue">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/archeinvenomtongue.png')">
+													<span class="gradient">
+														<span class="mana">
+															4														</span>
+														<span class="name endurance">
+															Archein Venomtongue 
+														</span>											
+														<span class="number">
+															2														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/archeinvenomtongue.png" alt="Archein Venomtongue"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_rare" href="https://www.legends-decks.com/card/484/falkreathdefiler">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/falkreathdefiler.png')">
+													<span class="gradient">
+														<span class="mana">
+															4														</span>
+														<span class="name endurance">
+															Falkreath Defiler 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/falkreathdefiler.png" alt="Falkreath Defiler"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_legendary" href="https://www.legends-decks.com/card/110/lucienlachance">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/lucienlachance.png')">
+													<span class="gradient">
+														<span class="mana">
+															4														</span>
+														<span class="name endurance">
+															Lucien Lachance 
+														</span>											
+														<span class="number">
+															1														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/lucienlachance.png" alt="Lucien Lachance"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/461/merchantscamel">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/merchantscamel.png')">
+													<span class="gradient">
+														<span class="mana">
+															4														</span>
+														<span class="name neutral">
+															Merchant's Camel 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/merchantscamel.png" alt="Merchant's Camel"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_epic" href="https://www.legends-decks.com/card/129/shadowfenpriest">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/shadowfenpriest.png')">
+													<span class="gradient">
+														<span class="mana">
+															5														</span>
+														<span class="name endurance">
+															Shadowfen Priest 
+														</span>											
+														<span class="number">
+															2														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/shadowfenpriest.png" alt="Shadowfen Priest"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_epic" href="https://www.legends-decks.com/card/485/sowerofrevenge">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/sowerofrevenge.png')">
+													<span class="gradient">
+														<span class="mana">
+															5														</span>
+														<span class="name strength">
+															Sower of Revenge 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/sowerofrevenge.png" alt="Sower of Revenge"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_epic" href="https://www.legends-decks.com/card/119/nightshadow">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/nightshadow.png')">
+													<span class="gradient">
+														<span class="mana">
+															6														</span>
+														<span class="name endurance">
+															Night Shadow 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/nightshadow.png" alt="Night Shadow"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_legendary" href="https://www.legends-decks.com/card/115/nahagliiv">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/nahagliiv.png')">
+													<span class="gradient">
+														<span class="mana">
+															7														</span>
+														<span class="name endurance">
+															Nahagliiv 
+														</span>											
+														<span class="number">
+															1														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/nahagliiv.png" alt="Nahagliiv"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_epic" href="https://www.legends-decks.com/card/510/unstoppablerage">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/unstoppablerage.png')">
+													<span class="gradient">
+														<span class="mana">
+															7														</span>
+														<span class="name strength">
+															Unstoppable Rage 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/unstoppablerage.png" alt="Unstoppable Rage"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_legendary" href="https://www.legends-decks.com/card/522/skeletaldragon">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/skeletaldragon.png')">
+													<span class="gradient">
+														<span class="mana">
+															8														</span>
+														<span class="name endurance">
+															Skeletal Dragon 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/skeletaldragon.png" alt="Skeletal Dragon"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_legendary" href="https://www.legends-decks.com/card/80/bloodmagiclord">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/bloodmagiclord.png')">
+													<span class="gradient">
+														<span class="mana">
+															9														</span>
+														<span class="name endurance">
+															Blood Magic Lord 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/bloodmagiclord.png" alt="Blood Magic Lord"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_legendary" href="https://www.legends-decks.com/card/239/odahviing">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/odahviing.png')">
+													<span class="gradient">
+														<span class="mana">
+															12														</span>
+														<span class="name neutral">
+															Odahviing 
+														</span>											
+														<span class="number">
+															1														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/odahviing.png" alt="Odahviing"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_legendary" href="https://www.legends-decks.com/card/674/paarthurnax">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/paarthurnax.png')">
+													<span class="gradient">
+														<span class="mana">
+															12														</span>
+														<span class="name neutral">
+															Paarthurnax 
+														</span>											
+														<span class="number">
+															1														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/paarthurnax.png" alt="Paarthurnax"/>
+											</a>
+									</div>
+										
+						
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h1 class="panel-title">Mana Curve</h1>
+								</div>
+								<div class="panel-body">
+									<div class="manatext">
+										<table>
+											<tbody>
+												<tr>
+													<td class="td_mana_width"><span id="mana_0">0</span></td>
+													<td class="td_mana_width"><span id="mana_1">3</span></td>
+													<td class="td_mana_width"><span id="mana_2">6</span></td>
+													<td class="td_mana_width"><span id="mana_3">12</span></td>
+													<td class="td_mana_width"><span id="mana_4">9</span></td>
+													<td class="td_mana_width"><span id="mana_5">5</span></td>
+													<td class="td_mana_width"><span id="mana_6">3</span></td>
+													<td class="td_mana_width"><span id="mana_7">12</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<canvas id="manachart" height="200"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h1 class="panel-title">Cards Attributes</h1>
+								</div>
+								<div class="panel-body">
+									<canvas id="attributechart" height="200"></canvas>
+								</div>
+							</div>
+						</div>	
+						<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h1 class="panel-title">Card Distribution & Keywords</h1>
+								</div>
+								<div class="panel-body">
+									<canvas id="typechart" height="200"></canvas>
+									<div class="blacker_well margintop midlarge">
+										<table class="table_large">
+											<tr>
+												<td class='large'>Guard</td>
+												<td class="text_right white large">13</td>
+											</tr>
+											<tr>
+												<td class='large'>Slay</td>
+												<td class="text_right white large">9</td>
+											</tr>
+											<tr>
+												<td >Prophecy</td>
+												<td class="text_right white ">6</td>
+											</tr>
+											<tr>
+												<td >Last Gasp</td>
+												<td class="text_right white ">6</td>
+											</tr>
+											<tr>
+												<td >Ward</td>
+												<td class="text_right white ">3</td>
+											</tr>
+											<tr>
+												<td >Lethal</td>
+												<td class="text_right white ">3</td>
+											</tr>
+											<tr>
+												<td >Drain</td>
+												<td class="text_right white ">3</td>
+											</tr>
+											<tr>
+												<td >Breakthrough</td>
+												<td class="text_right white ">3</td>
+											</tr>
+											<tr>
+												<td >Charge</td>
+												<td class="text_right white ">0</td>
+											</tr>
+											<tr>
+												<td >Regenerate</td>
+												<td class="text_right white ">0</td>
+											</tr>
+											<tr>
+												<td >Pilfer</td>
+												<td class="text_right white ">0</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h1 class="panel-title">Export</h1>
+								</div>
+								<div class="panel-body">			
+									<span class="copper midlarge">To Universal Deck Tracker:</span>
+										<a class="btn btn-default large_button" href="#" data-toggle="modal" data-target="#deckModal">Export to Universal Deck Tracker</a>
+									<span class="copper midlarge">To BBCode:</h1>
+										<a class="btn btn-default large_button" href="#" data-toggle="modal" data-target="#bbModal">Export BB Code File</a>
+									<span class="copper midlarge">BB Code:</span>
+										<input type="text" value="[deck id=19201]CVH's Reanimator Control Rage Warrior [/deck]" class="form-control marginbottom"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>			
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-pull-4 col-md-pull-4">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h1 class="panel-title">
+								CVH's Reanimator Control Rage Warrior 							</h1>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="deck_head">
+										<div class="deck_head_image launcher_align_top" style="background-image:url('https://www.legends-decks.com/interface/images_classes/warrior.jpg');">										
+											<div class="deck_head_image_attributes">
+												<img src="https://www.legends-decks.com/interface/strength.png" class="launcher_attributes" alt="strength" />
+												<img src="https://www.legends-decks.com/interface/endurance.png" class="launcher_attributes" alt="endurance" />
+	
+											</div>		
+											<div class="deck_head_buttons">
+												<a href="https://www.legends-decks.com/deck-builder#b76c80a110a115c119b129c140a239c301c313c461c484c485c493c494c507c510c522c653a674" class="deck_head_button hidden-xs">
+													<span class="glyphicon glyphicon-triangle-right"></span>&nbsp;Open in Deck Builder
+												</a>
+	
+												<a onclick="saveDeck('50b6da85112e21710d78b44f2cc8a8a3')"  class="deck_head_button">
+													<span id="save_glyphicon" class="glyphicon glyphicon-heart-empty"></span>&nbsp;<span id="save_text">Save</span>
+													
+												</a>
+														
+											</div>
+										</div>
+										<div class="deck_page_deck_author">
+											<div class="row">
+												<div class="col-lg-1 col-md-1 hidden-sm hidden-xs comment_portrait">
+													<a href="https://www.legends-decks.com/profile/14562">
+														<div class="avatar avatar_comment" style="background-image:url('https://www.legends-decks.com/img_profile/0-unknown.jpg')">
+														</div>
+													</a>
+													<img src="https://www.legends-decks.com/interface/badges/star_5.png" class="avatar_rank" alt="star_5"/>
+												</div>
+												<div class="col-lg-9 col-md-9 col-sm-10 col-xs-12">
+													<div class="inner_deck_head">
+														<b>By:</b>  <a class="a_alt" onclick="user_box('14562','8594','right')">Helrik_Donovan</a><span id="user_box_8594"></span>														<br/>
+														<a href="https://www.legends-decks.com/profile/14562/decks#prmenu">View other Decks by Helrik_Donovan</a> 
+														<br/>
+														<b>Posted:</b> 1 week ago														<br/>
+<b class='green'>Up to date (1.66.1 patch)</b>
+														<br/>
+														<b>Crafting Cost:</b> <b>18100</b><img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
+														<br/>
+														<b>Missing Soul Gems:</b> 
+																Add your collection to see the soul gems you are missing.
+													</div>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-push-0 col-sm-2 col-xs-push-3 col-xs-6">
+													<div class="comment_vote deck_vote" id="vote_4-50b6da85112e21710d78b44f2cc8a8a3">
+			<div class="vote_results">
+				<span class="large">
+<span id='results_4-50b6da85112e21710d78b44f2cc8a8a3' class='vote_blue'>+9</span>				</span>
+			</div>
+			<a class="vote_button margintop vote_up " 
+ onclick="vote('4-50b6da85112e21710d78b44f2cc8a8a3','+')"  id="vote_up_4-50b6da85112e21710d78b44f2cc8a8a3">
+					<span class="glyphicon glyphicon-thumbs-up large"></span>
+			</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="ad_leader">
+	<span class="hidden-sm hidden-xs">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+			 style="display:inline-block;width:728px;height:90px"
+			 data-ad-client="ca-pub-2322698083913231"
+			 data-ad-slot="1485311104"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</span>
+	<span class="visible-sm visible-xs hidden-md hidden-lg">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+			 style="display:inline-block;width:320px;height:100px"
+			 data-ad-client="ca-pub-2322698083913231"
+			 data-ad-slot="7392243906"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</span>
+</div>								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								
+								
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<h1 class="panel-title margintop">Share on:</h1>
+								</div>	
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="well_full">
+										<div class="btn-group btn-group-justified">
+											<a target="_blank" class="btn btn-social btn-fb" href="http://www.facebook.com/sharer/sharer.php?u=https://www.legends-decks.com/deck/19201/cvhs-reanimator-control-rage-warrior-&title=CVH's Reanimator Control Rage Warrior ">
+												<span class="hidden-xs">Facebook</span>&nbsp;
+											</a>
+											<a target="_blank" class="btn btn-social btn-google" href="https://plus.google.com/share?url=https://www.legends-decks.com/deck/19201/cvhs-reanimator-control-rage-warrior-">
+												<span class="hidden-xs">Google +</span>&nbsp;
+											</a>
+											<a target="_blank" class="btn btn-social btn-twitter" href="http://twitter.com/intent/tweet?status=CVH's Reanimator Control Rage Warrior +https://www.legends-decks.com/deck/19201/cvhs-reanimator-control-rage-warrior-">
+												<span class="hidden-xs">Twitter</span>&nbsp;
+											</a>
+											<a target="_blank" class="btn btn-social btn-reddit" href="http://www.reddit.com/submit?url=https://www.legends-decks.com/deck/19201/cvhs-reanimator-control-rage-warrior-&title=CVH's Reanimator Control Rage Warrior ">
+												<span class="hidden-xs">Reddit</span>&nbsp;
+											</a>
+										</div>
+									</div>
+								</div>
+																
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<h1 class="panel-title margintop">Other warrior Decks</h1>
+								</div>	
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="well_full">
+										<div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<table class="table_large">
+													<tbody>
+				
+												<tr>
+													<td class="td_date td_date_deck_full td_2">
+														09<br/>Sep													</td>
+													<td class="td_class_img_deck_full td_2 center hidden-xs">
+														<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class" />
+																<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
+														
+													</td>
+													<td class="td_name_deck_small td_2">
+														<a href="https://www.legends-decks.com/deck/20856/control-warrior-deck">Control warrior deck</a>
+														<br/>
+														By: <a class="a_alt" onclick="user_box('24260','4420','right')">Marco DE Luca</a><span id="user_box_4420"></span>													</td>
+													<td class="td_type_deck_full td_2 hidden-xs">
+														Control													</td>	
+													<td class="td_cost_deck_full td_2 hidden-xs">
+														5350<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
+													</td>										
+													<td class="td_comments_deck_full td_2 hidden-xs">
+														<a href="https://www.legends-decks.com/deck/20856/control-warrior-deck#comments">
+															0															<span class="glyphicon glyphicon-comment"></span>
+														</a>
+													</td>
+													<td class="td_rating_deck_full td_2 hidden-xs">
+														<b><span class='vote_blue'>0</span></b>
+													</td>	
+													<td class="td_views_deck_full td_2 hidden-xs">
+														23&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
+													</td>									
+												</tr>
+				
+												<tr>
+													<td class="td_date td_date_deck_full td_1">
+														09<br/>Sep													</td>
+													<td class="td_class_img_deck_full td_1 center hidden-xs">
+														<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class" />
+																<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
+														
+													</td>
+													<td class="td_name_deck_small td_1">
+														<a href="https://www.legends-decks.com/deck/20827/karakondzhuls-1-combo-warrior-variant">KARAKONDZHUL'S #1 COMBO WARRIOR variant</a>
+														<br/>
+														By: <a class="a_alt" onclick="user_box('5553','318','right')">MasterErdrik</a><span id="user_box_318"></span>													</td>
+													<td class="td_type_deck_full td_1 hidden-xs">
+														Combo													</td>	
+													<td class="td_cost_deck_full td_1 hidden-xs">
+														11350<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
+													</td>										
+													<td class="td_comments_deck_full td_1 hidden-xs">
+														<a href="https://www.legends-decks.com/deck/20827/karakondzhuls-1-combo-warrior-variant#comments">
+															0															<span class="glyphicon glyphicon-comment"></span>
+														</a>
+													</td>
+													<td class="td_rating_deck_full td_1 hidden-xs">
+														<b><span class='vote_blue'>0</span></b>
+													</td>	
+													<td class="td_views_deck_full td_1 hidden-xs">
+														77&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
+													</td>									
+												</tr>
+				
+												<tr>
+													<td class="td_date td_date_deck_full td_2">
+														08<br/>Sep													</td>
+													<td class="td_class_img_deck_full td_2 center hidden-xs">
+														<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class" />
+																<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
+														
+													</td>
+													<td class="td_name_deck_small td_2">
+														<a href="https://www.legends-decks.com/deck/20776/ramp-warrior">Ramp Warrior</a>
+														<br/>
+														By: <a class="a_alt" onclick="user_box('6364','203','right')">Paolino</a><span id="user_box_203"></span>													</td>
+													<td class="td_type_deck_full td_2 hidden-xs">
+														Other													</td>	
+													<td class="td_cost_deck_full td_2 hidden-xs">
+														19400<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
+													</td>										
+													<td class="td_comments_deck_full td_2 hidden-xs">
+														<a href="https://www.legends-decks.com/deck/20776/ramp-warrior#comments">
+															0															<span class="glyphicon glyphicon-comment"></span>
+														</a>
+													</td>
+													<td class="td_rating_deck_full td_2 hidden-xs">
+														<b><span class='vote_blue'>0</span></b>
+													</td>	
+													<td class="td_views_deck_full td_2 hidden-xs">
+														74&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
+													</td>									
+												</tr>
+				
+												<tr>
+													<td class="td_date td_date_deck_full td_1">
+														08<br/>Sep													</td>
+													<td class="td_class_img_deck_full td_1 center hidden-xs">
+														<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class" />
+																<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
+														
+													</td>
+													<td class="td_name_deck_small td_1">
+														<a href="https://www.legends-decks.com/deck/20775/aelas-companions-budget-upgrade">Aela's Companions budget upgrade</a>
+														<br/>
+														By: <a class="a_alt" onclick="user_box('4689','765','right')">AvgSizedP_Nis</a><span id="user_box_765"></span>													</td>
+													<td class="td_type_deck_full td_1 hidden-xs">
+														Mid-Range													</td>	
+													<td class="td_cost_deck_full td_1 hidden-xs">
+														5550<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
+													</td>										
+													<td class="td_comments_deck_full td_1 hidden-xs">
+														<a href="https://www.legends-decks.com/deck/20775/aelas-companions-budget-upgrade#comments">
+															0															<span class="glyphicon glyphicon-comment"></span>
+														</a>
+													</td>
+													<td class="td_rating_deck_full td_1 hidden-xs">
+														<b><span class='vote_blue'>0</span></b>
+													</td>	
+													<td class="td_views_deck_full td_1 hidden-xs">
+														80&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
+													</td>									
+												</tr>
+				
+												<tr>
+													<td class="td_date td_date_deck_full td_2">
+														08<br/>Sep													</td>
+													<td class="td_class_img_deck_full td_2 center hidden-xs">
+														<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class" />
+																<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
+														
+													</td>
+													<td class="td_name_deck_small td_2">
+														<a href="https://www.legends-decks.com/deck/20761/orcs-barricades">Orc's barricades</a>
+														<br/>
+														By: <a class="a_alt" onclick="user_box('24322','1183','right')">Damonz</a><span id="user_box_1183"></span>													</td>
+													<td class="td_type_deck_full td_2 hidden-xs">
+														Combo													</td>	
+													<td class="td_cost_deck_full td_2 hidden-xs">
+														10400<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
+													</td>										
+													<td class="td_comments_deck_full td_2 hidden-xs">
+														<a href="https://www.legends-decks.com/deck/20761/orcs-barricades#comments">
+															0															<span class="glyphicon glyphicon-comment"></span>
+														</a>
+													</td>
+													<td class="td_rating_deck_full td_2 hidden-xs">
+														<b><span class='vote_blue'>0</span></b>
+													</td>	
+													<td class="td_views_deck_full td_2 hidden-xs">
+														56&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
+													</td>									
+												</tr>
+				
+												<tr>
+													<td class="td_date td_date_deck_full td_1">
+														08<br/>Sep													</td>
+													<td class="td_class_img_deck_full td_1 center hidden-xs">
+														<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class" />
+																<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
+														
+													</td>
+													<td class="td_name_deck_small td_1">
+														<a href="https://www.legends-decks.com/deck/20740/lategame-warrior">Lategame Warrior</a>
+														<br/>
+														By: <a class="a_alt" onclick="user_box('24300','4541','right')">dabick</a><span id="user_box_4541"></span>													</td>
+													<td class="td_type_deck_full td_1 hidden-xs">
+														Control													</td>	
+													<td class="td_cost_deck_full td_1 hidden-xs">
+														14650<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
+													</td>										
+													<td class="td_comments_deck_full td_1 hidden-xs">
+														<a href="https://www.legends-decks.com/deck/20740/lategame-warrior#comments">
+															0															<span class="glyphicon glyphicon-comment"></span>
+														</a>
+													</td>
+													<td class="td_rating_deck_full td_1 hidden-xs">
+														<b><span class='vote_blue'>0</span></b>
+													</td>	
+													<td class="td_views_deck_full td_1 hidden-xs">
+														70&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
+													</td>									
+												</tr>
+				
+												<tr>
+													<td class="td_date td_date_deck_full td_2">
+														08<br/>Sep													</td>
+													<td class="td_class_img_deck_full td_2 center hidden-xs">
+														<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class" />
+																<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
+														
+													</td>
+													<td class="td_name_deck_small td_2">
+														<a href="https://www.legends-decks.com/deck/20734/vampramp-prophecy-edit">VampRamp (Prophecy Edit)</a>
+														<br/>
+														By: <a class="a_alt" onclick="user_box('16428','6012','right')">KingCarnage</a><span id="user_box_6012"></span>													</td>
+													<td class="td_type_deck_full td_2 hidden-xs">
+														Mid-Range													</td>	
+													<td class="td_cost_deck_full td_2 hidden-xs">
+														15700<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
+													</td>										
+													<td class="td_comments_deck_full td_2 hidden-xs">
+														<a href="https://www.legends-decks.com/deck/20734/vampramp-prophecy-edit#comments">
+															0															<span class="glyphicon glyphicon-comment"></span>
+														</a>
+													</td>
+													<td class="td_rating_deck_full td_2 hidden-xs">
+														<b><span class='vote_blue'>0</span></b>
+													</td>	
+													<td class="td_views_deck_full td_2 hidden-xs">
+														79&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
+													</td>									
+												</tr>
+		
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<br/>
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-body" id="comments">
+<div id="ajax_comment" class="ajx">
+
+	<div class="well_comments">
+		<div class="well_body_comments">
+		
+		<span class="hidden-xs">
+			<span class="right">
+				<a class="btn btn-default" onclick="showHideReplies()" id="show_hide_replies">Hide Replies</a>
+				<a class="btn btn-default active" href="https://www.legends-decks.com/deck/19201/cvhs-reanimator-control-rage-warrior-/1#comments">Order by Date</a>
+				<a class="btn btn-default " href="https://www.legends-decks.com/deck/19201/cvhs-reanimator-control-rage-warrior-/1/top#comments">Order by Votes</a>
+			</span>
+	
+			<a class="btn btn-default" onclick="scrollToAnchor('reply_title')">Add your Comment</a>
+		
+		</span>
+		<span class="visible-xs">
+			<div class="btn-group">
+				<a class="btn btn-default" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Menu &nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a>
+				<ul class="dropdown-menu">
+					
+					<li><a onclick="scrollToAnchor('reply')">Add your Comment</a></li>
+					
+					<li class="divider"></li>
+					<li><a class='active' href="https://www.legends-decks.com/deck/19201/cvhs-reanimator-control-rage-warrior-/1#comments">Order by Date</a></li>
+					<li><a  href="https://www.legends-decks.com/deck/19201/cvhs-reanimator-control-rage-warrior-/1/top#comments">Order by Votes</a></li>
+					<li class="divider"></li>
+					<li><a onclick="showHideReplies()" id="show_hide_replies">Hide Replies</a></li>
+				</ul>
+			</div>
+		</span>
+			<br/><br/>
+				<h4 class="uppertight"><span id="total_comments_4-50b6da85112e21710d78b44f2cc8a8a3">4</span> Comments</h4>
+					<div class="pagination">
+					</div>										
+	
+				<div class="row comment_wrapper ajx" id="comment_11e48f522f94aca7b5a3fdc316b2d737">
+						
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-11e48f522f94aca7b5a3fdc316b2d737','+')"  id="vote_up_small_2-11e48f522f94aca7b5a3fdc316b2d737">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 4 votes">
+				<span id='results_small_2-11e48f522f94aca7b5a3fdc316b2d737' class='vote_red'>-4</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-11e48f522f94aca7b5a3fdc316b2d737','-')"  id="vote_down_small_2-11e48f522f94aca7b5a3fdc316b2d737">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('11e48f522f94aca7b5a3fdc316b2d737')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li><a onclick="replyBox('4-50b6da85112e21710d78b44f2cc8a8a3','11e48f522f94aca7b5a3fdc316b2d737','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a></li>
+							<li>
+								<a id="report_2_11e48f522f94aca7b5a3fdc316b2d737"  onclick="report('11e48f522f94aca7b5a3fdc316b2d737')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('8021','6401','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Bdrg Swz				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Bdrg Swz				</span>
+			</span>
+		</a>
+		<span id="user_box_6401"></span>
+		<i>1 week ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('11e48f522f94aca7b5a3fdc316b2d737')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button" onclick="replyBox('4-50b6da85112e21710d78b44f2cc8a8a3','11e48f522f94aca7b5a3fdc316b2d737','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a>
+						<a class="comment_button " id="report_1_11e48f522f94aca7b5a3fdc316b2d737" onclick="report('11e48f522f94aca7b5a3fdc316b2d737')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/8021">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh4.googleusercontent.com/--gWwg4_ZQ6E/AAAAAAAAAAI/AAAAAAAAAVU/_z7Rxnce6k8/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="avatar_rank" alt="star_2"/>
+				<br/>
+					LEVEL.<b>8</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-11e48f522f94aca7b5a3fdc316b2d737">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-11e48f522f94aca7b5a3fdc316b2d737','+')"  id="vote_up_2-11e48f522f94aca7b5a3fdc316b2d737">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 4 votes">
+<span id='results_2-11e48f522f94aca7b5a3fdc316b2d737' class='vote_red'>-4</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-11e48f522f94aca7b5a3fdc316b2d737','-')"  id="vote_down_2-11e48f522f94aca7b5a3fdc316b2d737">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_11e48f522f94aca7b5a3fdc316b2d737">
+		
+sucks<br />
+	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 j_reply" id="reply_11e48f522f94aca7b5a3fdc316b2d737"></div>
+				</div>
+	
+				</div>	
+					<div id="replies_11e48f522f94aca7b5a3fdc316b2d737" class="ajx">	
+										
+
+			<div class="row comment_wrapper_replies comment_reply">
+				<div class="col-md-12">
+					<span class="right">
+						<a onclick="hide_div('11e48f522f94aca7b5a3fdc316b2d737')">
+							<span id="glyphicon_hide_div_11e48f522f94aca7b5a3fdc316b2d737" class="glyphicon_show_hide glyphicon glyphicon-chevron-up"></span>
+						</a>
+					</span>
+					2 Replies				</div>
+			</div>
+			<div id="show_hide_11e48f522f94aca7b5a3fdc316b2d737" class="show_hide_replies">					
+					<div class="row comment_wrapper comment_reply ajx" id="comment_24a29a235c0678859695b10896513b3d">
+							
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-24a29a235c0678859695b10896513b3d','+')"  id="vote_up_small_2-24a29a235c0678859695b10896513b3d">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 2 votes">
+				<span id='results_small_2-24a29a235c0678859695b10896513b3d' class='vote_blue'>+2</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-24a29a235c0678859695b10896513b3d','-')"  id="vote_down_small_2-24a29a235c0678859695b10896513b3d">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('24a29a235c0678859695b10896513b3d')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_24a29a235c0678859695b10896513b3d"  onclick="report('24a29a235c0678859695b10896513b3d')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('21562','3747','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Christopher Schmitt				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Christopher S...				</span>
+			</span>
+		</a>
+		<span id="user_box_3747"></span>
+		<i>1 week ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('24a29a235c0678859695b10896513b3d')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_24a29a235c0678859695b10896513b3d" onclick="report('24a29a235c0678859695b10896513b3d')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/21562">
+			<div class="avatar avatar_comment" style="background-image:url('https://graph.facebook.com/10154750874327231/picture?type=large')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_1.png" class="avatar_rank" alt="star_1"/>
+				<br/>
+					LEVEL.<b>2</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-24a29a235c0678859695b10896513b3d">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-24a29a235c0678859695b10896513b3d','+')"  id="vote_up_2-24a29a235c0678859695b10896513b3d">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 2 votes">
+<span id='results_2-24a29a235c0678859695b10896513b3d' class='vote_blue'>+2</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-24a29a235c0678859695b10896513b3d','-')"  id="vote_down_2-24a29a235c0678859695b10896513b3d">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_24a29a235c0678859695b10896513b3d">
+		
+Its been really good for me....	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+					</div>
+
+					<div class="row comment_wrapper comment_reply ajx" id="comment_97e49161287e7a4f9b745366e4f9431b">
+							
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-97e49161287e7a4f9b745366e4f9431b','+')"  id="vote_up_small_2-97e49161287e7a4f9b745366e4f9431b">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+				<span id='results_small_2-97e49161287e7a4f9b745366e4f9431b' class='vote_blue'>+1</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-97e49161287e7a4f9b745366e4f9431b','-')"  id="vote_down_small_2-97e49161287e7a4f9b745366e4f9431b">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('97e49161287e7a4f9b745366e4f9431b')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_97e49161287e7a4f9b745366e4f9431b"  onclick="report('97e49161287e7a4f9b745366e4f9431b')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('14562','667','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Helrik_Donovan				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Helrik_Donova...				</span>
+			</span>
+		</a>
+		<span id="user_box_667"></span>
+		<i>3 days ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+<span class='light'>Edited 3 days ago</span>&nbsp;&nbsp;			</i>
+	
+						<a class="comment_button" onclick="quote('97e49161287e7a4f9b745366e4f9431b')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_97e49161287e7a4f9b745366e4f9431b" onclick="report('97e49161287e7a4f9b745366e4f9431b')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/14562">
+			<div class="avatar avatar_comment" style="background-image:url('https://www.legends-decks.com/img_profile/0-unknown.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_5.png" class="avatar_rank" alt="star_5"/>
+				<br/>
+					LEVEL.<b>22</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-97e49161287e7a4f9b745366e4f9431b">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-97e49161287e7a4f9b745366e4f9431b','+')"  id="vote_up_2-97e49161287e7a4f9b745366e4f9431b">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+<span id='results_2-97e49161287e7a4f9b745366e4f9431b' class='vote_blue'>+1</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-97e49161287e7a4f9b745366e4f9431b','-')"  id="vote_down_2-97e49161287e7a4f9b745366e4f9431b">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_97e49161287e7a4f9b745366e4f9431b">
+		
+The basic strategy to play control decks, is not to go to the opponent's face until the late game. If you break your opponent's runes till that moment, he will have more cards in his hands to play against you. So, you have to avoid that situation. In each turn you must limit yourself to remove any opponent's threats and you have only to preserve your life points. While you are reaching twelve magicka, you will gradually gain more and more strength and as your opponent remains with only one card in his hands, you will have meantime gradually gained the control of the whole board and you will have certainly played the number of creatures that can let you go to your opponent's face. Only at that moment you will be certainly able to win the game.	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+					</div>
+
+			</div>
+							</div>
+	
+				<div class="row comment_wrapper ajx" id="comment_d9b64cee05c46d31b10b9869a3198a6d">
+						
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-d9b64cee05c46d31b10b9869a3198a6d','+')"  id="vote_up_small_2-d9b64cee05c46d31b10b9869a3198a6d">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span >
+				<span id='results_small_2-d9b64cee05c46d31b10b9869a3198a6d'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-d9b64cee05c46d31b10b9869a3198a6d','-')"  id="vote_down_small_2-d9b64cee05c46d31b10b9869a3198a6d">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('d9b64cee05c46d31b10b9869a3198a6d')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li><a onclick="replyBox('4-50b6da85112e21710d78b44f2cc8a8a3','d9b64cee05c46d31b10b9869a3198a6d','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a></li>
+							<li>
+								<a id="report_2_d9b64cee05c46d31b10b9869a3198a6d"  onclick="report('d9b64cee05c46d31b10b9869a3198a6d')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('10458','9137','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Tuna Oddfellow				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Tuna Oddfello...				</span>
+			</span>
+		</a>
+		<span id="user_box_9137"></span>
+		<i>3 days ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+<span class='light'>Edited 3 days ago</span>&nbsp;&nbsp;			</i>
+	
+						<a class="comment_button" onclick="quote('d9b64cee05c46d31b10b9869a3198a6d')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button" onclick="replyBox('4-50b6da85112e21710d78b44f2cc8a8a3','d9b64cee05c46d31b10b9869a3198a6d','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a>
+						<a class="comment_button " id="report_1_d9b64cee05c46d31b10b9869a3198a6d" onclick="report('d9b64cee05c46d31b10b9869a3198a6d')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/10458">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh3.googleusercontent.com/-A4eK0WrlNkc/AAAAAAAAAAI/AAAAAAAAE-o/wdxsZ1053mc/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="avatar_rank" alt="star_2"/>
+				<br/>
+					LEVEL.<b>7</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-d9b64cee05c46d31b10b9869a3198a6d">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-d9b64cee05c46d31b10b9869a3198a6d','+')"  id="vote_up_2-d9b64cee05c46d31b10b9869a3198a6d">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span >
+<span id='results_2-d9b64cee05c46d31b10b9869a3198a6d'>0</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-d9b64cee05c46d31b10b9869a3198a6d','-')"  id="vote_down_2-d9b64cee05c46d31b10b9869a3198a6d">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_d9b64cee05c46d31b10b9869a3198a6d">
+		
+I am a control player. This deck is golden if you understand how to effectively play control. It's also a lot of fun. 	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 j_reply" id="reply_d9b64cee05c46d31b10b9869a3198a6d"></div>
+				</div>
+	
+				</div>	
+					<div id="replies_d9b64cee05c46d31b10b9869a3198a6d" class="ajx">	
+													</div>
+<div class="ad_leader">
+	<span class="hidden-sm hidden-xs">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+			 style="display:inline-block;width:728px;height:90px"
+			 data-ad-client="ca-pub-2322698083913231"
+			 data-ad-slot="1485311104"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</span>
+	<span class="visible-sm visible-xs hidden-md hidden-lg">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+			 style="display:inline-block;width:320px;height:100px"
+			 data-ad-client="ca-pub-2322698083913231"
+			 data-ad-slot="7392243906"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</span>
+</div>					<div class="pagination">
+					</div>									
+		</div>
+	</div>
+	
+	<div class="well">
+		<div class="well_title" id="reply_title">Reply</div>
+		<div class="well_body">
+					<div id="reply">
+						<textarea id="textarea_comment" name="textarea_comment" class="form-control"></textarea>
+						<button type="submit" id="submit_comment" onclick="insertComment('4-50b6da85112e21710d78b44f2cc8a8a3','1')" class="btn btn-default btn_widthmax">Reply</button>
+					</div>
+								
+		</div>
+	</div>	
+</div>					</div>
+				</div>
+				</div>	
+			</div>
+			<a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" title="Take me to the Top!" data-toggle="tooltip" data-placement="left">
+	<span class="glyphicon glyphicon-chevron-up"></span>
+</a>					</div>
+	</div>
+	<div class="footer">
+	<div class="row margintop max_container">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+			<h3 class="panel-title">Navigate</h3>
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<a class="footer_link" href="https://www.legends-decks.com/index"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a>
+						<a class="footer_link" href="https://www.legends-decks.com/deck-builder"><span class=" glyphicon glyphicon-th-list"></span>&nbsp;Deck Builder</a>
+						<a class="footer_link" href="https://www.legends-decks.com/articles"><span class=" glyphicon glyphicon-pencil"></span>&nbsp;Articles</a>
+						<a class="footer_link" href="https://www.legends-decks.com/cards"><span class=" glyphicon glyphicon-th-large"></span>&nbsp;Cards</a>
+						<a class="footer_link" href="https://www.legends-decks.com/forum"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Forum</a>
+						<a class="footer_link" href="https://www.legends-decks.com/profile/6160"><span class="glyphicon glyphicon-user"></span>&nbsp;My Profile</a>
+						<a class="footer_link" href="https://www.legends-decks.com/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log Out</a>
+					
+					</div>
+				</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+			<h3 class="panel-title">More</h3>
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<a class="footer_link" href="https://www.legends-decks.com/tournaments">Tournaments Calendar</a>
+						<a class="footer_link" target="_blank" href="https://www.facebook.com/legendsdecks">Our Facebook</a>
+						<a class="footer_link" target="_blank" href="https://twitter.com/DecksLegends">Our Twitter</a>
+						<a class="footer_link" href="https://www.legends-decks.com/contact-us">Contact Us</a></a>
+						<a class="footer_link" href="https://www.legends-decks.com/terms-conditions">Terms and Conditions</a>
+						<a class="footer_link" href="https://www.legends-decks.com/privacy-policy">Privacy policy</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<h3 class="panel-title">Fetch Decks</h3>
+				<div class="row">
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+					
+						<a class="footer_link" href="https://www.legends-decks.com/decks/archer">
+							<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+	
+							Archer						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/assassin">
+							<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+	
+							Assassin						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/battlemage">
+							<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+	
+							Battlemage						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/crusader">
+							<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+	
+							Crusader						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/mage">
+							<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+	
+							Mage						</a>
+</div><div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'>						<a class="footer_link" href="https://www.legends-decks.com/decks/monk">
+							<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+	
+							Monk						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/scout">
+							<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+	
+							Scout						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/sorcerer">
+							<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+	
+							Sorcerer						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/spellsword">
+							<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+	
+							Spellsword						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/warrior">
+							<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+	
+							Warrior						</a>
+</div><div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'>						<a class="footer_link" href="https://www.legends-decks.com/decks/strength">
+							<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+	
+							Strength						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/intelligence">
+							<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+	
+							Intelligence						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/willpower">
+							<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+	
+							Willpower						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/agility">
+							<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+	
+							Agility						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/endurance">
+							<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+	
+							Endurance						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/neutral">
+							<img src="https://www.legends-decks.com/interface/neutral.png" alt="neutral" class="small_class"/>
+	
+							Neutral						</a>
+						
+					</div>
+				</div>
+		</div>
+	</div>
+	
+	<div class="ashcorp_featured">
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+				<a href="https://www.legends-decks.com/index">
+					<img src="https://www.legends-decks.com/interface/ashcorp_logo.png" alt="Logo" class="the_logo_footer"/><br/>
+				</a>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+				<h2 class="panel-title">Other Ashcorp Sites</h2>
+					<a class="footer_featured uppertight" target="_blank" href="http://www.hearthstonetopdeck.com"><img src="https://www.legends-decks.com/interface/hs_logo.png" alt="Hearthstone Top Deck" class="sites_logo" />&nbsp;&nbsp;Hearthstone Top Deck</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row margintop max_container">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center small margintop">
+			The Elder Scrolls, The Elder Scrolls: Legends, ZeniMax, Bethesda, Bethesda Softworks and related logos are registered trademarks or trademarks of ZeniMax Media Inc.
+			This website is not produced, endorsed, supported, or affiliated with ZeniMax Media Inc.&nbsp;
+			©Legends Decks 2017		</div>
+	</div>
+</div>
+
+<div id="fb-root"></div>
+<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-46709933-6', 'auto');
+	  ga('send', 'pageview');
+</script>
+<script>
+(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.4";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+window.twttr = (function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0],
+	t = window.twttr || {};
+	if (d.getElementById(id)) return t;
+	js = d.createElement(s);
+	js.id = id;
+	js.src = "https://platform.twitter.com/widgets.js";
+	fjs.parentNode.insertBefore(js, fjs);
+	t._e = [];
+	t.ready = function(f) {
+		t._e.push(f);
+	};
+	return t;
+}(document, "script", "twitter-wjs"));
+</script>
+</body>
+</html>

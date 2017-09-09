@@ -56,6 +56,18 @@ namespace ESLTracker.Utils
             return ret;
         }
 
+        public static DeckClass FindSingleClassByAttribute(IEnumerable<DeckAttribute> filter)
+        {
+            filter = filter.Where(da => da != DeckAttribute.Neutral);
+            DeckClass? ret;
+
+            ret = classes
+                .Where(c => filter.All(f => c.Value.Contains(f)) && filter.Count() == c.Value.Count)
+                .Select(c => c.Key).FirstOrDefault();
+
+            return ret.HasValue ? ret.Value : DeckClass.Neutral;
+        }
+
         public static Dictionary<DeckAttribute, Color> DeckAttributeColors = new Dictionary<DeckAttribute, Color>()
         {
             { DeckAttribute.Agility, Color.FromArgb(255, 8, 100, 30 )},

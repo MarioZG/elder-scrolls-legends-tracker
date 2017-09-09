@@ -16,6 +16,7 @@ namespace ESLTracker.Services
         public string Status { get; set; }
         public List<CardInstance> Cards { get; set; }
         public bool DeltaImport { get; set; }
+        public string DeckName { get; private set; }
 
         private TaskCompletionSource<bool> taskCompletonSource;
 
@@ -76,7 +77,8 @@ namespace ESLTracker.Services
 
         public string FindCardsData(string data)
         {
-            var match = Regex.Match(data, $"<div.*id=('|\")bbModal('|\").*?<div.*?class.*?well_full.*?>(?<data>.*?)</div>", RegexOptions.Singleline);
+            //var match = Regex.Match(data, $"<div.*id=('|\")bbModal('|\").*?<div.*?class.*?well_full.*?>(?<data>.*?)</div>", RegexOptions.Singleline);
+            var match = Regex.Match(data, $"<div class=\"well_full\" id=\"clipcopy\">(?<data>.*?)</div>", RegexOptions.Singleline);
             if (match.Success)
             {
 
@@ -85,17 +87,6 @@ namespace ESLTracker.Services
                 const string lineBreak = @"<(br|BR)\s{0,1}\/{0,1}>";//matches: <br>,<br/>,<br />,<BR>,<BR/>,<BR />
                 var lineBreakRegex = new Regex(lineBreak, RegexOptions.Multiline);
                 data = lineBreakRegex.Replace(data, Environment.NewLine);
-
-
-                const string stripFormatting = @"<[^>]*(>|$)";//match any character between '<' and '>', even when end tag is missing
-                var stripFormattingRegex = new Regex(stripFormatting, RegexOptions.Multiline);
-                data = stripFormattingRegex.Replace(data, string.Empty);
-
-                const string stripFormatting2 = @"\[[^]]*(\]|$)";//match any character between '<' and '>', even when end tag is missing
-                var stripFormattingRegex2 = new Regex(stripFormatting2, RegexOptions.Multiline);
-                data = stripFormattingRegex2.Replace(data, string.Empty);
-
-
 
             }
             else
@@ -106,16 +97,28 @@ namespace ESLTracker.Services
             return data;
         }
 
+        private static string RemoveTextInCurlyBraces(string data)
+        {
+            const string stripFormatting2 = @"\([^)]*(\)|$)";//match any character between '(' and ')', even when end tag is missing
+            var stripFormattingRegex2 = new Regex(stripFormatting2, RegexOptions.Multiline);
+            data = stripFormattingRegex2.Replace(data, string.Empty);
+            return data;
+        }
+
         public void ImportFromTextProcess(string importData)
         {
-            foreach (string cardLine in importData.Split(new string[] { Environment.NewLine },
-                                                     StringSplitOptions.RemoveEmptyEntries))
+            var importLines = importData.Split(new string[] { Environment.NewLine },StringSplitOptions.RemoveEmptyEntries);
+
+            this.DeckName = importLines[0].Replace("###", String.Empty).Trim();
+
+            foreach (string cardLine in importLines.Skip(1))
             {
                 if (String.IsNullOrWhiteSpace(cardLine))
                 {
                     continue;
                 }
-                string[] splitedLine = cardLine.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                var cardData = RemoveTextInCurlyBraces(cardLine);
+                string[] splitedLine = cardData.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
                 int cardCount = GetCardQty(splitedLine);
                 string cardName = GetCardName(splitedLine);
