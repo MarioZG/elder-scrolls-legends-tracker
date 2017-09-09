@@ -431,8 +431,11 @@ namespace ESLTracker.ViewModels.Decks
             var tcs = new TaskCompletionSource<bool>();
             deckImporter.ImportFinished(tcs);
 
-            var task = deckImporter.ImportFromWeb(Clipboard.GetText());
+            string deckUrl = Clipboard.GetText();
+
+            var task = deckImporter.ImportFromWeb(deckUrl);
             await task;
+            deck.DeckUrl = deckUrl;
             deck.SelectedVersion.Cards = new PropertiesObservableCollection<CardInstance>(deckImporter.Cards);
             //curr version shour equal deck.selected version, attch change to reflect clink for remove in deck history
             CurrentVersion.Cards.CollectionChanged += (s, e) => { RaisePropertyChangedEvent(nameof(ChangesFromCurrentVersion)); };
