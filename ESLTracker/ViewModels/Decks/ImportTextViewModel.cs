@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.Utils;
+using ESLTracker.Services;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -12,7 +13,7 @@ namespace ESLTracker.ViewModels.Decks
     {
 
         public string ImportData { get; set; }
-        public DeckImporter DeckImporter { get; set; }
+        public IDeckImporter DeckImporter { get; set; }
 
         public ICommand CommandCancel
         {
@@ -40,7 +41,7 @@ namespace ESLTracker.ViewModels.Decks
         public ImportTextViewModel(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
-            DeckImporter = new DeckImporter(this.trackerFactory);
+            DeckImporter = trackerFactory.GetService<IDeckImporter>();
         }
 
         private void CommandCancelExecute(object obj)

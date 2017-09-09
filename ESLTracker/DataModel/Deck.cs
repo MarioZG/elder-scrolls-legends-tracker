@@ -114,6 +114,15 @@ namespace ESLTracker.DataModel
             }
         }
 
+        private string deckUrl;
+
+        public string DeckUrl
+        {
+            get { return deckUrl; }
+            set { SetProperty<string>(ref deckUrl, value); }
+        }
+
+
         /// <summary>
         /// user tag for deck: aggro, control etc...
         /// </summary>

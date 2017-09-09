@@ -71,6 +71,10 @@ namespace ESLTracker.Utils
             {
                 return new WinDialogs() as T;
             }
+            else if (type == typeof(IDeckImporter))
+            {
+                return new DeckImporter() as T;
+            }
             else
             {
                 throw new NotImplementedException(typeof(T).Name);

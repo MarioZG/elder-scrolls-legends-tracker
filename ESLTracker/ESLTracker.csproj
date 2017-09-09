@@ -219,7 +219,9 @@
     <Compile Include="RankedProgressChart.xaml.cs">
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\Implementation\DeckImporter.cs" />
     <Compile Include="Services\ICardImageService.cs" />
+    <Compile Include="Services\IDeckImporter.cs" />
     <Compile Include="Services\ILauncherService.cs" />
     <Compile Include="Services\IVersionService.cs" />
     <Compile Include="Services\IResourcesService.cs" />
@@ -240,7 +242,6 @@
     <Compile Include="Utils\Converters\ToVisibilityConverter.cs" />
     <Compile Include="Utils\Converters\VersionToVisibilty.cs" />
     <Compile Include="Services\Implementation\DeckService.cs" />
-    <Compile Include="Utils\DeckImporter.cs" />
     <Compile Include="Utils\DiagnosticsWrappers\IProcessWrapper.cs" />
     <Compile Include="Utils\DiagnosticsWrappers\ProcessWrapper.cs" />
     <Compile Include="Utils\EnumBindingSourceExtension.cs" />

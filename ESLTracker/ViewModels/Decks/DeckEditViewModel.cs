@@ -11,6 +11,7 @@ using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.Utils.Extensions;
 using ESLTracker.Services;
+using System.Windows;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -51,6 +52,15 @@ namespace ESLTracker.ViewModels.Decks
                 return new RealyAsyncCommand<object>(CommandImportExecute);
             }
         }
+        public ICommand CommandImportWeb
+        {
+            get
+            {
+                return new RealyAsyncCommand<object>(CommandImportWebExecute, CommandImportWebCanExecute);
+            }
+        }
+
+ 
 
         public bool AllowVersionSave
         {
@@ -412,6 +422,33 @@ namespace ESLTracker.ViewModels.Decks
             }
 
             return new ObservableCollection<CardInstance>(result.Where(ci => ci.Quantity != 0));
+        }
+
+        private async Task<object> CommandImportWebExecute(object arg)
+        {
+
+            DeckImporter deckImporter = new DeckImporter(this.trackerFactory);
+            var tcs = new TaskCompletionSource<bool>();
+            deckImporter.ImportFinished(tcs);
+
+            var task = deckImporter.ImportFromWeb(Clipboard.GetText());
+            await task;
+            deck.SelectedVersion.Cards = new PropertiesObservableCollection<CardInstance>(deckImporter.Cards);
+            //curr version shour equal deck.selected version, attch change to reflect clink for remove in deck history
+            CurrentVersion.Cards.CollectionChanged += (s, e) => { RaisePropertyChangedEvent(nameof(ChangesFromCurrentVersion)); };
+            RaisePropertyChangedEvent(String.Empty);
+            return task;
+        }
+
+        private bool CommandImportWebCanExecute(object arg)
+        {
+            var hasUrl = Clipboard.ContainsText();
+            if (hasUrl)
+            {
+                var url = Clipboard.GetText().Trim().ToLower();
+                return url.StartsWith("https://") || url.StartsWith("http://");
+            }
+            return false;
         }
 
     }
