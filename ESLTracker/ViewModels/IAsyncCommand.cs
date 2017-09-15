@@ -7,8 +7,9 @@ using System.Windows.Input;
 
 namespace ESLTracker.ViewModels
 {
-    public interface IAsyncCommand : ICommand
+    public interface IAsyncCommand<TResult> : ICommand
     {
         Task ExecuteAsync(object parameter);
+        NotifyTaskCompletion<TResult> Execution { get; }
     }
 }

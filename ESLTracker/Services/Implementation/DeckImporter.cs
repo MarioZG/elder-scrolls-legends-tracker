@@ -1,5 +1,6 @@
 ﻿using ESLTracker.DataModel;
 using ESLTracker.Utils;
+using Polly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,7 @@ namespace ESLTracker.Services
         public async Task ImportFromWeb(string url)
         {
             WebClient webClient = new WebClient();
-            string data = webClient.DownloadString(url);
+            var data = await Task.Run(() => webClient.DownloadString(url));
             data = FindCardsData(data);
             if (!String.IsNullOrWhiteSpace(data))
             {
@@ -63,14 +64,20 @@ namespace ESLTracker.Services
 
                 try
                 {
-                    await Task.Run(() => ImportFromTextProcess(data));
+                    ImportFromTextProcess(data);
 
                     taskCompletonSource?.SetResult(true);
                 }
                 catch (Exception ex)
                 {
+                    taskCompletonSource?.SetResult(false);
                     taskCompletonSource?.SetException(ex);
                 }
+            }
+            else
+            {
+                sbErrors.AppendLine("No cards found on page.");
+                taskCompletonSource?.SetResult(false);
             }
 
         }

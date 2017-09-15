@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace ESLTracker.ViewModels
     /// <typeparam name="TResult"></typeparam>
     public class NotifyTaskCompletion<TResult> : INotifyPropertyChanged
     {
+        private Logger logger = LogManager.GetCurrentClassLogger();
+
         public Task<TResult> Task { get; private set; }
         public TResult Result
         {
@@ -54,6 +57,7 @@ namespace ESLTracker.ViewModels
 
         public NotifyTaskCompletion(Task<TResult> task)
         {
+            logger.Debug($"NotifyTaskCompletion constructor {task} ");
             Task = task;
            // if (!task.IsCompleted)
             {
@@ -65,13 +69,16 @@ namespace ESLTracker.ViewModels
         {
             try
             {
+                logger.Debug($"NotifyTaskCompletion WatchTaskAsync before await {task}. IsNotCompleted={IsNotCompleted} ");
                 await task;
+                logger.Debug($"NotifyTaskCompletion WatchTaskAsync await finished {task}. IsNotCompleted={IsNotCompleted} ");
             }
-            catch
+            catch (Exception ex)
             {
+                logger.Error(ex.ToString());
             }
-
             var propertyChanged = PropertyChanged;
+            logger.Debug($"NotifyTaskCompletion WatchTaskAsync raise prop changes {propertyChanged} ");
             if (propertyChanged == null)
                 return;
             propertyChanged(this, new PropertyChangedEventArgs("Status"));
@@ -95,6 +102,7 @@ namespace ESLTracker.ViewModels
                   new PropertyChangedEventArgs("IsSuccessfullyCompleted"));
                 propertyChanged(this, new PropertyChangedEventArgs("Result"));
             }
+            logger.Debug($"All props change event triggered");
         }
  
     }

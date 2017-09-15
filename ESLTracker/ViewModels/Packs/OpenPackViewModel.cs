@@ -57,7 +57,7 @@ namespace ESLTracker.ViewModels.Packs
             set { errorMessage = value; RaisePropertyChangedEvent(nameof(ErrorMessage)); }
         }
 
-        public IAsyncCommand CommandSave { get; private set; }
+        public IAsyncCommand<object> CommandSave { get; private set; }
 
         private string buttonSaveLabel = "Save";
         public string ButtonSaveLabel

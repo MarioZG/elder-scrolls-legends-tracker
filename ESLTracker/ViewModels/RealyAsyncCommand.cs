@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Windows.Input;
 
 namespace ESLTracker.ViewModels
 {
-    public class RealyAsyncCommand<TResult> : IAsyncCommand
+    public class RealyAsyncCommand<TResult> : ViewModelBase, IAsyncCommand<TResult>
     {
         //general implemenation
         public event EventHandler CanExecuteChanged
@@ -35,8 +36,14 @@ namespace ESLTracker.ViewModels
         //Async bits here
 
         private readonly Func<object,Task<TResult>> _command;
+
         // Raises PropertyChanged
-        public NotifyTaskCompletion<TResult> Execution { get; private set; }
+        private NotifyTaskCompletion<TResult> _execution;
+        public NotifyTaskCompletion<TResult> Execution {
+            get { return _execution; }
+            private set { SetProperty<NotifyTaskCompletion<TResult>>(ref _execution, value); }
+        }
+
         public RealyAsyncCommand(Func<object, Task<TResult>> command)
         {
             _command = command;

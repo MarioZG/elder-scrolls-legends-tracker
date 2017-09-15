@@ -12,11 +12,14 @@ using ESLTracker.Utils.Messages;
 using ESLTracker.Utils.Extensions;
 using ESLTracker.Services;
 using System.Windows;
+using NLog;
 
 namespace ESLTracker.ViewModels.Decks
 {
     public class DeckEditViewModel : ViewModelBase, IEditableObject
     {
+        private Logger logger = LogManager.GetCurrentClassLogger();
+
         private Deck deck;
 
         public Deck Deck
@@ -30,37 +33,28 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        public ICommand CommandSave
+        public ICommand CommandSave { get; private set; }
+        public ICommand CommandCancel { get; private set; }
+        public ICommand CommandImport { get; private set; }
+        public ICommand CommandStartImportWeb { get; private set; }
+        public ICommand CommandImportWebCancel { get; private set; }
+        public IAsyncCommand<object> CommandImportWeb { get; private set; }
+
+        private string webDeckUrl;
+        public string WebDeckUrl
         {
-            get
-            {
-                return new RelayCommand(CommandSaveExecute);
-            }
+            get { return webDeckUrl; }
+            set { SetProperty<string>(ref webDeckUrl, value); }
         }
 
-        public ICommand CommandCancel
+        private string webDeckUrlImportError;
+        public string WebDeckUrlImportError
         {
-            get
-            {
-                return new RelayCommand(CommandCancelExecute);
-            }
-        }
-        public ICommand CommandImport
-        {
-            get
-            {
-                return new RealyAsyncCommand<object>(CommandImportExecute);
-            }
-        }
-        public ICommand CommandImportWeb
-        {
-            get
-            {
-                return new RealyAsyncCommand<object>(CommandImportWebExecute, CommandImportWebCanExecute);
-            }
+            get { return webDeckUrlImportError; }
+            set { SetProperty<string>(ref webDeckUrlImportError, value); }
         }
 
- 
+
 
         public bool AllowVersionSave
         {
@@ -136,6 +130,13 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        private bool showImportFromUrlPanel = false;
+        public bool ShowImportFromUrlPanel
+        {
+            get { return showImportFromUrlPanel; }
+            set { SetProperty<bool>(ref showImportFromUrlPanel, value); }
+        }
+
         public ObservableCollection<CardInstance> ChangesFromCurrentVersion
         {
             get
@@ -199,7 +200,16 @@ namespace ESLTracker.ViewModels.Decks
             this.trackerFactory = trackerFactory;
             this.messanger = trackerFactory.GetService<IMessenger>();
             messanger.Register<EditDeck>(this, EditDeckStart, EditDeck.Context.StartEdit);
+
+            CommandSave = new RelayCommand(CommandSaveExecute);
+            CommandCancel = new RelayCommand(CommandCancelExecute);
+            CommandImport = new RealyAsyncCommand<object>(CommandImportExecute);
+            CommandStartImportWeb = new RelayCommand(CommandStartImportWebExecute, CommandStartImportWebCanExecute);
+            CommandImportWebCancel = new RelayCommand(CommandImportWebCancelExecute);
+            CommandImportWeb = new RealyAsyncCommand<object>(CommandImportWebExecute, CommandImportWebCanExecute);            
         }
+
+
 
         internal void EditDeckStart(EditDeck obj)
         {
@@ -424,37 +434,82 @@ namespace ESLTracker.ViewModels.Decks
             return new ObservableCollection<CardInstance>(result.Where(ci => ci.Quantity != 0));
         }
 
+        private bool CommandStartImportWebCanExecute(object arg)
+        {
+            return true;
+        }
+
+        private void CommandStartImportWebExecute(object arg)
+        {
+            logger.Debug($"CommandStartImportWebExecute");
+            WebDeckUrlImportError = null;
+            ShowImportFromUrlPanel = true;
+            var clipboardContent = Clipboard.GetText();
+            if (IsValidDeckUrl(clipboardContent))
+            {
+                WebDeckUrl = clipboardContent;
+            }
+        }
+
+        private void CommandImportWebCancelExecute(object obj)
+        {
+            ShowImportFromUrlPanel = false;
+        }
+
         private async Task<object> CommandImportWebExecute(object arg)
         {
+            logger.Debug($"CommandImportWebExecute {CommandImportWeb.Execution}");
+            return await ImportFromWeb();
+        }
 
-            DeckImporter deckImporter = new DeckImporter(this.trackerFactory);
-            var tcs = new TaskCompletionSource<bool>();
-            deckImporter.ImportFinished(tcs);
-
-            string deckUrl = Clipboard.GetText();
-
-            var task = deckImporter.ImportFromWeb(deckUrl);
-            await task;
-            deck.DeckUrl = deckUrl;
-            deck.SelectedVersion.Cards = new PropertiesObservableCollection<CardInstance>(deckImporter.Cards);
-            deck.Name = deckImporter.DeckName;
-            deck.Class = ClassAttributesHelper.FindSingleClassByAttribute(deckImporter.Cards.SelectMany(c => c.Card.Attributes).Distinct());
-            //curr version shour equal deck.selected version, attch change to reflect clink for remove in deck history
-            CurrentVersion.Cards.CollectionChanged += (s, e) => { RaisePropertyChangedEvent(nameof(ChangesFromCurrentVersion)); };
-            RaisePropertyChangedEvent(String.Empty);
-            return task;
+        private async Task<object> ImportFromWeb()
+        {
+            logger.Debug($"ImportFromWeb started. Task.IsNotCompleted={CommandImportWeb.Execution?.IsNotCompleted}");
+            try
+            {
+                DeckImporter deckImporter = new DeckImporter(this.trackerFactory);
+                var tcs = new TaskCompletionSource<bool>();
+                deckImporter.ImportFinished(tcs);
+                //logger.Debug($"ImportFromWeb awaiting {CommandImportWeb.Execution}");
+                //await Task.Delay(5000) ;
+                await deckImporter.ImportFromWeb(WebDeckUrl);
+                logger.Debug($"ImportFromWeb done. tcs={tcs.Task.Result}; Errors={deckImporter.sbErrors.ToString()}");
+                if (tcs.Task.Result)
+                {
+                    deck.DeckUrl = WebDeckUrl;
+                    deck.SelectedVersion.Cards = new PropertiesObservableCollection<CardInstance>(deckImporter.Cards);
+                    deck.Name = deckImporter.DeckName;
+                    deck.Class = ClassAttributesHelper.FindSingleClassByAttribute(deckImporter.Cards.SelectMany(c => c.Card.Attributes).Distinct());
+                    //curr version shour equal deck.selected version, attch change to reflect clink for remove in deck history
+                    CurrentVersion.Cards.CollectionChanged += (s, e) => { RaisePropertyChangedEvent(nameof(ChangesFromCurrentVersion)); };
+                    RaisePropertyChangedEvent(String.Empty);
+                    ShowImportFromUrlPanel = false;
+                }
+                else
+                {
+                    WebDeckUrlImportError = deckImporter.sbErrors.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebDeckUrlImportError = ex.Message;
+            }
+            return "done";
         }
 
         private bool CommandImportWebCanExecute(object arg)
         {
-            var hasUrl = Clipboard.ContainsText();
-            if (hasUrl)
+            if (! String.IsNullOrWhiteSpace(WebDeckUrl))
             {
-                var url = Clipboard.GetText().Trim().ToLower();
-                return url.StartsWith("https://") || url.StartsWith("http://");
+                return IsValidDeckUrl(WebDeckUrl);
             }
             return false;
         }
 
+        private bool IsValidDeckUrl(string url)
+        {
+            url = url.Trim().ToLower();
+            return url.StartsWith("https://") || url.StartsWith("http://");
+        }
     }
 }

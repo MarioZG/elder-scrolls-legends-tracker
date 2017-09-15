@@ -128,7 +128,7 @@ namespace ESLTracker.ViewModels
             get { return new RelayCommand(new Action<object>(ShowOverlay)); }
         }
 
-        public IAsyncCommand CommandRunGame
+        public IAsyncCommand<object> CommandRunGame
         {
             get
             {

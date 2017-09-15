@@ -20,8 +20,8 @@ namespace ESLTracker.ViewModels.PackStatistics
 
         Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public IAsyncCommand CommandExportToCsv { get; private set; }
-        public IAsyncCommand CommandOpenCsv { get; private set; }
+        public IAsyncCommand<object> CommandExportToCsv { get; private set; }
+        public IAsyncCommand<object> CommandOpenCsv { get; private set; }
 
         public string TargetCsvFile { get; set; }
 
