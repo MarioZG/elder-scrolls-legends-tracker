@@ -389,6 +389,7 @@ namespace ESLTracker.DataModel
             equals &= this.IsHidden == other.IsHidden;
             equals &= this.LastUsed == other.LastUsed;
             equals &= this.DeckTag == other.DeckTag;
+            equals &= this.DeckUrl == other.DeckUrl;
 
             return equals;
         }

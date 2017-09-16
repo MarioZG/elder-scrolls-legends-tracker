@@ -268,6 +268,7 @@ namespace ESLTracker.ViewModels.Decks
             Deck.IsHidden = savedState.IsHidden;
             Deck.LastUsed = savedState.LastUsed;
             Deck.DeckTag = savedState.DeckTag;
+            Deck.DeckUrl = savedState.DeckUrl;
             savedState = null;
             RaisePropertyChangedEvent(nameof(Deck));
         }
