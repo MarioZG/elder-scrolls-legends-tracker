@@ -111,6 +111,7 @@
     <Compile Include="ViewModels\Decks\EditDeckViewModelTests.cs" />
     <Compile Include="ViewModels\Game\EditGameViewModelTests.cs" />
     <Compile Include="ViewModels\Game\RankedProgressChartViewModelTests.cs" />
+    <Compile Include="ViewModels\Rewards\RewardSetViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ESLTracker\ESLTracker.csproj">
@@ -121,9 +122,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Rewards\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Services\Data\DeckImportTest001.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

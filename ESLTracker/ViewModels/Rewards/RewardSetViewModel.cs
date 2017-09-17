@@ -14,28 +14,29 @@ namespace ESLTracker.ViewModels.Rewards
 {
     public class RewardSetViewModel : ViewModelBase
     {
-        PropertiesObservableCollection<Reward> rewards;
+        /// <summary>
+        /// Keep all rewards lines here (including qty 0)
+        /// </summary>
+        private PropertiesObservableCollection<Reward> rewards;
 
+        /// <summary>
+        /// list of rewards with qty > 0
+        /// </summary>
         public PropertiesObservableCollection<Reward> RewardsAdded
         {
             get
             {
-                return new PropertiesObservableCollection<Reward>(rewards.Where( r=> 
+                return new PropertiesObservableCollection<Reward>(rewards?.Where( r=> 
                                  r.Quantity > 0 //thers qty 
-                                 && (r.Type != RewardType.Card || r.CardInstance.HasCard)),  //if card, ensure selected
+                                 && (r.Type != RewardType.Card || r.CardInstance.HasCard)).OrderBy( r=> r.Reason).ThenBy( r=> r.Type),  //if card, ensure selected
                     Rewards_CollectionChanged);
             }
         }
 
-        public PropertiesObservableCollection<AddSingleRewardViewModel> RewardsEditor
-        {
-            get
-            {
-                return new PropertiesObservableCollection<AddSingleRewardViewModel>(
-                    rewards.Where( r=> r.Reason == rewardReason).Select( r=> new AddSingleRewardViewModel(trackerFactory) { Reward = r, ParentRewardViewModel = this}),
-                    Rewards_CollectionChanged);
-            }
-        }
+        /// <summary>
+        /// list ov reward view models for current reason 
+        /// </summary>
+        public PropertiesObservableCollection<AddSingleRewardViewModel> RewardsEditor { get; private set; }
 
         RewardReason? rewardReason;
         public RewardReason? RewardReason
@@ -77,6 +78,12 @@ namespace ESLTracker.ViewModels.Rewards
         private ITrackerFactory trackerFactory;
         ITracker tracker;
 
+        #region commands
+        public RelayCommand CommandDoneButtonPressed { get; private set; }
+        public RelayCommand CommandEditReward { get; private set; }
+        public RelayCommand CommandDeleteReward { get; private set; }
+        #endregion
+
         public RewardSetViewModel() : this(new TrackerFactory())
         {
             
@@ -86,7 +93,14 @@ namespace ESLTracker.ViewModels.Rewards
         {
             this.trackerFactory = trackerFactory;
             tracker = trackerFactory.GetTracker();
-            rewards = new PropertiesObservableCollection<Reward>(CreateEmptySet(), Rewards_CollectionChanged);
+
+
+            CommandDoneButtonPressed = new RelayCommand(new Action<object>(DoneClicked), new Func<object, bool>(CanExecuteDone));
+            CommandEditReward = new RelayCommand(new Action<object>(EditReward));
+            CommandDeleteReward = new RelayCommand(new Action<object>(DeleteReward));
+
+            rewards = new PropertiesObservableCollection<Reward>(new List<Reward>(), Rewards_CollectionChanged);
+            RewardsEditor = new PropertiesObservableCollection<AddSingleRewardViewModel>(new List<AddSingleRewardViewModel>(), Rewards_CollectionChanged);
         }
 
         private void Rewards_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -104,21 +118,7 @@ namespace ESLTracker.ViewModels.Rewards
             };
         }
 
-        //command for done  button - add grid values to xml file
-        public RelayCommand CommandDoneButtonPressed
-        {
-            get { return new RelayCommand(new Action<object>(DoneClicked), new Func<object, bool>(CanExecuteDone)); }
-        }
 
-        public RelayCommand CommandEditReward
-        {
-            get { return new RelayCommand(new Action<object>(EditReward)); }
-        }
-
-        public RelayCommand CommandDeleteReward
-        {
-            get { return new RelayCommand(new Action<object>(DeleteReward)); }
-        }
 
         public void DoneClicked(object param)
         {
@@ -134,7 +134,7 @@ namespace ESLTracker.ViewModels.Rewards
             trackerFactory.GetFileManager().SaveDatabase();
 
             rewards.Clear();
-            rewards = new PropertiesObservableCollection<Reward>(CreateEmptySet(), Rewards_CollectionChanged);
+            RewardsEditor.Clear();
             RewardReason = null;
             RefreshRewardLists();
         }
@@ -158,6 +158,9 @@ namespace ESLTracker.ViewModels.Rewards
 
             if (rewardReason.HasValue)
             {
+                RewardsEditor = new PropertiesObservableCollection<AddSingleRewardViewModel>(
+                    rewards.Where(r => r.Reason == rewardReason).OrderBy( r => r.Type).Select(r => new AddSingleRewardViewModel(trackerFactory) { Reward = r, ParentRewardViewModel = this }),
+                    Rewards_CollectionChanged);
 
                 //add poteicallly missing if we are coming back
                 IEnumerable<RewardType> possibletypes = (RewardType[])Enum.GetValues(typeof(RewardType));
@@ -170,24 +173,32 @@ namespace ESLTracker.ViewModels.Rewards
                     }
                 }
 
+
                 RaisePropertyChangedEvent(nameof(RewardsEditor));
             }
         }
 
-        internal void AddNewReward(RewardType rt)
+        internal Reward AddNewReward(RewardType rt)
         {
             var indexToInsert = -1;
             indexToInsert = FindIndexToInsert(rt);
 
-            if (indexToInsert > -1)
+            var newReward = new Reward(trackerFactory) { Type = rt, Reason = rewardReason.Value };
+            if ((indexToInsert > -1 )
+                && (indexToInsert < RewardsEditor.Count))
             {
-                rewards.Insert(indexToInsert, new Reward(trackerFactory) { Type = rt, Reason = rewardReason.Value });
+                rewards.Add(newReward);
+                RewardsEditor.Insert(indexToInsert, new AddSingleRewardViewModel(trackerFactory) { Reward = newReward, ParentRewardViewModel = this });
             }
             else
             {
-                rewards.Add(new Reward(trackerFactory) { Type = rt, Reason = rewardReason.Value });
+                rewards.Add(newReward);
+                RewardsEditor.Add(new AddSingleRewardViewModel(trackerFactory) { Reward = newReward, ParentRewardViewModel = this });
             }
+            
             RaisePropertyChangedEvent(nameof(RewardsEditor));
+
+            return newReward;
         }
 
         /// <summary>
@@ -203,8 +214,9 @@ namespace ESLTracker.ViewModels.Rewards
         private int FindIndexToInsert(RewardType rt)
         {
             int indexToInsert;
+            var rewardsList = RewardsEditor.Select(r => r.Reward).ToList();
             int index = RewardsEditor.Where(r => r.Reward.Type == rt)
-                                   .Select(r => rewards.IndexOf(r.Reward))
+                                   .Select(r => rewardsList.IndexOf(r.Reward))
                                    .OrderByDescending(i => i)
                                    .DefaultIfEmpty(-1)
                                    .FirstOrDefault();
@@ -216,7 +228,7 @@ namespace ESLTracker.ViewModels.Rewards
             else
             {
                 index = RewardsEditor.Where(r => (int)r.Reward.Type > (int)rt)
-                                .Select(r => rewards.IndexOf(r.Reward))
+                                .Select(r => rewardsList.IndexOf(r.Reward))
                                 .OrderBy(i => i)
                                 .DefaultIfEmpty(-1)
                                 .FirstOrDefault();
@@ -227,7 +239,7 @@ namespace ESLTracker.ViewModels.Rewards
                 else
                 {
                     index = RewardsEditor.Where(r => (int)r.Reward.Type < (int)rt)
-                        .Select(r => rewards.IndexOf(r.Reward))
+                        .Select(r => rewardsList.IndexOf(r.Reward))
                         .OrderByDescending(i => i)
                         .DefaultIfEmpty(-1)
                         .FirstOrDefault();
@@ -254,7 +266,8 @@ namespace ESLTracker.ViewModels.Rewards
                     (RewardsEditor.Where(r => r.Reward.Type == reward.Type).Count() > 1) //more than one current type
                     )
                 {
-                    this.rewards.Remove(obj as Reward);
+                    rewards.Remove(obj as Reward);
+                    RewardsEditor.Remove(RewardsEditor.Where(re => Object.ReferenceEquals(obj, re.Reward)).FirstOrDefault());
                 }
                 else
                 {
@@ -279,8 +292,7 @@ namespace ESLTracker.ViewModels.Rewards
 
         private void RefreshRewardLists()
         {
-            RaisePropertyChangedEvent(nameof(RewardsEditor));
-            RaisePropertyChangedEvent(nameof(RewardsAdded));
+           RaisePropertyChangedEvent(nameof(RewardsAdded));
         }
     }
 }
