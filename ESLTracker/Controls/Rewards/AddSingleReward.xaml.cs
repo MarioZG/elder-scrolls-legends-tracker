@@ -36,5 +36,14 @@ namespace ESLTracker.Controls.Rewards
                FocusManager.SetFocusedElement(this, this.cardSelect);
             }
         }
+
+        private void dockPanel_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                AddSingleRewardViewModel dataContext = (AddSingleRewardViewModel)this.DataContext;
+                dataContext.ParentRewardViewModel.AddNewReward(dataContext.Reward.Type);
+            }
+        }
     }
 }
