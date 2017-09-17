@@ -84,20 +84,24 @@
         </StackPanel>
         <Label Content="Game type" Grid.Row="3"/>
         <ComboBox x:Name="cbGameType" Grid.Row="3" Grid.Column="1"
+                  TabIndex="100"
                   ItemsSource="{Binding AllowedGameTypes}"  
                   SelectedItem="{Binding Game.Type}"/>
         <Label Content="Order of play" Grid.Row="4"/>
         <ComboBox x:Name="cbOrderOfPlay" Grid.Row="4" Grid.Column="1"
+                  TabIndex="200"
                   ItemsSource="{Binding Source={StaticResource OrderOfPlayEnum}}" 
                   SelectedItem="{Binding Game.OrderOfPlay}"
                    />
         <Label x:Name="label" Content="Opponent name" Grid.Row="5"/>
         <TextBox x:Name="txtOpponentName" Grid.Row="5" Grid.Column="1"
+                 TabIndex="300"
                  Text="{Binding Game.OpponentName}"/>
         <Label x:Name="label1" Content="Opponent Rank" Grid.Row="6"
                 Visibility="{Binding DisplayPlayerRank, Converter={Converters:BoolToVisibilty}}"
                />
         <Controls:PlayerRank x:Name="cbOpponentRank"  Grid.Row="6" Grid.Column="1"
+                             TabIndex="400"
                             SelectedRank="{Binding Game.OpponentRank, Mode=TwoWay}"
                              LegendRank="{Binding Game.OpponentLegendRank, Mode=TwoWay}"
                              DataContextPath="Game.OpponentRank,Game.OpponentLegendRank"
@@ -107,6 +111,7 @@
                 Visibility="{Binding DisplayPlayerRank, Converter={Converters:BoolToVisibilty}}"
                />
         <Controls:PlayerRank x:Name="cbPlayerRank" Grid.Row="7" Grid.Column="1"
+                             TabIndex="500"
                             SelectedRank="{Binding Game.PlayerRank, Mode=TwoWay}"
                              LegendRank="{Binding Game.PlayerLegendRank, Mode=TwoWay}"
                              DataContextPath="Game.PlayerRank,Game.PlayerLegendRank"
@@ -114,21 +119,24 @@
                              />
 
         <CheckBox x:Name="cbBonusRound" Content="Bonus round" Grid.Column="1" Grid.Row="8"
+                  TabIndex="600"
                   IsThreeState="False"
                   Visibility="{Binding DisplayBonusRound, Converter={Converters:BoolToVisibilty}}" 
                   IsChecked="{Binding Game.BonusRound}"
                   />
         <Label Content="Opponent Deck Tag" Grid.Row="9"/>
         <ComboBox Grid.Row="9" Grid.Column="1" 
+                  TabIndex="700"
                   IsEditable="True" 
                   Text="{Binding Game.OpponentDeckTag}" 
                   ItemsSource="{Binding OpponentDeckTagAutocomplete}" />
         <Label Content="Notes" Grid.Row="10"/>
-        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Game.Notes}" Grid.Column="1" Grid.Row="10"></TextBox>
+        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Game.Notes}" Grid.Column="1" Grid.Row="10" TabIndex="800"></TextBox>
         <Label Content="Game outcome" Grid.Row="11"
                   Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibilty}}"
                />
         <ComboBox x:Name="cbOutcome" Grid.Row="11" Grid.Column="1"
+                  TabIndex="900"
                   Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibilty}}"
                   ItemsSource="{Binding Source={StaticResource GameOutcomeEnum}}" 
                   SelectedItem="{Binding Game.Outcome}"

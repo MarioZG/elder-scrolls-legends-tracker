@@ -18,16 +18,19 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <DockPanel>       
+    <DockPanel>
         <TextBox x:Name="txtPlayerLegendRank" Grid.Row="6" Grid.Column="1" Width="40" 
                  DockPanel.Dock="Right"
+                 TabIndex="{Binding Converter={Converters:TabIndexIncrementor}, ConverterParameter=20, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=TabIndex}"
                  Text="{Binding ElementName=rankControl, Path=LegendRank, Mode=TwoWay}"
                  Visibility="{Binding Path=SelectedItem, ElementName=cbPlayerRank ,Converter={Converters:PlayerRankLegendToVisibilty}}"
+                 GotFocus="txtPlayerLegendRank_GotFocus"
                  />
         <ComboBox x:Name="cbPlayerRank" 
-              ItemsSource="{Binding Source={StaticResource PlayerRankEnum}}"
-                  SelectedItem="{Binding ElementName=rankControl, Path=SelectedRank, Mode=TwoWay}"
-                  IsTextSearchEnabled="True" PreviewKeyDown="cbPlayerRank_PreviewKeyDown">
+                TabIndex="{Binding Converter={Converters:TabIndexIncrementor}, ConverterParameter=10, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=TabIndex}"
+                ItemsSource="{Binding Source={StaticResource PlayerRankEnum}}"
+                SelectedItem="{Binding ElementName=rankControl, Path=SelectedRank, Mode=TwoWay}"
+                IsTextSearchEnabled="True" PreviewKeyDown="cbPlayerRank_PreviewKeyDown">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

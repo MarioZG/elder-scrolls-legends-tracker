@@ -102,5 +102,10 @@ namespace ESLTracker.Controls
         {
             return Enum.TryParse(value, out rank) && Enum.IsDefined(typeof(DataModel.Enums.PlayerRank), rank);
         }
+
+        private void txtPlayerLegendRank_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ((TextBox)sender).SelectAll();
+        }
     }
 }

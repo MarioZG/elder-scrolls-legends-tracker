@@ -88,6 +88,7 @@
     <Compile Include="Utils\Converters\ObjectToVisibiltyCollapsedConverterTests.cs" />
     <Compile Include="Utils\Converters\PlayerRankLegendToVisibiltyCollapsedTests.cs" />
     <Compile Include="Utils\Converters\StringNonEmptyToVisibiltyCollapsedConverterTests.cs" />
+    <Compile Include="Utils\Converters\TabIndexIncrementorTests.cs" />
     <Compile Include="Utils\Converters\ToVisibilityConverterTests.cs" />
     <Compile Include="Utils\Converters\VersionToVisibiltyTests.cs" />
     <Compile Include="Services\DeckServiceTests.cs" />

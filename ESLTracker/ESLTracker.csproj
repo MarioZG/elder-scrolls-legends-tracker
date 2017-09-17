@@ -239,6 +239,7 @@
     <Compile Include="Utils\Converters\MarkupConverter.cs" />
     <Compile Include="Utils\Converters\ObjectToBool.cs" />
     <Compile Include="Utils\Converters\ShowOverlayWindowToBool.cs" />
+    <Compile Include="Utils\Converters\TabIndexIncrementor.cs" />
     <Compile Include="Utils\Converters\ToVisibilityConverter.cs" />
     <Compile Include="Utils\Converters\VersionToVisibilty.cs" />
     <Compile Include="Services\Implementation\DeckService.cs" />
