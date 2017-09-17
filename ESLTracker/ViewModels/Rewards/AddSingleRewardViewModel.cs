@@ -20,8 +20,7 @@ namespace ESLTracker.ViewModels.Rewards
         {
             get { return reward; }
             set {
-                SetProperty(ref reward, value);
-                
+                SetProperty(ref reward, value);                
                 InitTypeSpecifics(this.reward.Type);
             }
         }
@@ -52,17 +51,10 @@ namespace ESLTracker.ViewModels.Rewards
 
         public RewardSetViewModel ParentRewardViewModel { get; set; }
 
-        //command for add button
-        public ICommand CommandAddButtonPressed
-        {
-            get { return new RelayCommand(new Action<object>(AddClicked)); }
-        }
-
-        //command command for close icon
-        public ICommand CommandDeleteClicked
-        {
-            get { return new RelayCommand(new Action<object>(DeleteClicked)); }
-        }
+        #region command
+        public ICommand CommandAddButtonPressed { get; private set; }
+        public ICommand CommandDeleteClicked { get; private set; }
+        #endregion
 
         private ITrackerFactory trackerFactory;
         ICardsDatabase cardsDatabase;
@@ -76,6 +68,10 @@ namespace ESLTracker.ViewModels.Rewards
         {
             this.trackerFactory = trackerFactory;
             cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
+
+            CommandAddButtonPressed = new RelayCommand(new Action<object>(AddClicked));
+            CommandDeleteClicked = new RelayCommand(new Action<object>(DeleteClicked));
+
         }
 
         private void InitTypeSpecifics(RewardType value)
@@ -102,12 +98,12 @@ namespace ESLTracker.ViewModels.Rewards
                 default:
                     break;
             }
-            RaisePropertyChangedEvent("Reward");
+            RaisePropertyChangedEvent(nameof(Reward));
         }
 
         public void AddClicked(object param)
         {
-            ParentRewardViewModel.AddNewReward((RewardType)param);
+            ParentRewardViewModel.AddNewReward(Reward.Type);
         }
 
         public void DeleteClicked(object param)

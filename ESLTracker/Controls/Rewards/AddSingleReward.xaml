@@ -26,10 +26,13 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Command="{Binding Path=CommandAddButtonPressed}" 
+                Key="N" 
+                Modifiers="Control"/>
+    </UserControl.InputBindings>
 
-
-
-    <DockPanel LastChildFill="False" x:Name="dockPanel" KeyDown="dockPanel_KeyDown">
+    <DockPanel LastChildFill="False" x:Name="dockPanel">
         <Image x:Name="image" Height="24" Width="24" Margin="0,0,0,10"
                Source="{Binding Reward.TypeIcon}"
               >
@@ -77,8 +80,7 @@
                 BorderBrush="{x:Null}"
                 Background="{x:Null}"
                 Foreground="Gray"
-                Command="{Binding CommandAddButtonPressed}"
-                CommandParameter="{Binding Reward.Type}">
+                Command="{Binding CommandAddButtonPressed}">
             <Button.Content>
                 <fa:ImageAwesome Foreground="DimGray" Icon="Plus" Height="12"/>
             </Button.Content>
