@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using ESLTracker.Controls;
 using ESLTracker.Utils;
 using ESLTracker.ViewModels;
+using NLog;
 
 namespace ESLTracker
 {
@@ -24,6 +25,8 @@ namespace ESLTracker
     /// </summary>
     public partial class OverlayToolbar : OverlayWindowBase
     {
+        Logger Logger = LogManager.GetCurrentClassLogger();
+
         public override bool ShowOnScreen
         {
             get { return Settings.OverlayWindow_ShowOnStart; }
@@ -48,6 +51,7 @@ namespace ESLTracker
 
         public override void UpdateVisibilty(bool isGameActive, bool isGameProcessRunning, bool isMainWIndowActive, bool isOtherWindowActive)
         {
+            Logger.Trace($"UpdateVisibilty check IsDisposed={this.IsDisposed()};isGameActive={isGameActive};isOtherWindowActive={isOtherWindowActive};IsActive={IsActive};");
             this.Visibility = ShowOnScreen && !this.IsDisposed() &&
                                 (isGameActive || isMainWIndowActive || isOtherWindowActive)
                                 ? Visibility.Visible : Visibility.Hidden;

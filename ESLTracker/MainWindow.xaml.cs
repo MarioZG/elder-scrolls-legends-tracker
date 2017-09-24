@@ -16,6 +16,7 @@ using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.ViewModels;
+using NLog;
 
 namespace ESLTracker
 {
@@ -24,6 +25,8 @@ namespace ESLTracker
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         new public MainWindowViewModel DataContext
         {
@@ -63,10 +66,11 @@ namespace ESLTracker
             {
                 mainWindow.Dispatcher.Invoke(() =>
                 {
-                    bool isAnyOverlayActive = mainWindow.DataContext.OverlayWindows.IsAnyActive();
+                    var win = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+                    Logger.Trace($"active win{win?.Title}; istrackeractive={winAPI.IsTrackerActive()}");
                     foreach (IOverlayWindow window in mainWindow.DataContext.OverlayWindows)
                     {
-                        ((IOverlayWindow)window).UpdateVisibilty(winAPI.IsGameActive(), winAPI.GetEslProcess() != null, mainWindow.IsActive, isAnyOverlayActive);
+                        ((IOverlayWindow)window).UpdateVisibilty(winAPI.IsGameActive(), winAPI.GetEslProcess() != null, mainWindow.IsActive, winAPI.IsTrackerActive());
                     }
                 });
                 await Task.Delay(1000);

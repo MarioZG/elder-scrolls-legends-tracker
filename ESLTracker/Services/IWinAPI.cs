@@ -8,5 +8,6 @@ namespace ESLTracker.Services
         bool IsLauncherProcessRunning();
         bool IsGameActive();
         FileVersionInfo GetEslFileVersionInfo();
+        bool IsTrackerActive();
     }
 }
