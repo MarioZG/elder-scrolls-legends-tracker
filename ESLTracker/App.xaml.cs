@@ -13,6 +13,7 @@ using ESLTracker.Services;
 using NLog;
 using NLog.Config;
 using ESLTracker.Properties;
+using System.Windows.Input;
 
 namespace ESLTracker
 {
@@ -93,7 +94,8 @@ namespace ESLTracker
                 log.Info(CardsDatabaseUpdated, new object[] { cardsDB.Version, cardsDB.VersionDate.ToShortDateString(), cardsDB.VersionInfo });
             }
 
-            if (settings.General_StartGameWithTracker)
+            bool isShiftPressed = (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift;
+            if (settings.General_StartGameWithTracker && ! isShiftPressed)
             {
                 var winApi = TrackerFactory.DefaultTrackerFactory.GetService<IWinAPI>();
                 var messanger = TrackerFactory.DefaultTrackerFactory.GetService<IMessenger>();
