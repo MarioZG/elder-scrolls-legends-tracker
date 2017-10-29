@@ -407,6 +407,8 @@ namespace ESLTracker.ViewModels
 
         private void EditDeckFinished(EditDeck obj)
         {
+            this.tracker.ActiveDeck = obj.Deck;
+
             this.DeckEditVisible = false;
             this.DeckPreviewVisible = true;
             this.DeckListVisible = true;
