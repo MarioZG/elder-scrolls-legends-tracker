@@ -1,7 +1,7 @@
 {
-  "Version": "0.21",
-  "VersionInfo": "Return to Clockwork City expansion",
-  "VersionDate": "2017-11-30T00:00:00Z",
+  "Version": "0.22",
+  "VersionInfo": "Game Update 69",
+  "VersionDate": "2017-12-15T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -381,6 +381,20 @@
       "text": "Gain 5 health."
     },
     {
+      "id": "1b1d4c9c-550f-4cd5-92a3-b887b571ff9e",
+      "name": "Arcanaeum Librarian",
+      "rarity": "Common",
+      "set": "Return to Clockwork City",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "2",
+      "attack": "0",
+      "health": "2",
+      "race": "orc",
+      "text": "Gains +1/+0 when you draw a card during your turn."
+    },
+    {
       "id": "b27e335e-662f-11e6-bdf4-0800200c9a66",
       "name": "Arcane Enchanter",
       "rarity": "Epic",
@@ -393,20 +407,6 @@
       "health": "0",
       "race": "",
       "text": "When you draw an item, give it a random Keyword."
-    },
-    {
-      "id": "1b1d4c9c-550f-4cd5-92a3-b887b571ff9e",
-      "name": "Arcaneum Librarian",
-      "rarity": "Common",
-      "set": "Return to Clockwork City",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "intelligence",
-      "cost": "2",
-      "attack": "0",
-      "health": "2",
-      "race": "orc",
-      "text": "Gains +1/+0 when you draw a card during your turn."
     },
     {
       "id": "7f808cb6-b5e3-1891-00cd-eb1bdfffcba5",
@@ -4308,7 +4308,7 @@
       "isunique": false,
       "type": "support",
       "attributes": "endurance",
-      "cost": "3",
+      "cost": "4",
       "attack": "0",
       "health": "0",
       "race": "",
@@ -6128,7 +6128,7 @@
       "isunique": false,
       "type": "support",
       "attributes": "strength",
-      "cost": "2",
+      "cost": "3",
       "attack": "0",
       "health": "0",
       "race": "",
@@ -8890,7 +8890,7 @@
       "attack": "1",
       "health": "2",
       "race": "argonian",
-      "text": "Summon: Draw a card. If it costs 7 or more, reduce its cost by 2."
+      "text": "Summon: Draw a card. If it costs 7 or more, reduce its cost by 1."
     },
     {
       "id": "5b56ab78-f88f-11e6-bc64-92361f002671",
@@ -8916,7 +8916,7 @@
       "attributes": "agility,endurance",
       "cost": "5",
       "attack": "2",
-      "health": "5",
+      "health": "4",
       "race": "argonian",
       "text": "Guard\r\nSummon: Gain +1 max magicka.\r\nGains +1/+0 when your max magicka increases."
     },
@@ -9140,7 +9140,7 @@
       "attributes": "strength,willpower",
       "cost": "4",
       "attack": "3",
-      "health": "4",
+      "health": "3",
       "race": "nord",
       "text": "When an enemy rune is destroyed, draw a card."
     },
@@ -9250,7 +9250,7 @@
       "isunique": false,
       "type": "action",
       "attributes": "strength",
-      "cost": "7",
+      "cost": "8",
       "attack": "0",
       "health": "0",
       "race": "",
