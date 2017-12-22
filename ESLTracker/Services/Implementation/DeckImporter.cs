@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ESLTracker.Services
 {
-    public class DeckImporter
+    public class DeckImporter : IDeckImporter
     {
         public StringBuilder sbErrors { get; } = new StringBuilder();
         public string Status { get; set; }
@@ -139,7 +139,7 @@ namespace ESLTracker.Services
             }
         }
 
-        internal void CancelImport()
+        public void CancelImport()
         {
             taskCompletonSource.TrySetResult(false);
         }
