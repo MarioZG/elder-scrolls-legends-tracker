@@ -12,7 +12,7 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <Style x:Key="sectionHeader" TargetType="{x:Type TextBlock}">
-            <Setter Property="Margin" Value="0,0,0,5" />
+            <Setter Property="Margin" Value="0,7,0,5" />
             <Setter Property="FontWeight" Value="Medium"/>
         </Style>
     </UserControl.Resources>
@@ -33,6 +33,8 @@
         </lvc:CartesianChart>
         <TextBlock Style="{StaticResource sectionHeader}" Text="Card type"/>
         <TextBlock Text="{Binding CardTypeBreakdownText}"/>
+        <TextBlock Style="{StaticResource sectionHeader}" Text="Card keywords"/>
+        <TextBlock Text="{Binding PropheciesCountText}"/>
         <lvc:CartesianChart Visibility="Collapsed" MinHeight="80" Series="{Binding CardTypeSeriesCollection}" DisableAnimations="True">
             <lvc:CartesianChart.AxisY>
                 <lvc:Axis  Labels="{Binding CardTypeLabelsCollection}">

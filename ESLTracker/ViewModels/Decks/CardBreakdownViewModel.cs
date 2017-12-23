@@ -178,5 +178,37 @@ namespace ESLTracker.ViewModels.Decks
                 return null;
             }
         }
+
+        public string PropheciesCountText
+        {
+            get
+            {
+                StringBuilder text = new StringBuilder();
+                if (cardCollection != null)
+                {
+                    decimal count = cardCollection.Sum(ci => ci.Quantity);
+                    var keywordsBreakdown = cardCollection
+                        .SelectMany(ci => Enumerable.Repeat(ci.Card.Keywords, ci.Quantity))
+                        .SelectMany(kl => kl)
+                        .OrderBy(kl => kl)
+                        .GroupBy(
+                        ck => ck,
+                        ck => ck,
+                        (key, g) => new { Keyword = key, Count = g.Count(), Percentage = Math.Round(g.Count()*100 / count,0) }
+                        );
+                        
+
+                    foreach (var ct in keywordsBreakdown)
+                    {
+                        if (ct.Count > 0)
+                        {
+                            text.AppendFormat("{0}: {1} ({2}%)"+Environment.NewLine, ct.Keyword, ct.Count, ct.Percentage);
+                        }
+                    }
+                    return text.ToString();
+                }
+                return null;
+            }
+        }
     }
 }

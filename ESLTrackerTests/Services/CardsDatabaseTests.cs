@@ -98,5 +98,49 @@ namespace ESLTracker.Services.Tests
             Assert.AreEqual(true, cardSet.HasPacks);
             Assert.AreEqual(g, cardSet.Id);
         }
+
+        [TestMethod]
+        public void DeserialiseCard002_NoKeywords()
+        {
+            string json = @"[{""name"":""Abecean Navigator"",
+                              ""rarity"":""Common"",
+                              ""set"": ""Dark Brotherhood"",  
+                              ""isunique"":""true"",
+                              ""type"":""creature"",
+                              ""attributes"":""intelligence, willpower"",
+                              ""cost"":""2"",
+                              ""attack"":""3"",
+                              ""health"":""1"",
+                              ""race"":""highelf"",
+                              ""keywords"":[],
+                              ""text"":""Card text""}]";
+            Card card = SerializationHelper.DeserializeJson<IEnumerable<Card>>(json).First();
+
+            Assert.IsNotNull(card.Keywords);
+            Assert.AreEqual(0, card.Keywords.Count);
+        }
+
+        [TestMethod]
+        public void DeserialiseCard003_TwoKeywords()
+        {
+            string json = @"[{""name"":""Abecean Navigator"",
+                              ""rarity"":""Common"",
+                              ""set"": ""Dark Brotherhood"",  
+                              ""isunique"":""true"",
+                              ""type"":""creature"",
+                              ""attributes"":""intelligence, willpower"",
+                              ""cost"":""2"",
+                              ""attack"":""3"",
+                              ""health"":""1"",
+                              ""race"":""highelf"",
+                              ""keywords"":[""Charge"", ""Prophecy""],
+                              ""text"":""Card text""}]";
+            Card card = SerializationHelper.DeserializeJson<IEnumerable<Card>>(json).First();
+
+            Assert.IsNotNull(card.Keywords);
+            Assert.AreEqual(2, card.Keywords.Count);
+            CollectionAssert.Contains(card.Keywords, CardKeyword.Charge);
+            CollectionAssert.Contains(card.Keywords, CardKeyword.Prophecy);
+        }
     }
 }

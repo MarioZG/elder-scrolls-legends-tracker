@@ -47,5 +47,16 @@ namespace ESLTracker.Utils
             }
             return jobs;
         }
+
+        public static string SerializeJson<T>(T objectToSerialise)
+        {
+            var sb = new StringBuilder();
+            var js = new JsonSerializer();
+            using (StringWriter sr = new StringWriter(sb))
+            {
+                js.Serialize(sr, objectToSerialise);
+            }
+            return sb.ToString();
+        }
     }
 }

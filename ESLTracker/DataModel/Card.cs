@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace ESLTracker.DataModel
 {
@@ -61,6 +63,10 @@ namespace ESLTracker.DataModel
 
         [XmlIgnore]
         public string Set { get; set; }
+
+        [XmlIgnore]
+        [JsonProperty(ItemConverterType = typeof(StringEnumConverter))]
+        public List<CardKeyword> Keywords { get; set; } = new List<CardKeyword>();
 
         public string ImageName
         {
