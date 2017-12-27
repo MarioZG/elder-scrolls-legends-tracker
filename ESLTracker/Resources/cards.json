@@ -1,7 +1,7 @@
 {
-  "Version": "0.22",
-  "VersionInfo": "Game Update 69",
-  "VersionDate": "2017-12-15T00:00:00Z",
+  "Version": "0.23",
+  "VersionInfo": "December 2017 Monthly Reward",
+  "VersionDate": "2017-12-27T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -925,6 +925,20 @@
       "health": "2",
       "race": "nord",
       "text": "When you summon another creature with 5 power or more, give it +1/+1 and Breakthrough."
+    },
+    {
+      "id": "379d76ae-e140-445d-a933-35cb18c0bddc",
+      "name": "Black Hand Messenger",
+      "rarity": "Epic",
+      "set": "Promotional",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence,agility",
+      "cost": "3",
+      "attack": "0",
+      "health": "2",
+      "race": "darkelf",
+      "text": "Drain\r\nSummon: Deal 2 damage to a creature. >Last Gasp: Deal 2 damage to your opponent."
     },
     {
       "id": "14c71ca5-850b-140c-a8a8-770dc37c6b7f",
@@ -9872,5 +9886,5 @@
       "race": "mammoth",
       "text": "Breakthrough"
     }
-  ]
+  ] 
 }
