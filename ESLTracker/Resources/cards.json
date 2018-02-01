@@ -1,7 +1,7 @@
 {
-  "Version": "0.23",
-  "VersionInfo": "December 2017 Monthly Reward",
-  "VersionDate": "2017-12-27T00:00:00Z",
+  "Version": "0.24",
+  "VersionInfo": "Forgotten Hero Collection",
+  "VersionDate": "2018-01-31T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -26,6 +26,11 @@
     {
       "name": "Return to Clockwork City",
       "id": "b68bb67f-5042-4fb2-856e-f978357ae60c",
+      "haspacks": "false"
+    },
+    {
+      "name": "Forgotten Hero Collection",
+      "id": "28102c7b-b376-4597-b136-d4951bfed3a9",
       "haspacks": "false"
     }
   ],
@@ -1039,6 +1044,20 @@
       "text": "When you summon a Dragon, draw a card."
     },
     {
+      "id": "152558d3-a9d8-434a-a712-52acb61cc27d",
+      "name": "Bleakcoast Troll",
+      "rarity": "Rare",
+      "set": "Forgotten Hero Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "4",
+      "attack": "5",
+      "health": "5",
+      "race": "troll",
+      "text": "Slay: +1/+1"
+    },
+    {
       "id": "e04cd00f-8242-9ebb-292b-ea57855f49d7",
       "name": "Blighted Alit",
       "rarity": "Epic",
@@ -1429,6 +1448,20 @@
       "health": "2",
       "race": "khajiit",
       "text": "When Caravan Enforcer moves, he gains +1/+1."
+    },
+    {
+      "id": "01ac49fd-60de-455f-9e70-02df61b08c49",
+      "name": "Cast Into Time",
+      "rarity": "Rare",
+      "set": "Forgotten Hero Collection",
+      "isunique": false,
+      "type": "action",
+      "attributes": "willpower",
+      "cost": "5",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "text": "Banish a creature and all creatures from your opponent's deck with the same name."
     },
     {
       "id": "1fc4e1f6-9006-2745-158b-d8f6a6647aa1",
@@ -1877,6 +1910,20 @@
       "health": "1",
       "race": "orc",
       "text": "+2/+0 while you have no cards in hand."
+    },
+    {
+      "id": "a84b78d4-84ca-45e7-ab65-2683ba65b4ff",
+      "name": "Cradlecrush Giant",
+      "rarity": "Rare",
+      "set": "Forgotten Hero Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "6",
+      "attack": "6",
+      "health": "4",
+      "race": "giant",
+      "text": "Summon: Deal 2 damage to all other creatures in this lane."
     },
     {
       "id": "82c28f79-ffdd-3a37-5b96-6213d9b0b7f3",
@@ -2381,6 +2428,20 @@
       "health": "4",
       "race": "vampire",
       "text": "Lethal\r\nOther friendly creatures in this lane have Lethal."
+    },
+    {
+      "id": "43c46b45-d737-4cef-a7f4-52c5483c2c97",
+      "name": "Doppelganger",
+      "rarity": "Rare",
+      "set": "Forgotten Hero Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "5",
+      "attack": "1",
+      "health": "1",
+      "race": "daedra",
+      "text": "Summon: Transform Doppelganger into a copy of another friendly creature."
     },
     {
       "id": "012376f0-e95b-4048-9414-5a6c30199dd7",
@@ -5166,7 +5227,7 @@
       "attack": "1",
       "health": "5",
       "race": "imperial",
-      "text": "Lethal\r\nWhen another friendly creature Slays, give it +2/+2."
+      "text": "Lethal\r\nOther friendly creatures have \"Slay: +2/+2.\""
     },
     {
       "id": "6aececba-9f30-2492-9b25-32a19e913b19",
@@ -5673,6 +5734,20 @@
       "text": "Prophecy, Guard\r\nSummon: Give a creature +2/+0."
     },
     {
+      "id": "8e99191f-73d0-441a-a89d-cb3d7ef7ae0d",
+      "name": "Morokei, the Deathless",
+      "rarity": "Legendary",
+      "set": "Forgotten Hero Collection",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "neutral",
+      "cost": "5",
+      "attack": "5",
+      "health": "5",
+      "race": "skeleton",
+      "text": "Summon: If you started the game with no duplicate cards in your deck, you gain 5 health and restore a rune."
+    },
+    {
       "id": "60e41349-7214-cbdf-9dc8-61406223d802",
       "name": "Morthal Executioner",
       "rarity": "Rare",
@@ -5937,6 +6012,20 @@
       "health": "5",
       "race": "skeleton",
       "text": "Summon: Draw a card and reduce its cost to 0."
+    },
+    {
+      "id": "8d251733-e61b-4267-8e09-f9f0fb7b7303",
+      "name": "Namira's Shrine",
+      "rarity": "Rare",
+      "set": "Forgotten Hero Collection",
+      "isunique": false,
+      "type": "support",
+      "attributes": "neutral",
+      "cost": "4",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "text": "At the end of your turn, if you played three cards this turn, draw a card."
     },
     {
       "id": "c9a32e5e-83b8-b20a-8950-1c1d77d835d2",
@@ -6259,6 +6348,20 @@
       "health": "9",
       "race": "dragon",
       "text": "Summon: Put three random Shouts into your hand and reduce their costs to 0."
+    },
+    {
+      "id": "f0411f1f-37e9-4965-b6ea-35c617b704fa",
+      "name": "Pack Leader",
+      "rarity": "Epic",
+      "set": "Promotional",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "4",
+      "attack": "4",
+      "health": "4",
+      "race": "wolf",
+      "text": "Pilfer: Summon a 1/1 Young Wolf.\r\nOther friendly Wolves have +1/+1."
     },
     {
       "id": "b4e893ef-d5cf-eeb3-bba2-93b1c619ec6b",
@@ -7311,6 +7414,20 @@
       "text": ""
     },
     {
+      "id": "8f00b32c-bf0c-4379-b3fa-62e6d0f93cab",
+      "name": "Seht's Masterwork",
+      "rarity": "Legendary",
+      "set": "Forgotten Hero Collection",
+      "isunique": true,
+      "type": "support",
+      "attributes": "neutral",
+      "cost": "3",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "text": "If you started the game with no duplicate cards in your deck, your cards cost 1 less."
+    },
+    {
       "id": "a66336f8-eac6-5db8-f45b-5aa021f33536",
       "name": "Senche-Tiger",
       "rarity": "Common",
@@ -7591,6 +7708,20 @@
       "text": "Siege Catapult can't attack unless your side of its lane is full."
     },
     {
+      "id": "2e84e44e-6530-4616-86e1-30944cfd07c0",
+      "name": "Siege of Stros M'Kai",
+      "rarity": "Legendary",
+      "set": "Forgotten Hero Collection",
+      "isunique": true,
+      "type": "action",
+      "attributes": "neutral",
+      "cost": "10",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "text": "If you started the game with no duplicate cards in your deck, play a random creature, item, support and action from your deck."
+    },
+    {
       "id": "b1f4844d-1c82-4d25-8016-eedc45c57aa9",
       "name": "Sightless Skulk",
       "rarity": "Common",
@@ -7813,6 +7944,20 @@
       "health": "0",
       "race": "",
       "text": "Summon a Slaughterfish in each lane."
+    },
+    {
+      "id": "d09b16f6-bfe0-44e3-897c-1328ce1f8f64",
+      "name": "Sly Marshblade",
+      "rarity": "Rare",
+      "set": "Forgotten Hero Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "2",
+      "attack": "3",
+      "health": "2",
+      "race": "argonian",
+      "text": "Last Gasp: Draw a card if you have 7 or more max magicka."
     },
     {
       "id": "79fab68a-cecf-231a-549c-2649d4633a5d",
@@ -8806,7 +8951,7 @@
       "attack": "5",
       "health": "5",
       "race": "imperial",
-      "text": "Immune to Lethal.\r\nSlay: Discard all copies of the slain creature from the opponent’s deck."
+      "text": "Immune to Lethal.\r\nSlay: Discard all creatures from your opponent's deck with the same name as the slain creature."
     },
     {
       "id": "d5d5f5b9-8c28-489f-9ec4-04017155b583",
@@ -9075,6 +9220,20 @@
       "text": "Summon: If you have more health than your opponent, draw two cards."
     },
     {
+      "id": "cd7e96f2-fa87-4c61-9a9d-445025f97066",
+      "name": "Tullius' Conscription",
+      "rarity": "Epic",
+      "set": "Forgotten Hero Collection",
+      "isunique": false,
+      "type": "action",
+      "attributes": "neutral",
+      "cost": "11",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "text": "Summon one of each creature from your deck that costs 2 or less."
+    },
+    {
       "id": "2c46ac22-d826-9424-c921-ad416075e116",
       "name": "Tusked Bristleback",
       "rarity": "Common",
@@ -9157,6 +9316,20 @@
       "health": "3",
       "race": "nord",
       "text": "When an enemy rune is destroyed, draw a card."
+    },
+    {
+      "id": "382fdc8c-e33c-480c-98c0-c365c16675aa",
+      "name": "Ulfric's Uprising",
+      "rarity": "Epic",
+      "set": "Forgotten Hero Collection",
+      "isunique": false,
+      "type": "action",
+      "attributes": "neutral",
+      "cost": "6",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "text": "Trigger the Summon of each friendly creature."
     },
     {
       "id": "b27e0c45-662f-11e6-bdf4-0800200c9a66",
@@ -9367,6 +9540,20 @@
       "health": "2",
       "race": "breton",
       "text": ""
+    },
+    {
+      "id": "475dc851-81ac-4802-93e9-819923f8c0a3",
+      "name": "Voice of Balance",
+      "rarity": "Epic",
+      "set": "Forgotten Hero Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "neutral",
+      "cost": "4",
+      "attack": "4",
+      "health": "4",
+      "race": "nord",
+      "text": "Summon: +4/+4 and Guard if you have an action, item, and support in your discard pile or in play."
     },
     {
       "id": "03ccf0ab-56d9-533e-90ed-2936f8216481",
@@ -9786,7 +9973,7 @@
       "attack": "4",
       "health": "4",
       "race": "breton",
-      "text": "Summon: Deal 2 damage to an enemy creature.\r\nSlay: Summon a 2/2 Worm Thrall with Guard."
+      "text": "Summon: Deal 2 damage to a creature.\r\nSlay: Summon a 2/2 Worm Thrall with Guard."
     },
     {
       "id": "d3ad93ae-898b-4f58-86ab-3dacaf7ceb95",
@@ -9886,5 +10073,5 @@
       "race": "mammoth",
       "text": "Breakthrough"
     }
-  ] 
+  ]
 }
