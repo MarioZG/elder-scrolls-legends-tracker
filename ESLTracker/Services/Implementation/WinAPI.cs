@@ -45,6 +45,15 @@ namespace ESLTracker.Services
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern int GetWindowThreadProcessId(IntPtr handle, out int processId);
 
+        internal const int GWL_EXSTYLE = -20;
+        internal const int WS_EX_TOOLWINDOW = 0x00000080;
+
+        [DllImport("user32.dll")]
+        internal static extern int GetWindowLong(IntPtr hwnd, int index);
+
+        [DllImport("user32.dll")]
+        internal static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
+
         public bool IsGameActive()
         {
             IntPtr fw = GetForegroundWindow();
