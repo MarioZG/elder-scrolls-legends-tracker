@@ -84,7 +84,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -653,6 +652,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Cards\abandonedimperfect.png" />
     <Resource Include="Resources\Cards\abeceannavigator.png" />
     <Resource Include="Resources\Cards\adoringfan.png" />
     <Resource Include="Resources\Cards\aelashuntmate.png" />
@@ -662,6 +662,7 @@
     <Resource Include="Resources\Cards\ahnassi.png" />
     <Resource Include="Resources\Cards\alanddivided.png" />
     <Resource Include="Resources\Cards\aldmeripatriot.png" />
+    <Resource Include="Resources\Cards\aldorathedaring.png" />
     <Resource Include="Resources\Cards\alduin.png" />
     <Resource Include="Resources\Cards\alikrbandit.png" />
     <Resource Include="Resources\Cards\alikrsurvivalist.png" />
@@ -689,17 +690,24 @@
     <Resource Include="Resources\Cards\ashservant.png" />
     <Resource Include="Resources\Cards\assassinsbow.png" />
     <Resource Include="Resources\Cards\assassinsritual.png" />
+    <Resource Include="Resources\Cards\assembledconduit.png" />
+    <Resource Include="Resources\Cards\assembledsanitizer.png" />
+    <Resource Include="Resources\Cards\assembledsentry.png" />
+    <Resource Include="Resources\Cards\assembledtitan.png" />
     <Resource Include="Resources\Cards\astrid.png" />
     <Resource Include="Resources\Cards\auridonpaladin.png" />
     <Resource Include="Resources\Cards\auroransentry.png" />
+    <Resource Include="Resources\Cards\awakenedimperfect.png" />
     <Resource Include="Resources\Cards\ayrenn.png" />
     <Resource Include="Resources\Cards\baandaribruiser.png" />
+    <Resource Include="Resources\Cards\backalleyrogue.png" />
     <Resource Include="Resources\Cards\balmoraspymaster.png" />
     <Resource Include="Resources\Cards\banditringleader.png" />
     <Resource Include="Resources\Cards\bangkoraibutcher.png" />
     <Resource Include="Resources\Cards\barbas.png" />
     <Resource Include="Resources\Cards\bardedguar.png" />
     <Resource Include="Resources\Cards\baronoftear.png" />
+    <Resource Include="Resources\Cards\barrowstalker.png" />
     <Resource Include="Resources\Cards\barter.png" />
     <Resource Include="Resources\Cards\battlefieldscrounger.png" />
     <Resource Include="Resources\Cards\battlemagesonslaught.png" />
@@ -722,6 +730,8 @@
     <Resource Include="Resources\Cards\boglurcher.png" />
     <Resource Include="Resources\Cards\bonebow.png" />
     <Resource Include="Resources\Cards\bonecolossus.png" />
+    <Resource Include="Resources\Cards\brassarquebus.png" />
+    <Resource Include="Resources\Cards\brassilisk.png" />
     <Resource Include="Resources\Cards\bretonconjurer.png" />
     <Resource Include="Resources\Cards\brilliantexperiment.png" />
     <Resource Include="Resources\Cards\bringerofnightmares.png" />
@@ -757,8 +767,12 @@
     <Resource Include="Resources\Cards\clericofkyne.png" />
     <Resource Include="Resources\Cards\cliffracer.png" />
     <Resource Include="Resources\Cards\cliffsidelookout.png" />
+    <Resource Include="Resources\Cards\clockworkapostle.png" />
+    <Resource Include="Resources\Cards\clockworkdragon.png" />
+    <Resource Include="Resources\Cards\clockworkscorpion.png" />
     <Resource Include="Resources\Cards\closecall.png" />
     <Resource Include="Resources\Cards\cloudrestillusionist.png" />
+    <Resource Include="Resources\Cards\cogcollector.png" />
     <Resource Include="Resources\Cards\collegeofwinterhold.png" />
     <Resource Include="Resources\Cards\companionharbinger.png" />
     <Resource Include="Resources\Cards\conjurationscholar.png" />
@@ -782,6 +796,7 @@
     <Resource Include="Resources\Cards\daggersinthedark.png" />
     <Resource Include="Resources\Cards\dagirahtmystic.png" />
     <Resource Include="Resources\Cards\daringcutpurse.png" />
+    <Resource Include="Resources\Cards\daringheist.png" />
     <Resource Include="Resources\Cards\darkguardian.png" />
     <Resource Include="Resources\Cards\darkharvester.png" />
     <Resource Include="Resources\Cards\darkrebirth.png" />
@@ -803,7 +818,9 @@
     <Resource Include="Resources\Cards\divineconviction.png" />
     <Resource Include="Resources\Cards\divinefervor.png" />
     <Resource Include="Resources\Cards\doomcragvampire.png" />
+    <Resource Include="Resources\Cards\dormantcenturion.png" />
     <Resource Include="Resources\Cards\dovahofthevoice.png" />
+    <Resource Include="Resources\Cards\dragonaspect.png" />
     <Resource Include="Resources\Cards\dragoncultghost.png" />
     <Resource Include="Resources\Cards\dragonmound.png" />
     <Resource Include="Resources\Cards\dragonplatearmor.png" />
@@ -824,9 +841,11 @@
     <Resource Include="Resources\Cards\dunesmuggler.png" />
     <Resource Include="Resources\Cards\dunestalker.png" />
     <Resource Include="Resources\Cards\dunmernightblade.png" />
+    <Resource Include="Resources\Cards\dushnikhyalarcher.png" />
     <Resource Include="Resources\Cards\dwarvenarmaments.png" />
     <Resource Include="Resources\Cards\dwarvenballista.png" />
     <Resource Include="Resources\Cards\dwarvencenturion.png" />
+    <Resource Include="Resources\Cards\dwarvencolossus.png" />
     <Resource Include="Resources\Cards\dwarvendynamo.png" />
     <Resource Include="Resources\Cards\dwarvensphere.png" />
     <Resource Include="Resources\Cards\dwarvenspider.png" />
@@ -854,8 +873,10 @@
     <Resource Include="Resources\Cards\encumberedexplorer.png" />
     <Resource Include="Resources\Cards\enragedmudcrab.png" />
     <Resource Include="Resources\Cards\evermoresteward.png" />
+    <Resource Include="Resources\Cards\excavate.png" />
     <Resource Include="Resources\Cards\execute.png" />
     <Resource Include="Resources\Cards\expertatromancer.png" />
+    <Resource Include="Resources\Cards\fabricate.png" />
     <Resource Include="Resources\Cards\falinestireaver.png" />
     <Resource Include="Resources\Cards\falkreathdefiler.png" />
     <Resource Include="Resources\Cards\farsightnereid.png" />
@@ -873,6 +894,7 @@
     <Resource Include="Resources\Cards\fireball.png" />
     <Resource Include="Resources\Cards\firebolt.png" />
     <Resource Include="Resources\Cards\firebreath.png" />
+    <Resource Include="Resources\Cards\firepotspider.png" />
     <Resource Include="Resources\Cards\firestorm.png" />
     <Resource Include="Resources\Cards\fleshatronach.png" />
     <Resource Include="Resources\Cards\fleshsculpture.png" />
@@ -884,8 +906,10 @@
     <Resource Include="Resources\Cards\frostbitespider.png" />
     <Resource Include="Resources\Cards\frostgiant.png" />
     <Resource Include="Resources\Cards\frosttroll.png" />
+    <Resource Include="Resources\Cards\galyntheshelterer.png" />
     <Resource Include="Resources\Cards\gardenerofswords.png" />
     <Resource Include="Resources\Cards\garnagdarkadherent.png" />
+    <Resource Include="Resources\Cards\gearworkspider.png" />
     <Resource Include="Resources\Cards\generaltullius.png" />
     <Resource Include="Resources\Cards\ghostsealookout.png" />
     <Resource Include="Resources\Cards\giantbat.png" />
@@ -902,6 +926,7 @@
     <Resource Include="Resources\Cards\grahtwoodambusher.png" />
     <Resource Include="Resources\Cards\grandball.png" />
     <Resource Include="Resources\Cards\grandmasterdelphine.png" />
+    <Resource Include="Resources\Cards\grapplinghook.png" />
     <Resource Include="Resources\Cards\gravesinger.png" />
     <Resource Include="Resources\Cards\graystoneravager.png" />
     <Resource Include="Resources\Cards\greenheartknight.png" />
@@ -915,6 +940,7 @@
     <Resource Include="Resources\Cards\guildrecruit.png" />
     <Resource Include="Resources\Cards\haafingarmarauder.png" />
     <Resource Include="Resources\Cards\hackwingfeather.png" />
+    <Resource Include="Resources\Cards\halloweddeathpriest.png" />
     <Resource Include="Resources\Cards\hallsofthedwemer.png" />
     <Resource Include="Resources\Cards\hauntingspirit.png" />
     <Resource Include="Resources\Cards\healinghands.png" />
@@ -939,6 +965,8 @@
     <Resource Include="Resources\Cards\hornedhelm.png" />
     <Resource Include="Resources\Cards\housekinsman.png" />
     <Resource Include="Resources\Cards\hulkingdraugr.png" />
+    <Resource Include="Resources\Cards\hulkingfabricant.png" />
+    <Resource Include="Resources\Cards\hunterkillers.png" />
     <Resource Include="Resources\Cards\icespike.png" />
     <Resource Include="Resources\Cards\icestorm.png" />
     <Resource Include="Resources\Cards\icewingdragon.png" />
@@ -967,11 +995,13 @@
     <Resource Include="Resources\Cards\jerallforager.png" />
     <Resource Include="Resources\Cards\journeytosovngarde.png" />
     <Resource Include="Resources\Cards\jzargo.png" />
+    <Resource Include="Resources\Cards\kagoutifabricant.png" />
     <Resource Include="Resources\Cards\karthspirescourge.png" />
     <Resource Include="Resources\Cards\keeperofwhispers.png" />
     <Resource Include="Resources\Cards\knifetothethroat.png" />
     <Resource Include="Resources\Cards\knightofthehour.png" />
     <Resource Include="Resources\Cards\kvatchsoldier.png" />
+    <Resource Include="Resources\Cards\laaneth.png" />
     <Resource Include="Resources\Cards\laydownarms.png" />
     <Resource Include="Resources\Cards\leaflurker.png" />
     <Resource Include="Resources\Cards\leafwaterblessing.png" />
@@ -1005,6 +1035,9 @@
     <Resource Include="Resources\Cards\masterofthieves.png" />
     <Resource Include="Resources\Cards\masterswordsmith.png" />
     <Resource Include="Resources\Cards\mechanicalally.png" />
+    <Resource Include="Resources\Cards\mecinar.png" />
+    <Resource Include="Resources\Cards\mecinarswill.png" />
+    <Resource Include="Resources\Cards\memorywraith.png" />
     <Resource Include="Resources\Cards\mentorofthewatch.png" />
     <Resource Include="Resources\Cards\mentorsring.png" />
     <Resource Include="Resources\Cards\merchantscamel.png" />
@@ -1015,6 +1048,7 @@
     <Resource Include="Resources\Cards\militantchieftain.png" />
     <Resource Include="Resources\Cards\miraakdragonborn.png" />
     <Resource Include="Resources\Cards\mistveilenchanter.png" />
+    <Resource Include="Resources\Cards\mistveilwarden.png" />
     <Resource Include="Resources\Cards\momentofclarity.png" />
     <Resource Include="Resources\Cards\monksstrike.png" />
     <Resource Include="Resources\Cards\moonlightwerebat.png" />
@@ -1030,6 +1064,7 @@
     <Resource Include="Resources\Cards\mundusstone.png" />
     <Resource Include="Resources\Cards\murkwaterbutcher.png" />
     <Resource Include="Resources\Cards\murkwatergoblin.png" />
+    <Resource Include="Resources\Cards\murkwaterguide.png" />
     <Resource Include="Resources\Cards\murkwatersavage.png" />
     <Resource Include="Resources\Cards\murkwatershaman.png" />
     <Resource Include="Resources\Cards\murkwaterskirmisher.png" />
@@ -1047,6 +1082,7 @@
     <Resource Include="Resources\Cards\nightshadow.png" />
     <Resource Include="Resources\Cards\nighttalonlord.png" />
     <Resource Include="Resources\Cards\nimbleally.png" />
+    <Resource Include="Resources\Cards\nixhoundfabricant.png" />
     <Resource Include="Resources\Cards\nordfirebrand.png" />
     <Resource Include="Resources\Cards\northpointcaptain.png" />
     <Resource Include="Resources\Cards\northpointlieutenant.png" />
@@ -1065,6 +1101,7 @@
     <Resource Include="Resources\Cards\palaceprowler.png" />
     <Resource Include="Resources\Cards\paralyze.png" />
     <Resource Include="Resources\Cards\penitusoculatusagent.png" />
+    <Resource Include="Resources\Cards\phalanxexemplar.png" />
     <Resource Include="Resources\Cards\piercingjavelin.png" />
     <Resource Include="Resources\Cards\pillagingtribune.png" />
     <Resource Include="Resources\Cards\pitlion.png" />
@@ -1090,20 +1127,26 @@
     <Resource Include="Resources\Cards\rampagingminotaur.png" />
     <Resource Include="Resources\Cards\ransack.png" />
     <Resource Include="Resources\Cards\rapidshot.png" />
+    <Resource Include="Resources\Cards\ratwayprospector.png" />
     <Resource Include="Resources\Cards\ravenouscrocodile.png" />
     <Resource Include="Resources\Cards\ravenoushunger.png" />
     <Resource Include="Resources\Cards\reachmanshaman.png" />
     <Resource Include="Resources\Cards\reclusivegiant.png" />
+    <Resource Include="Resources\Cards\reconstructionengine.png" />
     <Resource Include="Resources\Cards\redbramman.png" />
     <Resource Include="Resources\Cards\redoranenforcer.png" />
+    <Resource Include="Resources\Cards\reflectiveautomaton.png" />
     <Resource Include="Resources\Cards\reiveblademaster.png" />
     <Resource Include="Resources\Cards\relentlessraider.png" />
+    <Resource Include="Resources\Cards\relichunter.png" />
     <Resource Include="Resources\Cards\renownedlegate.png" />
     <Resource Include="Resources\Cards\resoluteally.png" />
     <Resource Include="Resources\Cards\restlesstemplar.png" />
     <Resource Include="Resources\Cards\restorationtutor.png" />
     <Resource Include="Resources\Cards\revealingtheunseen.png" />
+    <Resource Include="Resources\Cards\reverberatingstrike.png" />
     <Resource Include="Resources\Cards\reveredguardian.png" />
+    <Resource Include="Resources\Cards\riftenlawkeeper.png" />
     <Resource Include="Resources\Cards\riftenpickpocket.png" />
     <Resource Include="Resources\Cards\riftenpillager.png" />
     <Resource Include="Resources\Cards\riftthane.png" />
@@ -1116,12 +1159,16 @@
     <Resource Include="Resources\Cards\riverholdescort.png" />
     <Resource Include="Resources\Cards\rottingdraugr.png" />
     <Resource Include="Resources\Cards\royalsage.png" />
+    <Resource Include="Resources\Cards\ruinarchaeologist.png" />
+    <Resource Include="Resources\Cards\ruthlessfreebooter.png" />
     <Resource Include="Resources\Cards\sadrasagent.png" />
+    <Resource Include="Resources\Cards\sailsthroughstorms.png" />
     <Resource Include="Resources\Cards\sanctuarypet.png" />
     <Resource Include="Resources\Cards\sanctuaryraid.png" />
     <Resource Include="Resources\Cards\savageogre.png" />
     <Resource Include="Resources\Cards\scoutingpatrol.png" />
     <Resource Include="Resources\Cards\scoutsreport.png" />
+    <Resource Include="Resources\Cards\scrollseeker.png" />
     <Resource Include="Resources\Cards\scuttler.png" />
     <Resource Include="Resources\Cards\senchetiger.png" />
     <Resource Include="Resources\Cards\sentinelbattlemace.png" />
@@ -1133,6 +1180,7 @@
     <Resource Include="Resources\Cards\shadowmere.png" />
     <Resource Include="Resources\Cards\shadowscalepartisan.png" />
     <Resource Include="Resources\Cards\shadowshift.png" />
+    <Resource Include="Resources\Cards\shalkfabricant.png" />
     <Resource Include="Resources\Cards\sharpshooterscout.png" />
     <Resource Include="Resources\Cards\shearpointdragon.png" />
     <Resource Include="Resources\Cards\shieldbreaker.png" />
@@ -1145,6 +1193,7 @@
     <Resource Include="Resources\Cards\sightlessskulk.png" />
     <Resource Include="Resources\Cards\silvenartracker.png" />
     <Resource Include="Resources\Cards\skavenpyromancer.png" />
+    <Resource Include="Resources\Cards\skeevaton.png" />
     <Resource Include="Resources\Cards\skeeverinfestation.png" />
     <Resource Include="Resources\Cards\skeletaldragon.png" />
     <Resource Include="Resources\Cards\skilledblacksmith.png" />
@@ -1185,6 +1234,7 @@
     <Resource Include="Resources\Cards\stalwartally.png" />
     <Resource Include="Resources\Cards\stampedesentinel.png" />
     <Resource Include="Resources\Cards\stampedingmammoth.png" />
+    <Resource Include="Resources\Cards\starsungbard.png" />
     <Resource Include="Resources\Cards\starvedhunger.png" />
     <Resource Include="Resources\Cards\stealerofsecrets.png" />
     <Resource Include="Resources\Cards\steelheartvanquisher.png" />
@@ -1227,6 +1277,7 @@
     <Resource Include="Resources\Cards\thalmorjusticiar.png" />
     <Resource Include="Resources\Cards\thalmorsoldier.png" />
     <Resource Include="Resources\Cards\theblackdragon.png" />
+    <Resource Include="Resources\Cards\themechanicalheart.png" />
     <Resource Include="Resources\Cards\thenightmother.png" />
     <Resource Include="Resources\Cards\thiefofdreams.png" />
     <Resource Include="Resources\Cards\thievery.png" />
@@ -1235,11 +1286,15 @@
     <Resource Include="Resources\Cards\thievesguildrecruit.png" />
     <Resource Include="Resources\Cards\thievesguildshadowfoot.png" />
     <Resource Include="Resources\Cards\thornhistmage.png" />
+    <Resource Include="Resources\Cards\thornwellterror.png" />
+    <Resource Include="Resources\Cards\thronealigned.png" />
     <Resource Include="Resources\Cards\tomeofalteration.png" />
     <Resource Include="Resources\Cards\torvalcrook.png" />
     <Resource Include="Resources\Cards\toweralchemist.png" />
+    <Resource Include="Resources\Cards\treasuremap.png" />
     <Resource Include="Resources\Cards\trebuchet.png" />
     <Resource Include="Resources\Cards\treeminder.png" />
+    <Resource Include="Resources\Cards\trialofflame.png" />
     <Resource Include="Resources\Cards\triumphantjarl.png" />
     <Resource Include="Resources\Cards\tuskedbristleback.png" />
     <Resource Include="Resources\Cards\twilightwerebat.png" />
@@ -1258,6 +1313,7 @@
     <Resource Include="Resources\Cards\valenwoodhuntsman.png" />
     <Resource Include="Resources\Cards\valenwoodtrapper.png" />
     <Resource Include="Resources\Cards\varaniscourier.png" />
+    <Resource Include="Resources\Cards\verminousfabricant.png" />
     <Resource Include="Resources\Cards\viciousdreugh.png" />
     <Resource Include="Resources\Cards\vigilantgiant.png" />
     <Resource Include="Resources\Cards\vigilantofstendarr.png" />
@@ -1270,6 +1326,7 @@
     <Resource Include="Resources\Cards\warriorsfury.png" />
     <Resource Include="Resources\Cards\watchcommander.png" />
     <Resource Include="Resources\Cards\wavesofthefallen.png" />
+    <Resource Include="Resources\Cards\weakness.png" />
     <Resource Include="Resources\Cards\whirlingduelist.png" />
     <Resource Include="Resources\Cards\whiterunprotector.png" />
     <Resource Include="Resources\Cards\whiterunrecruit.png" />
@@ -1289,6 +1346,7 @@
     <Resource Include="Resources\Cards\woodorcheadhunter.png" />
     <Resource Include="Resources\Cards\wordwall.png" />
     <Resource Include="Resources\Cards\worldeaterseyrie.png" />
+    <Resource Include="Resources\Cards\wormkingsagent.png" />
     <Resource Include="Resources\Cards\wrathofsithis.png" />
     <Resource Include="Resources\Cards\wrothgarartisan.png" />
     <Resource Include="Resources\Cards\wrothgarforge.png" />
@@ -1387,66 +1445,23 @@
     <Resource Include="Resources\Sets\HeroesofSkyrim.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Cards\abandonedimperfect.png" />
-    <Resource Include="Resources\Cards\aldorathedaring.png" />
+    <Resource Include="Resources\Cards\blackhandmessenger.png" />
+    <Resource Include="Resources\Cards\bleakcoasttroll.png" />
+    <Resource Include="Resources\Cards\castintotime.png" />
+    <Resource Include="Resources\Cards\cradlecrushgiant.png" />
+    <Resource Include="Resources\Cards\doppelganger.png" />
+    <Resource Include="Resources\Cards\morokeithedeathless.png" />
+    <Resource Include="Resources\Cards\namirasshrine.png" />
+    <Resource Include="Resources\Cards\packleader.png" />
+    <Resource Include="Resources\Cards\sehtsmasterwork.png" />
+    <Resource Include="Resources\Cards\siegeofstrosmkai.png" />
+    <Resource Include="Resources\Cards\slymarshblade.png" />
+    <Resource Include="Resources\Cards\tulliusconscription.png" />
+    <Resource Include="Resources\Cards\ulfricsuprising.png" />
+    <Resource Include="Resources\Cards\voiceofbalance.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\Cards\arcanaeumlibrarian.png" />
-    <Resource Include="Resources\Cards\assembledconduit.png" />
-    <Resource Include="Resources\Cards\assembledsanitizer.png" />
-    <Resource Include="Resources\Cards\assembledsentry.png" />
-    <Resource Include="Resources\Cards\assembledtitan.png" />
-    <Resource Include="Resources\Cards\awakenedimperfect.png" />
-    <Resource Include="Resources\Cards\backalleyrogue.png" />
-    <Resource Include="Resources\Cards\barrowstalker.png" />
-    <Resource Include="Resources\Cards\brassarquebus.png" />
-    <Resource Include="Resources\Cards\brassilisk.png" />
-    <Resource Include="Resources\Cards\clockworkapostle.png" />
-    <Resource Include="Resources\Cards\clockworkdragon.png" />
-    <Resource Include="Resources\Cards\clockworkscorpion.png" />
-    <Resource Include="Resources\Cards\cogcollector.png" />
-    <Resource Include="Resources\Cards\daringheist.png" />
-    <Resource Include="Resources\Cards\dormantcenturion.png" />
-    <Resource Include="Resources\Cards\dragonaspect.png" />
-    <Resource Include="Resources\Cards\dushnikhyalarcher.png" />
-    <Resource Include="Resources\Cards\dwarvencolossus.png" />
-    <Resource Include="Resources\Cards\excavate.png" />
-    <Resource Include="Resources\Cards\fabricate.png" />
-    <Resource Include="Resources\Cards\firepotspider.png" />
-    <Resource Include="Resources\Cards\galyntheshelterer.png" />
-    <Resource Include="Resources\Cards\gearworkspider.png" />
-    <Resource Include="Resources\Cards\grapplinghook.png" />
-    <Resource Include="Resources\Cards\halloweddeathpriest.png" />
-    <Resource Include="Resources\Cards\hulkingfabricant.png" />
-    <Resource Include="Resources\Cards\hunterkillers.png" />
-    <Resource Include="Resources\Cards\kagoutifabricant.png" />
-    <Resource Include="Resources\Cards\laaneth.png" />
-    <Resource Include="Resources\Cards\mecinar.png" />
-    <Resource Include="Resources\Cards\mecinarswill.png" />
-    <Resource Include="Resources\Cards\memorywraith.png" />
-    <Resource Include="Resources\Cards\mistveilwarden.png" />
-    <Resource Include="Resources\Cards\murkwaterguide.png" />
-    <Resource Include="Resources\Cards\nixhoundfabricant.png" />
-    <Resource Include="Resources\Cards\phalanxexemplar.png" />
-    <Resource Include="Resources\Cards\ratwayprospector.png" />
-    <Resource Include="Resources\Cards\reconstructionengine.png" />
-    <Resource Include="Resources\Cards\reflectiveautomaton.png" />
-    <Resource Include="Resources\Cards\relichunter.png" />
-    <Resource Include="Resources\Cards\reverberatingstrike.png" />
-    <Resource Include="Resources\Cards\riftenlawkeeper.png" />
-    <Resource Include="Resources\Cards\ruinarchaeologist.png" />
-    <Resource Include="Resources\Cards\ruthlessfreebooter.png" />
-    <Resource Include="Resources\Cards\sailsthroughstorms.png" />
-    <Resource Include="Resources\Cards\scrollseeker.png" />
-    <Resource Include="Resources\Cards\shalkfabricant.png" />
-    <Resource Include="Resources\Cards\skeevaton.png" />
-    <Resource Include="Resources\Cards\starsungbard.png" />
-    <Resource Include="Resources\Cards\themechanicalheart.png" />
-    <Resource Include="Resources\Cards\thornwellterror.png" />
-    <Resource Include="Resources\Cards\thronealigned.png" />
-    <Resource Include="Resources\Cards\treasuremap.png" />
-    <Resource Include="Resources\Cards\trialofflame.png" />
-    <Resource Include="Resources\Cards\verminousfabricant.png" />
-    <Resource Include="Resources\Cards\weakness.png" />
-    <Resource Include="Resources\Cards\wormkingsagent.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
