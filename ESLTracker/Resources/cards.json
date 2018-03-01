@@ -1,7 +1,7 @@
 {
-  "Version": "0.24",
-  "VersionInfo": "Forgotten Hero Collection",
-  "VersionDate": "2018-01-31T00:00:00Z",
+  "Version": "0.70.2",
+  "VersionInfo": "Game Update 70.2",
+  "VersionDate": "2018-03-01T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -4905,7 +4905,7 @@
       "attack": "0",
       "health": "0",
       "race": "",
-      "text": "Shuffle all creatures from your discard pile into your deck. Give them +5/+5 and reduce their costs by 5."
+      "text": "Shuffle all creatures from your discard pile into your deck, and give them +5/+5."
     },
     {
       "id": "d4edfb70-09bb-11e7-9598-0800200c9a66",
@@ -8394,6 +8394,20 @@
       "text": "Ward\r\nSummon: +1/+1 for each action in your discard pile."
     },
     {
+      "id": "78df99ba-653b-4111-acf2-b60c62f2adfc",
+      "name": "Steam Constructor",
+      "rarity": "Epic",
+      "set": "Promotional",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "neutral",
+      "cost": "2",
+      "attack": "2",
+      "health": "2",
+      "race": "dwemer",
+      "text": "Summon: If you have a (Neutral) card in your hand, summon a 1/1 Reconstructed Spider."
+    },
+    {
       "id": "054c81f3-cbd1-44bd-87e1-ec7e8c981158",
       "name": "Steel Scimitar",
       "rarity": "Common",
@@ -10073,5 +10087,5 @@
       "race": "mammoth",
       "text": "Breakthrough"
     }
-  ]
+  ] 
 }
