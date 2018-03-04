@@ -66,17 +66,19 @@ namespace ESLTracker.Services
         Process eslProcess = null;
         public Process GetEslProcess()
         {
-            if ((eslProcess == null)
-                || (eslProcess.HasExited))
+            try
             {
-                try
+                if ((eslProcess == null)
+                || (eslProcess.HasExited))
                 {
+
                     eslProcess = processWrapper.GetProcessesByName(ESLExeProcessName).FirstOrDefault();
+
                 }
-                catch (Exception ex)
-                {
-                    Logger.Info(ex, "Exception while getting ESL process");
-                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Info(ex, "Exception while getting ESL process");
             }
             return eslProcess;
         }
