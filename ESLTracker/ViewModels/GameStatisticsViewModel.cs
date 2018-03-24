@@ -297,6 +297,11 @@ namespace ESLTracker.ViewModels
                         Sorcerer = GetResultToShow(r, "Sorcerer"),
                         Spellsword = GetResultToShow(r, "Spellsword"),
                         Warrior = GetResultToShow(r, "Warrior"),
+                        Redoran = GetResultToShow(r, DeckClass.Redoran.ToString()),
+                        Telvanni = GetResultToShow(r, DeckClass.Telvanni.ToString()),
+                        Hlaalu = GetResultToShow(r, DeckClass.Hlaalu.ToString()),
+                        Tribunal = GetResultToShow(r, DeckClass.Tribunal.ToString()),
+                        Dagoth = GetResultToShow(r, DeckClass.Dagoth.ToString()),
                         Total = GetResultToShow(r, "Total"),
                         First_Second = GetResultToShow(r, "First_Second"),
                         FirstWin = GetResultToShow(r, "FirstWin"),
@@ -483,6 +488,11 @@ namespace ESLTracker.ViewModels
             public string Total { get; set; }
             public string Warrior { get; set; }
             public string Willpower { get; set; }
+            public string Redoran { get; set; }
+            public string Telvanni { get; set; }
+            public string Hlaalu { get; set; }
+            public string Tribunal { get; set; }
+            public string Dagoth { get; set; }
             public Dictionary<string, string> Tags { get; set; } = new Dictionary<string, string>();
         }
     }

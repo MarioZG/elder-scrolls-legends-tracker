@@ -131,19 +131,14 @@ namespace ESLTracker.Controls.GameStatistics
                 spFactory.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
                 spFactory.SetValue(StackPanel.ToolTipProperty, da.ToString());
 
-                //set up the card holder textblock
-                FrameworkElementFactory cardHolder = new FrameworkElementFactory(typeof(Image));
-                cardHolder.SetValue(Image.SourceProperty, new BitmapImage(new Uri(da.ImageSources.First(), UriKind.Absolute)));
-                cardHolder.SetValue(Image.WidthProperty, 16.0);
-                spFactory.AppendChild(cardHolder);
 
-                if (da.ImageSources.Count() > 1)
+                foreach (var attributeImage in da.ImageSources)
                 {
                     //set up the card holder textblock
-                    FrameworkElementFactory cardHolder2 = new FrameworkElementFactory(typeof(Image));
-                    cardHolder2.SetValue(Image.SourceProperty, new BitmapImage(new Uri(da.ImageSources.Skip(1).FirstOrDefault(), UriKind.Absolute)));
-                    cardHolder2.SetValue(Image.WidthProperty, 16.0);
-                    spFactory.AppendChild(cardHolder2);
+                    FrameworkElementFactory cardHolder = new FrameworkElementFactory(typeof(Image));
+                    cardHolder.SetValue(Image.SourceProperty, new BitmapImage(new Uri(attributeImage, UriKind.Absolute)));
+                    cardHolder.SetValue(Image.WidthProperty, 16.0);
+                    spFactory.AppendChild(cardHolder);
                 }
 
                 //set the visual tree of the data template
