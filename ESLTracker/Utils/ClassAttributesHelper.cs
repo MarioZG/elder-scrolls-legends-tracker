@@ -29,7 +29,13 @@ namespace ESLTracker.Utils
             { DeckClass.Scout, new DeckAttributes(DeckClass.Scout) { DeckAttribute.Agility, DeckAttribute.Endurance}},
             { DeckClass.Sorcerer, new DeckAttributes(DeckClass.Sorcerer) { DeckAttribute.Intelligence, DeckAttribute.Endurance}},
             { DeckClass.Spellsword, new DeckAttributes(DeckClass.Spellsword) { DeckAttribute.Willpower, DeckAttribute.Endurance}},
-            { DeckClass.Warrior, new DeckAttributes(DeckClass.Warrior) { DeckAttribute.Strength, DeckAttribute.Endurance}}
+            { DeckClass.Warrior, new DeckAttributes(DeckClass.Warrior) { DeckAttribute.Strength, DeckAttribute.Endurance}},
+
+            { DeckClass.Redoran, new DeckAttributes(DeckClass.Redoran) { DeckAttribute.Strength, DeckAttribute.Willpower, DeckAttribute.Endurance}},
+            { DeckClass.Telvanni, new DeckAttributes(DeckClass.Telvanni) { DeckAttribute.Intelligence, DeckAttribute.Agility, DeckAttribute.Endurance}},
+            { DeckClass.Hlaalu, new DeckAttributes(DeckClass.Hlaalu) { DeckAttribute.Strength, DeckAttribute.Willpower, DeckAttribute.Agility}},
+            { DeckClass.Tribunal , new DeckAttributes(DeckClass.Tribunal ) { DeckAttribute.Intelligence, DeckAttribute.Willpower, DeckAttribute.Endurance}},
+            { DeckClass.Dagoth , new DeckAttributes(DeckClass.Dagoth ) { DeckAttribute.Strength, DeckAttribute.Intelligence, DeckAttribute.Agility}}
         };
 
         public static Dictionary<DeckClass, DeckAttributes> Classes

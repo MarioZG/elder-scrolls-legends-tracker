@@ -23,6 +23,11 @@ namespace ESLTracker.DataModel.Enums
         Scout,
         Sorcerer,
         Spellsword,
-        Warrior
+        Warrior,
+        Redoran,
+        Telvanni,
+        Hlaalu,
+        Tribunal,
+        Dagoth
     }
 }
