@@ -1,7 +1,7 @@
 {
-  "Version": "0.70.2",
-  "VersionInfo": "Game Update 70.2",
-  "VersionDate": "2018-03-01T00:00:00Z",
+  "Version": "0.70.3",
+  "VersionInfo": "March 2018 Monthly reward",
+  "VersionDate": "2018-04-01T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -3674,6 +3674,20 @@
       "health": "2",
       "race": "spider",
       "text": "Prophecy, Lethal"
+    },
+    {
+      "id": "11c9056c-8ba4-4bc2-bb25-69c93f9a3316",
+      "name": "Frostscale Dragon",
+      "rarity": "Epic",
+      "set": "Promotional",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength,intelligence",
+      "cost": "9",
+      "attack": "6",
+      "health": "6",
+      "race": "dragon",
+      "text": "Summon: Deal 4 damage to an enemy creature and 1 damage to all other enemy creatures."
     },
     {
       "id": "f5101588-b111-4013-8990-ffdbea57689d",
