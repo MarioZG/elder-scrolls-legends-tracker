@@ -1,7 +1,7 @@
 {
-  "Version": "0.70.3",
-  "VersionInfo": "March 2018 Monthly reward",
-  "VersionDate": "2018-04-01T00:00:00Z",
+  "Version": "0.71",
+  "VersionInfo": "Houses of Morrowind",
+  "VersionDate": "2018-04-17T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -32,6 +32,11 @@
       "name": "Forgotten Hero Collection",
       "id": "28102c7b-b376-4597-b136-d4951bfed3a9",
       "haspacks": "false"
+    },
+    {
+      "name": "Houses of Morrowind",
+      "id": "81a42256-7ef4-4325-a261-4ce57f7f9b3b",
+      "haspacks": "true"
     }
   ],
   "Cards": [
@@ -186,6 +191,21 @@
       "text": "Summon: Ahnassi steals all Keywords from enemy creatures."
     },
     {
+      "id": "aca5d2ab-8dc0-49b6-b275-16a21c767ec8",
+      "name": "Ald Velothi Assassin",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "2",
+      "attack": "1",
+      "health": "2",
+      "race": "breton",
+      "keywords": ["Lethal","Rally"],
+      "text": "Lethal, Rally"
+    },
+    {
       "id": "bde9b95e-0498-dbce-decd-31e7ca00ea18",
       "name": "Aldmeri Patriot",
       "rarity": "Rare",
@@ -214,6 +234,21 @@
       "race": "nord",
       "keywords": [],
       "text": "Treasure Hunt - Action, Creature, Item, Support: +6/+6\r\nWhen a friendly treasure hunter finds something, summon Skywag or give Skywag +1/+1."
+    },
+    {
+      "id": "fbb18ba5-81f2-4101-974c-e06f113364c8",
+      "name": "Ald'ruhn Arms Master",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "4",
+      "attack": "2",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": ["Charge","Rally"],
+      "text": "Charge, Rally"
     },
     {
       "id": "f0685a79-5279-11e6-bdf4-0800200c9a66",
@@ -276,6 +311,36 @@
       "text": "Lethal\r\nSummon: Deal 1 damage."
     },
     {
+      "id": "622b6e8d-8534-4e4c-85b5-701c2f581b03",
+      "name": "Almalexia",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "7",
+      "attack": "6",
+      "health": "6",
+      "race": "god",
+      "keywords": [],
+      "text": "Exalt 3: +6/+6\r\nFriendly Exalted creatures are immune to damage."
+    },
+    {
+      "id": "388b12aa-74be-4985-ba0f-fd7f39760601",
+      "name": "Almalexia's Disciple",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "2",
+      "attack": "2",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Exalt 2: Heal all friendly creatures."
+    },
+    {
       "id": "723e4975-156b-148b-50a0-8027c1d7b560",
       "name": "Alpha Wolf",
       "rarity": "Epic",
@@ -306,6 +371,21 @@
       "text": "Uses: 12.\r\nActivate: Sacrifice a creature to summon a creature from your deck that costs 1, then increase the cost of creatures this summons by 1."
     },
     {
+      "id": "f4c047f2-12b6-11e8-b566-0800200c9a66",
+      "name": "Ambitious Hireling",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "2",
+      "attack": "1",
+      "health": "1",
+      "race": "woodelf",
+      "keywords": [],
+      "text": "Summon: Give another friendly creature power and health equal to Ambitious Hireling's power."
+    },
+    {
       "id": "d8aafff0-2ad7-11e7-9598-0800200c9a66",
       "name": "Ancano",
       "rarity": "Legendary",
@@ -334,6 +414,21 @@
       "race": "",
       "keywords": [],
       "text": "+4/+4\r\nSummon: Give the top creature of your deck +4/+4."
+    },
+    {
+      "id": "4b7ed840-02f4-11e8-8f1a-0800200c9a66",
+      "name": "Ancestral Dead",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "3",
+      "attack": "2",
+      "health": "4",
+      "race": "skeleton",
+      "keywords": [],
+      "text": "Slay: Summon a Risen Dead."
     },
     {
       "id": "979ba718-9bb1-11e6-80f5-76304dec7eb7",
@@ -439,6 +534,21 @@
       "race": "",
       "keywords": [],
       "text": "When you draw an item, give it a random Keyword."
+    },
+    {
+      "id": "47395203-6b12-4474-8990-3a54fa36d01d",
+      "name": "Archcanon Saryoni",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "intelligence,willpower,endurance",
+      "cost": "4",
+      "attack": "3",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: Choose a blessing from one of the Tribunal gods.\r\nExalt 3: Gain all three blessings instead."
     },
     {
       "id": "7f808cb6-b5e3-1891-00cd-eb1bdfffcba5",
@@ -576,6 +686,66 @@
       "text": "After you play an action, give a random friendly creature +1/+1."
     },
     {
+      "id": "4ca9b167-e05f-432a-b53b-e82022ec5fca",
+      "name": "Ascended Sleeper",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength,intelligence,agility",
+      "cost": "6",
+      "attack": "3",
+      "health": "6",
+      "race": "ashcreature",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nAt the end of your turn, if you have a creature with 5 power or more, reduce the cost of all creatures in your hand by 1."
+    },
+    {
+      "id": "8d68b9d4-c965-4487-910f-d66576537eb1",
+      "name": "Ash Berserker",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "4",
+      "attack": "4",
+      "health": "3",
+      "race": "ashcreature",
+      "keywords": [],
+      "text": "At the end of your turn, if you have a creature with 5 power or more, draw a card."
+    },
+    {
+      "id": "bb15e5d3-0de0-11e8-b566-0800200c9a66",
+      "name": "Ash Oppressor",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "3",
+      "attack": "4",
+      "health": "3",
+      "race": "ashcreature",
+      "keywords": [],
+      "text": "Summon: If you have a creature with 5 power or more, Shackle an enemy creature."
+    },
+    {
+      "id": "1651fe10-02f7-11e8-8f1a-0800200c9a66",
+      "name": "Ash Piercer",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "5",
+      "attack": "3",
+      "health": "4",
+      "race": "ashcreature",
+      "keywords": [],
+      "text": "Summon: Deal 3 damage to a creature if you have a creature with 5 power or more."
+    },
+    {
       "id": "33f56f09-756b-f822-203a-12b700ab760e",
       "name": "Ash Servant",
       "rarity": "Rare",
@@ -589,6 +759,36 @@
       "race": "ashcreature",
       "keywords": [],
       "text": "Summon: Deal 2 damage to a creature."
+    },
+    {
+      "id": "9f3a73cb-bd81-4aee-8116-46e58546c7ee",
+      "name": "Ashlander Zealot",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "1",
+      "attack": "1",
+      "health": "2",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "SummonBattle an enemy creature."
+    },
+    {
+      "id": "37c60116-a080-4006-b00e-ef6e6ddf8672",
+      "name": "Aspect of Hircine",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "9",
+      "attack": "6",
+      "health": "6",
+      "race": "daedra",
+      "keywords": [],
+      "text": "Summon: Choose one:\r\nStrength: +6/+6 and Guard.\r\nSpeed: Gains Charge."
     },
     {
       "id": "496f60b2-6977-ba53-d125-90d5bcd5e15f",
@@ -696,6 +896,21 @@
       "text": "Lethal\r\nFriendly Lethal creatures have \"Slay: Put a Completed Contract into your hand.\""
     },
     {
+      "id": "3dfd6599-b7bd-4b72-88aa-47453a5fc910",
+      "name": "Aundae Clan Sorcerer",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "3",
+      "attack": "4",
+      "health": "3",
+      "race": "vampire",
+      "keywords": [],
+      "text": "At the end of your turn, if three or more creatures died this turn, put a random Blood Magic Spell into your hand."
+    },
+    {
       "id": "49c26ce1-db15-b23e-885d-00ffb01b92e9",
       "name": "Auridon Paladin",
       "rarity": "Common",
@@ -724,6 +939,21 @@
       "race": "daedra",
       "keywords": ["Guard"],
       "text": "Guard\r\nWhen Auroran Sentry is dealt damage, you gain that much health."
+    },
+    {
+      "id": "8b7285db-041c-4f06-ba6a-130af4e00cda",
+      "name": "Awakened Dreamer",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "2",
+      "attack": "2",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "At the end of your turn, if you have a creature with 5 power or more, Awakened Dreamer gains +1/+1."
     },
     {
       "id": "ba6263a9-9f94-4945-a943-a638b4cfcadd",
@@ -784,6 +1014,51 @@
       "race": "darkelf",
       "keywords": [],
       "text": "Summon: Steal Cover from another creature."
+    },
+    {
+      "id": "3d9b7461-a7cc-4a09-a7b5-252817de3722",
+      "name": "Bal Isra Warrider",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "5",
+      "attack": "3",
+      "health": "6",
+      "race": "redguard",
+      "keywords": ["Rally"],
+      "text": "Rally"
+    },
+    {
+      "id": "f69d3d6c-64e2-49c0-9129-de4ab6e790dd",
+      "name": "Balmora Captain",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "5",
+      "attack": "4",
+      "health": "4",
+      "race": "darkelf",
+      "keywords": ["Rally"],
+      "text": "Rally\r\nYour other Rallies give an extra +1/+1."
+    },
+    {
+      "id": "e9b9aaf2-a6a5-40ca-9b0c-9e2b97b7effe",
+      "name": "Balmora Puppeteer",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength,willpower,agility",
+      "cost": "2",
+      "attack": "2",
+      "health": "2",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Plot: +1/+1 for each other card you've played this turn."
     },
     {
       "id": "6625895b-103d-3bf7-45dc-2ab0f20a139f",
@@ -859,6 +1134,21 @@
       "race": "reptile",
       "keywords": [],
       "text": "Summon: Give a creature Guard."
+    },
+    {
+      "id": "f4c020e3-12b6-11e8-b566-0800200c9a66",
+      "name": "Barilzar's Tinkering",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "intelligence",
+      "cost": "2",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Transform a creature into a random creature that costs 1 more."
     },
     {
       "id": "5431d81e-8b2c-c863-a3b0-25c52cb18aaf",
@@ -981,6 +1271,21 @@
       "text": "Breakthrough\r\nSummon: Unsummon a creature in this lane, or destroy an enemy support."
     },
     {
+      "id": "acaa4d35-179a-4a3f-81e2-3702b490c849",
+      "name": "Berne Clan Nightstalker",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "5",
+      "attack": "5",
+      "health": "3",
+      "race": "vampire",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nSummon: Secretly choose an enemy creature.\r\nLast Gasp: Destroy the chosen creature."
+    },
+    {
       "id": "f27053db-0668-4429-be45-1cfa99368307",
       "name": "Berserker of the Pale",
       "rarity": "Common",
@@ -994,6 +1299,21 @@
       "race": "nord",
       "keywords": [],
       "text": "When you summon another creature with 5 power or more, give it +1/+1 and Breakthrough."
+    },
+    {
+      "id": "4ef6af97-50af-44ba-bd60-de61aaccb9c5",
+      "name": "Betty Netch",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "5",
+      "attack": "0",
+      "health": "5",
+      "race": "",
+      "keywords": [],
+      "text": "While Betty Netch is in play, your max magicka is increased by 2."
     },
     {
       "id": "379d76ae-e140-445d-a933-35cb18c0bddc",
@@ -1146,6 +1466,21 @@
       "text": "At the start of your turn, Blighted Alit deals 2 damage to you."
     },
     {
+      "id": "f4c047f0-12b6-11e8-b566-0800200c9a66",
+      "name": "Blighted Werebat",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "5",
+      "attack": "4",
+      "health": "4",
+      "race": "beast",
+      "keywords": ["Drain"],
+      "text": "Drain\r\nAt the end of your turn, if you have a creature with 5 power or more, deal 2 damage to your opponent."
+    },
+    {
       "id": "926bc686-ffca-9faa-431d-3787bf15f1ce",
       "name": "Blood Dragon",
       "rarity": "Legendary",
@@ -1173,7 +1508,7 @@
       "health": "6",
       "race": "vampire",
       "keywords": [],
-      "text": "Summon and Slay: Put a Blood Magic Spell into your hand."
+      "text": "Summon and Slay: Put a random Blood Magic Spell into your hand."
     },
     {
       "id": "519f02a7-3180-4637-b922-f471cba5aa15",
@@ -1191,6 +1526,21 @@
       "text": "Pilfer: Draw two cards. Sacrifice Blood Pact Messenger at the end of the turn."
     },
     {
+      "id": "5619d8be-0d95-450f-991f-2b504c0aac19",
+      "name": "Blood Sacrament",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "agility",
+      "cost": "3",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Deal 2 damage to your opponent and gain 2 health."
+    },
+    {
       "id": "c6758770-9b9d-11e6-9f33-a24fc0d9649c",
       "name": "Blood Sorceress",
       "rarity": "Epic",
@@ -1206,6 +1556,36 @@
       "text": "At the start of your turn, if you have 7 or more max magicka, deal 5 damage to your opponent."
     },
     {
+      "id": "6672f57f-818a-4874-964c-da735d83e6e0",
+      "name": "Bloodline Outcast",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "7",
+      "attack": "7",
+      "health": "7",
+      "race": "vampire",
+      "keywords": [],
+      "text": "When a creature dies, Bloodline Outcast gains Drain this turn."
+    },
+    {
+      "id": "0c1db811-c97a-4fa9-a92a-cc9bafb9cae0",
+      "name": "Blueclaw Matron",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "neutral",
+      "cost": "7",
+      "attack": "3",
+      "health": "8",
+      "race": "dreugh",
+      "keywords": [],
+      "text": ""
+    },
+    {
       "id": "cffca262-39e5-a9bc-2782-fa081ba832b5",
       "name": "Bog Lurcher",
       "rarity": "Rare",
@@ -1219,6 +1599,21 @@
       "race": "lurcher",
       "keywords": [],
       "text": ""
+    },
+    {
+      "id": "de65d765-1147-491f-8106-9beb17e771dd",
+      "name": "Bolvyn Venim",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "strength,willpower,endurance",
+      "cost": "3",
+      "attack": "3",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": ["Rally"],
+      "text": "Rally\r\nWhen you Rally with no creatures in your hand, first draw Bolvyn Venim from your deck."
     },
     {
       "id": "1bf4577b-7360-2326-0b93-a3d359ce2007",
@@ -1249,6 +1644,21 @@
       "race": "skeleton",
       "keywords": [],
       "text": "Summon: Fill this lane with 1/1 Skeletons.\r\nOther friendly Skeletons have +1/+1."
+    },
+    {
+      "id": "a9659838-7e9c-43d6-abe8-6422a3be617e",
+      "name": "Bonewalker",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "4",
+      "attack": "1",
+      "health": "2",
+      "race": "skeleton",
+      "keywords": ["Prophecy","Guard"],
+      "text": "Prophecy, Guard\r\nSummon: +1/+1 for each enemy creature in this lane."
     },
     {
       "id": "66c7f883-0e97-418d-8cbe-76715410f1e9",
@@ -1431,6 +1841,66 @@
       "text": "Deal 1 damage to all enemy creatures in a lane for each destroyed enemy rune."
     },
     {
+      "id": "816cb65e-462f-4b03-8a4d-95c0bf01cb48",
+      "name": "Burning Touch",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "intelligence",
+      "cost": "3",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": ["Prophecy"],
+      "text": "Prophecy\r\nDeal 2 damage to a creature."
+    },
+    {
+      "id": "01d20a23-bb3c-4e8d-a641-4f173c87f9ac",
+      "name": "Bushwhack",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "strength",
+      "cost": "0",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "A friendly creature ignores Guards and can attack creatures in any lane this turn."
+    },
+    {
+      "id": "9d57257c-508d-4247-bbcd-de63a3f6f0c1",
+      "name": "Caius Cosades",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "4",
+      "attack": "3",
+      "health": "4",
+      "race": "imperial",
+      "keywords": [],
+      "text": "Summon: Look at two of your opponent's cards. Guess the one in their hand. If you're right, give all creatures in your hand +1/+1."
+    },
+    {
+      "id": "461815ae-93ea-43ba-9a69-3cf4f041db32",
+      "name": "Caius' Machinations",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "endurance",
+      "cost": "2",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Give the top three creatures of your deck +1/+1."
+    },
+    {
       "id": "49d6f190-81d0-11e6-ae22-56b6b6499611",
       "name": "Call of Valor",
       "rarity": "Common",
@@ -1504,6 +1974,21 @@
       "race": "breton",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard"
+    },
+    {
+      "id": "a368401b-06dc-410c-ad98-b233a3c11cab",
+      "name": "Camonna Tong Heavy",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "5",
+      "attack": "4",
+      "health": "3",
+      "race": "orc",
+      "keywords": [],
+      "text": "Plot: Unsummon a creature in this lane with less power than Camonna Tong Heavy."
     },
     {
       "id": "3c49795d-24e6-ab02-fe7f-49e31630cd60",
@@ -1746,6 +2231,21 @@
       "text": "Slay: May attack again this turn."
     },
     {
+      "id": "012a701e-7672-4012-80b7-cd8ffec202d9",
+      "name": "Chodala's Treachery",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "willpower",
+      "cost": "9",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Destroy a creature.\r\nPlot: Steal the creature instead."
+    },
+    {
       "id": "751b5226-b11c-11e6-80f5-76304dec7eb7",
       "name": "Cicero the Betrayer",
       "rarity": "Legendary",
@@ -1791,6 +2291,21 @@
       "text": "Prophecy\r\nSummon: Give a creature +0/+2."
     },
     {
+      "id": "076ab74b-eeff-4acd-a4eb-1cca09cdf962",
+      "name": "Cliff Hunter",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "6",
+      "attack": "3",
+      "health": "3",
+      "race": "reptile",
+      "keywords": ["Prophecy"],
+      "text": "Prophecy\r\nSummon: Battle an enemy creature."
+    },
+    {
       "id": "c087de0b-bb21-ea87-9569-b62fd2391080",
       "name": "Cliff Racer",
       "rarity": "Rare",
@@ -1804,6 +2319,36 @@
       "race": "reptile",
       "keywords": ["Charge"],
       "text": "Charge"
+    },
+    {
+      "id": "af5541b3-82a0-45ce-ab1a-0dc44e2d3ac9",
+      "name": "Cliff Racer Onslaught",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "agility",
+      "cost": "9",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Summon a 4/4 Cliff Racer with Charge in each lane. Your opponent summons a 0/1 Target with Guard in each lane."
+    },
+    {
+      "id": "f46d17b2-2b98-41cf-8347-789087a11348",
+      "name": "Cliff Strider",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "4",
+      "attack": "3",
+      "health": "4",
+      "race": "reptile",
+      "keywords": ["Charge"],
+      "text": "Charge\r\nCan't attack your opponent.\r\nAt the end of your turn, if there are no enemy creatures in this lane, move Cliff Strider."
     },
     {
       "id": "9f1b5a88-5b9d-4e52-b0c2-dafdb8da488f",
@@ -1834,6 +2379,21 @@
       "race": "highelf",
       "keywords": [],
       "text": "Summon: Give another friendly creature +4/+4. It becomes (Neutral)."
+    },
+    {
+      "id": "90635931-e19f-4714-b94d-480ab9a13f43",
+      "name": "Clockwork City Pilgrim",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "3",
+      "attack": "3",
+      "health": "3",
+      "race": "highelf",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nExalt 3: +2/+2."
     },
     {
       "id": "17ca10e8-628d-452b-97b1-153b32d8acaa",
@@ -1971,6 +2531,36 @@
       "text": "Summon: Shuffle three Lava Atronachs into your deck.\r\nWhen you summon an Atronach, summon a copy of it in the other lane."
     },
     {
+      "id": "8df1e49f-9f5e-494e-a6d4-e19d53ee1cc0",
+      "name": "Cornerclub Gambler",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "3",
+      "attack": "4",
+      "health": "3",
+      "race": "woodelf",
+      "keywords": [],
+      "text": "Summon: You must discard a card.\r\n"
+    },
+    {
+      "id": "66f13100-6ee0-4188-b015-61bc615df38a",
+      "name": "Corprus Disease",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "strength",
+      "cost": "1",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Silence a creature, then give it +2/+0."
+    },
+    {
       "id": "c6759198-9b9d-11e6-9f33-a24fc0d9649c",
       "name": "Corrupted Shade",
       "rarity": "Epic",
@@ -2074,6 +2664,21 @@
       "race": "redguard",
       "keywords": [],
       "text": "When you play or activate a support, Craglorn Scavenger gains +1/+1."
+    },
+    {
+      "id": "8237146d-f19f-411c-91be-5fb9c16a8cfd",
+      "name": "Crassius' Favor",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "willpower",
+      "cost": "2",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Summon two 1/1 Imperial Grunts to a lane.\r\nPlot: Gain 1 health for each friendly creature in that lane."
     },
     {
       "id": "b0ddeaa1-3140-b5be-08f2-56b5860765fc",
@@ -2196,6 +2801,21 @@
       "text": "Prophecy\r\nSummon: Silence another creature."
     },
     {
+      "id": "7fd836ad-232e-4368-a64f-1d82aaf2a436",
+      "name": "Daedric Crescent",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "item",
+      "attributes": "endurance",
+      "cost": "3",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "+2/+2\r\nSlay: +1/+1"
+    },
+    {
       "id": "cbc62693-b504-ecb4-0df3-6263c7540aa7",
       "name": "Daedric Dagger",
       "rarity": "Common",
@@ -2254,6 +2874,51 @@
       "race": "khajiit",
       "keywords": [],
       "text": "Pilfer: Draw a random support from your deck."
+    },
+    {
+      "id": "b0fafca0-02f2-11e8-8f1a-0800200c9a66",
+      "name": "Dagoth Dagger",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "item",
+      "attributes": "strength",
+      "cost": "1",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": ["Breakthrough"],
+      "text": "Breakthrough\r\n+2/+1"
+    },
+    {
+      "id": "fba1afbe-8561-4879-be45-ee5e8dbdf225",
+      "name": "Dagoth Oathman",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "3",
+      "attack": "3",
+      "health": "3",
+      "race": "ashcreature",
+      "keywords": [],
+      "text": "Summon: If you have a...\r\n(Agility) card in play, +1/+1.\r\n(Intelligence) card in play, +1/+1."
+    },
+    {
+      "id": "b677ebea-fa06-450e-842a-d5f92b94bc9e",
+      "name": "Dagoth Ur",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "strength,intelligence,agility",
+      "cost": "12",
+      "attack": "8",
+      "health": "8",
+      "race": "god",
+      "keywords": ["Breakthrough","Drain","Guard","Charge","Lethal","Ward"],
+      "text": "Breakthrough, Drain, Guard, Charge, Lethal, Ward"
     },
     {
       "id": "1e4ca945-78ff-2a80-07ff-e5a35890e80a",
@@ -2436,6 +3101,21 @@
       "text": "Guard\r\nShackle creatures damaged by Deepwood Trapper."
     },
     {
+      "id": "47dc9ca8-e0c7-4923-88c1-3780027dfe52",
+      "name": "Deranged Corprus",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "2",
+      "attack": "0",
+      "health": "1",
+      "race": "ashcreature",
+      "keywords": [],
+      "text": "Deranged Corprus has +5/+0 on your turn."
+    },
+    {
       "id": "4242e23f-de96-fbf1-257a-ceb2b639b0eb",
       "name": "Descendant of Alkosh",
       "rarity": "Legendary",
@@ -2541,6 +3221,21 @@
       "text": "When another friendly creature in this lane dies, draw a card."
     },
     {
+      "id": "2a4c70af-5a44-4f75-bf24-c6993264bb8d",
+      "name": "Dismantle",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "neutral",
+      "cost": "3",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Destroy an enemy support or (Neutral) creature."
+    },
+    {
       "id": "7f25fccf-006c-3ebc-810f-eb93aea9c06f",
       "name": "Divayth Fyr",
       "rarity": "Legendary",
@@ -2554,6 +3249,21 @@
       "race": "darkelf",
       "keywords": [],
       "text": "Summon: Deal 6 damage to a random enemy.\r\nAt the start of your turn, Divayth Fyr summons a Daughter of Fyr."
+    },
+    {
+      "id": "9e4b1fbd-ac35-4d3a-a7e0-590065358a8c",
+      "name": "Divayth's Experiments",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "intelligence,agility,endurance",
+      "cost": "9",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Summon a copy of a friendly creature."
     },
     {
       "id": "50796fed-e294-64a9-e395-cda65033ecc2",
@@ -2766,6 +3476,21 @@
       "text": "Summon: +1/+0 for each enemy creature in this lane."
     },
     {
+      "id": "299912ad-4985-4484-9a16-9db9dce52a0a",
+      "name": "Drain Blood",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "agility",
+      "cost": "4",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Give a creature -2/-2."
+    },
+    {
       "id": "49d6f3c0-81d0-11e6-ae22-56b6b6499611",
       "name": "Drain Vitality",
       "rarity": "Common",
@@ -2826,6 +3551,21 @@
       "text": "Guard\r\nSummon: Double a creature's power and health."
     },
     {
+      "id": "456ac849-1953-4a29-a34e-a450803c55ae",
+      "name": "Dren Bodyguard",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "5",
+      "attack": "5",
+      "health": "5",
+      "race": "darkelf",
+      "keywords": ["Guard"],
+      "text": "Guard"
+    },
+    {
       "id": "337e6735-79da-baf0-71aa-5806624f158a",
       "name": "Dres Guard",
       "rarity": "Rare",
@@ -2854,6 +3594,21 @@
       "race": "darkelf",
       "keywords": ["Guard"],
       "text": "Guard\r\nOther friendly creatures are immune to Shackle."
+    },
+    {
+      "id": "f4c020e2-12b6-11e8-b566-0800200c9a66",
+      "name": "Dres Spy",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "0",
+      "attack": "1",
+      "health": "1",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: Look at the top card of your deck. You may discard it."
     },
     {
       "id": "1e734f21-0b06-1be6-c4cd-7a873ddeddb8",
@@ -2899,6 +3654,21 @@
       "race": "",
       "keywords": [],
       "text": "Give a friendly creature +3/+3. It Battles your opponent's most powerful creature."
+    },
+    {
+      "id": "4c4280a5-60e2-4c24-a7d4-f21a841277be",
+      "name": "Duke Vedam Dren",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "strength,willpower,agility",
+      "cost": "5",
+      "attack": "4",
+      "health": "4",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "The first time you play a card each turn, draw a random card from your deck with cost equal to your remaining magicka."
     },
     {
       "id": "86ed0e94-bd7f-fde8-2149-28909c5a7c6c",
@@ -3081,6 +3851,21 @@
       "text": "Guard"
     },
     {
+      "id": "b136720c-13c8-4734-a93e-07a23c952174",
+      "name": "Dwemer Puzzle Box",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "support",
+      "attributes": "neutral",
+      "cost": "2",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Uses: 3.\r\nActivate: Discard the top card of your deck.\r\nLast Gasp: Draw a card."
+    },
+    {
       "id": "b7beeed2-b91c-12b0-0e9b-70c2bd77450b",
       "name": "Earthbone Spinner",
       "rarity": "Epic",
@@ -3123,7 +3908,22 @@
       "health": "2",
       "race": "nord",
       "keywords": [],
-      "text": "Summon: Draw a card if an enemy rune has been destroyed this game."
+      "text": "Summon: Draw a card if your opponent has a destroyed rune."
+    },
+    {
+      "id": "0b531500-8bb3-4ada-a8f2-7cf316494fa8",
+      "name": "Ebonheart Oracle",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "5",
+      "attack": "3",
+      "health": "5",
+      "race": "imperial",
+      "keywords": ["Drain"],
+      "text": "Drain\r\nDouble the amount of health you gain."
     },
     {
       "id": "5b56a1a0-f88f-11e6-bc64-92361f002671",
@@ -3381,6 +4181,21 @@
       "text": "Guard\r\nSlay: You gain 3 health."
     },
     {
+      "id": "72fceb49-d733-4a47-b6a4-36bbbde6f733",
+      "name": "Enamor's Keeper",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "3",
+      "attack": "4",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Exalt 5: Equip a +5/+0 Heirloom Greatsword to Enamor's Keeper."
+    },
+    {
       "id": "924fa8fc-b93a-700e-95f3-3eca843a59a5",
       "name": "Enchanted Plate",
       "rarity": "Common",
@@ -3531,6 +4346,36 @@
       "text": "Slay: Summon a creature from your discard pile."
     },
     {
+      "id": "28de8c7b-0c0a-41eb-9b46-816dc137b9dd",
+      "name": "Falling Wizard",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "2",
+      "attack": "5",
+      "health": "5",
+      "race": "woodelf",
+      "keywords": [],
+      "text": "Summon: Falling Wizard deals 5 damage to himself.\r\nLast Gasp: Put an Experimental Scroll into your hand."
+    },
+    {
+      "id": "ca1b4d64-cb21-496e-83bd-51379bd5bbb0",
+      "name": "False Incarnate",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "4",
+      "attack": "5",
+      "health": "4",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Your opponent can't gain health."
+    },
+    {
       "id": "697a00e8-3b77-7bb0-691e-eae07c7cc656",
       "name": "Farsight Nereid",
       "rarity": "Common",
@@ -3591,6 +4436,21 @@
       "text": "Breakthrough\r\nWhen Fearless Northlander takes damage, he gains +2/+0."
     },
     {
+      "id": "74863f52-3be1-4419-be6f-9c151691791d",
+      "name": "Feasting Hunger",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "3",
+      "attack": "3",
+      "health": "3",
+      "race": "daedra",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nSummon: You gain 1 health for each enemy creature."
+    },
+    {
       "id": "40327a52-717a-614f-f0a9-ac41f044235c",
       "name": "Feasting Vulture",
       "rarity": "Rare",
@@ -3634,6 +4494,21 @@
       "race": "dreugh",
       "keywords": [],
       "text": ""
+    },
+    {
+      "id": "c4c7b5f7-6544-4271-b84d-30ac6ed32ebf",
+      "name": "Fetcherfly Golem",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "5",
+      "attack": "5",
+      "health": "5",
+      "race": "daedra",
+      "keywords": [],
+      "text": "When Fetcherfly Golem takes damage and survives, summon a 2/2 Fetcherfly Swarm."
     },
     {
       "id": "34fcdaf7-4958-abec-1f3c-e06ce28f021f",
@@ -3681,6 +4556,21 @@
       "text": "When you summon another creature, give it +1/+0."
     },
     {
+      "id": "5ebf32f4-5e30-4908-a91b-8c88d67a9d7c",
+      "name": "Fighters Guild Hall",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "support",
+      "attributes": "strength",
+      "cost": "2",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "When a friendly creature takes damage on your turn, give it +2/+0."
+    },
+    {
       "id": "c358d9f8-df93-966d-b54b-66de10f9310f",
       "name": "Fighters Guild Recruit",
       "rarity": "Common",
@@ -3694,6 +4584,21 @@
       "race": "argonian",
       "keywords": ["Prophecy","Guard","Lethal"],
       "text": "Prophecy, Guard, Lethal"
+    },
+    {
+      "id": "cbca9c81-1a1b-47b9-92ad-8bc84f3d6ea9",
+      "name": "Fighters Guild Steward",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "4",
+      "attack": "3",
+      "health": "3",
+      "race": "nord",
+      "keywords": [],
+      "text": "Summon: A friendly creature with 5 or more power Battles an enemy creature."
     },
     {
       "id": "30fb7e72-3e4c-b9f1-6c43-55cb59123561",
@@ -3784,6 +4689,21 @@
       "race": "fabricant",
       "keywords": [],
       "text": "Last Gasp: Deal 1 damage to all creatures in this lane."
+    },
+    {
+      "id": "405e6f52-591e-47ce-8313-7fc092a67051",
+      "name": "Fleeting Apparition",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "agility",
+      "cost": "5",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Summon a random creature from your deck that costs 3 or less to a random lane. Unsummon it at the end of your turn."
     },
     {
       "id": "d36fa426-f792-5e44-7cb1-1dae3c93d74b",
@@ -3947,6 +4867,7 @@
       "attack": "6",
       "health": "6",
       "race": "dragon",
+      "keywords": [],
       "text": "Summon: Deal 4 damage to an enemy creature and 1 damage to all other enemy creatures."
     },
     {
@@ -3995,6 +4916,21 @@
       "text": "Breakthrough\r\nPlayers can’t have more than 7 magicka."
     },
     {
+      "id": "e3565ad0-9040-42eb-8320-f5e914c1085a",
+      "name": "Gavel of the Ordinator",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "item",
+      "attributes": "willpower",
+      "cost": "2",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "+2/+0\r\nSummon: The wielder is immune to damage this turn."
+    },
+    {
       "id": "574c9969-2f6a-479f-b1ac-0142c7b43bf6",
       "name": "Gearwork Spider",
       "rarity": "Common",
@@ -4025,6 +4961,36 @@
       "text": "Summon: Summon a 2/2 Colovian Trooper with Guard in each lane.\r\nWhen a friendly creature dies, General Tullius gains +1/+1."
     },
     {
+      "id": "0205429f-b68f-444f-a008-3968f53723e8",
+      "name": "Genius Pathmage",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "6",
+      "attack": "4",
+      "health": "4",
+      "race": "breton",
+      "keywords": [],
+      "text": "Summon: Summon a random creature from your deck with cost equal to your current magicka."
+    },
+    {
+      "id": "5e34728f-24b3-4da6-a53f-d3ba84c0a537",
+      "name": "Gentleman Jim Stacey",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "7",
+      "attack": "5",
+      "health": "4",
+      "race": "redguard",
+      "keywords": [],
+      "text": "Summon: Your opponent chooses a card in their hand and gives it to you."
+    },
+    {
       "id": "aa3a75bb-f376-49ce-963b-99506cbbdb49",
       "name": "Ghost Sea Lookout",
       "rarity": "Common",
@@ -4038,6 +5004,21 @@
       "race": "breton",
       "keywords": [],
       "text": "When you summon a Dragon, Ghost Sea Lookout gains a Ward."
+    },
+    {
+      "id": "92906aee-b4ef-4567-8e38-71443d80d90d",
+      "name": "Ghostgate Defender",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "1",
+      "attack": "1",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nExalt 3: Deal 2 damage to a creature."
     },
     {
       "id": "afe095fd-0b41-c8b0-90d4-019fdd17b565",
@@ -4083,6 +5064,21 @@
       "race": "",
       "keywords": [],
       "text": "At the start of each player's turn, deal 2 damage to that player."
+    },
+    {
+      "id": "6219a870-02f2-11e8-8f1a-0800200c9a66",
+      "name": "Glass Greaves",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "item",
+      "attributes": "agility",
+      "cost": "1",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "+1/+1\r\nPlot: Reduce the cost of a random card in your hand by 1."
     },
     {
       "id": "1cfac4b9-b426-4f1c-ad6c-6f1bebd8814b",
@@ -4233,6 +5229,21 @@
       "race": "",
       "keywords": [],
       "text": "Move all friendly creatures."
+    },
+    {
+      "id": "70553510-b068-472e-9f57-7eb60585309a",
+      "name": "Grand Inquisitor",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "4",
+      "attack": "2",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Exalt 4: +3/+3.\r\nSummon: Destroy a creature with less power than Grand Inquisitor."
     },
     {
       "id": "ee153b80-09bc-11e7-9598-0800200c9a66",
@@ -4415,6 +5426,21 @@
       "text": "When Gristlehide Dreugh takes damage and survives, draw a card."
     },
     {
+      "id": "51342145-0058-4a20-a342-17b332791210",
+      "name": "Guar Stablemaster",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "3",
+      "attack": "3",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: +1/+1 and Guard if you have an Animal."
+    },
+    {
       "id": "2b54b76e-76d2-7a25-925f-c8b0db06bfca",
       "name": "Guild Recruit",
       "rarity": "Common",
@@ -4488,6 +5514,51 @@
       "race": "",
       "keywords": [],
       "text": "Summon: Put a 0/3 Dwarven Spider with Guard into your hand.\r\nFriendly Dwemer have +3/+0."
+    },
+    {
+      "id": "fc7e4300-64c8-4a87-b73c-d71d05e88bf3",
+      "name": "Hand of Dagoth",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength,intelligence,agility",
+      "cost": "5",
+      "attack": "5",
+      "health": "5",
+      "race": "ashcreature",
+      "keywords": ["Breakthrough","Drain","Ward"],
+      "text": "Breakthrough, Drain, Ward"
+    },
+    {
+      "id": "b6d4290a-4010-4a3e-85ce-ea29ecae0828",
+      "name": "Hatchery Meddler",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "4",
+      "attack": "5",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: Swap a creature's power and health."
+    },
+    {
+      "id": "c093ad51-3af5-49c7-a1e4-0d3676b32808",
+      "name": "Haunted Manor",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "support",
+      "attributes": "strength,willpower,agility",
+      "cost": "3",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Give the second creature you summon each turn +2/+2."
     },
     {
       "id": "98589bce-cf3e-4677-f863-a4df71a53f8a",
@@ -4790,6 +5861,36 @@
       "text": ""
     },
     {
+      "id": "5fc3b1fd-7b7b-4b20-945f-ac4654d0e237",
+      "name": "Hlaalu Oathman",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "3",
+      "attack": "2",
+      "health": "2",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: If you have a...\r\n(Agility) card in play, gain 3 magicka this turn.\r\n(Strength) card in play, draw a card."
+    },
+    {
+      "id": "7260b1c5-cb48-4f56-90c3-9cfe848955a0",
+      "name": "Hlaalu Sharpshooter",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "3",
+      "attack": "2",
+      "health": "3",
+      "race": "nord",
+      "keywords": [],
+      "text": "Plot: Silence a creature, then deal 1 damage to it."
+    },
+    {
       "id": "bd4d17d0-09bb-11e7-9598-0800200c9a66",
       "name": "Horned Helm",
       "rarity": "Common",
@@ -4940,6 +6041,21 @@
       "text": "Ward\r\nWhen Iliac Sorcerer's Ward is broken, double his power."
     },
     {
+      "id": "13bddda9-ef59-4338-b85d-31976b6e7ec9",
+      "name": "Illusory Defenses",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "willpower",
+      "cost": "1",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": ["Prophecy"],
+      "text": "Prophecy\r\nSummon a 0/5 Illusory Wall with Guard in each lane. Sacrifice them at the start of your turn."
+    },
+    {
       "id": "3c9bdcc6-212a-0f59-2828-c7a9cb7e46eb",
       "name": "Illusory Mimic",
       "rarity": "Epic",
@@ -4953,6 +6069,21 @@
       "race": "spirit",
       "keywords": [],
       "text": "Summon: Illusory Mimic gains all Keywords that the top three cards of your deck have."
+    },
+    {
+      "id": "44bca5b4-3196-4895-8ea6-68fa216747e8",
+      "name": "Illusory Wall",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "1",
+      "attack": "0",
+      "health": "5",
+      "race": "defense",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nSacrifice Illusory Wall at the start of your turn."
     },
     {
       "id": "9b53db1b-6a55-ef2d-78eb-2595a0933281",
@@ -5060,6 +6191,36 @@
       "text": "Summon: +1/+1 for each other friendly creature."
     },
     {
+      "id": "8bd6f290-1d33-4fc1-a99c-e1db414082de",
+      "name": "Imposter",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "1",
+      "attack": "1",
+      "health": "1",
+      "race": "darkelf",
+      "keywords": [],
+      "text": ""
+    },
+    {
+      "id": "66150ccc-7e32-4b21-b507-eb388166d422",
+      "name": "Imposter's Mission",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "strength",
+      "cost": "4",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Summon an Imposter with power and health equal to the power of your most powerful creature."
+    },
+    {
       "id": "3cdfd8d7-1678-ac0d-acb6-5a9b3c88dc70",
       "name": "Imprison",
       "rarity": "Rare",
@@ -5105,6 +6266,21 @@
       "text": "Breakthrough\r\n+1/+1"
     },
     {
+      "id": "6c8843ec-1a9f-4eab-967b-57abe025302f",
+      "name": "Indomitable Ordinator",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "5",
+      "attack": "5",
+      "health": "5",
+      "race": "darkelf",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nExalt 1: Your opponent can't target Indomitable Ordinator with actions."
+    },
+    {
       "id": "a05697fa-29ed-6e07-4440-c0a0935e3aaf",
       "name": "Indoril Archmage",
       "rarity": "Legendary",
@@ -5118,6 +6294,21 @@
       "race": "darkelf",
       "keywords": ["Guard"],
       "text": "Guard\r\nLast Gasp: Deals 6 damage to all enemy creatures in this lane."
+    },
+    {
+      "id": "23c08f86-a0e9-4997-b5fa-31f31d719bd1",
+      "name": "Indoril Mastermind",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "3",
+      "attack": "2",
+      "health": "1",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: Look at the top two cards of your deck. Draw one, and discard the other."
     },
     {
       "id": "faafbee0-ae41-b0af-f5cd-d2c95982f521",
@@ -5163,6 +6354,21 @@
       "race": "highelf",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Draw a card for each card your opponent drew this turn."
+    },
+    {
+      "id": "22c6be37-ac64-4e39-9269-eabe809e6515",
+      "name": "Inspiring Kinsman",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength,willpower,endurance",
+      "cost": "4",
+      "attack": "2",
+      "health": "4",
+      "race": "darkelf",
+      "keywords": ["Rally"],
+      "text": "Rally\r\nLast Gasp: Give a random creature in your hand +2/+2."
     },
     {
       "id": "04cd7446-6fee-11e6-8b77-86f30ca893d3",
@@ -5255,6 +6461,21 @@
       "text": ""
     },
     {
+      "id": "4c64c1c2-45b2-4265-ba51-f7592937f331",
+      "name": "Jiub",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "neutral",
+      "cost": "1",
+      "attack": "1",
+      "health": "1",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Slay: Change into Saint Jiub, Eradicator of the Winged Menace."
+    },
+    {
       "id": "fde91430-2ad9-11e7-9598-0800200c9a66",
       "name": "Journey to Sovngarde",
       "rarity": "Legendary",
@@ -5330,6 +6551,21 @@
       "text": "Other friendly creatures are immune to Silence."
     },
     {
+      "id": "509e57c9-cd43-4aae-bb64-e7571c142f6e",
+      "name": "Khuul Lawkeeper",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "3",
+      "attack": "1",
+      "health": "6",
+      "race": "darkelf",
+      "keywords": ["Guard","Rally"],
+      "text": "Guard, Rally"
+    },
+    {
       "id": "751b7f94-b11c-11e6-80f5-76304dec7eb7",
       "name": "Knife to the Throat",
       "rarity": "Common",
@@ -5343,6 +6579,21 @@
       "race": "",
       "keywords": [],
       "text": "Silence a creature. Draw a card."
+    },
+    {
+      "id": "43452ce7-d243-4575-a8c1-0818ebf7cb97",
+      "name": "Knight of Gnisis",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "3",
+      "attack": "2",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": ["Rally"],
+      "text": "Rally\r\nSummon: Put a 2/2 Colovian Trooper with Guard into your hand."
     },
     {
       "id": "751b84f8-b11c-11e6-80f5-76304dec7eb7",
@@ -5375,6 +6626,36 @@
       "text": "Guard"
     },
     {
+      "id": "d771d1b7-1e3c-45ca-b5ec-372e90353ee0",
+      "name": "Kwama Forager",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "1",
+      "attack": "1",
+      "health": "1",
+      "race": "kwama",
+      "keywords": [],
+      "text": ""
+    },
+    {
+      "id": "ae094c4c-8305-4845-ad90-192f18ff4c98",
+      "name": "Kwama Queen",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "5",
+      "attack": "4",
+      "health": "4",
+      "race": "kwama",
+      "keywords": [],
+      "text": "Plot: Summon a 1/1 Kwama Forager in each lane.\r\nOther friendly Kwama have +1/+0."
+    },
+    {
       "id": "ec824f80-d3cb-4944-81f0-ef50201686ac",
       "name": "Laaneth",
       "rarity": "Legendary",
@@ -5388,6 +6669,21 @@
       "race": "darkelf",
       "keywords": [],
       "text": "Summon: Draw a card of your choice from your deck."
+    },
+    {
+      "id": "ecc11f90-02f6-11e8-8f1a-0800200c9a66",
+      "name": "Lame Corprus",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "6",
+      "attack": "5",
+      "health": "6",
+      "race": "ashcreature",
+      "keywords": [],
+      "text": ""
     },
     {
       "id": "4826d440-3cde-11e7-9598-0800200c9a66",
@@ -5495,6 +6791,36 @@
       "text": "Give a creature a Ward."
     },
     {
+      "id": "c9923952-243e-41f4-9008-98f8b3eae2b6",
+      "name": "Lich's Ascension",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "support",
+      "attributes": "endurance",
+      "cost": "7",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Your cards cost 0. You may play only one card per turn."
+    },
+    {
+      "id": "976d37ba-9118-4103-87e3-392401965c24",
+      "name": "Light of the Three",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "5",
+      "attack": "4",
+      "health": "4",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Exalt 2: Give other friendly creatures in this lane +2/+2."
+    },
+    {
       "id": "74df08b7-815a-6b6f-0ef4-edba1a9f5c7e",
       "name": "Lightning Bolt",
       "rarity": "Common",
@@ -5568,6 +6894,21 @@
       "race": "",
       "keywords": [],
       "text": "Either put another Lockpick into your hand or draw a card and reduce its cost by 2, chosen randomly."
+    },
+    {
+      "id": "405146eb-102b-4d25-8839-9a39002e4e15",
+      "name": "Lower Canton Smith",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "3",
+      "attack": "2",
+      "health": "2",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Plot: Equip a friendly creature with a +2/+2 Steel Scimitar."
     },
     {
       "id": "319fbc49-7bc7-6abe-0d92-3e20d3257bc1",
@@ -5718,6 +7059,21 @@
       "race": "nord",
       "keywords": [],
       "text": "Mage Slayer can't be damaged by actions."
+    },
+    {
+      "id": "74359887-ae89-44eb-a1e8-6e6cd645eaf6",
+      "name": "Mages Guild Recruit",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "2",
+      "attack": "1",
+      "health": "2",
+      "race": "argonian",
+      "keywords": [],
+      "text": "Summon: Reduce the cost of an action in your hand by 2."
     },
     {
       "id": "f5063ae9-1286-d06a-de61-7d28c08ba644",
@@ -6035,6 +7391,21 @@
       "text": "Summon: +3/+0 and Breakthrough if the top card of your deck is (Strength)."
     },
     {
+      "id": "39e144e7-128f-44bc-9cd1-d2225435e3e4",
+      "name": "Mighty Conjuring",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "intelligence",
+      "cost": "7",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Summon a random Atronach. If you have a creature with 5 power or more, summon a Lava Atronach instead."
+    },
+    {
       "id": "9d28fee3-c880-38fe-9db1-110d5584ed4d",
       "name": "Militant Chieftain",
       "rarity": "Epic",
@@ -6125,6 +7496,21 @@
       "text": "Move a friendly creature and give it +3/+0 and Drain this turn."
     },
     {
+      "id": "bb15e5d0-0de0-11e8-b566-0800200c9a66",
+      "name": "Moon Sugar Smuggler",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "1",
+      "attack": "1",
+      "health": "1",
+      "race": "khajiit",
+      "keywords": [],
+      "text": "Last Gasp: Gain 2 magicka this turn."
+    },
+    {
       "id": "4c4f596e-7d50-899b-a350-4562491f6754",
       "name": "Moonlight Werebat",
       "rarity": "Epic",
@@ -6138,6 +7524,66 @@
       "race": "beast",
       "keywords": ["Drain","Prophecy"],
       "text": "Drain, Prophecy"
+    },
+    {
+      "id": "f4c047f1-12b6-11e8-b566-0800200c9a66",
+      "name": "Moonmoth Castellan",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "4",
+      "attack": "4",
+      "health": "3",
+      "race": "imperial",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nPlot: Put a random Guard into your hand."
+    },
+    {
+      "id": "2c7a93c7-e9cd-4fb1-9f27-d60ed37724b6",
+      "name": "Morag Tong Aspirant",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "1",
+      "attack": "2",
+      "health": "1",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Slay: Summon a copy of Morag Tong Aspirant."
+    },
+    {
+      "id": "3bf7c2a6-34dc-425c-9615-c7b8a2aeb774",
+      "name": "Morag Tong Assassin",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "2",
+      "attack": "3",
+      "health": "2",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: Summon a 0/1 Target with Guard for your opponent.\r\nSlay: +1/+1"
+    },
+    {
+      "id": "5cd4037b-e3e0-47d7-80b4-d5fbadf56c26",
+      "name": "Morag Tong Nightblade",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "4",
+      "attack": "3",
+      "health": "4",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: Summon a 0/1 Target with Guard for your opponent.\r\nSlay: Draw a card. If it's an action, reduce its cost to 0."
     },
     {
       "id": "9352b699-cafd-7bbc-7b8b-c33629d68f0c",
@@ -6230,6 +7676,21 @@
       "text": "Guard"
     },
     {
+      "id": "9a31c3bf-bb3c-4763-af14-09dec15e4d27",
+      "name": "Mournhold Pilgrim",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "4",
+      "attack": "4",
+      "health": "4",
+      "race": "darkelf",
+      "keywords": ["Regenerate"],
+      "text": "Regenerate\r\nExalt 3: +2/+2"
+    },
+    {
       "id": "4e83304e-0795-e5ae-7c9d-bc08b1eb0b28",
       "name": "Mournhold Traitor",
       "rarity": "Epic",
@@ -6273,6 +7734,21 @@
       "race": "mudcrab",
       "keywords": [],
       "text": "Summon: Deal 1 damage to your opponent."
+    },
+    {
+      "id": "b7e58e5d-06ad-4915-81e0-ea69801c3725",
+      "name": "Mudcrab Merchant",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "neutral",
+      "cost": "1",
+      "attack": "1",
+      "health": "3",
+      "race": "mudcrab",
+      "keywords": [],
+      "text": "Summon: The Merchant shows you two cards he has for sale. Choose one to put into your hand. He puts the other into your opponent's hand."
     },
     {
       "id": "4837c3f0-07f6-bed5-1c6d-cac70e3378b2",
@@ -6410,6 +7886,21 @@
       "text": "Guard\r\nSummon: Give a creature -1/-1."
     },
     {
+      "id": "a8439940-e2d0-434b-a830-76226810e99d",
+      "name": "Mushroom Tower",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "support",
+      "attributes": "endurance",
+      "cost": "9",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Your actions have Betray."
+    },
+    {
       "id": "979ba1e6-9bb1-11e6-80f5-76304dec7eb7",
       "name": "Mystic Dragon",
       "rarity": "Common",
@@ -6468,6 +7959,21 @@
       "race": "",
       "keywords": [],
       "text": "At the end of your turn, if you played three cards this turn, draw a card."
+    },
+    {
+      "id": "5d89db81-392c-4cda-9853-17dcda4fa652",
+      "name": "Naryu Virian",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "6",
+      "attack": "6",
+      "health": "6",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: Summon a 0/1 Target with Guard for your opponent in each lane.\r\nFriendly creatures have \"Slay: +1/+1 and Lethal.\""
     },
     {
       "id": "c9a32e5e-83b8-b20a-8950-1c1d77d835d2",
@@ -6620,6 +8126,21 @@
       "text": "Summon: +1/+1 and Lethal if the top card of your deck is (Agility)."
     },
     {
+      "id": "57cb1266-a3c6-4ba2-9165-f66103f9d7d9",
+      "name": "Nix-Hound",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "4",
+      "attack": "3",
+      "health": "2",
+      "race": "beast",
+      "keywords": ["Prophecy"],
+      "text": "Prophecy\r\nSummon: Shackle each enemy creature with less power than Nix-Hound."
+    },
+    {
       "id": "701afa95-9f75-4d3d-8df9-8cd82fcae184",
       "name": "Nix-Hound Fabricant",
       "rarity": "Common",
@@ -6633,6 +8154,21 @@
       "race": "fabricant",
       "keywords": ["Drain"],
       "text": "Drain\r\nSummon: If you have a (Neutral) card in play, Shackle an enemy creature."
+    },
+    {
+      "id": "7e0c4e05-d6a2-4012-b22d-7ca5dcceba30",
+      "name": "Nix-Ox",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "7",
+      "attack": "5",
+      "health": "5",
+      "race": "beast",
+      "keywords": [],
+      "text": "Summon: Gain 6 magicka this turn."
     },
     {
       "id": "4bb5254e-7cb0-6f0f-3907-313cfb2502a0",
@@ -6708,6 +8244,21 @@
       "race": "dragon",
       "keywords": [],
       "text": "Summon: Deal 4 damage to all enemy creatures."
+    },
+    {
+      "id": "b7f467c7-a7fd-4bcb-aaf4-fbbfbaf6464c",
+      "name": "Odirniran Necromancer",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "6",
+      "attack": "3",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: Summon a creature  from your discard pile with less power than Odirniran Necromancer."
     },
     {
       "id": "2b655cc5-a7db-d1ff-943b-faa2100e3caf",
@@ -6798,6 +8349,36 @@
       "race": "",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\n+3/+3"
+    },
+    {
+      "id": "f4c020e1-12b6-11e8-b566-0800200c9a66",
+      "name": "Ornery Kagouti",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "2",
+      "attack": "3",
+      "health": "2",
+      "race": "beast",
+      "keywords": ["Breakthrough"],
+      "text": "Breakthrough"
+    },
+    {
+      "id": "f4c020e0-12b6-11e8-b566-0800200c9a66",
+      "name": "Orvas' Bargain",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "willpower",
+      "cost": "0",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Give an enemy creature -1/-0 and a friendly creature +1/+0 this turn."
     },
     {
       "id": "e62d15b0-6650-11e6-bdf4-0800200c9a66",
@@ -7010,6 +8591,21 @@
       "text": "Put two random items into your hand."
     },
     {
+      "id": "5780a7e0-9026-4876-be49-2ac222b22dce",
+      "name": "Poetic Armiger",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "2",
+      "attack": "2",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Exalt 1: Gain a random Keyword."
+    },
+    {
       "id": "8a953da1-0085-1d50-77c4-1ab44822e84d",
       "name": "Portcullis",
       "rarity": "Common",
@@ -7023,6 +8619,21 @@
       "race": "defense",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard"
+    },
+    {
+      "id": "5789732b-cbc0-4c13-ba8f-2a484b8fa15b",
+      "name": "Power of the Almsivi",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "intelligence,willpower,endurance",
+      "cost": "8",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Set each creature's power and health to 1."
     },
     {
       "id": "e1373191-3b51-11e7-9598-0800200c9a66",
@@ -7085,6 +8696,21 @@
       "text": "Prophecy\r\nSummon: You gain 2 health."
     },
     {
+      "id": "c9757831-0081-4be8-b75a-975dc280b75f",
+      "name": "Prison Ship",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "3",
+      "attack": "0",
+      "health": "5",
+      "race": "defense",
+      "keywords": [],
+      "text": "Summon: Shackle an enemy creature while you have Prison Ship."
+    },
+    {
       "id": "f98d9a54-4d53-11e6-bdf4-0800200c9a66",
       "name": "Prized Chicken",
       "rarity": "Epic",
@@ -7143,6 +8769,21 @@
       "race": "vampire",
       "keywords": [],
       "text": "When you gain max magicka, double the amount you gain.\r\nWhile you have 18 or more max magicka, Pure-Blood Elder has +8/+8 and Breakthrough."
+    },
+    {
+      "id": "1cdeb85e-0120-4400-b627-917ec2506d18",
+      "name": "Quarra Clan Bloodkin",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "2",
+      "attack": "1",
+      "health": "5",
+      "race": "vampire",
+      "keywords": ["Drain"],
+      "text": "Drain"
     },
     {
       "id": "2b107ef3-f201-46e1-8a4d-7bdc64bebc92",
@@ -7415,6 +9056,21 @@
       "text": "Summon: Silence and Shackle all enemy creatures in this lane."
     },
     {
+      "id": "30f5aeaf-0298-4e40-a9e1-db658deb6222",
+      "name": "Redoran Battlespear",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "item",
+      "attributes": "strength",
+      "cost": "3",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": ["Rally"],
+      "text": "Rally\r\n+1/+3"
+    },
+    {
       "id": "8983cd35-810c-b063-424f-fe942ce09c62",
       "name": "Redoran Enforcer",
       "rarity": "Common",
@@ -7428,6 +9084,36 @@
       "race": "darkelf",
       "keywords": [],
       "text": ""
+    },
+    {
+      "id": "bb15e5d2-0de0-11e8-b566-0800200c9a66",
+      "name": "Redoran Forerunner",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength,willpower,endurance",
+      "cost": "2",
+      "attack": "1",
+      "health": "1",
+      "race": "darkelf",
+      "keywords": ["Drain","Charge","Ward"],
+      "text": "Drain, Charge, Ward"
+    },
+    {
+      "id": "0cbfd0fd-6a38-475b-9a3b-8f7f4d6f856a",
+      "name": "Redoran Oathman",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "4",
+      "attack": "3",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: If you have a...\r\n (Willpower) card in play, double Redoran Oathman's health.\r\n(Strength) card in play, double Redoran Oathman's power."
     },
     {
       "id": "ee19edcd-509b-4024-9db0-be9d271b5734",
@@ -7730,6 +9416,21 @@
       "text": "When you gain health, deal that much damage to your opponent."
     },
     {
+      "id": "44222853-03d1-476d-ad9c-04361de1e7ed",
+      "name": "Risen Dead",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "1",
+      "attack": "1",
+      "health": "1",
+      "race": "skeleton",
+      "keywords": ["Guard"],
+      "text": "Guard"
+    },
+    {
       "id": "35e5fb0b-acb7-4638-1e43-234777871949",
       "name": "Rising Legate",
       "rarity": "Legendary",
@@ -7743,6 +9444,21 @@
       "race": "imperial",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nSummon: Summon a 1/1 Imperial Grunt."
+    },
+    {
+      "id": "cbee6d4c-bdd9-4fec-93ff-c6209649a1e5",
+      "name": "Rising of Bones",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "endurance",
+      "cost": "4",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Summon a 3/3 Risen Horror with Guard."
     },
     {
       "id": "4476dbc4-7ff7-59a9-ec78-b728b8eab8b2",
@@ -7850,6 +9566,21 @@
       "text": "Pilfer: Summon the top creature of your deck."
     },
     {
+      "id": "e0ca45b5-9444-4bda-b875-ac46ec4d782a",
+      "name": "Saint Jiub",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "neutral",
+      "cost": "5",
+      "attack": "5",
+      "health": "5",
+      "race": "darkelf",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nCan't be damaged or targeted by Cliff Racers, Cliff Hunters, and Cliff Striders."
+    },
+    {
       "id": "751b76fc-b11c-11e6-80f5-76304dec7eb7",
       "name": "Sanctuary Pet",
       "rarity": "Common",
@@ -7878,6 +9609,21 @@
       "race": "",
       "keywords": [],
       "text": "Destroy an enemy creature. Give all friendly creatures in its lane +1/+1."
+    },
+    {
+      "id": "065f52f3-5c13-490e-8bcb-c0f2c81b800d",
+      "name": "Sarethi Scion",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "1",
+      "attack": "1",
+      "health": "1",
+      "race": "darkelf",
+      "keywords": ["Rally"],
+      "text": "Rally"
     },
     {
       "id": "61653fce-e427-7791-3402-ce3eb0851bc4",
@@ -8030,6 +9776,36 @@
       "text": "Slay: +2/+0\r\nMay move to attack creatures in the other lane."
     },
     {
+      "id": "dd679a2f-a1b3-4725-a39d-84bbc599d8b9",
+      "name": "Servant of Dagoth",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "5",
+      "attack": "4",
+      "health": "4",
+      "race": "ashcreature",
+      "keywords": [],
+      "text": "Summon: If you have a creature with 5 power or more, +2/+2 and Guard."
+    },
+    {
+      "id": "79c61d88-3cfd-4b82-9245-1c58d2741db4",
+      "name": "Seyda Neen Courier",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "2",
+      "attack": "0",
+      "health": "1",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: Equip a +3/+0 Steel Sword to a friendly creature."
+    },
+    {
       "id": "a7b63e2d-0c88-d203-46ad-471af1c3fc7e",
       "name": "Shadow Shift",
       "rarity": "Common",
@@ -8133,6 +9909,21 @@
       "race": "fabricant",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: If you have a (Neutral) card in play, put a random action into your hand."
+    },
+    {
+      "id": "9bb90944-dc13-44ac-bb63-8aa4fae4a661",
+      "name": "Sharp-Eyed Ashkhan",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "6",
+      "attack": "6",
+      "health": "6",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Plot: Discard your hand, then draw three cards."
     },
     {
       "id": "48bf5093-fda3-817c-642d-4a0f51ec4695",
@@ -8255,6 +10046,21 @@
       "text": "Prophecy\r\nSummon: Shackle an enemy creature."
     },
     {
+      "id": "2df9a76c-6e47-40be-a4d5-ea53a2776dc6",
+      "name": "Shrine Guardian",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "8",
+      "attack": "8",
+      "health": "8",
+      "race": "daedra",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nWhen your opponent summons a creature, reduce its power to 0 until the start of your turn."
+    },
+    {
       "id": "9f06d2b3-c92f-831a-05fa-6affcbd33a2f",
       "name": "Siege Catapult",
       "rarity": "Epic",
@@ -8300,6 +10106,36 @@
       "text": "Summon: Draw a card if you have two other (Agility) creatures."
     },
     {
+      "id": "d5d53797-da64-4f93-8866-99e45a6a2eb7",
+      "name": "Silent Pilgrim",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "neutral",
+      "cost": "3",
+      "attack": "1",
+      "health": "1",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: Draw a random multi-attribute card from your deck."
+    },
+    {
+      "id": "bb15e5d1-0de0-11e8-b566-0800200c9a66",
+      "name": "Silt Strider",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "2",
+      "attack": "0",
+      "health": "4",
+      "race": "beast",
+      "keywords": ["Prophecy","Guard"],
+      "text": "Prophecy, Guard\r\nSummon:  Move a friendly creature to this lane."
+    },
+    {
       "id": "e3cff698-9254-b1c5-c6d3-181ee2441f24",
       "name": "Silvenar Tracker",
       "rarity": "Rare",
@@ -8313,6 +10149,36 @@
       "race": "woodelf",
       "keywords": [],
       "text": "Summon: Gains Charge if there is a Wounded enemy creature in this lane."
+    },
+    {
+      "id": "f76c0970-3973-4c4f-8a86-de605e1fcc44",
+      "name": "Sixth House Amulet",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "item",
+      "attributes": "intelligence",
+      "cost": "1",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "+1/+1\r\nSummon: If the wielder has 5 power or more, it gains a Ward."
+    },
+    {
+      "id": "153f9532-1fa6-4afa-a74d-ef2ff7d1f4f1",
+      "name": "Skar Drillmaster",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "6",
+      "attack": "5",
+      "health": "5",
+      "race": "redguard",
+      "keywords": ["Rally"],
+      "text": "Rally\r\nWhen Skar Drillmaster Rallies a creature, put a copy of the rallied creature into your hand with +1/+1."
     },
     {
       "id": "002b7759-dd8c-cbef-0821-2ddbd1ba4db8",
@@ -8373,6 +10239,21 @@
       "race": "skeleton",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: Give all creatures in your discard pile +2/+2.\r\nLast Gasp: Draw another random creature from your discard pile."
+    },
+    {
+      "id": "f2702872-07e8-4904-80e8-5444c6965812",
+      "name": "Skeleton Champion",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "4",
+      "attack": "4",
+      "health": "4",
+      "race": "skeleton",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nSummon: Give other friendly Skeletons +1/+1."
     },
     {
       "id": "ba78d3d8-173a-76d6-bff8-36f9b1701e3c",
@@ -8660,6 +10541,21 @@
       "text": "Silence a creature, then deal 2 damage to it."
     },
     {
+      "id": "484af2b2-f58e-47a5-9a27-5ca24ea42a35",
+      "name": "Sotha Sil",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "9",
+      "attack": "4",
+      "health": "4",
+      "race": "god",
+      "keywords": [],
+      "text": "Exalt 3: +4/+4\r\nAt the end of your turn, if you have an Exalted creature in play, summon an Awakened Imperfect."
+    },
+    {
       "id": "c889bc91-6bfe-cb7c-3f83-30437e87afc7",
       "name": "Soul Split",
       "rarity": "Common",
@@ -8855,6 +10751,21 @@
       "text": "Summon: Gain +1 max magicka."
     },
     {
+      "id": "01dfbd6f-df40-485b-a721-9f2efb28d281",
+      "name": "Spirit Knife",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "intelligence",
+      "cost": "7",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Deal 7 damage to a creature. Draw a card."
+    },
+    {
       "id": "af60a453-e0bd-7cc7-48fc-bce4356e83f5",
       "name": "Spiteful Dremora",
       "rarity": "Epic",
@@ -8960,6 +10871,21 @@
       "text": "Breakthrough\r\nStampeding Mammoth has +2/+0 for each other friendly creature with Breakthrough."
     },
     {
+      "id": "0bff6ede-0b6b-4b6e-bd43-2646880e931d",
+      "name": "Stand Watch",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "willpower",
+      "cost": "2",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": ["Prophecy"],
+      "text": "Prophecy\r\nGive a creature Guard. Draw a card."
+    },
+    {
       "id": "c8977aac-2f86-4c6a-8e84-b9d7de2a90c1",
       "name": "Star-Sung Bard",
       "rarity": "Epic",
@@ -9063,6 +10989,36 @@
       "race": "orc",
       "keywords": [],
       "text": "Slay: Give friendly Orcs +1/+1."
+    },
+    {
+      "id": "ccca467b-23ef-49a8-ac2a-610ad8b137e3",
+      "name": "Stendarr's Hammer",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "item",
+      "attributes": "strength",
+      "cost": "5",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Summon: Double the wielder's power and health.\r\nThe wielder can only attack creatures."
+    },
+    {
+      "id": "87363a42-d565-4d76-867e-21b1f2a0cdfa",
+      "name": "Stolen Pants",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "item",
+      "attributes": "neutral",
+      "cost": "2",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "+1/+1\r\nSummon: Summon a 0/1 Sheepish Dunmer in the other lane.\r\nLast Gasp: Give Sheepish Dunmer his pants."
     },
     {
       "id": "57d7d47e-5f6c-ccfd-b12a-1df047a64da6",
@@ -9395,6 +11351,21 @@
       "text": "Summon: Give a creature +0/+2."
     },
     {
+      "id": "50db6095-3d67-4929-a77c-eefee220358b",
+      "name": "Sun-in-Shadow",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "intelligence,agility,endurance",
+      "cost": "5",
+      "attack": "4",
+      "health": "6",
+      "race": "argonian",
+      "keywords": [],
+      "text": "Summon: Permanently Shackle another friendly creature to draw an action of your choice from your deck."
+    },
+    {
       "id": "fa084467-da67-7580-2683-36c018ec6fc1",
       "name": "Suppress",
       "rarity": "Rare",
@@ -9423,6 +11394,21 @@
       "race": "breton",
       "keywords": [],
       "text": "Summon: Summon a Flame Atronach in each lane.\r\nWhen you summon another creature, deal 2 damage to your opponent."
+    },
+    {
+      "id": "ca289a86-075b-4e49-9659-3e2ff19029ac",
+      "name": "Suran Pawnbroker",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "2",
+      "attack": "2",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Plot: Put a random 0-cost card into your hand."
     },
     {
       "id": "5c472390-f28f-74ba-bdd2-0218962f260f",
@@ -9515,6 +11501,21 @@
       "text": "Breakthrough, Charge\r\nLast Gasp: Summon a 4/4 Durzog."
     },
     {
+      "id": "ac36758e-bd9f-4325-a367-ef61d65acf68",
+      "name": "Tel Vos Magister",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "6",
+      "attack": "5",
+      "health": "4",
+      "race": "darkelf",
+      "keywords": ["Ward"],
+      "text": "Ward\r\nAt the end of your turn, you gain a Ward."
+    },
+    {
       "id": "9d909ebc-88d3-8020-dfaf-38a73184dd7e",
       "name": "Telvanni Arcanist",
       "rarity": "Rare",
@@ -9528,6 +11529,66 @@
       "race": "darkelf",
       "keywords": [],
       "text": "Last Gasp: Put a random action into your hand."
+    },
+    {
+      "id": "21789379-e91d-4c73-8e9b-43fd22e7b7bc",
+      "name": "Telvanni Catspaw",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence,agility,endurance",
+      "cost": "3",
+      "attack": "2",
+      "health": "2",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Last Gasp: Draw a card. If Telvanni Catspaw was sacrificed, draw two cards instead."
+    },
+    {
+      "id": "9068c982-ff7f-4a13-abf6-794850775af0",
+      "name": "Telvanni Oathman",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "5",
+      "attack": "4",
+      "health": "4",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: If you have a... \r\n(Intelligence) card in play, draw a random action from your deck.\r\n(Endurance) card in play, summon a Risen Dead in each lane."
+    },
+    {
+      "id": "b808c75e-5575-4ca6-81f9-900bbcdbc882",
+      "name": "Temple Conjurer",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "2",
+      "attack": "2",
+      "health": "2",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Exalt 4: Summon a 5/3 Flame Atronach with Breakthrough."
+    },
+    {
+      "id": "9945de25-b35d-407e-9210-cd49194c2961",
+      "name": "Temple Patriarch",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence,willpower,endurance",
+      "cost": "7",
+      "attack": "5",
+      "health": "5",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: Trigger the Exalt of each friendly creature."
     },
     {
       "id": "2964d194-628d-54c8-b6e4-ebedf79b3e96",
@@ -9648,6 +11709,51 @@
       "race": "",
       "keywords": [],
       "text": "Activate: Summon a 0/1 Target with Guard for your opponent.\r\nWhen 20 enemy creatures have died, deal 20 damage to your opponent, gain 20 health, and draw up to 10 cards."
+    },
+    {
+      "id": "88eeece7-47a7-413a-89b0-a2d8fa72c3a4",
+      "name": "The Red Year",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "action",
+      "attributes": "strength",
+      "cost": "10",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Deal 10 damage to each creature."
+    },
+    {
+      "id": "4ef005a6-86aa-4b25-a6c4-60ff4cfc6982",
+      "name": "Therana",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "5",
+      "attack": "3",
+      "health": "8",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "After you play an action, shuffle three 0-cost copies of that action into your deck."
+    },
+    {
+      "id": "5c340898-1546-40aa-add8-54efcb645543",
+      "name": "Therana's Lawman",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "8",
+      "attack": "5",
+      "health": "5",
+      "race": "highelf",
+      "keywords": ["Guard","Ward"],
+      "text": "Guard, Ward"
     },
     {
       "id": "b27e335f-662f-11e6-bdf4-0800200c9a66",
@@ -9830,6 +11936,21 @@
       "text": "Your Activated supports have unlimited uses."
     },
     {
+      "id": "77a1e1fe-7700-41d4-a35e-4c54225a6016",
+      "name": "Traitor's Flames",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "intelligence",
+      "cost": "7",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Deal 2 damage to all enemy creatures in a lane."
+    },
+    {
       "id": "03054b11-f4e8-436f-8ae6-522bf92bee95",
       "name": "Treasure Map",
       "rarity": "Rare",
@@ -9875,6 +11996,21 @@
       "text": "Guard\r\nSummon: Gain +1 max magicka."
     },
     {
+      "id": "0f47d99c-fb04-4a35-9ada-c7cb5ab44c11",
+      "name": "Trespasser's Bane",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "endurance",
+      "cost": "2",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Set a creature's power to 1."
+    },
+    {
       "id": "04963470-941b-11e7-9598-0800200c9a66",
       "name": "Trial of Flame",
       "rarity": "Rare",
@@ -9888,6 +12024,21 @@
       "race": "",
       "keywords": [],
       "text": "Choose a lane. Destroy all creatures except for the most powerful creature on both sides of that lane."
+    },
+    {
+      "id": "b33451cf-60fa-4f5d-b662-3928536fb957",
+      "name": "Tribunal Oathman",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "4",
+      "attack": "3",
+      "health": "3",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Summon: If you have a...\r\n(Willpower) card in play, you gain 4 health.\r\n (Endurance) card in play, gain +1 max magicka."
     },
     {
       "id": "29067ad5-b7db-56f6-4ceb-2a5544b39dc9",
@@ -9948,6 +12099,21 @@
       "race": "woodelf",
       "keywords": ["Prophecy"],
       "text": "Prophecy"
+    },
+    {
+      "id": "5a88c167-0da6-49ea-acc4-0f0cad7e2591",
+      "name": "Twin Lamps Consul",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "3",
+      "attack": "2",
+      "health": "4",
+      "race": "argonian",
+      "keywords": [],
+      "text": "Plot: Lethal and Guard."
     },
     {
       "id": "04e6e6fd-5ce1-fd7e-a3ab-e39bbe385eee",
@@ -10040,6 +12206,21 @@
       "text": "Last Gasp: Put a Heavy Battleaxe into your hand."
     },
     {
+      "id": "2d461c6a-5bf8-4008-bb0b-4c449e6e40d9",
+      "name": "Umbra",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "item",
+      "attributes": "willpower",
+      "cost": "6",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "+3/+5\r\nAt the start of your turn, the wielder Battles an enemy creature of Umbra’s choosing."
+    },
+    {
       "id": "0c231800-4dd8-11e6-bdf4-0800200c9a66",
       "name": "Uncaged Wolf",
       "rarity": "Common",
@@ -10113,6 +12294,21 @@
       "race": "woodelf",
       "keywords": [],
       "text": "Summon: Shuffle three Brotherhood Assassins into your deck."
+    },
+    {
+      "id": "0e4bd909-f738-4fb7-ae44-a801ffecf936",
+      "name": "Unite the Houses",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "neutral",
+      "cost": "3",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "If you have at least one card of each attribute in play, you win the game."
     },
     {
       "id": "690ee1d0-4d0f-11e6-bdf4-0800200c9a66",
@@ -10220,6 +12416,21 @@
       "text": "Summon: Destroy an enemy support."
     },
     {
+      "id": "1eb60072-7324-4f81-a8a7-bac69b43fa48",
+      "name": "Vigilant Ancestor",
+      "rarity": "Epic",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "3",
+      "attack": "5",
+      "health": "4",
+      "race": "spirit",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nVigilant Ancestor is permanently Shackled."
+    },
+    {
       "id": "aeb3b722-267c-5cfb-3a90-a11deeabcd82",
       "name": "Vigilant Giant",
       "rarity": "Legendary",
@@ -10248,6 +12459,36 @@
       "race": "breton",
       "keywords": [],
       "text": ""
+    },
+    {
+      "id": "9cf2b8d4-046f-4300-baa4-f6e10119e1fd",
+      "name": "Vivec",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "5",
+      "attack": "5",
+      "health": "5",
+      "race": "god",
+      "keywords": [],
+      "text": "Exalt 3: +5/+5\r\nWhile you have an Exalted creature in play, you can't lose the game."
+    },
+    {
+      "id": "2e5b3cac-5f7b-4457-b0c3-78a0a3fb8039",
+      "name": "Vivec City Pilgrim",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "2",
+      "attack": "2",
+      "health": "2",
+      "race": "nord",
+      "keywords": ["Drain"],
+      "text": "Drain\r\nExalt 3: +2/+2"
     },
     {
       "id": "475dc851-81ac-4802-93e9-819923f8c0a3",
@@ -10310,6 +12551,21 @@
       "text": "Drain"
     },
     {
+      "id": "1fdc07ba-2db2-43f1-8dfc-ac0b9899458c",
+      "name": "Vvardvark Experiment",
+      "rarity": "Rare",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "endurance",
+      "cost": "0",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Summon a 0/1 Vvardvark in each lane."
+    },
+    {
       "id": "bb9e48d0-c7a7-f2a4-c2d1-0fa1e292c0a7",
       "name": "Wabbajack",
       "rarity": "Legendary",
@@ -10338,6 +12594,21 @@
       "race": "",
       "keywords": [],
       "text": "Give friendly creatures in a lane +2/+0 this turn."
+    },
+    {
+      "id": "a74fcb02-4485-45b4-a039-362f2b340a3a",
+      "name": "Warclaw Mercenary",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "2",
+      "attack": "2",
+      "health": "2",
+      "race": "khajiit",
+      "keywords": ["Rally"],
+      "text": "Rally"
     },
     {
       "id": "5ae3fa65-90f5-0587-4f36-764b5becdf22",
@@ -10488,6 +12759,21 @@
       "race": "spriggan",
       "keywords": [],
       "text": "Summon: Summon a random Animal."
+    },
+    {
+      "id": "a188ae17-6d32-46b8-b35e-0d00f8904101",
+      "name": "Wild Clumsiness",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "intelligence",
+      "cost": "3",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Shackle a random enemy creature in each lane."
     },
     {
       "id": "53f48fda-59ab-8bed-e3ce-1a4aaea92e93",
@@ -10730,6 +13016,21 @@
       "text": "Summon: Your opponent’s cards cost 1 more next turn."
     },
     {
+      "id": "fb34442e-646a-4b18-821f-8f902c2f936f",
+      "name": "Writ of Execution",
+      "rarity": "Common",
+      "set": "Houses of Morrowind",
+      "isunique": false,
+      "type": "action",
+      "attributes": "willpower",
+      "cost": "4",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Choose an enemy creature. At the start of your turn, destroy it and put a Completed Contract into your hand."
+    },
+    {
       "id": "051cda36-f0ac-8606-0c05-ef9f3e606ca6",
       "name": "Wrothgar Artisan",
       "rarity": "Common",
@@ -10773,6 +13074,21 @@
       "race": "orc",
       "keywords": [],
       "text": "When you summon another Orc, Wrothgar Kingpin gains +1/+1."
+    },
+    {
+      "id": "3488e10d-373d-437b-a562-e84669855d92",
+      "name": "Yagrum Bagarn",
+      "rarity": "Legendary",
+      "set": "Houses of Morrowind",
+      "isunique": true,
+      "type": "creature",
+      "attributes": "neutral",
+      "cost": "3",
+      "attack": "2",
+      "health": "4",
+      "race": "dwemer",
+      "keywords": [],
+      "text": "Summon: Draw a Dwemer from your discard pile and give it +2/+2."
     },
     {
       "id": "6b1f405d-cd9b-7e61-06c2-e3422c6aeb00",

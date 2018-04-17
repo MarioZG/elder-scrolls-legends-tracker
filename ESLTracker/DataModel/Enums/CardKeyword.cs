@@ -16,6 +16,7 @@ namespace ESLTracker.DataModel.Enums
         Charge = 16,
         Lethal = 32,
         Ward = 64,
-        Regenerate = 128
+        Regenerate = 128,
+        Rally = 256,
     }
 }
