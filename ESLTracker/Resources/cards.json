@@ -6071,21 +6071,6 @@
       "text": "Summon: Illusory Mimic gains all Keywords that the top three cards of your deck have."
     },
     {
-      "id": "44bca5b4-3196-4895-8ea6-68fa216747e8",
-      "name": "Illusory Wall",
-      "rarity": "Common",
-      "set": "Houses of Morrowind",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "willpower",
-      "cost": "1",
-      "attack": "0",
-      "health": "5",
-      "race": "defense",
-      "keywords": ["Guard"],
-      "text": "Guard\r\nSacrifice Illusory Wall at the start of your turn."
-    },
-    {
       "id": "9b53db1b-6a55-ef2d-78eb-2595a0933281",
       "name": "Immolating Blast",
       "rarity": "Epic",
@@ -6189,21 +6174,6 @@
       "race": "imperial",
       "keywords": [],
       "text": "Summon: +1/+1 for each other friendly creature."
-    },
-    {
-      "id": "8bd6f290-1d33-4fc1-a99c-e1db414082de",
-      "name": "Imposter",
-      "rarity": "Epic",
-      "set": "Houses of Morrowind",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "strength",
-      "cost": "1",
-      "attack": "1",
-      "health": "1",
-      "race": "darkelf",
-      "keywords": [],
-      "text": ""
     },
     {
       "id": "66150ccc-7e32-4b21-b507-eb388166d422",
@@ -6624,21 +6594,6 @@
       "race": "imperial",
       "keywords": ["Guard"],
       "text": "Guard"
-    },
-    {
-      "id": "d771d1b7-1e3c-45ca-b5ec-372e90353ee0",
-      "name": "Kwama Forager",
-      "rarity": "Common",
-      "set": "Houses of Morrowind",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "willpower",
-      "cost": "1",
-      "attack": "1",
-      "health": "1",
-      "race": "kwama",
-      "keywords": [],
-      "text": ""
     },
     {
       "id": "ae094c4c-8305-4845-ad90-192f18ff4c98",
@@ -9416,21 +9371,6 @@
       "text": "When you gain health, deal that much damage to your opponent."
     },
     {
-      "id": "44222853-03d1-476d-ad9c-04361de1e7ed",
-      "name": "Risen Dead",
-      "rarity": "Common",
-      "set": "Houses of Morrowind",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "endurance",
-      "cost": "1",
-      "attack": "1",
-      "health": "1",
-      "race": "skeleton",
-      "keywords": ["Guard"],
-      "text": "Guard"
-    },
-    {
       "id": "35e5fb0b-acb7-4638-1e43-234777871949",
       "name": "Rising Legate",
       "rarity": "Legendary",
@@ -9564,21 +9504,6 @@
       "race": "argonian",
       "keywords": [],
       "text": "Pilfer: Summon the top creature of your deck."
-    },
-    {
-      "id": "e0ca45b5-9444-4bda-b875-ac46ec4d782a",
-      "name": "Saint Jiub",
-      "rarity": "Legendary",
-      "set": "Houses of Morrowind",
-      "isunique": true,
-      "type": "creature",
-      "attributes": "neutral",
-      "cost": "5",
-      "attack": "5",
-      "health": "5",
-      "race": "darkelf",
-      "keywords": ["Guard"],
-      "text": "Guard\r\nCan't be damaged or targeted by Cliff Racers, Cliff Hunters, and Cliff Striders."
     },
     {
       "id": "751b76fc-b11c-11e6-80f5-76304dec7eb7",
