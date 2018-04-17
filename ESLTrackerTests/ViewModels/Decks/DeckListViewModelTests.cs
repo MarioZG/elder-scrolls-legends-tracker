@@ -125,7 +125,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Mock<IDeckTypeSelectorViewModel> typeSelector = GetFullTypeFilter();
 
             int expectedCount = 3 +//random data - archer i battlemage y strength
-                5; //one for every class
+                5 + //one for every class
+                3 ; //hom 3-color classes
 
             DeckListViewModel model = new DeckListViewModel();
 
@@ -156,7 +157,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Mock<IDeckTypeSelectorViewModel> typeSelector = GetFullTypeFilter();
 
             int expectedCount = 0 +//none inrandom data
-                1; //one for every class
+                1 + //one for every class
+                1; //hom 3-color classes
 
             DeckListViewModel model = new DeckListViewModel();
 
@@ -392,7 +394,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             List<DeckType> typeFilter = new List<DeckType>() { DeckType.Constructed };
             var filteredTypes = new ObservableCollection<DeckType>(typeFilter);
 
-            int expectedCount = 19;
+            int expectedCount = 24;
 
             DeckListViewModel model = new DeckListViewModel();
 
@@ -414,7 +416,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             List<DeckType> typeFilter = new List<DeckType>() { DeckType.Constructed };
             var filteredTypes = new ObservableCollection<DeckType>(typeFilter);
 
-            int expectedCount = 23;
+            int expectedCount = 28;
 
             DeckListViewModel model = new DeckListViewModel();
 

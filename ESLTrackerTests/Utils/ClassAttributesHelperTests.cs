@@ -38,9 +38,10 @@ namespace ESLTracker.Utils.Tests
             List<DeckAttribute> filter = new List<DeckAttribute>()
             {
                 DeckAttribute.Strength,
-                DeckAttribute.Intelligence
+                DeckAttribute.Intelligence,
+                DeckAttribute.Agility
             };
-            DeckClass expected = DeckClass.Battlemage;
+            DeckClass expected = DeckClass.Dagoth;
 
             IEnumerable<DeckClass> result = ClassAttributesHelper.FindClassByAttribute(filter);
 
@@ -66,7 +67,10 @@ namespace ESLTracker.Utils.Tests
                 DeckClass.Archer,
                 DeckClass.Crusader,
                 DeckClass.Warrior,
-                DeckClass.Strength
+                DeckClass.Strength,
+                DeckClass.Dagoth,
+                DeckClass.Hlaalu,
+                DeckClass.Redoran
             };
 
             IEnumerable<DeckClass> result = ClassAttributesHelper.FindClassByAttribute(filter);
@@ -77,8 +81,11 @@ namespace ESLTracker.Utils.Tests
                 TestContext.WriteLine(dc + ",");
             }
 
-            Assert.AreEqual(5, result.Count());
+            Assert.AreEqual(expected.Count, result.Count());
             int i = 0;
+            Assert.IsTrue(expected.Contains(result.ElementAt(i++)));
+            Assert.IsTrue(expected.Contains(result.ElementAt(i++)));
+            Assert.IsTrue(expected.Contains(result.ElementAt(i++)));
             Assert.IsTrue(expected.Contains(result.ElementAt(i++)));
             Assert.IsTrue(expected.Contains(result.ElementAt(i++)));
             Assert.IsTrue(expected.Contains(result.ElementAt(i++)));

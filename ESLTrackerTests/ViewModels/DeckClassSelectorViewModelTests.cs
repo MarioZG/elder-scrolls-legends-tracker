@@ -85,7 +85,7 @@ namespace ESLTracker.ViewModels.Tests
         {
             DeckClassSelectorViewModel model = new DeckClassSelectorViewModel();
 
-            DeckClass? expected = null;
+            DeckClass? expected = DeckClass.Dagoth;
 
             model.FilterClicked(DeckAttribute.Intelligence);
             model.FilterClicked(DeckAttribute.Strength);
@@ -114,7 +114,7 @@ namespace ESLTracker.ViewModels.Tests
             Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Strength]);
             Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Agility]);
             Assert.AreEqual(3, model.FilterButtonStateCollection.Count);
-            Assert.IsNull(model.SelectedClass);
+            Assert.AreEqual(DeckClass.Dagoth, model.SelectedClass);
         }
 
         [TestMethod()]
