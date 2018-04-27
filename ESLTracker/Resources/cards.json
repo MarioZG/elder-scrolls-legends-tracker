@@ -1,7 +1,7 @@
 {
-  "Version": "0.71",
-  "VersionInfo": "Houses of Morrowind",
-  "VersionDate": "2018-04-17T00:00:00Z",
+  "Version": "0.71.2",
+  "VersionInfo": "Patch 71.2 and May monthly reward",
+  "VersionDate": "2018-04-27T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -2529,6 +2529,21 @@
       "race": "breton",
       "keywords": [],
       "text": "Summon: Shuffle three Lava Atronachs into your deck.\r\nWhen you summon an Atronach, summon a copy of it in the other lane."
+    },
+    {
+      "id": "0536b51f-5d30-41ce-9bcb-927d8ab79fe3",
+      "name": "Conjurer's Spirit",
+      "rarity": "Epic",
+      "set": "Promotional",
+      "isunique": false,
+      "type": "support",
+      "attributes": "willpower",
+      "cost": "3",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "At the end of your turn, if you gained health, summon a 2/2 Familiar."
     },
     {
       "id": "8df1e49f-9f5e-494e-a6d4-e19d53ee1cc0",
@@ -7087,8 +7102,8 @@
       "attack": "6",
       "health": "6",
       "race": "mantikora",
-      "keywords": ["Guard"],
-      "text": "Guard\r\nSummon: Destroy an enemy creature in this lane."
+      "keywords": [],
+      "text": "Summon: Destroy an enemy creature in this lane."
     },
     {
       "id": "06563d11-95e5-03dc-f54f-88cac61f7a9f",
@@ -8123,7 +8138,7 @@
       "health": "5",
       "race": "beast",
       "keywords": [],
-      "text": "Summon: Gain 6 magicka this turn."
+      "text": "Summon: Gain 5 magicka this turn."
     },
     {
       "id": "4bb5254e-7cb0-6f0f-3907-313cfb2502a0",
