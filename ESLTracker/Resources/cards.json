@@ -1,7 +1,7 @@
 {
-  "Version": "0.71.2",
-  "VersionInfo": "Patch 71.2 and May monthly reward",
-  "VersionDate": "2018-04-27T00:00:00Z",
+  "Version": "0.72.3",
+  "VersionInfo": "May monthly reward",
+  "VersionDate": "2018-05-29T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -1148,7 +1148,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Transform a creature into a random creature that costs 1 more."
+      "text": "Betray\r\nTransform a creature into a random creature that costs 1 more."
     },
     {
       "id": "5431d81e-8b2c-c863-a3b0-25c52cb18aaf",
@@ -1421,6 +1421,21 @@
       "text": "Prophecy, Guard"
     },
     {
+      "id": "422a43cf-15c3-4258-b4b5-8420bfd7554c",
+      "name": "Blackwood Distiller",
+      "rarity": "Epic",
+      "set": "Promotional",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility,endurance",
+      "cost": "4",
+      "attack": "3",
+      "health": "4",
+      "race": "argonian",
+      "keywords": [],
+      "text": "Pilfer: Gain 3 magicka this turn.\r\nSlay: Gain +1 max magicka."
+    },
+    {
       "id": "c6757aa0-9b9d-11e6-9f33-a24fc0d9649c",
       "name": "Blades Lookout",
       "rarity": "Common",
@@ -1538,7 +1553,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Deal 2 damage to your opponent and gain 2 health."
+      "text": "Betray\r\nDeal 2 damage to your opponent and gain 2 health."
     },
     {
       "id": "c6758770-9b9d-11e6-9f33-a24fc0d9649c",
@@ -1898,7 +1913,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Give the top three creatures of your deck +1/+1."
+      "text": "Betray\r\nGive the top three creatures of your deck +1/+1."
     },
     {
       "id": "49d6f190-81d0-11e6-ae22-56b6b6499611",
@@ -3278,7 +3293,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Summon a copy of a friendly creature."
+      "text": "Betray\r\nSummon a copy of a friendly creature."
     },
     {
       "id": "50796fed-e294-64a9-e395-cda65033ecc2",
@@ -3503,7 +3518,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Give a creature -2/-2."
+      "text": "Betray\r\nGive a creature -2/-2."
     },
     {
       "id": "49d6f3c0-81d0-11e6-ae22-56b6b6499611",
@@ -4718,7 +4733,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Summon a random creature from your deck that costs 3 or less to a random lane. Unsummon it at the end of your turn."
+      "text": "Betray\r\nSummon a random creature from your deck that costs 3 or less to a random lane. Unsummon it at the end of your turn."
     },
     {
       "id": "d36fa426-f792-5e44-7cb1-1dae3c93d74b",
@@ -7868,7 +7883,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Your actions have Betray."
+      "text": "Betray\r\nYour actions have Betray."
     },
     {
       "id": "979ba1e6-9bb1-11e6-80f5-76304dec7eb7",
@@ -8528,7 +8543,7 @@
       "health": "5",
       "race": "beast",
       "keywords": [],
-      "text": "Pit Lion can't be summoned unless there's a friendly creature in each lane."
+      "text": "Pit Lion can't be played unless there's a friendly creature in each lane."
     },
     {
       "id": "432898a7-6d44-d5c4-f3f5-2b164e340cc8",
@@ -9413,7 +9428,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Summon a 3/3 Risen Horror with Guard."
+      "text": "Betray\r\nSummon a 3/3 Risen Horror with Guard."
     },
     {
       "id": "4476dbc4-7ff7-59a9-ec78-b728b8eab8b2",
@@ -11888,7 +11903,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Deal 2 damage to all enemy creatures in a lane."
+      "text": "Betray\r\nDeal 2 damage to all enemy creatures in a lane."
     },
     {
       "id": "03054b11-f4e8-436f-8ae6-522bf92bee95",
@@ -12713,7 +12728,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Shackle a random enemy creature in each lane."
+      "text": "Betray\r\nShackle a random enemy creature in each lane."
     },
     {
       "id": "53f48fda-59ab-8bed-e3ce-1a4aaea92e93",
