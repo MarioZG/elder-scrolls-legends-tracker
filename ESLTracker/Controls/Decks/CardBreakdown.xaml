@@ -34,23 +34,7 @@
         <TextBlock Style="{StaticResource sectionHeader}" Text="Card type"/>
         <TextBlock Text="{Binding CardTypeBreakdownText}"/>
         <TextBlock Style="{StaticResource sectionHeader}" Text="Card keywords"/>
-        <TextBlock Text="{Binding PropheciesCountText}"/>
-        <lvc:CartesianChart Visibility="Collapsed" MinHeight="80" Series="{Binding CardTypeSeriesCollection}" DisableAnimations="True">
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis  Labels="{Binding CardTypeLabelsCollection}">
-                    <lvc:Axis.Separator >
-                        <lvc:Separator IsEnabled="False" Step="1"></lvc:Separator>
-                    </lvc:Axis.Separator>
-                </lvc:Axis>
-            </lvc:CartesianChart.AxisY>
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis Foreground="White">
-                    <lvc:Axis.Separator >
-                        <lvc:Separator IsEnabled="False" Step="1"></lvc:Separator>
-                    </lvc:Axis.Separator>
-                </lvc:Axis>
-            </lvc:CartesianChart.AxisX>
-        </lvc:CartesianChart>
+        <TextBlock Text="{Binding KeywordsBreakdownText}"/>
         <TextBlock Style="{StaticResource sectionHeader}" Text="Mana curve"/>
         <lvc:CartesianChart Height="70" Series="{Binding ManaCurveSeriesCollection}" DisableAnimations="True">
             <lvc:CartesianChart.AxisY>

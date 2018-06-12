@@ -4,8 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.Deck;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 using LiveCharts;
@@ -17,7 +20,6 @@ namespace ESLTracker.ViewModels.Decks
     public class CardBreakdownViewModel : ViewModelBase
     {
         private ObservableCollection<CardInstance> cardCollection;
-
         public ObservableCollection<CardInstance> CardCollection
         {
             get { return cardCollection; }
@@ -28,6 +30,9 @@ namespace ESLTracker.ViewModels.Decks
                 RaisePropertyChangedEvent(String.Empty);
             }
         }
+
+        private CardBreakdown cardBreakdownService = new CardBreakdown();
+        private SoulGemCalculator soulGemCalculator = new SoulGemCalculator();
 
         private void CardCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
@@ -47,7 +52,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             get
             {
-                return SoulGemsHelper.CalculateCardsPurchaseValue(cardCollection);
+                return soulGemCalculator.CalculateCardsPurchaseValue(cardCollection);
             }
         }
 
@@ -58,26 +63,22 @@ namespace ESLTracker.ViewModels.Decks
                 SeriesCollection sc = new SeriesCollection();
                 if (cardCollection != null)
                 {
-                    foreach (DeckAttribute da in Enum.GetValues(typeof(DeckAttribute)))
+                    var breakdown = cardBreakdownService.GetCardsColorBreakdown(cardCollection);
+                    foreach(var item in breakdown)
                     {
-                        decimal count = cardCollection.Where(ci => ci.Card.Attributes.Contains(da)).Sum(ci => ci.Quantity);
-                        decimal doubleAttributeFix = cardCollection.Where(ci => ci.Card.Attributes.Count == 2 && ci.Card.Attributes.Contains(da)).Sum(ci => ci.Quantity);
-                        count -= doubleAttributeFix / 2;
-                        if (count > 0)
-                        {
-                            sc.Add(
-                                  new StackedRowSeries
-                                  {
-                                      Title = da.ToString(),
-                                      Values = new ChartValues<decimal> { count },
-                                      StackMode = StackMode.Percentage,
-                                      DataLabels = true,
-                                      LabelsPosition = BarLabelPosition.Parallel,
-                                      Fill = ClassAttributesHelper.DeckAttributeColors[da].ToMediaBrush()
-                                  }
-                                  );
-                        }
+                        sc.Add(
+                           new StackedRowSeries
+                           {
+                               Title = item.Key.ToString(),
+                               Values = new ChartValues<decimal> { item.Value},
+                               StackMode = StackMode.Percentage,
+                               DataLabels = true,
+                               LabelsPosition = BarLabelPosition.Parallel,
+                               Fill = ClassAttributesHelper.DeckAttributeColors[item.Key].ToMediaBrush()
+                           }
+                           );
                     }
+                  
                     return sc;
                 }
                 return null;
@@ -89,74 +90,32 @@ namespace ESLTracker.ViewModels.Decks
             get
             {
                 SeriesCollection sc = new SeriesCollection();
-                ManaCurveMaxValue = 0;
+                sc.Add(
+                   new ColumnSeries
+                   {
+                       Title = "".ToString(),
+                       Values = new ChartValues<int> { },
+                       DataLabels = true,
+                       LabelsPosition = BarLabelPosition.Top,
+                   }
+                );
                 if (cardCollection != null)
                 {
-                    int maxCost = 7;
-                    sc.Add(
-                          new ColumnSeries
-                          {
-                              Title = "".ToString(),
-                              Values = new ChartValues<int> { },
-                              DataLabels = true,
-                              LabelsPosition = BarLabelPosition.Top,
-                          }
-                          );
-                    for (int cost = 0; cost <= maxCost; cost++)
-                    {
-                        int count = cardCollection.Where(ci => ci.Card.Cost == cost).Sum(ci => ci.Quantity);
-                        if (cost == maxCost)
-                        {
-                            //add more expensive than maxCost
-                            count += cardCollection.Where(ci => ci.Card.Cost > cost).Sum(ci => ci.Quantity);
-                        }
-                        ManaCurveMaxValue = Math.Max(ManaCurveMaxValue, count);
-                        sc[0].Values.Add(count);
+                    var breakdown = cardBreakdownService.GetManaBreakdown(cardCollection);
+                    foreach(var item in breakdown)
+                    {                       
+                        sc[0].Values.Add(item.Value);
                     }
+
+                    ManaCurveMaxValue = breakdown.Max(i => i.Value);
+
                     return sc;
                 }
                 return null;
             }
         }
 
-        public SeriesCollection CardTypeSeriesCollection
-        {
-            get
-            {
-                SeriesCollection sc = new SeriesCollection();
-                List<string> labels = new List<string>();
-                if (cardCollection != null)
-                {
-                    sc.Add(
-                          new RowSeries
-                          {
-                              Title = "".ToString(),
-                              Values = new ChartValues<int> { },
-                              //StackMode = StackMode.Percentage,
-                              DataLabels = true,
-                              LabelsPosition = BarLabelPosition.Parallel,
-                              Fill = System.Windows.Media.Brushes.LightSkyBlue
-                          }
-                      );
-                    foreach (CardType ct in Enum.GetValues(typeof(CardType)))
-                    {
-                        int count = cardCollection.Where(ci => ci.Card.Type == ct).Sum(ci => ci.Quantity);
-                        if (count > 0)
-                        {
-                            sc[0].Values.Add(count);
-                            labels.Add(ct.ToString());
-                        }
-                    }
-                    CardTypeLabelsCollection = labels.ToArray();
-                    return sc;
-                }
-                return null;
-            }
-        }
-
-        public string[] CardTypeLabelsCollection { get; set; }
-
-        public int ManaCurveMaxValue { get; set; }
+        public int ManaCurveMaxValue { get; set; } 
 
         public string CardTypeBreakdownText
         {
@@ -165,13 +124,11 @@ namespace ESLTracker.ViewModels.Decks
                 StringBuilder text = new StringBuilder();
                 if (cardCollection != null)
                 {
-                    foreach (CardType ct in Enum.GetValues(typeof(CardType)))
+                    var breakdown = cardBreakdownService.GetCardTypeBreakdown(cardCollection);
+
+                    foreach (var item in breakdown)
                     {
-                        int count = cardCollection.Where(ci => ci.Card.Type == ct).Sum(ci => ci.Quantity);
-                        if (count > 0)
-                        {
-                            text.AppendFormat("{0}: {1}   ", ct, count);
-                        }
+                        text.AppendFormat("{0}: {1}   ", item.Key, item.Value);
                     }
                     return text.ToString();
                 }
@@ -179,7 +136,7 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        public string PropheciesCountText
+        public string KeywordsBreakdownText
         {
             get
             {
@@ -187,23 +144,20 @@ namespace ESLTracker.ViewModels.Decks
                 if (cardCollection != null)
                 {
                     decimal count = cardCollection.Sum(ci => ci.Quantity);
-                    var keywordsBreakdown = cardCollection
-                        .SelectMany(ci => Enumerable.Repeat(ci.Card.Keywords, ci.Quantity))
-                        .SelectMany(kl => kl)
-                        .OrderBy(kl => kl)
-                        .GroupBy(
-                        ck => ck,
-                        ck => ck,
-                        (key, g) => new { Keyword = key, Count = g.Count(), Percentage = Math.Round(g.Count()*100 / count,0) }
-                        );
-                        
+
+
+                    var keywordsBreakdown = cardBreakdownService.GetCardKeywordsBreakdown<CardKeyword>(cardCollection, c => c.Keywords);
+                    var mechanicsBreakdown = cardBreakdownService.GetCardKeywordsBreakdown<CardMechanic>(cardCollection, c => c.Mechanics);
 
                     foreach (var ct in keywordsBreakdown)
                     {
-                        if (ct.Count > 0)
-                        {
-                            text.AppendFormat("{0}: {1} ({2}%)"+Environment.NewLine, ct.Keyword, ct.Count, ct.Percentage);
-                        }
+                        text.AppendFormat("{0}: {1} ({2}%)"+Environment.NewLine, ct.Key, ct.Value, Math.Round(ct.Value * 100 / count, 0));
+                    }
+
+                    foreach (var ct in mechanicsBreakdown)
+                    {
+
+                        text.AppendFormat("{0}: {1} ({2}%)" + Environment.NewLine, ct.Key, ct.Value, Math.Round(ct.Value * 100 / count, 0));
                     }
                     return text.ToString();
                 }

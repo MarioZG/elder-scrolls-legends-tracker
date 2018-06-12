@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.ViewModels;
 
@@ -11,6 +13,8 @@ namespace ESLTracker.DataModel
 {
     public class Pack : ViewModelBase
     {
+        private SoulGemCalculator soulGemCalculator = new SoulGemCalculator();
+
         public ObservableCollection<CardInstance> Cards { get; set; }
 
         public DateTime DateOpened { get; set; }
@@ -25,7 +29,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return SoulGemsHelper.CalculateCardsSellValue(Cards);
+                return soulGemCalculator.CalculateCardsSellValue(Cards);
             }
         }
 

@@ -133,14 +133,14 @@ namespace ESLTracker.Services.Tests
                               ""attack"":""3"",
                               ""health"":""1"",
                               ""race"":""highelf"",
-                              ""keywords"":[""Charge"", ""Prophecy""],
+                              ""keywords"":[""Charge"", ""Drain""],
                               ""text"":""Card text""}]";
             Card card = SerializationHelper.DeserializeJson<IEnumerable<Card>>(json).First();
 
             Assert.IsNotNull(card.Keywords);
             Assert.AreEqual(2, card.Keywords.Count);
             CollectionAssert.Contains(card.Keywords, CardKeyword.Charge);
-            CollectionAssert.Contains(card.Keywords, CardKeyword.Prophecy);
+            CollectionAssert.Contains(card.Keywords, CardKeyword.Drain);
         }
     }
 }

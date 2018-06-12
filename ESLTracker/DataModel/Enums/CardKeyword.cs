@@ -11,7 +11,7 @@ namespace ESLTracker.DataModel.Enums
         None = 0,
         Breakthrough = 1,
         Drain = 2,
-        Prophecy = 4,
+        Prophecy = 4, //to be removed
         Guard = 8,
         Charge = 16,
         Lethal = 32,

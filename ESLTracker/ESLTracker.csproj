@@ -206,6 +206,7 @@
     <Compile Include="DataModel\DeckVersion.cs" />
     <Compile Include="DataModel\Enums\ArenaRank.cs" />
     <Compile Include="DataModel\Enums\CardKeyword.cs" />
+    <Compile Include="DataModel\Enums\CardMechanic.cs" />
     <Compile Include="DataModel\Enums\CardRarity.cs" />
     <Compile Include="DataModel\Enums\CardType.cs" />
     <Compile Include="DataModel\ITracker.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="RankedProgressChart.xaml.cs">
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\Deck\CardBreakdown.cs" />
     <Compile Include="Services\Implementation\DeckImporter.cs" />
     <Compile Include="Services\ICardImageService.cs" />
     <Compile Include="Services\IDeckImporter.cs" />
@@ -231,6 +233,7 @@
     <Compile Include="Services\Implementation\LauncherService.cs" />
     <Compile Include="Services\IWinDialogs.cs" />
     <Compile Include="Services\Implementation\WinDialogs.cs" />
+    <Compile Include="BusinessLogic\Cards\SoulGemCalculator.cs" />
     <Compile Include="Utils\Behaviors\AutoCompleteBehavior.cs" />
     <Compile Include="Utils\Converters\CollectionCountToVisibility.cs" />
     <Compile Include="Utils\Converters\DebuggingConverter.cs" />
@@ -321,7 +324,6 @@
     <Compile Include="Services\Implementation\Messenger.cs" />
     <Compile Include="Utils\SerializableVersion.cs" />
     <Compile Include="Utils\SingleInstanceApp.cs" />
-    <Compile Include="Utils\SoulGemsHelper.cs" />
     <Compile Include="Utils\TrackerFactory.cs" />
     <Compile Include="Services\Implementation\VersionService.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
@@ -1612,6 +1614,7 @@
     <Resource Include="Resources\Cards\youngdragonborn.png" />
     <Resource Include="Resources\Cards\youngmammoth.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
   <Import Project="..\build\versions.targets" Condition="Exists('..\build\versions.targets')" />

@@ -68,6 +68,10 @@ namespace ESLTracker.DataModel
         [JsonProperty(ItemConverterType = typeof(StringEnumConverter))]
         public List<CardKeyword> Keywords { get; set; } = new List<CardKeyword>();
 
+        [XmlIgnore]
+        [JsonProperty(ItemConverterType = typeof(StringEnumConverter))]
+        public List<CardMechanic> Mechanics { get; set; } = new List<CardMechanic>();
+
         public string ImageName
         {
             get

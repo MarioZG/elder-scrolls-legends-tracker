@@ -1,16 +1,16 @@
-﻿using System;
+﻿using ESLTracker.DataModel;
+using ESLTracker.DataModel.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
 
-namespace ESLTracker.Utils
+namespace ESLTracker.BusinessLogic.Cards
 {
-    public class SoulGemsHelper
+    internal class SoulGemCalculator
     {
-        internal static int CalculateCardsSellValue(IEnumerable<CardInstance> cards)
+        internal int CalculateCardsSellValue(IEnumerable<CardInstance> cards)
         {
             if (cards == null)
             {
@@ -28,7 +28,7 @@ namespace ESLTracker.Utils
                 + notNullCards.Where(c => c.Card.Rarity == CardRarity.Legendary && c.IsPremium).Sum(ci => ci.Quantity) * 1200;
         }
 
-        internal static int CalculateCardsPurchaseValue(IEnumerable<CardInstance> cards)
+        internal int CalculateCardsPurchaseValue(IEnumerable<CardInstance> cards)
         {
             if (cards == null)
             {
