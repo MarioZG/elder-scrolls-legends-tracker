@@ -1,7 +1,7 @@
 {
-  "Version": "0.72.3",
-  "VersionInfo": "May monthly reward",
-  "VersionDate": "2018-05-29T00:00:00Z",
+  "Version": "0.72.4",
+  "VersionInfo": "June monthly reward",
+  "VersionDate": "2018-07-01T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -8709,6 +8709,21 @@
       "race": "beast",
       "keywords": [],
       "text": "Last Gasp: Fill this lane with 1/1 Angry Villagers."
+    },
+    {
+      "id": "1737f9a7-04e7-4072-a716-da30c83bd94e",
+      "name": "Prophet of Bones",
+      "rarity": "Epic",
+      "set": "Promotional",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "1",
+      "attack": "2",
+      "health": "1",
+      "race": "darkelf",
+      "keywords": [],
+      "text": "Exalt 5: Fill this lane with 1/1 Risen Dead with Guard."
     },
     {
       "id": "751b58b6-b11c-11e6-80f5-76304dec7eb7",
