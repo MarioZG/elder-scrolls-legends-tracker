@@ -1614,7 +1614,15 @@
     <Resource Include="Resources\Cards\youngdragonborn.png" />
     <Resource Include="Resources\Cards\youngmammoth.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Cards\blackwooddistiller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Cards\conjurersspirit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Cards\prophetofbones.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
   <Import Project="..\build\versions.targets" Condition="Exists('..\build\versions.targets')" />
