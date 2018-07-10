@@ -10,12 +10,10 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks" 
              x:Class="ESLTracker.Controls.Decks.DeckProperties"
+            DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckPropertiesViewModel]}"
              mc:Ignorable="d" 
              x:Name="editDeck"
              >
-    <UserControl.DataContext>
-        <ViewModels:DeckPropertiesViewModel/>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <ObjectDataProvider x:Key="DeckTypeEnum" MethodName="GetValues"
                             ObjectType="{x:Type System:Enum}">

@@ -8,27 +8,32 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters" 
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors" 
              xmlns:Rewards="clr-namespace:ESLTracker.Controls.Rewards"
+             xmlns:ViewModels1="clr-namespace:ESLTracker.ViewModels"
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckPreviewViewModel]}"
              mc:Ignorable="d" 
              x:Name="deckPreview">
-    <UserControl.DataContext>
-        <ViewModels:DeckPreviewViewModel/>
-    </UserControl.DataContext>
     <UserControl.Resources>
-        <Style x:Key="HeaderText" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontWeight" Value="Medium" />
-            <Setter Property="FontSize" Value="12" />
-        </Style>
-        <Style TargetType="{x:Type TabItem}">
-            <Setter Property="HeaderTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Style="{StaticResource HeaderText}" Text="{Binding}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary>
+            <Style x:Key="HeaderText" TargetType="{x:Type TextBlock}">
+                <Setter Property="FontWeight" Value="Medium" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource HeaderText}" Text="{Binding}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Merge into this dictionary another dictionary ... -->
+                <ResourceDictionary Source="/ControlStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">

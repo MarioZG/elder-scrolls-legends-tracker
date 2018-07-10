@@ -6,7 +6,9 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-
+    <UserControl.Resources>
+        <ResourceDictionary Source="/ControlStyle.xaml"/>
+    </UserControl.Resources>
         <ItemsControl
                 PreviewMouseWheel="ItemsControl_PreviewMouseWheel"
                 ItemsSource="{Binding}"

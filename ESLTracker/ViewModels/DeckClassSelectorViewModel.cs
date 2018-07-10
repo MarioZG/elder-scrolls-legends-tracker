@@ -84,15 +84,9 @@ namespace ESLTracker.ViewModels
             get { return new RelayCommand(new Action<object>(FilterClicked)); }
         }
 
-
-
-        public DeckClassSelectorViewModel() : this(new TrackerFactory())
+        public DeckClassSelectorViewModel(IMessenger messenger)
         {
-
-        }
-        public DeckClassSelectorViewModel(ITrackerFactory factory)
-        {
-            messenger = factory.GetService<IMessenger>();
+            this.messenger = messenger;
             FilterButtonState = new Dictionary<DeckAttribute, bool>();
             foreach (DeckAttribute a in Enum.GetValues(typeof(DeckAttribute)))
             {

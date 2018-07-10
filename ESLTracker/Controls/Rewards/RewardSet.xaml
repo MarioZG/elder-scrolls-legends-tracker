@@ -11,7 +11,9 @@
              xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks"  
              FocusManager.IsFocusScope="True"
              FocusManager.FocusedElement="{Binding ElementName=cbReason}"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Rewards.RewardSetViewModel]}"
+             >
     <UserControl.Resources>
         <ObjectDataProvider x:Key="RewardReasonEnum" MethodName="GetValues"
                             ObjectType="{x:Type System:Enum}">
@@ -20,9 +22,6 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <ViewModels:RewardSetViewModel/>
-    </UserControl.DataContext>
     <StackPanel Orientation="Vertical">
         <TextBlock TextWrapping="Wrap" Text="Select reward reason"></TextBlock>
         <ComboBox 

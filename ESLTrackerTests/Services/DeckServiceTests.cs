@@ -10,45 +10,45 @@ using ESLTracker.Properties;
 using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
 using ESLTracker.Services;
+using ESLTracker.BusinessLogic.Decks;
+using ESLTrackerTests;
+using ESLTrackerTests.Builders;
 
 namespace ESLTracker.Services.Tests
 {
     [TestClass]
-    public class DeckServiceTests
+    public class DeckServiceTests : BaseTest
     {
+        Mock<ITracker> tracker = new Mock<ITracker>();
+        //Mock<IDeckVersionFactory> mockDeckVersionFactory = new Mock<IDeckVersionFactory>();
+
         [TestMethod]
         public void CanDeleteTest001_Forbidden()
         {
-            Mock<ISettings> settings = new Mock<ISettings>();
-            settings.Setup(s => s.DeckDeleteMode).Returns(ViewModels.Decks.DeckDeleteMode.Forbidden);
-
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
+            mockSettings.Setup(s => s.DeckDeleteMode).Returns(ViewModels.Decks.DeckDeleteMode.Forbidden);
 
             bool expected = false;
 
-            DeckService deckService = new DeckService(trackerFactory.Object);
+            DeckService deckService = CreateDeckService();
 
-            bool acctual = deckService.CanDelete(Deck.CreateNewDeck());
+            bool acctual = deckService.CanDelete(deckService.CreateNewDeck());
 
             Assert.AreEqual(expected, acctual);
         }
 
+
+
         [TestMethod]
         public void CanDeleteTest002_Empy_NoGamesInDeck()
         {
-            Mock<ISettings> settings = new Mock<ISettings>();
-            settings.Setup(s => s.DeckDeleteMode).Returns(ViewModels.Decks.DeckDeleteMode.OnlyEmpty);
-
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
+            mockSettings.Setup(s => s.DeckDeleteMode).Returns(ViewModels.Decks.DeckDeleteMode.OnlyEmpty);
+            tracker.SetupGet(t => t.Games).Returns(new ObservableCollection<Game>());
 
             bool expected = true;
 
-            Mock<DeckService> deckService = new Mock<DeckService>(trackerFactory.Object);
-            deckService.Setup(ds => ds.GetDeckGames(It.IsAny<Deck>())).Returns(new List<Game>());
+            var deckService = CreateDeckService();
 
-            bool acctual = deckService.Object.CanDelete(Deck.CreateNewDeck());
+            bool acctual = deckService.CanDelete(deckService.CreateNewDeck());
 
             Assert.AreEqual(expected, acctual);
         }
@@ -56,21 +56,22 @@ namespace ESLTracker.Services.Tests
         [TestMethod]
         public void CanDeleteTest003_Empy_DeckHasGames()
         {
-            Mock<ISettings> settings = new Mock<ISettings>();
-            settings.Setup(s => s.DeckDeleteMode).Returns(ViewModels.Decks.DeckDeleteMode.OnlyEmpty);
+            mockSettings.Setup(s => s.DeckDeleteMode).Returns(ViewModels.Decks.DeckDeleteMode.OnlyEmpty);
 
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
+            Deck deck = new DeckBuilder().Build();
 
-            Mock<IList<Game>> games = new Mock<IList<Game>>();
-            games.Setup(g => g.Count).Returns(1);
+            ObservableCollection<Game> games = new GameListBuilder()
+                                                .UsingDeck(deck)
+                                                .WithOutcome(1, DataModel.Enums.GameOutcome.Victory)
+                                                .Build();
+            tracker.Setup(t => t.Games).Returns(games);
+
 
             bool expected = false;
 
-            Mock<DeckService> deckService = new Mock<DeckService>(trackerFactory.Object);
-            deckService.Setup(ds => ds.GetDeckGames(It.IsAny<Deck>())).Returns(games.Object);
+            DeckService deckService = CreateDeckService();
 
-            bool acctual = deckService.Object.CanDelete(Deck.CreateNewDeck());
+            bool acctual = deckService.CanDelete(deck);
 
             Assert.AreEqual(expected, acctual);
         }
@@ -78,53 +79,46 @@ namespace ESLTracker.Services.Tests
         [TestMethod]
         public void CanDeleteTest004_Any()
         {
-            Mock<ISettings> settings = new Mock<ISettings>();
-            settings.Setup(s => s.DeckDeleteMode).Returns(ViewModels.Decks.DeckDeleteMode.Any);
+            mockSettings.Setup(s => s.DeckDeleteMode).Returns(ViewModels.Decks.DeckDeleteMode.Any);
 
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
             bool expected = true;
 
-            DeckService deckService = new DeckService(trackerFactory.Object);
+            DeckService deckService = CreateDeckService();
 
-            bool acctual = deckService.CanDelete(Deck.CreateNewDeck());
+            bool actual = deckService.CanDelete(deckService.CreateNewDeck());
 
-            Assert.AreEqual(expected, acctual);
+            Assert.AreEqual(expected, actual);
         }
 
 
         [TestMethod]
         public void DeleteDeckTest001_RemoveDeck()
         {
-            Deck deckToDelete = Deck.CreateNewDeck();
+            DeckService deckService = CreateDeckService();
+
+            Deck deckToDelete = new DeckBuilder().Build();
             ObservableCollection<Deck> decks = new ObservableCollection<Deck>()
             {
-                Deck.CreateNewDeck(),
+                new DeckBuilder().Build(),
                 deckToDelete,
-                Deck.CreateNewDeck()
+                new DeckBuilder().Build()
             };
 
-            ObservableCollection<Game> games = new ObservableCollection<Game>()
-            {
-                new Game() {Deck = deckToDelete },
-                new Game() {Deck = Deck.CreateNewDeck() },
-                new Game() {Deck = Deck.CreateNewDeck() },
-                new Game() {Deck = Deck.CreateNewDeck() },
-                new Game() {Deck = Deck.CreateNewDeck() },
-            };
+            ObservableCollection<Game> games = new GameListBuilder()
+                .UsingDeck(deckToDelete)
+                .WithOutcome(1, DataModel.Enums.GameOutcome.Victory)
+                .UsingDeck(new DeckBuilder().Build())
+                .WithOutcome(2, DataModel.Enums.GameOutcome.Victory)
+                .UsingDeck(new DeckBuilder().Build())
+                .WithOutcome(2, DataModel.Enums.GameOutcome.Victory)
+                .Build();
 
             List<Reward> rewards = new List<Reward>();
 
-            Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Decks).Returns(decks);
             tracker.Setup(t => t.Rewards).Returns(rewards);
             tracker.Setup(t => t.Games).Returns(games);
-
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
-
-            DeckService deckService = new DeckService(trackerFactory.Object);
 
             deckService.DeleteDeck(deckToDelete);
 
@@ -138,32 +132,28 @@ namespace ESLTracker.Services.Tests
         [TestMethod]
         public void DeleteDeckTest002_RemoveRewardsRef()
         {
-            Deck deckToDelete = Deck.CreateNewDeck();
+            DeckService deckService = CreateDeckService();
+
+            Deck deckToDelete = deckService.CreateNewDeck();
             ObservableCollection<Deck> decks = new ObservableCollection<Deck>()
             {
-                Deck.CreateNewDeck(),
+                deckService.CreateNewDeck(),
                 deckToDelete,
-                Deck.CreateNewDeck()
+                deckService.CreateNewDeck()
             };
 
             List<Reward> rewards = new List<Reward>()
             {
-                new Reward() {ArenaDeck = deckToDelete },
-                new Reward() {ArenaDeck = deckToDelete },
-                new Reward() {ArenaDeck = deckToDelete },
+                new RewardBuilder().WithDeck(deckToDelete).Build(),
+                new RewardBuilder().WithDeck(deckToDelete).Build(),
+                new RewardBuilder().WithDeck(deckToDelete).Build(),
             };
 
             ObservableCollection<Game> games = new ObservableCollection<Game>();
 
-            Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Decks).Returns(decks);
             tracker.Setup(t => t.Rewards).Returns(rewards);
             tracker.Setup(t => t.Games).Returns(games);
-
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
-
-            DeckService deckService = new DeckService(trackerFactory.Object);
 
             deckService.DeleteDeck(deckToDelete);
 
@@ -174,22 +164,18 @@ namespace ESLTracker.Services.Tests
         [TestMethod]
         public void DeleteDeckTest003_RemoveActiveDeckRef()
         {
-            Deck deckToDelete = Deck.CreateNewDeck();
+            DeckService deckService = CreateDeckService();
+
+            Deck deckToDelete = deckService.CreateNewDeck();
+
             ObservableCollection<Deck> decks = new ObservableCollection<Deck>();
             List<Reward> rewards = new List<Reward>();
             ObservableCollection<Game> games = new ObservableCollection<Game>();
 
-            Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Decks).Returns(decks);
             tracker.Setup(t => t.Rewards).Returns(rewards);
-            tracker.Setup(t => t.ActiveDeck).Returns(deckToDelete);
             tracker.Setup(t => t.Games).Returns(games);
-
-
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
-
-            DeckService deckService = new DeckService(trackerFactory.Object);
+            tracker.SetupGet(t => t.ActiveDeck).Returns(deckToDelete);
 
             deckService.DeleteDeck(deckToDelete);
 
@@ -201,27 +187,28 @@ namespace ESLTracker.Services.Tests
         [TestMethod]
         public void DeleteDeckTest004_ActiveDeckOther()
         {
-            Deck deckToDelete = Deck.CreateNewDeck();
+            DeckService deckService = CreateDeckService();
+
+            Deck deckToDelete = deckService.CreateNewDeck();
             ObservableCollection<Deck> decks = new ObservableCollection<Deck>();
             List<Reward> rewards = new List<Reward>();
             ObservableCollection<Game> games = new ObservableCollection<Game>();
 
-            Deck activeDeck = Deck.CreateNewDeck();
+            Deck activeDeck = deckService.CreateNewDeck();
 
-            Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Decks).Returns(decks);
             tracker.Setup(t => t.Rewards).Returns(rewards);
             tracker.Setup(t => t.ActiveDeck).Returns(activeDeck); //some other deck
             tracker.Setup(t => t.Games).Returns(games);
 
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
-
-            DeckService deckService = new DeckService(trackerFactory.Object);
-
             deckService.DeleteDeck(deckToDelete);
 
             Assert.AreEqual(activeDeck, tracker.Object.ActiveDeck);
+        }
+
+        private DeckService CreateDeckService()
+        {
+            return new DeckService(tracker.Object, mockSettings.Object, mockDatetimeProvider.Object, mockGuidProvider.Object);
         }
     }
 }

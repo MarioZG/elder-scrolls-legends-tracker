@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.Utils;
 using ESLTracker.Services;
+using ESLTracker.BusinessLogic.General;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -31,17 +32,9 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        private ITrackerFactory trackerFactory;        
-
-        public ImportTextViewModel() : this(TrackerFactory.DefaultTrackerFactory)
+        public ImportTextViewModel(IDeckImporter deckImporter)
         {
-
-        }
-
-        public ImportTextViewModel(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            DeckImporter = trackerFactory.GetService<IDeckImporter>();
+            DeckImporter = deckImporter;
         }
 
         private void CommandCancelExecute(object obj)

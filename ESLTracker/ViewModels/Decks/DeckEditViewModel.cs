@@ -1,25 +1,27 @@
-﻿using System;
+﻿using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.BusinessLogic.Decks;
+using ESLTracker.DataModel;
+using ESLTracker.Services;
+using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
+using ESLTracker.Utils.Messages;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using ESLTracker.DataModel;
-using ESLTracker.Utils;
-using ESLTracker.Utils.Messages;
-using ESLTracker.Utils.Extensions;
-using ESLTracker.Services;
 using System.Windows;
-using NLog;
+using System.Windows.Input;
 
 namespace ESLTracker.ViewModels.Decks
 {
     public class DeckEditViewModel : ViewModelBase, IEditableObject
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
-
+        private ICardInstanceFactory cardInstanceFactory;
         private Deck deck;
 
         public Deck Deck
@@ -28,7 +30,7 @@ namespace ESLTracker.ViewModels.Decks
             set
             {
                 deck = value;
-                CurrentVersion = value?.History.Where(dh => dh.VersionId == Deck.SelectedVersionId).First();
+                CurrentVersion = value?.History.Where(dh => dh.VersionId == deck.SelectedVersionId).First();
                 RaisePropertyChangedEvent(String.Empty);
             }
         }
@@ -60,7 +62,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             get
             {
-                return (!this.trackerFactory.GetTracker().Decks.Contains(deck)) //do not allow versions for new deck
+                return (!tracker.Decks.Contains(deck)) //do not allow versions for new deck
                     || Deck.IsArenaDeck(deck.Type);
             }
         }
@@ -187,18 +189,34 @@ namespace ESLTracker.ViewModels.Decks
         //priate ariable used for IEditableObject implemenation. Keeps inital state of object
         internal Deck savedState;
 
-        private ITrackerFactory trackerFactory;
+        private ITracker tracker;
         private IMessenger messanger;
+        private IDeckImporter deckImporter;
+        private IDateTimeProvider dateTimeProvider;
+        private IFileManager fileManager;
+        private IDeckService deckService;
+      //  private IDeckVersionFactory deckVersionFactory;
 
-        public DeckEditViewModel() : this(TrackerFactory.DefaultTrackerFactory)
+        public DeckEditViewModel(
+            ICardInstanceFactory cardInstanceFactory,
+            IDeckImporter deckImporter,
+            ITracker tracker,
+            IMessenger messenger,
+            IDateTimeProvider dateTimeProvider,
+            IFileManager fileManager,
+            IDeckService deckService
+          //  IDeckVersionFactory deckVersionFactory
+          )
         {
+            this.cardInstanceFactory = cardInstanceFactory;
+            this.deckImporter = deckImporter;
+            this.tracker = tracker;
+            this.dateTimeProvider = dateTimeProvider;
+            this.fileManager = fileManager;
+            this.deckService = deckService;
+           // this.deckVersionFactory = deckVersionFactory;
 
-        }
-
-        public DeckEditViewModel(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            this.messanger = trackerFactory.GetService<IMessenger>();
+            this.messanger = messenger;
             messanger.Register<EditDeck>(this, EditDeckStart, EditDeck.Context.StartEdit);
 
             CommandSave = new RelayCommand(CommandSaveExecute);
@@ -226,7 +244,7 @@ namespace ESLTracker.ViewModels.Decks
                 ver = new SerializableVersion(new Version(versionInc));
             }
             ClearModifiedBorder();
-            SaveDeck(this.trackerFactory.GetTracker(), ver, Deck.SelectedVersion.Cards);
+            SaveDeck(tracker, ver, Deck.SelectedVersion.Cards);
         }
 
         private void CommandCancelExecute(object obj)
@@ -311,10 +329,11 @@ namespace ESLTracker.ViewModels.Decks
                     throw new ArgumentOutOfRangeException(nameof(versionIncrease), "Method accepts only version increase by 0 or 1");
                 }
 
-                Deck.CreateVersion(
+                deckService.CreateDeckVersion(
+                    Deck, 
                     major,
                     minor,
-                    trackerFactory.GetDateTimeNow());
+                    dateTimeProvider.DateTimeNow);
 
                 //now Deck.SelectedVersion points to new version                
                 foreach (CardInstance ci in cards)
@@ -327,7 +346,7 @@ namespace ESLTracker.ViewModels.Decks
             {
                 tracker.Decks.Add(this.Deck);
             }
-            trackerFactory.GetFileManager().SaveDatabase();
+            fileManager.SaveDatabase();
             this.EndEdit();
             messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
         }
@@ -393,7 +412,7 @@ namespace ESLTracker.ViewModels.Decks
                             }
                             if (LimitCardCount)
                             {
-                                trackerFactory.GetService<IDeckService>().EnforceCardLimit(instance);
+                                deckService.EnforceCardLimit(instance);
                             }
                         }
                         else if (importedCard.Quantity > 0)
@@ -428,7 +447,7 @@ namespace ESLTracker.ViewModels.Decks
                 }
                 else
                 {
-                    result.Add(new CardInstance(card.Card) { Quantity = -card.Quantity });
+                    result.Add(cardInstanceFactory.CreateFromCard(card.Card, -card.Quantity));
                 }
             }
 
@@ -467,8 +486,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             logger.Debug($"ImportFromWeb started. Task.IsNotCompleted={CommandImportWeb.Execution?.IsNotCompleted}");
             try
-            {
-                DeckImporter deckImporter = new DeckImporter(this.trackerFactory);
+            {                
                 var tcs = new TaskCompletionSource<bool>();
                 deckImporter.ImportFinished(tcs);
                 //logger.Debug($"ImportFromWeb awaiting {CommandImportWeb.Execution}");

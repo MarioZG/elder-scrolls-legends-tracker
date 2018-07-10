@@ -10,6 +10,7 @@ using System.Windows.Interop;
 using ESLTracker.Properties;
 using ESLTracker.Services;
 using ESLTracker.Utils;
+using ESLTracker.Utils.SimpleInjector;
 
 namespace ESLTracker.Controls
 {
@@ -19,7 +20,7 @@ namespace ESLTracker.Controls
         public abstract bool ShowOnScreen { get; set; }
         public abstract void UpdateVisibilty(bool isGameActive, bool isGameProcessRunning, bool isMainWIndowActive, bool isOtherWindowActive);
 
-        protected ISettings Settings = TrackerFactory.DefaultTrackerFactory.GetService<ISettings>();
+        protected ISettings Settings = MasserContainer.Container.GetInstance<ISettings>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -1,4 +1,7 @@
-﻿using ESLTracker.DataModel;
+﻿using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.DataModel;
+using ESLTracker.Properties;
 using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
@@ -10,7 +13,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ESLTracker.ViewModels.PackStatistics
@@ -42,17 +44,23 @@ namespace ESLTracker.ViewModels.PackStatistics
         private ICardImageService cardImageService;
         private IWinDialogs winDialogs;
         private ICardsDatabase cardsDatabase;
+        private ICardInstanceFactory cardInstanceFactory;
+        private ITracker tracker;
 
-        public OpeningPackStatsWindowViewModel() : this(new TrackerFactory())
+        public OpeningPackStatsWindowViewModel(
+            ISettings settings,
+            IDateTimeProvider dateTimeProvider, 
+            ITracker tracker, 
+            ICardInstanceFactory cardInstanceFactory,
+            ICardImageService cardImageService,
+            IWinDialogs winDialogs,
+            ICardsDatabase cardsDatabase) : base(settings, dateTimeProvider)
         {
-
-        }
-
-        public OpeningPackStatsWindowViewModel(TrackerFactory trackerFactory) : base(trackerFactory)
-        {
-            cardImageService = trackerFactory.GetService<ICardImageService>();
-            winDialogs = trackerFactory.GetService<IWinDialogs>();
-            cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
+            this.tracker = tracker;
+            this.cardInstanceFactory = cardInstanceFactory;
+            this.cardImageService = cardImageService;
+            this.winDialogs = winDialogs;
+            this.cardsDatabase = cardsDatabase; ;
 
             CommandExportToCsv = new RealyAsyncCommand<object>(CommandExportToCsvExecute);
             CommandOpenCsv = new RealyAsyncCommand<object>(CommandOpenCsvExcute);
@@ -162,7 +170,7 @@ namespace ESLTracker.ViewModels.PackStatistics
                 Logger.Trace($"Top10Cards");
                 var rawData = ((IEnumerable<CardInstance>)GetDataSet())
                     .GroupBy(ci => ci.Card)
-                    .Select(ci => new CardInstance() { Card = ci.Key, Quantity = ci.Count() })
+                    .Select(ci => cardInstanceFactory.CreateFromCard(ci.Key, ci.Count()))
                     .OrderByDescending(cis => cis.Quantity)
                     .Take(10);
 
@@ -189,7 +197,7 @@ namespace ESLTracker.ViewModels.PackStatistics
         {
             get
             {
-                return trackerFactory.GetTracker().Packs
+                return tracker.Packs
                                 .Where(p => (p.DateOpened > this.FilterDateFrom) 
                                     && (p.DateOpened.Date <= this.FilterDateTo.Date)
                                     && (PackSetFilter?.Id == Guid.Empty || p.CardSet.Id == PackSetFilter.Id));

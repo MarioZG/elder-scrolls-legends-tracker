@@ -14,6 +14,9 @@ using NLog;
 using NLog.Config;
 using ESLTracker.Properties;
 using System.Windows.Input;
+using ESLTracker.BusinessLogic.GameClient;
+using ESLTracker.Utils.SimpleInjector;
+using ESLTracker.Windows;
 
 namespace ESLTracker
 {
@@ -61,6 +64,7 @@ namespace ESLTracker
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            var container = new MasserContainer();
 
             ConfigurationItemFactory.Default.Targets
                 .RegisterDefinition("UserInfoLogger", typeof(ESLTracker.Utils.NLog.UserInfoLoggerTarget));
@@ -76,8 +80,8 @@ namespace ESLTracker
 
             CheckSingleInstance();
             CheckDataFile();
-            IVersionService vc = TrackerFactory.DefaultTrackerFactory.GetService<IVersionService>();
-            var settings = TrackerFactory.DefaultTrackerFactory.GetService<ISettings>();
+            IVersionService vc = container.GetInstance<IVersionService>();
+            var settings = container.GetInstance<ISettings>();
             var newVersion = vc.CheckNewAppVersionAvailable();
             if (newVersion.IsAvailable)
             {
@@ -97,10 +101,13 @@ namespace ESLTracker
             bool isShiftPressed = (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift;
             if (settings.General_StartGameWithTracker && ! isShiftPressed)
             {
-                var winApi = TrackerFactory.DefaultTrackerFactory.GetService<IWinAPI>();
-                var messanger = TrackerFactory.DefaultTrackerFactory.GetService<IMessenger>();
-                TrackerFactory.DefaultTrackerFactory.GetService<ILauncherService>().StartGame(winApi, messanger);
+                container.GetInstance<ILauncherService>().StartGame();
             }
+
+         //   var app = new App();
+            this.MainWindow = container.GetInstance<MainWindow>();
+            this.MainWindow.Show();
+            //this.Run(this.MainWindow);
         }
 
         private static void CheckDataFile()
@@ -108,7 +115,7 @@ namespace ESLTracker
             try
             {
                 //try to open data file
-                new FileManager().LoadDatabase(true);
+          //      new FileManager().LoadDatabase(true);
             }
             catch (DataFileException ex)
             {

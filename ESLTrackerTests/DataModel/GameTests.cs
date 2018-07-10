@@ -10,19 +10,13 @@ using System.Reflection;
 using ESLTracker.Utils;
 using Moq;
 using System.Collections;
+using ESLTrackerTests.Builders;
 
 namespace ESLTracker.DataModel.Tests
 {
     [TestClass()]
     public class GameTests : BaseTest
     {
-        [TestMethod()]
-        public void GameTest001_CheckIfDatePopulated()
-        {
-            Game g = new Game();
-
-            Assert.IsTrue(g.Date.Year > 1999);
-        }
 
         [TestMethod()]
         public void EqualsTest001_x_Equals_x_True()
@@ -75,11 +69,10 @@ namespace ESLTracker.DataModel.Tests
         public void EqualsTest005_valuesTest()
         {
             //pass same date time to constructors!
-            Mock<ITrackerFactory> factory = new Mock<ITrackerFactory>();
-            factory.Setup(f => f.GetDateTimeNow()).Returns(DateTime.Now);
+            mockDatetimeProvider.Setup(f => f.DateTimeNow).Returns(DateTime.Now);
 
-            Game x = new Game(factory.Object);
-            Game y = new Game(factory.Object);
+            Game x = new GameBuilder().Build();
+            Game y = new GameBuilder().Build();
 
             Assert.IsTrue(x.Equals(y), "Equals failed for bare objects");
 

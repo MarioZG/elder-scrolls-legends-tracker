@@ -113,13 +113,10 @@ namespace ESLTracker.DataModel
             set { SetProperty(ref opponentDeckTag, value); }
         }
 
-        public Game() : this(TrackerFactory.DefaultTrackerFactory)
+        [Obsolete("Use factory in production code or deckbuilder in unit tests to create new decks")]
+        public Game()
         {
-        }
 
-        public Game(ITrackerFactory factory)
-        {
-            Date = factory.GetDateTimeNow();
         }
 
         public void UpdateAllBindings()

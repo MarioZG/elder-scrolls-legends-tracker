@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.DataModel;
+using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels.Decks;
 
 namespace ESLTracker.Controls.Decks
@@ -42,6 +43,7 @@ namespace ESLTracker.Controls.Decks
         public DeckPreview()
         {
             InitializeComponent();
+            base.DataContext = MasserContainer.Container.GetInstance<DeckPreviewViewModel>();
         }
     }
 }

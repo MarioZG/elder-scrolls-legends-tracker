@@ -2,10 +2,6 @@
 using ESLTracker.Utils;
 using ESLTracker.ViewModels.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESLTracker.ViewModels
 {
@@ -66,25 +62,19 @@ namespace ESLTracker.ViewModels
         }
 
 
-        protected ITrackerFactory trackerFactory;
         protected ISettings settings;
+        protected IDateTimeProvider dateTimeProvider;
 
-
-        public FilterDateViewModel() : this(TrackerFactory.DefaultTrackerFactory)
+        public FilterDateViewModel(ISettings settings, IDateTimeProvider dateTimeProvider)
         {
-
-        }
-
-        public FilterDateViewModel(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            this.settings = trackerFactory.GetService<ISettings>();
+            this.settings = settings;
+            this.dateTimeProvider = dateTimeProvider;
             this.FilterDateSelectedOption = settings.GamesFilter_SelectedPredefinedDateFilter;
         }
 
         public void SetDateFilters(PredefinedDateFilter value)
         {
-            DateTime today = trackerFactory.GetDateTimeNow().Date;
+            DateTime today = dateTimeProvider.DateTimeNow.Date;
             switch (value)
             {
                 case PredefinedDateFilter.All:

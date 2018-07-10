@@ -1,0 +1,41 @@
+﻿<Window x:Class="ESLTracker.Windows.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ESLTracker.Windows"
+        xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
+        mc:Ignorable="d"        
+        DataContext="{Binding Source={StaticResource VMLocator}, Path=[Windows.AboutViewModel]}"
+        Title="About" Width="400" WindowStartupLocation="CenterOwner">
+    <StackPanel Margin="5">
+        <DockPanel  HorizontalAlignment="Stretch">
+            <Image Height="64" Width="64" Source="/Resources/AppLogo.png" Margin="5" />
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
+                <UniformGrid Columns="1" Rows="3" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding AppVersion, StringFormat={}Application version: {0}}" />
+                    <TextBlock Text="{Binding FileVersion, StringFormat={}Data file version: {0:mm}}" />
+                    <TextBlock Text="{Binding CardsDatabaseVersion, StringFormat={}Cards database version: {0:mm}}" />
+                </UniformGrid>
+            </ScrollViewer>
+        </DockPanel>
+        <TextBlock Margin="0,10,0,0" FontSize="16" FontWeight="Bold">TESL Tracker</TextBlock>
+        <TextBlock Margin="0,10,0,0">Project <Hyperlink NavigateUri="https://github.com/MarioZG/elder-scrolls-legends-tracker" Click="Hyperlink_Click"> website</Hyperlink></TextBlock>
+        <TextBlock Margin="0,10,0,0" TextWrapping="WrapWithOverflow">Any feedback, bug report or feature request are very welcome. Please use <Hyperlink NavigateUri="https://github.com/MarioZG/elder-scrolls-legends-tracker/issues" Click="Hyperlink_Click"> github issue tracker</Hyperlink>
+            or send an <Hyperlink NavigateUri="{Binding Address}" Click="Hyperlink_Click"> email</Hyperlink>. 
+            <Hyperlink Click="Hyperlink_Click_1" >(Copy address).</Hyperlink>
+        </TextBlock>
+        <TextBlock Margin="0,10,0,0" TextWrapping="WrapWithOverflow">
+            Thanks to <Hyperlink NavigateUri="https://github.com/G3Kappa/TESLCardBot" Click="Hyperlink_Click">G3Kappa and his TESLCardBot</Hyperlink> for inital cards database.
+        </TextBlock>
+        <TextBlock Margin="0,10,0,0" TextWrapping="WrapWithOverflow">
+            Libraries used:<LineBreak/>
+             <Run Foreground="Transparent">aa</Run><Hyperlink NavigateUri="http://lvcharts.net" Click="Hyperlink_Click"> Live-charts</Hyperlink> awesome charts!<LineBreak/>
+             <Run Foreground="Transparent">aa</Run><Hyperlink NavigateUri="https://github.com/GitTools/GitVersion" Click="Hyperlink_Click"> GitVersionTask</Hyperlink> easy  versioning<LineBreak/>
+             <Run Foreground="Transparent">aa</Run><Hyperlink NavigateUri="https://github.com/Nimgoble/WPFTextBoxAutoComplete/" Click="Hyperlink_Click"> WPFTextBoxAutoComplete</Hyperlink> card names autocomplete<LineBreak/>
+             <Run Foreground="Transparent">aa</Run><Hyperlink NavigateUri="http://www.hardcodet.net/wpf-notifyicon" Click="Hyperlink_Click"> Hardcodet.NotifyIcon.Wpf</Hyperlink> system try icon, menu and notifications<LineBreak/>
+             <Run Foreground="Transparent">aa</Run><Hyperlink NavigateUri="http://www.newtonsoft.com/json" Click="Hyperlink_Click"> Newtonsoft.Json </Hyperlink> all the JSON fun<LineBreak/>
+        </TextBlock>
+        <TextBlock> ESLTracker, Copyright © MarioZG. All Rights Reserved.</TextBlock>
+    </StackPanel>
+</Window>

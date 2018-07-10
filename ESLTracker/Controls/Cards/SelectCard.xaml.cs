@@ -13,10 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.DataModel;
 using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
+using ESLTracker.Utils.SimpleInjector;
+using ESLTracker.Windows;
 
 namespace ESLTracker.Controls.Cards
 {
@@ -56,7 +60,7 @@ namespace ESLTracker.Controls.Cards
             {
                 if (((SelectCard)d).CardInstance == null)
                 {
-                    ((SelectCard)d).CardInstance = new CardInstance(cardsDatabaseService.FindCardByName(e.NewValue?.ToString()));
+                    ((SelectCard)d).CardInstance = cardInstanceFactory.CreateFromCard(cardsDatabaseService.FindCardByName(e.NewValue?.ToString()));
                 }
                 else if (((SelectCard)d).CardInstance.Card?.Name != e.NewValue.ToString())
                 {
@@ -126,11 +130,13 @@ namespace ESLTracker.Controls.Cards
         public static readonly DependencyProperty MouseLeftClickProperty =
             DependencyProperty.Register("MouseLeftClick", typeof(ICommand), typeof(SelectCard), new PropertyMetadata(null));
 
-        static ICardsDatabase cardsDatabaseService; 
-
+        static ICardsDatabase cardsDatabaseService;
+        private static ICardInstanceFactory cardInstanceFactory;
+        
         static SelectCard()
         {
-            cardsDatabaseService = TrackerFactory.DefaultTrackerFactory.GetService<ICardsDatabase>();
+            cardsDatabaseService = MasserContainer.Container.GetInstance<ICardsDatabase>();
+            cardInstanceFactory = MasserContainer.Container.GetInstance<ICardInstanceFactory>(); 
         }
 
         public SelectCard()

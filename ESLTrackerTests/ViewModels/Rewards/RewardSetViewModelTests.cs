@@ -1,6 +1,11 @@
-﻿using ESLTracker.DataModel.Enums;
+﻿using ESLTracker.BusinessLogic.Rewards;
+using ESLTracker.DataModel;
+using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
+using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels.Rewards;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +15,41 @@ using System.Threading.Tasks;
 namespace ESLTrackerTests.ViewModels.Rewards
 {
     [TestClass]
-    public class RewardSetViewModelTests
+    public class RewardSetViewModelTests : BaseTest
     {
+
+        IAddSingleRewardViewModelFactory mockAddSingleRewardViewModelFactory = new AddSingleRewardViewModelFactory();
+        Mock<ITracker> mockTracker = new Mock<ITracker>();
+        Mock<IFileManager> mockFileManager = new Mock<IFileManager>();
+        IRewardFactory mockRewardFactory;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            mockRewardFactory = new RewardFactory(mockDatetimeProvider.Object);
+            new MasserContainer();
+
+        }
+
         [TestMethod]
         public void RewardSetViewModel001_Init()
         {
-            RewardSetViewModel model = new RewardSetViewModel();
+            RewardSetViewModel model = CreateRewardSetVM();
 
             Assert.AreEqual(0, model.RewardsAdded.Count);
             Assert.AreEqual(0, model.RewardsEditor.Count);
             Assert.IsNull(model.RewardReason);
         }
 
+
         [TestMethod]
         public void RewardSetViewModel002_ReasonSelected()
         {
-            RewardSetViewModel model = new RewardSetViewModel();
 
-            ESLTracker.DataModel.Enums.RewardReason reason = ESLTracker.DataModel.Enums.RewardReason.LevelUp;
+
+            RewardSetViewModel model = CreateRewardSetVM();
+
+            RewardReason reason = RewardReason.LevelUp;
 
             model.RewardReason = reason;
 
@@ -39,7 +61,7 @@ namespace ESLTrackerTests.ViewModels.Rewards
         [TestMethod]
         public void RewardSetViewModel003_ReasonSelectedAndRewardModified()
         {
-            RewardSetViewModel model = new RewardSetViewModel();
+            RewardSetViewModel model = CreateRewardSetVM();
 
             ESLTracker.DataModel.Enums.RewardReason reason = ESLTracker.DataModel.Enums.RewardReason.LevelUp;
 
@@ -55,7 +77,7 @@ namespace ESLTrackerTests.ViewModels.Rewards
         [TestMethod]
         public void RewardSetViewModel004_ReasonChanged()
         {
-            RewardSetViewModel model = new RewardSetViewModel();
+            RewardSetViewModel model = CreateRewardSetVM();
 
             ESLTracker.DataModel.Enums.RewardReason reason = ESLTracker.DataModel.Enums.RewardReason.LevelUp;
             ESLTracker.DataModel.Enums.RewardReason reason2 = ESLTracker.DataModel.Enums.RewardReason.Quest;
@@ -77,7 +99,7 @@ namespace ESLTrackerTests.ViewModels.Rewards
         [TestMethod]
         public void RewardSetViewModel005_ReasonChangedAndChangedBack()
         {
-            RewardSetViewModel model = new RewardSetViewModel();
+            RewardSetViewModel model = CreateRewardSetVM();
 
             ESLTracker.DataModel.Enums.RewardReason reason = ESLTracker.DataModel.Enums.RewardReason.LevelUp;
             ESLTracker.DataModel.Enums.RewardReason reason2 = ESLTracker.DataModel.Enums.RewardReason.Quest;
@@ -101,7 +123,7 @@ namespace ESLTrackerTests.ViewModels.Rewards
         [TestMethod]
         public void RewardSetViewModel006_AddedNewLine()
         {
-            RewardSetViewModel model = new RewardSetViewModel();
+            RewardSetViewModel model = CreateRewardSetVM();
 
             RewardReason reason = RewardReason.LevelUp;
 
@@ -121,7 +143,7 @@ namespace ESLTrackerTests.ViewModels.Rewards
         [TestMethod]
         public void RewardSetViewModel007_AddedTwoNewLines()
         {
-            RewardSetViewModel model = new RewardSetViewModel();
+            RewardSetViewModel model = CreateRewardSetVM();
 
             RewardReason reason = RewardReason.LevelUp;
 
@@ -142,5 +164,16 @@ namespace ESLTrackerTests.ViewModels.Rewards
             CollectionAssert.AreEqual(expected, model.RewardsEditor.Select(r => r.Reward.Type).ToList());
 
         }
+
+        private RewardSetViewModel CreateRewardSetVM()
+        {
+            return new RewardSetViewModel(
+                mockAddSingleRewardViewModelFactory, 
+                mockTracker.Object,
+                mockDatetimeProvider.Object, 
+                mockFileManager.Object, 
+                mockRewardFactory);
+        }
+
     }
 }

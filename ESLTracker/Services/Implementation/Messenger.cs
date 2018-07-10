@@ -52,7 +52,7 @@ namespace ESLTracker.Services
         /// <summary>
         /// Initializes a new instance of the Messenger class.
         /// </summary>
-        private Messenger() { }
+        public Messenger() { }
 
         /// <summary>
         /// Registers a recipient for a type of message T. The action parameter will be executed

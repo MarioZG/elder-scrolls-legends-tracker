@@ -17,43 +17,32 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using ESLTracker.Utils.Messages;
 using ESLTracker.Services;
+using ESLTrackerTests.Builders;
 
 namespace ESLTracker.ViewModels.Game.Tests
 {
     [TestClass()]
     public class EditGameViewModelTests : BaseTest
     {
+        Mock<IMessenger> messanger = new Mock<IMessenger>();
+        Mock<ITracker> tracker = new Mock<ITracker>();
+        Mock<IWinAPI> winApi = new Mock<IWinAPI>();
+        Mock<IFileManager> fileManager = new Mock<IFileManager>();
+
         /// <summary>
         /// verify if last rank selected by player is saved in settings
         /// </summary>
         [TestMethod()]
         public void CommandButtonCreateExecuteTest001_SaveSettingForCurrentPlayerRank()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            Mock<IMessenger> messanger = new Mock<IMessenger>();
-            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(messanger.Object);
-            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
 
-            Mock<ISettings> settings = new Mock<ISettings>();
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
-            Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
-            tracker.Setup(t => t.ActiveDeck).Returns(new Deck(trackerFactory.Object));
+            tracker.Setup(t => t.ActiveDeck).Returns(new DeckBuilder().Build());
 
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
-
-            Mock<IWinAPI> winApi = new Mock<IWinAPI>();
             winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);
 
-            trackerFactory.Setup(tf => tf.GetService<IWinAPI>()).Returns(winApi.Object);
-
-            Mock<IFileManager> fileManager = new Mock<IFileManager>();
-
-            trackerFactory.Setup(tf => tf.GetFileManager()).Returns(fileManager.Object);
-
-
-            EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
+            EditGameViewModel model = CreateGameVM();
 
             PlayerRank selectedPlayerRank = PlayerRank.TheLord;
             model.Game.Type = GameType.PlayRanked;
@@ -64,9 +53,11 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             model.CommandButtonCreateExecute(param);
 
-            settings.VerifySet(s => s.PlayerRank = selectedPlayerRank, Times.Once);
+            mockSettings.VerifySet(s => s.PlayerRank = selectedPlayerRank, Times.Once);
 
         }
+
+
 
         /// <summary>
         /// verify if last rank selected by player is saved in settings
@@ -74,9 +65,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod()]
         public void CommandButtonCreateExecuteTest002_RankedFieldsNullForNonRankedGame()
         {
-            Mock<ISettings> settingsMock = new Mock<ISettings>();
-
-            EditGameViewModel model = new EditGameViewModel();
+            EditGameViewModel model = CreateGameVM();
 
             string param = "Victory";
 
@@ -107,20 +96,10 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod()]
         public void CommandButtonCreateExecuteTest003_ValidateRequiredFeilds()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            Mock<IMessenger> messanger = new Mock<IMessenger>();
-            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(messanger.Object);
-
-            Mock<ISettings> settings = new Mock<ISettings>();
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
-
-            Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
             tracker.Setup(t => t.ActiveDeck).Returns<Deck>(null);
 
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
-
-            EditGameViewModel model = new EditGameViewModel();
+            EditGameViewModel model = CreateGameVM();
 
             string param = "Victory";
 
@@ -137,27 +116,14 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod()]
         public void CommandButtonCreateExecuteTest004_CheckIfESLFileVersionAdded()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            Mock<IMessenger> messanger = new Mock<IMessenger>();
-            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(messanger.Object);
-
-            Mock<ISettings> settings = new Mock<ISettings>();
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
-
-            Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
-            tracker.Setup(t => t.ActiveDeck).Returns(new Deck(trackerFactory.Object));
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            tracker.Setup(t => t.ActiveDeck).Returns(new DeckBuilder().Build());
 
             FileVersionInfo expected = FileVersionInfo.GetVersionInfo(Assembly.GetAssembly(this.GetType()).Location);
 
-            Mock<IWinAPI> winApi = new Mock<IWinAPI>();
             winApi.Setup(w => w.GetEslFileVersionInfo()).Returns(expected);
 
-            trackerFactory.Setup(tf => tf.GetService<IWinAPI>()).Returns(winApi.Object);
-
-
-            EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
+            EditGameViewModel model = CreateGameVM();
 
             GameOutcome param = GameOutcome.Victory;
 
@@ -174,34 +140,21 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod()]
         public void CommandButtonCreateExecuteTest005_CheckIfESLFileVersionAddedWhenESLNOtRunning()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            Mock<IMessenger> messanger = new Mock<IMessenger>();
-            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(messanger.Object);
-
-            Mock<ISettings> settings = new Mock<ISettings>();
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
-
             FileVersionInfo expected = FileVersionInfo.GetVersionInfo(Assembly.GetAssembly(this.GetType()).Location);
 
-            Mock<ITracker> tracker = new Mock<ITracker>();
             //add two games wit hdiff version - ensure correct is copied
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>() {
                 new DataModel.Game() { Date = DateTime.Now, ESLVersion = new SerializableVersion(new Version(expected.ProductVersion.ToString()))},
                 new DataModel.Game() { Date = DateTime.Now.AddDays(-7), ESLVersion = new SerializableVersion(2,3)},
                   new DataModel.Game() { Date = DateTime.Now, ESLVersion = null},
             });
-            tracker.Setup(t => t.ActiveDeck).Returns(new Deck(trackerFactory.Object));
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            tracker.Setup(t => t.ActiveDeck).Returns(new DeckBuilder().WithDefaultVersion().Build());
 
-
-
-            Mock<IWinAPI> winApi = new Mock<IWinAPI>();
             //ensure not running
             winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);
 
-            trackerFactory.Setup(tf => tf.GetService<IWinAPI>()).Returns(winApi.Object);
 
-            EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
+            EditGameViewModel model = CreateGameVM();
 
             GameOutcome param = GameOutcome.Victory;
 
@@ -217,7 +170,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         {
             Mock<ISettings> settingsMock = new Mock<ISettings>();
 
-            EditGameViewModel model = new EditGameViewModel();
+            EditGameViewModel model = CreateGameVM();
 
             PopulateObject(model.Game, StartProp);
 
@@ -243,7 +196,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod()]
         public void SummaryText001_ChangeEventRaisedWhenNameChanges()
         {
-            EditGameViewModel model = new EditGameViewModel();
+            EditGameViewModel model = CreateGameVM();
             bool raised = false;
             model.PropertyChanged += delegate { raised = true; };
 
@@ -256,7 +209,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod()]
         public void SummaryText002_ChangeEventRaisedWhenOpponentClassChanges()
         {
-            EditGameViewModel model = new EditGameViewModel();
+            EditGameViewModel model = CreateGameVM();
             bool raised = false;
             model.PropertyChanged += delegate { raised = true; };
 
@@ -270,7 +223,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         {
             Mock<IDeckClassSelectorViewModel> deckClassSelector = new Mock<IDeckClassSelectorViewModel>();
 
-            EditGameViewModel model = new EditGameViewModel();
+            EditGameViewModel model = CreateGameVM();
             DataModel.Game game = new DataModel.Game();
 
             model.Game = game;
@@ -309,25 +262,17 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod]
         public void UpdateGameData001_DateTimeWhenGameConcluded()
         {
-            Mock<ISettings> settingsMock = new Mock<ISettings>();
 
             DateTime timeConcluded = new DateTime(2016, 12, 12, 23, 45, 5);
 
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(timeConcluded);
-            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(new Mock<IMessenger>().Object);
-            trackerFactory.Setup(tf => tf.GetService<IDeckService>()).Returns(new DeckService(trackerFactory.Object));
-
-            Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
-            tracker.Setup(t => t.ActiveDeck).Returns(Deck.CreateNewDeck(trackerFactory.Object));
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            tracker.Setup(t => t.ActiveDeck).Returns(new DeckBuilder().Build());
 
-            Mock<IWinAPI> winApi = new Mock<IWinAPI>();
             winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);
-            trackerFactory.Setup(tf => tf.GetService<IWinAPI>()).Returns(winApi.Object);
 
-            EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
+            mockDatetimeProvider.Setup(dtp => dtp.DateTimeNow).Returns(timeConcluded);
+
+            EditGameViewModel model = CreateGameVM();
 
             PopulateObject(model.Game, StartProp);
 
@@ -341,22 +286,11 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod]
         public void ChangeActiveDeck001_AvailableGameTypesUpdated()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
+            Deck activeDeck = new DeckBuilder().WithType(DeckType.SoloArena).Build();
 
-            Deck activeDeck = Deck.CreateNewDeck(trackerFactory.Object);
-            activeDeck.Type = DeckType.SoloArena;
-
-            Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.ActiveDeck).Returns(activeDeck);
 
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
-
-            IMessenger messagnger = Messenger.Default;
-            trackerFactory.Setup(tf => tf.GetService<IMessenger>()).Returns(messagnger);
-
-            
-
-            EditGameViewModel model = new EditGameViewModel(trackerFactory.Object);
+            EditGameViewModel model = CreateGameVM();
             model.ActiveDeckChanged(new ActiveDeckChanged(activeDeck));
 
             Assert.AreEqual(1, model.AllowedGameTypes.Count());
@@ -364,5 +298,16 @@ namespace ESLTracker.ViewModels.Game.Tests
             Assert.AreEqual(false, model.IsDirty());
         }
 
+        private EditGameViewModel CreateGameVM()
+        {
+            return new EditGameViewModel(
+                tracker.Object, 
+                messanger.Object, 
+                mockSettings.Object, 
+                winApi.Object, 
+                fileManager.Object, 
+                mockDatetimeProvider.Object,
+                new BusinessLogic.Decks.DeckCalculations(tracker.Object));
+        }
     }
 }

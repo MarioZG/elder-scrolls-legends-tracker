@@ -6,16 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel.Enums;
+using Moq;
+using ESLTracker.Services;
 
 namespace ESLTracker.ViewModels.Tests
 {
     [TestClass()]
     public class DeckClassSelectorViewModelTests
     {
+        Mock<IMessenger> messenger = new Mock<IMessenger>();
+
         [TestMethod()]
         public void ResetTest()
         {
-            DeckClassSelectorViewModel model = new DeckClassSelectorViewModel();
+            DeckClassSelectorViewModel model = CreateClassSelectorVM();
 
             model.FilterClicked(DeckAttribute.Intelligence);
 
@@ -28,10 +32,12 @@ namespace ESLTracker.ViewModels.Tests
             Assert.AreEqual(Utils.ClassAttributesHelper.Classes.Count, model.FilteredClasses.Count);
         }
 
+
+
         [TestMethod()]
         public void FilterCombo001_WhenFilteredSelectFirstClass_NoFilter()
         {
-            DeckClassSelectorViewModel model = new DeckClassSelectorViewModel();
+            DeckClassSelectorViewModel model = CreateClassSelectorVM();
 
             DeckClass? expected = null;
 
@@ -44,7 +50,7 @@ namespace ESLTracker.ViewModels.Tests
         [TestMethod()]
         public void FilterCombo002_WhenFilteredSelectFirstClass_OneSelected()
         {
-            DeckClassSelectorViewModel model = new DeckClassSelectorViewModel();
+            DeckClassSelectorViewModel model = CreateClassSelectorVM();
 
             DeckClass? expected = DeckClass.Inteligence;
 
@@ -63,7 +69,7 @@ namespace ESLTracker.ViewModels.Tests
         [TestMethod()]
         public void FilterCombo003_WhenFilteredSelectFirstClass_TwoSelected()
         {
-            DeckClassSelectorViewModel model = new DeckClassSelectorViewModel();
+            DeckClassSelectorViewModel model = CreateClassSelectorVM();
 
             DeckClass? expected = DeckClass.Battlemage;
 
@@ -83,7 +89,7 @@ namespace ESLTracker.ViewModels.Tests
         [TestMethod()]
         public void FilterCombo004_WhenFilteredSelectFirstClass_ThreeSelected()
         {
-            DeckClassSelectorViewModel model = new DeckClassSelectorViewModel();
+            DeckClassSelectorViewModel model = CreateClassSelectorVM();
 
             DeckClass? expected = DeckClass.Dagoth;
 
@@ -104,7 +110,7 @@ namespace ESLTracker.ViewModels.Tests
         [TestMethod()]
         public void DeckClassSelectorViewModelTest001_SelectThreeAttributes()
         {
-            DeckClassSelectorViewModel model = new DeckClassSelectorViewModel();
+            DeckClassSelectorViewModel model = CreateClassSelectorVM();
 
             model.FilterClicked(DeckAttribute.Intelligence);
             model.FilterClicked(DeckAttribute.Strength);
@@ -120,7 +126,7 @@ namespace ESLTracker.ViewModels.Tests
         [TestMethod()]
         public void DeckClassSelectorViewModelTest002_SelectAttributesAndSetNull()
         {
-            DeckClassSelectorViewModel model = new DeckClassSelectorViewModel();
+            DeckClassSelectorViewModel model = CreateClassSelectorVM();
 
             model.FilterClicked(DeckAttribute.Intelligence);
             model.FilterClicked(DeckAttribute.Strength);
@@ -136,6 +142,11 @@ namespace ESLTracker.ViewModels.Tests
             Assert.AreEqual(0, model.FilterButtonStateCollection.Count);
 
 
+        }
+
+        private DeckClassSelectorViewModel CreateClassSelectorVM()
+        {
+            return new DeckClassSelectorViewModel(messenger.Object);
         }
     }
 }

@@ -46,6 +46,8 @@ namespace ESLTracker.Controls.Decks
             }
             set
             {
+                value.DeckClassModel = this.deckClass.DataContext;
+
                 base.DataContext = value;
             }
         }
@@ -53,8 +55,6 @@ namespace ESLTracker.Controls.Decks
         public DeckProperties()
         {
             InitializeComponent();
-
-            this.DataContext.DeckClassModel = this.deckClass.DataContext;
         }
 
     }

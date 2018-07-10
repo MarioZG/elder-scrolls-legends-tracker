@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Moq;
 using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
+using ESLTrackerTests.Builders;
 
 namespace ESLTracker.Utils.FileUpdaters.Tests
 {
@@ -19,8 +20,8 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
         {
             Mock<ITracker> tracker = new Mock<ITracker>();
 
-            Deck deckNoGames = Deck.CreateNewDeck();
-            Deck deckWithGames = Deck.CreateNewDeck();
+            Deck deckNoGames = new DeckBuilder().Build();
+            Deck deckWithGames = new DeckBuilder().Build();
 
             DateTime lastGame = new DateTime(2017, 1, 30);
 

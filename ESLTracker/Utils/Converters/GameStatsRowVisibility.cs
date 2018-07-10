@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using ESLTracker.DataModel;
 using ESLTracker.ViewModels;
+using ESLTracker.ViewModels.Windows;
 
 namespace ESLTracker.Utils.Converters
 {

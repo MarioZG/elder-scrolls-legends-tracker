@@ -6,11 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using ESLTracker.Controls;
+using ESLTracker.Utils.SimpleInjector;
 
 namespace ESLTracker.Utils
 {
     public class OverlayWindowRepository : PropertiesObservableCollection<OverlayWindowBase>
     {
+
+        public OverlayWindowRepository(IEnumerable<OverlayWindowBase> overlayWindows) : base(overlayWindows)
+        {
+
+        }
+
         internal T GetWindowByType<T>() where T: IOverlayWindow
         {
             return (T)GetWindowByType(typeof(T));

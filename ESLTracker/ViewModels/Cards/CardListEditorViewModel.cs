@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
 using ESLTracker.Services;
 using ESLTracker.Utils;
@@ -59,18 +60,14 @@ namespace ESLTracker.ViewModels.Cards
             }
         }
 
-        private ITrackerFactory trackerFactory;
         private ICardsDatabase cardsDatabase;
+        private readonly IDeckService deckService;
 
-        public CardListEditorViewModel() : this(TrackerFactory.DefaultTrackerFactory)
+
+        public CardListEditorViewModel(ICardsDatabase cardsDatabase, IDeckService deckService)
         {
-
-        }
-
-        public CardListEditorViewModel(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            this.cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
+            this.cardsDatabase = cardsDatabase;
+            this.deckService = deckService;
         }
 
         private void CommandAddCardToDeckExecute(object obj)
@@ -104,7 +101,7 @@ namespace ESLTracker.ViewModels.Cards
             }
             if (LimitCardCount)
             {
-                trackerFactory.GetService<IDeckService>().EnforceCardLimit(card);
+                deckService.EnforceCardLimit(card);
             }
             NewCard = null;
         }

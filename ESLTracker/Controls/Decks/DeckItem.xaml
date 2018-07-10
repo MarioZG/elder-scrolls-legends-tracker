@@ -10,6 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="70" d:DesignWidth="200">
     <UserControl.Resources>
+        <ResourceDictionary Source="/ControlStyle.xaml" />
     </UserControl.Resources>
     <DockPanel HorizontalAlignment="Stretch">
         <StackPanel DockPanel.Dock="Left">
@@ -67,7 +68,6 @@
             </StackPanel>
             <StackPanel>
                 <Game:ChangeGameDeck
-                    x:Name="changeDeck"
                     Visibility="{Binding IsDeckSelectorVisible, Converter={Converters:BoolToVisibilty}}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">

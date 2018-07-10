@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.BusinessLogic.General;
 using ESLTracker.Utils;
 
 namespace ESLTracker.Services

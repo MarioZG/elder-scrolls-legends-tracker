@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ESLTracker.Utils.SimpleInjector;
+using ESLTracker.ViewModels.Decks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,7 @@ namespace ESLTracker.Controls.Decks
         public DeckStats()
         {
             InitializeComponent();
+            base.DataContext = MasserContainer.Container.GetInstance<DeckStatsViewModel>();
         }
     }
 }

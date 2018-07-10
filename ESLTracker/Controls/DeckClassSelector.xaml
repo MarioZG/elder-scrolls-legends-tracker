@@ -9,18 +9,23 @@
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d"
-             x:Name="deckClassSelector">
+             x:Name="deckClassSelector"
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[DeckClassSelectorViewModel]}"
+             >
     <UserControl.Resources>
-        <ObjectDataProvider x:Key="DeckClassEnum" MethodName="GetValues"
-                                ObjectType="{x:Type System:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="Enums:DeckClass"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
+        <ResourceDictionary>
+            <ObjectDataProvider x:Key="DeckClassEnum" MethodName="GetValues"
+                                    ObjectType="{x:Type System:Enum}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="Enums:DeckClass"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Merge into this dictionary another dictionary ... -->
+                <ResourceDictionary Source="/ControlStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <ViewModels:DeckClassSelectorViewModel/>
-    </UserControl.DataContext>
     <DockPanel>
     <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" ToolTip="Select attributes to filter available classes.">
         <ToggleButton

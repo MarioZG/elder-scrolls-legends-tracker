@@ -1,18 +1,18 @@
 ﻿<Application x:Class="ESLTracker.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ESLTracker"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
-             StartupUri="MainWindow.xaml"
+             xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
              Startup="Application_Startup"
              Exit="Application_Exit">
     <Application.Resources>
-        <ResourceDictionary x:Key="ControlStyles">
+        <ResourceDictionary>
+            <System:Boolean x:Key="True">True</System:Boolean>
+            <System:Boolean x:Key="False">False</System:Boolean>
+            <ViewModels:ViewModelLocator x:Key="VMLocator"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ControlStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <System:Boolean x:Key="True">True</System:Boolean>
-            <System:Boolean x:Key="False">False</System:Boolean>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

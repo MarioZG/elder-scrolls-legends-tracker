@@ -9,10 +9,8 @@
              xmlns:Deck="clr-namespace:ESLTracker.ViewModels.Decks"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:Utils="clr-namespace:ESLTracker.Utils"
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Settings.SettingsPanelViewModel]}"
              mc:Ignorable="d">
-    <UserControl.DataContext>
-        <ViewModel:SettingsPanelViewModel/>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="{x:Type Expander}">
             <EventSetter Event="Expanded" Handler="expander_Expanded" />

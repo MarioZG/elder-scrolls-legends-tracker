@@ -5,11 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.ImportTextViewModel]}"
              mc:Ignorable="d" 
              MinWidth="200">
-    <UserControl.DataContext>
-        <ViewModels:ImportTextViewModel />
-    </UserControl.DataContext>
     <StackPanel Margin="5,5,5,5">
         <TextBlock Text="Import cards" FontWeight="Bold"/>
         <TextBlock TextWrapping="WrapWithOverflow">

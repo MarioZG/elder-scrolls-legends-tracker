@@ -54,6 +54,9 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\TrayIcon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ESLTracker.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
@@ -81,6 +84,9 @@
       <HintPath>..\packages\Polly.5.0.3\lib\net45\Polly.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SimpleInjector, Version=4.3.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.3.0\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -102,12 +108,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="About.xaml.cs">
+    <Compile Include="BusinessLogic\Decks\DeckCalculations.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckVersionFactory.cs" />
+    <Compile Include="BusinessLogic\Decks\IDeckVersionFactory.cs" />
+    <Compile Include="BusinessLogic\Games\GameFactory.cs" />
+    <Compile Include="BusinessLogic\Games\IGameFactory.cs" />
+    <Compile Include="BusinessLogic\Rewards\IRewardFactory.cs" />
+    <Compile Include="BusinessLogic\Rewards\RewardFactory.cs" />
+    <Compile Include="Utils\GuidProvider.cs" />
+    <Compile Include="Utils\IGuidProvider.cs" />
+    <Compile Include="ViewModels\Decks\DeckLastGamesIndicatorViewModel.cs" />
+    <Compile Include="ViewModels\Windows\AboutViewModel.cs" />
+    <Compile Include="Windows\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ArenaStats.xaml.cs">
+    <Compile Include="Windows\ArenaStats.xaml.cs">
       <DependentUpon>ArenaStats.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\Cards\CardInstanceFactory.cs" />
+    <Compile Include="BusinessLogic\Cards\CardsDatabaseFactory.cs" />
+    <Compile Include="BusinessLogic\Cards\ICardInstanceFactory.cs" />
+    <Compile Include="BusinessLogic\Cards\ICardsDatabaseFactory.cs" />
+    <Compile Include="BusinessLogic\DataFile\PathManager.cs" />
+    <Compile Include="BusinessLogic\GameClient\ILauncherService.cs" />
+    <Compile Include="BusinessLogic\GameClient\LauncherService.cs" />
+    <Compile Include="BusinessLogic\Rewards\AddSingleRewardViewModelFactory.cs" />
+    <Compile Include="BusinessLogic\Rewards\IAddSingleRewardViewModelFactory.cs" />
+    <Compile Include="Utils\DateTimeProvider.cs" />
+    <Compile Include="Utils\IDateTimeProvider.cs" />
+    <Compile Include="BusinessLogic\General\IScreenShot.cs" />
+    <Compile Include="BusinessLogic\General\ScreenShot.cs" />
     <Compile Include="Controls\Cards\SelectCard.xaml.cs">
       <DependentUpon>SelectCard.xaml</DependentUpon>
     </Compile>
@@ -211,26 +241,28 @@
     <Compile Include="DataModel\Enums\CardType.cs" />
     <Compile Include="DataModel\ITracker.cs" />
     <Compile Include="DataModel\Pack.cs" />
-    <Compile Include="DeckOverlay.xaml.cs">
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="ViewModels\Windows\DeckOverlayViewModel.cs" />
+    <Compile Include="ViewModels\Windows\RewardsSummaryViewModel.cs" />
+    <Compile Include="Windows\DeckOverlay.xaml.cs">
       <DependentUpon>DeckOverlay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameStatistics.xaml.cs">
+    <Compile Include="Utils\SimpleInjector\MasserContainer.cs" />
+    <Compile Include="Windows\GameStatistics.xaml.cs">
       <DependentUpon>GameStatistics.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\ISettings.cs" />
-    <Compile Include="RankedProgressChart.xaml.cs">
+    <Compile Include="Windows\RankedProgressChart.xaml.cs">
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BusinessLogic\Deck\CardBreakdown.cs" />
+    <Compile Include="BusinessLogic\Decks\CardBreakdown.cs" />
     <Compile Include="Services\Implementation\DeckImporter.cs" />
     <Compile Include="Services\ICardImageService.cs" />
     <Compile Include="Services\IDeckImporter.cs" />
-    <Compile Include="Services\ILauncherService.cs" />
     <Compile Include="Services\IVersionService.cs" />
     <Compile Include="Services\IResourcesService.cs" />
     <Compile Include="Services\Implementation\ApplicationService.cs" />
     <Compile Include="Services\Implementation\CardImageService.cs" />
-    <Compile Include="Services\Implementation\LauncherService.cs" />
     <Compile Include="Services\IWinDialogs.cs" />
     <Compile Include="Services\Implementation\WinDialogs.cs" />
     <Compile Include="BusinessLogic\Cards\SoulGemCalculator.cs" />
@@ -246,7 +278,7 @@
     <Compile Include="Utils\Converters\TabIndexIncrementor.cs" />
     <Compile Include="Utils\Converters\ToVisibilityConverter.cs" />
     <Compile Include="Utils\Converters\VersionToVisibilty.cs" />
-    <Compile Include="Services\Implementation\DeckService.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckService.cs" />
     <Compile Include="Utils\DiagnosticsWrappers\IProcessWrapper.cs" />
     <Compile Include="Utils\DiagnosticsWrappers\ProcessWrapper.cs" />
     <Compile Include="Utils\EnumBindingSourceExtension.cs" />
@@ -258,7 +290,7 @@
     <Compile Include="Utils\Extensions\TaskExtensions.cs" />
     <Compile Include="Services\Implementation\HTTPService.cs" />
     <Compile Include="Services\IApplicationService.cs" />
-    <Compile Include="Services\IDeckService.cs" />
+    <Compile Include="BusinessLogic\Decks\IDeckService.cs" />
     <Compile Include="Services\IHTTPService.cs" />
     <Compile Include="Utils\FileUpdaters\IFileUpdater.cs" />
     <Compile Include="Utils\FileUpdaters\UpdateBase.cs" />
@@ -309,7 +341,7 @@
     <Compile Include="Utils\IOWrappers\IWrapperProvider.cs" />
     <Compile Include="Utils\IOWrappers\PathWrapper.cs" />
     <Compile Include="Utils\IOWrappers\WrapperProvider.cs" />
-    <Compile Include="Utils\ITrackerFactory.cs" />
+    <Compile Include="BusinessLogic\General\ITrackerFactory.cs" />
     <Compile Include="Services\IWinAPI.cs" />
     <Compile Include="Utils\Messages\ActiveDeckChanged.cs" />
     <Compile Include="Utils\ScreenshotNameProvider.cs" />
@@ -323,10 +355,12 @@
     <Compile Include="Utils\Messages\EditGame.cs" />
     <Compile Include="Services\Implementation\Messenger.cs" />
     <Compile Include="Utils\SerializableVersion.cs" />
+    <Compile Include="Utils\SimpleInjector\ImportPropertySelectionBehavior.cs" />
+    <Compile Include="Utils\SimpleInjector\InjectPropertyAttribute.cs" />
     <Compile Include="Utils\SingleInstanceApp.cs" />
-    <Compile Include="Utils\TrackerFactory.cs" />
+    <Compile Include="BusinessLogic\General\TrackerFactory.cs" />
     <Compile Include="Services\Implementation\VersionService.cs" />
-    <Compile Include="ViewModels\ArenaStatsViewModel.cs" />
+    <Compile Include="ViewModels\Windows\ArenaStatsViewModel.cs" />
     <Compile Include="ViewModels\Cards\CardListEditorViewModel.cs" />
     <Compile Include="ViewModels\Decks\CardBreakdownViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckDeleteMode.cs" />
@@ -335,7 +369,7 @@
     <Compile Include="ViewModels\Decks\DeckViewSortOrder.cs" />
     <Compile Include="ViewModels\Decks\ImportTextViewModel.cs" />
     <Compile Include="ViewModels\FilterDateViewModel.cs" />
-    <Compile Include="ViewModels\GameStatisticsViewModel.cs" />
+    <Compile Include="ViewModels\Windows\GameStatisticsViewModel.cs" />
     <Compile Include="ViewModels\Game\ChangeGameDeckViewModel.cs" />
     <Compile Include="ViewModels\Game\GameFilterViewModel.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModel.cs" />
@@ -377,7 +411,7 @@
     <Compile Include="DataModel\Enums\PlayerRank.cs" />
     <Compile Include="DataModel\Enums\RewardReason.cs" />
     <Compile Include="DataModel\Enums\RewardType.cs" />
-    <Compile Include="RewardsSummary.xaml.cs">
+    <Compile Include="Windows\RewardsSummary.xaml.cs">
       <DependentUpon>RewardsSummary.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\ClassAttributesHelper.cs" />
@@ -394,7 +428,7 @@
     <Compile Include="ViewModels\Game\RankedProgressChartViewModel.cs" />
     <Compile Include="ViewModels\IAsyncCommand.cs" />
     <Compile Include="ViewModels\IDeckClassSelectorViewModel.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NotifyTaskCompletion.cs" />
     <Compile Include="ViewModels\PackStatistics\OpeningPackStatsWindowViewModel.cs" />
     <Compile Include="ViewModels\Packs\OpenPackViewModel.cs" />
@@ -407,11 +441,11 @@
     <Compile Include="ViewModels\Settings\SettingsPanelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Services\Implementation\WinAPI.cs" />
-    <Page Include="About.xaml">
+    <Page Include="Windows\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ArenaStats.xaml">
+    <Page Include="Windows\ArenaStats.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -571,19 +605,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DeckOverlay.xaml">
+    <Page Include="Windows\DeckOverlay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GameStatistics.xaml">
+    <Page Include="Windows\GameStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="OverlayToolbar.xaml">
+    <Page Include="Windows\OverlayToolbar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -596,10 +630,10 @@
     <Compile Include="DataModel\Game.cs" />
     <Compile Include="DataModel\Reward.cs" />
     <Compile Include="DataModel\Tracker.cs" />
-    <Compile Include="OverlayToolbar.xaml.cs">
+    <Compile Include="Windows\OverlayToolbar.xaml.cs">
       <DependentUpon>OverlayToolbar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -607,11 +641,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RankedProgressChart.xaml">
+    <Page Include="Windows\RankedProgressChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RewardsSummary.xaml">
+    <Page Include="Windows\RewardsSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

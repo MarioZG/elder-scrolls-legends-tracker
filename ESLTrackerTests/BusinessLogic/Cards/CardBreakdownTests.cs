@@ -20,10 +20,10 @@ namespace ESLTrackerTests.BusinessLogic.Cards
         private object sw;
 
         [TestInitialize]
-        public void ClassInit(TestContext context)
+        public void TestInitialize()
         {
             random = new Random((int)DateTime.Now.Ticks);
-            cards = CardsDatabase.Default.Cards.Select(c => new CardInstance() { Card = c, Quantity = random.Next(5) }).ToList();
+            cards = CardsDatabase.Cards.Select(c => new CardInstance() { Card = c, Quantity = random.Next(5) }).ToList();
         }
 
         [TestMethod]

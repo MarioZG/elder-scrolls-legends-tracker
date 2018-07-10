@@ -28,9 +28,9 @@ namespace ESLTracker.ViewModels.Settings
 
         IMessenger messanger;
 
-        public SettingsPanelViewModel()
+        public SettingsPanelViewModel(IMessenger messanger)
         {
-            messanger = new TrackerFactory().GetService<IMessenger>();
+            this.messanger = messanger;
         }
         private void SaveClicked(object param)
         {

@@ -19,7 +19,7 @@ namespace ESLTracker.ViewModels.Packs
             {
                 if (orderedPacks == null)
                 {
-                    orderedPacks = trackerFactory.GetTracker().Packs.OrderByDescending(p => p.DateOpened);
+                    orderedPacks = tracker.Packs.OrderByDescending(p => p.DateOpened);
                 }
                 return orderedPacks;
             }
@@ -30,7 +30,7 @@ namespace ESLTracker.ViewModels.Packs
                 }
                 else
                 {
-                    orderedPacks = trackerFactory.GetTracker().Packs.OrderByDescending(p => p.DateOpened);
+                    orderedPacks = tracker.Packs.OrderByDescending(p => p.DateOpened);
                 }
                 RaisePropertyChangedEvent(String.Empty);
             }
@@ -150,17 +150,12 @@ namespace ESLTracker.ViewModels.Packs
             }
         }
 
-        private TrackerFactory trackerFactory;
+        private ITracker tracker;
 
-        public PacksStatsViewModel() : this(new TrackerFactory())
+        public PacksStatsViewModel(ITracker tracker)
         {
-
-        }
-
-        public PacksStatsViewModel(TrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            this.trackerFactory.GetTracker().Packs.CollectionChanged += Packs_CollectionChanged;
+            this.tracker = tracker;
+            this.tracker.Packs.CollectionChanged += Packs_CollectionChanged;
         }
 
         private void Packs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

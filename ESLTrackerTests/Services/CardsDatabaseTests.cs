@@ -11,6 +11,8 @@ using System.Collections.ObjectModel;
 using ESLTrackerTests;
 using System.Reflection;
 using ESLTracker.Services;
+using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.BusinessLogic.Cards;
 
 namespace ESLTracker.Services.Tests
 {
@@ -29,7 +31,7 @@ namespace ESLTracker.Services.Tests
         public void FindCardByNameTest001_UnknownCard()
         {
             Card expected = Card.Unknown;
-            Card actual = CardsDatabase.Default.FindCardByName("some randoe strng");
+            Card actual = CardsDatabase.FindCardByName("some randoe strng");
 
             Assert.AreEqual(expected, actual);
         }
@@ -37,7 +39,7 @@ namespace ESLTracker.Services.Tests
         [TestMethod]
         public void LoadCardsDatabaseTest()
         {
-            Assert.IsNotNull(CardsDatabase.Default.Cards);
+            Assert.IsNotNull(CardsDatabase.Cards);
 
         }
 
@@ -45,11 +47,13 @@ namespace ESLTracker.Services.Tests
         public void CardsDatabaseTest_EnsureAllCardsHaveImages()
         {
             ResourcesService resService = new ResourcesService();
-            foreach (Card card in CardsDatabase.Default.Cards)
+            CardInstanceFactory cardInstanceFactory = new CardInstanceFactory();
+
+            foreach (Card card in CardsDatabase.Cards)
             {
-                Assert.IsNotNull(new CardInstance(card).BackgroundColor, card.Name);
-                Assert.IsNotNull(new CardInstance(card).ForegroundColor, card.Name);
-                Assert.IsNotNull(new CardInstance(card).RarityColor, card.Name);
+                Assert.IsNotNull(cardInstanceFactory.CreateFromCard(card).BackgroundColor, card.Name);
+                Assert.IsNotNull(cardInstanceFactory.CreateFromCard(card).ForegroundColor, card.Name);
+                Assert.IsNotNull(cardInstanceFactory.CreateFromCard(card).RarityColor, card.Name);
 
                 Uri imageUri = new Uri(card.ImageName, UriKind.RelativeOrAbsolute);
                 Assert.IsTrue(resService.ResourceExists(imageUri), card.Name);

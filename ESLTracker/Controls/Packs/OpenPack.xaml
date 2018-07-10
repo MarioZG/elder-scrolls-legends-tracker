@@ -8,9 +8,6 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
-        <ViewModels:OpenPackViewModel/>
-    </UserControl.DataContext>
     <UserControl.Resources>
     </UserControl.Resources>
     <StackPanel Margin="10,0,0,0" IsEnabled="{Binding ButtonSaveEnabled, FallbackValue=true, TargetNullValue=true}">

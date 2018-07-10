@@ -7,11 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel.Enums;
 using System.Diagnostics;
+using ESLTrackerTests;
+using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.Utils.IOWrappers;
+using ESLTracker.Utils;
 
 namespace ESLTracker.DataModel.Tests
 {
     [TestClass()]
-    public class TrackerTests
+    public class TrackerTests : BaseTest
     {
 
 
@@ -80,7 +84,14 @@ namespace ESLTracker.DataModel.Tests
 
             //data ready, lets save!
 
-            new Utils.FileManager(null).SaveDatabase<Tracker>(dataFileName, tracker);
+            new FileManager(mockSettings.Object,
+                new PathManager(mockSettings.Object),
+                new PathWrapper(),
+                new DirectoryWrapper(),
+                new FileWrapper(),
+                null,
+                null)
+                .SaveDatabase<Tracker>(dataFileName, tracker);
 
             //and let's load!
 
@@ -88,7 +99,13 @@ namespace ESLTracker.DataModel.Tests
 
             TestContext.WriteLine("Start deserialise....");
             sw.Start();
-            Tracker loadedTracker = new Utils.FileManager(null).LoadDatabase<Tracker>(dataFileName);
+            Tracker loadedTracker = new FileManager(mockSettings.Object,
+                new PathManager(mockSettings.Object),
+                new PathWrapper(),
+                new DirectoryWrapper(),
+                new FileWrapper(),
+                null,
+                null).LoadDatabase<Tracker>(dataFileName);
 
             Assert.AreEqual(MAX_GAMES, loadedTracker.Games.Count);
             Assert.AreEqual(MAX_DECKS, loadedTracker.Decks.Count);

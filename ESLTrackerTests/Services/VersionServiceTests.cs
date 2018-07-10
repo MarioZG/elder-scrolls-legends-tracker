@@ -15,6 +15,10 @@ namespace ESLTracker.Utils.Tests
     public class VersionCheckerTests
     {
         Mock<ISettings> settings;
+        Mock<IHTTPService> httpService = new Mock<IHTTPService>();
+        Mock<IApplicationService> appService = new Mock<IApplicationService>();
+        Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
+        Mock<IFileManager> fileManager = new Mock<IFileManager>();
 
         [TestInitialize]
         public void TestInit()
@@ -29,45 +33,33 @@ namespace ESLTracker.Utils.Tests
         [TestMethod]
         public void IsNewApplicationVersionAvailableTest001()
         {
-            Mock<IHTTPService> httpService = new Mock<IHTTPService>();
             httpService.Setup(hs => hs.SendGetRequest(It.IsAny<string>())).Returns(
                 "{ \"CardsDB\": \"0.3\", \"Application\" :  \"0.5\"}");
 
-            Mock<IApplicationService> appService = new Mock<IApplicationService>();
             appService.Setup(a => a.GetAssemblyVersion()).Returns(
                 new SerializableVersion(0, 5, 1, 0)
                 );
 
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
-            trackerFactory.Setup(tf => tf.GetService<IApplicationService>()).Returns(appService.Object);
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
-
-            VersionService vc = new VersionService(trackerFactory.Object);
+            VersionService vc = CreateVersionServiceObject();
             bool actual = vc.CheckNewAppVersionAvailable().IsAvailable;
 
             Assert.AreEqual(false, actual);
 
         }
 
+
+
         [TestMethod]
         public void IsNewApplicationVersionAvailableTest002()
         {
-            Mock<IHTTPService> httpService = new Mock<IHTTPService>();
             httpService.Setup(hs => hs.SendGetRequest(It.IsAny<string>())).Returns(
                 "{ \"CardsDB\": \"0.3\", \"Application\" :  \"0.5.1\"}");
 
-            Mock<IApplicationService> appService = new Mock<IApplicationService>();
             appService.Setup(a => a.GetAssemblyVersion()).Returns(
                 new SerializableVersion(0, 5, 1, 0)
                 );
 
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
-            trackerFactory.Setup(tf => tf.GetService<IApplicationService>()).Returns(appService.Object);
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
-
-            VersionService vc = new VersionService(trackerFactory.Object);
+            VersionService vc = CreateVersionServiceObject();
             bool actual = vc.CheckNewAppVersionAvailable().IsAvailable;
 
             Assert.AreEqual(false, actual);
@@ -77,21 +69,14 @@ namespace ESLTracker.Utils.Tests
         [TestMethod]
         public void IsNewApplicationVersionAvailableTest003_Available()
         {
-            Mock<IHTTPService> httpService = new Mock<IHTTPService>();
             httpService.Setup(hs => hs.SendGetRequest(It.IsAny<string>())).Returns(
                 "{ \"CardsDB\": \"0.3\", \"Application\" :  \"0.5.2\"}");
 
-            Mock<IApplicationService> appService = new Mock<IApplicationService>();
             appService.Setup(a => a.GetAssemblyVersion()).Returns(
                 new SerializableVersion(0, 5, 1, 0)
                 );
 
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
-            trackerFactory.Setup(tf => tf.GetService<IApplicationService>()).Returns(appService.Object);
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
-
-            VersionService vc = new VersionService(trackerFactory.Object);
+            VersionService vc = CreateVersionServiceObject();
             bool actual = vc.CheckNewAppVersionAvailable().IsAvailable;
 
             Assert.AreEqual(true, actual);
@@ -101,21 +86,15 @@ namespace ESLTracker.Utils.Tests
         [TestMethod()]
         public void IsNewCardsDBAvailableTest()
         {
-            Mock<IHTTPService> httpService = new Mock<IHTTPService>();
             httpService.Setup(hs => hs.SendGetRequest(It.IsAny<string>())).Returns(
                 "{ \"CardsDB\": \"0.3\", \"Application\" :  \"0.5.2\"}");
 
-            Mock<ICardsDatabase> cardsDB = new Mock<ICardsDatabase>();
-            cardsDB.Setup(a => a.Version).Returns(
+            cardsDatabase.Setup(a => a.Version).Returns(
                 new Version(0, 4)
                 );
 
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
-            trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDB.Object);
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
 
-            VersionService vc = new VersionService(trackerFactory.Object);
+            VersionService vc = CreateVersionServiceObject();
             bool actual = vc.IsNewCardsDBAvailable();
 
             Assert.AreEqual(false, actual);
@@ -125,7 +104,6 @@ namespace ESLTracker.Utils.Tests
         public void GetLatestDownladUrlTest()
         {
             string expected = "https://expected_link.zip";
-            Mock<IHTTPService> httpService = new Mock<IHTTPService>();
             httpService.Setup(hs => hs.SendGetRequest(It.IsAny<string>())).Returns(
                 @"{
   ""url"": ""https://api.github.com/repos/MarioZG/elder-scrolls-legends-tracker/releases/5198358"",
@@ -151,17 +129,11 @@ namespace ESLTracker.Utils.Tests
 }
 ");
 
-            Mock<ICardsDatabase> cardsDB = new Mock<ICardsDatabase>();
-            cardsDB.Setup(a => a.Version).Returns(
+            cardsDatabase.Setup(a => a.Version).Returns(
                 new Version(0, 4)
                 );
 
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
-            trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDB.Object);
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
-
-            VersionService vc = new VersionService(trackerFactory.Object);
+            VersionService vc = CreateVersionServiceObject();
             string actual = vc.GetLatestDownladUrl();
 
             Assert.AreEqual(expected, actual);
@@ -171,7 +143,6 @@ namespace ESLTracker.Utils.Tests
         public void ReleaseHasNoAssets()
         {
             string expected = "";
-            Mock<IHTTPService> httpService = new Mock<IHTTPService>();
             httpService.Setup(hs => hs.SendGetRequest(It.IsAny<string>())).Returns(
                 @"{
   ""url"": ""https://api.github.com/repos/MarioZG/elder-scrolls-legends-tracker/releases/5198358"",
@@ -185,20 +156,19 @@ namespace ESLTracker.Utils.Tests
 }
 ");
 
-            Mock<ICardsDatabase> cardsDB = new Mock<ICardsDatabase>();
-            cardsDB.Setup(a => a.Version).Returns(
+            cardsDatabase.Setup(a => a.Version).Returns(
                 new Version(0, 4)
                 );
 
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetService<IHTTPService>()).Returns(httpService.Object);
-            trackerFactory.Setup(tf => tf.GetService<ICardsDatabase>()).Returns(cardsDB.Object);
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
-
-            VersionService vc = new VersionService(trackerFactory.Object);
+            VersionService vc = CreateVersionServiceObject();
             string actual = vc.GetLatestDownladUrl();
 
             Assert.AreEqual(expected, actual);
+        }
+
+        private VersionService CreateVersionServiceObject()
+        {
+            return new VersionService(settings.Object, cardsDatabase.Object, httpService.Object, appService.Object, fileManager.Object);
         }
     }
 }

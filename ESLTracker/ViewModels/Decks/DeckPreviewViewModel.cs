@@ -11,6 +11,8 @@ using ESLTracker.Utils.Messages;
 using ESLTracker.Utils.Extensions;
 using System.Collections.ObjectModel;
 using ESLTracker.Services;
+using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.BusinessLogic.Cards;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -78,20 +80,15 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        private ITrackerFactory trackerFactory;
+        private ICardInstanceFactory cardInstanceFactory;
         private IMessenger messanger;
         private ITracker tracker;
 
-        public DeckPreviewViewModel() : this(TrackerFactory.DefaultTrackerFactory)
+        public DeckPreviewViewModel(ICardInstanceFactory cardInstanceFactory, IMessenger messanger, ITracker tracker)
         {
-
-        }
-
-        public DeckPreviewViewModel(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            this.messanger = trackerFactory.GetService<IMessenger>();
-            this.tracker = trackerFactory.GetTracker();
+            this.cardInstanceFactory = cardInstanceFactory;
+            this.messanger = messanger;
+            this.tracker = tracker;
         }
 
         internal ObservableCollection<CardInstance> CalculateDeckChanges(ObservableCollection<CardInstance> cards1, ObservableCollection<CardInstance> cards2)
@@ -108,7 +105,7 @@ namespace ESLTracker.ViewModels.Decks
                 }
                 else
                 {
-                    result.Add(new CardInstance(card.Card) { Quantity = -card.Quantity });
+                    result.Add(cardInstanceFactory.CreateFromCard(card.Card, -card.Quantity));
                 }
             }
 

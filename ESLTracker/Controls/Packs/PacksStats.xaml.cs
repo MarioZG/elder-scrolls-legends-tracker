@@ -1,4 +1,5 @@
 ﻿using ESLTracker.DataModel;
+using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels.Packs;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,7 @@ namespace ESLTracker.Controls.Packs
 
         public PacksStats()
         {
+            DataContext = MasserContainer.Container.GetInstance<PacksStatsViewModel>();
             InitializeComponent();
         }
     }

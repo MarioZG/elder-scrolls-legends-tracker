@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -46,7 +44,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             get
             {
-                return Deck?.DeckGames.Count() == 0;
+                return deckCalculations.GetDeckGames(Deck).Count() == 0;
             }
         }
 
@@ -60,21 +58,24 @@ namespace ESLTracker.ViewModels.Decks
 
         public IDeckClassSelectorViewModel DeckClassModel { get; set; }
 
-        IMessenger messanger;
-        ITracker tracker;
-        private TrackerFactory trackerFactory;
-        ISettings settings;
+        private readonly IMessenger messanger;
+        private readonly ITracker tracker;
+        private readonly ISettings settings;
+        private readonly IDateTimeProvider dateTimeProvider;
+        private readonly DeckCalculations deckCalculations;
 
-        public DeckPropertiesViewModel() : this(new TrackerFactory())
+        public DeckPropertiesViewModel(
+            IMessenger messanger,
+            ITracker tracker,
+            ISettings settings,
+            IDateTimeProvider dateTimeProvider,
+            DeckCalculations deckCalculations)
         {
-        }
-
-        internal DeckPropertiesViewModel(TrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            tracker = trackerFactory.GetTracker();
-            messanger = trackerFactory.GetService<IMessenger>();
-            settings = trackerFactory.GetService<ISettings>();
+            this.tracker = tracker;
+            this.messanger = messanger;
+            this.settings = settings;
+            this.dateTimeProvider = dateTimeProvider;
+            this.deckCalculations = deckCalculations;
 
             messanger.Register<NewDeckTagCreated>(this, RefreshDeckTagsList);
 
@@ -93,10 +94,10 @@ namespace ESLTracker.ViewModels.Decks
                     Deck.Name = String.Empty;
                     break;
                 case DataModel.Enums.DeckType.VersusArena:
-                    Deck.Name = string.Format(settings.NewDeck_VersusArenaName, trackerFactory.GetDateTimeNow());
+                    Deck.Name = string.Format(settings.NewDeck_VersusArenaName, dateTimeProvider.DateTimeNow);
                     break;
                 case DataModel.Enums.DeckType.SoloArena:
-                    Deck.Name = string.Format(settings.NewDeck_SoloArenaName, trackerFactory.GetDateTimeNow());
+                    Deck.Name = string.Format(settings.NewDeck_SoloArenaName, dateTimeProvider.DateTimeNow);
                     break;
                 default:
                     throw new NotImplementedException();

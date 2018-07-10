@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
@@ -105,31 +106,35 @@ namespace ESLTracker.ViewModels.Decks
         }
         #endregion
 
-        ITrackerFactory trackerFactory;
-        IMessenger messanger;
-        ITracker tracker;
-        IDeckService deckService;
-        ISettings settings;
+        private readonly IMessenger messanger;
+        private readonly ITracker tracker;
+        private readonly IDeckService deckService;
+        private readonly ISettings settings;
+        private readonly IFileManager fileManager;
+        private readonly DeckCalculations deckCalculations;
 
-        public DeckListViewModel() : this (new TrackerFactory())
+        public DeckListViewModel(
+            IMessenger messanger,
+            ITracker tracker,
+            IDeckService deckService,
+            ISettings settings,
+            IFileManager fileManager,
+            DeckCalculations deckCalculations)
         {
-        }
-
-        public DeckListViewModel(ITrackerFactory factory)
-        {
-            this.messanger = factory.GetService<IMessenger>();
+            this.messanger = messanger;
             messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
             messanger.Register<EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
             messanger.Register<EditDeck>(this, CommandHideDeckExecute, Utils.Messages.EditDeck.Context.Hide);
             messanger.Register<EditDeck>(this, CommandUnHideDeckExecute, Utils.Messages.EditDeck.Context.UnHide);
             messanger.Register<EditDeck>(this, CommandDeleteDeckExecute, Utils.Messages.EditDeck.Context.Delete);
 
-            this.trackerFactory = factory;
-            this.tracker = factory.GetTracker();
+            this.tracker = tracker;
             FilteredDecks = new ObservableCollection<Deck>(tracker.Decks);
 
-            deckService = trackerFactory.GetService<IDeckService>();
-            settings = trackerFactory.GetService<ISettings>();
+            this.deckService = deckService;
+            this.settings = settings;
+            this.fileManager = fileManager;
+            this.deckCalculations = deckCalculations;
         }
 
         private void DeckFilterChanged(DeckListFilterChanged obj)
@@ -194,7 +199,7 @@ namespace ESLTracker.ViewModels.Decks
                 filteredList = deckBase.Where(d =>
                     (d.Class == selectedClass)
                     && ((filteredTypes == null) || (filteredTypes.Contains(d.Type)))
-                    && ((showCompletedArenaRuns) || (! d.IsArenaRunFinished()))
+                    && ((showCompletedArenaRuns) || (!deckCalculations.IsArenaRunFinished(d)))
                     && ((showHiddenDecks) || (!d.IsHidden))
                     && ((String.IsNullOrEmpty(searchString)) || (deckService.SearchString(d, searchString)))
                     );
@@ -207,7 +212,7 @@ namespace ESLTracker.ViewModels.Decks
                     d.Class.HasValue
                     && (filteredClasses == null || filteredClasses.Contains(d.Class.Value))
                     && ((filteredTypes == null) || (filteredTypes.Contains(d.Type)))
-                    && ((showCompletedArenaRuns) || (!d.IsArenaRunFinished()))
+                    && ((showCompletedArenaRuns) || (!deckCalculations.IsArenaRunFinished(d)))
                     && ((showHiddenDecks) || (!d.IsHidden))
                     && ((String.IsNullOrEmpty(searchString)) || (deckService.SearchString(d, searchString)))
                     );
@@ -263,7 +268,7 @@ namespace ESLTracker.ViewModels.Decks
             {
                 deckService.DeleteDeck(editDeck.Deck);
             }
-            trackerFactory.GetFileManager().SaveDatabase();
+            fileManager.SaveDatabase();
             ApplyFilter();
         }
     }

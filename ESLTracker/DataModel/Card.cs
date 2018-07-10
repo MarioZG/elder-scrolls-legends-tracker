@@ -81,17 +81,5 @@ namespace ESLTracker.DataModel
                 return "pack://application:,,,/Resources/Cards/" + name + ".png";
             }
         }
-
-        private ITrackerFactory trackerFactory;
-
-        public Card() : this(TrackerFactory.DefaultTrackerFactory)
-        {
-
-        }
-
-        public Card(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-        }
     }
 }

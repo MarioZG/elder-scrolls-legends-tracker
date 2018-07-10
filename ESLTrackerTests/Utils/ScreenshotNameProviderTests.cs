@@ -9,68 +9,66 @@ using Moq;
 using ESLTracker.Properties;
 using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
+using ESLTrackerTests;
 
 namespace ESLTracker.Utils.Tests
 {
     [TestClass]
-    public class ScreenshotNameProviderTests
+    public class ScreenshotNameProviderTests : BaseTest
     {
+        Mock<ITracker> tracker = new Mock<ITracker>();
+
+
         [TestMethod]
         public void GetScreenShotNameTest001_PackName()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-
-            Mock<ISettings> settings = new Mock<ISettings>();
-            settings.Setup(s => s.Packs_ScreenshotNameTemplate)
+            mockSettings.Setup(s => s.Packs_ScreenshotNameTemplate)
                 .Returns("Pack_{n:000}_{d:yyyy_MM_dd}-{1:000}_{0:yyyy_MM_dd}");
 
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
-
-            trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 12, 23));
-
-            Mock<ITracker> tracker = new Mock<ITracker>();
-            tracker.Setup(t => t.Packs).Returns(
-                new ObservableCollection<Pack>(
-                    Enumerable.Range(0,4).Select(i=> new Pack())
-                ));
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
-
-            string expected = "Pack_004_2016_12_23-004_2016_12_23";
-
-            ScreenshotNameProvider provider = new ScreenshotNameProvider(trackerFactory.Object);
-
-            string actual = provider.GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void GetScreenShotNameTest002_RegularName()
-        {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-
-            Mock<ISettings> settings = new Mock<ISettings>();
-            settings.Setup(s => s.Packs_ScreenshotNameTemplate)
-                .Returns("Pack_{d:yyyy_MM_dd}-{0:yyyy_MM_dd}");
-
-            trackerFactory.Setup(tf => tf.GetService<ISettings>()).Returns(settings.Object);
-
-            trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(new DateTime(2016, 12, 23));
-
-            Mock<ITracker> tracker = new Mock<ITracker>();
             tracker.Setup(t => t.Packs).Returns(
                 new ObservableCollection<Pack>(
                     Enumerable.Range(0, 4).Select(i => new Pack())
                 ));
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
-            string expected = "Pack_2016_12_23-2016_12_23";
+            mockDatetimeProvider.Setup(tf => tf.DateTimeNow).Returns(new DateTime(2016, 12, 23));
 
-            ScreenshotNameProvider provider = new ScreenshotNameProvider(trackerFactory.Object);
+            string expected = "Pack_004_2016_12_23-004_2016_12_23";
+
+            ScreenshotNameProvider provider = CreateScreenshotProviderObject();
 
             string actual = provider.GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack);
 
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod]
+        public void GetScreenShotNameTest002_RegularName()
+        {
+
+            mockSettings.Setup(s => s.Packs_ScreenshotNameTemplate)
+                .Returns("Pack_{d:yyyy_MM_dd}-{0:yyyy_MM_dd}");
+
+            mockDatetimeProvider.Setup(tf => tf.DateTimeNow).Returns(new DateTime(2016, 12, 23));
+
+            tracker.Setup(t => t.Packs).Returns(
+                new ObservableCollection<Pack>(
+                    Enumerable.Range(0, 4).Select(i => new Pack())
+                ));
+
+            string expected = "Pack_2016_12_23-2016_12_23";
+
+            ScreenshotNameProvider provider = CreateScreenshotProviderObject();
+
+            string actual = provider.GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        private ScreenshotNameProvider CreateScreenshotProviderObject()
+        {
+            return new ScreenshotNameProvider(tracker.Object, mockSettings.Object, mockDatetimeProvider.Object);
+        }
+
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ESLTracker.BusinessLogic.Decks;
+using ESLTracker.ViewModels.Decks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -74,12 +76,7 @@ namespace ESLTracker.Controls.Decks
 
         private static void RefreshLastGamesIndicator(DataModel.Deck deck, DeckLastGamesIndicator control)
         {
-            IEnumerable<bool> wins = deck.DeckGames
-                .OrderByDescending(g => g.Date)
-                .Take(control.GamesCount)
-                .Reverse()
-                .Select(g => g.Outcome == DataModel.Enums.GameOutcome.Victory)
-                .ToList();
+            IEnumerable<bool> wins = ((DeckLastGamesIndicatorViewModel)control.DataContext).GetLastGames(deck, control.GamesCount);
             int col = 0;
             control.grid.Children.Clear();
             foreach (bool win in wins)

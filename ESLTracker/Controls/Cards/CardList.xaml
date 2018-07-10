@@ -9,15 +9,21 @@
              x:Name="cardList"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <Style TargetType="local:SelectCard">
-            <Setter Property="ReadOnly" Value="True"/>
-        </Style>
-        <CollectionViewSource x:Key="cardsCollectionView" Source="{Binding}">
-            <CollectionViewSource.SortDescriptions>
-                <ComponentModel:SortDescription PropertyName="Card.Cost" />
-                <ComponentModel:SortDescription PropertyName="Card.Name" />
-            </CollectionViewSource.SortDescriptions>
-        </CollectionViewSource>
+        <ResourceDictionary>
+            <Style TargetType="local:SelectCard">
+                <Setter Property="ReadOnly" Value="True"/>
+            </Style>
+            <CollectionViewSource x:Key="cardsCollectionView" Source="{Binding}">
+                <CollectionViewSource.SortDescriptions>
+                    <ComponentModel:SortDescription PropertyName="Card.Cost" />
+                    <ComponentModel:SortDescription PropertyName="Card.Name" />
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Merge into this dictionary another dictionary ... -->
+                <ResourceDictionary Source="/ControlStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <ItemsControl
         PreviewMouseWheel="ItemsControl_PreviewMouseWheel"

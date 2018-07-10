@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels.Decks;
 
 namespace ESLTracker.Controls.Decks
@@ -36,6 +37,7 @@ namespace ESLTracker.Controls.Decks
         public DeckList()
         {
             InitializeComponent();
+            base.DataContext = MasserContainer.Container.GetInstance<DeckListViewModel>();
         }
 
     }

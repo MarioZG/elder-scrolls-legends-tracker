@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -40,6 +41,12 @@ namespace ESLTracker.Utils
 
             // unique id for global mutex - Global prefix means it is global to the machine
             string mutexId = string.Format("Global\\{{{0}}}", appGuid);
+
+            if(Debugger.IsAttached)
+            {
+                //lets allow run app and debug
+                mutexId += "Debugging";
+            }
 
             // Need a place to store a return value in Mutex() constructor call
             bool createdNew;

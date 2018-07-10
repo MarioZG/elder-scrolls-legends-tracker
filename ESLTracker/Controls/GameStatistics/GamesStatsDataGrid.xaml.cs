@@ -17,6 +17,7 @@ using ESLTracker.DataModel;
 using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Converters;
+using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels;
 
 namespace ESLTracker.Controls.GameStatistics
@@ -35,7 +36,7 @@ namespace ESLTracker.Controls.GameStatistics
 
             CreateClassColumns();
 
-            IMessenger messenger = TrackerFactory.DefaultTrackerFactory.GetService<IMessenger>();
+            IMessenger messenger = MasserContainer.Container.GetInstance<IMessenger>();
             messenger.Register<Utils.Messages.GameStatsOpponentGroupByChanged>(this, UpdateGridHeaders);
         }
 

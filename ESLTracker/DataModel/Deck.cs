@@ -150,115 +150,10 @@ namespace ESLTracker.DataModel
         /// </summary>
         public string DeckTag { get; set; }
 
-        private ITrackerFactory trackerFactory; //cannot be ITracker, as we need to load it first - stack overflow when database is loading
-
-        [Obsolete("Use static CreateNewDeck instead. This is public  if for serialization purpose only")]
-        public Deck() : this(TrackerFactory.DefaultTrackerFactory)
+        [Obsolete("Use factory in production code or deckbuilder in unit tests to create new decks")]
+        public Deck()
         {
-        }
-
-        [Obsolete("Use static CreateNewDeck instead. This is public  if for serialization purpose only")]
-        internal Deck(ITrackerFactory tracker)
-        {
-            DeckId = tracker.GetNewGuid(); //if deserialise, will be overriten!, if new generate!
-            DateTime createdDateTime = tracker.GetDateTimeNow();
-            CreatedDate = createdDateTime;
-            this.trackerFactory = tracker;
-        }
-
-        internal static Deck CreateNewDeck()
-        {
-            return CreateNewDeck(TrackerFactory.DefaultTrackerFactory);
-        }
-
-        internal static Deck CreateNewDeck(string deckName)
-        {
-            return CreateNewDeck(TrackerFactory.DefaultTrackerFactory, deckName);
-        }
-
-        public static Deck CreateNewDeck(ITrackerFactory trackerFactory, string deckName = "")
-        {
-#pragma warning disable CS0618 // Type or member is obsolete
-            Deck deck = new Deck(trackerFactory);
-#pragma warning restore CS0618 // Type or member is obsolete
-            deck.CreateVersion(1, 0, trackerFactory.GetDateTimeNow());
-            deck.Name = deckName;
-            return deck;
-        }
-
-        public int Victories {
-            get {
-                return DeckGames.Where(g => g.Outcome == GameOutcome.Victory).Count();
-            }
-        }
-
-        public int Defeats
-        {
-            get
-            {
-                return DeckGames.Where(g => g.Outcome == GameOutcome.Defeat).Count();
-            }
-        }
-
-        public int Disconnects {
-            get
-            {
-                return DeckGames.Where(g => g.Outcome == GameOutcome.Disconnect).Count();
-            }
-        }
-        public int Draws
-        {
-            get
-            {
-                return DeckGames.Where(g => g.Outcome == GameOutcome.Draw).Count();
-            }
-        }
-
-
-        public string WinRatio
-        {
-            get
-            {
-                int gamesTotal = DeckGames.Count();
-                if (gamesTotal != 0)
-                {
-                    return Math.Round((double)Victories / (double)DeckGames.Count() * 100, 0).ToString();
-                }
-                else
-                {
-                    return "-";
-                }
-            }
-        }
-
-        public IEnumerable<Game> DeckGames
-        {
-            get
-            {
-                return trackerFactory.GetService<IDeckService>().GetDeckGames(this);
-            }
-        }
-
-        public dynamic GetDeckVsClass()
-        {
-            return GetDeckVsClass(null);
-        }
-
-        public dynamic GetDeckVsClass(DeckClass? opponentClass)
-        {
-            return this.DeckGames
-                      .Where(g => (g.OpponentClass.HasValue)  //filter out all game where calss is not set (if we include in show all, crash below as here is no nul key in classes.attibutes)
-                              && ((g.OpponentClass == opponentClass) || (opponentClass == null))) //class = param, or oaram is null - show all"
-                      .GroupBy(d => d.OpponentClass.Value)
-                      .Select(d => new
-                      {
-                          Class = d.Key,
-                          Attributes = ClassAttributesHelper.Classes[d.Key],
-                          Total = d.Count(),
-                          Victory = d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count(),
-                          Defeat = d.Where(d2 => d2.Outcome == GameOutcome.Defeat).Count(),
-                          WinPercent = d.Count() > 0 ? Math.Round((decimal)d.Where(d2 => d2.Outcome == GameOutcome.Victory).Count() / (decimal)d.Count() * 100, 0).ToString() : "-"
-                      });
+       
         }
 
         public void UpdateAllBindings()
@@ -280,54 +175,6 @@ namespace ESLTracker.DataModel
         public static bool IsArenaDeck(DeckType type)
         {
             return type == DeckType.SoloArena || type == DeckType.VersusArena;
-        }
-
-        public bool IsArenaRunFinished()
-        {
-            switch (this.Type)
-            {
-                case DeckType.Constructed:
-                    return false;
-                case DeckType.VersusArena:
-                    return
-                        this.Victories == 7
-                        || this.Defeats + this.Disconnects == 3; 
-                case DeckType.SoloArena:
-                    return
-                        this.Victories == 9
-                        || this.Defeats + this.Disconnects == 3;
-                default:
-                    throw new NotImplementedException("Is arena run finished not dfined for type {" + Type + "}");
-            }
-        }
-
-        public IEnumerable<Reward> GetArenaRewards()
-        {
-            return trackerFactory.GetTracker().Rewards
-                .Where(r=> r.ArenaDeckId == DeckId);
-        }
-
-
-        /// <summary>
-        /// Creates new deck version in history, adds to colletion and returns reference
-        /// </summary>
-        /// <param name="major"></param>
-        /// <param name="minor"></param>
-        /// <param name="createdDate"></param>
-        /// <returns></returns>
-        public DeckVersion CreateVersion(int major, int minor, DateTime createdDate)
-        {
-            SerializableVersion version = new SerializableVersion(major, minor);
-            if (DoNotUse.Any(v => v.Version == version))
-            {
-                throw new ArgumentException(string.Format("Version {0} alread has been added to deck '{1}'", version, Name));
-            }
-            DeckVersion dv = new DeckVersion();
-            dv.CreatedDate = createdDate;
-            dv.Version = version;
-            this.DoNotUse.Add(dv); //add to history
-            this.SelectedVersionId = dv.VersionId;
-            return dv;
         }
 
         /// <summary>

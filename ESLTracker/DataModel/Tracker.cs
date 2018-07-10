@@ -16,18 +16,6 @@ namespace ESLTracker.DataModel
 {
     public class Tracker : ViewModels.ViewModelBase, ITracker
     {
-        private static Tracker _instance = null;
-        public static Tracker Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = TrackerFactory.DefaultTrackerFactory.GetFileManager().LoadDatabase();
-                }
-                return _instance;
-            }
-        }
 
         public ObservableCollection<Game> Games { get; set; } = new ObservableCollection<Game>();
         public ObservableCollection<Deck> Decks { get; set; } = new ObservableCollection<Deck>();
@@ -54,9 +42,7 @@ namespace ESLTracker.DataModel
             }
             set
             {
-                activeDeck = value;
-                messenger.Send(new ActiveDeckChanged(value));
-                RaisePropertyChangedEvent(nameof(ActiveDeck));
+                SetProperty<Deck>(ref activeDeck, value);
             }
         }
 
@@ -71,22 +57,9 @@ namespace ESLTracker.DataModel
             }
         }
 
-        private ITrackerFactory trackerFactory;
-        IMessenger messenger;
-        public Tracker() : this(TrackerFactory.DefaultTrackerFactory)
-        {
-
-        }
-
-        public Tracker(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            messenger = trackerFactory.GetService<IMessenger>();
-        }
-
         public IEnumerable<Reward> GetRewardsSummaryByType(RewardType type)
         {
-            return Instance.Rewards.Where(r => r.Type == type);
+            return Rewards.Where(r => r.Type == type);
         }
 
     }

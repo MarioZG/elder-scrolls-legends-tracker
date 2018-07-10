@@ -6,12 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel.Enums;
+using Moq;
+using ESLTracker.Services;
 
 namespace ESLTracker.ViewModels.Decks.Tests
 {
     [TestClass()]
     public class DeckTypeSelectorViewModelTests
     {
+        Mock<IMessenger> messenger = new Mock<IMessenger>();
+
         [TestMethod()]
         public void FilterClickedTest001_NonSelected_ClickOne()
         {
@@ -19,12 +23,17 @@ namespace ESLTracker.ViewModels.Decks.Tests
             int expectedCount = 1;
             List<DeckType> expectedFilter = new List<DeckType>() { clickedType };
 
-            DeckTypeSelectorViewModel model = new DeckTypeSelectorViewModel();
+            DeckTypeSelectorViewModel model = CreateDeckTypeSelectorVM();
             model.FilterClicked(clickedType);
 
             Assert.AreEqual(expectedCount, model.FilteredTypes.Count);
             Assert.IsTrue(model.FilteredTypes.All(r => { return expectedFilter.Contains(r); }));
 
+        }
+
+        private DeckTypeSelectorViewModel CreateDeckTypeSelectorVM()
+        {
+            return new DeckTypeSelectorViewModel(messenger.Object);
         }
 
         [TestMethod()]
@@ -35,7 +44,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             int expectedCount = 2;
             List<DeckType> expectedFilter = new List<DeckType>() { clickedType, clickedType2 };
 
-            DeckTypeSelectorViewModel model = new DeckTypeSelectorViewModel();
+            DeckTypeSelectorViewModel model = CreateDeckTypeSelectorVM();
             model.FilterClicked(clickedType);
             model.FilterClicked(clickedType2);
 
@@ -50,7 +59,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             int expectedCount = allTypes.Count();
             List<DeckType> expectedFilter = new List<DeckType>(allTypes);
 
-            DeckTypeSelectorViewModel model = new DeckTypeSelectorViewModel();
+            DeckTypeSelectorViewModel model = CreateDeckTypeSelectorVM();
             foreach (DeckType type in allTypes)
             {
                 model.FilterClicked(type);
@@ -69,7 +78,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             int expectedCount = allTypes.Count();
             List<DeckType> expectedFilter = new List<DeckType>(allTypes);
 
-            DeckTypeSelectorViewModel model = new DeckTypeSelectorViewModel();
+            DeckTypeSelectorViewModel model = CreateDeckTypeSelectorVM();
             //first select
             model.FilterClicked(clickedType);
 
@@ -87,7 +96,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void ResetTest()
         {
-            DeckTypeSelectorViewModel model = new DeckTypeSelectorViewModel();
+            DeckTypeSelectorViewModel model = CreateDeckTypeSelectorVM();
 
             int expectedCount = model.FilteredTypes.Count;
 

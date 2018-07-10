@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.Controls.Rewards;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
@@ -56,18 +58,13 @@ namespace ESLTracker.ViewModels.Rewards
         public ICommand CommandDeleteClicked { get; private set; }
         #endregion
 
-        private ITrackerFactory trackerFactory;
         ICardsDatabase cardsDatabase;
+        ICardInstanceFactory cardInstanceFactory;
 
-        public AddSingleRewardViewModel() : this(TrackerFactory.DefaultTrackerFactory)
+        public AddSingleRewardViewModel(ICardInstanceFactory cardInstanceFactory, ICardsDatabase cardsDatabase)
         {
-
-        }
-
-        public AddSingleRewardViewModel(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
+            this.cardInstanceFactory = cardInstanceFactory;
+            this.cardsDatabase = cardsDatabase;
 
             CommandAddButtonPressed = new RelayCommand(new Action<object>(AddClicked));
             CommandDeleteClicked = new RelayCommand(new Action<object>(DeleteClicked));
@@ -90,7 +87,7 @@ namespace ESLTracker.ViewModels.Rewards
                 case RewardType.Card:
                     if (Reward.CardInstance == null)
                     {
-                        Reward.CardInstance = new CardInstance(this.trackerFactory);
+                        Reward.CardInstance = cardInstanceFactory.CreateEmpty();
                         Reward.CardInstance.PropertyChanged += Reward_PropertyChanged;
                     }
                     CardSelectionVisible = true;

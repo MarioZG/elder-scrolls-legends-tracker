@@ -12,11 +12,8 @@
              mc:Ignorable="d" 
              x:Name="deckEdit"
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
-        <ViewModels:DeckEditViewModel/>
-    </UserControl.DataContext>
     <UserControl.Resources>
-
+        <ResourceDictionary Source="/ControlStyle.xaml"/>
     </UserControl.Resources>
     <Grid>
         <DockPanel>

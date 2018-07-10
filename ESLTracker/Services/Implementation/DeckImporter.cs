@@ -1,4 +1,6 @@
-﻿using ESLTracker.DataModel;
+﻿using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.DataModel;
 using ESLTracker.Utils;
 using Polly;
 using System;
@@ -21,18 +23,13 @@ namespace ESLTracker.Services
 
         private TaskCompletionSource<bool> taskCompletonSource;
 
-        private ITrackerFactory trackerFactory;
-        private ICardsDatabase cardsDatabase;
+        private readonly ICardsDatabase cardsDatabase;
+        private readonly ICardInstanceFactory cardInstanceFactory;
 
-        public DeckImporter() : this(TrackerFactory.DefaultTrackerFactory)
+        public DeckImporter(ICardsDatabase cardsDatabase, ICardInstanceFactory cardInstanceFactory)
         {
-
-        }
-
-        public DeckImporter(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            this.cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
+            this.cardsDatabase = cardsDatabase;
+            this.cardInstanceFactory = cardInstanceFactory;
         }
 
         public async Task ImportFromText(string importData)
@@ -132,8 +129,7 @@ namespace ESLTracker.Services
 
                 Card card = this.cardsDatabase.FindCardByName(cardName);
 
-                CardInstance cardInstance = new CardInstance(card, trackerFactory);
-                cardInstance.Quantity = cardCount;
+                CardInstance cardInstance = cardInstanceFactory.CreateFromCard(card, cardCount);
 
                 Cards.Add(cardInstance);
             }
@@ -165,7 +161,7 @@ namespace ESLTracker.Services
 
 
 
-        internal void ImportFinished(TaskCompletionSource<bool> tcs)
+        public void ImportFinished(TaskCompletionSource<bool> tcs)
         {
             taskCompletonSource = tcs;
         }

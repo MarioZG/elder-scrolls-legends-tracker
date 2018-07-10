@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
 
 namespace ESLTracker.Utils.FileUpdaters
@@ -12,6 +13,13 @@ namespace ESLTracker.Utils.FileUpdaters
     public class Update_1_2_To_2_0 : UpdateBase
     {
         public override SerializableVersion TargetVersion { get; } = new SerializableVersion(2, 0);
+
+        IDeckService deckService;
+
+        public Update_1_2_To_2_0(IDeckService deckService)
+        {
+            this.deckService = deckService;
+        }
 
         protected override void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker)
         {
@@ -31,8 +39,8 @@ namespace ESLTracker.Utils.FileUpdaters
                     deck.DoNotUse = new System.Collections.ObjectModel.ObservableCollection<DeckVersion>();
                 }
                 if (deck.DoNotUse.Count == 0)
-                { 
-                    deck.CreateVersion(1, 0, deck.CreatedDate);
+                {
+                    deckService.CreateDeckVersion(deck, 1, 0, deck.CreatedDate);
                 }
             }
         }

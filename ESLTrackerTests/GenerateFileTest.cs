@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Linq;
+using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Services;
 using ESLTracker.Utils;
+using ESLTracker.Utils.IOWrappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ESLTrackerTests
 {
     [TestClass]
-    public class GenerateFileTest
+    public class GenerateFileTest : BaseTest
     {
 
         Random rand = new Random((int)DateTime.Now.Ticks);
@@ -57,9 +61,13 @@ namespace ESLTrackerTests
                 "Abaneena Khaohin  "
             };
 
+            CardInstanceFactory cardFactory = new CardInstanceFactory();
+            //DeckVersionFactory deckVersionFactory = new DeckVersionFactory(mockGuidProvider.Object);
+            DeckService deckService = new DeckService(null, mockSettings.Object, mockDatetimeProvider.Object, mockGuidProvider.Object);
+
             foreach (string name in names)
             {
-                Deck d = Deck.CreateNewDeck(name);
+                Deck d = deckService.CreateNewDeck(name);
                 d.Type = (DeckType)rand.Next(2);
                 d.Class = (DeckClass)rand.Next(16);
                 d.CreatedDate = DateTime.Now.AddHours(-1 * rand.Next(5000));
@@ -69,13 +77,13 @@ namespace ESLTrackerTests
                 int versions = rand.Next(10);
                 for (int i = 0; i < versions; i++)
                 {
-                    DeckVersion version = d.CreateVersion(1, i + 1, d.CreatedDate.AddDays(i));
+                    DeckVersion version = deckService.CreateDeckVersion(d, 1, i + 1, d.CreatedDate.AddDays(i));
                     int cardCount = 30 + rand.Next(40);
                     for (; cardCount > 0;)
                     {
-                        Card c = CardsDatabase.Default.Cards.ElementAt(rand.Next(CardsDatabase.Default.Cards.Count()));
+                        Card c = CardsDatabase.Cards.ElementAt(rand.Next(CardsDatabase.Cards.Count()));
                         int qty = rand.Next(1, 3);
-                        version.Cards.Add(new CardInstance(c) { Quantity = qty });
+                        version.Cards.Add(cardFactory.CreateFromCard(c, qty));
                         cardCount -= qty;
                     }
 
@@ -113,7 +121,7 @@ namespace ESLTrackerTests
             }
 
             int packsCount = rand.Next(100, 300);
-            var sets = CardsDatabase.Default.CardSets.Where(cs => cs.HasPacks);
+            var sets = CardsDatabase.CardSets.Where(cs => cs.HasPacks);
             for (int i = 0; i < packsCount; i++)
             {
                 Pack p = new Pack();
@@ -121,20 +129,29 @@ namespace ESLTrackerTests
 
                 p.CardSet = sets.ElementAt(rand.Next(sets.Count()));
 
-                var cards = CardsDatabase.Default.Cards.Where(c => c.Set == p.CardSet.Name);
+                var cards = CardsDatabase.Cards.Where(c => c.Set == p.CardSet.Name);
 
-                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
-                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
-                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
-                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
-                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
-                p.Cards.Add(new CardInstance(cards.ElementAt(rand.Next(cards.Count()))));
+                
+
+                p.Cards.Add(cardFactory.CreateFromCard(cards.ElementAt(rand.Next(cards.Count()))));
+                p.Cards.Add(cardFactory.CreateFromCard(cards.ElementAt(rand.Next(cards.Count()))));
+                p.Cards.Add(cardFactory.CreateFromCard(cards.ElementAt(rand.Next(cards.Count()))));
+                p.Cards.Add(cardFactory.CreateFromCard(cards.ElementAt(rand.Next(cards.Count()))));
+                p.Cards.Add(cardFactory.CreateFromCard(cards.ElementAt(rand.Next(cards.Count()))));
+                p.Cards.Add(cardFactory.CreateFromCard(cards.ElementAt(rand.Next(cards.Count()))));
 
                 tracker.Packs.Add(p);
             }
 
             tracker.Version = Tracker.CurrentFileVersion;
-            new FileManager().SaveDatabase(@"c:\dev\aa.xml", tracker);
+            new FileManager(mockSettings.Object,
+                new PathManager(mockSettings.Object),
+                new PathWrapper(),
+                new DirectoryWrapper(),
+                new FileWrapper(),
+                null,
+                null)
+                .SaveDatabase(@"c:\dev\aa.xml", tracker);
         }
     }
 }

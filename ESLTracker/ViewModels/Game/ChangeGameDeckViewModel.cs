@@ -11,7 +11,6 @@ namespace ESLTracker.ViewModels.Game
 {
     public class ChangeGameDeckViewModel : ViewModelBase
     {
-        private ITrackerFactory tarckerFactory;
         private ITracker tracker;
 
         private Deck selectedDeck;
@@ -75,15 +74,9 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
-        public ChangeGameDeckViewModel() : this(new TrackerFactory())
+        public ChangeGameDeckViewModel(ITracker tracker)
         {
-
-        }
-
-        public ChangeGameDeckViewModel(ITrackerFactory trackerFactory)
-        {
-            this.tarckerFactory = trackerFactory;
-            this.tracker = tarckerFactory.GetTracker();
+            this.tracker = tracker;
         }
 
         /// <summary>

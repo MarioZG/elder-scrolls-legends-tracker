@@ -1,0 +1,239 @@
+﻿<Window xmlns:Game="clr-namespace:ESLTracker.Controls.Game"  xmlns:Settings="clr-namespace:ESLTracker.Controls.Settings" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:local="clr-namespace:ESLTracker.Windows"
+        xmlns:Windows="clr-namespace:ESLTracker.Windows"
+        xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks" 
+        x:Class="ESLTracker.Windows.MainWindow"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
+        xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
+        xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+        xmlns:Properties="clr-namespace:ESLTracker.Properties" 
+        xmlns:Controls="clr-namespace:ESLTracker.Controls" 
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        x:Name="mainWindow"
+        Title="ESL Tracker" Height="553.805" SizeToContent="Width"
+        BorderThickness="2" 
+        Closing="Window_Closing"
+        Left="{Binding Path=MainWindowPositionX, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+        Top="{Binding Path=MainWindowPositionY, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+        ShowInTaskbar="{Binding ShowInTaskBar, Mode=TwoWay}"
+        WindowState="{Binding WindowState, Mode=TwoWay}"
+        StateChanged="mainWindow_StateChanged"
+        DataContext="{Binding Source={StaticResource VMLocator}, Path=[Windows.MainWindowViewModel]}"
+    >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ControlStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <System:Boolean x:Key="True">True</System:Boolean>
+            <System:Boolean x:Key="False">False</System:Boolean>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <DockPanel>
+            <Menu IsEnabled="{Binding AllowCommands}" x:Name="menu"  VerticalAlignment="Top" DockPanel.Dock="Top">
+                <MenuItem Header="Deck">
+                    <MenuItem 
+                          Command="{Binding CommandNewDeck}" 
+                          VerticalAlignment="Center"
+                          Header="New Deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/newDeck.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                          Command="{Binding CommandEditDeck}" 
+                          VerticalAlignment="Center"
+                          Header="Edit Deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/edit.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                          Command="{Binding CommandHideDeck}" 
+                          VerticalAlignment="Center"
+                          Header="Hide Deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/hide.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                          Command="{Binding CommandUnHideDeck}" 
+                          VerticalAlignment="Center"
+                          Header="Unhide Deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/visible.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                          Command="{Binding CommandDeleteDeck}" 
+                          VerticalAlignment="Center"
+                          Header="Delete deck"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/delete.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem>
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Source="/Resources/MenuIcons/statistics.png" />
+                            <ContentPresenter Content="Statistics" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                    <MenuItem Header="Rewards" Command="{Binding CommandShowRewards}" />
+                    <MenuItem Header="Arena runs" Command="{Binding CommandShowArenaStats}" />
+                    <MenuItem Header="Games" Command="{Binding CommandShowGamesStats}" />
+                    <MenuItem Header="Ranked progress" Command="{Binding CommandShowRankedProgress}" />
+                    <MenuItem Header="Pack opening" Command="{Binding CommandShowPackOpening}">
+                        <MenuItem.Icon>
+                            <fa:ImageAwesome Icon="PieChart"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Overlays">
+                    <MenuItem Command="{Binding CommandManageOverlayWindow}" CommandParameter="{x:Type local:OverlayToolbar}" IsCheckable="true" Header="Add game/reward/pack" IsChecked="{Binding OverlayWindows, Converter={Converters:ShowOverlayWindowToBool},  ConverterParameter={x:Type local:OverlayToolbar}}"/>
+                    <MenuItem Command="{Binding CommandManageOverlayWindow}" CommandParameter="{x:Type Windows:DeckOverlay}" IsCheckable="true" Header="Card list" IsChecked="{Binding OverlayWindows, Converter={Converters:ShowOverlayWindowToBool}, ConverterParameter={x:Type Windows:DeckOverlay}}"/>
+                </MenuItem>
+                <MenuItem Command="{Binding CommandRunGame}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Source="/Resources/MenuIcons/runESL.png" />
+                            <ContentPresenter Content="Run game" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="{Binding CommandEditSettings}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Source="/Resources/MenuIcons/settings.png" />
+                            <ContentPresenter Content="Settings" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="{Binding CommandAbout}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Source="/Resources/MenuIcons/settings.png" />
+                            <ContentPresenter Content="About..." Margin="5,0,0,0" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+            </Menu>
+            <Grid>
+                <Grid VerticalAlignment="Top" Panel.ZIndex="2"
+                      d:IsHidden="true"
+                      Visibility="{Binding SettingsVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
+                    <Settings:SettingsPanel x:Name="settingsPanel" Style="{DynamicResource ModalControlInWindow}" />
+                </Grid>
+                <DockPanel>
+                    <DockPanel                            
+                        DockPanel.Dock="Top"
+                        HorizontalAlignment="Stretch"
+                        Background="DarkRed"
+                        >
+                        <ItemsControl ItemsSource="{Binding UserInfo}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Left"
+                                            ToolTip="Dismiss"                                            
+                                            BorderThickness="2"
+                                            BorderBrush="{x:Null}"
+                                            Background="{x:Null}"
+                                            Foreground="White"
+                                            fa:Awesome.Content="WindowClose"
+                                            Margin="0,0,3,0"
+                                            Command="{Binding DismissCommand}"
+                                            CommandParameter="{Binding}"/>
+                                        <TextBlock 
+                                            HorizontalAlignment="Stretch" 
+                                            Text="{Binding Message}" 
+                                            Foreground="White"
+                                            Margin="0,0,3,0"
+                                            FontSize="12">
+                                        </TextBlock>
+                                        <ItemsControl ItemsSource="{Binding ClickableUrls}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Margin="0,0,5,0">
+                                                        <Controls:ClickableUrl Foreground="White" NavigateUri="{Binding Value}">
+                                                            <TextBlock Text="{Binding Key}"></TextBlock>
+                                                        </Controls:ClickableUrl>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </DockPanel>
+                    <WrapPanel 
+                            DockPanel.Dock="Left"
+                            IsEnabled="{Binding AllowCommands}"
+                            Visibility="{Binding DeckListVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
+                        <Decks:DeckList x:Name="deckList"/>
+                    </WrapPanel>
+                    <WrapPanel
+                        Visibility="{Binding DeckPreviewVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
+                        <Decks:DeckPreview 
+                            Deck="{Binding ActiveDeck}"/>
+                    </WrapPanel>
+                    <WrapPanel
+                        Visibility="{Binding DeckEditVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
+                        <Decks:DeckEdit
+                            Deck="{Binding ActiveDeck}"/>
+                    </WrapPanel>
+                    <StackPanel 
+                        Visibility="{Binding EditGameVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
+                            <Game:EditGame IsEditControl="True" />
+                    </StackPanel>
+                </DockPanel>
+            </Grid>
+        </DockPanel>
+        <tb:TaskbarIcon
+                x:Name="taskBarIcon"
+                IconSource="/Resources/TrayIcon.ico"
+                DoubleClickCommand="{Binding CommandNotifyIconLeftClick}"
+                LeftClickCommand="{Binding CommandNotifyIconLeftClick}">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Run game" Command="{Binding CommandRunGame}">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/runESL.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Show application" Command="{Binding CommandNotifyIconLeftClick}" CommandParameter="show">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/WindowIcons/mainForm.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Exit" Command="{Binding CommandExit}" CommandParameter="{StaticResource True}">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/MenuIcons/exit.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+    </Grid>
+</Window>

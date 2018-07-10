@@ -9,9 +9,6 @@
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
              xmlns:Controls="clr-namespace:ESLTracker.Controls"  
              mc:Ignorable="d">
-    <UserControl.DataContext>
-        <ViewModels:DeckListViewModel/>
-    </UserControl.DataContext>
     <DockPanel>
         <local:DeckFilter x:Name="deckFilter" HorizontalAlignment="Stretch" DockPanel.Dock="Top"/>
         <ListBox x:Name="listBox"

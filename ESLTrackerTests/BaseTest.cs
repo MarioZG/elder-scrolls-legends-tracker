@@ -6,20 +6,21 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Properties;
+using ESLTracker.Services;
 using ESLTracker.Utils;
+using ESLTrackerTests.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace ESLTrackerTests
 {
-    public class BaseTest
+    public abstract class BaseTest
     {
         private TestContext testContextInstance;
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
         public TestContext TestContext
         {
             get
@@ -32,6 +33,19 @@ namespace ESLTrackerTests
             }
         }
 
+        protected Mock<ISettings> mockSettings = new Mock<ISettings>();
+        protected Mock<IDateTimeProvider> mockDatetimeProvider = new Mock<IDateTimeProvider>();
+        protected Mock<IGuidProvider> mockGuidProvider = new Mock<IGuidProvider>();
+
+        [TestInitialize]
+        public virtual void TestInitialize()
+        {
+            mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(DateTime.Now);
+            mockGuidProvider.Setup(gp => gp.GetNewGuid()).Returns(() => Guid.NewGuid());
+
+            new ESLTracker.Utils.SimpleInjector.MasserContainer();
+        }
+
         protected Dictionary<Type, object> StartProp = new Dictionary<Type, object>()
             {
                 { typeof(Guid), Guid.NewGuid() },
@@ -40,9 +54,7 @@ namespace ESLTrackerTests
                 { typeof(DeckAttributes), new DeckAttributes() { DeckAttribute.Intelligence } },
                 { typeof(DeckClass?), DeckClass.Crusader },
                 { typeof(DateTime), DateTime.Now },
-#pragma warning disable CS0618 // Type or member is obsolete
-                { typeof(Deck), new Deck()},
-#pragma warning restore CS0618 // Type or member is obsolete
+                { typeof(Deck), new DeckBuilder().Build()},
                 { typeof(GameType?), GameType.SoloArena},
                 { typeof(bool?), false},
                 { typeof(bool), false},
@@ -54,8 +66,8 @@ namespace ESLTrackerTests
                 { typeof(ArenaRank?), ArenaRank.Warrior},
                 { typeof(SerializableVersion), new SerializableVersion(1,2,3,4)},
                 { typeof(ObservableCollection<DeckVersion>), new ObservableCollection<DeckVersion>() {new DeckVersion() { Version = new SerializableVersion(1,2) } } },
-                { typeof(ObservableCollection<CardInstance>), new ObservableCollection<CardInstance>() {new CardInstance(new Card() {Name = "Card start" }) } },
-                { typeof(PropertiesObservableCollection<CardInstance>), new PropertiesObservableCollection<CardInstance>() {new CardInstance(new Card() {Name = "Card edit" }) } },
+                { typeof(ObservableCollection<CardInstance>), new ObservableCollection<CardInstance>() {new CardInstance() { Card = new Card() {Name = "Card start" } } } },
+                { typeof(PropertiesObservableCollection<CardInstance>), new PropertiesObservableCollection<CardInstance>() { new CardInstance() { Card = new Card() { Name = "Card edit" } } } },
                 { typeof(Card), Card.Unknown},
                 { typeof(System.Windows.Media.Brush), System.Windows.Media.Brushes.Aquamarine},
                 { typeof(object), new object()}
@@ -69,9 +81,7 @@ namespace ESLTrackerTests
                 { typeof(DeckAttributes), new DeckAttributes() { DeckAttribute.Endurance, DeckAttribute.Strength } },
                 { typeof(DeckClass?), DeckClass.Monk },
                 { typeof(DateTime), DateTime.Now.AddDays(-4) },
-#pragma warning disable CS0618 // Type or member is obsolete
-                { typeof(Deck), new Deck()},
-#pragma warning restore CS0618 // Type or member is obsolete
+                { typeof(Deck), new DeckBuilder().Build()},
                 { typeof(GameType?), GameType.PlayCasual},
                 { typeof(bool?), true},
                 { typeof(bool), true},
@@ -83,8 +93,8 @@ namespace ESLTrackerTests
                 { typeof(ArenaRank?), ArenaRank.Gladiator },
                 { typeof(SerializableVersion), new SerializableVersion(1,2,3,4)},
                 { typeof(ObservableCollection<DeckVersion>), new ObservableCollection<DeckVersion>() {new DeckVersion() { Version = new SerializableVersion(2,3) } } },
-                { typeof(ObservableCollection<CardInstance>), new ObservableCollection<CardInstance>() {new CardInstance(new Card() {Name = "Card edit" }) } },
-                { typeof(PropertiesObservableCollection<CardInstance>), new PropertiesObservableCollection<CardInstance>() {new CardInstance(new Card() {Name = "Card edit" }) } },
+                { typeof(ObservableCollection<CardInstance>), new ObservableCollection<CardInstance>() { new CardInstance() { Card = new Card() { Name = "Card edit" } } } },
+                { typeof(PropertiesObservableCollection<CardInstance>), new PropertiesObservableCollection<CardInstance>() { new CardInstance() { Card = new Card() { Name = "Card edit" } } } },
                 { typeof(Card), new Card() {Name = "Other unknown card" } },
                 { typeof(System.Windows.Media.Brush), System.Windows.Media.Brushes.Gainsboro},
              //   { typeof(object), new object()}
@@ -111,10 +121,10 @@ namespace ESLTrackerTests
             GameType? gameType = null)
         {
             return new System.Collections.ObjectModel.ObservableCollection<Game>(
-                    Enumerable.Range(0, disconnects).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Disconnect, Type = gameType }).Union(
-                    Enumerable.Range(0, defeats).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Defeat, Type = gameType }).Union(
-                    Enumerable.Range(0, draws).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Draw, Type = gameType }).Union(
-                    Enumerable.Range(0, victories).Select(x => new Game() { Deck = deck, Outcome = GameOutcome.Victory, Type = gameType })
+                    Enumerable.Range(0, disconnects).Select(x => new GameBuilder().WithOutcome(GameOutcome.Disconnect).WithDeck(deck).WithType(gameType).Build()).Union(
+                    Enumerable.Range(0, defeats).Select(x => new GameBuilder().WithOutcome(GameOutcome.Defeat).WithDeck(deck).WithType(gameType).Build()).Union(
+                    Enumerable.Range(0, draws).Select(x => new GameBuilder().WithOutcome(GameOutcome.Draw).WithDeck(deck).WithType(gameType).Build()).Union(
+                    Enumerable.Range(0, victories).Select(x => new GameBuilder().WithOutcome(GameOutcome.Victory).WithDeck(deck).WithType(gameType).Build())
                     )))
                 );
         }
@@ -130,5 +140,17 @@ namespace ESLTrackerTests
             return t.GetFields(flags).Concat(GetAllFields(t.BaseType));
         }
 
+        private CardsDatabase cardsDatabase;
+        protected CardsDatabase CardsDatabase
+        {
+            get
+            {
+                if (cardsDatabase == null)
+                {
+                    cardsDatabase =  SerializationHelper.DeserializeJson<CardsDatabase>(System.IO.File.ReadAllText(new PathManager(null).CardsDatabasePath));
+                }
+                return cardsDatabase;
+            }
+        }
     }
 }

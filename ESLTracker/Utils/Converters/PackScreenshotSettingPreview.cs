@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ESLTracker.Utils.SimpleInjector;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -12,9 +13,8 @@ namespace ESLTracker.Utils.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            ITrackerFactory trackerFactory = new TrackerFactory();
             try {
-                return new ScreenshotNameProvider(trackerFactory).GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack, value.ToString());
+                return MasserContainer.Container.GetInstance<ScreenshotNameProvider>().GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack, value.ToString());
             }
             catch(Exception ex)
             {

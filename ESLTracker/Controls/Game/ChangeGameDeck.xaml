@@ -9,9 +9,6 @@
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Game"
              mc:Ignorable="d" 
              d:DesignHeight="20" d:DesignWidth="300">
-    <UserControl.DataContext>
-        <ViewModels:ChangeGameDeckViewModel/>
-    </UserControl.DataContext>
     <StackPanel Orientation="Horizontal">
         <ComboBox 
             ItemsSource="{Binding DecksList}"

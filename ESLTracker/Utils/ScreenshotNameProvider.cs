@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.Utils;
+using ESLTracker.DataModel;
 using ESLTracker.Properties;
 
 namespace ESLTracker.Utils
 {
     public class ScreenshotNameProvider
     {
-        private ITrackerFactory trackerFactory;
+        private ITracker tracker;
         ISettings settings;
+        IDateTimeProvider dateTimeProvider;
 
         public enum ScreenShotType
         {
@@ -18,15 +21,11 @@ namespace ESLTracker.Utils
             Pack, //automatic when pack is added
         }
 
-        public ScreenshotNameProvider() : this(new TrackerFactory())
+        public ScreenshotNameProvider(ITracker tracker, ISettings settings, IDateTimeProvider dateTimeProvider)
         {
-
-        }
-
-        public ScreenshotNameProvider(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            this.settings = trackerFactory.GetService<ISettings>();
+            this.tracker = tracker;
+            this.settings = settings;
+            this.dateTimeProvider = dateTimeProvider;
         }
 
         public string GetScreenShotName(ScreenShotType type)
@@ -48,10 +47,10 @@ namespace ESLTracker.Utils
             {
                 case ScreenShotType.Regular:
                     nameTemplate = nameTemplate.Replace("{d", "{0");
-                    return string.Format(nameTemplate, trackerFactory.GetDateTimeNow());
+                    return string.Format(nameTemplate, dateTimeProvider.DateTimeNow);
                 case ScreenShotType.Pack:
                     nameTemplate = nameTemplate.Replace("{d", "{0").Replace("{n", "{1");
-                    return string.Format(nameTemplate, trackerFactory.GetDateTimeNow(), trackerFactory.GetTracker().Packs.Count);
+                    return string.Format(nameTemplate, dateTimeProvider.DateTimeNow, tracker.Packs.Count);
                 default:
                     throw new NotImplementedException("Unknown screenshot type" + type);
             }

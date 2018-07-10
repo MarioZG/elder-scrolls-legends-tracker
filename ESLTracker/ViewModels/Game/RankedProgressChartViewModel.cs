@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+﻿using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Media;
 
 namespace ESLTracker.ViewModels.Game
 {
@@ -95,16 +95,11 @@ namespace ESLTracker.ViewModels.Game
         private IList<string> labelsDetailed;
         private IList<string> labels;
 
+        ITracker tracker;
 
-
-
-        public RankedProgressChartViewModel() : this(TrackerFactory.DefaultTrackerFactory)
+        public RankedProgressChartViewModel(ISettings settings, IDateTimeProvider dateTimeProvider, ITracker tracker) : base(settings, dateTimeProvider)
         {
-
-        }
-
-        public RankedProgressChartViewModel(ITrackerFactory trackerFactory) : base(trackerFactory)
-        {
+            this.tracker = tracker;
             this.gameType = GameType.PlayRanked;
             Formatter = value => ((PlayerRank)(12 - (((int)value +2 ) / RankJump))).ToString();
         }
@@ -116,7 +111,7 @@ namespace ESLTracker.ViewModels.Game
 
         public override dynamic GetDataSet()
         {
-            var games = trackerFactory.GetTracker()
+            var games = tracker
                  .Games
                  .Where(g => g.Type == GameType.PlayRanked
                         && ((filterDateFrom == null) || (g.Date.Date >= filterDateFrom))

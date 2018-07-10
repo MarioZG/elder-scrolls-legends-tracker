@@ -12,6 +12,9 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using ESLTrackerTests;
 using ESLTracker.Services;
+using ESLTrackerTests.Builders;
+using ESLTracker.BusinessLogic.Decks;
+using ESLTracker.Utils.SimpleInjector;
 
 namespace ESLTracker.Utils.FileUpdaters.Tests
 {
@@ -23,27 +26,39 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
         {
             //Mock<ITracker> tracker = new Mock<ITracker>();
 
-            Deck d1 = new Deck();
-            d1.CreateVersion(1, 0, DateTime.Now);
+            new MasserContainer();
+
+            DeckService deckService = MasserContainer.Container.GetInstance<DeckService>();
+
+            Deck d1 = new DeckBuilder().Build();
+            deckService.CreateDeckVersion(d1, 1, 0, DateTime.Now);
             foreach (var trans in CardsDatabase.GuidTranslation) {
-                d1.SelectedVersion.Cards.Add(new CardInstance(new Card() { Id = Guid.Parse(trans.Key) }));
+                d1.SelectedVersion.Cards.Add(new CardInstanceBuilder()
+                    .WithCard( new CardBuilder().WithId(Guid.Parse(trans.Key)).Build())
+                    .Build());
             }
-            d1.CreateVersion(1, 1, DateTime.Now);
+            deckService.CreateDeckVersion(d1, 1, 1, DateTime.Now);
             foreach (var trans in CardsDatabase.GuidTranslation)
             {
-                d1.SelectedVersion.Cards.Add(new CardInstance(new Card() { Id = Guid.Parse(trans.Key) }));
+                d1.SelectedVersion.Cards.Add(new CardInstanceBuilder()
+                    .WithCard(new CardBuilder().WithId(Guid.Parse(trans.Key)).Build())
+                    .Build());
             }
-            d1.CreateVersion(1, 2, DateTime.Now);
+            deckService.CreateDeckVersion(d1, 1, 2, DateTime.Now);
             foreach (var trans in CardsDatabase.GuidTranslation)
             {
-                d1.SelectedVersion.Cards.Add(new CardInstance(new Card() { Id = Guid.Parse(trans.Key) }));
+                d1.SelectedVersion.Cards.Add(new CardInstanceBuilder()
+                    .WithCard(new CardBuilder().WithId(Guid.Parse(trans.Key)).Build())
+                    .Build());
             }
 
-            Deck d2 = new Deck();
-            d2.CreateVersion(1, 0, DateTime.Now);
+            Deck d2 = new DeckBuilder().Build();
+            deckService.CreateDeckVersion(d2, 1, 0, DateTime.Now);
             foreach (var trans in CardsDatabase.GuidTranslation)
             {
-                d2.SelectedVersion.Cards.Add(new CardInstance(new Card() { Id = Guid.Parse(trans.Key) }));
+                d2.SelectedVersion.Cards.Add(new CardInstanceBuilder()
+                    .WithCard(new CardBuilder().WithId(Guid.Parse(trans.Key)).Build())
+                    .Build());
             }
 
             Tracker tracker = new Tracker();
@@ -52,19 +67,29 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
 
             foreach (var trans in CardsDatabase.GuidTranslation)
             {
-                tracker.Rewards.Add(new Reward() { CardInstance = new CardInstance(new Card() { Id = Guid.Parse(trans.Key) }), Quantity = 2, Type = DataModel.Enums.RewardType.Card });
+                tracker.Rewards.Add(new RewardBuilder()
+                        .WithCardInstance(
+                            new CardInstanceBuilder()
+                            .WithCard(
+                                    new CardBuilder().WithId(Guid.Parse(trans.Key)).Build()
+                            ).Build())
+                        .WithQuantity(2)
+                        .WithType(DataModel.Enums.RewardType.Card)
+                        .Build());
             }
 
             Pack pack = new Pack();
             foreach (var trans in CardsDatabase.GuidTranslation)
             {
-                pack.Cards.Add(new CardInstance(new Card() { Id = Guid.Parse(trans.Key) }));
+                pack.Cards.Add(new CardInstanceBuilder()
+                    .WithCard(new CardBuilder().WithId(Guid.Parse(trans.Key)).Build())
+                    .Build());
             }
 
             tracker.Packs.Add(pack);
 
             string dataFileName = "./data" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xml";
-            new FileManager().SaveDatabase(dataFileName, tracker);
+            new FileManager(null, null, null, null, null, null, null).SaveDatabase(dataFileName, tracker);
 
 
             XmlDocument xmlDoc = new XmlDocument();

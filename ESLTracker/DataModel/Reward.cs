@@ -8,15 +8,6 @@ namespace ESLTracker.DataModel
 {
     public class Reward : ViewModelBase
     {
-        public Reward() : this(TrackerFactory.DefaultTrackerFactory)
-        {
-        }
-
-        internal Reward(ITrackerFactory factory)
-        {
-            Date = factory.GetDateTimeNow();
-        }
-
         public RewardReason Reason { get; set; }
 
         private RewardType type;
@@ -78,6 +69,12 @@ namespace ESLTracker.DataModel
                 }
             }
         
+        }
+
+        [Obsolete("Use factory in production code or deckbuilder in unit tests to create new decks")]
+        public Reward()
+        {
+       
         }
     }
 }

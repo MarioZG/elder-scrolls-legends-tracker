@@ -12,6 +12,13 @@ namespace ESLTracker.Utils.FileUpdaters
     [SerializableVersion(2, 3)]
     public class Update_2_3_To_3_0 : UpdateBase
     {
+        private readonly ICardsDatabase cardsDatabase;
+
+        public Update_2_3_To_3_0(ICardsDatabase cardsDatabase)
+        {
+            this.cardsDatabase = cardsDatabase;
+        }
+
         public override SerializableVersion TargetVersion { get; } = new SerializableVersion(3, 0);
 
         protected override void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker)
@@ -24,8 +31,7 @@ namespace ESLTracker.Utils.FileUpdaters
 
         public void SetPacksToCore(ITracker tracker)
         {
-            ICardsDatabase cardsDb = TrackerFactory.DefaultTrackerFactory.GetService<ICardsDatabase>();
-            CardSet core = cardsDb.CardSets.Where(cs => cs.Name == "Core").Single();
+            CardSet core = cardsDatabase.CardSets.Where(cs => cs.Name == "Core").Single();
             foreach (Pack p in tracker.Packs)
             {
                 p.CardSet = core;

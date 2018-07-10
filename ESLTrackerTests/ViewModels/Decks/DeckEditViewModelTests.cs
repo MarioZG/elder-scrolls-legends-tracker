@@ -12,20 +12,43 @@ using ESLTrackerTests;
 using System.Reflection;
 using System.Collections;
 using System.Collections.ObjectModel;
+using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.Services;
+using ESLTracker.BusinessLogic.Decks;
+using ESLTrackerTests.Builders;
+using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.ViewModels.Decks.Tests
 {
     [TestClass()]
     public class DeckEditViewModelTests : BaseTest
     {
+        ICardInstanceFactory mockCardInstanceFactory = new CardInstanceFactory();
+        Mock<IDeckImporter> mockDeckImporter = new Mock<IDeckImporter>();
+        Mock<ITracker> mockTracker = new Mock<ITracker>();
+        Mock<IMessenger> mockMessenger = new Mock<IMessenger>();
+        Mock<IFileManager> mockFileManager = new Mock<IFileManager>();
+        DeckService mockDeckService;// = new DeckService();
+        //IDeckVersionFactory mockDeckVersionFactory;
+
+        [TestInitialize]
+        public override void TestInitialize()
+        {
+            base.TestInitialize();
+            //  mockDeckVersionFactory = new DeckVersionFactory(mockGuidProvider.Object);
+            mockDeckService = new DeckService(
+                mockTracker.Object,
+                mockSettings.Object,
+                mockDatetimeProvider.Object, 
+                mockGuidProvider.Object);
+        }
+
         [TestMethod]
         public void CancelEditTest001()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetNewGuid()).Returns(() => Guid.NewGuid());
-
-            DeckEditViewModel model = new DeckEditViewModel();
-            Deck deck = Deck.CreateNewDeck(trackerFactory.Object);
+            DeckEditViewModel model = CreateDeckEditVM();
+            Deck deck = new DeckBuilder().WithDefaultVersion().Build();
 
             model.Deck = deck;
 
@@ -57,11 +80,22 @@ namespace ESLTracker.ViewModels.Decks.Tests
             }
         }
 
+        private DeckEditViewModel CreateDeckEditVM()
+        {
+            return new DeckEditViewModel(mockCardInstanceFactory, 
+                mockDeckImporter.Object,
+                mockTracker.Object, 
+                mockMessenger.Object, 
+                mockDatetimeProvider.Object, 
+                mockFileManager.Object, 
+                mockDeckService);
+        }
+
         [TestMethod()]
         public void EditDeckStartTest001()
         {
-            Deck deck = Deck.CreateNewDeck();
-            DeckEditViewModel model = new DeckEditViewModel();
+            DeckEditViewModel model = CreateDeckEditVM();
+            Deck deck = new DeckBuilder().WithDefaultVersion().Build();
 
             model.EditDeckStart(new Utils.Messages.EditDeck() { Deck = deck });
 
@@ -72,7 +106,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void LimitCardCountForDeckTest001_Constructed()
         {
-            DeckEditViewModel model = new DeckEditViewModel();
+            DeckEditViewModel model = CreateDeckEditVM();
 
             bool actual = model.LimitCardCountForDeck(new Deck() { Type = DataModel.Enums.DeckType.Constructed });
 
@@ -83,7 +117,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void LimitCardCountForDeckTest001_SoloArena()
         {
-            DeckEditViewModel model = new DeckEditViewModel();
+            DeckEditViewModel model = CreateDeckEditVM();
 
             bool actual = model.LimitCardCountForDeck(new Deck() { Type = DataModel.Enums.DeckType.SoloArena });
 
@@ -94,7 +128,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void LimitCardCountForDeckTest001_VersusArena()
         {
-            DeckEditViewModel model = new DeckEditViewModel();
+            DeckEditViewModel model = CreateDeckEditVM();
 
             bool actual = model.LimitCardCountForDeck(new Deck() { Type = DataModel.Enums.DeckType.VersusArena });
 
@@ -104,29 +138,25 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void SaveDeckTest001_OverwriteCurrent()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            Mock<ITracker> tracker = new Mock<ITracker>();
             ObservableCollection<Deck> deckList = new ObservableCollection<Deck>();
-            tracker.Setup(t => t.Decks).Returns(deckList);
+            mockTracker.Setup(t => t.Decks).Returns(deckList);
 
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            CardInstance card = new CardInstanceBuilder().WithCard(new CardBuilder().Build()).Build();
 
-            CardInstance card = new CardInstance(new Card(trackerFactory.Object));
-
-            Deck deck = Deck.CreateNewDeck(trackerFactory.Object, "test deck");
+            Deck deck = new DeckBuilder().WithName("test deck").WithDefaultVersion().Build();
             deck.SelectedVersion.Cards.Add(card);
 
             //  List<CardInstance> modifiedCollection = new List<CardInstance>()
             {
                 //    card, //include this and ensure it has been cloned
-                deck.SelectedVersion.Cards.Add(new CardInstance(Card.Unknown));
-                deck.SelectedVersion.Cards.Add(new CardInstance(new Card(trackerFactory.Object)));
+                deck.SelectedVersion.Cards.Add(new CardInstanceBuilder().WithCard(Card.Unknown).Build());
+                deck.SelectedVersion.Cards.Add(new CardInstanceBuilder().WithCard(new CardBuilder().Build()).Build());
             };
 
-            DeckEditViewModel model = new DeckEditViewModel();
+            DeckEditViewModel model = CreateDeckEditVM();
             model.Deck = deck;
 
-            model.SaveDeck(tracker.Object, new SerializableVersion(0, 0), deck.SelectedVersion.Cards);
+            model.SaveDeck(mockTracker.Object, new SerializableVersion(0, 0), deck.SelectedVersion.Cards);
 
             Assert.AreEqual(3, model.Deck.SelectedVersion.Cards.Count);
             Assert.AreEqual(1, model.Deck.History.Count);
@@ -135,28 +165,28 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void SaveDeckTest002_SaveMajor()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            Mock<ITracker> tracker = new Mock<ITracker>();
             ObservableCollection<Deck> deckList = new ObservableCollection<Deck>();
-            tracker.Setup(t => t.Decks).Returns(deckList);
+            mockTracker.Setup(t => t.Decks).Returns(deckList);
 
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
-            CardInstance card = new CardInstance(new Card(trackerFactory.Object));
+            CardInstance card = new CardInstanceBuilder().WithCard(new CardBuilder().Build()).Build();
 
-            Deck deck = Deck.CreateNewDeck(trackerFactory.Object, "test deck");
-            deck.Class = DataModel.Enums.DeckClass.Assassin; //any
+            Deck deck = new DeckBuilder().WithName("test deck")
+                .WithClass(DeckClass.Assassin)
+                .WithSelectedVersion(new DeckVersionBuilder().WithVersion(1,0).Build())
+                .Build();
+
             deck.SelectedVersion.Cards.Add(card);
 
-            DeckEditViewModel model = new DeckEditViewModel();
+            DeckEditViewModel model = CreateDeckEditVM();
             model.Deck = deck;
 
             model.BeginEdit();
 
-            deck.SelectedVersion.Cards.Add(new CardInstance(Card.Unknown));
-            deck.SelectedVersion.Cards.Add(new CardInstance(new Card(trackerFactory.Object)));
+            deck.SelectedVersion.Cards.Add(new CardInstanceBuilder().WithCard(Card.Unknown).Build());
+            deck.SelectedVersion.Cards.Add(new CardInstanceBuilder().WithCard(new CardBuilder().Build()).Build());
 
-            model.SaveDeck(tracker.Object, new SerializableVersion(1, 0), deck.SelectedVersion.Cards);
+            model.SaveDeck(mockTracker.Object, new SerializableVersion(1, 0), deck.SelectedVersion.Cards);
 
             Assert.AreEqual(3, model.Deck.SelectedVersion.Cards.Count);
             Assert.AreEqual(new SerializableVersion(2, 0), model.Deck.SelectedVersion.Version);
@@ -169,28 +199,28 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void SaveDeckTest003_SaveMinor()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            Mock<ITracker> tracker = new Mock<ITracker>();
             ObservableCollection<Deck> deckList = new ObservableCollection<Deck>();
-            tracker.Setup(t => t.Decks).Returns(deckList);
+            mockTracker.Setup(t => t.Decks).Returns(deckList);
 
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            CardInstance card = new CardInstanceBuilder().WithCard(new CardBuilder().Build()).Build();
 
-            CardInstance card = new CardInstance(new Card(trackerFactory.Object));
+            Deck deck = new DeckBuilder()
+                .WithName("test deck")
+                .WithClass(DeckClass.Assassin)
+                .WithDefaultVersion()
+                .Build();
 
-            Deck deck = Deck.CreateNewDeck(trackerFactory.Object, "test deck");
-            deck.Class = DataModel.Enums.DeckClass.Assassin; //any
             deck.SelectedVersion.Cards.Add(card);
 
-            DeckEditViewModel model = new DeckEditViewModel();
+            DeckEditViewModel model = CreateDeckEditVM();
             model.Deck = deck;
 
             model.BeginEdit();
 
-            deck.SelectedVersion.Cards.Add(new CardInstance(Card.Unknown));
-            deck.SelectedVersion.Cards.Add(new CardInstance(new Card(trackerFactory.Object)));
+            deck.SelectedVersion.Cards.Add(new CardInstanceBuilder().WithCard(Card.Unknown).Build());
+            deck.SelectedVersion.Cards.Add(new CardInstanceBuilder().WithCard(new CardBuilder().Build()).Build());
 
-            model.SaveDeck(tracker.Object, new SerializableVersion(0, 1), deck.SelectedVersion.Cards);
+            model.SaveDeck(mockTracker.Object, new SerializableVersion(0, 1), deck.SelectedVersion.Cards);
 
             Assert.AreEqual(3, model.Deck.SelectedVersion.Cards.Count);
             Assert.AreEqual(new SerializableVersion(1, 1), model.Deck.SelectedVersion.Version);
@@ -203,31 +233,38 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void SaveDeckTest004_SaveNotLatestVersion_CrashThatVersionExists()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(DateTime.Now);
-            Mock<ITracker> tracker = new Mock<ITracker>();
             ObservableCollection<Deck> deckList = new ObservableCollection<Deck>();
-            tracker.Setup(t => t.Decks).Returns(deckList);
+            mockTracker.Setup(t => t.Decks).Returns(deckList);
 
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
 
-            CardInstance card = new CardInstance(new Card(trackerFactory.Object));
+            CardInstance card = new CardInstanceBuilder().WithCard(new CardBuilder().Build()).Build();
 
-            Deck deck = Deck.CreateNewDeck(trackerFactory.Object, "test deck");
-            deck.Class = DataModel.Enums.DeckClass.Assassin; //any
-            deck.CreateVersion(1, 3, trackerFactory.Object.GetDateTimeNow()); //ensure its not ordered :)
-            Guid selectedVersion = deck.CreateVersion(1, 1, trackerFactory.Object.GetDateTimeNow()).VersionId;
-            deck.CreateVersion(1, 2, trackerFactory.Object.GetDateTimeNow());
+
+            DeckVersion dv1 = new DeckVersionBuilder().WithVersion(1, 3).Build(); //ensure its not ordered :)
+            DeckVersion dv2 = new DeckVersionBuilder().WithVersion(1, 1).Build(); //ensure its not ordered :)
+            DeckVersion dv3 = new DeckVersionBuilder().WithVersion(1, 2).Build(); //ensure its not ordered :)
+
+            Guid selectedVersion = dv2.VersionId;
+
+            Deck deck = new DeckBuilder()
+                .WithDefaultVersion()
+                .WithName("test deck")
+                .WithClass(DeckClass.Assassin)
+                .WithVersion(dv1)
+                .WithSelectedVersion(dv2)
+                .WithVersion(dv3)
+                .Build();
+
 
             deck.SelectedVersionId = selectedVersion; //select 1.1
 
-            DeckEditViewModel model = new DeckEditViewModel();
+            DeckEditViewModel model = CreateDeckEditVM();
             model.Deck = deck;
 
             model.BeginEdit();
 
             //tray save as 1.2
-            model.SaveDeck(tracker.Object, new SerializableVersion(0, 1), deck.SelectedVersion.Cards);
+            model.SaveDeck(mockTracker.Object, new SerializableVersion(0, 1), deck.SelectedVersion.Cards);
 
             Assert.AreEqual(new SerializableVersion(1, 4), model.Deck.SelectedVersion.Version);
             Assert.AreEqual(5, model.Deck.History.Count);
@@ -236,31 +273,35 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void SaveDeckTest005_SaveNotLatestVersion_EnsureNewMajorHaveMinor_0()
         {
-            Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
-            trackerFactory.Setup(tf => tf.GetDateTimeNow()).Returns(DateTime.Now);
-            Mock<ITracker> tracker = new Mock<ITracker>();
             ObservableCollection<Deck> deckList = new ObservableCollection<Deck>();
-            tracker.Setup(t => t.Decks).Returns(deckList);
+            mockTracker.Setup(t => t.Decks).Returns(deckList);
 
-            trackerFactory.Setup(tf => tf.GetTracker()).Returns(tracker.Object);
+            CardInstance card = new CardInstanceBuilder().WithCard(new CardBuilder().Build()).Build();
 
-            CardInstance card = new CardInstance(new Card(trackerFactory.Object));
+            DeckVersion dv1 = new DeckVersionBuilder().WithVersion(1, 3).Build(); //ensure its not ordered :)
+            DeckVersion dv2 = new DeckVersionBuilder().WithVersion(1, 1).Build(); //ensure its not ordered :)
+            DeckVersion dv3 = new DeckVersionBuilder().WithVersion(1, 2).Build(); //ensure its not ordered :)
 
-            Deck deck = Deck.CreateNewDeck(trackerFactory.Object, "test deck");
-            deck.Class = DataModel.Enums.DeckClass.Assassin; //any
-            deck.CreateVersion(1, 3, trackerFactory.Object.GetDateTimeNow()); //ensure its not ordered :)
-            Guid selectedVersion = deck.CreateVersion(1, 1, trackerFactory.Object.GetDateTimeNow()).VersionId;
-            deck.CreateVersion(1, 2, trackerFactory.Object.GetDateTimeNow());
+            Guid selectedVersion = dv2.VersionId;
+
+            Deck deck = new DeckBuilder()
+                .WithDefaultVersion()
+                .WithName("test deck")
+                .WithClass(DeckClass.Assassin)
+                .WithVersion(dv1)
+                .WithVersion(dv2)
+                .WithVersion(dv3)
+                .Build();
 
             deck.SelectedVersionId = selectedVersion; //select 1.1
 
-            DeckEditViewModel model = new DeckEditViewModel();
+            DeckEditViewModel model = CreateDeckEditVM();
             model.Deck = deck;
 
             model.BeginEdit();
 
             //tray save as 1.2
-            model.SaveDeck(tracker.Object, new SerializableVersion(1, 0), deck.SelectedVersion.Cards);
+            model.SaveDeck(mockTracker.Object, new SerializableVersion(1, 0), deck.SelectedVersion.Cards);
 
             Assert.AreEqual(new SerializableVersion(2, 0), model.Deck.SelectedVersion.Version);
             Assert.AreEqual(5, model.Deck.History.Count);
@@ -269,32 +310,32 @@ namespace ESLTracker.ViewModels.Decks.Tests
         [TestMethod()]
         public void CalculateDeckChangesTest001()
         {
-            Card c1 = new Card() { Name = "c1", Id = Guid.NewGuid() };
-            Card c2 = new Card() { Name = "c2", Id = Guid.NewGuid() };
-            Card c3 = new Card() { Name = "c3", Id = Guid.NewGuid() };
-            Card c4 = new Card() { Name = "c4", Id = Guid.NewGuid() };
-            Card c5 = new Card() { Name = "c5", Id = Guid.NewGuid() };
+            Card c1 = new CardBuilder().WithName("c1").WithId(Guid.NewGuid()).Build();
+            Card c2 = new CardBuilder().WithName("c2").WithId(Guid.NewGuid()).Build();
+            Card c3 = new CardBuilder().WithName("c3").WithId(Guid.NewGuid()).Build();
+            Card c4 = new CardBuilder().WithName("c4").WithId(Guid.NewGuid()).Build();
+            Card c5 = new CardBuilder().WithName("c5").WithId(Guid.NewGuid()).Build();
 
             ObservableCollection<CardInstance> coll1 = new ObservableCollection<CardInstance>();
-            coll1.Add(new CardInstance(c1) { Quantity = 2 });
-            coll1.Add(new CardInstance(c2) { Quantity = 2 });
-            coll1.Add(new CardInstance(c3) { Quantity = 3 });
-            coll1.Add(new CardInstance(c4) { Quantity = 3 });
+            coll1.Add(new CardInstanceBuilder().WithCard(c1).WithQuantity(2).Build());
+            coll1.Add(new CardInstanceBuilder().WithCard(c2).WithQuantity(2).Build());
+            coll1.Add(new CardInstanceBuilder().WithCard(c3).WithQuantity(3).Build());
+            coll1.Add(new CardInstanceBuilder().WithCard(c4).WithQuantity(3).Build());
 
             ObservableCollection<CardInstance> coll2 = new ObservableCollection<CardInstance>();
-            coll2.Add(new CardInstance(c2) { Quantity = 2 });
-            coll2.Add(new CardInstance(c3) { Quantity = 1 });
-            coll2.Add(new CardInstance(c4) { Quantity = 3 });
-            coll2.Add(new CardInstance(c5) { Quantity = 2 });
+            coll2.Add(new CardInstanceBuilder().WithCard(c2).WithQuantity(2).Build());
+            coll2.Add(new CardInstanceBuilder().WithCard(c3).WithQuantity(1).Build());
+            coll2.Add(new CardInstanceBuilder().WithCard(c4).WithQuantity(3).Build());
+            coll2.Add(new CardInstanceBuilder().WithCard(c5).WithQuantity(2).Build());
 
             ObservableCollection<CardInstance> expected = new ObservableCollection<CardInstance>();
-            expected.Add(new CardInstance(c1) { Quantity = 2 });
+            expected.Add(new CardInstanceBuilder().WithCard(c1).WithQuantity(2).Build());
             //c2 - no changes not in a list
-            expected.Add(new CardInstance(c3) { Quantity = 2 });
+            expected.Add(new CardInstanceBuilder().WithCard(c3).WithQuantity(2).Build());
             //c4 - no changes not in a list
-            expected.Add(new CardInstance(c5) { Quantity = -2 });
+            expected.Add(new CardInstanceBuilder().WithCard(c5).WithQuantity(-2).Build());
 
-            var actual = new DeckEditViewModel().CalculateDeckChanges(coll1, coll2);
+            var actual = CreateDeckEditVM().CalculateDeckChanges(coll1, coll2);
             CollectionAssert.AreEqual(expected, actual,
                 Comparer<CardInstance>.Create((x, y) => x.CardId == y.CardId && x.Quantity == y.Quantity ? 0 : 1),
                 "{0}Actual:{0}{1}; {0}Expected:{0}{2}",

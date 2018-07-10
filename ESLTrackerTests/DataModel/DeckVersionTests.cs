@@ -174,16 +174,14 @@ namespace ESLTracker.DataModel.Tests
         public void EqualsTest011_comparesAllFields()
         {
             Guid guid = Guid.NewGuid(); //ensure have same guids
-            Mock<ITrackerFactory> factory = new Mock<ITrackerFactory>();
-            factory.Setup(f => f.GetDateTimeNow()).Returns(new DateTime(2017, 1, 3, 23, 44, 0));
-            factory.Setup(f => f.GetNewGuid()).Returns(guid);
+            mockDatetimeProvider.SetupGet(f => f.DateTimeNow).Returns(new DateTime(2017, 1, 3, 23, 44, 0));
 
             foreach (PropertyInfo p in typeof(DeckVersion).GetProperties())
             {
                 if (p.CanWrite)
                 {
-                    DeckVersion d1 = new DeckVersion(factory.Object);
-                    DeckVersion d2 = new DeckVersion(factory.Object);
+                    DeckVersion d1 = new DeckVersion();
+                    DeckVersion d2 = new DeckVersion();
 
                     TestContext.WriteLine("Checking prop:" + p.Name);
 

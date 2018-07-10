@@ -5,10 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
-             mc:Ignorable="d">
-    <UserControl.DataContext>
-        <ViewModels:DeckTypeSelectorViewModel/>
-    </UserControl.DataContext>
+             mc:Ignorable="d"
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckTypeSelectorViewModel]}"
+             >
     <StackPanel>
     <UniformGrid Columns="3">
         <ToggleButton x:Name="btnConstructed" 

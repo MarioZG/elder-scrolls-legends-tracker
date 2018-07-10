@@ -9,10 +9,11 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d" 
              x:Name="cardEditor"
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Cards.CardListEditorViewModel]}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
-        <ViewModels:CardListEditorViewModel/>
-    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary Source="/ControlStyle.xaml"/>
+    </UserControl.Resources>
     <UserControl.InputBindings>
         <KeyBinding Gesture="Ctrl+1" Command="{Binding CommandAddCardToDeck}" CommandParameter="1"/>
         <KeyBinding Gesture="Ctrl+2" Command="{Binding CommandAddCardToDeck}" CommandParameter="2"/>

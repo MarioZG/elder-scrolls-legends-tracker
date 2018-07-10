@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
+using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels.Rewards;
 
 namespace ESLTracker.Controls.Rewards

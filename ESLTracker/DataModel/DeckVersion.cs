@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.BusinessLogic.General;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 
@@ -20,18 +21,6 @@ namespace ESLTracker.DataModel
 
         public DateTime CreatedDate { get; set; }
 
-        private ITrackerFactory trackerFactory;
-
-        public DeckVersion() : this(TrackerFactory.DefaultTrackerFactory)
-        {
-
-        }
-
-        public DeckVersion(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            VersionId = trackerFactory.GetNewGuid();
-        }
 
         public override int GetHashCode()
         {

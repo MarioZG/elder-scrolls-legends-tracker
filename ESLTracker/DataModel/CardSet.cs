@@ -1,5 +1,6 @@
 ﻿using ESLTracker.Services;
 using ESLTracker.Utils;
+using ESLTracker.Utils.SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace ESLTracker.DataModel
 
         public static explicit operator CardSet(string name)
         {
-            var cardDatabase = TrackerFactory.DefaultTrackerFactory.GetService<ICardsDatabase>();
+            var cardDatabase = MasserContainer.Container.GetInstance<ICardsDatabase>();
             return cardDatabase.CardSets.Where(cs => cs.Name.ToLower() == name.ToLower()).SingleOrDefault();
         }
 

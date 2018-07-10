@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Services;
@@ -57,19 +58,15 @@ namespace ESLTracker.ViewModels.Decks
             set { showControl = value; RaisePropertyChangedEvent("ShowControl"); }
         }
 
-        private IMessenger messanger;
-        ITracker tracker;
+        private readonly IMessenger messanger;
+        private readonly ITracker tracker;
+        private readonly DeckCalculations deckCalculations;
 
-
-        public DeckStatsViewModel() : this(new TrackerFactory())
+        public DeckStatsViewModel(ITracker tracker, IMessenger messanger, DeckCalculations deckCalculations)
         {
-
-        }
-
-        public DeckStatsViewModel(ITrackerFactory trackerFactory)
-        {
-            this.messanger = trackerFactory.GetService<IMessenger>();
-            tracker = trackerFactory.GetTracker();
+            this.messanger = messanger;
+            this.tracker = tracker;
+            this.deckCalculations = deckCalculations;
 
             if (tracker.ActiveDeck != null)
             {
@@ -91,8 +88,8 @@ namespace ESLTracker.ViewModels.Decks
 
         private void RefreshData()
         {
-            WinRatioVsClass = tracker.ActiveDeck.GetDeckVsClass();
-            ActiveDeckGames = new ObservableCollection<DataModel.Game>(tracker.ActiveDeck.DeckGames.OrderByDescending(g=> g.Date));
+            WinRatioVsClass = deckCalculations.GetDeckVsClass(tracker.ActiveDeck, null);
+            ActiveDeckGames = new ObservableCollection<DataModel.Game>(deckCalculations.GetDeckGames(tracker.ActiveDeck).OrderByDescending(g=> g.Date));
             RaisePropertyChangedEvent("WinRatioVsClass");
 
             //hide if no games

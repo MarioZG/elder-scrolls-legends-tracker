@@ -8,22 +8,29 @@ using System.Threading.Tasks;
 using Moq;
 using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
+using ESLTracker.Services;
 
 namespace ESLTracker.Utils.FileUpdaters.Tests
 {
     [TestClass()]
-    public class Update_2_3_To_3_0Tests
+    public class Update_2_3_To_3_0Tests 
     {
         [TestMethod()]
         public void SetDeckLastUsedTest001()
         {
             Mock<ITracker> tracker = new Mock<ITracker>();
+            Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
+            cardsDatabase.SetupGet(cd => cd.CardSets).Returns(new List<CardSet>()
+            {
+                new CardSet() { Name  = "Core"},
+                new CardSet() { Name  = "other set"},
+            });
 
             var packs = Enumerable.Range(0, 100).Select(i => new Pack());
             
             tracker.Setup(t => t.Packs).Returns(new ObservableCollection<Pack>(packs));
 
-            Update_2_3_To_3_0 updater = new Update_2_3_To_3_0();
+            Update_2_3_To_3_0 updater = new Update_2_3_To_3_0(cardsDatabase.Object);
             updater.SetPacksToCore(tracker.Object);
 
             Assert.IsFalse(tracker.Object.Packs.Any( p=> p.CardSet == null));

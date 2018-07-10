@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.BusinessLogic.General;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
 using ESLTracker.Services;
 using ESLTracker.Utils;
-using ESLTracker.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ESLTracker.ViewModels.Packs
 {
@@ -33,9 +33,7 @@ namespace ESLTracker.ViewModels.Packs
             {
 
                 RaisePropertyChangedEvent(nameof(CardNamesList));
-                Pack.Cards = new ObservableCollection<CardInstance>(new List<CardInstance>()
-                    { new CardInstance(), new CardInstance(), new CardInstance(),
-                      new CardInstance(), new CardInstance(), new CardInstance()});
+                Pack.Cards = new ObservableCollection<CardInstance>(cardInstanceFactory.CreateEmptyPack());
                 Pack.SetUpChangeEvents();
                 RaisePropertyChangedEvent(String.Empty);
             }
@@ -78,32 +76,43 @@ namespace ESLTracker.ViewModels.Packs
             get { return cardsDatabase.CardSets.Where(cs => cs.HasPacks).ToList(); }
         }
 
-        private TrackerFactory trackerFactory;
+        ICardInstanceFactory cardInstanceFactory;
         ISettings settings;
         ICardsDatabase cardsDatabase;
+        ScreenShot screenShot;
+        ITracker tracker;
+        IDateTimeProvider dateTimeProvider;
+        IFileManager fileManager;
+        ScreenshotNameProvider screenshotNameProvider;
 
-        public OpenPackViewModel() : this(new TrackerFactory())
+        public OpenPackViewModel(
+            ICardInstanceFactory cardInstanceFactory,
+            ICardsDatabase cardsDatabase,
+            ISettings settings,
+            ITracker tracker,
+            IDateTimeProvider dateTimeProvider,
+            IFileManager fileManager,
+            ScreenShot screenShot,
+            ScreenshotNameProvider screenshotNameProvider)
         {
-            
-        }
-
-        public OpenPackViewModel(TrackerFactory trackerFactory)
-        {
+            this.cardInstanceFactory = cardInstanceFactory;
+            this.screenShot = screenShot;
             CommandSave = new RealyAsyncCommand<object>(CommandSaveExecute);
 
-            this.trackerFactory = trackerFactory;
-            settings = trackerFactory.GetService<ISettings>();
-            cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
+            this.settings = settings;
+            this.cardsDatabase = cardsDatabase;
+            this.tracker = tracker;
+            this.dateTimeProvider = dateTimeProvider;
+            this.fileManager = fileManager;
+            this.screenshotNameProvider = screenshotNameProvider;
+
 
             InitNewPack();
         }
 
         private void InitNewPack()
         {
-            Pack = new Pack(new List<CardInstance>()
-                    { new CardInstance(), new CardInstance(), new CardInstance(),
-                      new CardInstance(), new CardInstance(), new CardInstance()},
-                    true);
+            Pack = new Pack(cardInstanceFactory.CreateEmptyPack(), true);
             Pack.CardSet = GetDefaultPackSet();
         }
 
@@ -127,10 +136,9 @@ namespace ESLTracker.ViewModels.Packs
                 await Task.Factory.StartNew( () => TakePackScreenshot());
             }
             ButtonSaveLabel = "Saving pack...";
-            ITracker tracker = trackerFactory.GetTracker();
-            Pack.DateOpened = trackerFactory.GetDateTimeNow();
+            Pack.DateOpened = dateTimeProvider.DateTimeNow;
             tracker.Packs.Add(Pack);
-            await Task.Factory.StartNew(() => trackerFactory.GetFileManager().SaveDatabase());
+            await Task.Factory.StartNew(() => fileManager.SaveDatabase());
             settings.Packs_LastOpenedPackSetId = Pack.CardSet.Id;
             settings.Save();
             InitNewPack();
@@ -143,8 +151,8 @@ namespace ESLTracker.ViewModels.Packs
 
         public async Task TakePackScreenshot()
         {
-            string fileName = new ScreenshotNameProvider().GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack);
-            await trackerFactory.GetFileManager().SaveScreenShot(fileName);
+            string fileName = screenshotNameProvider.GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Pack);
+            await screenShot.SaveScreenShot(fileName);
         }
 
         private CardSet GetDefaultPackSet()

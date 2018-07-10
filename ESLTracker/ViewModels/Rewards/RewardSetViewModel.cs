@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
+﻿using ESLTracker.BusinessLogic.Rewards;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ESLTracker.ViewModels.Rewards
 {
@@ -75,8 +71,11 @@ namespace ESLTracker.ViewModels.Rewards
             return matchSolo || matchVersus || gauntlet;
         }
 
-        private ITrackerFactory trackerFactory;
+        IAddSingleRewardViewModelFactory addSingleRewardViewModelFactory;
         ITracker tracker;
+        IDateTimeProvider datetimeProvider;
+        IFileManager fileManager;
+        IRewardFactory rewardFactory;
 
         #region commands
         public RelayCommand CommandDoneButtonPressed { get; private set; }
@@ -84,16 +83,18 @@ namespace ESLTracker.ViewModels.Rewards
         public RelayCommand CommandDeleteReward { get; private set; }
         #endregion
 
-        public RewardSetViewModel() : this(new TrackerFactory())
+        public RewardSetViewModel(
+            IAddSingleRewardViewModelFactory addSingleRewardViewModelFactory, 
+            ITracker tracker,
+            IDateTimeProvider datetimeProvider,
+            IFileManager fileManager,
+            IRewardFactory rewardFactory)
         {
-            
-        }
-
-        internal RewardSetViewModel(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-            tracker = trackerFactory.GetTracker();
-
+            this.addSingleRewardViewModelFactory = addSingleRewardViewModelFactory;
+            this.tracker = tracker;
+            this.datetimeProvider = datetimeProvider;
+            this.fileManager = fileManager;
+            this.rewardFactory = rewardFactory;
 
             CommandDoneButtonPressed = new RelayCommand(new Action<object>(DoneClicked), new Func<object, bool>(CanExecuteDone));
             CommandEditReward = new RelayCommand(new Action<object>(EditReward));
@@ -124,14 +125,14 @@ namespace ESLTracker.ViewModels.Rewards
         {
             var newRewards = RewardsAdded.Where(r => !tracker.Rewards.Contains(r));
             //fix up excaly same date
-            DateTime date = trackerFactory.GetDateTimeNow();
+            DateTime date = datetimeProvider.DateTimeNow;
             foreach (Reward r in newRewards)
             {
                 r.Date = date;
                 r.ArenaDeck = ArenaDeck;
             }
-            trackerFactory.GetTracker().Rewards.AddRange(newRewards);
-            trackerFactory.GetFileManager().SaveDatabase();
+            tracker.Rewards.AddRange(newRewards);
+            fileManager.SaveDatabase();
 
             rewards.Clear();
             RewardsEditor.Clear();
@@ -159,7 +160,7 @@ namespace ESLTracker.ViewModels.Rewards
             if (rewardReason.HasValue)
             {
                 RewardsEditor = new PropertiesObservableCollection<AddSingleRewardViewModel>(
-                    rewards.Where(r => r.Reason == rewardReason).OrderBy( r => r.Type).Select(r => new AddSingleRewardViewModel(trackerFactory) { Reward = r, ParentRewardViewModel = this }),
+                    rewards.Where(r => r.Reason == rewardReason).OrderBy( r => r.Type).Select(r => addSingleRewardViewModelFactory.Create(r, this)),
                     Rewards_CollectionChanged);
 
                 //add poteicallly missing if we are coming back
@@ -183,17 +184,17 @@ namespace ESLTracker.ViewModels.Rewards
             var indexToInsert = -1;
             indexToInsert = FindIndexToInsert(rt);
 
-            var newReward = new Reward(trackerFactory) { Type = rt, Reason = rewardReason.Value };
+            var newReward = rewardFactory.CreateReward(rt, rewardReason.Value);
             if ((indexToInsert > -1 )
                 && (indexToInsert < RewardsEditor.Count))
             {
                 rewards.Add(newReward);
-                RewardsEditor.Insert(indexToInsert, new AddSingleRewardViewModel(trackerFactory) { Reward = newReward, ParentRewardViewModel = this });
+                RewardsEditor.Insert(indexToInsert, addSingleRewardViewModelFactory.Create(newReward, this));
             }
             else
             {
                 rewards.Add(newReward);
-                RewardsEditor.Add(new AddSingleRewardViewModel(trackerFactory) { Reward = newReward, ParentRewardViewModel = this });
+                RewardsEditor.Add(addSingleRewardViewModelFactory.Create(newReward, this));
             }
             
             RaisePropertyChangedEvent(nameof(RewardsEditor));

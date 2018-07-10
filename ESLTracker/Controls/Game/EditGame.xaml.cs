@@ -17,6 +17,7 @@ using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
+using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels.Game;
 
 namespace ESLTracker.Controls.Game
@@ -56,6 +57,8 @@ namespace ESLTracker.Controls.Game
         public EditGame() 
         {
             InitializeComponent();
+
+            base.DataContext = MasserContainer.Container.GetInstance<EditGameViewModel>();
 
             //TODO: Find a way to move it to xaml!
             var nameOfPropertyInVm = "IsEditControl";

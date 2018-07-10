@@ -14,7 +14,7 @@ namespace ESLTracker.Services
         private const string ESLExeProcessName = "The Elder Scrolls Legends";
         private const string LauncherProcessName = "BethesdaNetLauncher";
 
-        public WinAPI() : this(new ProcessWrapper())
+        internal WinAPI() : this(new ProcessWrapper())
         {
         }
 

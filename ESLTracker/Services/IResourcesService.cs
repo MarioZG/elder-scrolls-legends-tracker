@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace ESLTracker.Services
 {
-    interface IResourcesService
+    public interface IResourcesService
     {
         bool ResourceExists(Uri uri);
         bool ResourceExists(string resourcePath);

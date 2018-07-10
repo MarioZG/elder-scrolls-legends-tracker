@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ESLTracker.DataModel.Enums;
+﻿using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ESLTracker.ViewModels.Game
 {
@@ -27,13 +24,7 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
-
-        public GameFilterViewModel() : this(TrackerFactory.DefaultTrackerFactory)
-        {
-
-        }
-
-        public GameFilterViewModel(ITrackerFactory trackerFactory): base (trackerFactory)
+        public GameFilterViewModel(ISettings settings, IDateTimeProvider dateTimeProvider) : base(settings, dateTimeProvider)
         {
             this.FilterDateSelectedOption = settings.GamesFilter_SelectedPredefinedDateFilter;
         }

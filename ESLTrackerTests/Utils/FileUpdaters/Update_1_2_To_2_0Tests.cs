@@ -6,29 +6,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
+using ESLTracker.BusinessLogic.Decks;
+using Moq;
+using ESLTrackerTests;
+using ESLTracker.Utils.SimpleInjector;
 
 namespace ESLTracker.Utils.FileUpdaters.Tests
 {
     [TestClass()]
-    public class Update_1_2_To_2_0Tests
+    public class Update_1_2_To_2_0Tests : BaseTest
     {
         [TestMethod()]
         public void CreateInitalHistoryForExistingDecksTest001()
         {
-#pragma warning disable CS0618 // Type or member is obsolete - dont want to create deck with history
+
+
             //create decks with emoty history
             Deck d1 = new Deck() { DoNotUse = null, SelectedVersionId = Guid.Empty };
             Deck d2 = new Deck() { DoNotUse = null, SelectedVersionId = Guid.Empty };
-#pragma warning restore CS0618 // Type or member is obsolete
 
             Tracker tracker = new Tracker();
             tracker.Decks.Add(d1);
             tracker.Decks.Add(d2);
 
+            new MasserContainer();
+            IDeckService deckService = MasserContainer.Container.GetInstance<IDeckService>();
 
-            Update_1_2_To_2_0 updater = new Update_1_2_To_2_0();
+
+            Update_1_2_To_2_0 updater = new Update_1_2_To_2_0(deckService);
 
             updater.CreateInitalHistoryForExistingDecks(tracker);
+
 
             Assert.IsNotNull(d1.DoNotUse);
             Assert.IsNotNull(d1.History);

@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ESLTracker.Utils;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Services;
-using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
+using ESLTracker.BusinessLogic.Decks;
 
 namespace ESLTracker.ViewModels.Game
 {
@@ -99,6 +100,14 @@ namespace ESLTracker.ViewModels.Game
             set { errorMessage = value; RaisePropertyChangedEvent(nameof(ErrorMessage)); }
         }
 
+        public Deck ActiveDeck
+        {
+            get
+            {
+                return tracker.ActiveDeck;
+            }
+        }
+
         public IEnumerable<string> OpponentDeckTagAutocomplete
         {
             get
@@ -155,29 +164,36 @@ namespace ESLTracker.ViewModels.Game
             set { commandExecuteWhenContinueOnError = value; RaisePropertyChangedEvent(); }
         }
 
-        ITrackerFactory trackerFactory;
         IMessenger messanger;
         ITracker tracker;
         ISettings settings;
         IWinAPI winApi;
+        IFileManager fileManager;
+        IDateTimeProvider dateTimeProvider;
+        private readonly DeckCalculations deckCalculations;
 
-        public EditGameViewModel() : this(new TrackerFactory())
+        public EditGameViewModel(
+            ITracker tracker, 
+            IMessenger messenger,
+            ISettings settings,
+            IWinAPI winApi,
+            IFileManager fileManager,
+            IDateTimeProvider dateTimeProvider,
+            DeckCalculations deckCalculations)
         {
+            this.messanger = messenger; ;
+            this.tracker = tracker;
+            this.settings = settings;
+            this.winApi = winApi;
+            this.fileManager = fileManager;
+            this.dateTimeProvider = dateTimeProvider;
+            this.deckCalculations = deckCalculations;
 
-        }
-
-        internal EditGameViewModel(ITrackerFactory trackerFactory)
-        {
-            this.trackerFactory = trackerFactory;
-
-            messanger = trackerFactory.GetService<IMessenger>();
-            tracker = trackerFactory.GetTracker();
             Game.PropertyChanged += Game_PropertyChanged;
             messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);
             messanger.Register<EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
             messanger.Register<NewDeckTagCreated>(this, RefreshTagsList);
-            this.settings = trackerFactory.GetService<ISettings>();
-            this.winApi = trackerFactory.GetService<IWinAPI>();
+
 
             this.BeginEdit();
         }
@@ -271,7 +287,7 @@ namespace ESLTracker.ViewModels.Game
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
                     Utils.Messages.EditDeck.Context.StatsUpdated);
 
-                trackerFactory.GetFileManager().SaveDatabase();
+                fileManager.SaveDatabase();
 
                 this.Game = new DataModel.Game();
 
@@ -295,7 +311,7 @@ namespace ESLTracker.ViewModels.Game
             this.Game.Deck = tracker.ActiveDeck;
             this.Game.DeckVersionId = tracker.ActiveDeck.SelectedVersionId;
             this.Game.Outcome = outcome.Value;
-            this.Game.Date = trackerFactory.GetDateTimeNow(); //game date - when it concluded (we dont know when it started)
+            this.Game.Date = dateTimeProvider.DateTimeNow; //game date - when it concluded (we dont know when it started)
             FileVersionInfo fvi = winApi.GetEslFileVersionInfo();
             if (fvi != null)
             {
@@ -386,7 +402,7 @@ namespace ESLTracker.ViewModels.Game
         {
             if ((deckClass != null) && (tracker.ActiveDeck != null))
             {
-                var res = tracker.ActiveDeck.GetDeckVsClass(deckClass);
+                var res = deckCalculations.GetDeckVsClass(tracker.ActiveDeck, deckClass);
                 dynamic data = (res as System.Collections.IEnumerable).Cast<object>().FirstOrDefault();
                 if (data == null)
                 {
@@ -440,7 +456,7 @@ namespace ESLTracker.ViewModels.Game
                     new EditDeck() { Deck = game.Deck },
                     EditDeck.Context.StatsUpdated);
 
-                trackerFactory.GetFileManager().SaveDatabase();
+                fileManager.SaveDatabase();
             }
 
             this.EndEdit();

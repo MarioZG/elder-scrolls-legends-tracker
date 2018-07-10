@@ -13,6 +13,7 @@ using System.Xml.Serialization;
 using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
+using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels;
 
 
@@ -21,10 +22,6 @@ namespace ESLTracker.DataModel
     [DebuggerDisplay("{DebuggerInfo}")]
     public class CardInstance : ViewModelBase, ICloneable
     {
-        private ITrackerFactory trackerFactory;
-        private static ICardImageService cardImageService;
-        private static ICardsDatabase cardsDatabase;
-
         public Guid CardId
         {
             get
@@ -65,7 +62,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return cardImageService.GetCardMiniature(card);
+                return MasserContainer.Container.GetInstance<ICardImageService>().GetCardMiniature(card);
             }
         }
         [XmlIgnore]
@@ -88,7 +85,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return cardImageService.GetRarityBrush(card?.Rarity);
+                return MasserContainer.Container.GetInstance<ICardImageService>().GetRarityBrush(card?.Rarity);
             }
         }
 
@@ -116,38 +113,14 @@ namespace ESLTracker.DataModel
             }
         }
 
-        public CardInstance() : this(TrackerFactory.DefaultTrackerFactory)
+        public CardInstance()
         {
 
-        }
-
-        public CardInstance(Card card) : this(card, TrackerFactory.DefaultTrackerFactory)
-        {
-
-        }
-
-        public CardInstance(ITrackerFactory trackerFactory) : this(null, trackerFactory)
-        {
-            
-        }
-
-        public CardInstance(Card card, ITrackerFactory trackerFactory)
-        {
-            this.Card = card;
-            this.trackerFactory = trackerFactory;
-            if (cardImageService == null)
-            {
-                cardImageService = trackerFactory.GetService<ICardImageService>();
-            }
-            if (cardsDatabase == null)
-            {
-                cardsDatabase = trackerFactory.GetService<ICardsDatabase>();
-            }
         }
 
         private void LoadCardFromDataBase(Guid value)
         {
-            this.Card = cardsDatabase.FindCardById(value);
+            this.Card = MasserContainer.Container.GetInstance<ICardsDatabase>().FindCardById(value);
         }
 
         public object Clone()

@@ -463,19 +463,7 @@ namespace ESLTracker.Services
         };
 
 
-        static CardsDatabase _instance;
-        [Obsolete("Use IFactory to obtain instance")]
-        public static CardsDatabase Default
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = LoadCardsDatabase("./Resources/cards.json");
-                }
-                return _instance;
-            }
-        }
+
 
         IEnumerable<Card> cards;
         public IEnumerable<Card> Cards
@@ -547,11 +535,7 @@ namespace ESLTracker.Services
             return ret;
         }
 
-        public ICardsDatabase RealoadDB()
-        {
-            _instance = LoadCardsDatabase("./Resources/cards.json");
-            return _instance;
-        }
+
 
         public CardSet FindCardSetById(Guid? value)
         {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ESLTracker.Utils.SimpleInjector;
+using ESLTracker.ViewModels.Packs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,7 @@ namespace ESLTracker.Controls.Packs
     {
         public OpenPack()
         {
+            base.DataContext = MasserContainer.Container.GetInstance<OpenPackViewModel>();
             InitializeComponent();
         }
     }

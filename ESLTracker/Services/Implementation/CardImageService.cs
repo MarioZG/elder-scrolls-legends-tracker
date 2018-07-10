@@ -24,9 +24,9 @@ namespace ESLTracker.Services
         private static Dictionary<Guid, Media.Brush> CardMiniatureCache = new Dictionary<Guid, Media.Brush>();
         IResourcesService resourceService;
 
-        public CardImageService(ITrackerFactory trackerFactory)
+        public CardImageService(IResourcesService resourceService)
         {
-            resourceService = trackerFactory.GetService<IResourcesService>();
+            this.resourceService = resourceService;
         }
 
         public Media.Brush GetCardMiniature(Card card)

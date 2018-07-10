@@ -1,74 +1,74 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-using ESLTracker.Utils.IOWrappers;
-using System.Drawing;
-using System.Windows;
+﻿using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.BusinessLogic.General;
 using ESLTracker.DataModel;
-using System.Reflection;
-using ESLTracker.Utils.FileUpdaters;
-using System.Xml;
 using ESLTracker.Properties;
 using ESLTracker.Services;
 using ESLTracker.Utils.Extensions;
+using ESLTracker.Utils.FileUpdaters;
+using ESLTracker.Utils.IOWrappers;
+using ESLTracker.Utils.SimpleInjector;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace ESLTracker.Utils
 {
     public class FileManager : IFileManager
     {
-        string DataPath
-        {
-            get
-            {
-                string dp = settings.DataPath;
-                if(String.IsNullOrWhiteSpace(dp))
-                {
-                    dp = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                    dp = Path.Combine(dp, Path.GetFileNameWithoutExtension(AppDomain.CurrentDomain.FriendlyName));
-                    settings.DataPath = dp;
-                    settings.Save();
-                }
-                return dp;
-            }
-        }
-
-        public string FullDataFilePath
-        {
-            get
-            {
-                return Path.Combine(DataPath, DataFile);
-            }
-        }
-
-        string DataFile = "data.xml";
-        string ScreenShotFolder = "Screenshot";
-
-        ITrackerFactory trackerfactory;
         ISettings settings;
+        PathManager pathManager;
+        IPathWrapper pathWrapper;
+        IDirectoryWrapper directoryWrapper;
+        IFileWrapper fileWrapper;
+        ICardsDatabaseFactory cardsDatabaseFactory;
+        ITrackerFactory trackerFactory;
 
-        public FileManager() : this(new TrackerFactory())
+        public static object _instanceLock = new object();
+        public static Tracker _instance = null;
+
+        public FileManager(
+            ISettings settings, 
+            PathManager pathManager,
+            IPathWrapper pathWrapper,
+            IDirectoryWrapper directoryWrapper,
+            IFileWrapper fileWrapper,
+            ICardsDatabaseFactory cardsDatabaseFactory,
+            ITrackerFactory trackerFactory)
         {
+            this.settings = settings;
+            this.pathManager = pathManager;
+            this.pathWrapper = pathWrapper;
+            this.directoryWrapper= directoryWrapper;
+            this.fileWrapper = fileWrapper;
+            this.cardsDatabaseFactory = cardsDatabaseFactory;
+            this.trackerFactory = trackerFactory;
         }
 
-        public FileManager(ITrackerFactory trackerfactory)
+        public ITracker GetTrackerInstance()
         {
-            this.trackerfactory = trackerfactory;
-            this.settings = trackerfactory.GetService<ISettings>();
-        }
-
+            lock(_instanceLock)
+            {
+                if(_instance == null)
+                {
+                    _instance = LoadDatabase();
+                }
+                return _instance;
+            }
+        } 
 
         public Tracker LoadDatabase(bool throwDataFileException = false)
         {
             Tracker tracker = null;
             try
             {
-                if (File.Exists(FullDataFilePath))
+                if (File.Exists(pathManager.FullDataFilePath))
                 {
-                    tracker = LoadDatabase<DataModel.Tracker>(FullDataFilePath);
+                    tracker = LoadDatabase<DataModel.Tracker>(pathManager.FullDataFilePath);
 
                     //check for data update
                     if (tracker.Version < Tracker.CurrentFileVersion)
@@ -101,7 +101,7 @@ namespace ESLTracker.Utils
                 }
                 else
                 {
-                    tracker = new Tracker(this.trackerfactory);
+                    tracker = new Tracker();
                     tracker.Version = Tracker.CurrentFileVersion;
                 }
             }
@@ -160,16 +160,7 @@ namespace ESLTracker.Utils
                 tracker = (T)xml.Deserialize(reader);
             }
 
-            //fix up ref to decks in games
-            foreach (Game g in tracker.Games)
-            {
-                g.Deck = tracker.Decks.Where(d => d.DeckId == g.DeckId).FirstOrDefault();
-            }
-            //fix up ref to decks in rewards
-            foreach (Reward r in tracker.Rewards)
-            {
-                r.ArenaDeck = tracker.Decks.Where(d => d.DeckId == r.ArenaDeckId).FirstOrDefault();
-            }
+            trackerFactory.FixUpDeserializedTracker(tracker);
 
             return tracker;
         }
@@ -177,13 +168,12 @@ namespace ESLTracker.Utils
         public void SaveDatabase()
         {
             SaveDatabase<Tracker>(
-                FullDataFilePath, 
-                trackerfactory.GetTracker() as Tracker);
+                pathManager.FullDataFilePath,
+                _instance);
         }
 
         public void SaveDatabase<T>(string path, T tracker)
         {
-            IWrapperProvider wrapperProvider = trackerfactory.GetWrapperProvider();
             //check if path exist
             if (!Directory.Exists(Path.GetDirectoryName(path)))
             {
@@ -192,7 +182,7 @@ namespace ESLTracker.Utils
             //make backup
             if (File.Exists(path))
             {
-                BackupDatabase(wrapperProvider, path);
+                BackupDatabase(path);
             }
             //standard serialization
             using (TextWriter writer = new StreamWriter(path))
@@ -202,11 +192,8 @@ namespace ESLTracker.Utils
             }
         }
 
-        public void BackupDatabase(IWrapperProvider wrapperProvider, string path)
+        public void BackupDatabase(string path)
         {
-            IPathWrapper pathWrapper = wrapperProvider.GetWrapper<IPathWrapper>();
-            IDirectoryWrapper directoryWrapper = wrapperProvider.GetWrapper<IDirectoryWrapper>();
-            IFileWrapper fileWrapper = wrapperProvider.GetWrapper<IFileWrapper>();
             //copy data.xml to data.xml.bak
             //copy data.xml to data_date.bak - it will override last dayily backup. first run of day will create new one
             string backupFileName = pathWrapper.GetFileNameWithoutExtension(path) + DateTime.Now.ToString("yyyyMMdd");
@@ -221,22 +208,18 @@ namespace ESLTracker.Utils
 
             if (! backupExists)
             {
-                ManageBackups(path, pathWrapper, directoryWrapper, fileWrapper);
+                ManageBackups(path);
             }
         }
 
-        public void ManageBackups(
-            string path, 
-            IPathWrapper pathWrapper, 
-            IDirectoryWrapper directoryWrapper,
-            IFileWrapper fileWrapper)
+        public void ManageBackups(string path)
         {
             string dataFileFilter = Path.ChangeExtension(
-                string.Format("{0}*", Path.GetFileNameWithoutExtension(DataFile)),
-                Path.GetExtension(DataFile));
+                string.Format("{0}*", Path.GetFileNameWithoutExtension(pathManager.DataFile)),
+                Path.GetExtension(pathManager.DataFile));
             var backupFiles = directoryWrapper.EnumerateFiles(
                             pathWrapper.GetDirectoryName(path),
-                            dataFileFilter).Where(f=> f != FullDataFilePath).OrderByDescending(f => f);
+                            dataFileFilter).Where(f=> f != pathManager.FullDataFilePath).OrderByDescending(f => f);
             //first save of day - delete old backups
             int backupcount = backupFiles.Count();
             int skipfiles = 7; //backups to keep
@@ -249,67 +232,7 @@ namespace ESLTracker.Utils
             }
         }
 
-        public Task SaveScreenShot(string fileName)
-        {
-            IntPtr? eslHandle = trackerfactory.GetService<IWinAPI>().GetEslProcess()?.MainWindowHandle;
-            if (eslHandle.HasValue)
-            {
-                var rect = new WinAPI.Rect();
-                WinAPI.GetWindowRect(eslHandle.Value, ref rect);
-
-                int width = rect.right - rect.left;
-                int height = rect.bottom - rect.top;
-
-                var bmp = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                Graphics gfxBmp = Graphics.FromImage(bmp);
-
-                List<Window> hiddenWindows = new List<Window>();
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    foreach (Window w in Application.Current.Windows)
-                    {
-                        // System.Diagnostics.Debugger.Log(1, "", "w"+ w.Title);
-                        // System.Diagnostics.Debugger.Log(1, "", "  w.IsActive" + w.IsActive);
-                        // System.Diagnostics.Debugger.Log(1, "", "   w.Topmost" + w.Topmost);
-                        // System.Diagnostics.Debugger.Log(1, "", Environment.NewLine) ;
-                        if (w.IsActive) //if other if visible - cannot do anything; otherwise if it was in back, it would be show at the top:/...
-                        {
-                            w.Hide();
-                            hiddenWindows.Add(w);
-                        }
-                    }
-                });
-                WinAPI.SetForegroundWindow(eslHandle.Value);
-                gfxBmp.CopyFromScreen(
-                    rect.left,
-                    rect.top,
-                    0,
-                    0,
-                    new System.Drawing.Size(width, height),
-                    CopyPixelOperation.SourceCopy);
-
-                foreach (Window w in hiddenWindows)
-                {
-                    w.Dispatcher.Invoke(() => w.Show());
-                }
-
-                string path = Path.Combine(
-                    DataPath,
-                    ScreenShotFolder,
-                    Path.ChangeExtension(fileName,"png")
-                    );
-                if (!Directory.Exists(Path.GetDirectoryName(path)))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(path));
-                }
-                bmp.Save(path, System.Drawing.Imaging.ImageFormat.Png);
-
-                gfxBmp.Dispose();
-
-            }
-
-            return Task.FromResult<object>(null);
-        }
+       
 
         internal bool UpdateFile()
         {
@@ -328,15 +251,15 @@ namespace ESLTracker.Utils
                 //no updater found, or too many
                 return false;
             }
-            IFileUpdater updater = (IFileUpdater)Activator.CreateInstance(updaterTypes.First());
-            return updater.UpdateFile(this.FullDataFilePath, tracker);
+            IFileUpdater updater = (IFileUpdater)MasserContainer.Container.GetInstance(updaterTypes.First());
+            return updater.UpdateFile(pathManager.FullDataFilePath, tracker);
         }
 
 
         private SerializableVersion ReadCurrentFileVersionFromXML()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(FullDataFilePath);
+            doc.Load(pathManager.FullDataFilePath);
             XmlNode versionNode = doc.SelectSingleNode("/Tracker/Version");
 
             return ParseCurrentFileVersion(versionNode);
@@ -383,12 +306,10 @@ namespace ESLTracker.Utils
         public ICardsDatabase UpdateCardsDB(string newContent)
         {
             string fileName = ".\\Resources\\cards.json";
-            IFileWrapper fileWrapper = trackerfactory.GetService<IFileWrapper>();
-            ICardsDatabase cardsDatabase = trackerfactory.GetService<ICardsDatabase>();
 
             string backupFileName = string.Format("{0}_{1}{2}", 
                 Path.GetFileNameWithoutExtension(fileName),
-                cardsDatabase.Version,
+                cardsDatabaseFactory.GetCardsDatabase().Version,
                 Path.GetExtension(fileName)); //includes . 
             backupFileName = Path.Combine(Path.GetDirectoryName(fileName), backupFileName);
 
@@ -399,7 +320,7 @@ namespace ESLTracker.Utils
             fileWrapper.Move(fileName, backupFileName);
 
             fileWrapper.WriteAllText(fileName, newContent);
-            return cardsDatabase.RealoadDB();
+            return cardsDatabaseFactory.RealoadDB();
         }
 
 

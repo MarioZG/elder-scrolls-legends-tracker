@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Drawing = System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using ESLTracker.BusinessLogic.General;
+using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
+using ESLTracker.Utils.SimpleInjector;
+using ESLTracker.Windows;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using ESLTracker.Utils;
-using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.Controls
 {
@@ -37,7 +30,14 @@ namespace ESLTracker.Controls
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(OverlayWindowTitlebar), new PropertyMetadata(String.Empty));
 
+        static IScreenShot screenShot;
+        static ScreenshotNameProvider screenshotNameProvider;
 
+        static OverlayWindowTitlebar()
+        {
+            screenShot = MasserContainer.Container.GetInstance<ScreenShot>();
+            screenshotNameProvider = MasserContainer.Container.GetInstance<ScreenshotNameProvider>();
+        }
 
         public OverlayWindowTitlebar()
         {
@@ -70,8 +70,8 @@ namespace ESLTracker.Controls
 
         private void btnScreenShot_Click(object sender, RoutedEventArgs e)
         {
-            string fileName = new ScreenshotNameProvider().GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Regular);
-            Task.Factory.StartNew(() => new FileManager(new TrackerFactory()).SaveScreenShot(fileName));
+            string fileName = screenshotNameProvider.GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Regular);
+            Task.Factory.StartNew(() => screenShot.SaveScreenShot(fileName));
         }
 
         private void btnShowMainWindow_Click(object sender, RoutedEventArgs e)
