@@ -1,7 +1,9 @@
 ﻿using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.DataModel;
+using ESLTracker.Properties;
 using ESLTracker.Services;
 using ESLTracker.Utils.Messages;
+using System;
 using System.Linq;
 
 namespace ESLTracker.BusinessLogic.General
@@ -10,11 +12,13 @@ namespace ESLTracker.BusinessLogic.General
     {
         IMessenger messenger;
         FileLoader fileLoader;
+        ISettings settings;
 
-        public TrackerFactory(IMessenger messenger, FileLoader fileLoader)
+        public TrackerFactory(IMessenger messenger, FileLoader fileLoader, ISettings settings)
         {
             this.messenger = messenger;
             this.fileLoader = fileLoader;
+            this.settings = settings;
         }
 
         public static object _instanceLock = new object();
@@ -28,8 +32,20 @@ namespace ESLTracker.BusinessLogic.General
                 {
                     _instance = fileLoader.LoadDatabase();
                     FixUpDeserializedTracker(_instance);
+                    SetActiveDeck(_instance);
                 }
                 return _instance;
+            }
+        }
+
+        private void SetActiveDeck(ITracker tracker)
+        {
+            //restore active deck
+            Guid? activeDeckFromSettings = settings.LastActiveDeckId;
+            if ((activeDeckFromSettings != null)
+                && (activeDeckFromSettings != Guid.Empty))
+            {
+                tracker.ActiveDeck = tracker.Decks.Where(d => d.DeckId == activeDeckFromSettings).FirstOrDefault();
             }
         }
 
@@ -57,6 +73,7 @@ namespace ESLTracker.BusinessLogic.General
 
             //hook up active deck changed event
             tracker.PropertyChanged += ActiveDeckChanged;
+
         }
 
         private void ActiveDeckChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

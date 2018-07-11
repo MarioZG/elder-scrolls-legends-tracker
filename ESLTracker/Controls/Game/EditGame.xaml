@@ -13,6 +13,7 @@
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Game" 
              xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              x:Class="ESLTracker.Controls.Game.EditGame"
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Game.EditGameViewModel]}"
              mc:Ignorable="d" 
              x:Name="editGame"
              d:DesignHeight="300" d:DesignWidth="300">

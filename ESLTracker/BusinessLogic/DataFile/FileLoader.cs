@@ -52,14 +52,6 @@ namespace ESLTracker.BusinessLogic.DataFile
                             string.Format("You are using old version of application. If you continue you might loose data!" + Environment.NewLine + Environment.NewLine + "Press Yes to start anyway (and potencailly loose data), No to cancel." + Environment.NewLine + Environment.NewLine + " File version={0}. Application works with {1}", tracker.Version, Tracker.CurrentFileVersion),
                             true);
                     }
-
-                    //restore active deck
-                    Guid? activeDeckFromSettings = settings.LastActiveDeckId;
-                    if ((activeDeckFromSettings != null)
-                        && (activeDeckFromSettings != Guid.Empty))
-                    {
-                        tracker.ActiveDeck = tracker.Decks.Where(d => d.DeckId == activeDeckFromSettings).FirstOrDefault();
-                    }
                 }
                 else
                 {

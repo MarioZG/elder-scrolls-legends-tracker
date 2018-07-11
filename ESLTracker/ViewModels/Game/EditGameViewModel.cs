@@ -217,6 +217,7 @@ namespace ESLTracker.ViewModels.Game
                         savedState.DeckVersionId = tracker.ActiveDeck.SelectedVersionId;
                     }
                     RaisePropertyChangedEvent(nameof(AllowedGameTypes));
+                    RaisePropertyChangedEvent(nameof(ActiveDeck));
                 }                
             }
         }

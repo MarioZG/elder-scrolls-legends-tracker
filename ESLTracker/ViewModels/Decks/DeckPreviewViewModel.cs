@@ -89,6 +89,8 @@ namespace ESLTracker.ViewModels.Decks
             this.cardInstanceFactory = cardInstanceFactory;
             this.messanger = messanger;
             this.tracker = tracker;
+
+            messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);
         }
 
         internal ObservableCollection<CardInstance> CalculateDeckChanges(ObservableCollection<CardInstance> cards1, ObservableCollection<CardInstance> cards2)
@@ -110,6 +112,15 @@ namespace ESLTracker.ViewModels.Decks
             }
 
             return new ObservableCollection<CardInstance>(result.Where( ci=> ci.Quantity != 0));
+        }
+
+        private void ActiveDeckChanged(ActiveDeckChanged obj)
+        {
+            if (obj.ActiveDeck != null) //null when filter on decklist is refreshed
+            {
+                Deck = obj.ActiveDeck;
+                RaisePropertyChangedEvent();
+            }
         }
 
     }

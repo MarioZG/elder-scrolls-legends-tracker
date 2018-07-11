@@ -2,6 +2,7 @@
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.GameClient;
+using ESLTracker.BusinessLogic.Games;
 using ESLTracker.BusinessLogic.General;
 using ESLTracker.BusinessLogic.Rewards;
 using ESLTracker.Controls;
@@ -58,7 +59,7 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IRewardFactory, RewardFactory>();
             Register<IResourcesService, ResourcesService>();
             Register<IGuidProvider, GuidProvider>();
-        //    Register<IDeckVersionFactory, DeckVersionFactory>();
+            Register<IGameFactory, GameFactory>();
             
 
 

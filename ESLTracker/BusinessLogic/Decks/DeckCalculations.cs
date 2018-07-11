@@ -20,7 +20,7 @@ namespace ESLTracker.BusinessLogic.Decks
 
         public virtual IEnumerable<Game> GetDeckGames(Deck deck)
         {
-            return tracker.Games.Where(g => g.Deck.DeckId == deck.DeckId);
+            return tracker.Games.Where(g => g.Deck.DeckId == deck?.DeckId);
         }
 
         public int Victories(Deck deck)

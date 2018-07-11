@@ -57,9 +57,7 @@ namespace ESLTracker.Controls.Game
         public EditGame() 
         {
             InitializeComponent();
-
-            base.DataContext = MasserContainer.Container.GetInstance<EditGameViewModel>();
-
+            
             //TODO: Find a way to move it to xaml!
             var nameOfPropertyInVm = "IsEditControl";
             var binding = new Binding(nameOfPropertyInVm) { Mode = BindingMode.TwoWay };
