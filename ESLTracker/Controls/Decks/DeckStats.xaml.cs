@@ -25,7 +25,6 @@ namespace ESLTracker.Controls.Decks
         public DeckStats()
         {
             InitializeComponent();
-            base.DataContext = MasserContainer.Container.GetInstance<DeckStatsViewModel>();
         }
     }
 }

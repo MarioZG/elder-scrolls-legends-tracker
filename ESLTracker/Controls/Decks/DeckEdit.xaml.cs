@@ -41,7 +41,6 @@ namespace ESLTracker.Controls.Decks
         public DeckEdit()
         {
             InitializeComponent();
-            base.DataContext = MasserContainer.Container.GetInstance<DeckEditViewModel>();
         }
     }
 }

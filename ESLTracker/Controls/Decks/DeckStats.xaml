@@ -7,6 +7,7 @@
              xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckStatsViewModel]}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>

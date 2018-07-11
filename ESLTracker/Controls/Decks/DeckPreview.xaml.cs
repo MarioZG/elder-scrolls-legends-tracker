@@ -43,7 +43,6 @@ namespace ESLTracker.Controls.Decks
         public DeckPreview()
         {
             InitializeComponent();
-            base.DataContext = MasserContainer.Container.GetInstance<DeckPreviewViewModel>();
         }
     }
 }

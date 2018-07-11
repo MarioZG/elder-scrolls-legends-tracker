@@ -24,7 +24,6 @@ namespace ESLTracker.Controls.Packs
     {
         public OpenPack()
         {
-            base.DataContext = MasserContainer.Container.GetInstance<OpenPackViewModel>();
             InitializeComponent();
         }
     }

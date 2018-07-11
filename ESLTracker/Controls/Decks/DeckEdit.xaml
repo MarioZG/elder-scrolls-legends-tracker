@@ -9,6 +9,7 @@
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:Cards="clr-namespace:ESLTracker.Controls.Cards" 
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckEditViewModel]}"
              mc:Ignorable="d" 
              x:Name="deckEdit"
              d:DesignHeight="300" d:DesignWidth="300">

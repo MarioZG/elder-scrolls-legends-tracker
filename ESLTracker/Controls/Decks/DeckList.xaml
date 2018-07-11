@@ -8,6 +8,7 @@
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
              xmlns:Controls="clr-namespace:ESLTracker.Controls"  
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckListViewModel]}"
              mc:Ignorable="d">
     <DockPanel>
         <local:DeckFilter x:Name="deckFilter" HorizontalAlignment="Stretch" DockPanel.Dock="Top"/>

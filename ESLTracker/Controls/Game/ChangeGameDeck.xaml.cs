@@ -25,8 +25,6 @@ namespace ESLTracker.Controls.Game
         public ChangeGameDeck()
         {
             InitializeComponent();
-
-            base.DataContext = MasserContainer.Container.GetInstance<ChangeGameDeckViewModel>();
         }
     }
 }
