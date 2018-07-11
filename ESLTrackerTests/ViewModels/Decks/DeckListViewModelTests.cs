@@ -17,6 +17,7 @@ using ESLTracker.Services;
 using ESLTrackerTests.Builders;
 using System.Runtime.Remoting.Messaging;
 using ESLTracker.BusinessLogic.Decks;
+using ESLTracker.BusinessLogic.DataFile;
 
 namespace ESLTracker.ViewModels.Decks.Tests
 {
@@ -28,7 +29,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
         Mock<ITracker> tracker = new Mock<ITracker>();
         Mock<IMessenger> mockMessanger = new Mock<IMessenger>();
         Mock<IDeckService> mockDeckService = new Mock<IDeckService>();
-        Mock<IFileManager> mockFileManager = new Mock<IFileManager>();
+        Mock<IFileSaver> mockFileSaver = new Mock<IFileSaver>();
 
         [ClassInitialize()]
         public static void InitTestClass(TestContext tc)
@@ -423,8 +424,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 mockMessanger.Object, 
                 tracker.Object, 
                 mockDeckService.Object,
-                mockSettings.Object, 
-                mockFileManager.Object,
+                mockSettings.Object,
+                mockFileSaver.Object,
                 new DeckCalculations(tracker.Object));
         }
     }

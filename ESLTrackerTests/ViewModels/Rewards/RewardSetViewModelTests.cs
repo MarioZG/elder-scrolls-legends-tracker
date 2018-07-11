@@ -1,4 +1,5 @@
-﻿using ESLTracker.BusinessLogic.Rewards;
+﻿using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.BusinessLogic.Rewards;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
@@ -20,7 +21,7 @@ namespace ESLTrackerTests.ViewModels.Rewards
 
         IAddSingleRewardViewModelFactory mockAddSingleRewardViewModelFactory = new AddSingleRewardViewModelFactory();
         Mock<ITracker> mockTracker = new Mock<ITracker>();
-        Mock<IFileManager> mockFileManager = new Mock<IFileManager>();
+        Mock<IFileSaver> mockFileSaver = new Mock<IFileSaver>();
         IRewardFactory mockRewardFactory;
 
         [TestInitialize]
@@ -171,7 +172,7 @@ namespace ESLTrackerTests.ViewModels.Rewards
                 mockAddSingleRewardViewModelFactory, 
                 mockTracker.Object,
                 mockDatetimeProvider.Object, 
-                mockFileManager.Object, 
+                mockFileSaver.Object, 
                 mockRewardFactory);
         }
 

@@ -1,4 +1,5 @@
 ﻿using ESLTracker.Services;
+using System;
 
 namespace ESLTracker.BusinessLogic.Cards
 {
@@ -6,5 +7,6 @@ namespace ESLTracker.BusinessLogic.Cards
     {
         ICardsDatabase GetCardsDatabase();
         ICardsDatabase RealoadDB();
+        ICardsDatabase UpdateCardsDB(string newContent, Version currentVersion);
     }
 }

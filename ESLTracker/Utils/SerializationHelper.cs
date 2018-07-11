@@ -11,6 +11,18 @@ namespace ESLTracker.Utils
 {
     class SerializationHelper
     {
+
+        public static T DeserializeXmlPath<T>(string path)
+        {
+            T result;
+            using (TextReader reader = new StreamReader(path))
+            {
+                var xmlSerializer = new XmlSerializer(typeof(T));
+                result = (T)xmlSerializer.Deserialize(reader);
+            }
+            return result;
+        }
+
         public static T DeserializeXML<T>(string xml)
         {
             T result;

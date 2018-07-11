@@ -1,4 +1,5 @@
-﻿using ESLTracker.DataModel;
+﻿using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.DataModel;
 using ESLTracker.Services;
 using ESLTracker.Utils;
 using System;

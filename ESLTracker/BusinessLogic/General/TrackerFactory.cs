@@ -1,4 +1,5 @@
-﻿using ESLTracker.DataModel;
+﻿using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.DataModel;
 using ESLTracker.Services;
 using ESLTracker.Utils.Messages;
 using System.Linq;
@@ -8,10 +9,28 @@ namespace ESLTracker.BusinessLogic.General
     public class TrackerFactory : ITrackerFactory
     {
         IMessenger messenger;
+        FileLoader fileLoader;
 
-        public TrackerFactory(IMessenger messenger)
+        public TrackerFactory(IMessenger messenger, FileLoader fileLoader)
         {
             this.messenger = messenger;
+            this.fileLoader = fileLoader;
+        }
+
+        public static object _instanceLock = new object();
+        public static Tracker _instance = null;
+
+        public ITracker GetTrackerInstance()
+        {
+            lock (_instanceLock)
+            {
+                if (_instance == null)
+                {
+                    _instance = fileLoader.LoadDatabase();
+                    FixUpDeserializedTracker(_instance);
+                }
+                return _instance;
+            }
         }
 
         public ITracker CreateEmptyTracker()

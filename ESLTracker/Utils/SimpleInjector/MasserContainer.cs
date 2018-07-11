@@ -33,8 +33,8 @@ namespace ESLTracker.Utils.SimpleInjector
 
             // Register your types, for instance:
             Register<ITrackerFactory, TrackerFactory>();
-            Register<IFileManager, FileManager>();
-            Register<ITracker>(() => GetInstance<FileManager>().GetTrackerInstance());
+            Register<IFileSaver, FileSaver>();
+            Register<ITracker>(() => GetInstance<TrackerFactory>().GetTrackerInstance());
             Register<IMessenger, Messenger>(Lifestyle.Singleton);
             Register<IDeckService, DeckService>();
             Register<ICardsDatabaseFactory, CardsDatabaseFactory>(Lifestyle.Singleton); 

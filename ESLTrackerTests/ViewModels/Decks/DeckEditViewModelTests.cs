@@ -28,7 +28,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
         Mock<IDeckImporter> mockDeckImporter = new Mock<IDeckImporter>();
         Mock<ITracker> mockTracker = new Mock<ITracker>();
         Mock<IMessenger> mockMessenger = new Mock<IMessenger>();
-        Mock<IFileManager> mockFileManager = new Mock<IFileManager>();
+        Mock<IFileSaver> mockFileManager = new Mock<IFileSaver>();
         DeckService mockDeckService;// = new DeckService();
         //IDeckVersionFactory mockDeckVersionFactory;
 

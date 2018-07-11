@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
@@ -110,7 +111,7 @@ namespace ESLTracker.ViewModels.Decks
         private readonly ITracker tracker;
         private readonly IDeckService deckService;
         private readonly ISettings settings;
-        private readonly IFileManager fileManager;
+        private readonly IFileSaver fileSaver;
         private readonly DeckCalculations deckCalculations;
 
         public DeckListViewModel(
@@ -118,7 +119,7 @@ namespace ESLTracker.ViewModels.Decks
             ITracker tracker,
             IDeckService deckService,
             ISettings settings,
-            IFileManager fileManager,
+            IFileSaver fileSaver,
             DeckCalculations deckCalculations)
         {
             this.messanger = messanger;
@@ -133,7 +134,7 @@ namespace ESLTracker.ViewModels.Decks
 
             this.deckService = deckService;
             this.settings = settings;
-            this.fileManager = fileManager;
+            this.fileSaver = fileSaver;
             this.deckCalculations = deckCalculations;
         }
 
@@ -268,7 +269,7 @@ namespace ESLTracker.ViewModels.Decks
             {
                 deckService.DeleteDeck(editDeck.Deck);
             }
-            fileManager.SaveDatabase();
+            fileSaver.SaveDatabase(tracker);
             ApplyFilter();
         }
     }

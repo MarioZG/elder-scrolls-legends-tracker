@@ -82,7 +82,7 @@ namespace ESLTracker.ViewModels.Packs
         ScreenShot screenShot;
         ITracker tracker;
         IDateTimeProvider dateTimeProvider;
-        IFileManager fileManager;
+        IFileSaver fileManager;
         ScreenshotNameProvider screenshotNameProvider;
 
         public OpenPackViewModel(
@@ -91,7 +91,7 @@ namespace ESLTracker.ViewModels.Packs
             ISettings settings,
             ITracker tracker,
             IDateTimeProvider dateTimeProvider,
-            IFileManager fileManager,
+            IFileSaver fileManager,
             ScreenShot screenShot,
             ScreenshotNameProvider screenshotNameProvider)
         {
@@ -138,7 +138,7 @@ namespace ESLTracker.ViewModels.Packs
             ButtonSaveLabel = "Saving pack...";
             Pack.DateOpened = dateTimeProvider.DateTimeNow;
             tracker.Packs.Add(Pack);
-            await Task.Factory.StartNew(() => fileManager.SaveDatabase());
+            await Task.Factory.StartNew(() => fileManager.SaveDatabase(tracker));
             settings.Packs_LastOpenedPackSetId = Pack.CardSet.Id;
             settings.Save();
             InitNewPack();

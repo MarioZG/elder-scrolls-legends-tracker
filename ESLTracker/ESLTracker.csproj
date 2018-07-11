@@ -108,6 +108,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusinessLogic\DataFile\FileLoader.cs" />
+    <Compile Include="BusinessLogic\DataFile\FileUpdater.cs" />
     <Compile Include="BusinessLogic\Decks\DeckCalculations.cs" />
     <Compile Include="BusinessLogic\Decks\DeckVersionFactory.cs" />
     <Compile Include="BusinessLogic\Decks\IDeckVersionFactory.cs" />
@@ -315,7 +317,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
-    <Compile Include="Services\Implementation\CardsDatabase.cs" />
+    <Compile Include="BusinessLogic\Cards\CardsDatabase.cs" />
     <Compile Include="Utils\Converters\ClassToAttributesIcons.cs" />
     <Compile Include="Utils\Converters\PackScreenshotSettingPreview.cs" />
     <Compile Include="Utils\Converters\DeckNameSettingPreview.cs" />
@@ -330,8 +332,8 @@
     <Compile Include="Utils\DataFileException.cs" />
     <Compile Include="Utils\DrawingWrappers\BitmapWrapper.cs" />
     <Compile Include="Utils\DrawingWrappers\IBitmapWrapper.cs" />
-    <Compile Include="Services\ICardsDatabase.cs" />
-    <Compile Include="Utils\IFileManager.cs" />
+    <Compile Include="BusinessLogic\Cards\ICardsDatabase.cs" />
+    <Compile Include="BusinessLogic\DataFile\IFileSaver.cs" />
     <Compile Include="Services\IMessenger.cs" />
     <Compile Include="Utils\IOWrappers\DirectoryWrapper.cs" />
     <Compile Include="Utils\IOWrappers\FileWrapper.cs" />
@@ -416,7 +418,7 @@
     </Compile>
     <Compile Include="Utils\ClassAttributesHelper.cs" />
     <Compile Include="Utils\EnumManager.cs" />
-    <Compile Include="Utils\FileManager.cs" />
+    <Compile Include="BusinessLogic\DataFile\FileSaver.cs" />
     <Compile Include="Utils\WindowExtensions.cs" />
     <Compile Include="ViewModels\Decks\DeckStatsViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckListViewModel.cs" />

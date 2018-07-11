@@ -193,7 +193,7 @@ namespace ESLTracker.ViewModels.Decks
         private IMessenger messanger;
         private IDeckImporter deckImporter;
         private IDateTimeProvider dateTimeProvider;
-        private IFileManager fileManager;
+        private IFileSaver fileManager;
         private IDeckService deckService;
       //  private IDeckVersionFactory deckVersionFactory;
 
@@ -203,7 +203,7 @@ namespace ESLTracker.ViewModels.Decks
             ITracker tracker,
             IMessenger messenger,
             IDateTimeProvider dateTimeProvider,
-            IFileManager fileManager,
+            IFileSaver fileManager,
             IDeckService deckService
           //  IDeckVersionFactory deckVersionFactory
           )
@@ -346,7 +346,7 @@ namespace ESLTracker.ViewModels.Decks
             {
                 tracker.Decks.Add(this.Deck);
             }
-            fileManager.SaveDatabase();
+            fileManager.SaveDatabase(tracker);
             this.EndEdit();
             messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
         }

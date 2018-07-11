@@ -84,13 +84,12 @@ namespace ESLTracker.DataModel.Tests
 
             //data ready, lets save!
 
-            new FileManager(mockSettings.Object,
+            new FileSaver(
                 new PathManager(mockSettings.Object),
                 new PathWrapper(),
                 new DirectoryWrapper(),
-                new FileWrapper(),
-                null,
-                null)
+                new FileWrapper()
+                )
                 .SaveDatabase<Tracker>(dataFileName, tracker);
 
             //and let's load!
@@ -99,13 +98,7 @@ namespace ESLTracker.DataModel.Tests
 
             TestContext.WriteLine("Start deserialise....");
             sw.Start();
-            Tracker loadedTracker = new FileManager(mockSettings.Object,
-                new PathManager(mockSettings.Object),
-                new PathWrapper(),
-                new DirectoryWrapper(),
-                new FileWrapper(),
-                null,
-                null).LoadDatabase<Tracker>(dataFileName);
+            Tracker loadedTracker = SerializationHelper.DeserializeXmlPath<Tracker>(dataFileName);
 
             Assert.AreEqual(MAX_GAMES, loadedTracker.Games.Count);
             Assert.AreEqual(MAX_DECKS, loadedTracker.Decks.Count);

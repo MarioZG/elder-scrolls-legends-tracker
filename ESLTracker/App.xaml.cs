@@ -17,6 +17,7 @@ using System.Windows.Input;
 using ESLTracker.BusinessLogic.GameClient;
 using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.Windows;
+using ESLTracker.BusinessLogic.Cards;
 
 namespace ESLTracker
 {

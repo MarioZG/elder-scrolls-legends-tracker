@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;

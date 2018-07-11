@@ -144,13 +144,11 @@ namespace ESLTrackerTests
             }
 
             tracker.Version = Tracker.CurrentFileVersion;
-            new FileManager(mockSettings.Object,
+            new FileSaver(
                 new PathManager(mockSettings.Object),
                 new PathWrapper(),
                 new DirectoryWrapper(),
-                new FileWrapper(),
-                null,
-                null)
+                new FileWrapper())
                 .SaveDatabase(@"c:\dev\aa.xml", tracker);
         }
     }

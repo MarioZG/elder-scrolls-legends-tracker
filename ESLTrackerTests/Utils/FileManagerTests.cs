@@ -111,126 +111,17 @@ namespace ESLTracker.Utils.Tests
             CreateFileManager().SaveDatabase<Tracker>(TestContext.TestDeploymentDir + "./somerandomfolder/ss.xml", new Tracker());
         }
 
-        [TestMethod()]
-        public void ParseCurrentFileVersionTest001_AllOK()
+     
+
+    
+
+        private FileSaver CreateFileManager()
         {
-            var doc = new XmlDocument();
-            doc.LoadXml(
-                @" <Version>
-                    <Build>2</Build>
-                    <Major>1</Major>
-                    <Minor>3</Minor>
-                    <Revision>4</Revision>
-                  </Version>");
-            var versionNode = doc.DocumentElement;
-
-            SerializableVersion expected = new SerializableVersion(new Version(1, 3, 2, 4));
-
-            SerializableVersion result = FileManager.ParseCurrentFileVersion(versionNode);
-
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod()]
-        public void ParseCurrentFileVersionTest002_IncorrectElementNameXML()
-        {
-            var doc = new XmlDocument();
-            doc.LoadXml(
-                @" <Version>
-                    <Bld>2</Bld>
-                    <Major>1</Major>
-                    <Minor>3</Minor>
-                    <Resion>4</Resion>
-                  </Version>");
-            var versionNode = doc.DocumentElement;
-
-            SerializableVersion expected = null;
-
-            SerializableVersion result = FileManager.ParseCurrentFileVersion(versionNode); ;
-
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod()]
-        public void ParseCurrentFileVersionTest003_NotIntInValue()
-        {
-            var doc = new XmlDocument();
-            doc.LoadXml(
-                @" <Version>
-                    <Build>test non int!</Build>
-                    <Major>1</Major>
-                    <Minor>3</Minor>
-                    <Revision>4</Revision>
-                  </Version>");
-            var versionNode = doc.DocumentElement;
-
-            SerializableVersion expected = null;
-
-            SerializableVersion result = FileManager.ParseCurrentFileVersion(versionNode);
-
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod()]
-        public void ParseCurrentFileVersionTest004_NullPassed()
-        {
-
-            SerializableVersion expected = null;
-
-            SerializableVersion result = FileManager.ParseCurrentFileVersion(null);
-
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod()]
-        public void UpdateCardsDBTest001()
-        {
-            string newFileContent = "{some json}";
-
-            Mock<ICardsDatabase> cdb = new Mock<ICardsDatabase>();
-            cdb.Setup( cd=> cd.Version).Returns(new Version(3, 4));
-
-            cardsDatabaseFactory.Setup(cdf => cdf.GetCardsDatabase()).Returns(cdb.Object);
-
-            FileManager fm = CreateFileManager();
-
-            fm.UpdateCardsDB(newFileContent);
-
-            fileWrapper.Verify(m => m.Move(".\\Resources\\cards.json", ".\\Resources\\cards_3.4.json"), Times.Once);
-            fileWrapper.Verify(m => m.WriteAllText(".\\Resources\\cards.json", newFileContent), Times.Once);
-
-            cardsDatabaseFactory.Verify(m => m.RealoadDB(), Times.Once);
-
-        }
-
-        [TestMethod()]
-        public void UpdateCardsDBTest002_EnsureNewObjectIsReturned()
-        {
-            string newFileContent = "{some json}";
-
-            Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
-
-            cardsDatabaseFactory.Setup(cdf => cdf.GetCardsDatabase()).Returns(cardsDatabase.Object);
-
-            cardsDatabaseFactory.Setup(cd => cd.RealoadDB()).Returns(cardsDatabase.Object);
-
-            FileManager fm = CreateFileManager();
-
-            ICardsDatabase actual = fm.UpdateCardsDB(newFileContent);
-
-            Assert.AreSame(cardsDatabase.Object, actual);
-
-        }
-
-        private FileManager CreateFileManager()
-        {
-            return new FileManager(mockSettings.Object,
+            return new FileSaver(
                             pathManager,
                             pathWrapper.Object,
                             directoryWrapper.Object,
-                            fileWrapper.Object,
-                            cardsDatabaseFactory.Object,
-                            trackerFactory.Object);
+                            fileWrapper.Object);
         }
     }
 }

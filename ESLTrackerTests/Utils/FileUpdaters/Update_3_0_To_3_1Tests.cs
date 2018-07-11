@@ -1,20 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ESLTracker.Utils.FileUpdaters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
-using ESLTracker.DataModel;
-using System.Collections.ObjectModel;
-using System.Xml;
-using System.Text.RegularExpressions;
-using ESLTrackerTests;
-using ESLTracker.Services;
-using ESLTrackerTests.Builders;
+﻿using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
+using ESLTracker.DataModel;
 using ESLTracker.Utils.SimpleInjector;
+using ESLTrackerTests;
+using ESLTrackerTests.Builders;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace ESLTracker.Utils.FileUpdaters.Tests
 {
@@ -32,20 +25,20 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
 
             Deck d1 = new DeckBuilder().Build();
             deckService.CreateDeckVersion(d1, 1, 0, DateTime.Now);
-            foreach (var trans in CardsDatabase.GuidTranslation) {
+            foreach (var trans in BusinessLogic.Cards.CardsDatabase.GuidTranslation) {
                 d1.SelectedVersion.Cards.Add(new CardInstanceBuilder()
                     .WithCard( new CardBuilder().WithId(Guid.Parse(trans.Key)).Build())
                     .Build());
             }
             deckService.CreateDeckVersion(d1, 1, 1, DateTime.Now);
-            foreach (var trans in CardsDatabase.GuidTranslation)
+            foreach (var trans in BusinessLogic.Cards.CardsDatabase.GuidTranslation)
             {
                 d1.SelectedVersion.Cards.Add(new CardInstanceBuilder()
                     .WithCard(new CardBuilder().WithId(Guid.Parse(trans.Key)).Build())
                     .Build());
             }
             deckService.CreateDeckVersion(d1, 1, 2, DateTime.Now);
-            foreach (var trans in CardsDatabase.GuidTranslation)
+            foreach (var trans in BusinessLogic.Cards.CardsDatabase.GuidTranslation)
             {
                 d1.SelectedVersion.Cards.Add(new CardInstanceBuilder()
                     .WithCard(new CardBuilder().WithId(Guid.Parse(trans.Key)).Build())
@@ -54,7 +47,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
 
             Deck d2 = new DeckBuilder().Build();
             deckService.CreateDeckVersion(d2, 1, 0, DateTime.Now);
-            foreach (var trans in CardsDatabase.GuidTranslation)
+            foreach (var trans in BusinessLogic.Cards.CardsDatabase.GuidTranslation)
             {
                 d2.SelectedVersion.Cards.Add(new CardInstanceBuilder()
                     .WithCard(new CardBuilder().WithId(Guid.Parse(trans.Key)).Build())
@@ -65,7 +58,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
             tracker.Decks.Add(d1);
             tracker.Decks.Add(d2);
 
-            foreach (var trans in CardsDatabase.GuidTranslation)
+            foreach (var trans in BusinessLogic.Cards.CardsDatabase.GuidTranslation)
             {
                 tracker.Rewards.Add(new RewardBuilder()
                         .WithCardInstance(
@@ -79,7 +72,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
             }
 
             Pack pack = new Pack();
-            foreach (var trans in CardsDatabase.GuidTranslation)
+            foreach (var trans in BusinessLogic.Cards.CardsDatabase.GuidTranslation)
             {
                 pack.Cards.Add(new CardInstanceBuilder()
                     .WithCard(new CardBuilder().WithId(Guid.Parse(trans.Key)).Build())
@@ -89,7 +82,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
             tracker.Packs.Add(pack);
 
             string dataFileName = "./data" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xml";
-            new FileManager(null, null, null, null, null, null, null).SaveDatabase(dataFileName, tracker);
+            new FileSaver(null, null, null, null).SaveDatabase(dataFileName, tracker);
 
 
             XmlDocument xmlDoc = new XmlDocument();
@@ -104,7 +97,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
 
             TestContext.WriteLine(updatedXml);
 
-            foreach (var trans in CardsDatabase.GuidTranslation)
+            foreach (var trans in BusinessLogic.Cards.CardsDatabase.GuidTranslation)
             {
                 Assert.IsFalse(updatedXml.Contains(trans.Key), $"Guid {trans.Key} still present!");
                 Assert.IsTrue(updatedXml.Contains(trans.Value), $"Guid {trans.Value} missing in new file!");

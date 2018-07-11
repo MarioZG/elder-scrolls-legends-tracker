@@ -13,6 +13,8 @@ using ESLTracker.Properties;
 using ESLTracker.Services;
 using ESLTracker.Utils.Messages;
 using ESLTracker.BusinessLogic.Decks;
+using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.BusinessLogic.Games;
 
 namespace ESLTracker.ViewModels.Game
 {
@@ -25,7 +27,7 @@ namespace ESLTracker.ViewModels.Game
             set
             {
                 game = value;
-                Game.PropertyChanged += Game_PropertyChanged;
+                game.PropertyChanged += Game_PropertyChanged;
                 RaisePropertyChangedEvent(nameof(Game));
                 ShowWinsVsClass(game?.OpponentClass);
             }
@@ -168,26 +170,29 @@ namespace ESLTracker.ViewModels.Game
         ITracker tracker;
         ISettings settings;
         IWinAPI winApi;
-        IFileManager fileManager;
+        IFileSaver fileSaver;
         IDateTimeProvider dateTimeProvider;
         private readonly DeckCalculations deckCalculations;
+        private readonly IGameFactory gameFactory;
 
         public EditGameViewModel(
             ITracker tracker, 
             IMessenger messenger,
             ISettings settings,
             IWinAPI winApi,
-            IFileManager fileManager,
+            IFileSaver fileSaver,
             IDateTimeProvider dateTimeProvider,
-            DeckCalculations deckCalculations)
+            DeckCalculations deckCalculations,
+            IGameFactory gameFactory)
         {
             this.messanger = messenger; ;
             this.tracker = tracker;
             this.settings = settings;
             this.winApi = winApi;
-            this.fileManager = fileManager;
+            this.fileSaver = fileSaver;
             this.dateTimeProvider = dateTimeProvider;
             this.deckCalculations = deckCalculations;
+            this.gameFactory = gameFactory;
 
             Game.PropertyChanged += Game_PropertyChanged;
             messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);
@@ -287,9 +292,9 @@ namespace ESLTracker.ViewModels.Game
                     new Utils.Messages.EditDeck() { Deck = game.Deck },
                     Utils.Messages.EditDeck.Context.StatsUpdated);
 
-                fileManager.SaveDatabase();
+                fileSaver.SaveDatabase(tracker);
 
-                this.Game = new DataModel.Game();
+                this.Game = gameFactory.CreateGame();
 
                 //restore values that are likely the same,  like game type, player rank etc
                 this.Game.Type = addedGame.Type;
@@ -456,7 +461,7 @@ namespace ESLTracker.ViewModels.Game
                     new EditDeck() { Deck = game.Deck },
                     EditDeck.Context.StatsUpdated);
 
-                fileManager.SaveDatabase();
+                fileSaver.SaveDatabase(tracker);
             }
 
             this.EndEdit();

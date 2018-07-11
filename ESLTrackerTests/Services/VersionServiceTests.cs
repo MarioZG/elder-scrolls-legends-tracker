@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Moq;
 using ESLTracker.Services;
 using ESLTracker.Properties;
+using ESLTracker.BusinessLogic.Cards;
 
 namespace ESLTracker.Utils.Tests
 {
@@ -18,7 +19,6 @@ namespace ESLTracker.Utils.Tests
         Mock<IHTTPService> httpService = new Mock<IHTTPService>();
         Mock<IApplicationService> appService = new Mock<IApplicationService>();
         Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
-        Mock<IFileManager> fileManager = new Mock<IFileManager>();
 
         [TestInitialize]
         public void TestInit()
@@ -168,7 +168,7 @@ namespace ESLTracker.Utils.Tests
 
         private VersionService CreateVersionServiceObject()
         {
-            return new VersionService(settings.Object, cardsDatabase.Object, httpService.Object, appService.Object, fileManager.Object);
+            return new VersionService(settings.Object, cardsDatabase.Object, httpService.Object, appService.Object);
         }
     }
 }

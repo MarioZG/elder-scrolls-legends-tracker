@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using ESLTracker.Utils;
 
-namespace ESLTracker.Services
+namespace ESLTracker.BusinessLogic.Cards
 {
     public class CardsDatabase : ICardsDatabase
     {

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.GameClient;
 using ESLTracker.Controls;
@@ -241,7 +242,7 @@ namespace ESLTracker.ViewModels.Windows
         IDeckService deckService;
         ISettings settings;
         IWinAPI winApi;
-        IFileManager fileManager;
+        IFileSaver fileSaver;
         ILauncherService launcherService;
 
         public MainWindowViewModel(
@@ -250,7 +251,7 @@ namespace ESLTracker.ViewModels.Windows
             IDeckService deckService,
             ISettings settings,
             IWinAPI winApi,
-            IFileManager fileManager,
+            IFileSaver fileSaver,
             ILauncherService launcherService,
             OverlayWindowRepository overlayWindows)
         {
@@ -267,7 +268,7 @@ namespace ESLTracker.ViewModels.Windows
             this.deckService = deckService;
             this.settings = settings;
             this.winApi = winApi;
-            this.fileManager = fileManager;
+            this.fileSaver = fileSaver;
             this.launcherService = launcherService;
 
             //this.OverlayWindows.Add(new OverlayToolbar());
@@ -304,7 +305,7 @@ namespace ESLTracker.ViewModels.Windows
             OverlayToolbar ot = this.OverlayWindows.GetWindowByType<OverlayToolbar>();
             if (!checkIfCanClose || (checkIfCanClose && ot.CanClose(CommandExit)))
             {
-                fileManager.SaveDatabase();
+                fileSaver.SaveDatabase(tracker);
                 MainWindow.UpdateOverlay = false;
                 ot.Close();
                 settings.LastActiveDeckId = tracker.ActiveDeck?.DeckId;

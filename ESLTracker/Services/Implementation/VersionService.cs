@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using Newtonsoft.Json.Linq;
@@ -31,22 +32,20 @@ namespace ESLTracker.Services
 
         private ISettings settings;
         ICardsDatabase cardsDatabase;
+        ICardsDatabaseFactory cardsDatabaseFactory;
         IHTTPService httpService;
         IApplicationService applicationService;
-        IFileManager fileManager;
 
         public VersionService(
             ISettings settings,
             ICardsDatabase cardsDatabase,
             IHTTPService httpService,
-            IApplicationService applicationService,
-            IFileManager fileManager)
+            IApplicationService applicationService)
         {
             this.cardsDatabase = cardsDatabase;
             this.settings = settings;
             this.httpService = httpService;
             this.applicationService = applicationService;
-            this.fileManager = fileManager;
         }
 
         public NewVersioInfo CheckNewAppVersionAvailable()
@@ -124,7 +123,7 @@ namespace ESLTracker.Services
             {
                 Logger.Trace("Start retreiving cards DB from {0}", url);
                 string cardsDBContent = httpService.SendGetRequest(url);
-                ICardsDatabase cardsDB = fileManager.UpdateCardsDB(cardsDBContent);
+                ICardsDatabase cardsDB = cardsDatabaseFactory.UpdateCardsDB(cardsDBContent, cardsDatabase.Version);
                 Logger.Trace("Finished retreiving cards DB from {0}", url);
                 returnValue = cardsDB;
             });

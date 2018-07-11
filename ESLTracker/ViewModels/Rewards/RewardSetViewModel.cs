@@ -1,4 +1,5 @@
-﻿using ESLTracker.BusinessLogic.Rewards;
+﻿using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.BusinessLogic.Rewards;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
@@ -74,7 +75,7 @@ namespace ESLTracker.ViewModels.Rewards
         IAddSingleRewardViewModelFactory addSingleRewardViewModelFactory;
         ITracker tracker;
         IDateTimeProvider datetimeProvider;
-        IFileManager fileManager;
+        IFileSaver fileSaver;
         IRewardFactory rewardFactory;
 
         #region commands
@@ -87,13 +88,13 @@ namespace ESLTracker.ViewModels.Rewards
             IAddSingleRewardViewModelFactory addSingleRewardViewModelFactory, 
             ITracker tracker,
             IDateTimeProvider datetimeProvider,
-            IFileManager fileManager,
+            IFileSaver fileSaver,
             IRewardFactory rewardFactory)
         {
             this.addSingleRewardViewModelFactory = addSingleRewardViewModelFactory;
             this.tracker = tracker;
             this.datetimeProvider = datetimeProvider;
-            this.fileManager = fileManager;
+            this.fileSaver = fileSaver;
             this.rewardFactory = rewardFactory;
 
             CommandDoneButtonPressed = new RelayCommand(new Action<object>(DoneClicked), new Func<object, bool>(CanExecuteDone));
@@ -109,18 +110,6 @@ namespace ESLTracker.ViewModels.Rewards
             RaisePropertyChangedEvent(nameof(RewardsAdded));
         }
 
-        private IEnumerable<Reward> CreateEmptySet()
-        {
-            return new Reward[] {
-                new Reward() { Type = RewardType.Gold },
-                new Reward() { Type = RewardType.SoulGem },
-                new Reward() { Type = RewardType.Pack },
-                new Reward() { Type = RewardType.Card }
-            };
-        }
-
-
-
         public void DoneClicked(object param)
         {
             var newRewards = RewardsAdded.Where(r => !tracker.Rewards.Contains(r));
@@ -132,7 +121,7 @@ namespace ESLTracker.ViewModels.Rewards
                 r.ArenaDeck = ArenaDeck;
             }
             tracker.Rewards.AddRange(newRewards);
-            fileManager.SaveDatabase();
+            fileSaver.SaveDatabase(tracker);
 
             rewards.Clear();
             RewardsEditor.Clear();
