@@ -1,8 +1,8 @@
 ﻿using ESLTracker.Utils;
 
-namespace ESLTracker.Services
+namespace ESLTracker.BusinessLogic.General
 {
-    public interface IApplicationService
+    public interface IApplicationInfo
     {
         string GetAssemblyInformationalVersion();
         SerializableVersion GetAssemblyVersion();

@@ -2,7 +2,6 @@
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 using ESLTracker.Utils.Messages;

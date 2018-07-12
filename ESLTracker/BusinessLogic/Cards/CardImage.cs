@@ -15,16 +15,16 @@ using ESLTracker.DataModel.Enums;
 using NLog;
 using ESLTracker.Utils;
 
-namespace ESLTracker.Services
+namespace ESLTracker.BusinessLogic.Cards
 {
-    public class CardImageService : ICardImageService
+    public class CardImage : ICardImage
     {
         private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         private static Dictionary<Guid, Media.Brush> CardMiniatureCache = new Dictionary<Guid, Media.Brush>();
-        IResourcesService resourceService;
+        IResources resourceService;
 
-        public CardImageService(IResourcesService resourceService)
+        public CardImage(IResources resourceService)
         {
             this.resourceService = resourceService;
         }

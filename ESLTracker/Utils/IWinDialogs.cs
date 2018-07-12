@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESLTracker.Services
+namespace ESLTracker.Utils
 {
     public interface IWinDialogs
     {

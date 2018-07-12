@@ -8,7 +8,6 @@ using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 using LiveCharts;

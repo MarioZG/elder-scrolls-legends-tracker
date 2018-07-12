@@ -10,7 +10,6 @@ using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.Controls.Rewards;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Rewards

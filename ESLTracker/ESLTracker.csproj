@@ -258,15 +258,15 @@
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="BusinessLogic\Decks\CardBreakdown.cs" />
-    <Compile Include="Services\Implementation\DeckImporter.cs" />
-    <Compile Include="Services\ICardImageService.cs" />
-    <Compile Include="Services\IDeckImporter.cs" />
-    <Compile Include="Services\IVersionService.cs" />
-    <Compile Include="Services\IResourcesService.cs" />
-    <Compile Include="Services\Implementation\ApplicationService.cs" />
-    <Compile Include="Services\Implementation\CardImageService.cs" />
-    <Compile Include="Services\IWinDialogs.cs" />
-    <Compile Include="Services\Implementation\WinDialogs.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckImporter.cs" />
+    <Compile Include="BusinessLogic\Cards\ICardImage.cs" />
+    <Compile Include="BusinessLogic\Decks\IDeckImporter.cs" />
+    <Compile Include="BusinessLogic\General\IVersionService.cs" />
+    <Compile Include="Utils\IResources.cs" />
+    <Compile Include="BusinessLogic\General\ApplicationInfo.cs" />
+    <Compile Include="BusinessLogic\Cards\CardImage.cs" />
+    <Compile Include="Utils\IWinDialogs.cs" />
+    <Compile Include="Utils\WinDialogs.cs" />
     <Compile Include="BusinessLogic\Cards\SoulGemCalculator.cs" />
     <Compile Include="Utils\Behaviors\AutoCompleteBehavior.cs" />
     <Compile Include="Utils\Converters\CollectionCountToVisibility.cs" />
@@ -290,10 +290,10 @@
     <Compile Include="Utils\Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Utils\Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Utils\Extensions\TaskExtensions.cs" />
-    <Compile Include="Services\Implementation\HTTPService.cs" />
-    <Compile Include="Services\IApplicationService.cs" />
+    <Compile Include="BusinessLogic\General\HTTPService.cs" />
+    <Compile Include="BusinessLogic\General\IApplicationInfo.cs" />
     <Compile Include="BusinessLogic\Decks\IDeckService.cs" />
-    <Compile Include="Services\IHTTPService.cs" />
+    <Compile Include="BusinessLogic\General\IHTTPService.cs" />
     <Compile Include="Utils\FileUpdaters\IFileUpdater.cs" />
     <Compile Include="Utils\FileUpdaters\UpdateBase.cs" />
     <Compile Include="Utils\FileUpdaters\Update_1_0_To_1_1.cs" />
@@ -313,7 +313,7 @@
     <Compile Include="Utils\NLog\UserInfoLoggerTarget.cs" />
     <Compile Include="Utils\OverlayWindowRepository.cs" />
     <Compile Include="Utils\PropertiesObservableCollection.cs" />
-    <Compile Include="Services\Implementation\ResourcesService.cs" />
+    <Compile Include="Utils\Resources.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Behaviors\FocusExtension.cs" />
     <Compile Include="Utils\Behaviors\SizeObserver.cs" />
@@ -334,7 +334,7 @@
     <Compile Include="Utils\DrawingWrappers\IBitmapWrapper.cs" />
     <Compile Include="BusinessLogic\Cards\ICardsDatabase.cs" />
     <Compile Include="BusinessLogic\DataFile\IFileSaver.cs" />
-    <Compile Include="Services\IMessenger.cs" />
+    <Compile Include="Utils\IMessenger.cs" />
     <Compile Include="Utils\IOWrappers\DirectoryWrapper.cs" />
     <Compile Include="Utils\IOWrappers\FileWrapper.cs" />
     <Compile Include="Utils\IOWrappers\IDirectoryWrapper.cs" />
@@ -344,7 +344,7 @@
     <Compile Include="Utils\IOWrappers\PathWrapper.cs" />
     <Compile Include="Utils\IOWrappers\WrapperProvider.cs" />
     <Compile Include="BusinessLogic\General\ITrackerFactory.cs" />
-    <Compile Include="Services\IWinAPI.cs" />
+    <Compile Include="Utils\IWinAPI.cs" />
     <Compile Include="Utils\Messages\ActiveDeckChanged.cs" />
     <Compile Include="Utils\ScreenshotNameProvider.cs" />
     <Compile Include="Utils\SerializationHelper.cs" />
@@ -355,13 +355,13 @@
     <Compile Include="Utils\Messages\EditSettings.cs" />
     <Compile Include="Utils\Messages\EditDeck.cs" />
     <Compile Include="Utils\Messages\EditGame.cs" />
-    <Compile Include="Services\Implementation\Messenger.cs" />
+    <Compile Include="Utils\Messenger.cs" />
     <Compile Include="Utils\SerializableVersion.cs" />
     <Compile Include="Utils\SimpleInjector\ImportPropertySelectionBehavior.cs" />
     <Compile Include="Utils\SimpleInjector\InjectPropertyAttribute.cs" />
     <Compile Include="Utils\SingleInstanceApp.cs" />
     <Compile Include="BusinessLogic\General\TrackerFactory.cs" />
-    <Compile Include="Services\Implementation\VersionService.cs" />
+    <Compile Include="BusinessLogic\General\VersionService.cs" />
     <Compile Include="ViewModels\Windows\ArenaStatsViewModel.cs" />
     <Compile Include="ViewModels\Cards\CardListEditorViewModel.cs" />
     <Compile Include="ViewModels\Decks\CardBreakdownViewModel.cs" />
@@ -442,7 +442,7 @@
     <Compile Include="ViewModels\Rewards\RewardSetViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsPanelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Services\Implementation\WinAPI.cs" />
+    <Compile Include="Utils\WinAPI.cs" />
     <Page Include="Windows\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

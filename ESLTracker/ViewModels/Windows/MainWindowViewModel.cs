@@ -12,7 +12,6 @@ using ESLTracker.BusinessLogic.GameClient;
 using ESLTracker.Controls;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.Utils.NLog;

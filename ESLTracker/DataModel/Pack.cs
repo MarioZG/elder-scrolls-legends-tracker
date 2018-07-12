@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.BusinessLogic.Cards;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.ViewModels;
 

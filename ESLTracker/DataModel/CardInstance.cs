@@ -11,7 +11,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using ESLTracker.BusinessLogic.Cards;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 using ESLTracker.Utils.SimpleInjector;
@@ -63,7 +62,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return MasserContainer.Container.GetInstance<ICardImageService>().GetCardMiniature(card);
+                return MasserContainer.Container.GetInstance<ICardImage>().GetCardMiniature(card);
             }
         }
         [XmlIgnore]
@@ -86,7 +85,7 @@ namespace ESLTracker.DataModel
         {
             get
             {
-                return MasserContainer.Container.GetInstance<ICardImageService>().GetRarityBrush(card?.Rarity);
+                return MasserContainer.Container.GetInstance<ICardImage>().GetRarityBrush(card?.Rarity);
             }
         }
 

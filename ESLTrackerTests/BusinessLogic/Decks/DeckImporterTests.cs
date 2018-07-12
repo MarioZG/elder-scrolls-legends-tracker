@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ESLTracker.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +12,9 @@ using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTrackerTests.Builders;
 using ESLTracker.DataModel;
+using ESLTracker.BusinessLogic.Decks;
 
-namespace ESLTracker.Services.Tests
+namespace ESLTrackerTests.BusinessLogic.Decks
 {
     [TestClass()]
     public class DeckImporterTests
@@ -60,15 +60,15 @@ namespace ESLTracker.Services.Tests
         }
 
         [TestMethod()]
-        [DeploymentItem("./Services/Data/DeckImportTest001.txt", "./Services/Data/")]
+        [DeploymentItem("./BusinessLogic/Decks/Data/DeckImportTest001.txt", "./BusinessLogic/Decks/Data/")]
         public void FindCardsDataTest001_SampleDeck()
         {
-            string data = File.ReadAllText("./Services/Data/DeckImportTest001.txt");
+            string data = File.ReadAllText("./BusinessLogic/Decks/Data/DeckImportTest001.txt");
 
             cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new CardBuilder().Build());
 
             var di = CreateDeckImporter();
-            di.Cards = new List<DataModel.CardInstance>();
+            di.Cards = new List<CardInstance>();
             data = di.FindCardsData(data);
             di.ImportFromTextProcess(data);
 
@@ -77,16 +77,16 @@ namespace ESLTracker.Services.Tests
         }
 
         [TestMethod()]
-        [DeploymentItem("./Services/Data/DeckImportTest002.txt", "./Services/Data/")]
+        [DeploymentItem("./BusinessLogic/Decks/Data/DeckImportTest002.txt", "./BusinessLogic/Decks/Data/")]
         public void FindCardsDataTest002_SampleDeckWithTitle()
         {
-            string data = File.ReadAllText("./Services/Data/DeckImportTest002.txt");
+            string data = File.ReadAllText("./BusinessLogic/Decks/Data/DeckImportTest002.txt");
             string expectedName = "CVH's Reanimator Control Rage Warrior";
 
-            cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new DataModel.Card());
+            cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new Card());
 
             var di = CreateDeckImporter();
-            di.Cards = new List<DataModel.CardInstance>();
+            di.Cards = new List<CardInstance>();
             data = di.FindCardsData(data);
             di.ImportFromTextProcess(data);
 
@@ -97,16 +97,16 @@ namespace ESLTracker.Services.Tests
         }
 
         [TestMethod()]
-        [DeploymentItem("./Services/Data/DeckImportTest003.txt", "./Services/Data/")]
+        [DeploymentItem("./BusinessLogic/Decks/Data/DeckImportTest003.txt", "./BusinessLogic/Decks/Data/")]
         public void FindCardsDataTest003_SampleDeckWithTitleWithBraces()
         {
-            string data = File.ReadAllText("./Services/Data/DeckImportTest003.txt");
+            string data = File.ReadAllText("./BusinessLogic/Decks/Data/DeckImportTest003.txt");
             string expectedName = "Control Resummon Monk (Rank 5~)";
 
-            cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new DataModel.Card());
+            cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new Card());
 
             var di = CreateDeckImporter();
-            di.Cards = new List<DataModel.CardInstance>();
+            di.Cards = new List<CardInstance>();
             data = di.FindCardsData(data);
             di.ImportFromTextProcess(data);
 

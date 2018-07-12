@@ -10,7 +10,6 @@ using ESLTracker.Utils;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
-using ESLTracker.Services;
 using ESLTracker.Utils.Messages;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.DataFile;

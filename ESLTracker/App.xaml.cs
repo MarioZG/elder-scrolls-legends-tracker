@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
 using ESLTracker.Utils;
-using ESLTracker.Services;
 using NLog;
 using NLog.Config;
 using ESLTracker.Properties;
@@ -18,6 +17,7 @@ using ESLTracker.BusinessLogic.GameClient;
 using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.Windows;
 using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.General;
 
 namespace ESLTracker
 {

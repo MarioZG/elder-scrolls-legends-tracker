@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.Utils.SimpleInjector;

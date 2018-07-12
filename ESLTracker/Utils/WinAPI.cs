@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using ESLTracker.Utils.DiagnosticsWrappers;
 using NLog;
 
-namespace ESLTracker.Services
+namespace ESLTracker.Utils
 {
     public class WinAPI : IWinAPI
     {

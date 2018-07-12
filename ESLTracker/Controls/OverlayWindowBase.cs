@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using ESLTracker.Properties;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.SimpleInjector;
 

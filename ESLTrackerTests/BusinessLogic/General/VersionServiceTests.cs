@@ -6,18 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
-using ESLTracker.Services;
 using ESLTracker.Properties;
 using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.General;
 
-namespace ESLTracker.Utils.Tests
+namespace ESLTrackerTests.BusinessLogic.General
 {
     [TestClass]
     public class VersionCheckerTests
     {
         Mock<ISettings> settings;
         Mock<IHTTPService> httpService = new Mock<IHTTPService>();
-        Mock<IApplicationService> appService = new Mock<IApplicationService>();
+        Mock<IApplicationInfo> appService = new Mock<IApplicationInfo>();
         Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
 
         [TestInitialize]

@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.Utils;
 
-namespace ESLTracker.Services
+namespace ESLTracker.BusinessLogic.General
 {
-    public class ApplicationService : IApplicationService
+    public class ApplicationInfo : IApplicationInfo
     {
         public SerializableVersion GetAssemblyVersion()
         {

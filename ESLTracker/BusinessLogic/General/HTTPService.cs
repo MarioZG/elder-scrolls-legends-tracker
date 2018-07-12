@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using ESLTracker.BusinessLogic.General;
 using ESLTracker.Utils;
 
-namespace ESLTracker.Services
+namespace ESLTracker.BusinessLogic.General
 {
     public class HTTPService : IHTTPService
     {

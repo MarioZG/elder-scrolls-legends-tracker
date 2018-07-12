@@ -2,7 +2,6 @@
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 using LiveCharts;
@@ -41,7 +40,7 @@ namespace ESLTracker.ViewModels.PackStatistics
             get { return new CardSet[] { AllFilter }.Union(cardsDatabase.CardSets.Where(cs => cs.HasPacks)).ToList(); }
         }
 
-        private ICardImageService cardImageService;
+        private ICardImage cardImageService;
         private IWinDialogs winDialogs;
         private ICardsDatabase cardsDatabase;
         private ICardInstanceFactory cardInstanceFactory;
@@ -52,7 +51,7 @@ namespace ESLTracker.ViewModels.PackStatistics
             IDateTimeProvider dateTimeProvider, 
             ITracker tracker, 
             ICardInstanceFactory cardInstanceFactory,
-            ICardImageService cardImageService,
+            ICardImage cardImageService,
             IWinDialogs winDialogs,
             ICardsDatabase cardsDatabase) : base(settings, dateTimeProvider)
         {

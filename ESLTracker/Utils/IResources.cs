@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
 
-namespace ESLTracker.Services
+namespace ESLTracker.Utils
 {
-    public interface IResourcesService
+    public interface IResources
     {
         bool ResourceExists(Uri uri);
         bool ResourceExists(string resourcePath);

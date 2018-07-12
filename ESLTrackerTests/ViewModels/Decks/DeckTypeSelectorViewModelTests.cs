@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel.Enums;
 using Moq;
-using ESLTracker.Services;
+using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Decks.Tests
 {

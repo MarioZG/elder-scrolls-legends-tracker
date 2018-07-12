@@ -1,7 +1,7 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.Utils;
 
-namespace ESLTracker.Services
+namespace ESLTracker.BusinessLogic.General
 {
     public interface IVersionService
     {

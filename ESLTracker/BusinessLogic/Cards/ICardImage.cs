@@ -2,9 +2,9 @@
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 
-namespace ESLTracker.Services
+namespace ESLTracker.BusinessLogic.Cards
 {
-    public interface ICardImageService
+    public interface ICardImage
     {
         Brush GetCardMiniature(Card card);
         Brush GetRarityBrush(CardRarity? rarity);

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 

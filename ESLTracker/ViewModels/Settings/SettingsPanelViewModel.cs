@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Settings

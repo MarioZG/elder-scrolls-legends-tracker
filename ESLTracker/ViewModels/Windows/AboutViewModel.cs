@@ -1,6 +1,6 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.General;
 using ESLTracker.DataModel;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using System;
 using System.Collections.Generic;
@@ -83,11 +83,11 @@ namespace ESLTracker.ViewModels.Windows
             }
         }
 
-        IApplicationService applicationService;
+        IApplicationInfo applicationService;
         ICardsDatabase cardsDB;
         ITracker tracker;
 
-        public AboutViewModel(ITracker tracker, IApplicationService applicationService, ICardsDatabase cardsDB)
+        public AboutViewModel(ITracker tracker, IApplicationInfo applicationService, ICardsDatabase cardsDB)
         {
             this.applicationService = applicationService;
             this.cardsDB = cardsDB;

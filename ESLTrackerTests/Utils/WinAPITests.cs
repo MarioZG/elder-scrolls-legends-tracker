@@ -9,7 +9,7 @@ using System.Diagnostics;
 using Moq;
 using ESLTracker.Utils.DiagnosticsWrappers;
 
-namespace ESLTracker.Services.Tests
+namespace ESLTrackerTests.Utils
 {
     [TestClass()]
     public class WinAPITests

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
 
-namespace ESLTracker.Services
+namespace ESLTracker.BusinessLogic.Decks
 {
     public interface IDeckImporter
     {

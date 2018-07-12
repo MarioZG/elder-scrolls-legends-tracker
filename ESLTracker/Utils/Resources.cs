@@ -6,12 +6,12 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESLTracker.Services
+namespace ESLTracker.Utils
 {
     /// <summary>
     /// http://stackoverflow.com/questions/2013481/detect-whether-wpf-resource-exists-based-on-uri
     /// </summary>
-    class ResourcesService : IResourcesService
+    class Resources : IResources
     {
         public bool ResourceExists(Uri uri)
         {

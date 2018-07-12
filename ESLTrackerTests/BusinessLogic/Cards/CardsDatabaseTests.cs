@@ -10,11 +10,10 @@ using ESLTracker.DataModel.Enums;
 using System.Collections.ObjectModel;
 using ESLTrackerTests;
 using System.Reflection;
-using ESLTracker.Services;
-using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Cards;
+using ESLTracker;
 
-namespace ESLTracker.Services.Tests
+namespace ESLTrackerTests.BusinessLogic.Cards
 {
     [TestClass]
     [DeploymentItem("./Resources/cards.json", "./Resources/")]
@@ -46,7 +45,7 @@ namespace ESLTracker.Services.Tests
         [TestMethod]
         public void CardsDatabaseTest_EnsureAllCardsHaveImages()
         {
-            ResourcesService resService = new ResourcesService();
+            Resources resService = new Resources();
             CardInstanceFactory cardInstanceFactory = new CardInstanceFactory();
 
             foreach (Card card in CardsDatabase.Cards)

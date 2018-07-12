@@ -1,5 +1,4 @@
-﻿using ESLTracker.Services;
-using System;
+﻿using System;
 
 namespace ESLTracker.BusinessLogic.Cards
 {

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace ESLTracker.Services
+namespace ESLTracker.Utils
 {
     public interface IWinAPI
     {

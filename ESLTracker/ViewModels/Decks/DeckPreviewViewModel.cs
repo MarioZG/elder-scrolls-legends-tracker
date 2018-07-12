@@ -10,7 +10,6 @@ using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.Utils.Extensions;
 using System.Collections.ObjectModel;
-using ESLTracker.Services;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Cards;
 

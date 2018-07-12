@@ -11,7 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ESLTracker.Services
+namespace ESLTracker.BusinessLogic.Decks
 {
     public class DeckImporter : IDeckImporter
     {

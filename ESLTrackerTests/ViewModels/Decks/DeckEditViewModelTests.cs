@@ -13,7 +13,6 @@ using System.Reflection;
 using System.Collections;
 using System.Collections.ObjectModel;
 using ESLTracker.BusinessLogic.DataFile;
-using ESLTracker.Services;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTrackerTests.Builders;
 using ESLTracker.BusinessLogic.Cards;

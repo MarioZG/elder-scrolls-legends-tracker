@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Moq;
 using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
-using ESLTracker.Services;
 using ESLTracker.BusinessLogic.Cards;
 
 namespace ESLTracker.Utils.FileUpdaters.Tests

@@ -1,4 +1,4 @@
-﻿namespace ESLTracker.Services
+﻿namespace ESLTracker.BusinessLogic.General
 {
     public interface IHTTPService
     {

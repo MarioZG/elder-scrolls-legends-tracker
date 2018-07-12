@@ -12,7 +12,7 @@ using NLog;
 using Polly;
 using Polly.Fallback;
 
-namespace ESLTracker.Services
+namespace ESLTracker.BusinessLogic.General
 {
     public class VersionService : IVersionService
     {
@@ -34,13 +34,13 @@ namespace ESLTracker.Services
         ICardsDatabase cardsDatabase;
         ICardsDatabaseFactory cardsDatabaseFactory;
         IHTTPService httpService;
-        IApplicationService applicationService;
+        IApplicationInfo applicationService;
 
         public VersionService(
             ISettings settings,
             ICardsDatabase cardsDatabase,
             IHTTPService httpService,
-            IApplicationService applicationService)
+            IApplicationInfo applicationService)
         {
             this.cardsDatabase = cardsDatabase;
             this.settings = settings;

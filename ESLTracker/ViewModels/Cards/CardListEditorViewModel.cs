@@ -8,7 +8,6 @@ using System.Windows.Input;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Cards

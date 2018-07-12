@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ESLTracker.Services
+namespace ESLTracker.Utils
 {
     public interface IMessenger
     {

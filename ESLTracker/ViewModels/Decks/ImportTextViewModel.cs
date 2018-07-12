@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.Utils;
-using ESLTracker.Services;
 using ESLTracker.BusinessLogic.General;
+using ESLTracker.BusinessLogic.Decks;
 
 namespace ESLTracker.ViewModels.Decks
 {

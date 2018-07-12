@@ -16,7 +16,6 @@ using System.Windows.Threading;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.DataModel;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 using ESLTracker.Utils.SimpleInjector;

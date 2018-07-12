@@ -8,7 +8,6 @@ using ESLTracker.BusinessLogic.Rewards;
 using ESLTracker.Controls;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
-using ESLTracker.Services;
 using ESLTracker.Utils.DiagnosticsWrappers;
 using ESLTracker.Utils.FileUpdaters;
 using ESLTracker.Utils.IOWrappers;
@@ -48,16 +47,16 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IFileWrapper, FileWrapper>(Lifestyle.Singleton);
             Register<IDirectoryWrapper, DirectoryWrapper>();
             Register<ILauncherService, LauncherService>();
-            Register<ICardImageService, CardImageService>();
+            Register<ICardImage, CardImage>();
             Register<IDateTimeProvider, DateTimeProvider>();
             Register<IAddSingleRewardViewModelFactory, AddSingleRewardViewModelFactory>();
             Register<PathManager, PathManager>(Lifestyle.Singleton);
             Register<IVersionService, VersionService>();
             Register<IHTTPService, HTTPService>();
-            Register<IApplicationService, ApplicationService>();
+            Register<IApplicationInfo, ApplicationInfo>();
             Register<IDeckImporter, DeckImporter>();
             Register<IRewardFactory, RewardFactory>();
-            Register<IResourcesService, ResourcesService>();
+            Register<IResources, Resources>();
             Register<IGuidProvider, GuidProvider>();
             Register<IGameFactory, GameFactory>();
             

@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using ESLTracker.DataModel;
-using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Converters;
 using ESLTracker.Utils.SimpleInjector;
