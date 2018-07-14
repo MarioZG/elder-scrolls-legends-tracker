@@ -195,6 +195,7 @@ namespace ESLTracker.ViewModels.Game
             this.gameFactory = gameFactory;
 
             game = gameFactory.CreateGame();
+            game.Deck = tracker.ActiveDeck;
 
             Game.PropertyChanged += Game_PropertyChanged;
             messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);
