@@ -22,7 +22,7 @@
         <Controls:OverlayWindowTitlebar Title="{Binding Path=DataContext.SummaryText,ElementName=editGame}" />
         <TabControl x:Name="tabControl">
             <TabItem x:Name="editGameTab" Header="Add game">
-                <Game:EditGame x:Name="editGame" />
+                <Game:EditGame x:Name="editGame" TrackActiveDeck="True" />
             </TabItem>
             <TabItem Header="Add Rewards">
                 <Rewards:RewardSet />

@@ -196,12 +196,12 @@
                     <WrapPanel
                         Visibility="{Binding DeckPreviewVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                         <Decks:DeckPreview 
-                            Deck="{Binding ActiveDeck}"/>
+                            Deck="{Binding DataContext.ActiveDeck, ElementName=mainWindow}"/>
                     </WrapPanel>
                     <WrapPanel
                         Visibility="{Binding DeckEditVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">
                         <Decks:DeckEdit
-                            Deck="{Binding ActiveDeck}"/>
+                            Deck="{Binding DataContext.ActiveDeck, ElementName=mainWindow}"/>
                     </WrapPanel>
                     <StackPanel 
                         Visibility="{Binding EditGameVisible, Mode=TwoWay, Converter={Converters:BoolToVisibilty}}">

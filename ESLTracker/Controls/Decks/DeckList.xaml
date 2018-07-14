@@ -65,7 +65,7 @@
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <local:DeckItem />
+                        <local:DeckItem Deck="{Binding Path=DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem},  AncestorLevel=1}}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

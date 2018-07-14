@@ -54,6 +54,25 @@ namespace ESLTracker.Controls.Game
                 typeof(EditGame), 
                 new PropertyMetadata(false));
 
+        public bool TrackActiveDeck
+        {
+            get { return (bool)GetValue(TrackActiveDeckProperty); }
+            set { SetValue(TrackActiveDeckProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TrackActiveDeck.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TrackActiveDeckProperty =
+            DependencyProperty.Register("TrackActiveDeck", typeof(bool), typeof(EditGame), new PropertyMetadata(false, TrackActiveDeckChanged));
+
+        private static void TrackActiveDeckChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue is bool && (bool)e.NewValue)
+            {
+                EditGame control = (EditGame)d;
+                control.DataContext.RegisterTrackingActiveDeck(control.deckItem.DataContext);
+            }
+        }
+
         public EditGame() 
         {
             InitializeComponent();

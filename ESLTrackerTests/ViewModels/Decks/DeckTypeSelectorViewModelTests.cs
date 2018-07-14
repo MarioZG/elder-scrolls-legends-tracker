@@ -24,6 +24,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             List<DeckType> expectedFilter = new List<DeckType>() { clickedType };
 
             DeckTypeSelectorViewModel model = CreateDeckTypeSelectorVM();
+            model.FilterButtonState[clickedType] = true;
             model.FilterClicked(clickedType);
 
             Assert.AreEqual(expectedCount, model.FilteredTypes.Count);
@@ -45,7 +46,10 @@ namespace ESLTracker.ViewModels.Decks.Tests
             List<DeckType> expectedFilter = new List<DeckType>() { clickedType, clickedType2 };
 
             DeckTypeSelectorViewModel model = CreateDeckTypeSelectorVM();
+            model.FilterButtonState[clickedType] = true;
             model.FilterClicked(clickedType);
+
+            model.FilterButtonState[clickedType2] = true;
             model.FilterClicked(clickedType2);
 
             Assert.AreEqual(expectedCount, model.FilteredTypes.Count);
@@ -62,6 +66,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             DeckTypeSelectorViewModel model = CreateDeckTypeSelectorVM();
             foreach (DeckType type in allTypes)
             {
+                model.FilterButtonState[type] = true;
                 model.FilterClicked(type);
             }
 
@@ -80,12 +85,14 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             DeckTypeSelectorViewModel model = CreateDeckTypeSelectorVM();
             //first select
+            model.FilterButtonState[clickedType] = true;
             model.FilterClicked(clickedType);
 
             //ensure filter changed
             Assert.AreEqual(1, model.FilteredTypes.Count);
 
             //unselect - non-selected
+            model.FilterButtonState[clickedType] = false;
             model.FilterClicked(clickedType);
 
 

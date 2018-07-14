@@ -16,6 +16,7 @@ using ESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.Utils.SimpleInjector;
+using ESLTracker.ViewModels.Decks;
 
 namespace ESLTracker.Controls.Decks
 {
@@ -25,22 +26,53 @@ namespace ESLTracker.Controls.Decks
     public partial class DeckItem : UserControl
     {
 
+        new public DeckItemViewModel DataContext
+        {
+            get
+            {
+                return (DeckItemViewModel)base.DataContext;
+            }
+            set
+            {
+                base.DataContext = value;
+            }
+        }
+
+        public Deck Deck
+        {
+            get { return (Deck)GetValue(DeckProperty); }
+            set { SetValue(DeckProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Deck.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DeckProperty =
+            DependencyProperty.Register("Deck", typeof(Deck), typeof(DeckItem), new PropertyMetadata(DeckPropertyUpdated));
+
+        private static void DeckPropertyUpdated(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((DeckItem)d).DataContext.Deck = (Deck)e.NewValue;
+        }
+
+
+
+
         public DeckItem()
         {
             InitializeComponent();
+
             var messanger = MasserContainer.Container.GetInstance<IMessenger>();
 
             //need to keep this for refreshing attributes icons - until class have correct binding!
-            messanger.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.EditFinished);
-            messanger.Register<Utils.Messages.EditDeck>(this, EditDeckEvent, Utils.Messages.EditDeck.Context.StatsUpdated);
+            messanger.Register<EditDeck>(this, EditDeckEvent, EditDeck.Context.EditFinished);
+            messanger.Register<EditDeck>(this, EditDeckEvent, EditDeck.Context.StatsUpdated);
 
         }
 
-        private void EditDeckEvent(Utils.Messages.EditDeck obj)
+        private void EditDeckEvent(EditDeck obj)
         {
-           if (this.DataContext != null && this.DataContext is Deck && obj.Deck.DeckId == ((DataModel.Deck)this.DataContext).DeckId)
+           if (this.DataContext != null && obj.Deck.DeckId == this.DataContext.Deck?.DeckId)
             {
-                ((Deck)this.DataContext).UpdateAllBindings();
+                this.DataContext.UpdateAllBindings();
             }
         }
     }

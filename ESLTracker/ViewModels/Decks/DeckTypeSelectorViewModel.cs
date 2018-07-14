@@ -80,9 +80,6 @@ namespace ESLTracker.ViewModels.Decks
                 throw new ArgumentException(string.Format("Unknow value for DeckType={0}", param));
             }
 
-            //toggle filter value
-            FilterButtonState[attrib] = !FilterButtonState[attrib];
-
             //fires to many events on colection, will filter once for reset, and then for every selected attrib
             FilteredTypes.Clear();
 

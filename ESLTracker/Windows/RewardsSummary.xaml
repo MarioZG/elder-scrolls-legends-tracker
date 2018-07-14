@@ -23,7 +23,6 @@
             <TabItem Header="List">
                 <DataGrid x:Name="rewardsList"
                     ItemsSource="{Binding Rewards}"
-                    DataContext="Rewards"
                     AutoGenerateColumns="False"
                     CanUserAddRows="False">
                     <DataGrid.Columns>

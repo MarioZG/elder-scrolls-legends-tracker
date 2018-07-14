@@ -27,6 +27,6 @@
         />
         </StackPanel.LayoutTransform>
         <Controls:OverlayWindowTitlebar Title="Deck" Visibility="Hidden" />
-        <Cards:CardList DataContext="{Binding ActiveDeckCards}" />
+        <Cards:CardList DataContext="{Binding DataContext.ActiveDeckCards, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" />
     </StackPanel>
 </base:OverlayWindowBase>

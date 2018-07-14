@@ -11,8 +11,8 @@
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
-             Margin="{Binding Margin}"
-             Visibility="{Binding Visibility}"
+             Margin="{Binding Margin, ElementName=control}"
+             Visibility="{Binding Visibility, ElementName=control}"
              FocusManager.FocusedElement="{Binding ElementName=dockPanel}"
              GotFocus="control_GotFocus"
              MinWidth="100"
@@ -42,7 +42,7 @@
                 Text="{Binding Reward.Quantity}"
                 Height="20"
                 MinWidth="32"
-                 TabIndex="{Binding Reward.Type}"
+                 TabIndex="{Binding Reward.Type, Converter={Converters:EnumToIntConverter}, TargetNullValue=0, FallbackValue=0}"
                 Behaviors:FocusExtension.SelectAllOnFocus="True"/>
         <Viewbox MaxWidth="180" StretchDirection="DownOnly" Stretch="Uniform">
             <Cards:SelectCard 

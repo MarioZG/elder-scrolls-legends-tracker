@@ -29,7 +29,14 @@ namespace ESLTracker.ViewModels.Game.Tests
         Mock<ITracker> tracker = new Mock<ITracker>();
         Mock<IWinAPI> winApi = new Mock<IWinAPI>();
         Mock<IFileSaver> fileSaver = new Mock<IFileSaver>();
-        Mock<IGameFactory> gameFactory = new Mock<IGameFactory>();
+        IGameFactory gameFactory;
+
+        [TestInitialize]
+        public override void TestInitialize()
+        {
+            base.TestInitialize();
+            gameFactory = new GameFactory(mockDatetimeProvider.Object);
+        }
 
         /// <summary>
         /// verify if last rank selected by player is saved in settings
@@ -43,8 +50,6 @@ namespace ESLTracker.ViewModels.Game.Tests
             tracker.Setup(t => t.ActiveDeck).Returns(new DeckBuilder().Build());
 
             winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);
-
-            gameFactory.Setup(gf => gf.CreateGame()).Returns(new GameBuilder().Build());
 
             EditGameViewModel model = CreateGameVM();
 
@@ -312,7 +317,7 @@ namespace ESLTracker.ViewModels.Game.Tests
                 fileSaver.Object, 
                 mockDatetimeProvider.Object,
                 new BusinessLogic.Decks.DeckCalculations(tracker.Object),
-                gameFactory.Object);
+                gameFactory);
         }
     }
 }

@@ -155,11 +155,6 @@ namespace ESLTracker.DataModel
        
         }
 
-        public void UpdateAllBindings()
-        {
-            RaisePropertyChangedEvent("");
-        }
-
         public object Clone()
         {
             Deck deck = this.MemberwiseClone() as Deck;

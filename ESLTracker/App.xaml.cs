@@ -67,6 +67,19 @@ namespace ESLTracker
         {
             var container = new MasserContainer();
 
+            
+            #if DEBUG
+
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                System.Diagnostics.PresentationTraceSources.Refresh();
+                System.Diagnostics.PresentationTraceSources.DataBindingSource.Listeners.Add(new System.Diagnostics.ConsoleTraceListener());
+                System.Diagnostics.PresentationTraceSources.DataBindingSource.Listeners.Add(new DebugTraceListener());
+                System.Diagnostics.PresentationTraceSources.DataBindingSource.Switch.Level = System.Diagnostics.SourceLevels.Warning | System.Diagnostics.SourceLevels.Error;
+            }
+
+            #endif
+
             ConfigurationItemFactory.Default.Targets
                 .RegisterDefinition("UserInfoLogger", typeof(ESLTracker.Utils.NLog.UserInfoLoggerTarget));
 
@@ -100,12 +113,12 @@ namespace ESLTracker
             }
 
             bool isShiftPressed = (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift;
-            if (settings.General_StartGameWithTracker && ! isShiftPressed)
+            if (settings.General_StartGameWithTracker && !isShiftPressed)
             {
                 container.GetInstance<ILauncherService>().StartGame();
             }
 
-         //   var app = new App();
+            //   var app = new App();
             this.MainWindow = container.GetInstance<MainWindow>();
             this.MainWindow.Show();
             //this.Run(this.MainWindow);

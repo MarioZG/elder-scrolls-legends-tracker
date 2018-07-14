@@ -43,7 +43,7 @@
                     SelectedItem="{Binding CurrentVersion}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Version, StringFormat={}v{0:mm}}" Style="{StaticResource DeckName}"/>
+                                <TextBlock Text="{Binding Version, StringFormat={}v{0:mm}}" Style="{StaticResource DeckVersion}"/>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
@@ -74,7 +74,7 @@
                         <StackPanel>
                             <TextBlock Style="{StaticResource EditDeck_SectionHeader}" Text="Cards breakdown"/>
                             <local:CardBreakdown 
-                    CardCollection="{Binding DataContext.CurrentVersion.Cards, Mode=TwoWay, ElementName=deckEdit}"/>
+                                    CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckEdit}"/>
                         </StackPanel>
                     </Border>
                 </DockPanel>

@@ -12,6 +12,7 @@
              d:DesignHeight="20" d:DesignWidth="300">
     <StackPanel Orientation="Horizontal">
         <ComboBox 
+            x:Name="selectedDeck"
             ItemsSource="{Binding DecksList}"
             SelectedItem="{Binding SelectedDeck}"
             DisplayMemberPath="Name"

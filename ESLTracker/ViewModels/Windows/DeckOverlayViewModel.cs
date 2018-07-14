@@ -1,5 +1,6 @@
 ﻿using ESLTracker.DataModel;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,29 @@ namespace ESLTracker.ViewModels.Windows
 {
     public class DeckOverlayViewModel : ViewModelBase
     {
-        ITracker tracker;
-
-        public DeckOverlayViewModel(ITracker tracker)
+        public PropertiesObservableCollection<CardInstance> ActiveDeckCards
         {
-            this.tracker = tracker;
+            get
+            {
+                return tracker?.ActiveDeck?.SelectedVersion?.Cards;
+            }
         }
 
+        private readonly ITracker tracker;
+        private readonly IMessenger messanger;
 
-        public PropertiesObservableCollection<CardInstance> ActiveDeckCards () => tracker.ActiveDeck.SelectedVersion.Cards;
+        public DeckOverlayViewModel(ITracker tracker, IMessenger messanger)
+        {
+            this.tracker = tracker;
+            this.messanger = messanger;
+
+            messanger.Register<ActiveDeckChanged>(this, OnActiveDeckChanged);
+        }
+
+        private void OnActiveDeckChanged(ActiveDeckChanged obj)
+        {
+            RaisePropertyChangedEvent(nameof(ActiveDeckCards));
+        }
+
     }
 }

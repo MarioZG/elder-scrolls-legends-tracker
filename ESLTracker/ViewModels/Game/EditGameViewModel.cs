@@ -14,12 +14,13 @@ using ESLTracker.Utils.Messages;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Games;
+using ESLTracker.ViewModels.Decks;
 
 namespace ESLTracker.ViewModels.Game
 {
     public class EditGameViewModel : ViewModelBase, IEditableObject
     {
-        public DataModel.Game game = new DataModel.Game();
+        public DataModel.Game game;
         public DataModel.Game Game
         {
             get { return game; }
@@ -184,7 +185,7 @@ namespace ESLTracker.ViewModels.Game
             DeckCalculations deckCalculations,
             IGameFactory gameFactory)
         {
-            this.messanger = messenger; ;
+            this.messanger = messenger;
             this.tracker = tracker;
             this.settings = settings;
             this.winApi = winApi;
@@ -192,6 +193,8 @@ namespace ESLTracker.ViewModels.Game
             this.dateTimeProvider = dateTimeProvider;
             this.deckCalculations = deckCalculations;
             this.gameFactory = gameFactory;
+
+            game = gameFactory.CreateGame();
 
             Game.PropertyChanged += Game_PropertyChanged;
             messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);
@@ -204,6 +207,11 @@ namespace ESLTracker.ViewModels.Game
 
         internal void ActiveDeckChanged(ActiveDeckChanged activeDeckChanged)
         {
+            if (deckItemVM !=  null)
+            {
+                deckItemVM.Deck = activeDeckChanged.ActiveDeck;
+            }
+
             if (!IsEditControl)
             {
                 if (activeDeckChanged.ActiveDeck != null)
@@ -289,17 +297,12 @@ namespace ESLTracker.ViewModels.Game
                 tracker.Games.Add(this.Game);
 
                 messanger.Send(
-                    new Utils.Messages.EditDeck() { Deck = game.Deck },
-                    Utils.Messages.EditDeck.Context.StatsUpdated);
+                    new EditDeck() { Deck = game.Deck },
+                    EditDeck.Context.StatsUpdated);
 
                 fileSaver.SaveDatabase(tracker);
 
-                this.Game = gameFactory.CreateGame();
-
-                //restore values that are likely the same,  like game type, player rank etc
-                this.Game.Type = addedGame.Type;
-                this.Game.PlayerRank = addedGame.PlayerRank;
-                this.Game.PlayerLegendRank = addedGame.PlayerLegendRank;
+                this.Game = gameFactory.CreateGame(addedGame);
 
                 this.BeginEdit();
 
@@ -521,6 +524,12 @@ namespace ESLTracker.ViewModels.Game
         {
             CommandExecuteWhenContinueOnError.Execute(null);
             this.ErrorMessage = String.Empty;
+        }
+
+        DeckItemViewModel deckItemVM;
+        public void RegisterTrackingActiveDeck(DeckItemViewModel deckItemVM)
+        {
+            this.deckItemVM = deckItemVM;
         }
     }
 }

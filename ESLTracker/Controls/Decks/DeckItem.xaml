@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:Game="clr-namespace:ESLTracker.Controls.Game"  x:Class="ESLTracker.Controls.Decks.DeckItem"
+﻿<UserControl x:Class="ESLTracker.Controls.Decks.DeckItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,16 +6,18 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:Properties="clr-namespace:ESLTracker.Properties"
+             xmlns:Game="clr-namespace:ESLTracker.Controls.Game" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckItemViewModel]}"
              mc:Ignorable="d" 
              d:DesignHeight="70" d:DesignWidth="200">
     <UserControl.Resources>
         <ResourceDictionary Source="/ControlStyle.xaml" />
     </UserControl.Resources>
-    <DockPanel HorizontalAlignment="Stretch">
+    <DockPanel HorizontalAlignment="Stretch" x:Name="LayoutRoot">
         <StackPanel DockPanel.Dock="Left">
-            <ItemsControl ItemsSource="{Binding Path=Attributes.ImageSources}" BorderThickness="0"
-                          ToolTip="{Binding Class}">
+            <ItemsControl ItemsSource="{Binding Path=Deck.Attributes.ImageSources}" BorderThickness="0"
+                          ToolTip="{Binding Deck.Class}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True" />
@@ -34,48 +36,29 @@
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Left"
                 Foreground="Gray"
-                Visibility="{Binding IsWebDeck, Converter={Converters:BoolToVisibilty}}"
-                ToolTip="{Binding DeckUrl}"
+                Visibility="{Binding Deck.IsWebDeck, Converter={Converters:BoolToVisibilty}}"
+                ToolTip="{Binding Deck.DeckUrl}"
             />
         </StackPanel>
         <local:DeckLastGamesIndicator
             Visibility="{Binding Path=DeckViewLastGamesIndicatorShow, Source={x:Static Properties:Settings.Default}, Converter={Converters:BoolToVisibilty}}"
             GamesCount="{Binding Path=DeckViewLastGamesIndicatorCount, Source={x:Static Properties:Settings.Default}}" 
-            Deck="{Binding}" 
+            Deck="{Binding Deck, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeckItem}}}" 
             DockPanel.Dock="Bottom"/>
         <StackPanel Margin="10,0,0,0">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Style="{StaticResource DeckName}" Text="{Binding Name}" />
+                <TextBlock Style="{StaticResource DeckName}" Text="{Binding Deck.Name}" />
                 <TextBlock 
                     Style="{StaticResource DeckName}" 
-                    Visibility="{Binding Type, ConverterParameter=not, Converter={Converters:DeckTypeToArenaRankVisibilty}}"
-                    Text="{Binding SelectedVersion.Version, StringFormat={} (v{0:MM})}" />
-                <ToggleButton 
-                    x:Name="tbChangeDeck" 
-                    ToolTip="Move game to other deck"
-                    IsChecked="{Binding DataContext.IsDeckSelectorVisible, ElementName=changeDeck, Mode=TwoWay}" 
-                    BorderThickness="0" 
-                    Background="{x:Null}" 
-                    Visibility="{Binding IsEditControl, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl},AncestorLevel=2}, Converter={Converters:BoolToVisibilty}, FallbackValue=Collapsed}"
-                >
-                <fa:ImageAwesome 
-                    Icon="ShareSquareOutline" 
-                    Width="12" 
-                    Margin="5" 
-                    VerticalAlignment="Center"
-                />
-                </ToggleButton>
-            </StackPanel>
-            <StackPanel>
-                <Game:ChangeGameDeck
-                    Visibility="{Binding IsDeckSelectorVisible, Converter={Converters:BoolToVisibilty}}"/>
+                    Visibility="{Binding Deck.Type, ConverterParameter=not, Converter={Converters:DeckTypeToArenaRankVisibilty}}"
+                    Text="{Binding Deck.SelectedVersion.Version, StringFormat={} (v{0:MM})}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=Type}" />
-                <TextBlock Text="{Binding Path=ArenaRank, StringFormat={} ({0} ({0:D}))}" 
-                           Visibility="{Binding Type, Converter={Converters:DeckTypeToArenaRankVisibilty}}"
+                <TextBlock Text="{Binding Path=Deck.Type}" />
+                <TextBlock Text="{Binding Path=Deck.ArenaRank, StringFormat={} ({0} ({0:D}))}" 
+                           Visibility="{Binding Deck.Type, Converter={Converters:DeckTypeToArenaRankVisibilty}}"
                        />
-                <TextBlock FontStyle="Italic" Margin="5,0,0,0" Text="{Binding Path=DeckTag}" />
+                <TextBlock FontStyle="Italic" Margin="5,0,0,0" Text="{Binding Path=Deck.DeckTag}" />
             </StackPanel>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right">

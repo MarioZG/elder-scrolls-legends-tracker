@@ -19,10 +19,29 @@ namespace ESLTracker.BusinessLogic.Games
 
         public Game CreateGame()
         {
-            var game = new DataModel.Game()
+#pragma warning disable CS0618 // Type or member is obsolete
+            var game = new Game()
             {
                 Date = dateTimeProvider.DateTimeNow
             };
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            return game;
+        }
+
+        public Game CreateGame(Game previousGame)
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            var game = CreateGame();
+#pragma warning restore CS0618 // Type or member is obsolete
+
+
+            game.Deck = previousGame.Deck;
+
+            //restore values that are likely the same,  like game type, player rank etc
+            game.Type = previousGame.Type;
+            game.PlayerRank = previousGame.PlayerRank;
+            game.PlayerLegendRank = previousGame.PlayerLegendRank;
 
             return game;
         }

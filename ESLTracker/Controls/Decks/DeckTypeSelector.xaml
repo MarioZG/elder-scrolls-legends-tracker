@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
+             xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d"
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckTypeSelectorViewModel]}"
              >
@@ -16,17 +18,17 @@
                       Content="Constructed"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="Constructed"
-                      IsChecked="{Binding FilterButtonState[DeckAttribute.Constructed]}"/>
+                      IsChecked="{Binding Path=FilterButtonState[(Enums:DeckType)Constructed]}"/>
         <ToggleButton x:Name="btnVersusArena" Content="Versus Arena"
                       Style="{DynamicResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="VersusArena"
-                      IsChecked="{Binding FilterButtonState[DeckAttribute.VersusArena]}"/>
+                      IsChecked="{Binding Path=FilterButtonState[(Enums:DeckType)VersusArena]}"/>
         <ToggleButton x:Name="btnSoloArena" Content="Solo arena"
                       Style="{DynamicResource ToggleButtonStyle}"
                       Command="{Binding CommandFilterButtonPressed}"
                       CommandParameter="SoloArena"
-                      IsChecked="{Binding FilterButtonState[DeckAttribute.SoloArena]}"/>
+                      IsChecked="{Binding Path=FilterButtonState[(Enums:DeckType)SoloArena]}"/>
     </UniformGrid>
         <DockPanel>
             <CheckBox DockPanel.Dock="Left" Content="Hidden decks"

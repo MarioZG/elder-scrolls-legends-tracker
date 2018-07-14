@@ -9,10 +9,12 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Rewards"
              xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks"  
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              FocusManager.IsFocusScope="True"
-             FocusManager.FocusedElement="{Binding ElementName=cbReason}"
+             FocusManager.FocusedElement="{x:Reference cbReason}"
              mc:Ignorable="d"
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[Rewards.RewardSetViewModel]}"
+             x:Name="rewardSet"
              >
     <UserControl.Resources>
         <ObjectDataProvider x:Key="RewardReasonEnum" MethodName="GetValues"
@@ -33,7 +35,7 @@
             />
         <StackPanel Visibility="{Binding ArenaDeck, Converter={Converters:ObjectToVisibilty}}">            
         <Decks:DeckItem x:Name="arenaDeck" 
-                        DataContext="{Binding ArenaDeck}"
+                        Deck="{Binding DataContext.ArenaDeck, ElementName=rewardSet}"
             />
         </StackPanel>
 
@@ -62,7 +64,9 @@
             DataContext="{Binding RewardsAdded}" 
             GroupBy="Reason"
             ShowCommands="True"
-            KeyboardNavigation.ControlTabNavigation="None" />
+            KeyboardNavigation.ControlTabNavigation="None" >
+
+        </local:RewardItemList>
         <Button 
             x:Name="button" 
             Content="Done" 
