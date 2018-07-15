@@ -11,6 +11,7 @@
              xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks" 
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Game" 
+             xmlns:Game="clr-namespace:ESLTracker.Controls.Game" 
              xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              x:Class="ESLTracker.Controls.Game.EditGame"
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[Game.EditGameViewModel]}"
@@ -78,15 +79,20 @@
                                   Command="{Binding CommandButtonResetAllChanges}">Close anyway</Hyperlink>
             </TextBlock>
         </StackPanel>
-
         <Decks:DeckItem Grid.Row="1"
                         x:Name="deckItem"
                         Deck="{Binding DataContext.Game.Deck, ElementName=editGame}"
                         Grid.ColumnSpan="2"/>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="2">
-            <Label Content="{Binding OpponentClassWins}"/>
+            <local:MoveToOtherDeck 
+                HorizontalAlignment="Stretch"
+                Padding="0,5,0,0"
+                Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibilty}}"/>            
+            <Label 
+                Visibility="{Binding IsEditControl, Converter={Converters:BoolToVisibilty}, ConverterParameter=not}"
+                Content="{Binding OpponentClassWins}"/>
             <Controls:DeckClassSelector
-                        SelectedClass="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:EditGame}}, Path=DataContext.Game.OpponentClass, Mode=TwoWay}"/>
+                SelectedClass="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:EditGame}}, Path=DataContext.Game.OpponentClass, Mode=TwoWay}"/>
         </StackPanel>
         <Label Content="Game type" Grid.Row="3"/>
         <ComboBox x:Name="cbGameType" Grid.Row="3" Grid.Column="1"

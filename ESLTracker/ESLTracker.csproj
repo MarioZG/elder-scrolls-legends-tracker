@@ -117,6 +117,9 @@
     <Compile Include="BusinessLogic\Games\IGameFactory.cs" />
     <Compile Include="BusinessLogic\Rewards\IRewardFactory.cs" />
     <Compile Include="BusinessLogic\Rewards\RewardFactory.cs" />
+    <Compile Include="Controls\Game\MoveToOtherDeck.xaml.cs">
+      <DependentUpon>MoveToOtherDeck.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Converters\EnumToIntConverter.cs" />
     <Compile Include="Utils\DebugTraceListener.cs" />
     <Compile Include="Utils\GuidProvider.cs" />
@@ -446,6 +449,10 @@
     <Compile Include="ViewModels\Settings\SettingsPanelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Utils\WinAPI.cs" />
+    <Page Include="Controls\Game\MoveToOtherDeck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
