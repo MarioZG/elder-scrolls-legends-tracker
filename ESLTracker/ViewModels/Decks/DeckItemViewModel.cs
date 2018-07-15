@@ -51,6 +51,10 @@ namespace ESLTracker.ViewModels.Decks
 
             CommandDrop = new RelayCommand(CommandDropExecute);
 
+            //need to keep this for refreshing attributes icons - until class have correct binding!
+            messanger.Register<EditDeck>(this, EditDeckEvent, EditDeck.Context.EditFinished);
+            messanger.Register<EditDeck>(this, EditDeckEvent, EditDeck.Context.StatsUpdated);
+
         }
 
         private void CommandDropExecute(object obj)
@@ -91,6 +95,14 @@ namespace ESLTracker.ViewModels.Decks
         public void UpdateAllBindings()
         {
             RaisePropertyChangedEvent(String.Empty);
+        }
+
+        private void EditDeckEvent(EditDeck obj)
+        {
+            if (obj.Deck.DeckId == Deck?.DeckId)
+            {
+                UpdateAllBindings();
+            }
         }
     }
 }

@@ -53,27 +53,9 @@ namespace ESLTracker.Controls.Decks
             ((DeckItem)d).DataContext.Deck = (Deck)e.NewValue;
         }
 
-
-
-
         public DeckItem()
         {
             InitializeComponent();
-
-            var messanger = MasserContainer.Container.GetInstance<IMessenger>();
-
-            //need to keep this for refreshing attributes icons - until class have correct binding!
-            messanger.Register<EditDeck>(this, EditDeckEvent, EditDeck.Context.EditFinished);
-            messanger.Register<EditDeck>(this, EditDeckEvent, EditDeck.Context.StatsUpdated);
-
-        }
-
-        private void EditDeckEvent(EditDeck obj)
-        {
-           if (this.DataContext != null && obj.Deck.DeckId == this.DataContext.Deck?.DeckId)
-            {
-                this.DataContext.UpdateAllBindings();
-            }
         }
     }
 }
