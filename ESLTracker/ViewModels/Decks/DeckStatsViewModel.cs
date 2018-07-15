@@ -4,10 +4,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Behaviors;
 using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Decks
@@ -57,6 +59,9 @@ namespace ESLTracker.ViewModels.Decks
             set { showControl = value; RaisePropertyChangedEvent("ShowControl"); }
         }
 
+        public RelayCommand CommandStartDrag { get; private set; }
+
+
         private readonly IMessenger messanger;
         private readonly ITracker tracker;
         private readonly DeckCalculations deckCalculations;
@@ -75,6 +80,9 @@ namespace ESLTracker.ViewModels.Decks
 
             messanger.Register<EditDeck>(this, GameAdded, EditDeck.Context.StatsUpdated);
             messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);
+
+            CommandStartDrag = new RelayCommand(CommandStartDragExecute);
+
         }
 
         private void ActiveDeckChanged(ActiveDeckChanged obj)
@@ -98,6 +106,12 @@ namespace ESLTracker.ViewModels.Decks
         private void GameAdded(EditDeck obj)
         {
             RefreshData();
+        }
+
+        private void CommandStartDragExecute(object obj)
+        {
+            DragDropEventInfo eventInfo = obj as DragDropEventInfo;
+            DragDrop.DoDragDrop(eventInfo.Source, eventInfo.Data, DragDropEffects.Move);
         }
     }
 }

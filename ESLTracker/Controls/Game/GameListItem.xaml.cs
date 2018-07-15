@@ -40,6 +40,6 @@ namespace ESLTracker.Controls.Game
                 new Utils.Messages.EditGame(this.DataContext as DataModel.Game),
                 Utils.Messages.EditGame.Context.StartEdit);
         }
-        
+
     }
 }

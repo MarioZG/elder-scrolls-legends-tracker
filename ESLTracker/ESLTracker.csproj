@@ -113,6 +113,7 @@
     <Compile Include="BusinessLogic\Decks\DeckCalculations.cs" />
     <Compile Include="BusinessLogic\Decks\DeckVersionFactory.cs" />
     <Compile Include="BusinessLogic\Decks\IDeckVersionFactory.cs" />
+    <Compile Include="BusinessLogic\Games\ChangeGameDeck.cs" />
     <Compile Include="BusinessLogic\Games\GameFactory.cs" />
     <Compile Include="BusinessLogic\Games\IGameFactory.cs" />
     <Compile Include="BusinessLogic\Rewards\IRewardFactory.cs" />
@@ -120,8 +121,11 @@
     <Compile Include="Controls\Game\MoveToOtherDeck.xaml.cs">
       <DependentUpon>MoveToOtherDeck.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Behaviors\DragBehavior.cs" />
+    <Compile Include="Utils\Behaviors\DragDropEventInfo.cs" />
     <Compile Include="Utils\Converters\EnumToIntConverter.cs" />
     <Compile Include="Utils\DebugTraceListener.cs" />
+    <Compile Include="Utils\Behaviors\DropBehavior.cs" />
     <Compile Include="Utils\GuidProvider.cs" />
     <Compile Include="Utils\IGuidProvider.cs" />
     <Compile Include="ViewModels\Decks\DeckItemViewModel.cs" />

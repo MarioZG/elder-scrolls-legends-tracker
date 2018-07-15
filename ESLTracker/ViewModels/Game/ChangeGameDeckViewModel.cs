@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ESLTracker.BusinessLogic.Games;
 using ESLTracker.DataModel;
 using ESLTracker.Utils;
 
@@ -12,7 +13,7 @@ namespace ESLTracker.ViewModels.Game
     public class ChangeGameDeckViewModel : ViewModelBase
     {
         private ITracker tracker;
-
+        private readonly ChangeGameDeck changeGameDeck;
         private Deck selectedDeck;
         /// <summary>
         /// deck selected in dropdown
@@ -74,9 +75,10 @@ namespace ESLTracker.ViewModels.Game
             }
         }
 
-        public ChangeGameDeckViewModel(ITracker tracker)
+        public ChangeGameDeckViewModel(ITracker tracker, ChangeGameDeck changeGameDeck)
         {
             this.tracker = tracker;
+            this.changeGameDeck = changeGameDeck;
         }
 
         /// <summary>
@@ -88,8 +90,7 @@ namespace ESLTracker.ViewModels.Game
             DataModel.Game game = obj as DataModel.Game;
             if (game != null)
             {
-                game.Deck = SelectedDeck;
-                game.DeckVersionId = SelectedVersion.VersionId;
+                changeGameDeck.MoveGameBetweenDecks(game, SelectedDeck, SelectedVersion);
                 IsDeckSelectorVisible = false;
             }
             else

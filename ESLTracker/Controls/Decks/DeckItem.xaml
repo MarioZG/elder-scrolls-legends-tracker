@@ -7,8 +7,11 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:Properties="clr-namespace:ESLTracker.Properties"
              xmlns:Game="clr-namespace:ESLTracker.Controls.Game" 
+             xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckItemViewModel]}"
+             AllowDrop="True"             
+             Behaviors:DropBehavior.DropCommand="{Binding CommandDrop}"
              mc:Ignorable="d" 
              d:DesignHeight="70" d:DesignWidth="200">
     <UserControl.Resources>
