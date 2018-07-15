@@ -42,6 +42,7 @@ namespace ESLTracker.BusinessLogic.Games
             game.Type = previousGame.Type;
             game.PlayerRank = previousGame.PlayerRank;
             game.PlayerLegendRank = previousGame.PlayerLegendRank;
+            game.BonusRound = false;
 
             return game;
         }
