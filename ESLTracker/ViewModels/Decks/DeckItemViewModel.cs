@@ -2,6 +2,8 @@
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.Games;
 using ESLTracker.DataModel;
+using ESLTracker.DataModel.Enums;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using System;
@@ -35,19 +37,22 @@ namespace ESLTracker.ViewModels.Decks
         private readonly IMessenger messanger;
         private readonly IFileSaver fileSaver;
         private readonly ITracker tracker;
+        private readonly ISettings settings;
 
         public DeckItemViewModel(
             DeckCalculations deckCalculations,
             ChangeGameDeck changeGameDeck, 
             IMessenger messanger,
             IFileSaver fileSaver,
-            ITracker tracker)
+            ITracker tracker,
+            ISettings settings)
         {
             this.deckCalculations = deckCalculations;
             this.changeGameDeck = changeGameDeck;
             this.messanger = messanger;
             this.fileSaver = fileSaver;
             this.tracker = tracker;
+            this.settings = settings;
 
             CommandDrop = new RelayCommand(CommandDropExecute);
 
@@ -91,6 +96,16 @@ namespace ESLTracker.ViewModels.Decks
                 return deckCalculations.WinRatio(deck);
             }
         }
+
+        public IEnumerable<bool> LastGamesOutcomes
+        {
+            get
+            {
+                return deckCalculations.GetLastGames(Deck, settings.DeckViewLastGamesIndicatorCount);
+            }
+        }
+
+
 
         public void UpdateAllBindings()
         {

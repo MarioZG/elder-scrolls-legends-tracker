@@ -13,6 +13,7 @@
              AllowDrop="True"             
              Behaviors:DropBehavior.DropCommand="{Binding CommandDrop}"
              mc:Ignorable="d" 
+             x:Name="deckItem"
              d:DesignHeight="70" d:DesignWidth="200">
     <UserControl.Resources>
         <ResourceDictionary Source="/ControlStyle.xaml" />
@@ -46,6 +47,7 @@
         <local:DeckLastGamesIndicator
             Visibility="{Binding Path=DeckViewLastGamesIndicatorShow, Source={x:Static Properties:Settings.Default}, Converter={Converters:BoolToVisibilty}}"
             GamesCount="{Binding Path=DeckViewLastGamesIndicatorCount, Source={x:Static Properties:Settings.Default}}" 
+            LastGamesOutcome="{Binding DataContext.LastGamesOutcomes, ElementName=deckItem}"
             Deck="{Binding Deck, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeckItem}}}" 
             DockPanel.Dock="Bottom"/>
         <StackPanel Margin="10,0,0,0">

@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
-             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckLastGamesIndicatorViewModel]}"
              mc:Ignorable="d" 
              d:DesignHeight="10" d:DesignWidth="300">
     <Grid x:Name="grid">

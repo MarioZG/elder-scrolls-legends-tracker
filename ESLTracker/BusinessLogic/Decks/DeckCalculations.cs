@@ -91,5 +91,17 @@ namespace ESLTracker.BusinessLogic.Decks
             }
         }
 
+        public IEnumerable<bool> GetLastGames(Deck deck, int gamesCount)
+        {
+            IEnumerable<bool> wins = GetDeckGames(deck)
+                .OrderByDescending(g => g.Date)
+                .Take(gamesCount)
+                .Reverse()
+                .Select(g => g.Outcome == GameOutcome.Victory)
+                .ToList();
+
+            return wins;
+        }
+
     }
 }

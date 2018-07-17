@@ -36,6 +36,25 @@ namespace ESLTracker.Controls.Decks
         public static readonly DependencyProperty GamesCountProperty =
             DependencyProperty.Register("GamesCount", typeof(int), typeof(DeckLastGamesIndicator), new PropertyMetadata(-1, NumberOfColumnsChanged));
 
+
+
+        public IEnumerable<bool> LastGamesOutcome
+        {
+            get { return (IEnumerable<bool>)GetValue(LastGamesOutcomeProperty); }
+            set { SetValue(LastGamesOutcomeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for LastGamesOutcome.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LastGamesOutcomeProperty =
+            DependencyProperty.Register("LastGamesOutcome", typeof(IEnumerable<bool>), typeof(DeckLastGamesIndicator), new PropertyMetadata(null, LastGamesOutcomeChanged));
+
+
+        private static void LastGamesOutcomeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            DeckLastGamesIndicator control = d as DeckLastGamesIndicator;
+            RefreshLastGamesIndicator(d.GetValue(LastGamesOutcomeProperty) as IEnumerable<bool>, control);
+        }
+
         private static void NumberOfColumnsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             DeckLastGamesIndicator control = d as DeckLastGamesIndicator;
@@ -47,7 +66,7 @@ namespace ESLTracker.Controls.Decks
             DataModel.Deck deck = d.GetValue(DeckProperty) as DataModel.Deck;
             if (deck != null)
             {
-                RefreshLastGamesIndicator(deck, control);
+                RefreshLastGamesIndicator(d.GetValue(LastGamesOutcomeProperty) as IEnumerable<bool>, control);
             }
         }
 
@@ -68,18 +87,17 @@ namespace ESLTracker.Controls.Decks
                 DataModel.Deck deck = e.NewValue as DataModel.Deck;
                 DeckLastGamesIndicator control = d as DeckLastGamesIndicator;
                 deck.PropertyChanged += delegate {
-                    RefreshLastGamesIndicator(deck, control);
+                    RefreshLastGamesIndicator(d.GetValue(LastGamesOutcomeProperty) as IEnumerable<bool>, control);
                 };
-                RefreshLastGamesIndicator(deck, control);
+                RefreshLastGamesIndicator(d.GetValue(LastGamesOutcomeProperty) as IEnumerable<bool>, control);
             }
         }
 
-        private static void RefreshLastGamesIndicator(DataModel.Deck deck, DeckLastGamesIndicator control)
+        private static void RefreshLastGamesIndicator(IEnumerable<bool> lastGamesOutcome, DeckLastGamesIndicator control)
         {
-            IEnumerable<bool> wins = ((DeckLastGamesIndicatorViewModel)control.DataContext).GetLastGames(deck, control.GamesCount);
             int col = 0;
             control.grid.Children.Clear();
-            foreach (bool win in wins)
+            foreach (bool win in lastGamesOutcome)
             {
                 Rectangle r = new Rectangle();
                 r.Fill = win ? Brushes.SeaGreen : Brushes.Brown;

@@ -129,7 +129,6 @@
     <Compile Include="Utils\GuidProvider.cs" />
     <Compile Include="Utils\IGuidProvider.cs" />
     <Compile Include="ViewModels\Decks\DeckItemViewModel.cs" />
-    <Compile Include="ViewModels\Decks\DeckLastGamesIndicatorViewModel.cs" />
     <Compile Include="ViewModels\Windows\AboutViewModel.cs" />
     <Compile Include="Windows\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
