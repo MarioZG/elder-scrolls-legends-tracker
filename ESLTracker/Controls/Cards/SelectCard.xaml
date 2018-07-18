@@ -9,6 +9,7 @@
              xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete"
              mc:Ignorable="d"            
              x:Name="seletCard"
+             FocusManager.FocusedElement="{x:Reference txtName}"
              d:DesignWidth="300">
     <UserControl.Resources>
         <Style x:Key="ShadowText" TargetType="{x:Type Control}">
@@ -61,7 +62,6 @@
             Command="{Binding MouseLeftClick, ElementName=seletCard}" CommandParameter="{Binding CardInstance}">
         <DockPanel >
             <CheckBox DockPanel.Dock="Right" 
-                  TabIndex="1" 
                   Margin="5,0,0,0" 
                   Content="P" 
                   ToolTip="Premium card" 
@@ -120,6 +120,7 @@
                     >
                     <TextBox 
                     Style="{StaticResource ShadowText}"
+                        TabIndex="10"
                     Background="{x:Null}" 
                     BorderBrush="{x:Null}"
                     BorderThickness="0" 

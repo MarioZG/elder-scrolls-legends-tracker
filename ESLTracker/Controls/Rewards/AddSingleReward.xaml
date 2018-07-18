@@ -42,7 +42,7 @@
                 Text="{Binding Reward.Quantity}"
                 Height="20"
                 MinWidth="32"
-                 TabIndex="{Binding Reward.Type, Converter={Converters:EnumToIntConverter}, TargetNullValue=0, FallbackValue=0}"
+                 TabIndex="{Binding Reward.Type, Converter={Converters:EnumToIntConverter}}"
                 Behaviors:FocusExtension.SelectAllOnFocus="True"/>
         <Viewbox MaxWidth="180" StretchDirection="DownOnly" Stretch="Uniform">
             <Cards:SelectCard 
