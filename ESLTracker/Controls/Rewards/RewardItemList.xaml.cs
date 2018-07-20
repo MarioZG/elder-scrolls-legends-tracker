@@ -62,6 +62,32 @@ namespace ESLTracker.Controls.Rewards
             ((PropertyGroupDescription)((CollectionViewSource)uc.Resources["RewardsGroup"]).GroupDescriptions[0]).PropertyName = e.NewValue as string;
         }
 
+
+
+        public ICommand DeleteCommand
+        {
+            get { return (ICommand)GetValue(DeleteCommandProperty); }
+            set { SetValue(DeleteCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for DeleteCommand.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DeleteCommandProperty =
+            DependencyProperty.Register("DeleteCommand", typeof(ICommand), typeof(RewardItemList), new PropertyMetadata(null));
+
+
+
+        public ICommand EditCommand
+        {
+            get { return (ICommand)GetValue(EditCommandProperty); }
+            set { SetValue(EditCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EditCommand.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EditCommandProperty =
+            DependencyProperty.Register("EditCommand", typeof(ICommand), typeof(RewardItemList), new PropertyMetadata(null));
+
+
+
         public RewardItemList()
         {
             InitializeComponent();

@@ -95,6 +95,7 @@
                 <Rewards:RewardItemList DockPanel.Dock="Top"
                     PanelOrientation="Vertical"
                     GroupBy="Date"
+                    ShowCommands="False"
                     DataContext="{Binding ActiveDeckRewards}" />
             </TabItem>
         </TabControl>

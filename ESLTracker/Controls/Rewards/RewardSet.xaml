@@ -64,7 +64,10 @@
             DataContext="{Binding RewardsAdded}" 
             GroupBy="Reason"
             ShowCommands="True"
-            KeyboardNavigation.ControlTabNavigation="None" >
+            KeyboardNavigation.ControlTabNavigation="None" 
+            DeleteCommand="{Binding  DataContext.CommandDeleteReward, ElementName=rewardSet}"
+            EditCommand="{Binding  DataContext.CommandEditReward, ElementName=rewardSet}"
+            >
 
         </local:RewardItemList>
         <Button 

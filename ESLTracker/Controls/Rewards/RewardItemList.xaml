@@ -23,7 +23,7 @@
             Grid.Row="1" 
             DataContext="{StaticResource RewardsGroup}"
             ItemsSource="{Binding}"
-            Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, AncestorLevel=2}, TargetNullValue={x:Null}}"
+            Tag="{Binding Parent.DataContext, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
             >
         <ListView.GroupStyle>
             <GroupStyle>
@@ -54,8 +54,8 @@
                                 BorderBrush="{x:Null}"
                                 Background="{x:Null}"
                                 Foreground="White"
-                                Visibility="{Binding ShowCommands,ElementName=rewardItemList, Converter={Converters:BoolToVisibilty}}"
-                                Command="{Binding DataContext.CommandDeleteReward, RelativeSource={RelativeSource AncestorType={x:Type local:RewardSet}}}"
+                                Visibility="{Binding ShowCommands, ElementName=rewardItemList, Converter={Converters:BoolToVisibilty}}"
+                                Command="{Binding DeleteCommand, ElementName=rewardItemList}"
                                 CommandParameter="{Binding}">
                         <Button.Content>
                             <fa:ImageAwesome Foreground="DimGray" Icon="Remove" Height="12"/>
@@ -69,7 +69,7 @@
                                 Background="{x:Null}"
                                 Foreground="Gray"
                                 Visibility="{Binding ShowCommands,ElementName=rewardItemList, Converter={Converters:BoolToVisibilty}}"
-                                Command="{Binding DataContext.CommandEditReward, RelativeSource={RelativeSource AncestorType={x:Type local:RewardSet}}}"
+                                Command="{Binding EditCommand, ElementName=rewardItemList}"
                                 CommandParameter="{Binding}">
                         <Button.Content>
                             <fa:ImageAwesome Foreground="DimGray" Icon="ShareSquareOutline" Height="12"/>
@@ -96,24 +96,38 @@
                 </DockPanel>
             </DataTemplate>
         </ListView.ItemTemplate>
-        <ListView.ContextMenu>
-            <ContextMenu Visibility="{Binding Path=PlacementTarget.Parent.ShowCommands,RelativeSource={RelativeSource Self}, Converter={Converters:BoolToVisibilty}}"
+        <ListView.Style>
+            <Style TargetType="ListView" BasedOn="{StaticResource {x:Type ListBox}}">
+                <Style.Triggers>
+                    <DataTrigger 
+                    Binding="{Binding ShowCommands, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Value="True"
+                    >
+                        <Setter Property="ContextMenu">
+                            <Setter.Value>
+                                <ContextMenu Visibility="{Binding Path=PlacementTarget.Parent.ShowCommands,RelativeSource={RelativeSource Self}, Converter={Converters:BoolToVisibilty}}"
                          DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
-                <MenuItem Header="Edit" 
+                                        <MenuItem Header="Edit" 
                           Command="{Binding CommandEditReward}"
                           CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
-                    <MenuItem.Icon>
-                        <fa:ImageAwesome Foreground="DimGray" Icon="Plus" Height="12"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="Delete" 
+                                            <MenuItem.Icon>
+                                                <fa:ImageAwesome Foreground="DimGray" Icon="Plus" Height="12"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem Header="Delete" 
                           Command="{Binding CommandDeleteReward}"
                           CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
-                    <MenuItem.Icon>
-                        <fa:ImageAwesome Foreground="DimGray" Icon="Remove" Height="12"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-            </ContextMenu>
-        </ListView.ContextMenu>
+                                            <MenuItem.Icon>
+                                                <fa:ImageAwesome Foreground="DimGray" Icon="Remove" Height="12"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ListView.Style>
+
     </ListView>
 </UserControl>
