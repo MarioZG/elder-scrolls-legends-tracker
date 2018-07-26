@@ -1,7 +1,7 @@
 {
-  "Version": "0.72.4",
-  "VersionInfo": "June monthly reward",
-  "VersionDate": "2018-07-01T00:00:00Z",
+  "Version": "0.72.4.1",
+  "VersionInfo": "Patch 72.4  ",
+  "VersionDate": "2018-07-26T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -3695,7 +3695,7 @@
       "attributes": "strength,willpower,agility",
       "cost": "5",
       "attack": "4",
-      "health": "4",
+      "health": "5",
       "race": "darkelf",
       "keywords": [],
       "text": "The first time you play a card each turn, draw a random card from your deck with cost equal to your remaining magicka."
@@ -5555,7 +5555,7 @@
       "attributes": "strength,intelligence,agility",
       "cost": "5",
       "attack": "5",
-      "health": "5",
+      "health": "4",
       "race": "ashcreature",
       "keywords": ["Breakthrough","Drain","Ward"],
       "text": "Breakthrough, Drain, Ward"
@@ -5583,7 +5583,7 @@
       "isunique": false,
       "type": "support",
       "attributes": "strength,willpower,agility",
-      "cost": "3",
+      "cost": "4",
       "attack": "0",
       "health": "0",
       "race": "",
@@ -7730,7 +7730,7 @@
       "attributes": "neutral",
       "cost": "1",
       "attack": "1",
-      "health": "3",
+      "health": "2",
       "race": "mudcrab",
       "keywords": [],
       "text": "Summon: The Merchant shows you two cards he has for sale. Choose one to put into your hand. He puts the other into your opponent's hand."
@@ -11483,7 +11483,7 @@
       "health": "4",
       "race": "darkelf",
       "keywords": ["Ward"],
-      "text": "Ward\r\nAt the end of your turn, you gain a Ward."
+      "text": "Ward\r\nAt the end of your turn, if Tel Vos Magister has a Ward, you gain a Ward."
     },
     {
       "id": "9d909ebc-88d3-8020-dfaf-38a73184dd7e",
@@ -12153,7 +12153,7 @@
       "isunique": false,
       "type": "action",
       "attributes": "neutral",
-      "cost": "6",
+      "cost": "7",
       "attack": "0",
       "health": "0",
       "race": "",
