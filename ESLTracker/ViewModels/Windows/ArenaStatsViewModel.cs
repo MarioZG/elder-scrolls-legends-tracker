@@ -52,26 +52,26 @@ namespace ESLTracker.ViewModels.Windows
                 NumberOfRuns = ds.Count(),
                 AvgWins = ds.Average(d => deckCalculations.Victories(d)),
                 Best = ds.Max(d => deckCalculations.Victories(d)),
-                Total = new RewardsTotal(ds.SelectMany(d => GetArenaRewards(d.DeckId)).GroupBy(r => r.Type).Select(rg => new ESLTracker.DataModel.Reward { Type = rg.Key, Quantity = rg.Sum(r => r.Quantity) }).ToList()),
+                Total = new RewardsTotal(ds.SelectMany(d => deckCalculations.GetArenaRewards(d.DeckId)).GroupBy(r => r.Type).Select(rg => new ESLTracker.DataModel.Reward { Type = rg.Key, Quantity = rg.Sum(r => r.Quantity) }).ToList()),
 
                 Avg = new RewardsTotal(
-                        ds.SelectMany(d => GetArenaRewards(d.DeckId).GroupBy(r => new { r.Type, r.ArenaDeckId }).Select(rg => new { rg.Key, Qty = rg.Sum(r => r.Quantity) }))
+                        ds.SelectMany(d => deckCalculations.GetArenaRewards(d.DeckId).GroupBy(r => new { r.Type, r.ArenaDeckId }).Select(rg => new { rg.Key, Qty = rg.Sum(r => r.Quantity) }))
                         .GroupBy(r => new { r.Key.Type })
                         .Select(rg => new ESLTracker.DataModel.Reward() { Type = rg.Key.Type, Quantity = (int)rg.Average(r => r.Qty) })
                         ),
                 Max = new RewardsTotal(
-                        ds.SelectMany(d => GetArenaRewards(d.DeckId).GroupBy(r => new { r.Type, r.ArenaDeckId }).Select(rg => new { rg.Key, Qty = rg.Sum(r => r.Quantity) }))
+                        ds.SelectMany(d => deckCalculations.GetArenaRewards(d.DeckId).GroupBy(r => new { r.Type, r.ArenaDeckId }).Select(rg => new { rg.Key, Qty = rg.Sum(r => r.Quantity) }))
                         .GroupBy(r => new { r.Key.Type })
                         .Select(rg => new ESLTracker.DataModel.Reward() { Type = rg.Key.Type, Quantity = (int)rg.Max(r => r.Qty) })
-                        )//,
-                //TotalGold = ds.Sum(d => d.GetArenaRewards().Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Gold).Sum(r => r.Quantity)),
-                //TotalGems = ds.Sum(d => d.GetArenaRewards().Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.SoulGem).Sum(r => r.Quantity)),
-                //TotalPacks = ds.Sum(d => d.GetArenaRewards().Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Pack).Sum(r => r.Quantity)),
-                //TotalCards = ds.Sum(d => d.GetArenaRewards().Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Card).Sum(r => r.Quantity))
+                        ),
+                TotalGold = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Gold).Sum(r => r.Quantity)),
+                TotalGems = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.SoulGem).Sum(r => r.Quantity)),
+                TotalPacks = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Pack).Sum(r => r.Quantity)),
+                TotalCards = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Card).Sum(r => r.Quantity))
             }).ToList();
 
             //mark best averages
-            //result.Where(r => Math.Abs(r.AvgWins - result.Max(rm => rm.AvgWins)) < 0.01).All(r => { r.MarkAvgWins = true; return true; });
+          //  result.Where(r => Math.Abs(r.AvgWins - result.Max(rm => rm.AvgWins)) < 0.01).All(r => { r.MarkAvgWins = true; return true; });
             result.Where(r => Math.Abs(r.Avg.Gold - result.Max(rm => rm.Avg.Gold)) < 0.01).All(r => { r.Avg.MarkGold = true; return true; });
             result.Where(r => Math.Abs(r.Avg.SoulGem - result.Max(rm => rm.Avg.SoulGem)) < 0.01).All(r => { r.Avg.MarkSoulGem = true; return true; });
             result.Where(r => Math.Abs(r.Avg.Pack - result.Max(rm => rm.Avg.Pack)) < 0.01).All(r => { r.Avg.MarkPack = true; return true; });
@@ -108,17 +108,15 @@ namespace ESLTracker.ViewModels.Windows
                         Pack = result.Max(r => r.Max.Pack),
                         Gold = result.Max(r => r.Max.Gold),
                         SoulGem = result.Max(r => r.Max.SoulGem)
-                    }
+                    },
+                    TotalGold = 0,
+                    TotalGems = 0,
+                    TotalPacks = 0,
+                    TotalCards = 0 
                 });
             }
 
             return result;
-        }
-
-        private IEnumerable<Reward> GetArenaRewards(Guid deckId)
-        {
-            return tracker.Rewards
-                .Where(r => r.ArenaDeckId == deckId);
         }
     }
 

@@ -103,5 +103,10 @@ namespace ESLTracker.BusinessLogic.Decks
             return wins;
         }
 
+        public IEnumerable<Reward> GetArenaRewards(Guid deckId)
+        {
+            return tracker.Rewards.Where(r => r.ArenaDeckId == deckId);
+        }
+
     }
 }

@@ -33,7 +33,8 @@
                         <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" />
                         <DataGridTextColumn Header="Card" Binding="{Binding CardInstance.Card.Name}" />
                         <DataGridTextColumn Header="Card rarity" Binding="{Binding CardInstance.Card.Rarity}" />
-                        <DataGridTextColumn Header="Guild" Binding="{Binding RewardQuestGuild}" />                        
+                        <DataGridTextColumn Header="Guild" Binding="{Binding RewardQuestGuild}" />
+                        <DataGridTextColumn Header="Arena/Gauntlet deck" Binding="{Binding ArenaDeckId}" />                        
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
