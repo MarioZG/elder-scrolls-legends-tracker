@@ -40,12 +40,14 @@ namespace ESLTracker.BusinessLogic.General
             ISettings settings,
             ICardsDatabase cardsDatabase,
             IHTTPService httpService,
-            IApplicationInfo applicationService)
+            IApplicationInfo applicationService,
+            ICardsDatabaseFactory cardsDatabaseFactory)
         {
             this.cardsDatabase = cardsDatabase;
             this.settings = settings;
             this.httpService = httpService;
             this.applicationService = applicationService;
+            this.cardsDatabaseFactory = cardsDatabaseFactory;
         }
 
         public NewVersioInfo CheckNewAppVersionAvailable()

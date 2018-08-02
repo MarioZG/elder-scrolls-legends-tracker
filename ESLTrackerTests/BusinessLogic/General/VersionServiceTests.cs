@@ -19,6 +19,7 @@ namespace ESLTrackerTests.BusinessLogic.General
         Mock<IHTTPService> httpService = new Mock<IHTTPService>();
         Mock<IApplicationInfo> appService = new Mock<IApplicationInfo>();
         Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
+        Mock<ICardsDatabaseFactory> cardsDatabaseFactory = new Mock<ICardsDatabaseFactory>();
 
         [TestInitialize]
         public void TestInit()
@@ -168,7 +169,7 @@ namespace ESLTrackerTests.BusinessLogic.General
 
         private VersionService CreateVersionServiceObject()
         {
-            return new VersionService(settings.Object, cardsDatabase.Object, httpService.Object, appService.Object);
+            return new VersionService(settings.Object, cardsDatabase.Object, httpService.Object, appService.Object, cardsDatabaseFactory.Object);
         }
     }
 }
