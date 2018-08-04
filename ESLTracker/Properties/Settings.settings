@@ -38,7 +38,7 @@
     <Setting Name="UpgradeRequired" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="GamesFilter_SelectedPredefinedDateFilter" Type="ESLTracker.ViewModels.Game.PredefinedDateFilter" Scope="User">
+    <Setting Name="GamesFilter_SelectedPredefinedDateFilter" Type="ESLTracker.ViewModels.Enums.PredefinedDateFilter" Scope="User">
       <Value Profile="(Default)">All</Value>
     </Setting>
     <Setting Name="GamesFilter_DayCutoffTime" Type="System.TimeSpan" Scope="User">
@@ -97,6 +97,18 @@
     </Setting>
     <Setting Name="General_StartGameWithTracker" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SessionOverlay_WindowPositionX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="SessionOverlay_WindowPositionY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="SessionOverlay_Scale" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="SessionOverlay_ShowOnStart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -26,15 +26,16 @@ namespace ESLTracker.Windows
     /// <summary>
     /// Interaction logic for DeckOverlay.xaml
     /// </summary>
-    public partial class DeckOverlay : OverlayWindowBase
+    public partial class SessionOverlay : OverlayWindowBase
     {
         Logger Logger = LogManager.GetCurrentClassLogger();
+
         public override bool ShowOnScreen
         {
-            get { return settings.OverlayDeck_ShowOnStart; }
+            get { return settings.SessionOverlay_ShowOnStart; }
             set
             {
-                settings.OverlayDeck_ShowOnStart = value;
+                settings.SessionOverlay_ShowOnStart = value;
                 RaisePropertyChangedEvent();
             }
         }
@@ -42,7 +43,7 @@ namespace ESLTracker.Windows
         private readonly ITracker tracker;
         private readonly ISettings settings;
 
-        public DeckOverlay(ITracker tracker, ISettings settings)
+        public SessionOverlay(ITracker tracker, ISettings settings)
         {
             this.tracker = tracker;
             this.settings = settings;

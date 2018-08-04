@@ -106,6 +106,7 @@
                 <MenuItem Header="Overlays">
                     <MenuItem Command="{Binding CommandManageOverlayWindow}" CommandParameter="{x:Type local:OverlayToolbar}" IsCheckable="true" Header="Add game/reward/pack" IsChecked="{Binding OverlayWindows, Converter={Converters:ShowOverlayWindowToBool},  ConverterParameter={x:Type local:OverlayToolbar}}"/>
                     <MenuItem Command="{Binding CommandManageOverlayWindow}" CommandParameter="{x:Type Windows:DeckOverlay}" IsCheckable="true" Header="Card list" IsChecked="{Binding OverlayWindows, Converter={Converters:ShowOverlayWindowToBool}, ConverterParameter={x:Type Windows:DeckOverlay}}"/>
+                    <MenuItem Command="{Binding CommandManageOverlayWindow}" CommandParameter="{x:Type Windows:SessionOverlay}" IsCheckable="true" Header="Current session info" IsChecked="{Binding OverlayWindows, Converter={Converters:ShowOverlayWindowToBool}, ConverterParameter={x:Type Windows:SessionOverlay}}"/>
                 </MenuItem>
                 <MenuItem Command="{Binding CommandRunGame}">
                     <MenuItem.Header>

@@ -42,15 +42,23 @@ namespace ESLTracker.BusinessLogic.General
                 Graphics gfxBmp = Graphics.FromImage(bmp);
 
                 List<Window> hiddenWindows = new List<Window>();
+                Window activeWindow = null;
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     foreach (Window w in Application.Current.Windows)
                     {
-                        // System.Diagnostics.Debugger.Log(1, "", "w"+ w.Title);
-                        // System.Diagnostics.Debugger.Log(1, "", "  w.IsActive" + w.IsActive);
-                        // System.Diagnostics.Debugger.Log(1, "", "   w.Topmost" + w.Topmost);
-                        // System.Diagnostics.Debugger.Log(1, "", Environment.NewLine) ;
+                        //System.Diagnostics.Debugger.Log(1, "", "w" + w.Title);
+                        //System.Diagnostics.Debugger.Log(1, "", "  w.IsActive=" + w.IsActive);
+                        //System.Diagnostics.Debugger.Log(1, "", "   w.IsVisible=" + w.IsVisible);
+                        //System.Diagnostics.Debugger.Log(1, "", "   w.Topmost=" + w.Topmost);
+                        //System.Diagnostics.Debugger.Log(1, "", Environment.NewLine);
                         if (w.IsActive) //if other if visible - cannot do anything; otherwise if it was in back, it would be show at the top:/...
+                        {
+                            activeWindow = w;
+                            w.Hide();
+                            hiddenWindows.Add(w);
+                        }
+                        else if (w.IsVisible)
                         {
                             w.Hide();
                             hiddenWindows.Add(w);
@@ -70,6 +78,8 @@ namespace ESLTracker.BusinessLogic.General
                 {
                     w.Dispatcher.Invoke(() => w.Show());
                 }
+
+                activeWindow.Dispatcher.Invoke(() => activeWindow?.Activate()); 
 
                 string path = Path.Combine(
                     pathManager.DataPath,

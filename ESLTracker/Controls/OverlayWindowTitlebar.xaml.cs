@@ -4,6 +4,7 @@ using ESLTracker.Utils.Extensions;
 using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.Windows;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,14 +31,17 @@ namespace ESLTracker.Controls
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(OverlayWindowTitlebar), new PropertyMetadata(String.Empty));
 
-        static IScreenShot screenShot;
-        static ScreenshotNameProvider screenshotNameProvider;
 
-        static OverlayWindowTitlebar()
+
+        public IEnumerable<UIElement> CustomButtons
         {
-            screenShot = MasserContainer.Container.GetInstance<ScreenShot>();
-            screenshotNameProvider = MasserContainer.Container.GetInstance<ScreenshotNameProvider>();
+            get { return (IEnumerable<UIElement>)GetValue(CustomButtonsProperty); }
+            set { SetValue(CustomButtonsProperty, value); }
         }
+
+        // Using a DependencyProperty as the backing store for CustomButtons.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CustomButtonsProperty =
+            DependencyProperty.Register("CustomButtons", typeof(IEnumerable<UIElement>), typeof(OverlayWindowTitlebar), new PropertyMetadata(null));
 
         public OverlayWindowTitlebar()
         {
@@ -61,17 +65,11 @@ namespace ESLTracker.Controls
                     originalBackgroundBrush = ((StackPanel)Window.GetWindow(this).Content).Background;
                 }
                 ((StackPanel)Window.GetWindow(this).Content).Children[1].Visibility =
-                    tb.IsChecked.Value ?  Visibility.Hidden : Visibility.Visible;
+                    tb.IsChecked.Value ? Visibility.Hidden : Visibility.Visible;
                 ((StackPanel)Window.GetWindow(this).Content).Background =
                     tb.IsChecked.Value ? null : originalBackgroundBrush;
             }
             e.Handled = false;
-        }
-
-        private void btnScreenShot_Click(object sender, RoutedEventArgs e)
-        {
-            string fileName = screenshotNameProvider.GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Regular);
-            Task.Factory.StartNew(() => screenShot.SaveScreenShot(fileName));
         }
 
         private void btnShowMainWindow_Click(object sender, RoutedEventArgs e)

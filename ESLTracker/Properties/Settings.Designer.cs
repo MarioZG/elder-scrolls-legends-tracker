@@ -12,7 +12,7 @@ namespace ESLTracker.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -407,6 +407,54 @@ namespace ESLTracker.Properties {
             }
             set {
                 this["General_StartGameWithTracker"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public double SessionOverlay_WindowPositionX {
+            get {
+                return ((double)(this["SessionOverlay_WindowPositionX"]));
+            }
+            set {
+                this["SessionOverlay_WindowPositionX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public double SessionOverlay_WindowPositionY {
+            get {
+                return ((double)(this["SessionOverlay_WindowPositionY"]));
+            }
+            set {
+                this["SessionOverlay_WindowPositionY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double SessionOverlay_Scale {
+            get {
+                return ((double)(this["SessionOverlay_Scale"]));
+            }
+            set {
+                this["SessionOverlay_Scale"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SessionOverlay_ShowOnStart {
+            get {
+                return ((bool)(this["SessionOverlay_ShowOnStart"]));
+            }
+            set {
+                this["SessionOverlay_ShowOnStart"] = value;
             }
         }
     }

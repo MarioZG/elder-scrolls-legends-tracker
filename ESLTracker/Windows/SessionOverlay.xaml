@@ -1,0 +1,33 @@
+﻿<base:OverlayWindowBase xmlns:SessionOverlay="clr-namespace:ESLTracker.Controls.SessionOverlay"  xmlns:Cards="clr-namespace:ESLTracker.Controls.Cards"  
+                        x:Class="ESLTracker.Windows.SessionOverlay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:base="clr-namespace:ESLTracker.Controls"
+        xmlns:local="clr-namespace:ESLTracker.Windows"
+        xmlns:Controls="clr-namespace:ESLTracker.Controls"
+        xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
+        xmlns:Properties="clr-namespace:ESLTracker.Properties"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"  Title="Current session" 
+        Topmost="True" 
+        AllowsTransparency="True" 
+        WindowStyle="None" 
+        ShowInTaskbar="False"
+        Opacity="1"
+        Left="{Binding Path=SessionOverlay_WindowPositionX, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+        Top="{Binding Path=SessionOverlay_WindowPositionY, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+        >
+    <StackPanel>
+        <StackPanel.LayoutTransform>
+            <ScaleTransform 
+                x:Name="contentScale"
+                ScaleX="{Binding Path=SessionOverlay_Scale, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                ScaleY="{Binding Path=SessionOverlay_Scale, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+        />
+        </StackPanel.LayoutTransform>
+        <Controls:OverlayWindowTitlebar Title="Current session"/>
+        <SessionOverlay:SessionOverview />
+    </StackPanel>
+</base:OverlayWindowBase>

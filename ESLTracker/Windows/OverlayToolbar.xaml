@@ -19,7 +19,21 @@
         Top="{Binding Path=OverlayWindowPositionY, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
         >
     <StackPanel Orientation="Vertical" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-        <Controls:OverlayWindowTitlebar Title="{Binding Path=DataContext.SummaryText,ElementName=editGame}" />
+        <Controls:OverlayWindowTitlebar Title="{Binding Path=DataContext.SummaryText,ElementName=editGame}">
+            <Controls:OverlayWindowTitlebar.CustomButtons>
+                <Controls:OverlayWindowTitlebarButtonsCollection>
+                    <Controls:OverlayWindowTitlebarButton 
+                        ToolTipService.InitialShowDelay="3000" 
+                        ToolTip="xMake screenshot (Saved in data folder. Open from application settings)" 
+                        HorizontalAlignment="Right" 
+                        Width="15"
+                        Command="{Binding CreateScreenshot, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                    >
+                        <Image Source="/Resources/WindowIcons/printScreen.png"/>
+                    </Controls:OverlayWindowTitlebarButton>
+                </Controls:OverlayWindowTitlebarButtonsCollection>
+            </Controls:OverlayWindowTitlebar.CustomButtons>
+        </Controls:OverlayWindowTitlebar>
         <TabControl x:Name="tabControl">
             <TabItem x:Name="editGameTab" Header="Add game">
                 <Game:EditGame x:Name="editGame" TrackActiveDeck="True" />

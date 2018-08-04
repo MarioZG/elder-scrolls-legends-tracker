@@ -59,6 +59,7 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IResources, Resources>();
             Register<IGuidProvider, GuidProvider>();
             Register<IGameFactory, GameFactory>();
+            Register<IScreenShot, ScreenShot>();
             
 
 

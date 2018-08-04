@@ -13,7 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ESLTracker.BusinessLogic.General;
 using ESLTracker.Controls;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.ViewModels;
 using NLog;
@@ -27,18 +29,31 @@ namespace ESLTracker.Windows
     {
         Logger Logger = LogManager.GetCurrentClassLogger();
 
+        private readonly ISettings settings;
+        private readonly IScreenShot screenShot;
+        private readonly ScreenshotNameProvider screenshotNameProvider;
+
         public override bool ShowOnScreen
         {
-            get { return Settings.OverlayWindow_ShowOnStart; }
+            get { return settings.OverlayWindow_ShowOnStart; }
             set
             {
-                Settings.OverlayWindow_ShowOnStart = value;
+                settings.OverlayWindow_ShowOnStart = value;
                 RaisePropertyChangedEvent();
             }
         }
 
-        public OverlayToolbar()
+        public OverlayToolbar(
+            ISettings settings, 
+            IScreenShot screenShot, 
+            ScreenshotNameProvider screenshotNameProvider)
         {
+            this.settings = settings;
+            this.screenShot = screenShot;
+            this.screenshotNameProvider = screenshotNameProvider;
+
+            CreateScreenshot = new RelayCommand(CreateScreenshotExecute);
+
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.Manual;
             if (this.Left == -1 || this.Top == -1)
@@ -63,6 +78,14 @@ namespace ESLTracker.Windows
 
             // Begin dragging the window
             this.DragMove();
+        }
+
+        public ICommand CreateScreenshot { get; private set; }
+
+        private void CreateScreenshotExecute(object obj)
+        {
+            string fileName = screenshotNameProvider.GetScreenShotName(ScreenshotNameProvider.ScreenShotType.Regular);
+            Task.Factory.StartNew(() => screenShot.SaveScreenShot(fileName));
         }
 
         internal bool CanClose(ICommand commandExit)

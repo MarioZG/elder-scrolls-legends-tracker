@@ -19,8 +19,6 @@ namespace ESLTracker.Controls
         public abstract bool ShowOnScreen { get; set; }
         public abstract void UpdateVisibilty(bool isGameActive, bool isGameProcessRunning, bool isMainWIndowActive, bool isOtherWindowActive);
 
-        protected ISettings Settings = MasserContainer.Container.GetInstance<ISettings>();
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void RaisePropertyChangedEvent([CallerMemberName] string propertyName = null)

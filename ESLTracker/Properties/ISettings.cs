@@ -54,6 +54,9 @@ namespace ESLTracker.Properties
 
         bool General_StartGameWithTracker { get; set; }
 
+        double SessionOverlay_Scale { get; set; }
+        bool SessionOverlay_ShowOnStart { get; set; }
+
         void Save();
     }
 }

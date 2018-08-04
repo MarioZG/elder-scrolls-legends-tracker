@@ -25,29 +25,52 @@ namespace ESLTracker.BusinessLogic.Decks
 
         public int Victories(Deck deck)
         {
-            return GetDeckGames(deck).Where(g => g.Outcome == GameOutcome.Victory).Count();
+            return Victories(GetDeckGames(deck));
+        }
+        public int Victories(IEnumerable<Game> games)
+        {
+            return games.Where(g => g.Outcome == GameOutcome.Victory).Count();
         }
 
         public int Defeats(Deck deck)
         {
-            return GetDeckGames(deck).Where(g => g.Outcome == GameOutcome.Defeat).Count();
+            return Defeats(GetDeckGames(deck));
+        }
+        public int Defeats(IEnumerable<Game> games)
+        {
+            return games.Where(g => g.Outcome == GameOutcome.Defeat).Count();
         }
 
         public int Disconnects(Deck deck)
         {
-            return GetDeckGames(deck).Where(g => g.Outcome == GameOutcome.Disconnect).Count();
+            return Disconnects(GetDeckGames(deck));
         }
+        public int Disconnects(IEnumerable<Game> games)
+        {
+            return games.Where(g => g.Outcome == GameOutcome.Disconnect).Count();
+        }
+
         public int Draws(Deck deck)
         {
-            return GetDeckGames(deck).Where(g => g.Outcome == GameOutcome.Draw).Count();
+            return Draws(GetDeckGames(deck));
+        }
+        public int Draws(IEnumerable<Game> games)
+        {
+            return games.Where(g => g.Outcome == GameOutcome.Draw).Count();
         }
 
         public string WinRatio(Deck deck)
         {
-            int gamesTotal = GetDeckGames(deck).Count();
+            var games = GetDeckGames(deck).ToList();
+            return WinRatio(games);
+        }
+
+        public string WinRatio(IEnumerable<Game> games)
+        {
+            int gamesTotal = games.Count();
             if (gamesTotal != 0)
             {
-                return Math.Round((double)Victories(deck) / (double)gamesTotal * 100, 0).ToString();
+                return Math.Round((double)Victories(games) / (double)gamesTotal * 100, 0).ToString();
             }
             else
             {
