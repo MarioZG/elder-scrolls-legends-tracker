@@ -88,7 +88,7 @@ namespace ESLTracker.Windows
                 Keyboard.IsKeyDown(Key.RightCtrl))
             {
 
-                settings.OverlayDeck_Scale += (args.Delta > 0) ? 0.1 : -0.1;
+                settings.SessionOverlay_Scale += (args.Delta > 0) ? 0.1 : -0.1;
             }
         }
     }
