@@ -65,10 +65,8 @@ namespace ESLTracker.Windows
             bool isOtherWindowActive)
         {
             Logger.Trace($"UpdateVisibilty check IsDisposed={this.IsDisposed()};isGameActive={isGameActive};isOtherWindowActive={isOtherWindowActive};IsActive={IsActive};");
-            this.Visibility = ShowOnScreen 
-                                && !this.IsDisposed()
-                                && (tracker.ActiveDeck?.SelectedVersion?.Cards?.Count > 0)
-                                && (isGameActive || isMainWIndowActive || isOtherWindowActive)
+            this.Visibility = ShowOnScreen && !this.IsDisposed() &&
+                                (isGameActive || isMainWIndowActive || isOtherWindowActive)
                                 ? Visibility.Visible : Visibility.Hidden;
         }
 

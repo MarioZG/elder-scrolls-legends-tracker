@@ -8,7 +8,7 @@
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[SessionOverlay.SessionOverviewViewModel]}"
              Opacity="1"
              >
-    <StackPanel Orientation="Vertical" Width="300">
+    <StackPanel Orientation="Vertical">
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
             <TextBlock Text="Session duration:" FontSize="14"/>
             <TextBlock Text="{Binding TimePassed,StringFormat=hh\\:mm}" FontSize="14"/>

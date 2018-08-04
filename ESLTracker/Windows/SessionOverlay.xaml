@@ -14,6 +14,7 @@
         Topmost="True" 
         AllowsTransparency="True" 
         WindowStyle="None" 
+        ResizeMode="CanResizeWithGrip"
         ShowInTaskbar="False"
         Opacity="1"
         Left="{Binding Path=SessionOverlay_WindowPositionX, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
