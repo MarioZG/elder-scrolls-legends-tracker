@@ -34,17 +34,18 @@
                 </Controls:OverlayWindowTitlebarButtonsCollection>
             </Controls:OverlayWindowTitlebar.CustomButtons>
         </Controls:OverlayWindowTitlebar>
-        <TabControl x:Name="tabControl">
-            <TabItem x:Name="editGameTab" Header="Add game">
-                <Game:EditGame x:Name="editGame" TrackActiveDeck="True" />
-            </TabItem>
-            <TabItem Header="Add Rewards">
-                <Rewards:RewardSet />
-            </TabItem>
-            <TabItem Header="Open pack">
-                <Packs:OpenPack />
-            </TabItem>
-        </TabControl>
-
+        <StackPanel>
+            <TabControl x:Name="tabControl">
+                <TabItem x:Name="editGameTab" Header="Add game">
+                    <Game:EditGame x:Name="editGame" TrackActiveDeck="True" />
+                </TabItem>
+                <TabItem Header="Add Rewards">
+                    <Rewards:RewardSet />
+                </TabItem>
+                <TabItem Header="Open pack">
+                    <Packs:OpenPack />
+                </TabItem>
+            </TabControl>
+        </StackPanel>
     </StackPanel>
 </base:OverlayWindowBase>

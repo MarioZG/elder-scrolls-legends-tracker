@@ -29,6 +29,8 @@
         />
         </StackPanel.LayoutTransform>
         <Controls:OverlayWindowTitlebar Title="Current session"/>
-        <SessionOverlay:SessionOverview />
+        <StackPanel>
+            <SessionOverlay:SessionOverview />
+        </StackPanel>
     </StackPanel>
 </base:OverlayWindowBase>

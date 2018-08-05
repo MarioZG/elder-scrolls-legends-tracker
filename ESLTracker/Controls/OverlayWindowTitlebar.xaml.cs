@@ -54,20 +54,33 @@ namespace ESLTracker.Controls
             ((IOverlayWindow)window).ShowOnScreen = false;
         }
 
-        private Brush originalBackgroundBrush;
+        private double originalHeight;
+
         private void btnCollapse_Click(object sender, RoutedEventArgs e)
         {
             ToggleButton tb = sender as ToggleButton;
             if (tb != null)
             {
+                Window currWindow = Window.GetWindow(this);
+                var content = ((StackPanel)Window.GetWindow(this).Content);
+                var childElelemt = ((FrameworkElement)((StackPanel)content.Children[1]).Children[0]);
                 if (tb.IsChecked.Value)
                 {
-                    originalBackgroundBrush = ((StackPanel)Window.GetWindow(this).Content).Background;
+                    //tab control wont collapse when just changed height of window
+                    content.Children[1].Visibility = Visibility.Collapsed;
+
+                    originalHeight = currWindow.ActualHeight;
+                    currWindow.Height = ((UserControl)content.Children[0]).ActualHeight;
+                    currWindow.ResizeMode = ResizeMode.NoResize;
                 }
-                ((StackPanel)Window.GetWindow(this).Content).Children[1].Visibility =
-                    tb.IsChecked.Value ? Visibility.Hidden : Visibility.Visible;
-                ((StackPanel)Window.GetWindow(this).Content).Background =
-                    tb.IsChecked.Value ? null : originalBackgroundBrush;
+                else
+                {
+                    content.Children[1].Visibility = Visibility.Visible;
+
+                    currWindow.Height = originalHeight;
+                    currWindow.ResizeMode = ResizeMode.CanResizeWithGrip;
+
+                }
             }
             e.Handled = false;
         }
