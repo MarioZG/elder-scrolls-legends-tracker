@@ -81,6 +81,7 @@
     <Compile Include="BusinessLogic\Decks\DeckCalculationsTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckVersionService.cs" />
     <Compile Include="BusinessLogic\Games\GameFactoryTests.cs" />
+    <Compile Include="BusinessLogic\Games\RankCalculationsTests.cs" />
     <Compile Include="DataModel\CardInstanceTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckServiceTests.cs" />
     <Compile Include="DataModel\DeckVersionTests.cs" />

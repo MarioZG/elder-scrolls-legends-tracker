@@ -14,6 +14,8 @@ namespace ESLTrackerTests.Builders
         IEnumerable<Game> games;
         Deck deck;
         GameType? gameType;
+        PlayerRank? playerRank;
+        DateTime? gameDate;
 
         public GameListBuilder()
         {
@@ -32,6 +34,18 @@ namespace ESLTrackerTests.Builders
             return this;
         }
 
+        public GameListBuilder UsingPlayerRank(PlayerRank? playerRank)
+        {
+            this.playerRank = playerRank;
+            return this;
+        }
+
+        internal GameListBuilder UsingDate(DateTime gameDate)
+        {
+            this.gameDate = gameDate;
+            return this;
+        }
+
         public GameListBuilder WithOutcome(int count, GameOutcome outcome)
         {
             var newGames = Enumerable.Range(0, count)
@@ -39,6 +53,8 @@ namespace ESLTrackerTests.Builders
                             .WithOutcome(outcome)
                             .WithDeck(deck)
                             .WithType(gameType)
+                            .WithPlayerRank(playerRank)
+                            .WithDate(gameDate)
                             .Build()
                         );
             games = games.Union(newGames).ToList();
@@ -49,5 +65,7 @@ namespace ESLTrackerTests.Builders
         {
             return new ObservableCollection<Game>(games.ToList());
         }
+
+
     }
 }

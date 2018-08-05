@@ -14,5 +14,6 @@
             <TextBlock Text="{Binding TimePassed,StringFormat=hh\\:mm}" FontSize="14"/>
         </StackPanel>
         <local:GamesOverview HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Margin="0,5,0,0"/>
+        <local:CurrentRank MaxStarsCount="{Binding CurrentRankStarsCount}" CurrentProgress="{Binding CurrentRankProgress}"/>
     </StackPanel>
 </UserControl>

@@ -35,9 +35,23 @@ namespace ESLTrackerTests.Builders
             return this;
         }
 
+        public GameBuilder WithPlayerRank(PlayerRank? playerRank)
+        {
+            game.PlayerRank = playerRank;
+            return this;
+        }
+
+        internal GameBuilder WithDate(DateTime? date)
+        {
+            game.Date = date.GetValueOrDefault();
+            return this;
+        }
+
         public Game Build()
         {
             return game;
         }
+
+
     }
 }

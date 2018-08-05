@@ -116,6 +116,7 @@
     <Compile Include="BusinessLogic\Games\ChangeGameDeck.cs" />
     <Compile Include="BusinessLogic\Games\GameFactory.cs" />
     <Compile Include="BusinessLogic\Games\IGameFactory.cs" />
+    <Compile Include="BusinessLogic\Games\RankCalculations.cs" />
     <Compile Include="BusinessLogic\Rewards\IRewardFactory.cs" />
     <Compile Include="BusinessLogic\Rewards\RewardFactory.cs" />
     <Compile Include="Controls\Game\MoveToOtherDeck.xaml.cs">
@@ -125,6 +126,9 @@
       <DependentUpon>OverlayWindowTitlebarButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\OverlayWindowTitlebarButtonsCollection.cs" />
+    <Compile Include="Controls\SessionOverlay\CurrentRank.xaml.cs">
+      <DependentUpon>CurrentRank.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SessionOverlay\GamesOverview.xaml.cs">
       <DependentUpon>GamesOverview.xaml</DependentUpon>
     </Compile>
@@ -471,6 +475,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\OverlayWindowTitlebarButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SessionOverlay\CurrentRank.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
