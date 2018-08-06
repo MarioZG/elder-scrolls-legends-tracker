@@ -41,12 +41,10 @@ namespace ESLTracker.ViewModels
             }
             set
             {
-                if (selectedClass != value)
-                {
-                    selectedClass = value;
-                    SyncToggleButtons(value);
-                    RaisePropertyChangedEvent("SelectedClass");
-                }
+                SetProperty<DeckClass?>(
+                    ref selectedClass, 
+                    value,
+                    onChanged: () => SyncToggleButtons(value));
             }
         }
 
@@ -64,6 +62,12 @@ namespace ESLTracker.ViewModels
                 }
             }
         }
+
+        public const bool SelectFirstMatchingClassDefaultValue = true;
+
+        public bool SelectFirstMatchingClass { get; set; } = SelectFirstMatchingClassDefaultValue;
+
+
 
         IMessenger messenger;
         object messangerContext;
@@ -107,23 +111,43 @@ namespace ESLTracker.ViewModels
             //toggle filter value
             FilterButtonState[attrib] = ! FilterButtonState[attrib];
 
+            if (! SelectFirstMatchingClass && !FilterButtonState[attrib])
+            {
+                //unchecked color - remove class selection
+                SelectedClass = null;
+            }
+
             FilterCombo();
         }
 
         public void FilterCombo()
         {
             var filteredClasses = Utils.ClassAttributesHelper.FindClassByAttribute(FilterButtonState.Where(f => f.Value).Select(f => f.Key)).ToList();
-          
-            if ((filteredClasses.Count >= 1)
-                && (FilterButtonState.Any(f => f.Value)))
+
+            if (SelectFirstMatchingClass)
             {
-                selectedClass = filteredClasses.OrderBy( fc=> ClassAttributesHelper.Classes[fc].Count).First();
+
+
+                if ((filteredClasses.Count >= 1)
+                     && (FilterButtonState.Any(f => f.Value)))
+                {
+                    selectedClass = filteredClasses.OrderBy(fc => ClassAttributesHelper.Classes[fc].Count).First();
+                }
+                else
+                {
+                    selectedClass = null;
+                }
+                RaisePropertyChangedEvent(nameof(SelectedClass)); //above cannot assign directly to SelectedClass, as it will caouse issues with sync with buttons
             }
-            else 
+            else
             {
-                selectedClass = null;
+                if ((filteredClasses.Count == 1)
+                    && (FilterButtonState.Any(f => f.Value)))
+                {
+                    selectedClass = filteredClasses.Single();
+                    RaisePropertyChangedEvent(nameof(SelectedClass)); //above cannot assign directly to SelectedClass, as it will caouse issues with sync with buttons
+                }
             }
-            RaisePropertyChangedEvent("SelectedClass");
             //remove classes not in use.Clear() will trigger binding, as SelectedClass will be set to null by framework
             foreach (DeckClass dc in FilteredClasses.ToList())
             {
@@ -150,9 +174,11 @@ namespace ESLTracker.ViewModels
 
         public void Reset()
         {
+            selectedClass = null;
             ResetToggleButtons();
             FilterCombo();
-            RaisePropertyChangedEvent("FilterButtonStateCollection");
+            RaisePropertyChangedEvent(nameof(FilterButtonStateCollection));
+            RaisePropertyChangedEvent(nameof(SelectedClass));
         }
 
         private void ResetFiltersMessage(object obj)
@@ -171,7 +197,7 @@ namespace ESLTracker.ViewModels
 
         internal void SyncToggleButtons(DeckClass? value)
         {
-            //if (value != null)
+            if (SelectFirstMatchingClass || value != null)
             {
                 ResetToggleButtons();
                 //toggle attributes buttons

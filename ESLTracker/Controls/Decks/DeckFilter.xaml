@@ -29,7 +29,8 @@
                                         MessangerContext="{x:Static Messages:ControlMessangerContext.DeckList_DeckFilterControl}"
                                         BorderThickness="2" 
                                         BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"  
-                                        HorizontalAlignment="Stretch">
+                                        HorizontalAlignment="Stretch"
+                                        SelectFirstMatchingClass="False">
             </Controls:DeckClassSelector>
             <TextBox 
                 Text="{Binding DeckTextSearch, UpdateSourceTrigger=PropertyChanged}"

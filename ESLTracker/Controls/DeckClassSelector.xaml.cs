@@ -24,6 +24,8 @@ namespace ESLTracker.Controls
             }
         }
 
+        #region dp SelectedClass
+
         public DataModel.Enums.DeckClass? SelectedClass
         {
             get { return (DataModel.Enums.DeckClass?)GetValue(SelectedClassProperty); }
@@ -48,8 +50,9 @@ namespace ESLTracker.Controls
             ((DeckClassSelector)d).DataContext.SelectedClass = e.NewValue as DataModel.Enums.DeckClass?;
         }
 
+        #endregion
 
-
+        #region dp MessangerContext
         public object MessangerContext
         {
             get { return (object)GetValue(MessangerContextProperty); }
@@ -59,6 +62,32 @@ namespace ESLTracker.Controls
         // Using a DependencyProperty as the backing store for MessangerContext.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MessangerContextProperty =
             DependencyProperty.Register("MessangerContext", typeof(object), typeof(DeckClassSelector), new PropertyMetadata(null));
+        #endregion
+
+        #region dp SelectFirstMatchingClass
+
+
+
+        public bool SelectFirstMatchingClass
+        {
+            get { return (bool)GetValue(SelectFirstMatchingClassProperty); }
+            set { SetValue(SelectFirstMatchingClassProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectFirstMatchingClass.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectFirstMatchingClassProperty =
+            DependencyProperty.Register(
+                "SelectFirstMatchingClass", 
+                typeof(bool), 
+                typeof(DeckClassSelector), 
+                new PropertyMetadata(DeckClassSelectorViewModel.SelectFirstMatchingClassDefaultValue, SelectFirstMatchingClassChanged));
+
+        private static void SelectFirstMatchingClassChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((DeckClassSelector)d).DataContext.SelectFirstMatchingClass = (bool)e.NewValue;
+        }
+
+        #endregion
 
         public DeckClassSelector()
         {

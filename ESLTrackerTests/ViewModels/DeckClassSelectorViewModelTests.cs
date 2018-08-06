@@ -140,8 +140,56 @@ namespace ESLTracker.ViewModels.Tests
             model.SelectedClass = null;
 
             Assert.AreEqual(0, model.FilterButtonStateCollection.Count);
+        }
+
+        [TestMethod()]
+        public void DeckClassSelectorViewModelTest003_DecklistFiltering_TwoAttribsSelected()
+        {
+            DeckClassSelectorViewModel model = CreateClassSelectorVM();
+            model.SelectFirstMatchingClass = false; //do not track class
+
+            model.FilterClicked(DeckAttribute.Intelligence);
+            model.FilterClicked(DeckAttribute.Strength);
+
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Intelligence]);
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Strength]);
+            Assert.AreEqual(2, model.FilterButtonStateCollection.Count);
+            Assert.AreEqual(null, model.SelectedClass);
+        }
+
+        [TestMethod()]
+        public void DeckClassSelectorViewModelTest004_DecklistFiltering_ThreeAttribsSelected_Dagoth()
+        {
+            DeckClassSelectorViewModel model = CreateClassSelectorVM();
+            model.SelectFirstMatchingClass = false; //do not track class
+
+            model.FilterClicked(DeckAttribute.Intelligence);
+            model.FilterClicked(DeckAttribute.Strength);
+            model.FilterClicked(DeckAttribute.Agility);
+
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Intelligence]);
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Strength]);
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Agility]);
+            Assert.AreEqual(3, model.FilterButtonStateCollection.Count);
+            Assert.AreEqual(DeckClass.Dagoth, model.SelectedClass);
+        }
+
+        [TestMethod()]
+        public void DeckClassSelectorViewModelTest004_DecklistFiltering_ThreeAttribsSelected_ThenUnselectOne()
+        {
+            DeckClassSelectorViewModel model = CreateClassSelectorVM();
+            model.SelectFirstMatchingClass = false; //do not track class
+
+            model.FilterClicked(DeckAttribute.Intelligence);
+            model.FilterClicked(DeckAttribute.Strength);
+            model.FilterClicked(DeckAttribute.Agility);
+            model.FilterClicked(DeckAttribute.Agility);  //un-select!
 
 
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Intelligence]);
+            Assert.AreEqual(true, model.FilterButtonState[DeckAttribute.Strength]);
+            Assert.AreEqual(2, model.FilterButtonStateCollection.Count);
+            Assert.AreEqual(null, model.SelectedClass);
         }
 
         private DeckClassSelectorViewModel CreateClassSelectorVM()
