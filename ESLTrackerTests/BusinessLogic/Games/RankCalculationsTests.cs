@@ -31,7 +31,7 @@ namespace ESLTrackerTests.BusinessLogic.Games
 
             Assert.AreEqual(PlayerRank.TheRitual, actualRank);
             Assert.AreEqual(0, actualProgress);
-            Assert.AreEqual(4, actualMaxStars);
+            Assert.AreEqual(3, actualMaxStars);
 
         }
 
@@ -58,7 +58,7 @@ namespace ESLTrackerTests.BusinessLogic.Games
 
             Assert.AreEqual(PlayerRank.TheRitual, actualRank);
             Assert.AreEqual(1, actualProgress);
-            Assert.AreEqual(4, actualMaxStars);
+            Assert.AreEqual(3, actualMaxStars);
 
         }
 
@@ -89,12 +89,40 @@ namespace ESLTrackerTests.BusinessLogic.Games
 
             Assert.AreEqual(PlayerRank.TheRitual, actualRank);
             Assert.AreEqual(-1, actualProgress);
-            Assert.AreEqual(4, actualMaxStars);
+            Assert.AreEqual(3, actualMaxStars);
 
         }
 
         [TestMethod]
         public void CalculateCurrentRankProgress004_EdgeOfnextRank()
+        {
+            DateTime today = new DateTime(2018, 8, 5);
+
+            var games = new GameListBuilder()
+                .UsingType(GameType.PlayRanked)
+                .UsingPlayerRank(PlayerRank.TheRitual)
+                .UsingDate(today)
+                .WithOutcome(3, GameOutcome.Victory)
+                .Build();
+
+            mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(today);
+
+            RankCalculations rankCalculations = CreateRankCalulations();
+
+            PlayerRank actualRank;
+            int actualProgress;
+            int actualMaxStars;
+            rankCalculations.CalculateCurrentRankProgress(games, out actualRank, out actualProgress, out actualMaxStars);
+
+            Assert.AreEqual(PlayerRank.TheRitual, actualRank);
+            Assert.AreEqual(3, actualProgress);
+            Assert.AreEqual(3, actualMaxStars);
+
+        }
+
+
+        [TestMethod]
+        public void CalculateCurrentRankProgress005_RankuUpNoGamesInNextRank()
         {
             DateTime today = new DateTime(2018, 8, 5);
 
@@ -114,37 +142,9 @@ namespace ESLTrackerTests.BusinessLogic.Games
             int actualMaxStars;
             rankCalculations.CalculateCurrentRankProgress(games, out actualRank, out actualProgress, out actualMaxStars);
 
-            Assert.AreEqual(PlayerRank.TheRitual, actualRank);
-            Assert.AreEqual(4, actualProgress);
-            Assert.AreEqual(4, actualMaxStars);
-
-        }
-
-
-        [TestMethod]
-        public void CalculateCurrentRankProgress005_RankuUpNoGamesInNextRank()
-        {
-            DateTime today = new DateTime(2018, 8, 5);
-
-            var games = new GameListBuilder()
-                .UsingType(GameType.PlayRanked)
-                .UsingPlayerRank(PlayerRank.TheRitual)
-                .UsingDate(today)
-                .WithOutcome(5, GameOutcome.Victory)
-                .Build();
-
-            mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(today);
-
-            RankCalculations rankCalculations = CreateRankCalulations();
-
-            PlayerRank actualRank;
-            int actualProgress;
-            int actualMaxStars;
-            rankCalculations.CalculateCurrentRankProgress(games, out actualRank, out actualProgress, out actualMaxStars);
-
             Assert.AreEqual(PlayerRank.TheLover, actualRank);
             Assert.AreEqual(0, actualProgress);
-            Assert.AreEqual(4, actualMaxStars);
+            Assert.AreEqual(3, actualMaxStars);
         }
 
         [TestMethod]
@@ -171,7 +171,7 @@ namespace ESLTrackerTests.BusinessLogic.Games
 
             Assert.AreEqual(PlayerRank.TheWarrior, actualRank);
             Assert.AreEqual(0, actualProgress);
-            Assert.AreEqual(7, actualMaxStars);
+            Assert.AreEqual(6, actualMaxStars);
         }
 
         private RankCalculations CreateRankCalulations()

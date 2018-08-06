@@ -103,28 +103,30 @@ namespace ESLTracker.BusinessLogic.Games
 
         private int GetStarsperRank(PlayerRank rank)
         {
+            //-1 in allreturns as one star is neutral - stars in ui represent filled line between two stars
+            // filled star represent won game (or empty star inserpen represents lost game)
             switch (rank)
             {
                 case PlayerRank.TheRitual:
                 case PlayerRank.TheLover:
                 case PlayerRank.TheLord:
-                    return 4;
+                    return 4 -1;
                 case PlayerRank.TheMage:
-                    return 7;
+                    return 7 - 1;
                 case PlayerRank.TheShadow:
                 case PlayerRank.TheSteed:
                 case PlayerRank.TheApprentice:
-                    return 5;
+                    return 5 - 1;
                 case PlayerRank.TheWarrior:
-                    return 7;
+                    return 7 - 1;
                 case PlayerRank.TheLady:
                 case PlayerRank.TheTower:
                 case PlayerRank.TheAtronach:
-                    return 6;
+                    return 6 - 1;
                 case PlayerRank.TheThief:
-                    return 7;
+                    return 7 - 1;
                 case PlayerRank.TheLegend:
-                    return 0;
+                    return 0 - 1;
                 default:
                     throw new NotImplementedException($"Unknown player rank={rank}");
             }
