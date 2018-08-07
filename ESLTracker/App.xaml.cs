@@ -19,6 +19,7 @@ using ESLTracker.Windows;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.General;
 using ESLTracker.Controls;
+using ESLTracker.BusinessLogic.DataFile;
 
 namespace ESLTracker
 {
@@ -97,7 +98,7 @@ namespace ESLTracker
                 HandleUnhandledException(ex.Exception, "TaskScheduler.UnobservedTaskException");
 
             CheckSingleInstance();
-            CheckDataFile();
+            CheckDataFile(container.GetInstance<FileLoader>());
             IVersionService vc = container.GetInstance<IVersionService>();
             var settings = container.GetInstance<ISettings>();
             var newVersion = vc.CheckNewAppVersionAvailable();
@@ -135,12 +136,12 @@ namespace ESLTracker
 
         }
 
-        private static void CheckDataFile()
+        private static void CheckDataFile(FileLoader fileLoader)
         {
             try
             {
                 //try to open data file
-          //      new FileManager().LoadDatabase(true);
+                fileLoader.LoadDatabase(true);
             }
             catch (DataFileException ex)
             {
