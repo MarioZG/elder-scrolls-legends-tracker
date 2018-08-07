@@ -62,20 +62,13 @@ namespace ESLTracker.Controls.SessionOverlay
         {
             CurrentRank cr = d as CurrentRank;
             int newValue = (int)e.NewValue;
-            if(newValue == 0)
+
+            for (int i = 0; i < cr.starsContainer.Children.Count; i++)
             {
-                //legend - hide all
-                cr.starsContainer.Visibility = Visibility.Collapsed;
+                ImageAwesome star = (ImageAwesome)cr.starsContainer.Children[i];
+                star.Visibility = i < newValue + 2 ? Visibility.Visible : Visibility.Collapsed;
             }
-            else
-            {
-                cr.starsContainer.Visibility = Visibility.Visible;
-                for (int i = 0; i < cr.starsContainer.Children.Count; i++)
-                {
-                    ImageAwesome star = (ImageAwesome)cr.starsContainer.Children[i];
-                    star.Visibility = i < newValue + 2 ? Visibility.Visible : Visibility.Collapsed;
-                }
-            }
+
         }
 
         #endregion

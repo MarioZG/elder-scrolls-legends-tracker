@@ -10,6 +10,12 @@ using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.Converters
 {
+    /// <summary>
+    /// Converts player rank to visibilty
+    /// Returns: 
+    ///  - Visible for Legend rank
+    ///  - Collapsed for any other
+    /// </summary>
     public class PlayerRankLegendToVisibilty : ToVisibilityConverter<PlayerRank>
     {
         public override object ProvideValue(IServiceProvider serviceProvider)

@@ -4,16 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.SessionOverlay"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
              >
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Rank: " />
-            <TextBlock Text="{Binding Path=CurrentRank, StringFormat={}{0:D}-}" />
             <TextBlock Text="{Binding Path=CurrentRank}" />
+            <TextBlock Text="{Binding Path=CurrentRank, StringFormat={} ({0:D})}" Visibility="{Binding CurrentRank, Converter={Converters:PlayerRankLegendToVisibilty}, ConverterParameter=not}" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" x:Name="starsContainer">
+        <StackPanel 
+            Orientation="Horizontal" 
+            x:Name="starsContainer"
+            Visibility="{Binding CurrentRank, Converter={Converters:PlayerRankLegendToVisibilty}, ConverterParameter=not}" 
+            >
             <fa:ImageAwesome Icon="Star" Width="16" Foreground="SeaGreen" Margin="5,0,5,5" />
             <fa:ImageAwesome Icon="StarOutline" Width="16" Foreground="SeaGreen" Margin="5,0,5,5" />
             <fa:ImageAwesome Icon="Star" Width="16" Foreground="DarkBlue" Margin="5,0,5,5" />
