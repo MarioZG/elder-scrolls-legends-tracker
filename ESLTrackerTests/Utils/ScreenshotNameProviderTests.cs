@@ -10,6 +10,7 @@ using ESLTracker.Properties;
 using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
 using ESLTrackerTests;
+using ESLTrackerTests.Builders;
 
 namespace ESLTracker.Utils.Tests
 {
@@ -27,7 +28,7 @@ namespace ESLTracker.Utils.Tests
 
             tracker.Setup(t => t.Packs).Returns(
                 new ObservableCollection<Pack>(
-                    Enumerable.Range(0, 4).Select(i => new Pack())
+                    Enumerable.Range(0, 4).Select(i => new PackBuilder().Build())
                 ));
 
             mockDatetimeProvider.Setup(tf => tf.DateTimeNow).Returns(new DateTime(2016, 12, 23));
@@ -53,7 +54,7 @@ namespace ESLTracker.Utils.Tests
 
             tracker.Setup(t => t.Packs).Returns(
                 new ObservableCollection<Pack>(
-                    Enumerable.Range(0, 4).Select(i => new Pack())
+                    Enumerable.Range(0, 4).Select(i => new PackBuilder().Build())
                 ));
 
             string expected = "Pack_2016_12_23-2016_12_23";

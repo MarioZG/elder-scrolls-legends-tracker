@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTrackerTests.Builders;
+using ESLTracker.Utils.SimpleInjector;
 
 namespace ESLTracker.DataModel.Tests
 {
@@ -12,13 +14,21 @@ namespace ESLTracker.DataModel.Tests
     [DeploymentItem("./Resources/cards.json", "./Resources/")]
     public class PackTests
     {
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            new MasserContainer();
+        }
+
+
         [TestMethod]
         public void PackTest001_SerialiseAndDeserialise()
         {
-            Pack pack = new Pack();
-            pack.Cards.Add(new CardInstance());
-            pack.Cards.Add(new CardInstance());
-            pack.Cards.Add(new CardInstance());
+            Pack pack = new PackBuilder()
+                .WithCard(new CardInstance())
+                .WithCard(new CardInstance())
+                .WithCard(new CardInstance())
+                .Build();
 
 
             Assert.AreEqual(3, pack.Cards.Count);

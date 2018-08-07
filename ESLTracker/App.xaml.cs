@@ -65,9 +65,13 @@ namespace ESLTracker
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var container = new MasserContainer();
+            ConfigurationItemFactory.Default.Targets
+                .RegisterDefinition("UserInfoLogger", typeof(ESLTracker.Utils.NLog.UserInfoLoggerTarget));
 
-            
+            var container = new MasserContainer();
+            container.Verify();  //must be here, otherwise lot of XAML errors in unit tests
+
+
             #if DEBUG
 
             if (System.Diagnostics.Debugger.IsAttached)
@@ -80,8 +84,7 @@ namespace ESLTracker
 
             #endif
 
-            ConfigurationItemFactory.Default.Targets
-                .RegisterDefinition("UserInfoLogger", typeof(ESLTracker.Utils.NLog.UserInfoLoggerTarget));
+
 
             AppDomain.CurrentDomain.UnhandledException += (s, ex) =>
                 HandleUnhandledException((Exception)ex.ExceptionObject, "AppDomain.CurrentDomain.UnhandledException");

@@ -117,6 +117,7 @@
     <Compile Include="BusinessLogic\Games\GameFactory.cs" />
     <Compile Include="BusinessLogic\Games\IGameFactory.cs" />
     <Compile Include="BusinessLogic\Games\RankCalculations.cs" />
+    <Compile Include="BusinessLogic\Packs\PackFactory.cs" />
     <Compile Include="BusinessLogic\Rewards\IRewardFactory.cs" />
     <Compile Include="BusinessLogic\Rewards\RewardFactory.cs" />
     <Compile Include="Controls\Game\MoveToOtherDeck.xaml.cs">

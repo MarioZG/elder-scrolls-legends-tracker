@@ -14,13 +14,6 @@ namespace ESLTracker.BusinessLogic.Cards
             return new CardInstance();
         }
 
-        public IEnumerable<CardInstance> CreateEmptyPack()
-        {
-            return new List<CardInstance>()
-                    { new CardInstance(), new CardInstance(), new CardInstance(),
-                      new CardInstance(), new CardInstance(), new CardInstance()};
-        }
-
         public CardInstance CreateFromCard(Card card)
         {
             var cardInstance = new CardInstance();

@@ -11,7 +11,6 @@ namespace ESLTracker.BusinessLogic.Cards
     {
         CardInstance CreateFromCard(Card card);
         CardInstance CreateFromCard(Card card, int quantity);
-        IEnumerable<CardInstance> CreateEmptyPack();
         CardInstance CreateEmpty();
     }
 }

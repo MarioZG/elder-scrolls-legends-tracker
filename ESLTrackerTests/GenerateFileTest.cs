@@ -7,6 +7,7 @@ using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 using ESLTracker.Utils.IOWrappers;
+using ESLTrackerTests.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ESLTrackerTests
@@ -123,10 +124,10 @@ namespace ESLTrackerTests
             var sets = CardsDatabase.CardSets.Where(cs => cs.HasPacks);
             for (int i = 0; i < packsCount; i++)
             {
-                Pack p = new Pack();
-                p.DateOpened = DateTime.Now.AddDays(-1 * rand.Next(365));
-
-                p.CardSet = sets.ElementAt(rand.Next(sets.Count()));
+                Pack p = new PackBuilder()
+                    .WithDateOpened(DateTime.Now.AddDays(-1 * rand.Next(365)))
+                    .WithCardSet(sets.ElementAt(rand.Next(sets.Count())))
+                    .Build();
 
                 var cards = CardsDatabase.Cards.Where(c => c.Set == p.CardSet.Name);
 

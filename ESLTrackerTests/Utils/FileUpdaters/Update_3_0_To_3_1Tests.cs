@@ -71,13 +71,15 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
                         .Build());
             }
 
-            Pack pack = new Pack();
+            PackBuilder packBuilder = new PackBuilder();
             foreach (var trans in BusinessLogic.Cards.CardsDatabase.GuidTranslation)
             {
-                pack.Cards.Add(new CardInstanceBuilder()
+                packBuilder.WithCard(new CardInstanceBuilder()
                     .WithCard(new CardBuilder().WithId(Guid.Parse(trans.Key)).Build())
                     .Build());
             }
+
+            Pack pack = packBuilder.Build();
 
             tracker.Packs.Add(pack);
 

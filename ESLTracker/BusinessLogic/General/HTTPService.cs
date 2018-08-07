@@ -12,9 +12,9 @@ namespace ESLTracker.BusinessLogic.General
 {
     public class HTTPService : IHTTPService
     {
-        private TrackerFactory trackerFactory;
+        private ITrackerFactory trackerFactory;
 
-        public HTTPService(TrackerFactory trackerFactory)
+        public HTTPService(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
         }

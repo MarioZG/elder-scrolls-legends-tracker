@@ -173,9 +173,9 @@ namespace ESLTracker.ViewModels.Packs
                 .Where(p =>
                     p.DateOpened > OrderedPacks
                                     .Where(p2 => p2.Cards.Any(filter))
-                                    .DefaultIfEmpty(new Pack() { DateOpened = DateTime.MinValue })
+                                    .Select(p2 => p2.DateOpened)
+                                    .DefaultIfEmpty(DateTime.MinValue)
                                     .FirstOrDefault()
-                                    .DateOpened
                         ).Count();
         }
 

@@ -1,6 +1,7 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.General;
+using ESLTracker.BusinessLogic.Packs;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
@@ -32,8 +33,7 @@ namespace ESLTracker.ViewModels.Packs
             {
 
                 RaisePropertyChangedEvent(nameof(CardNamesList));
-                Pack.Cards = new ObservableCollection<CardInstance>(cardInstanceFactory.CreateEmptyPack());
-                Pack.SetUpChangeEvents();
+                packFactory.ClearPack(Pack);
                 RaisePropertyChangedEvent(String.Empty);
             }
         }
@@ -78,11 +78,12 @@ namespace ESLTracker.ViewModels.Packs
         ICardInstanceFactory cardInstanceFactory;
         ISettings settings;
         ICardsDatabase cardsDatabase;
-        ScreenShot screenShot;
+        IScreenShot screenShot;
         ITracker tracker;
         IDateTimeProvider dateTimeProvider;
         IFileSaver fileManager;
         ScreenshotNameProvider screenshotNameProvider;
+        private readonly PackFactory packFactory;
 
         public OpenPackViewModel(
             ICardInstanceFactory cardInstanceFactory,
@@ -91,8 +92,9 @@ namespace ESLTracker.ViewModels.Packs
             ITracker tracker,
             IDateTimeProvider dateTimeProvider,
             IFileSaver fileManager,
-            ScreenShot screenShot,
-            ScreenshotNameProvider screenshotNameProvider)
+            IScreenShot screenShot,
+            ScreenshotNameProvider screenshotNameProvider,
+            PackFactory packFactory)
         {
             this.cardInstanceFactory = cardInstanceFactory;
             this.screenShot = screenShot;
@@ -104,14 +106,14 @@ namespace ESLTracker.ViewModels.Packs
             this.dateTimeProvider = dateTimeProvider;
             this.fileManager = fileManager;
             this.screenshotNameProvider = screenshotNameProvider;
-
+            this.packFactory = packFactory;
 
             InitNewPack();
         }
 
         private void InitNewPack()
         {
-            Pack = new Pack(cardInstanceFactory.CreateEmptyPack(), true);
+            Pack = packFactory.CreateEmptyPack(true);
             Pack.CardSet = GetDefaultPackSet();
         }
 

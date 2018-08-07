@@ -9,6 +9,7 @@ using Moq;
 using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
 using ESLTracker.BusinessLogic.Cards;
+using ESLTrackerTests.Builders;
 
 namespace ESLTracker.Utils.FileUpdaters.Tests
 {
@@ -26,7 +27,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
                 new CardSet() { Name  = "other set"},
             });
 
-            var packs = Enumerable.Range(0, 100).Select(i => new Pack());
+            var packs = Enumerable.Range(0, 100).Select(i => new PackBuilder().Build());
             
             tracker.Setup(t => t.Packs).Returns(new ObservableCollection<Pack>(packs));
 

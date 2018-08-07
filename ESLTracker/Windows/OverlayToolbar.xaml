@@ -24,7 +24,7 @@
                 <Controls:OverlayWindowTitlebarButtonsCollection>
                     <Controls:OverlayWindowTitlebarButton 
                         ToolTipService.InitialShowDelay="3000" 
-                        ToolTip="xMake screenshot (Saved in data folder. Open from application settings)" 
+                        ToolTip="Make screenshot (Saved in data folder. Open from application settings)" 
                         HorizontalAlignment="Right" 
                         Width="15"
                         Command="{Binding CreateScreenshot, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"

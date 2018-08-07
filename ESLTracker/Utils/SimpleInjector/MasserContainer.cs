@@ -29,9 +29,6 @@ namespace ESLTracker.Utils.SimpleInjector
 
         private void Bootstrap()
         {
-         //   Options.PropertySelectionBehavior = new ImportPropertySelectionBehavior();
-
-            // Register your types, for instance:
             Register<ITrackerFactory, TrackerFactory>();
             Register<IFileSaver, FileSaver>();
             Register<ITracker>(() => GetInstance<TrackerFactory>().GetTrackerInstance());
@@ -60,20 +57,11 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IGuidProvider, GuidProvider>();
             Register<IGameFactory, GameFactory>();
             Register<IScreenShot, ScreenShot>();
-            
+            Register<IWinDialogs, WinDialogs>();
 
-
-            Collection.Register<OverlayWindowBase>(typeof(App).Assembly);
-            Collection.Register<ViewModelBase>(typeof(App).Assembly);
-            Collection.Register<UpdateBase>(typeof(App).Assembly);
-
-            
-            // Register your windows and view models:
-            //     Register<MainWindow>();
-            //     Register<MainWindowViewModel>();
-
-
-            // Verify();
+            Collection.Register<OverlayWindowBase>(typeof(App).Assembly);  //overlay windows
+            Collection.Register<ViewModelBase>(typeof(App).Assembly);  //all view models, not needed but allows to verify all view models when Verify() is called
+            Collection.Register<UpdateBase>(typeof(App).Assembly); //file updates
         }
     }
 }

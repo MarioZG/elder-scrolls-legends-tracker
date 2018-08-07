@@ -25,11 +25,11 @@ namespace ESLTrackerTests.ViewModels.Rewards
         IRewardFactory mockRewardFactory;
 
         [TestInitialize]
-        public void TestInitialize()
+        public override void TestInitialize()
         {
+            base.TestInitialize();
             mockRewardFactory = new RewardFactory(mockDatetimeProvider.Object);
             new MasserContainer();
-
         }
 
         [TestMethod]
