@@ -143,6 +143,7 @@
     <Compile Include="Utils\Behaviors\DropBehavior.cs" />
     <Compile Include="Utils\GuidProvider.cs" />
     <Compile Include="Utils\IGuidProvider.cs" />
+    <Compile Include="Utils\SplashScreenManager.cs" />
     <Compile Include="ViewModels\Decks\DeckItemViewModel.cs" />
     <Compile Include="ViewModels\SessionOverlay\SessionOverviewViewModel.cs" />
     <Compile Include="ViewModels\Windows\AboutViewModel.cs" />
@@ -471,6 +472,9 @@
     <Compile Include="ViewModels\Settings\SettingsPanelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Utils\WinAPI.cs" />
+    <Compile Include="Windows\SplashScreen.xaml.cs">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\Game\MoveToOtherDeck.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -700,6 +704,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\RewardsSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

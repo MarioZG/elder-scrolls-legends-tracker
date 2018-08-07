@@ -65,10 +65,18 @@ namespace ESLTracker
             MessageBox.Show("Application encountered unhandled exception. Log file has been created in " + "./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt with details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+
+            SplashScreenManager splash = new SplashScreenManager();
+            splash.ShowSplash();
+            splash.UpdateProgress("Loading loggers");
+
             ConfigurationItemFactory.Default.Targets
                 .RegisterDefinition("UserInfoLogger", typeof(ESLTracker.Utils.NLog.UserInfoLoggerTarget));
+
+            splash.UpdateProgress("Configuring dependecies");
 
             var container = new MasserContainer();
             container.Verify();  //must be here, otherwise lot of XAML errors in unit tests
@@ -97,8 +105,13 @@ namespace ESLTracker
             TaskScheduler.UnobservedTaskException += (s, ex) =>
                 HandleUnhandledException(ex.Exception, "TaskScheduler.UnobservedTaskException");
 
+            splash.UpdateProgress("Checking other instances");
             CheckSingleInstance();
+
+            splash.UpdateProgress("Checking data file");
             CheckDataFile(container.GetInstance<FileLoader>());
+
+            splash.UpdateProgress("Checking for new version");
             IVersionService vc = container.GetInstance<IVersionService>();
             var settings = container.GetInstance<ISettings>();
             var newVersion = vc.CheckNewAppVersionAvailable();
@@ -110,6 +123,8 @@ namespace ESLTracker
                     { Download, newVersion.DownloadUrl }
                 });
             }
+
+            splash.UpdateProgress("Checking for card database updates");
             if (vc.IsNewCardsDBAvailable())
             {
                 ICardsDatabase cardsDB = vc.GetLatestCardsDB();
@@ -120,19 +135,24 @@ namespace ESLTracker
             bool isShiftPressed = (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift;
             if (settings.General_StartGameWithTracker && !isShiftPressed)
             {
+                splash.UpdateProgress("Starting game");
                 container.GetInstance<ILauncherService>().StartGame();
             }
 
-            //   var app = new App();
+            splash.UpdateProgress("Creating main form");
             MainWindow main = container.GetInstance<MainWindow>();
             this.MainWindow = main;
             this.MainWindow.Show();
 
             //init overlays
+            splash.UpdateProgress("Creating overlays");
             var overlaysRepo = container.GetInstance<OverlayWindowRepository>();
             IEnumerable<OverlayWindowBase> overlayWindowsList = container.GetInstance<IEnumerable<OverlayWindowBase>>();
             overlaysRepo.RegisterWindows(overlayWindowsList);
             Task.Run(() => overlaysRepo.UpdateOverlayAsync(main));
+
+            splash.CloseSplash();
+            this.MainWindow.Activate();
 
         }
 
