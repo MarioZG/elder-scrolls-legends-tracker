@@ -45,7 +45,7 @@ namespace ESLTracker.Windows
 
         public OverlayToolbar(
             ISettings settings, 
-            IScreenShot screenShot, 
+            IScreenShot screenShot,
             ScreenshotNameProvider screenshotNameProvider)
         {
             this.settings = settings;

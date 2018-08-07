@@ -114,6 +114,7 @@
     <Compile Include="Utils\ScreenshotNameProviderTests.cs" />
     <Compile Include="Utils\SerializableVersionTests.cs" />
     <Compile Include="BusinessLogic\General\VersionServiceTests.cs" />
+    <Compile Include="Utils\SimpleInjector\MasserContainerTests.cs" />
     <Compile Include="Utils\WinAPITests.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModelTests.cs" />
     <Compile Include="ViewModels\Cards\CardListEditorViewModelTests.cs" />

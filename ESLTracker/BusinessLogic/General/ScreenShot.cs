@@ -16,15 +16,21 @@ namespace ESLTracker.BusinessLogic.General
     {
         string ScreenShotFolder = "Screenshot";
 
-        IWinAPI winApi;
-        ISettings settings;
-        PathManager pathManager;
+        private readonly IWinAPI winApi;
+        private readonly ISettings settings;
+        private readonly PathManager pathManager;
+        private readonly OverlayWindowRepository overlayWindowRepository;
 
-        public ScreenShot(IWinAPI winApi, ISettings settings, PathManager pathManager)
+        public ScreenShot(
+            IWinAPI winApi, 
+            ISettings settings, 
+            PathManager pathManager,
+            OverlayWindowRepository overlayWindowRepository)
         {
             this.winApi = winApi;
             this.settings = settings;
             this.pathManager = pathManager;
+            this.overlayWindowRepository = overlayWindowRepository;
         }
 
         public Task SaveScreenShot(string fileName)
@@ -32,6 +38,8 @@ namespace ESLTracker.BusinessLogic.General
             IntPtr? eslHandle = winApi.GetEslProcess()?.MainWindowHandle;
             if (eslHandle.HasValue)
             {
+                WinAPI.SetForegroundWindow(eslHandle.Value);
+
                 var rect = new WinAPI.Rect();
                 WinAPI.GetWindowRect(eslHandle.Value, ref rect);
 
@@ -45,7 +53,7 @@ namespace ESLTracker.BusinessLogic.General
                 Window activeWindow = null;
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    foreach (Window w in Application.Current.Windows)
+                    foreach (Window w in overlayWindowRepository)
                     {
                         //System.Diagnostics.Debugger.Log(1, "", "w" + w.Title);
                         //System.Diagnostics.Debugger.Log(1, "", "  w.IsActive=" + w.IsActive);
@@ -65,7 +73,6 @@ namespace ESLTracker.BusinessLogic.General
                         }
                     }
                 });
-                WinAPI.SetForegroundWindow(eslHandle.Value);
                 gfxBmp.CopyFromScreen(
                     rect.left,
                     rect.top,
@@ -79,7 +86,7 @@ namespace ESLTracker.BusinessLogic.General
                     w.Dispatcher.Invoke(() => w.Show());
                 }
 
-                activeWindow.Dispatcher.Invoke(() => activeWindow?.Activate()); 
+                activeWindow?.Dispatcher.Invoke(() => activeWindow?.Activate()); 
 
                 string path = Path.Combine(
                     pathManager.DataPath,

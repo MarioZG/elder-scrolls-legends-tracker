@@ -18,6 +18,7 @@ using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.Windows;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.General;
+using ESLTracker.Controls;
 
 namespace ESLTracker
 {
@@ -122,9 +123,16 @@ namespace ESLTracker
             }
 
             //   var app = new App();
-            this.MainWindow = container.GetInstance<MainWindow>();
+            MainWindow main = container.GetInstance<MainWindow>();
+            this.MainWindow = main;
             this.MainWindow.Show();
-            //this.Run(this.MainWindow);
+
+            //init overlays
+            var overlaysRepo = container.GetInstance<OverlayWindowRepository>();
+            IEnumerable<OverlayWindowBase> overlayWindowsList = container.GetInstance<IEnumerable<OverlayWindowBase>>();
+            overlaysRepo.RegisterWindows(overlayWindowsList);
+            Task.Run(() => overlaysRepo.UpdateOverlayAsync(main));
+
         }
 
         private static void CheckDataFile()

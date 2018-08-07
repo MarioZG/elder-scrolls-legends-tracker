@@ -13,7 +13,7 @@ using ESLTracker.Utils.SimpleInjector;
 
 namespace ESLTracker.Controls
 {
-    abstract public class OverlayWindowBase: Window,  IOverlayWindow, INotifyPropertyChanged
+    abstract public class OverlayWindowBase : Window, IOverlayWindow, INotifyPropertyChanged
     {
 
         public abstract bool ShowOnScreen { get; set; }

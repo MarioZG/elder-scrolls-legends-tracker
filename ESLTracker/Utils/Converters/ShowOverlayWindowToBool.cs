@@ -16,7 +16,7 @@ namespace ESLTracker.Utils.Converters
             {
                 var window = ((IEnumerable<IOverlayWindow>)value).Where(w => w.GetType() == (Type)parameter).FirstOrDefault();
                 var retValue = window?.ShowOnScreen;
-                return retValue;
+                return retValue.GetValueOrDefault();
             }
             return false;
         }

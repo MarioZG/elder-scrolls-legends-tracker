@@ -75,14 +75,14 @@ namespace ESLTracker.ViewModels.Packs
             get { return cardsDatabase.CardSets.Where(cs => cs.HasPacks).ToList(); }
         }
 
-        ICardInstanceFactory cardInstanceFactory;
-        ISettings settings;
-        ICardsDatabase cardsDatabase;
-        IScreenShot screenShot;
-        ITracker tracker;
-        IDateTimeProvider dateTimeProvider;
-        IFileSaver fileManager;
-        ScreenshotNameProvider screenshotNameProvider;
+        private readonly ICardInstanceFactory cardInstanceFactory;
+        private readonly ISettings settings;
+        private readonly ICardsDatabase cardsDatabase;
+        private readonly IScreenShot screenShot;
+        private readonly ITracker tracker;
+        private readonly IDateTimeProvider dateTimeProvider;
+        private readonly IFileSaver fileManager;
+        private readonly ScreenshotNameProvider screenshotNameProvider;
         private readonly PackFactory packFactory;
 
         public OpenPackViewModel(

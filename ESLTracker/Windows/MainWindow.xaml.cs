@@ -41,48 +41,14 @@ namespace ESLTracker.Windows
             }
         }
 
-        public static bool UpdateOverlay { get; internal set; }
 
-        public MainWindow(IMessenger messenger)
+        public MainWindow(IMessenger messenger, OverlayWindowRepository overlayWindowRepository)
         {
             InitializeComponent();
-            Task.Run( () =>  UpdateOverlayAsync(this));
-            //  Application.Current.MainWindow = this;
-
             messenger.Register<ApplicationShowBalloonTip>(this, ShowBaloonRequested);
         }
 
-        private static async Task UpdateOverlayAsync(MainWindow mainWindow)
-        {
-            IWinAPI winAPI = new WinAPI();
-            mainWindow.Dispatcher.Invoke(() => {
-                foreach (Window w in mainWindow.DataContext.OverlayWindows)
-                {
-                    w.Show();
-                }
-            });
-            UpdateOverlay = true;
-            while (UpdateOverlay)
-            {
-                mainWindow.Dispatcher.Invoke(() =>
-                {
-                    var win = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-                    Logger.Trace($"active win{win?.Title}; istrackeractive={winAPI.IsTrackerActive()}");
-                    foreach (IOverlayWindow window in mainWindow.DataContext.OverlayWindows)
-                    {
-                        ((IOverlayWindow)window).UpdateVisibilty(winAPI.IsGameActive(), winAPI.GetEslProcess() != null, mainWindow.IsActive, winAPI.IsTrackerActive());
-                    }
-                });
-                await Task.Delay(1000);
-            }
-            mainWindow.Dispatcher.Invoke(() => {
-                foreach (Window w in mainWindow.DataContext.OverlayWindows)
-                {
-                    w.Hide();
-                }
-            });
-            UpdateOverlay = false;
-        }
+       
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -107,14 +73,6 @@ namespace ESLTracker.Windows
                         e.Cancel = true;
                     }
                 }
-            }
-        }
-
-        internal void RestoreOverlay()
-        {
-            if (!UpdateOverlay)
-            {
-                Task.Run(() => UpdateOverlayAsync(this));
             }
         }
 

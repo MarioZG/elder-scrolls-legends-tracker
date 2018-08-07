@@ -136,11 +136,6 @@ namespace ESLTracker.ViewModels.Windows
             get { return new RelayCommand(new Action<object>(NewDeck)); }
         }
 
-        public ICommand CommandShowOverlay
-        {
-            get { return new RelayCommand(new Action<object>(ShowOverlay)); }
-        }
-
         public IAsyncCommand<object> CommandRunGame
         {
             get
@@ -252,7 +247,8 @@ namespace ESLTracker.ViewModels.Windows
             IWinAPI winApi,
             IFileSaver fileSaver,
             ILauncherService launcherService,
-            OverlayWindowRepository overlayWindows)
+            OverlayWindowRepository overlayWindows
+            )
         {
             this.tracker = tracker;
             this.messanger = messanger;
@@ -270,8 +266,6 @@ namespace ESLTracker.ViewModels.Windows
             this.fileSaver = fileSaver;
             this.launcherService = launcherService;
 
-            //this.OverlayWindows.Add(new OverlayToolbar());
-            //this.OverlayWindows.Add(new DeckOverlay());
             this.OverlayWindows.CollectionChanged += (s, e) => RaisePropertyChangedEvent(nameof(OverlayWindows));
         }
 
@@ -305,7 +299,7 @@ namespace ESLTracker.ViewModels.Windows
             if (!checkIfCanClose || (checkIfCanClose && ot.CanClose(CommandExit)))
             {
                 fileSaver.SaveDatabase(tracker);
-                MainWindow.UpdateOverlay = false;
+                OverlayWindows.UpdateOverlay = false;
                 ot.Close();
                 settings.LastActiveDeckId = tracker.ActiveDeck?.DeckId;
                 settings.Save();
@@ -324,11 +318,6 @@ namespace ESLTracker.ViewModels.Windows
                 new Utils.Messages.EditDeck() { Deck = deckService.CreateNewDeck("New deck") },
                 Utils.Messages.EditDeck.Context.StartEdit
                 );
-        }
-
-        public void ShowOverlay(object parameter)
-        {
-            ((MainWindow)Application.Current.MainWindow).RestoreOverlay();
         }
 
         bool startingGame;

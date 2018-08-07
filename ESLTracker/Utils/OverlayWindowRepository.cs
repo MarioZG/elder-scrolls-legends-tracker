@@ -7,14 +7,34 @@ using System.Threading.Tasks;
 using System.Windows;
 using ESLTracker.Controls;
 using ESLTracker.Utils.SimpleInjector;
+using ESLTracker.Windows;
+using NLog;
 
 namespace ESLTracker.Utils
 {
     public class OverlayWindowRepository : PropertiesObservableCollection<OverlayWindowBase>
     {
 
-        public OverlayWindowRepository(IEnumerable<OverlayWindowBase> overlayWindows) : base(overlayWindows)
+        private bool isInitialased = false;
+
+        public bool UpdateOverlay { get; internal set; }
+
+
+        public OverlayWindowRepository()
         {
+        }
+
+        public void RegisterWindows(IEnumerable<OverlayWindowBase> overlayWindows)
+        {
+            if(isInitialased)
+            {
+                throw new InvalidOperationException($"{nameof(OverlayWindowRepository)} was already Initialased ");
+            }
+            foreach (var ow in overlayWindows)
+            {
+                Add(ow);
+            }
+            isInitialased = true;
 
         }
 
@@ -31,6 +51,37 @@ namespace ESLTracker.Utils
         internal bool IsAnyActive()
         {
             return this.Any(ow => ((Window)ow).IsActive);
+        }
+
+        public async Task UpdateOverlayAsync(MainWindow mainWindow)
+        {
+            IWinAPI winAPI = new WinAPI();
+            mainWindow.Dispatcher.Invoke(() => {
+                foreach (OverlayWindowBase w in this)
+                {
+                    w.Show();
+                }
+            });
+            UpdateOverlay = true;
+            while (UpdateOverlay)
+            {
+                mainWindow.Dispatcher.Invoke(() =>
+                {
+                    var win = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+                    foreach (IOverlayWindow window in this)
+                    {
+                        window.UpdateVisibilty(winAPI.IsGameActive(), winAPI.GetEslProcess() != null, mainWindow.IsActive, winAPI.IsTrackerActive());
+                    }
+                });
+                await Task.Delay(1000);
+            }
+            mainWindow.Dispatcher.Invoke(() => {
+                foreach (Window w in this)
+                {
+                    w.Hide();
+                }
+            });
+            UpdateOverlay = false;
         }
     }
 }

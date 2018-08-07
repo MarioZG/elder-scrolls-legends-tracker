@@ -12,6 +12,8 @@ using ESLTracker.Utils.DiagnosticsWrappers;
 using ESLTracker.Utils.FileUpdaters;
 using ESLTracker.Utils.IOWrappers;
 using ESLTracker.ViewModels;
+using ESLTracker.Windows;
+using NLog;
 using SimpleInjector;
 
 namespace ESLTracker.Utils.SimpleInjector
@@ -29,6 +31,9 @@ namespace ESLTracker.Utils.SimpleInjector
 
         private void Bootstrap()
         {
+            Register<OverlayWindowRepository>(Lifestyle.Singleton);  //ensre only one repo
+            Register<MainWindow>(Lifestyle.Singleton);  //ensure only one main window
+
             Register<ITrackerFactory, TrackerFactory>();
             Register<IFileSaver, FileSaver>();
             Register<ITracker>(() => GetInstance<TrackerFactory>().GetTrackerInstance());
@@ -58,7 +63,7 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IGameFactory, GameFactory>();
             Register<IScreenShot, ScreenShot>();
             Register<IWinDialogs, WinDialogs>();
-
+           
             Collection.Register<OverlayWindowBase>(typeof(App).Assembly);  //overlay windows
             Collection.Register<ViewModelBase>(typeof(App).Assembly);  //all view models, not needed but allows to verify all view models when Verify() is called
             Collection.Register<UpdateBase>(typeof(App).Assembly); //file updates
