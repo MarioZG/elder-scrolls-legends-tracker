@@ -8,11 +8,11 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
              >
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Rank: " />
-            <TextBlock Text="{Binding Path=CurrentRank}" />
-            <TextBlock Text="{Binding Path=CurrentRank, StringFormat={} ({0:D})}" Visibility="{Binding CurrentRank, Converter={Converters:PlayerRankLegendToVisibilty}, ConverterParameter=not}" />
+    <StackPanel Margin="0,0,0,5">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock FontSize="14" Text="Rank: " />
+            <TextBlock FontSize="14" Text="{Binding Path=CurrentRank}" />
+            <TextBlock FontSize="14" Text="{Binding Path=CurrentRank, StringFormat={} ({0:D})}" Visibility="{Binding CurrentRank, Converter={Converters:PlayerRankLegendToVisibilty}, ConverterParameter=not}" />
         </StackPanel>
         <StackPanel 
             Orientation="Horizontal" 
