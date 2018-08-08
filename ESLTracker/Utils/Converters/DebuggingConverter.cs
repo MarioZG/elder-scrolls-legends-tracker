@@ -23,7 +23,7 @@ namespace ESLTracker.Utils.Converters
                     parameter));
                 System.Diagnostics.Debugger.Break();
             }
-            return "DEBUG!";
+            return values;
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -38,7 +38,7 @@ namespace ESLTracker.Utils.Converters
                 System.Diagnostics.Debugger.Break();
             }
             //return System.Windows.Visibility.Collapsed;
-            return "DEBUG!";
+            return value;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
