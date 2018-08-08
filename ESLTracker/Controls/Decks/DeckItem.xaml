@@ -11,14 +11,23 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckItemViewModel]}"
              AllowDrop="True"             
-             Behaviors:DropBehavior.DropCommand="{Binding CommandDrop}"
+             Behaviors:DropBehavior.DropCommand="{Binding CommandDrop}"             
              mc:Ignorable="d" 
              x:Name="deckItem"
              d:DesignHeight="70" d:DesignWidth="200">
     <UserControl.Resources>
-        <ResourceDictionary Source="/ControlStyle.xaml" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ControlStyle.xaml" />
+                <ResourceDictionary Source="/Controls/Decks/DeckItemContextMenu.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
-    <DockPanel HorizontalAlignment="Stretch" x:Name="LayoutRoot">
+    <DockPanel 
+        HorizontalAlignment="Stretch" 
+        x:Name="LayoutRoot" 
+        ContextMenu="{StaticResource deckItemContextMenu}"
+        Background="Transparent">
         <StackPanel DockPanel.Dock="Left">
             <ItemsControl ItemsSource="{Binding Path=Deck.Attributes.ImageSources}" BorderThickness="0"
                           ToolTip="{Binding Deck.Class}">

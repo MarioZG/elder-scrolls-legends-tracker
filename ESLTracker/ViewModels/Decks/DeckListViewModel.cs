@@ -71,46 +71,13 @@ namespace ESLTracker.ViewModels.Decks
         public ICommand CommandResetFilterButtonPressed
         {
             get { return new RelayCommand(new Action<object>(CommandResetFiltersExecute)); }
-        }
-
-        public ICommand CommandEditDeck
-        {
-            get { return new RelayCommand(new Action<object>(CommandEditDeckExecute)); }
-        }
-
-        public ICommand CommandHideDeck
-        {
-            get {
-                return new RelayCommand(
-                          (object param) => CommandHideDeckExecute(new EditDeck() { Deck = SelectedDeck }),
-                          (object param) => deckService.CommandHideDeckCanExecute(SelectedDeck));
-            }
-        }
-
-        public ICommand CommandUnHideDeck
-        {
-            get { return new RelayCommand(
-                    (object param) => CommandUnHideDeckExecute(new EditDeck() { Deck = SelectedDeck }),
-                    (object param) => deckService.CommandUnHideDeckCanExecute(SelectedDeck));
-            }
-        }
-
-        public ICommand CommandDeleteDeck
-        {
-            get
-            {
-                return new RelayCommand(
-                    (object param) => CommandDeleteDeckExecute(new EditDeck() { Deck = SelectedDeck }),
-                    (object param) => deckService.CanDelete(SelectedDeck));
-            }
-        }
+        }       
         #endregion
 
         private readonly IMessenger messanger;
         private readonly ITracker tracker;
         private readonly IDeckService deckService;
         private readonly ISettings settings;
-        private readonly IFileSaver fileSaver;
         private readonly DeckCalculations deckCalculations;
 
         public DeckListViewModel(
@@ -118,22 +85,17 @@ namespace ESLTracker.ViewModels.Decks
             ITracker tracker,
             IDeckService deckService,
             ISettings settings,
-            IFileSaver fileSaver,
             DeckCalculations deckCalculations)
         {
             this.messanger = messanger;
             messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
-            messanger.Register<EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);
-            messanger.Register<EditDeck>(this, CommandHideDeckExecute, Utils.Messages.EditDeck.Context.Hide);
-            messanger.Register<EditDeck>(this, CommandUnHideDeckExecute, Utils.Messages.EditDeck.Context.UnHide);
-            messanger.Register<EditDeck>(this, CommandDeleteDeckExecute, Utils.Messages.EditDeck.Context.Delete);
+            messanger.Register<EditDeck>(this, RefreshList);
 
             this.tracker = tracker;
             FilteredDecks = new ObservableCollection<Deck>(tracker.Decks);
 
             this.deckService = deckService;
             this.settings = settings;
-            this.fileSaver = fileSaver;
             this.deckCalculations = deckCalculations;
         }
 
@@ -230,46 +192,11 @@ namespace ESLTracker.ViewModels.Decks
             ApplyFilter();
         }
 
-        private void CommandEditDeckExecute(object param)
-        {
-            //inform other views that we are about to edit deck
-            messanger.Send(
-                new EditDeck() { Deck = tracker.ActiveDeck }, 
-                EditDeck.Context.StartEdit );
-        }
-
-        private void EditDeckFinished(EditDeck obj)
+        private void RefreshList(EditDeck obj)
         {
             ApplyFilter();
         }
 
-        private void CommandHideDeckExecute(EditDeck editDeck)
-        {
-            if (editDeck.Deck != null)
-            {
-                editDeck.Deck.IsHidden = true;
-                ApplyFilter();
-            }
-        }
-
-
-        private void CommandUnHideDeckExecute(EditDeck editDeck)
-        {
-            if (editDeck.Deck != null)
-            {
-                editDeck.Deck.IsHidden = false;
-                ApplyFilter();
-            }
-        }
-
-        private void CommandDeleteDeckExecute(EditDeck editDeck)
-        {
-            if (deckService.CanDelete(editDeck.Deck))
-            {
-                deckService.DeleteDeck(editDeck.Deck);
-            }
-            fileSaver.SaveDatabase(tracker);
-            ApplyFilter();
-        }
+       
     }
 }

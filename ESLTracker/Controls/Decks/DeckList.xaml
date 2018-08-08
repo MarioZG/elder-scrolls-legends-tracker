@@ -17,47 +17,6 @@
                  SelectedItem="{Binding SelectedDeck}"
                  ItemsSource="{Binding FilteredDecks, Mode=TwoWay}"
                  >
-            <ListBox.ContextMenu>
-                <ContextMenu>
-                    <MenuItem 
-                          Command="{Binding CommandEditDeck}" 
-                          CommandParameter="{Binding SelectedDeck}"
-                          VerticalAlignment="Center"
-                          Header="Edit Deck"
-                          >
-                        <MenuItem.Icon>
-                            <Image Source="/Resources/MenuIcons/edit.png"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem 
-                          Command="{Binding CommandHideDeck}" 
-                          VerticalAlignment="Center"
-                          Header="Hide Deck"
-                          >
-                        <MenuItem.Icon>
-                            <Image Source="/Resources/MenuIcons/hide.png"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem 
-                          Command="{Binding CommandUnHideDeck}" 
-                          VerticalAlignment="Center"
-                          Header="Unhide Deck"
-                          >
-                        <MenuItem.Icon>
-                            <Image Source="/Resources/MenuIcons/visible.png"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem 
-                          Command="{Binding CommandDeleteDeck}" 
-                          VerticalAlignment="Center"
-                          Header="Delete deck"
-                          >
-                        <MenuItem.Icon>
-                            <Image Source="/Resources/MenuIcons/delete.png"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </ContextMenu>
-            </ListBox.ContextMenu>
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>

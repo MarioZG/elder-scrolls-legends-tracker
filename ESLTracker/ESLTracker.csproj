@@ -144,6 +144,7 @@
     <Compile Include="Utils\GuidProvider.cs" />
     <Compile Include="Utils\IGuidProvider.cs" />
     <Compile Include="Utils\SplashScreenManager.cs" />
+    <Compile Include="ViewModels\Decks\DeckItemContextMenuViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckItemViewModel.cs" />
     <Compile Include="ViewModels\SessionOverlay\SessionOverviewViewModel.cs" />
     <Compile Include="ViewModels\Windows\AboutViewModel.cs" />
@@ -475,6 +476,10 @@
     <Compile Include="Windows\SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\Decks\DeckItemContextMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Game\MoveToOtherDeck.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
