@@ -19,15 +19,31 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/ControlStyle.xaml" />
-                <ResourceDictionary Source="/Controls/Decks/DeckItemContextMenu.xaml" />
+                <ResourceDictionary Source="/Controls/Decks/DeckItemMenuOperations.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+    <UserControl.ContextMenu>
+        <ContextMenu 
+        x:Name="deckItemContextMenu"
+        DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckItemMenuOperationsViewModel]}" 
+        Tag="{Binding PlacementTarget.DataContext.Deck, RelativeSource={RelativeSource Self}}"
+        >
+            <ContextMenu.ItemContainerStyle>
+                <Style TargetType="{x:Type MenuItem}">
+                    <Setter Property="CommandParameter" Value="{Binding Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContextMenu}}}" />
+                </Style>
+            </ContextMenu.ItemContainerStyle>
+            <ContextMenu.ItemsSource>
+                <CompositeCollection>
+                    <CollectionContainer Collection="{StaticResource deckItemOperations}" />
+                </CompositeCollection>
+            </ContextMenu.ItemsSource>
+        </ContextMenu>
+    </UserControl.ContextMenu>
     <DockPanel 
         HorizontalAlignment="Stretch" 
-        x:Name="LayoutRoot" 
-        ContextMenu="{StaticResource deckItemContextMenu}"
-        Background="Transparent">
+        x:Name="LayoutRoot" >
         <StackPanel DockPanel.Dock="Left">
             <ItemsControl ItemsSource="{Binding Path=Deck.Attributes.ImageSources}" BorderThickness="0"
                           ToolTip="{Binding Deck.Class}">

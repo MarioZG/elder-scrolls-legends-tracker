@@ -13,8 +13,12 @@ using System.Windows.Input;
 
 namespace ESLTracker.ViewModels.Decks
 {
-    public class DeckItemContextMenuViewModel : ViewModelBase
+    public class DeckItemMenuOperationsViewModel : ViewModelBase
     {
+        public ICommand CommandNewDeck
+        {
+            get { return new RelayCommand(new Action<object>(NewDeck)); }
+        }
 
         public ICommand CommandEditDeck
         {
@@ -66,7 +70,7 @@ namespace ESLTracker.ViewModels.Decks
         private readonly IFileSaver fileSaver;
         private readonly ITracker tracker;
 
-        public DeckItemContextMenuViewModel(
+        public DeckItemMenuOperationsViewModel(
             IMessenger messanger,
             IFileSaver fileSaver,
             ITracker tracker,
@@ -76,6 +80,14 @@ namespace ESLTracker.ViewModels.Decks
             this.messanger = messanger;
             this.fileSaver = fileSaver;
             this.tracker = tracker;
+        }
+
+        public void NewDeck(object parameter)
+        {
+            messanger.Send(
+                new Utils.Messages.EditDeck() { Deck = deckService.CreateNewDeck("New deck") },
+                Utils.Messages.EditDeck.Context.StartEdit
+                );
         }
 
         private void CommandEditDeckExecute(object param)

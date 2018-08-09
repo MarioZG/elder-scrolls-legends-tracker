@@ -31,6 +31,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/ControlStyle.xaml" />
+                <ResourceDictionary Source="/Controls/Decks/DeckItemMenuOperations.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <System:Boolean x:Key="True">True</System:Boolean>
             <System:Boolean x:Key="False">False</System:Boolean>
@@ -39,52 +40,22 @@
     <Grid>
         <DockPanel>
             <Menu IsEnabled="{Binding AllowCommands}" x:Name="menu"  VerticalAlignment="Top" DockPanel.Dock="Top">
-                <MenuItem Header="Deck">
-                    <MenuItem 
-                          Command="{Binding CommandNewDeck}" 
-                          VerticalAlignment="Center"
-                          Header="New Deck"
-                          >
-                        <MenuItem.Icon>
-                            <Image Source="/Resources/MenuIcons/newDeck.png"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem 
-                          Command="{Binding CommandEditDeck}" 
-                          VerticalAlignment="Center"
-                          Header="Edit Deck"
-                          >
-                        <MenuItem.Icon>
-                            <Image Source="/Resources/MenuIcons/edit.png"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem 
-                          Command="{Binding CommandHideDeck}" 
-                          VerticalAlignment="Center"
-                          Header="Hide Deck"
-                          >
-                        <MenuItem.Icon>
-                            <Image Source="/Resources/MenuIcons/hide.png"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem 
-                          Command="{Binding CommandUnHideDeck}" 
-                          VerticalAlignment="Center"
-                          Header="Unhide Deck"
-                          >
-                        <MenuItem.Icon>
-                            <Image Source="/Resources/MenuIcons/visible.png"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem 
-                          Command="{Binding CommandDeleteDeck}" 
-                          VerticalAlignment="Center"
-                          Header="Delete deck"
-                          >
-                        <MenuItem.Icon>
-                            <Image Source="/Resources/MenuIcons/delete.png"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
+       
+                <MenuItem Header="Deck"
+                    DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckItemMenuOperationsViewModel]}" 
+                    Tag="{Binding DataContext.ActiveDeck, ElementName=mainWindow}">
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="CommandParameter" Value="{Binding Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type MenuItem}}}" />
+                        </Style>
+                    </MenuItem.ItemContainerStyle>  
+                    <MenuItem.ItemsSource>
+                        <CompositeCollection>
+                            <CollectionContainer Collection="{StaticResource newDeckMenuItem}" />
+                            <CollectionContainer Collection="{StaticResource deckItemOperations}" />
+                        </CompositeCollection>                        
+                    </MenuItem.ItemsSource>
+ 
                 </MenuItem>
                 <MenuItem>
                     <MenuItem.Header>

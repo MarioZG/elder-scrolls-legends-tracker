@@ -94,7 +94,7 @@ namespace ESLTracker.ViewModels.Windows
         public List<DismissableMessage> UserInfo
         {
             get {
-                var list = ((Utils.NLog.UserInfoLoggerTarget)NLog.LogManager.Configuration.FindTargetByName(App.UserInfoLogger)).Logs;
+                var list = ((UserInfoLoggerTarget)NLog.LogManager.Configuration.FindTargetByName(App.UserInfoLogger)).Logs;
                 list.CollectionChanged += (sender, collection) => { RaisePropertyChangedEvent(nameof(UserInfo)); };
                 return list.ToList();
             }
@@ -131,11 +131,6 @@ namespace ESLTracker.ViewModels.Windows
             get { return new RelayCommand(new Action<object>(ShowRewards)); }
         }
 
-        public ICommand CommandNewDeck
-        {
-            get { return new RelayCommand(new Action<object>(NewDeck)); }
-        }
-
         public IAsyncCommand<object> CommandRunGame
         {
             get
@@ -167,18 +162,6 @@ namespace ESLTracker.ViewModels.Windows
             get { return new RelayCommand(new Action<object>(CommandShowPackOpeningExecute)); }
         }
 
-
-
-        public ICommand CommandEditDeck
-        {
-            get
-            {
-                return new RelayCommand(
-                    new Action<object>(CommandEditDeckExecute),
-                    CommandEditDeckCanExecute);
-            }
-        }
-
         public ICommand CommandAbout
         {
             get { return new RelayCommand(new Action<object>(CommandAboutExecute)); }
@@ -191,44 +174,6 @@ namespace ESLTracker.ViewModels.Windows
                 return new RelayCommand(new Action<object>(CommandManageOverlayWindowExecute));
             }
         }
-
-        public ICommand CommandHideDeck
-        {
-            get
-            {
-                return new RelayCommand(
-                        (object param) => messanger.Send(
-                                                new EditDeck() { Deck = tracker.ActiveDeck },
-                                                EditDeck.Context.Hide),
-                          (object param) => deckService.CommandHideDeckCanExecute(tracker.ActiveDeck));
-            }
-        }
-
-        public ICommand CommandUnHideDeck
-        {
-            get
-            {
-                return new RelayCommand(
-                        (object param) => messanger.Send(
-                                                new EditDeck() { Deck = tracker.ActiveDeck },
-                                                EditDeck.Context.UnHide),
-                      (object param) => deckService.CommandUnHideDeckCanExecute(tracker.ActiveDeck));
-            }
-        }
-
-        public ICommand CommandDeleteDeck
-        {
-            get
-            {
-                return new RelayCommand(
-                            (object param) => messanger.Send(
-                                                new EditDeck() { Deck = tracker.ActiveDeck },
-                                                EditDeck.Context.Delete),
-                        (object param) => deckService.CanDelete(tracker.ActiveDeck));
-            }
-        }
-
-
         #endregion
 
         IMessenger messanger;
@@ -259,6 +204,7 @@ namespace ESLTracker.ViewModels.Windows
             messanger.Register<Utils.Messages.EditGame>(this, EditGameStart, Utils.Messages.EditGame.Context.StartEdit);
             messanger.Register<Utils.Messages.EditGame>(this, EditGameFinished, Utils.Messages.EditGame.Context.EditFinished);
             messanger.Register<Utils.Messages.EditSettings>(this, EditSettingsFinished, Utils.Messages.EditSettings.Context.EditFinished);
+            messanger.Register<ActiveDeckChanged>(this, ActiveDeckChanged);
 
             this.deckService = deckService;
             this.settings = settings;
@@ -269,7 +215,12 @@ namespace ESLTracker.ViewModels.Windows
             this.OverlayWindows.CollectionChanged += (s, e) => RaisePropertyChangedEvent(nameof(OverlayWindows));
         }
 
-        public void NotifyIconLeftClick(object parameter)
+        internal void ActiveDeckChanged(ActiveDeckChanged activeDeckChanged)
+        {
+            RaisePropertyChangedEvent(nameof(ActiveDeck));
+        }
+
+            public void NotifyIconLeftClick(object parameter)
         {
             if ((WindowState == WindowState.Normal) && (parameter as string != "show"))
             {
@@ -310,14 +261,6 @@ namespace ESLTracker.ViewModels.Windows
         public void ShowRewards(object parameter)
         {
             MasserContainer.Container.GetInstance<RewardsSummary>().Show();
-        }
-
-        public void NewDeck(object parameter)
-        {
-            messanger.Send(
-                new Utils.Messages.EditDeck() { Deck = deckService.CreateNewDeck("New deck") },
-                Utils.Messages.EditDeck.Context.StartEdit
-                );
         }
 
         bool startingGame;
@@ -387,18 +330,6 @@ namespace ESLTracker.ViewModels.Windows
         private void CommandShowPackOpeningExecute(object obj)
         {
             new ESLTracker.Controls.PackStatistics.OpeningPackStatsWindow().Show();
-        }
-
-        private bool CommandEditDeckCanExecute(object arg)
-        {
-            return tracker.ActiveDeck != null;
-        }
-
-        private void CommandEditDeckExecute(object obj)
-        {
-            messanger.Send(
-                new EditDeck() { Deck = tracker.ActiveDeck },
-                EditDeck.Context.StartEdit);
         }
 
         private void CommandAboutExecute(object obj)
