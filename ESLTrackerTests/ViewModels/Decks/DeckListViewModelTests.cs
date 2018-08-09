@@ -28,7 +28,6 @@ namespace ESLTracker.ViewModels.Decks.Tests
         Mock<ITracker> tracker = new Mock<ITracker>();
         Mock<IMessenger> mockMessanger = new Mock<IMessenger>();
         Mock<IDeckService> mockDeckService = new Mock<IDeckService>();
-        Mock<IFileSaver> mockFileSaver = new Mock<IFileSaver>();
 
         [ClassInitialize()]
         public static void InitTestClass(TestContext tc)
@@ -424,7 +423,6 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 tracker.Object, 
                 mockDeckService.Object,
                 mockSettings.Object,
-                mockFileSaver.Object,
                 new DeckCalculations(tracker.Object));
         }
     }

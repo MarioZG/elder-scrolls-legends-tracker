@@ -72,6 +72,12 @@ namespace ESLTrackerTests.Builders
             return this;
         }
 
+        public DeckBuilder WithUrl(string url)
+        {
+            deck.DeckUrl = url;
+            return this;
+        }
+
         public Deck Build()
         {
             return deck;

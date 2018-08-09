@@ -120,6 +120,7 @@
     <Compile Include="ViewModels\Cards\CardListEditorViewModelTests.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\DeckEditViewModelTests.cs" />
+    <Compile Include="ViewModels\Decks\DeckItemMenuOperationsViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\DeckListViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\DeckPreviewViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\DeckTypeSelectorViewModelTests.cs" />

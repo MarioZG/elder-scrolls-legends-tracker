@@ -2,6 +2,7 @@
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
 using ESLTracker.Utils;
+using ESLTracker.Utils.DiagnosticsWrappers;
 using ESLTracker.Utils.Messages;
 using System;
 using System.Collections.Generic;
@@ -69,17 +70,20 @@ namespace ESLTracker.ViewModels.Decks
         private readonly IMessenger messanger;
         private readonly IFileSaver fileSaver;
         private readonly ITracker tracker;
+        private readonly IProcessWrapper processWrapper;
 
         public DeckItemMenuOperationsViewModel(
             IMessenger messanger,
             IFileSaver fileSaver,
             ITracker tracker,
-            IDeckService deckService)
+            IDeckService deckService,
+            IProcessWrapper processWrapper)
         {
             this.deckService = deckService;
             this.messanger = messanger;
             this.fileSaver = fileSaver;
             this.tracker = tracker;
+            this.processWrapper = processWrapper;
         }
 
         public void NewDeck(object parameter)
@@ -90,7 +94,7 @@ namespace ESLTracker.ViewModels.Decks
                 );
         }
 
-        private void CommandEditDeckExecute(object param)
+        public void CommandEditDeckExecute(object param)
         {
             //inform other views that we are about to edit deck
             messanger.Send(
@@ -98,7 +102,7 @@ namespace ESLTracker.ViewModels.Decks
                 EditDeck.Context.StartEdit);
         }
 
-        private void CommandHideDeckExecute(Deck deck)
+        public void CommandHideDeckExecute(Deck deck)
         {
             if (deck != null)
             {
@@ -109,7 +113,7 @@ namespace ESLTracker.ViewModels.Decks
         }
 
 
-        private void CommandUnHideDeckExecute(Deck deck)
+        public void CommandUnHideDeckExecute(Deck deck)
         {
             if (deck != null)
             {
@@ -119,7 +123,7 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        private void CommandDeleteDeckExecute(Deck deck)
+        public void CommandDeleteDeckExecute(Deck deck)
         {
             if (deckService.CanDelete(deck))
             {
@@ -129,9 +133,9 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        private void CommandOpenUrlExecute(Deck param)
+        public void CommandOpenUrlExecute(Deck param)
         {
-            Process.Start(param.DeckUrl);
+            processWrapper.Start(param.DeckUrl);
         }
     }
 }
