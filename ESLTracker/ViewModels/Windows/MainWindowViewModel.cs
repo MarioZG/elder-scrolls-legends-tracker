@@ -220,7 +220,7 @@ namespace ESLTracker.ViewModels.Windows
             RaisePropertyChangedEvent(nameof(ActiveDeck));
         }
 
-            public void NotifyIconLeftClick(object parameter)
+        public void NotifyIconLeftClick(object parameter)
         {
             if ((WindowState == WindowState.Normal) && (parameter as string != "show"))
             {

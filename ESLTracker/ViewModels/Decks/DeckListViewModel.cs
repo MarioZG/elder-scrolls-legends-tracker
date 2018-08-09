@@ -89,7 +89,10 @@ namespace ESLTracker.ViewModels.Decks
         {
             this.messanger = messanger;
             messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
-            messanger.Register<EditDeck>(this, RefreshList);
+            messanger.Register<EditDeck>(this, RefreshList, EditDeck.Context.EditFinished);
+            messanger.Register<EditDeck>(this, RefreshList, EditDeck.Context.Hide);
+            messanger.Register<EditDeck>(this, RefreshList, EditDeck.Context.UnHide);
+            messanger.Register<EditDeck>(this, RefreshList, EditDeck.Context.Delete);
 
             this.tracker = tracker;
             FilteredDecks = new ObservableCollection<Deck>(tracker.Decks);
