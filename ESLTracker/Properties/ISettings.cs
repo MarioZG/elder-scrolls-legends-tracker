@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Properties
@@ -57,6 +58,9 @@ namespace ESLTracker.Properties
         double SessionOverlay_Scale { get; set; }
         bool SessionOverlay_ShowOnStart { get; set; }
 
+        event PropertyChangedEventHandler PropertyChanged;
+
         void Save();
+        void Reload();
     }
 }

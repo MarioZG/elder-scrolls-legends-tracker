@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Settings
@@ -25,27 +26,45 @@ namespace ESLTracker.ViewModels.Settings
             get { return new RelayCommand(new Action<object>(OpenDataFolder)); }
         }
 
-        IMessenger messanger;
+        private readonly IMessenger messanger;
+        private readonly ISettings settings;
 
-        public SettingsPanelViewModel(IMessenger messanger)
+        private List<string> ChangedProperties = new List<string>();
+
+        public SettingsPanelViewModel(IMessenger messanger, ISettings settings)
         {
             this.messanger = messanger;
+            this.settings = settings;
+
+            settings.PropertyChanged += Settings_PropertyChanged;
         }
+
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            ChangedProperties.Add(e.PropertyName);
+        }
+
         private void SaveClicked(object param)
         {
-            Properties.Settings.Default.Save();
-            messanger.Send(new Utils.Messages.EditSettings(), Utils.Messages.EditSettings.Context.EditFinished);
+            settings.Save();
+            messanger.Send(
+                new Utils.Messages.EditSettings() {
+                    ChangedProperties = new List<string>(this.ChangedProperties)
+                },
+                Utils.Messages.EditSettings.Context.EditFinished);
+            ChangedProperties.Clear();
         }
 
         private void CancelButtonPressed(object obj)
         {
-            Properties.Settings.Default.Reload();
+            settings.Reload();
             messanger.Send(new Utils.Messages.EditSettings(), Utils.Messages.EditSettings.Context.EditFinished);
+            ChangedProperties.Clear();
         }
 
         private void OpenDataFolder(object param)
         {
-            System.Diagnostics.Process.Start(Properties.Settings.Default.DataPath);
+            System.Diagnostics.Process.Start(settings.DataPath);
         }
     }
 }

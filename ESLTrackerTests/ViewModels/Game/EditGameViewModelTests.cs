@@ -151,11 +151,13 @@ namespace ESLTracker.ViewModels.Game.Tests
         {
             FileVersionInfo expected = FileVersionInfo.GetVersionInfo(Assembly.GetAssembly(this.GetType()).Location);
 
+            DateTime date = new DateTime(2018, 8, 10, 12, 12, 12);
+
             //add two games wit hdiff version - ensure correct is copied
             tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>() {
-                new DataModel.Game() { Date = DateTime.Now, ESLVersion = new SerializableVersion(new Version(expected.ProductVersion.ToString()))},
-                new DataModel.Game() { Date = DateTime.Now.AddDays(-7), ESLVersion = new SerializableVersion(2,3)},
-                  new DataModel.Game() { Date = DateTime.Now, ESLVersion = null},
+                new GameBuilder().WithDate(date).WithESLVersion(new SerializableVersion(new Version(expected.ProductVersion.ToString()))).Build(),
+                new GameBuilder().WithDate(date.AddDays(-7)).WithESLVersion(new SerializableVersion(2, 3)).Build(),
+                new GameBuilder().WithDate(date).WithESLVersion(null).Build()
             });
             tracker.Setup(t => t.ActiveDeck).Returns(new DeckBuilder().WithDefaultVersion().Build());
 
@@ -171,6 +173,38 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             Assert.IsNotNull(model.Game.ESLVersion);
             Assert.AreEqual(expected.ProductVersion, model.Game.ESLVersion.ToString());
+
+        }
+
+        /// <summary>
+        /// verify if ESL version is taken from last game
+        /// </summary>
+        [TestMethod()]
+        public void CommandButtonCreateExecuteTest006_CheckIfDeckLastUsedUpdated()
+        {
+
+            DateTime gameDate = new DateTime(2018, 8, 10, 21, 32, 0);
+
+            Deck deck = new DeckBuilder().WithDefaultVersion().Build();
+
+            mockDatetimeProvider.Setup(dtp => dtp.DateTimeNow).Returns(gameDate);
+
+            tracker.Setup(t => t.Games).Returns(new GameListBuilder().Build());
+
+            tracker.Setup(t => t.ActiveDeck).Returns(deck);
+
+            EditGameViewModel model = CreateGameVM();
+
+            model.Game = new GameBuilder()
+                .WithOutcome(GameOutcome.Victory)
+                .WithOpponentClass(DeckClass.Archer)
+                .Build();
+
+            GameOutcome param = GameOutcome.Victory;
+
+            model.CommandButtonCreateExecute(param.ToString());
+
+            Assert.AreEqual(gameDate, deck.LastUsed);
 
         }
 
@@ -233,7 +267,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             Mock<IDeckClassSelectorViewModel> deckClassSelector = new Mock<IDeckClassSelectorViewModel>();
 
             EditGameViewModel model = CreateGameVM();
-            DataModel.Game game = new DataModel.Game();
+            DataModel.Game game = new GameBuilder().Build();
 
             model.Game = game;
 

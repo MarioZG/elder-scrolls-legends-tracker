@@ -93,6 +93,7 @@ namespace ESLTracker.ViewModels.Decks
             messanger.Register<EditDeck>(this, RefreshList, EditDeck.Context.Hide);
             messanger.Register<EditDeck>(this, RefreshList, EditDeck.Context.UnHide);
             messanger.Register<EditDeck>(this, RefreshList, EditDeck.Context.Delete);
+            messanger.Register<EditSettings>(this, SettingsChanged, EditSettings.Context.EditFinished);
 
             this.tracker = tracker;
             FilteredDecks = new ObservableCollection<Deck>(tracker.Decks);
@@ -128,12 +129,17 @@ namespace ESLTracker.ViewModels.Decks
                     this.lastDeckFilter.ShowFInishedArenaRuns,
                     this.lastDeckFilter.ShowHiddenDecks,
                     this.lastDeckFilter.SelectedClass,
-                    this.lastDeckFilter.FilteredClasses, 
+                    this.lastDeckFilter.FilteredClasses,
                     this.deckTextSearch);
 
             DeckViewSortOrder sortOrder = settings.DeckViewSortOrder;
 
-            filteredDecks = filteredDecks.OrderBy( d=> GetPropertyValue(d, sortOrder.ToString()));
+            filteredDecks = filteredDecks.OrderBy(d => GetPropertyValue(d, sortOrder.ToString()));
+
+            if (ReverseOrder(sortOrder))
+            {
+                filteredDecks = filteredDecks.Reverse();
+            }
 
             filteredDecks.All(d => { FilteredDecks.Add(d); return true; });
 
@@ -145,6 +151,11 @@ namespace ESLTracker.ViewModels.Decks
             {
                 tracker.ActiveDeck = activeDeck;
             }
+        }
+
+        private static bool ReverseOrder(DeckViewSortOrder sortOrder)
+        {
+            return sortOrder == DeckViewSortOrder.LastUsed;
         }
 
         public IEnumerable<Deck> FilterDeckList(
@@ -200,6 +211,12 @@ namespace ESLTracker.ViewModels.Decks
             ApplyFilter();
         }
 
-       
+        private void SettingsChanged(EditSettings obj)
+        {
+            if(obj.ChangedProperties.Contains(nameof(settings.DeckViewSortOrder)))
+            {
+                ApplyFilter();
+            }
+        }
     }
 }

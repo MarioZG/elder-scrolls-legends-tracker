@@ -295,6 +295,7 @@ namespace ESLTracker.ViewModels.Game
                 UpdateGameData(outcome);
 
                 DataModel.Game addedGame = this.Game;
+                Game.Deck.LastUsed = Game.Date;
                 tracker.Games.Add(this.Game);
 
                 messanger.Send(

@@ -1,5 +1,6 @@
 ﻿using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,18 @@ namespace ESLTrackerTests.Builders
         internal GameBuilder WithDate(DateTime? date)
         {
             game.Date = date.GetValueOrDefault();
+            return this;
+        }
+
+        internal GameBuilder WithOpponentClass(DeckClass opponentClass)
+        {
+            game.OpponentClass = opponentClass;
+            return this;
+        }
+
+        internal GameBuilder WithESLVersion(SerializableVersion serializableVersion)
+        {
+            game.ESLVersion = serializableVersion;
             return this;
         }
 
