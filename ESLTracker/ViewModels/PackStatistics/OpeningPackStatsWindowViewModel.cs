@@ -1,12 +1,10 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
-using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 using LiveCharts;
 using LiveCharts.Wpf;
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,9 +16,6 @@ namespace ESLTracker.ViewModels.PackStatistics
 {
     public class OpeningPackStatsWindowViewModel : FilterDateViewModel
     {
-
-        Logger Logger = LogManager.GetCurrentClassLogger();
-
         public IAsyncCommand<object> CommandExportToCsv { get; private set; }
         public IAsyncCommand<object> CommandOpenCsv { get; private set; }
 
@@ -40,13 +35,15 @@ namespace ESLTracker.ViewModels.PackStatistics
             get { return new CardSet[] { AllFilter }.Union(cardsDatabase.CardSets.Where(cs => cs.HasPacks)).ToList(); }
         }
 
-        private ICardImage cardImageService;
-        private IWinDialogs winDialogs;
-        private ICardsDatabase cardsDatabase;
-        private ICardInstanceFactory cardInstanceFactory;
-        private ITracker tracker;
+        private readonly ICardImage cardImageService;
+        private readonly IWinDialogs winDialogs;
+        private readonly ICardsDatabase cardsDatabase;
+        private readonly ICardInstanceFactory cardInstanceFactory;
+        private readonly ILogger logger;
+        private readonly ITracker tracker;
 
         public OpeningPackStatsWindowViewModel(
+            ILogger logger,
             ISettings settings,
             IDateTimeProvider dateTimeProvider, 
             ITracker tracker, 
@@ -55,6 +52,7 @@ namespace ESLTracker.ViewModels.PackStatistics
             IWinDialogs winDialogs,
             ICardsDatabase cardsDatabase) : base(settings, dateTimeProvider)
         {
+            this.logger = logger;
             this.tracker = tracker;
             this.cardInstanceFactory = cardInstanceFactory;
             this.cardImageService = cardImageService;
@@ -81,7 +79,7 @@ namespace ESLTracker.ViewModels.PackStatistics
         {
             get
             {
-                Logger.Trace($"PieChartByClass");
+                logger.Trace($"PieChartByClass");
                 var rawData = ((IEnumerable<CardInstance>)GetDataSet())
                     .SelectMany(c => c.Card.Attributes, ( ci, a) => new { Attribute = a, Qty = (decimal) 1 / ci.Card.Attributes.Count});
                 decimal totalCount = rawData.Sum( d=> d.Qty);
@@ -108,7 +106,7 @@ namespace ESLTracker.ViewModels.PackStatistics
         {
             get
             {
-                Logger.Trace($"PieChartByRarity");
+                logger.Trace($"PieChartByRarity");
                 var rawData = ((IEnumerable<CardInstance>)GetDataSet())
                     .Select(c => c.Card.Rarity);
                 int totalCount = rawData.Count();
@@ -136,7 +134,7 @@ namespace ESLTracker.ViewModels.PackStatistics
         {
             get
             {
-                Logger.Trace($"PieChartPremiumByRarity");
+                logger.Trace($"PieChartPremiumByRarity");
                 var rawData = ((IEnumerable<CardInstance>)GetDataSet())
                     .Where(ci=> ci.IsPremium)
                     .Select(c => c.Card.Rarity);
@@ -166,7 +164,7 @@ namespace ESLTracker.ViewModels.PackStatistics
         {
             get
             {
-                Logger.Trace($"Top10Cards");
+                logger.Trace($"Top10Cards");
                 var rawData = ((IEnumerable<CardInstance>)GetDataSet())
                     .GroupBy(ci => ci.Card)
                     .Select(ci => cardInstanceFactory.CreateFromCard(ci.Key, ci.Count()))
@@ -181,13 +179,13 @@ namespace ESLTracker.ViewModels.PackStatistics
 
         public override dynamic GetDataSet()
         {
-            Logger.Trace($"GetDataSet");
-            Logger.Trace($"Filtering packs from={this.filterDateFrom}; to={this.filterDateTo};");
+            logger.Trace($"GetDataSet");
+            logger.Trace($"Filtering packs from={this.filterDateFrom}; to={this.filterDateTo};");
 
             var dataSet = GetPacksInDateRange
                 .SelectMany(p => p.Cards);
 
-            Logger.Trace($"DataSet.Count={dataSet.Count()}");
+            logger.Trace($"DataSet.Count={dataSet.Count()}");
 
             return dataSet;
         }

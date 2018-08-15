@@ -13,20 +13,18 @@ using ESLTracker.Properties;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-using NLog;
 using ESLTracker.BusinessLogic.Decks;
+using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.ViewModels.Windows
 {
     public class GameStatisticsViewModel : Game.GameFilterViewModel
     {
-        private static Logger Logger = LogManager.GetCurrentClassLogger();
-
         public int Victories
         {
             get
             {
-                Logger.ConditionalTrace("Get victories");
+                logger.Debug("Get victories");
                 return GamesList.Where(g => g.Outcome == GameOutcome.Victory).Count();
             }
         }
@@ -132,18 +130,20 @@ namespace ESLTracker.ViewModels.Windows
         public Func<double, string> FormatterSecond { get; set; }
         public Func<ChartPoint, string> HeatLabelPoint { get; set; }
 
-        IMessenger messenger;
-        ITracker tracker;
-        IDeckService deckService;
+        private readonly ILogger logger;
+        private readonly IMessenger messenger;
+        private readonly ITracker tracker;
+        private readonly IDeckService deckService;
 
         public GameStatisticsViewModel(
+            ILogger logger,
             ISettings settings, 
             IDateTimeProvider dateTimeProvider,
             ITracker tracker,
             IMessenger messenger,
             IDeckService deckService) : base(settings, dateTimeProvider)
         {
-
+            this.logger = logger;
             this.messenger = messenger;
             this.tracker = tracker;
             this.deckService = deckService;
@@ -196,29 +196,29 @@ namespace ESLTracker.ViewModels.Windows
         }
         private dynamic GetDataSetExecute()
         {
-            Logger.ConditionalTrace("GetDataSet START");
+            logger.Debug("GetDataSet START");
 
-            Logger.ConditionalTrace("breakdawn  by deck");
+            logger.Debug("breakdawn  by deck");
             var result = GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
                             (g) => g.DeckVersion.Version,
                             (g) => GetOpponentGroupMethod(g));
 
-            Logger.ConditionalTrace("add totoal for deck");
+            logger.Debug("add totoal for deck");
             result = result.Union(
                         GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
                             (g) => TOTAL_ROW_VERSION,
                            (g) => GetOpponentGroupMethod(g)));
 
-            Logger.ConditionalTrace("union totoal for all deck versoons");
+            logger.Debug("union totoal for all deck versoons");
             result = result.Union(
                          GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
                             (g) => TOTAL_ROW_VERSION,
                             (g) => "Total"));
 
-            Logger.ConditionalTrace("union totoal for each deck version");
+            logger.Debug("union totoal for each deck version");
             result = result.Union(
                          GetBreakDownByDeck(
                             (g) => GetPropertyValue(g, GroupBy),
@@ -229,14 +229,14 @@ namespace ESLTracker.ViewModels.Windows
                          result,
                          (g) => g.DeckVersion.Version);
 
-            Logger.ConditionalTrace("add % of games you went first");
+            logger.Debug("add % of games you went first");
             result = FirstSecondStats(
                          result,
                          (g) => TOTAL_ROW_VERSION);
 
             result = result.OrderBy(r => r.Deck).ThenBy(r => r.DeckVersion);
 
-            Logger.ConditionalTrace("add total row for all decks");
+            logger.Debug("add total row for all decks");
             object totalDeck = deckService.CreateNewDeck("TOTAL");
 
             result = result.Union(
@@ -245,7 +245,7 @@ namespace ESLTracker.ViewModels.Windows
                             (g) => TOTAL_ROW_VERSION,
                             (g) => GetOpponentGroupMethod(g)));
 
-            Logger.ConditionalTrace("totoal for toal row");
+            logger.Debug("totoal for toal row");
             result = result.Union(
                         GetBreakDownByDeck(
                             (g) => totalDeck,
@@ -253,7 +253,7 @@ namespace ESLTracker.ViewModels.Windows
                             (g) => "Total"));
 
             //add % of opponents decks
-            Logger.ConditionalTrace("add total row for all decks");
+            logger.Debug("add total row for all decks");
             object totalOpponentDeck = deckService.CreateNewDeck("Opponent class %");
 
             var totalOpponents = GetBreakDownByOpponentClass(
@@ -263,10 +263,10 @@ namespace ESLTracker.ViewModels.Windows
 
             result = result.Union(totalOpponents);
 
-            Logger.ConditionalTrace("create heat map data");
+            logger.Debug("create heat map data");
             CreateOpponentHeatMapData(totalOpponents);
 
-            Logger.ConditionalTrace("select tags");
+            logger.Debug("select tags");
             var tags = result.Select(r => r.Opp).Where(s =>
                        s != "Total" && s != "First_Second"
                        && s != "FirstWin" && s != "SecondWin"
@@ -278,7 +278,7 @@ namespace ESLTracker.ViewModels.Windows
                 Tags = tags
             });
 
-            Logger.ConditionalTrace("final group by results");
+            logger.Debug("final group by results");
             var returnList = result.GroupBy(r => new { r.Deck, r.DeckVersion })
                 .Select(r =>
                 {
@@ -319,9 +319,9 @@ namespace ESLTracker.ViewModels.Windows
                     return ret;
                 });
 
-            Logger.ConditionalTrace("excute query");
+            logger.Debug("excute query");
             returnList = returnList.ToList();
-            Logger.ConditionalTrace("FINISHED");
+            logger.Debug("FINISHED");
             return returnList;
         }
 

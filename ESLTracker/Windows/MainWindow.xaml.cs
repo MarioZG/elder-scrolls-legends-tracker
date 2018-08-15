@@ -4,20 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
-using ESLTracker.Utils.SimpleInjector;
-using ESLTracker.ViewModels;
 using ESLTracker.ViewModels.Windows;
-using NLog;
 
 namespace ESLTracker.Windows
 {
@@ -26,9 +15,6 @@ namespace ESLTracker.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        private static Logger Logger = LogManager.GetCurrentClassLogger();
-
         new public MainWindowViewModel DataContext
         {
             get
@@ -42,7 +28,7 @@ namespace ESLTracker.Windows
         }
 
 
-        public MainWindow(IMessenger messenger, OverlayWindowRepository overlayWindowRepository)
+        public MainWindow(IMessenger messenger)
         {
             InitializeComponent();
             messenger.Register<ApplicationShowBalloonTip>(this, ShowBaloonRequested);

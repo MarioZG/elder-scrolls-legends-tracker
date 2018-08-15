@@ -13,6 +13,11 @@ namespace ESLTracker.Utils.FileUpdaters
     {
         public override SerializableVersion TargetVersion { get; } = new SerializableVersion(2, 3);
 
+        public Update_2_2_To_2_3(ILogger logger) : base(logger)
+        {
+
+        }
+
         protected override void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker)
         {
             //do nothing - just mark for new gametype values

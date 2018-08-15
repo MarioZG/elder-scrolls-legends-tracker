@@ -81,7 +81,9 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
         private DeckEditViewModel CreateDeckEditVM()
         {
-            return new DeckEditViewModel(mockCardInstanceFactory, 
+            return new DeckEditViewModel(
+                mockLogger.Object,
+                mockCardInstanceFactory, 
                 mockDeckImporter.Object,
                 mockTracker.Object, 
                 mockMessenger.Object, 

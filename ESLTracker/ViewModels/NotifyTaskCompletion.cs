@@ -1,4 +1,6 @@
-﻿using NLog;
+﻿using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
+using ESLTracker.Utils.SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +16,7 @@ namespace ESLTracker.ViewModels
     /// <typeparam name="TResult"></typeparam>
     public class NotifyTaskCompletion<TResult> : INotifyPropertyChanged
     {
-        private Logger logger = LogManager.GetCurrentClassLogger();
+        private ILogger logger = MasserContainer.Container.GetInstance<ILogger>();
 
         public Task<TResult> Task { get; private set; }
         public TResult Result
@@ -75,7 +77,7 @@ namespace ESLTracker.ViewModels
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                logger.Error(ex);
             }
             var propertyChanged = PropertyChanged;
             logger.Debug($"NotifyTaskCompletion WatchTaskAsync raise prop changes {propertyChanged} ");

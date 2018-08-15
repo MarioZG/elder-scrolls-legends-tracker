@@ -10,11 +10,12 @@ using ESLTracker.DataModel;
 using System.Collections.ObjectModel;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTrackerTests.Builders;
+using ESLTrackerTests;
 
 namespace ESLTracker.Utils.FileUpdaters.Tests
 {
     [TestClass()]
-    public class Update_2_3_To_3_0Tests 
+    public class Update_2_3_To_3_0Tests : BaseTest
     {
         [TestMethod()]
         public void SetDeckLastUsedTest001()
@@ -31,7 +32,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
             
             tracker.Setup(t => t.Packs).Returns(new ObservableCollection<Pack>(packs));
 
-            Update_2_3_To_3_0 updater = new Update_2_3_To_3_0(cardsDatabase.Object);
+            Update_2_3_To_3_0 updater = new Update_2_3_To_3_0(mockLogger.Object, cardsDatabase.Object);
             updater.SetPacksToCore(tracker.Object);
 
             Assert.IsFalse(tracker.Object.Packs.Any( p=> p.CardSet == null));

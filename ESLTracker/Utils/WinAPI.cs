@@ -3,23 +3,20 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using ESLTracker.Utils.DiagnosticsWrappers;
-using NLog;
+using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.Utils
 {
     public class WinAPI : IWinAPI
     {
-        private static Logger Logger = LogManager.GetCurrentClassLogger();
-        private IProcessWrapper processWrapper;
+        private readonly ILogger logger;
+        private readonly IProcessWrapper processWrapper;
         private const string ESLExeProcessName = "The Elder Scrolls Legends";
         private const string LauncherProcessName = "BethesdaNetLauncher";
 
-        internal WinAPI() : this(new ProcessWrapper())
+        public WinAPI(ILogger logger, IProcessWrapper processWrapper)
         {
-        }
-
-        public WinAPI(IProcessWrapper processWrapper)
-        {
+            this.logger = logger;
             this.processWrapper = processWrapper;
         }
 
@@ -58,7 +55,7 @@ namespace ESLTracker.Utils
         {
             IntPtr fw = GetForegroundWindow();
             Process proc = GetEslProcess();
-            Logger.Trace($"Foreground window Ptr: {fw}");
+            logger.Trace($"Foreground window Ptr: {fw}");
             IntPtr eslw = proc == null ? IntPtr.Zero : proc.MainWindowHandle;
             return fw == eslw;
         }
@@ -78,7 +75,7 @@ namespace ESLTracker.Utils
             }
             catch (Exception ex)
             {
-                Logger.Info(ex, "Exception while getting ESL process");
+                logger.Info(ex, "Exception while getting ESL process");
             }
             return eslProcess;
         }
@@ -97,7 +94,7 @@ namespace ESLTracker.Utils
             }
             catch (Exception ex)
             {
-                Logger.Info(ex, "Exception while getting Launcher process");
+                logger.Info(ex, "Exception while getting Launcher process");
             }
             return ret;
         }

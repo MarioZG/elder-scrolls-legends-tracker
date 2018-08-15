@@ -6,19 +6,13 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ESLTracker.BusinessLogic.General;
 using ESLTracker.Controls;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
 using ESLTracker.ViewModels;
-using NLog;
 
 namespace ESLTracker.Windows
 {
@@ -27,8 +21,7 @@ namespace ESLTracker.Windows
     /// </summary>
     public partial class OverlayToolbar : OverlayWindowBase
     {
-        Logger Logger = LogManager.GetCurrentClassLogger();
-
+        private readonly ILogger logger;
         private readonly ISettings settings;
         private readonly IScreenShot screenShot;
         private readonly ScreenshotNameProvider screenshotNameProvider;
@@ -44,10 +37,12 @@ namespace ESLTracker.Windows
         }
 
         public OverlayToolbar(
+            ILogger logger,
             ISettings settings, 
             IScreenShot screenShot,
             ScreenshotNameProvider screenshotNameProvider)
         {
+            this.logger = logger;
             this.settings = settings;
             this.screenShot = screenShot;
             this.screenshotNameProvider = screenshotNameProvider;
@@ -66,7 +61,7 @@ namespace ESLTracker.Windows
 
         public override void UpdateVisibilty(bool isGameActive, bool isGameProcessRunning, bool isMainWIndowActive, bool isOtherWindowActive)
         {
-            Logger.Trace($"UpdateVisibilty check IsDisposed={this.IsDisposed()};isGameActive={isGameActive};isOtherWindowActive={isOtherWindowActive};IsActive={IsActive};");
+            logger.Trace($"UpdateVisibilty check IsDisposed={this.IsDisposed()};isGameActive={isGameActive};isOtherWindowActive={isOtherWindowActive};IsActive={IsActive};");
             this.Visibility = ShowOnScreen && !this.IsDisposed() &&
                                 (isGameActive || isMainWIndowActive || isOtherWindowActive)
                                 ? Visibility.Visible : Visibility.Hidden;

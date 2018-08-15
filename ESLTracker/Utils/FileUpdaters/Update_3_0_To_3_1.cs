@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.DataModel;
+using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.Utils.FileUpdaters
 {
@@ -14,32 +15,35 @@ namespace ESLTracker.Utils.FileUpdaters
     {
         public override SerializableVersion TargetVersion { get; } = new SerializableVersion(3, 1);
 
+        public Update_3_0_To_3_1(ILogger logger) : base(logger)
+        {
 
+        }
 
         protected override void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker)
         {
-            Logger.Info("Start file conversion to {0}", TargetVersion);
+            logger.Info("Start file conversion to {0}", TargetVersion);
             UpdateCardsGuidInDecks(doc);
             // decks (hist)
             // packs
             // rewards
-            Logger.Info("Finished file conversion to {0}", TargetVersion);
+            logger.Info("Finished file conversion to {0}", TargetVersion);
         }
 
         public void UpdateCardsGuidInDecks(XmlDocument doc)
         {
             foreach (var translate in CardsDatabase.GuidTranslation)
             {
-                Logger.Info($"Processing chage from {translate.Key} to {translate.Value}");
+                logger.Info($"Processing chage from {translate.Key} to {translate.Value}");
 
                 var nodes = doc.SelectNodes($"*//CardInstance/CardId[text()='{translate.Key}']");
-                Logger.Info($"{nodes.Count} occurences found");
+                logger.Info($"{nodes.Count} occurences found");
 
                 foreach (XmlNode node in nodes)
                 {
                     node.InnerText = translate.Value;
                 }
-                Logger.Info($"Finished");
+                logger.Info($"Finished");
             }
         }
 

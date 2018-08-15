@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.DataModel;
+using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.Utils.FileUpdaters
 {
@@ -14,7 +15,7 @@ namespace ESLTracker.Utils.FileUpdaters
     {
         private readonly ICardsDatabase cardsDatabase;
 
-        public Update_2_3_To_3_0(ICardsDatabase cardsDatabase)
+        public Update_2_3_To_3_0(ILogger logger, ICardsDatabase cardsDatabase) : base(logger)
         {
             this.cardsDatabase = cardsDatabase;
         }
@@ -23,10 +24,10 @@ namespace ESLTracker.Utils.FileUpdaters
 
         protected override void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker)
         {
-            Logger.Info("Start file conversion to {0}", TargetVersion);
+            logger.Info("Start file conversion to {0}", TargetVersion);
             SetPacksToCore(tracker);
             doc.InnerXml = SerializationHelper.SerializeXML(tracker);
-            Logger.Info("Finished file conversion to {0}", TargetVersion);
+            logger.Info("Finished file conversion to {0}", TargetVersion);
         }
 
         public void SetPacksToCore(ITracker tracker)
@@ -36,7 +37,7 @@ namespace ESLTracker.Utils.FileUpdaters
             {
                 p.CardSet = core;
             }
-            Logger.Info("Converted {0} packs", tracker.Packs.Count);
+            logger.Info("Converted {0} packs", tracker.Packs.Count);
         }
 
     }

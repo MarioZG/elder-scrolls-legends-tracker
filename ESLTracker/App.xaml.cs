@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
 using ESLTracker.Utils;
-using NLog;
-using NLog.Config;
 using ESLTracker.Properties;
 using System.Windows.Input;
 using ESLTracker.BusinessLogic.GameClient;
@@ -20,6 +18,8 @@ using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.General;
 using ESLTracker.Controls;
 using ESLTracker.BusinessLogic.DataFile;
+using NLog;
+using NLog.Config;
 
 namespace ESLTracker
 {
@@ -149,7 +149,7 @@ namespace ESLTracker
             var overlaysRepo = container.GetInstance<OverlayWindowRepository>();
             IEnumerable<OverlayWindowBase> overlayWindowsList = container.GetInstance<IEnumerable<OverlayWindowBase>>();
             overlaysRepo.RegisterWindows(overlayWindowsList);
-            Task.Run(() => overlaysRepo.UpdateOverlayAsync(main));
+            Task.Run(() => overlaysRepo.UpdateOverlayAsync(main, container.GetInstance<IWinAPI>()));
 
             splash.CloseSplash();
             this.MainWindow.Activate();

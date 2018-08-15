@@ -1,25 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ESLTracker.Controls;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
-using ESLTracker.Utils.SimpleInjector;
-using ESLTracker.ViewModels.Windows;
-using NLog;
+using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.Windows
 {
@@ -28,7 +13,6 @@ namespace ESLTracker.Windows
     /// </summary>
     public partial class DeckOverlay : OverlayWindowBase
     {
-        Logger Logger = LogManager.GetCurrentClassLogger();
         public override bool ShowOnScreen
         {
             get { return settings.OverlayDeck_ShowOnStart; }
@@ -39,11 +23,13 @@ namespace ESLTracker.Windows
             }
         }
 
+        private readonly ILogger logger;
         private readonly ITracker tracker;
         private readonly ISettings settings;
 
-        public DeckOverlay(ITracker tracker, ISettings settings)
+        public DeckOverlay(ILogger logger, ITracker tracker, ISettings settings)
         {
+            this.logger = logger;
             this.tracker = tracker;
             this.settings = settings;
 
@@ -63,7 +49,7 @@ namespace ESLTracker.Windows
             bool isMainWIndowActive, 
             bool isOtherWindowActive)
         {
-            Logger.Trace($"UpdateVisibilty check IsDisposed={this.IsDisposed()};isGameActive={isGameActive};isOtherWindowActive={isOtherWindowActive};IsActive={IsActive};");
+            logger.Trace($"UpdateVisibilty check IsDisposed={this.IsDisposed()};isGameActive={isGameActive};isOtherWindowActive={isOtherWindowActive};IsActive={IsActive};");
             this.Visibility = ShowOnScreen 
                                 && !this.IsDisposed()
                                 && (tracker.ActiveDeck?.SelectedVersion?.Cards?.Count > 0)

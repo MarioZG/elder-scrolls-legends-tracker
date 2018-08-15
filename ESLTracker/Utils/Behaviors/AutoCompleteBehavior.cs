@@ -1,4 +1,6 @@
-﻿using NLog;
+﻿using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
+using ESLTracker.Utils.SimpleInjector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ namespace WPFTextBoxAutoComplete
 {
     public static class AutoCompleteBehavior
     {
-        private static Logger Logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = MasserContainer.Container.GetInstance<ILogger>();
 
         private static TextChangedEventHandler onTextChanged = new TextChangedEventHandler(OnTextChanged);
         private static KeyEventHandler onKeyDown = new KeyEventHandler(OnPreviewKeyDown);
@@ -100,7 +102,7 @@ namespace WPFTextBoxAutoComplete
             if (tb == null)
                 return;
 
-            Logger.Trace($"OnPreviewKeyDown: tb.text={tb.Text};tb.caret index={tb.CaretIndex};tb.selstart={tb.SelectionStart};tb.sellen={tb.SelectionLength};");
+            logger.Trace($"OnPreviewKeyDown: tb.text={tb.Text};tb.caret index={tb.CaretIndex};tb.selstart={tb.SelectionStart};tb.sellen={tb.SelectionLength};");
             if (e.Key == Key.Enter)
             {
 
@@ -155,7 +157,7 @@ namespace WPFTextBoxAutoComplete
 
             TextBox tb = e.OriginalSource as TextBox;
 
-            Logger.Trace($"OnTextChanged: tb.text={tb.Text};tb.caret index={tb.CaretIndex};tb.selstart={tb.SelectionStart};tb.sellen={tb.SelectionLength};");
+            logger.Trace($"OnTextChanged: tb.text={tb.Text};tb.caret index={tb.CaretIndex};tb.selstart={tb.SelectionStart};tb.sellen={tb.SelectionLength};");
 
             if (sender == null)
                 return;

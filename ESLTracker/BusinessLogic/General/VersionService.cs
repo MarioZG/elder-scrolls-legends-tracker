@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
 using Newtonsoft.Json.Linq;
-using NLog;
 using Polly;
 using Polly.Fallback;
 
@@ -16,8 +16,6 @@ namespace ESLTracker.BusinessLogic.General
 {
     public class VersionService : IVersionService
     {
-        private static Logger Logger = LogManager.GetCurrentClassLogger();
-
         private NewVersioInfo appVersionInfo;
         public NewVersioInfo AppVersionInfo {
             get
@@ -30,13 +28,15 @@ namespace ESLTracker.BusinessLogic.General
             }
         }      
 
-        private ISettings settings;
-        ICardsDatabase cardsDatabase;
-        ICardsDatabaseFactory cardsDatabaseFactory;
-        IHTTPService httpService;
-        IApplicationInfo applicationService;
+        private readonly ISettings settings;
+        private readonly ICardsDatabase cardsDatabase;
+        private readonly ICardsDatabaseFactory cardsDatabaseFactory;
+        private readonly ILogger logger;
+        private readonly IHTTPService httpService;
+        private readonly IApplicationInfo applicationService;
 
         public VersionService(
+            ILogger logger,
             ISettings settings,
             ICardsDatabase cardsDatabase,
             IHTTPService httpService,
@@ -48,6 +48,7 @@ namespace ESLTracker.BusinessLogic.General
             this.httpService = httpService;
             this.applicationService = applicationService;
             this.cardsDatabaseFactory = cardsDatabaseFactory;
+            this.logger = logger;
         }
 
         public NewVersioInfo CheckNewAppVersionAvailable()
@@ -116,17 +117,17 @@ namespace ESLTracker.BusinessLogic.General
                         .Fallback(
                             () => { returnValue = cardsDatabase; },
                             (ex, context) => {
-                                Logger.Trace(ex, "Exception when retreiving cards DB from {0}", url);
-                                Logger log = LogManager.GetLogger(App.UserInfoLogger);
+                                logger.Trace(ex, "Exception when retreiving cards DB from {0}", url);
+                                NLog.Logger log = NLog.LogManager.GetLogger(App.UserInfoLogger);
                                 log.Info(ex.Message);
                             }
                         );
             requestErrorPolicy.Execute(() =>
             {
-                Logger.Trace("Start retreiving cards DB from {0}", url);
+                logger.Trace("Start retreiving cards DB from {0}", url);
                 string cardsDBContent = httpService.SendGetRequest(url);
                 ICardsDatabase cardsDB = cardsDatabaseFactory.UpdateCardsDB(cardsDBContent, cardsDatabase.Version);
-                Logger.Trace("Finished retreiving cards DB from {0}", url);
+                logger.Trace("Finished retreiving cards DB from {0}", url);
                 returnValue = cardsDB;
             });
 

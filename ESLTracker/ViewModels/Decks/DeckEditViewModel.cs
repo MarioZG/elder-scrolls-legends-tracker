@@ -5,7 +5,6 @@ using ESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 using ESLTracker.Utils.Messages;
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,7 +18,6 @@ namespace ESLTracker.ViewModels.Decks
 {
     public class DeckEditViewModel : ViewModelBase, IEditableObject
     {
-        private Logger logger = LogManager.GetCurrentClassLogger();
         private ICardInstanceFactory cardInstanceFactory;
         private Deck deck;
 
@@ -194,9 +192,10 @@ namespace ESLTracker.ViewModels.Decks
         private IDateTimeProvider dateTimeProvider;
         private IFileSaver fileManager;
         private IDeckService deckService;
-      //  private IDeckVersionFactory deckVersionFactory;
+        private ILogger logger;
 
         public DeckEditViewModel(
+            ILogger logger, 
             ICardInstanceFactory cardInstanceFactory,
             IDeckImporter deckImporter,
             ITracker tracker,
@@ -204,7 +203,6 @@ namespace ESLTracker.ViewModels.Decks
             IDateTimeProvider dateTimeProvider,
             IFileSaver fileManager,
             IDeckService deckService
-          //  IDeckVersionFactory deckVersionFactory
           )
         {
             this.cardInstanceFactory = cardInstanceFactory;
@@ -213,7 +211,7 @@ namespace ESLTracker.ViewModels.Decks
             this.dateTimeProvider = dateTimeProvider;
             this.fileManager = fileManager;
             this.deckService = deckService;
-           // this.deckVersionFactory = deckVersionFactory;
+            this.logger = logger;
 
             this.messanger = messenger;
             messanger.Register<EditDeck>(this, EditDeckStart, EditDeck.Context.StartEdit);

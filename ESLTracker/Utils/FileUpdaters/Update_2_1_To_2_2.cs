@@ -13,6 +13,11 @@ namespace ESLTracker.Utils.FileUpdaters
     {
         public override SerializableVersion TargetVersion { get; } = new SerializableVersion(2, 2);
 
+        public Update_2_1_To_2_2(ILogger logger) : base(logger)
+        {
+
+        }
+
         protected override void VersionSpecificUpdateFile(XmlDocument doc, Tracker tracker)
         {
             //do nothing

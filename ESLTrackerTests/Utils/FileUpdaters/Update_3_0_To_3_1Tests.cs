@@ -92,7 +92,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
 
             System.IO.File.Delete(dataFileName);
             
-            Update_3_0_To_3_1 updater = new Update_3_0_To_3_1();
+            Update_3_0_To_3_1 updater = new Update_3_0_To_3_1(mockLogger.Object);
             updater.UpdateCardsGuidInDecks(xmlDoc);
 
             string updatedXml = xmlDoc.InnerXml;

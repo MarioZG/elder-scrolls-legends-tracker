@@ -8,7 +8,6 @@ using System.Windows;
 using ESLTracker.Controls;
 using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.Windows;
-using NLog;
 
 namespace ESLTracker.Utils
 {
@@ -53,9 +52,8 @@ namespace ESLTracker.Utils
             return this.Any(ow => ((Window)ow).IsActive);
         }
 
-        public async Task UpdateOverlayAsync(MainWindow mainWindow)
+        public async Task UpdateOverlayAsync(MainWindow mainWindow, IWinAPI winAPI)
         {
-            IWinAPI winAPI = new WinAPI();
             mainWindow.Dispatcher.Invoke(() => {
                 foreach (OverlayWindowBase w in this)
                 {

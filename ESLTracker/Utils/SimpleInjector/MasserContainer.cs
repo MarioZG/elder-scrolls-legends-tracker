@@ -11,9 +11,9 @@ using ESLTracker.Properties;
 using ESLTracker.Utils.DiagnosticsWrappers;
 using ESLTracker.Utils.FileUpdaters;
 using ESLTracker.Utils.IOWrappers;
+using ESLTracker.Utils.NLog;
 using ESLTracker.ViewModels;
 using ESLTracker.Windows;
-using NLog;
 using SimpleInjector;
 
 namespace ESLTracker.Utils.SimpleInjector
@@ -67,6 +67,19 @@ namespace ESLTracker.Utils.SimpleInjector
             Collection.Register<OverlayWindowBase>(typeof(App).Assembly);  //overlay windows
             Collection.Register<ViewModelBase>(typeof(App).Assembly);  //all view models, not needed but allows to verify all view models when Verify() is called
             Collection.Register<UpdateBase>(typeof(App).Assembly); //file updates
+
+            RegisterConditional(
+                typeof(ILogger),
+                c => typeof(NLogLoggerProxy<>).MakeGenericType(c.Consumer.ImplementationType),
+                Lifestyle.Singleton,
+                c => c.Consumer != null);
+
+            //for static classes - needs to be refactored later on
+            RegisterConditional(
+                typeof(ILogger),
+                c => typeof(NLogLoggerProxy<>).MakeGenericType(typeof(object)),
+                Lifestyle.Singleton,
+                c => c.Consumer == null);
         }
     }
 }

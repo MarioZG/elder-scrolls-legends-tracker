@@ -16,7 +16,7 @@ namespace ESLTracker.Utils.FileUpdaters
 
         IDeckService deckService;
 
-        public Update_1_2_To_2_0(IDeckService deckService)
+        public Update_1_2_To_2_0(ILogger logger, IDeckService deckService) : base(logger)
         {
             this.deckService = deckService;
         }

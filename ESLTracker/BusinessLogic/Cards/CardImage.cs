@@ -11,27 +11,27 @@ using ESLTracker.DataModel;
 using ESLTracker.Utils.Extensions;
 using Media = System.Windows.Media;
 using ESLTracker.DataModel.Enums;
-//using ESLTracker.Utils;
-using NLog;
 using ESLTracker.Utils;
 
 namespace ESLTracker.BusinessLogic.Cards
 {
     public class CardImage : ICardImage
     {
-        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         private static Dictionary<Guid, Media.Brush> CardMiniatureCache = new Dictionary<Guid, Media.Brush>();
-        IResources resourceService;
 
-        public CardImage(IResources resourceService)
+        private readonly IResources resourceService;
+        private readonly ILogger logger;
+
+        public CardImage(ILogger logger, IResources resourceService)
         {
             this.resourceService = resourceService;
+            this.logger = logger;
         }
 
         public Media.Brush GetCardMiniature(Card card)
         {
-            Logger.ConditionalTrace("Start GetCardMiniature");
+            logger.Debug("Start GetCardMiniature");
             Media.Brush returnValue = null;
             if((card != null) && (card != Card.Unknown))
             {
@@ -50,13 +50,13 @@ namespace ESLTracker.BusinessLogic.Cards
             {
                 returnValue = new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
             }
-            Logger.ConditionalTrace("End GetCardMiniature");
+            logger.Debug("End GetCardMiniature");
             return returnValue;
         }
 
         public Media.Brush GetRarityBrush(CardRarity? rarity)
         {
-            Logger.ConditionalTrace("Start GetRarityBrush");
+            logger.Debug("Start GetRarityBrush");
             Media.Brush returnValue = null;
             if (rarity.HasValue)
             {
@@ -94,7 +94,7 @@ namespace ESLTracker.BusinessLogic.Cards
             {
                 returnValue = new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
             }
-            Logger.ConditionalTrace("End GetRarityBrush");
+            logger.Debug("End GetRarityBrush");
             return returnValue;
         }
 

@@ -33,7 +33,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
             IDeckService deckService = MasserContainer.Container.GetInstance<IDeckService>();
 
 
-            Update_1_2_To_2_0 updater = new Update_1_2_To_2_0(deckService);
+            Update_1_2_To_2_0 updater = new Update_1_2_To_2_0(mockLogger.Object, deckService);
 
             updater.CreateInitalHistoryForExistingDecks(tracker);
 

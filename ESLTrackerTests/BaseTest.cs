@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -36,12 +37,18 @@ namespace ESLTrackerTests
         protected Mock<ISettings> mockSettings = new Mock<ISettings>();
         protected Mock<IDateTimeProvider> mockDatetimeProvider = new Mock<IDateTimeProvider>();
         protected Mock<IGuidProvider> mockGuidProvider = new Mock<IGuidProvider>();
+        protected Mock<ILogger> mockLogger = new Mock<ILogger>();
 
         [TestInitialize]
         public virtual void TestInitialize()
         {
             mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(DateTime.Now);
             mockGuidProvider.Setup(gp => gp.GetNewGuid()).Returns(() => Guid.NewGuid());
+            mockLogger
+                .Setup(ml => ml.Log(It.IsAny<TraceLevel>(), It.IsAny<Exception>(), It.IsAny<string>(), It.IsAny<object[]>()))
+                .Callback<TraceLevel, Exception, string, object[]>((level, ex, message, args) => 
+                        TestContext.WriteLine(ex?.Message + message, args)
+                );
 
             new ESLTracker.Utils.SimpleInjector.MasserContainer();
         }

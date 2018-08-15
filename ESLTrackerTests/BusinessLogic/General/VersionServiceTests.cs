@@ -13,7 +13,7 @@ using ESLTracker.BusinessLogic.General;
 namespace ESLTrackerTests.BusinessLogic.General
 {
     [TestClass]
-    public class VersionCheckerTests
+    public class VersionCheckerTests : BaseTest
     {
         Mock<ISettings> settings;
         Mock<IHTTPService> httpService = new Mock<IHTTPService>();
@@ -169,7 +169,7 @@ namespace ESLTrackerTests.BusinessLogic.General
 
         private VersionService CreateVersionServiceObject()
         {
-            return new VersionService(settings.Object, cardsDatabase.Object, httpService.Object, appService.Object, cardsDatabaseFactory.Object);
+            return new VersionService(mockLogger.Object, settings.Object, cardsDatabase.Object, httpService.Object, appService.Object, cardsDatabaseFactory.Object);
         }
     }
 }

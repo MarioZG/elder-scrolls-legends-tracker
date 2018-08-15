@@ -143,6 +143,9 @@
     <Compile Include="Utils\Behaviors\DropBehavior.cs" />
     <Compile Include="Utils\GuidProvider.cs" />
     <Compile Include="Utils\IGuidProvider.cs" />
+    <Compile Include="Utils\ILogger.cs" />
+    <Compile Include="Utils\Extensions\ILoggerExtensions.cs" />
+    <Compile Include="Utils\NLog\NLogLoggerProxy.cs" />
     <Compile Include="Utils\SplashScreenManager.cs" />
     <Compile Include="ViewModels\Decks\DeckItemMenuOperationsViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckItemViewModel.cs" />
