@@ -147,6 +147,7 @@
     <Compile Include="Utils\Extensions\ILoggerExtensions.cs" />
     <Compile Include="Utils\NLog\NLogLoggerProxy.cs" />
     <Compile Include="Utils\SplashScreenManager.cs" />
+    <Compile Include="Utils\UserInfoMessages.cs" />
     <Compile Include="ViewModels\Decks\DeckItemMenuOperationsViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckItemViewModel.cs" />
     <Compile Include="ViewModels\SessionOverlay\SessionOverviewViewModel.cs" />
@@ -342,8 +343,7 @@
     <Compile Include="Utils\Messages\GameStatsOpponentGroupByChanged.cs" />
     <Compile Include="Utils\Messages\NewDeckTagCreated.cs" />
     <Compile Include="Utils\NewVersioInfo.cs" />
-    <Compile Include="Utils\NLog\DismissableMessage.cs" />
-    <Compile Include="Utils\NLog\UserInfoLoggerTarget.cs" />
+    <Compile Include="Utils\DismissableMessage.cs" />
     <Compile Include="Utils\OverlayWindowRepository.cs" />
     <Compile Include="Utils\PropertiesObservableCollection.cs" />
     <Compile Include="Utils\Resources.cs" />

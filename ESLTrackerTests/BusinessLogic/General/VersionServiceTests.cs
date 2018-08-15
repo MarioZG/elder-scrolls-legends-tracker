@@ -169,7 +169,7 @@ namespace ESLTrackerTests.BusinessLogic.General
 
         private VersionService CreateVersionServiceObject()
         {
-            return new VersionService(mockLogger.Object, settings.Object, cardsDatabase.Object, httpService.Object, appService.Object, cardsDatabaseFactory.Object);
+            return new VersionService(mockLogger.Object, settings.Object, cardsDatabase.Object, httpService.Object, appService.Object, cardsDatabaseFactory.Object, new UserInfoMessages());
         }
     }
 }

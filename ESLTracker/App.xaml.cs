@@ -18,8 +18,6 @@ using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.General;
 using ESLTracker.Controls;
 using ESLTracker.BusinessLogic.DataFile;
-using NLog;
-using NLog.Config;
 
 namespace ESLTracker
 {
@@ -30,7 +28,6 @@ namespace ESLTracker
     {
         public bool IsApplicationClosing { get; set; } = false;
         SingleInstanceApp singleInstance;
-        internal const string UserInfoLogger = "UserInfoLogger";
         private const string NewVersionAvailable = "New version of tracker is available.";
         private const string OpenChangelog = "Open changelog";
         private const string Download = "Download";
@@ -73,9 +70,6 @@ namespace ESLTracker
             splash.ShowSplash();
             splash.UpdateProgress("Loading loggers");
 
-            ConfigurationItemFactory.Default.Targets
-                .RegisterDefinition("UserInfoLogger", typeof(ESLTracker.Utils.NLog.UserInfoLoggerTarget));
-
             splash.UpdateProgress("Configuring dependecies");
 
             var container = new MasserContainer();
@@ -117,19 +111,25 @@ namespace ESLTracker
             var newVersion = vc.CheckNewAppVersionAvailable();
             if (newVersion.IsAvailable)
             {
-                Logger userInfo = LogManager.GetLogger(App.UserInfoLogger);
-                userInfo.Info(NewVersionAvailable, new Dictionary<string, string> {
-                    { OpenChangelog, settings.VersionCheck_LatestBuildUserUrl },
-                    { Download, newVersion.DownloadUrl }
-                });
+                var userMessages = container.GetInstance<UserInfoMessages>();
+                userMessages.AddMessage(
+                        NewVersionAvailable,
+                        new Dictionary<string, string> {
+                            { OpenChangelog, settings.VersionCheck_LatestBuildUserUrl },
+                            { Download, newVersion.DownloadUrl }
+                        });
             }
 
             splash.UpdateProgress("Checking for card database updates");
             if (vc.IsNewCardsDBAvailable())
             {
                 ICardsDatabase cardsDB = vc.GetLatestCardsDB();
-                Logger log = LogManager.GetLogger(App.UserInfoLogger);
-                log.Info(CardsDatabaseUpdated, new object[] { cardsDB.Version, cardsDB.VersionDate.ToShortDateString(), cardsDB.VersionInfo });
+                var userMessages = container.GetInstance<UserInfoMessages>();
+                userMessages.AddMessage(
+                        string.Format(CardsDatabaseUpdated, 
+                                    new object[] { cardsDB.Version, cardsDB.VersionDate.ToShortDateString(), cardsDB.VersionInfo }
+                        )
+                    );
             }
 
             bool isShiftPressed = (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift;

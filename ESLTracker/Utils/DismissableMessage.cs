@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ESLTracker.Utils.NLog
+namespace ESLTracker.Utils
 {
     public class DismissableMessage
     {

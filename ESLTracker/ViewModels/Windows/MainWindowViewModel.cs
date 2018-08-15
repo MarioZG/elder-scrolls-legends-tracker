@@ -91,14 +91,7 @@ namespace ESLTracker.ViewModels.Windows
             set { windowState = value; RaisePropertyChangedEvent("WindowState"); }
         }
 
-        public List<DismissableMessage> UserInfo
-        {
-            get {
-                var list = ((UserInfoLoggerTarget)NLog.LogManager.Configuration.FindTargetByName(App.UserInfoLogger)).Logs;
-                list.CollectionChanged += (sender, collection) => { RaisePropertyChangedEvent(nameof(UserInfo)); };
-                return list.ToList();
-            }
-        }
+        public UserInfoMessages UserInfo { get; private set; }
 
         public OverlayWindowRepository OverlayWindows { get; set; }
 
@@ -192,12 +185,14 @@ namespace ESLTracker.ViewModels.Windows
             IWinAPI winApi,
             IFileSaver fileSaver,
             ILauncherService launcherService,
-            OverlayWindowRepository overlayWindows
+            OverlayWindowRepository overlayWindows,
+            UserInfoMessages userInfoMessages
             )
         {
             this.tracker = tracker;
             this.messanger = messanger;
             this.OverlayWindows = overlayWindows;
+            this.UserInfo = userInfoMessages;
 
             messanger.Register<Utils.Messages.EditDeck>(this, EditDeckStart, Utils.Messages.EditDeck.Context.StartEdit);
             messanger.Register<Utils.Messages.EditDeck>(this, EditDeckFinished, Utils.Messages.EditDeck.Context.EditFinished);

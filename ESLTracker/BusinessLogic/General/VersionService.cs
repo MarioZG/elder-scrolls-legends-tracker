@@ -32,6 +32,7 @@ namespace ESLTracker.BusinessLogic.General
         private readonly ICardsDatabase cardsDatabase;
         private readonly ICardsDatabaseFactory cardsDatabaseFactory;
         private readonly ILogger logger;
+        private readonly UserInfoMessages userInfoMessages;
         private readonly IHTTPService httpService;
         private readonly IApplicationInfo applicationService;
 
@@ -41,7 +42,8 @@ namespace ESLTracker.BusinessLogic.General
             ICardsDatabase cardsDatabase,
             IHTTPService httpService,
             IApplicationInfo applicationService,
-            ICardsDatabaseFactory cardsDatabaseFactory)
+            ICardsDatabaseFactory cardsDatabaseFactory,
+            UserInfoMessages userInfoMessages)
         {
             this.cardsDatabase = cardsDatabase;
             this.settings = settings;
@@ -49,6 +51,7 @@ namespace ESLTracker.BusinessLogic.General
             this.applicationService = applicationService;
             this.cardsDatabaseFactory = cardsDatabaseFactory;
             this.logger = logger;
+            this.userInfoMessages = userInfoMessages;
         }
 
         public NewVersioInfo CheckNewAppVersionAvailable()
@@ -118,8 +121,7 @@ namespace ESLTracker.BusinessLogic.General
                             () => { returnValue = cardsDatabase; },
                             (ex, context) => {
                                 logger.Trace(ex, "Exception when retreiving cards DB from {0}", url);
-                                NLog.Logger log = NLog.LogManager.GetLogger(App.UserInfoLogger);
-                                log.Info(ex.Message);
+                                userInfoMessages.AddMessage(ex.Message);
                             }
                         );
             requestErrorPolicy.Execute(() =>

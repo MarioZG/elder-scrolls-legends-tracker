@@ -33,6 +33,7 @@ namespace ESLTracker.Utils.SimpleInjector
         {
             Register<OverlayWindowRepository>(Lifestyle.Singleton);  //ensre only one repo
             Register<MainWindow>(Lifestyle.Singleton);  //ensure only one main window
+            Register<UserInfoMessages>(Lifestyle.Singleton); //one list for info messages
 
             Register<ITrackerFactory, TrackerFactory>();
             Register<IFileSaver, FileSaver>();
