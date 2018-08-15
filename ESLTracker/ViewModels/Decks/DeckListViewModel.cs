@@ -213,7 +213,8 @@ namespace ESLTracker.ViewModels.Decks
 
         private void SettingsChanged(EditSettings obj)
         {
-            if(obj.ChangedProperties.Contains(nameof(settings.DeckViewSortOrder)))
+            if((obj.ChangedProperties != null)
+                &&  (obj.ChangedProperties.Contains(nameof(settings.DeckViewSortOrder))))
             {
                 ApplyFilter();
             }
