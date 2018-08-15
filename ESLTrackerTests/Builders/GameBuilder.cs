@@ -42,6 +42,12 @@ namespace ESLTrackerTests.Builders
             return this;
         }
 
+        public GameBuilder WithPlayerLegendRank(int? playerLegendRank)
+        {
+            game.PlayerLegendRank = playerLegendRank;
+            return this;
+        }
+
         internal GameBuilder WithDate(DateTime? date)
         {
             game.Date = date.GetValueOrDefault();

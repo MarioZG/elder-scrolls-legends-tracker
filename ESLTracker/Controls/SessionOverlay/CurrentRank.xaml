@@ -14,6 +14,26 @@
             <TextBlock FontSize="14" Text="{Binding Path=CurrentRank}" />
             <TextBlock FontSize="14" Text="{Binding Path=CurrentRank, StringFormat={} ({0:D})}" Visibility="{Binding CurrentRank, Converter={Converters:PlayerRankLegendToVisibilty}, ConverterParameter=not}" />
         </StackPanel>
+        <Grid
+            HorizontalAlignment="Center"
+            Visibility="{Binding CurrentRank, Converter={Converters:PlayerRankLegendToVisibilty}}"
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" FontSize="14" Text="{Binding Path=LegendStartRank, StringFormat={} #{0}, TargetNullValue=''}" ToolTip="Rank at start of session"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" FontSize="12" Text="{Binding Path=LegendMinRank, StringFormat={} #{0}, TargetNullValue=''}" ToolTip="Best rank during session"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" FontSize="12" Text="{Binding Path=LegendMaxRank, StringFormat={} #{0}, TargetNullValue=''}" ToolTip="Lowest rank during session"/>
+            <TextBlock Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" FontSize="14" Text="{Binding Path=LegendCurrentRank, StringFormat={} #{0}, TargetNullValue=''}" ToolTip="Current rank"/>
+        </Grid>
         <StackPanel 
             Orientation="Horizontal" 
             x:Name="starsContainer"

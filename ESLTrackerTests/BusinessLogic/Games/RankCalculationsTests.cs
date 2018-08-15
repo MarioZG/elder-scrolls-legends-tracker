@@ -27,7 +27,17 @@ namespace ESLTrackerTests.BusinessLogic.Games
             PlayerRank actualRank;
             int actualProgress;
             int actualMaxStars;
-            rankCalculations.CalculateCurrentRankProgress(games, out actualRank, out actualProgress, out actualMaxStars);
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                today,
+                out actualRank, 
+                out actualProgress, 
+                out actualMaxStars, 
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
 
             Assert.AreEqual(PlayerRank.TheRitual, actualRank);
             Assert.AreEqual(0, actualProgress);
@@ -54,7 +64,17 @@ namespace ESLTrackerTests.BusinessLogic.Games
             PlayerRank actualRank;
             int actualProgress;
             int actualMaxStars;
-            rankCalculations.CalculateCurrentRankProgress(games, out actualRank, out actualProgress, out actualMaxStars);
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                today,
+                out actualRank,
+                out actualProgress,
+                out actualMaxStars,
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
 
             Assert.AreEqual(PlayerRank.TheRitual, actualRank);
             Assert.AreEqual(1, actualProgress);
@@ -85,7 +105,17 @@ namespace ESLTrackerTests.BusinessLogic.Games
             PlayerRank actualRank;
             int actualProgress;
             int actualMaxStars;
-            rankCalculations.CalculateCurrentRankProgress(games, out actualRank, out actualProgress, out actualMaxStars);
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                today,
+                out actualRank,
+                out actualProgress,
+                out actualMaxStars,
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
 
             Assert.AreEqual(PlayerRank.TheRitual, actualRank);
             Assert.AreEqual(-1, actualProgress);
@@ -112,7 +142,17 @@ namespace ESLTrackerTests.BusinessLogic.Games
             PlayerRank actualRank;
             int actualProgress;
             int actualMaxStars;
-            rankCalculations.CalculateCurrentRankProgress(games, out actualRank, out actualProgress, out actualMaxStars);
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                today,
+                out actualRank,
+                out actualProgress,
+                out actualMaxStars,
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
 
             Assert.AreEqual(PlayerRank.TheRitual, actualRank);
             Assert.AreEqual(3, actualProgress);
@@ -140,7 +180,17 @@ namespace ESLTrackerTests.BusinessLogic.Games
             PlayerRank actualRank;
             int actualProgress;
             int actualMaxStars;
-            rankCalculations.CalculateCurrentRankProgress(games, out actualRank, out actualProgress, out actualMaxStars);
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                today,
+                out actualRank,
+                out actualProgress,
+                out actualMaxStars,
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
 
             Assert.AreEqual(PlayerRank.TheLover, actualRank);
             Assert.AreEqual(0, actualProgress);
@@ -167,11 +217,156 @@ namespace ESLTrackerTests.BusinessLogic.Games
             PlayerRank actualRank;
             int actualProgress;
             int actualMaxStars;
-            rankCalculations.CalculateCurrentRankProgress(games, out actualRank, out actualProgress, out actualMaxStars);
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                today,
+                out actualRank,
+                out actualProgress,
+                out actualMaxStars,
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
 
             Assert.AreEqual(PlayerRank.TheWarrior, actualRank);
             Assert.AreEqual(0, actualProgress);
             Assert.AreEqual(6, actualMaxStars);
+        }
+
+        [TestMethod]
+        public void CalculateCurrentRankProgress006_LegendRankChange_NoRankedGamesInSession()
+        {
+            DateTime lastGame = new DateTime(2018, 8, 5, 10, 0,0);
+            DateTime sessionStart = new DateTime(2018, 8, 5, 12, 0, 0);
+
+            mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(sessionStart.AddHours(1));
+
+
+            var games = new GameListBuilder()
+                .UsingType(GameType.PlayRanked)
+                .UsingPlayerRank(PlayerRank.TheLegend)
+                .UsingDate(lastGame)
+                .WithOutcome(1, GameOutcome.Victory)
+                .Build();
+
+            RankCalculations rankCalculations = CreateRankCalulations();
+
+            PlayerRank actualRank;
+            int actualProgress;
+            int actualMaxStars;
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                sessionStart,
+                out actualRank,
+                out actualProgress,
+                out actualMaxStars,
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
+
+            Assert.IsNull(legendStart);
+            Assert.IsNull(legendMin);
+            Assert.IsNull(legedmax);
+            Assert.IsNull(legendCurrent);
+
+        }
+
+        [TestMethod]
+        public void CalculateCurrentRankProgress006_LegendRankChange_OneGameInSession()
+        {
+            DateTime lastGame = new DateTime(2018, 8, 5, 10, 0, 0);
+            DateTime sessionStart = new DateTime(2018, 8, 5, 12, 0, 0);
+
+            mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(sessionStart.AddHours(1));
+
+            int? startRank = 40;
+
+            var games = new GameListBuilder()
+                .UsingType(GameType.PlayRanked)
+                .UsingPlayerRank(PlayerRank.TheLegend)
+                .UsingDate(lastGame)
+                .WithOutcome(1, GameOutcome.Victory)
+                .UsingPlayerLegendRank(startRank)
+                .UsingDate(sessionStart.AddMinutes(10))
+                .WithOutcome(1, GameOutcome.Victory)
+                .Build();
+
+            RankCalculations rankCalculations = CreateRankCalulations();
+
+            PlayerRank actualRank;
+            int actualProgress;
+            int actualMaxStars;
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                sessionStart,
+                out actualRank,
+                out actualProgress,
+                out actualMaxStars,
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
+
+            Assert.AreEqual(startRank, legendStart);
+            Assert.AreEqual(startRank, legendMin);
+            Assert.AreEqual(startRank, legedmax);
+            Assert.AreEqual(startRank, legendCurrent);
+
+        }
+
+        [TestMethod]
+        public void CalculateCurrentRankProgress006_LegendRankChange_MoreGamesInSession()
+        {
+            DateTime lastGame = new DateTime(2018, 8, 5, 10, 0, 0);
+            DateTime sessionStart = new DateTime(2018, 8, 5, 12, 0, 0);
+
+            mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(sessionStart.AddHours(1));
+
+            int? startRank = 40;
+            int? secondGameRank = 45;
+            int? lastGameRank = 25;
+
+            var games = new GameListBuilder()
+                .UsingType(GameType.PlayRanked)
+                .UsingPlayerRank(PlayerRank.TheLegend)
+                .UsingDate(lastGame)
+                .WithOutcome(1, GameOutcome.Victory)
+                .UsingPlayerLegendRank(startRank)
+                .UsingDate(sessionStart.AddMinutes(10))
+                .WithOutcome(1, GameOutcome.Victory)
+                .UsingPlayerLegendRank(secondGameRank)
+                .UsingDate(sessionStart.AddMinutes(20))
+                .WithOutcome(1, GameOutcome.Victory)
+                .UsingPlayerLegendRank(lastGameRank)
+                .UsingDate(sessionStart.AddMinutes(30))
+                .WithOutcome(1, GameOutcome.Victory).Build();
+
+            RankCalculations rankCalculations = CreateRankCalulations();
+
+            PlayerRank actualRank;
+            int actualProgress;
+            int actualMaxStars;
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                sessionStart,
+                out actualRank,
+                out actualProgress,
+                out actualMaxStars,
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
+
+            Assert.AreEqual(startRank, legendStart);
+            Assert.AreEqual(lastGameRank, legendMin);
+            Assert.AreEqual(secondGameRank, legedmax);
+            Assert.AreEqual(lastGameRank, legendCurrent);
+
         }
 
         private RankCalculations CreateRankCalulations()

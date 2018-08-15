@@ -15,6 +15,7 @@ namespace ESLTrackerTests.Builders
         Deck deck;
         GameType? gameType;
         PlayerRank? playerRank;
+        int? playerLegendRank;
         DateTime? gameDate;
 
         public GameListBuilder()
@@ -40,6 +41,12 @@ namespace ESLTrackerTests.Builders
             return this;
         }
 
+        public GameListBuilder UsingPlayerLegendRank(int? playerLegendRank)
+        {
+            this.playerLegendRank = playerLegendRank;
+            return this;
+        }
+
         internal GameListBuilder UsingDate(DateTime gameDate)
         {
             this.gameDate = gameDate;
@@ -54,6 +61,7 @@ namespace ESLTrackerTests.Builders
                             .WithDeck(deck)
                             .WithType(gameType)
                             .WithPlayerRank(playerRank)
+                            .WithPlayerLegendRank(playerLegendRank)
                             .WithDate(gameDate)
                             .Build()
                         );

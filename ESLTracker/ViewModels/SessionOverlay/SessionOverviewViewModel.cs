@@ -72,6 +72,11 @@ namespace ESLTracker.ViewModels.SessionOverlay
 
         public int CurrentRankStarsCount { get; set; }
 
+        public int? LegendStartRank { get; set; }
+        public int? LegendCurrentRank { get; set; }
+        public int? LegendMinRank { get; set; }
+        public int? LegendMaxRank { get; set; }
+
         public SessionOverviewViewModel(
             IDateTimeProvider dateTimeProvider, 
             DeckCalculations deckCalculations,
@@ -110,15 +115,35 @@ namespace ESLTracker.ViewModels.SessionOverlay
         {
             PlayerRank rank;
             int rankProgress, rankStarsCount;
-            rankCalculations.CalculateCurrentRankProgress(this.tracker.Games, out rank, out rankProgress, out rankStarsCount);
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                this.tracker.Games,
+                StartDate,
+                out rank, 
+                out rankProgress, 
+                out rankStarsCount,
+                out legendStart, 
+                out legendMin, 
+                out legedmax, 
+                out legendCurrent
+                );
 
             CurrentRank = rank;
             CurrentRankProgress = rankProgress;
             CurrentRankStarsCount = rankStarsCount;
 
+            LegendCurrentRank = legendCurrent;
+            LegendMaxRank = legedmax;
+            LegendMinRank = legendMin;
+            LegendStartRank = legendStart;
+
             RaisePropertyChangedEvent(nameof(CurrentRank));
             RaisePropertyChangedEvent(nameof(CurrentRankProgress));
             RaisePropertyChangedEvent(nameof(CurrentRankStarsCount));
+            RaisePropertyChangedEvent(nameof(LegendStartRank));
+            RaisePropertyChangedEvent(nameof(LegendMinRank));
+            RaisePropertyChangedEvent(nameof(LegendMaxRank));
+            RaisePropertyChangedEvent(nameof(LegendCurrentRank));
         }
     }
 }
