@@ -19,6 +19,7 @@
         Orientation="Vertical" 
         Margin="10,10,10,10">
         <CheckBox IsChecked="{Binding Path=SessionOverlay_ResetOnApplicationStart, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Start new session with application"/>
+        <CheckBox IsChecked="{Binding Path=SessionOverlay_ShowTitlebar, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Show window titlebar"/>
         <CheckBox IsChecked="{Binding Path=SessionOverlay_ShowDuration, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Show session duration"/>
         <CheckBox IsChecked="{Binding Path=SessionOverlay_ShowWinrate, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Show winrate"/>
         <CheckBox IsChecked="{Binding Path=SessionOverlay_ShowRankProgress, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Show rank progress"/>

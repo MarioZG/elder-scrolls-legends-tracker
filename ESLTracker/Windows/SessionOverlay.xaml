@@ -9,6 +9,7 @@
         xmlns:Controls="clr-namespace:ESLTracker.Controls"
         xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
         xmlns:Properties="clr-namespace:ESLTracker.Properties"
+        xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"  Title="Current session" 
         Topmost="True" 
@@ -28,7 +29,10 @@
                 ScaleY="{Binding Path=SessionOverlay_Scale, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
         />
         </StackPanel.LayoutTransform>
-        <Controls:OverlayWindowTitlebar Title="Current session"/>
+        <Controls:OverlayWindowTitlebar 
+            Title="Current session"
+            Visibility="{Binding Path=SessionOverlay_ShowTitlebar, Source={x:Static Properties:Settings.Default}, Converter={Converters:BoolToVisibilty}}"
+            />
         <StackPanel>
             <SessionOverlay:SessionOverview />
         </StackPanel>

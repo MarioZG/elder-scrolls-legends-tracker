@@ -131,5 +131,8 @@
     <Setting Name="SessionOverlay_SessionStartDateTime" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)">2001-01-01</Value>
     </Setting>
+    <Setting Name="SessionOverlay_ShowTitlebar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -541,5 +541,17 @@ namespace ESLTracker.Properties {
                 this["SessionOverlay_SessionStartDateTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SessionOverlay_ShowTitlebar {
+            get {
+                return ((bool)(this["SessionOverlay_ShowTitlebar"]));
+            }
+            set {
+                this["SessionOverlay_ShowTitlebar"] = value;
+            }
+        }
     }
 }
