@@ -110,5 +110,26 @@
     <Setting Name="SessionOverlay_ShowOnStart" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="SessionOverlay_ResetOnApplicationStart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SessionOverlay_ShowDuration" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SessionOverlay_ShowWinrate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SessionOverlay_ShowRankProgress" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SessionOverlay_BackgrounColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Yellow</Value>
+    </Setting>
+    <Setting Name="SessionOverlay_ForegroundColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Blue</Value>
+    </Setting>
+    <Setting Name="SessionOverlay_SessionStartDateTime" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2001-01-01</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

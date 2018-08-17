@@ -4,16 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.SessionOverlay"
+             xmlns:Properties="clr-namespace:ESLTracker.Properties"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d"
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[SessionOverlay.SessionOverviewViewModel]}"
              Opacity="1"
              >
     <StackPanel Orientation="Vertical">
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+        <StackPanel 
+            HorizontalAlignment="Center" 
+            Orientation="Horizontal"
+            Visibility="{Binding Path=SessionOverlay_ShowDuration, Source={x:Static Properties:Settings.Default}, Converter={Converters:BoolToVisibilty}}"
+            >
             <TextBlock Text="Session duration:" FontSize="14"/>
             <TextBlock Text="{Binding TimePassed,StringFormat=hh\\:mm}" FontSize="14"/>
         </StackPanel>
-        <local:GamesOverview HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Margin="0,5,0,0"/>
-        <local:CurrentRank MaxStarsCount="{Binding CurrentRankStarsCount}" CurrentProgress="{Binding CurrentRankProgress}"/>
+        <local:GamesOverview HorizontalAlignment="Center" 
+                             FontSize="16" 
+                             FontWeight="Bold" 
+                             Margin="0,5,0,0"
+                             Visibility="{Binding Path=SessionOverlay_ShowWinrate, Source={x:Static Properties:Settings.Default}, Converter={Converters:BoolToVisibilty}}"
+        />
+        <local:CurrentRank MaxStarsCount="{Binding CurrentRankStarsCount}" 
+                           CurrentProgress="{Binding CurrentRankProgress}"
+                           Visibility="{Binding Path=SessionOverlay_ShowRankProgress, Source={x:Static Properties:Settings.Default}, Converter={Converters:BoolToVisibilty}}"
+        />
     </StackPanel>
 </UserControl>

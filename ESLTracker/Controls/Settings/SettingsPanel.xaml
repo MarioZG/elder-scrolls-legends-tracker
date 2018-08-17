@@ -25,7 +25,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <StackPanel>
-        <Expander Header="General settings" IsExpanded="True"
+        <Expander Header="General settings" IsExpanded="False"
                   HeaderTemplate="{StaticResource expanderHeader}" >
             <Settings:GeneralSettings />
         </Expander>
@@ -59,6 +59,10 @@
         <Expander Header="Packs" IsExpanded="False"
                   HeaderTemplate="{StaticResource expanderHeader}" >
           <Settings:OpenPackSettings />     
+        </Expander>
+        <Expander Header="Session overlay settings" IsExpanded="False"
+                  HeaderTemplate="{StaticResource expanderHeader}" >
+            <Settings:SessionOverlaySettings />   
         </Expander>
         <UniformGrid>
             <Button Command="{Binding CommandCancelButtonPressed}" Content="Cancel" Margin="25,5,25,5" />

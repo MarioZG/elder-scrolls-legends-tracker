@@ -57,6 +57,8 @@ namespace ESLTracker.Properties
 
         double SessionOverlay_Scale { get; set; }
         bool SessionOverlay_ShowOnStart { get; set; }
+        DateTime SessionOverlay_SessionStartDateTime { get; set; }
+        bool SessionOverlay_ResetOnApplicationStart { get; set; }
 
         event PropertyChangedEventHandler PropertyChanged;
 

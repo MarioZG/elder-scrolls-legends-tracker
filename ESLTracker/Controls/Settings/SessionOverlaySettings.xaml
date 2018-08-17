@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="ESLTracker.Controls.Settings.SessionOverlaySettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ESLTracker.Controls.Settings"
+             xmlns:Properties="clr-namespace:ESLTracker.Properties"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Merge into this dictionary another dictionary ... -->
+                <ResourceDictionary Source="SettingsControlsStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+        <CheckBox IsChecked="{Binding Path=SessionOverlay_ResetOnApplicationStart, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Start new session with application"/>
+        <CheckBox IsChecked="{Binding Path=SessionOverlay_ShowDuration, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Show session duration"/>
+        <CheckBox IsChecked="{Binding Path=SessionOverlay_ShowWinrate, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Show winrate"/>
+        <CheckBox IsChecked="{Binding Path=SessionOverlay_ShowRankProgress, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Show rank progress"/>
+    </StackPanel>
+</UserControl>

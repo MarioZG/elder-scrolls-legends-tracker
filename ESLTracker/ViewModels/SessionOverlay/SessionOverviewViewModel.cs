@@ -2,6 +2,7 @@
 using ESLTracker.BusinessLogic.Games;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using System;
@@ -21,6 +22,7 @@ namespace ESLTracker.ViewModels.SessionOverlay
         private readonly ITracker tracker;
         private readonly IDateTimeProvider dateTimeProvider;
         private readonly RankCalculations rankCalculations;
+        private readonly ISettings settings;
 
         public IEnumerable<DataModel.Game> Games
         {
@@ -78,7 +80,8 @@ namespace ESLTracker.ViewModels.SessionOverlay
         public int? LegendMaxRank { get; set; }
 
         public SessionOverviewViewModel(
-            IDateTimeProvider dateTimeProvider, 
+            IDateTimeProvider dateTimeProvider,
+            ISettings settings,
             DeckCalculations deckCalculations,
             IMessenger messenger,
             ITracker tracker,
@@ -89,10 +92,12 @@ namespace ESLTracker.ViewModels.SessionOverlay
             this.tracker = tracker;
             this.dateTimeProvider = dateTimeProvider;
             this.rankCalculations = rankCalculations;
+            this.settings = settings;
 
             messenger.Register<EditDeck>(this, GameAdded, EditDeck.Context.StatsUpdated);
 
-            StartDate = dateTimeProvider.DateTimeNow;
+            StartDate = settings.SessionOverlay_ResetOnApplicationStart ? dateTimeProvider.DateTimeNow : settings.SessionOverlay_SessionStartDateTime;
+            settings.SessionOverlay_SessionStartDateTime = StartDate;
 
             new DispatcherTimer(
                 TimeSpan.FromSeconds(1),

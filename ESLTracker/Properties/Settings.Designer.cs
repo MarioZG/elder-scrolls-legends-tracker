@@ -12,7 +12,7 @@ namespace ESLTracker.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -455,6 +455,90 @@ namespace ESLTracker.Properties {
             }
             set {
                 this["SessionOverlay_ShowOnStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SessionOverlay_ResetOnApplicationStart {
+            get {
+                return ((bool)(this["SessionOverlay_ResetOnApplicationStart"]));
+            }
+            set {
+                this["SessionOverlay_ResetOnApplicationStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SessionOverlay_ShowDuration {
+            get {
+                return ((bool)(this["SessionOverlay_ShowDuration"]));
+            }
+            set {
+                this["SessionOverlay_ShowDuration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SessionOverlay_ShowWinrate {
+            get {
+                return ((bool)(this["SessionOverlay_ShowWinrate"]));
+            }
+            set {
+                this["SessionOverlay_ShowWinrate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SessionOverlay_ShowRankProgress {
+            get {
+                return ((bool)(this["SessionOverlay_ShowRankProgress"]));
+            }
+            set {
+                this["SessionOverlay_ShowRankProgress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Yellow")]
+        public global::System.Drawing.Color SessionOverlay_BackgrounColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SessionOverlay_BackgrounColor"]));
+            }
+            set {
+                this["SessionOverlay_BackgrounColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Blue")]
+        public global::System.Drawing.Color SessionOverlay_ForegroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SessionOverlay_ForegroundColor"]));
+            }
+            set {
+                this["SessionOverlay_ForegroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2001-01-01")]
+        public global::System.DateTime SessionOverlay_SessionStartDateTime {
+            get {
+                return ((global::System.DateTime)(this["SessionOverlay_SessionStartDateTime"]));
+            }
+            set {
+                this["SessionOverlay_SessionStartDateTime"] = value;
             }
         }
     }
