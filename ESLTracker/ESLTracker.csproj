@@ -782,10 +782,6 @@
     <Resource Include="Resources\closeicon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\WindowIcons\collapse.png" />
-    <Resource Include="Resources\WindowIcons\expand.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\DeckAttribute\agility.png" />
     <Resource Include="Resources\DeckAttribute\endurance.png" />
     <Resource Include="Resources\DeckAttribute\intelligence.png" />
@@ -796,13 +792,7 @@
     <Resource Include="Resources\DeckAttribute\neutral.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\WindowIcons\close.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\TrayIcon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\WindowIcons\printScreen.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Temp\all attribs.png" />
@@ -823,37 +813,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\WindowIcons\mainForm.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\newDeck.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\exit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\runESL.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\statistics.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\AppLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\hide.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\visible.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Sets\Core.png" />

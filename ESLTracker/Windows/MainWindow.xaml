@@ -60,7 +60,7 @@
                 <MenuItem>
                     <MenuItem.Header>
                         <StackPanel Orientation="Horizontal">
-                            <Image Height="16" Source="/Resources/MenuIcons/statistics.png" />
+                            <fa:ImageAwesome Width="16" Icon="LineChart" Margin="1"/> 
                             <ContentPresenter Content="Statistics" Margin="5,0,0,0" />
                         </StackPanel>
                     </MenuItem.Header>
@@ -82,7 +82,7 @@
                 <MenuItem Command="{Binding CommandRunGame}">
                     <MenuItem.Header>
                         <StackPanel Orientation="Horizontal">
-                            <Image Height="16" Source="/Resources/MenuIcons/runESL.png" />
+                            <fa:ImageAwesome Width="16" Icon="Gamepad" Margin="1"/>
                             <ContentPresenter Content="Run game" Margin="5,0,0,0" />
                         </StackPanel>
                     </MenuItem.Header>
@@ -90,7 +90,7 @@
                 <MenuItem Command="{Binding CommandEditSettings}">
                     <MenuItem.Header>
                         <StackPanel Orientation="Horizontal">
-                            <Image Height="16" Source="/Resources/MenuIcons/settings.png" />
+                            <fa:ImageAwesome Height="16" Icon="Gears" Margin="1"/>
                             <ContentPresenter Content="Settings" Margin="5,0,0,0" />
                         </StackPanel>
                     </MenuItem.Header>
@@ -98,7 +98,7 @@
                 <MenuItem Command="{Binding CommandAbout}">
                     <MenuItem.Header>
                         <StackPanel Orientation="Horizontal">
-                            <Image Height="16" Source="/Resources/MenuIcons/settings.png" />
+                            <fa:ImageAwesome Height="16" Icon="info" Margin="1"/>
                             <ContentPresenter Content="About..." Margin="5,0,0,0" />
                         </StackPanel>
                     </MenuItem.Header>
@@ -193,17 +193,17 @@
                 <ContextMenu>
                     <MenuItem Header="Run game" Command="{Binding CommandRunGame}">
                         <MenuItem.Icon>
-                            <Image Source="/Resources/MenuIcons/runESL.png"/>
+                            <fa:ImageAwesome Icon="Gamepad" Margin="1"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Show application" Command="{Binding CommandNotifyIconLeftClick}" CommandParameter="show">
                         <MenuItem.Icon>
-                            <Image Source="/Resources/WindowIcons/mainForm.png"/>
+                            <fa:ImageAwesome Icon="Wpforms" Margin="1"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Exit" Command="{Binding CommandExit}" CommandParameter="{StaticResource True}">
                         <MenuItem.Icon>
-                            <Image Source="/Resources/MenuIcons/exit.png"/>
+                            <fa:ImageAwesome Icon="Close" Margin="1"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </ContextMenu>

@@ -10,6 +10,7 @@
         xmlns:Controls="clr-namespace:ESLTracker.Controls"  
         xmlns:Game="clr-namespace:ESLTracker.Controls.Game"  
         xmlns:Rewards="clr-namespace:ESLTracker.Controls.Rewards"  
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"  Title="Game" 
         Height="322.805" Width="308.65" Topmost="True" 
@@ -29,7 +30,7 @@
                         Width="15"
                         Command="{Binding CreateScreenshot, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                     >
-                        <Image Source="/Resources/WindowIcons/printScreen.png"/>
+                        <fa:ImageAwesome Icon="Photo" Margin="1"/>
                     </Controls:OverlayWindowTitlebarButton>
                 </Controls:OverlayWindowTitlebarButtonsCollection>
             </Controls:OverlayWindowTitlebar.CustomButtons>

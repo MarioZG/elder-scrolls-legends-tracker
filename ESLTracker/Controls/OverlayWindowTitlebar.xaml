@@ -4,34 +4,41 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
              x:Name="titleBar">
     <DockPanel  FlowDirection="RightToLeft"  Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <!-- Controls must be in reverse order with HorizontalAlignment="Right"-->
         <Button x:Name="btnClose" ToolTip="Close this window (It can be restored from main application menu)" HorizontalAlignment="Right" Width="15" Click="btnClose_Click">
-            <Image Source="/Resources/WindowIcons/close.png"/>
+            <fa:ImageAwesome Icon="Close"  Margin="1"/>
         </Button>
         <ToggleButton x:Name="btnCollapse" ToolTip="Collapse/expand this window" HorizontalAlignment="Right" Width="15" Click="btnCollapse_Click">
-            <Image>
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=btnCollapse,Path=IsChecked}" Value="true">
-                                <Setter Property="Source" Value="pack://application:,,,/Resources/WindowIcons/expand.png"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=btnCollapse,Path=IsChecked}" Value="false">
-                                <Setter Property="Source" Value="pack://application:,,,/Resources/WindowIcons/collapse.png"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
+            <ToggleButton.Style>
+                <Style TargetType="{x:Type ToggleButton}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=btnCollapse,Path=IsChecked}" Value="true">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <fa:ImageAwesome Icon="AngleDown" Margin="1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=btnCollapse,Path=IsChecked}" Value="false">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <fa:ImageAwesome Icon="AngleUp" Margin="1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ToggleButton.Style>           
         </ToggleButton>
         <ItemsControl ItemsSource="{Binding CustomButtons, ElementName=titleBar}" VerticalContentAlignment="Stretch">
 
         </ItemsControl>
         <Button x:Name="btnShowMainWindow" ToolTip="Show main window" HorizontalAlignment="Right" Width="15" Click="btnShowMainWindow_Click">
-            <Image Source="/Resources/WindowIcons/mainForm.png"/>
+            <fa:ImageAwesome Icon="Wpforms" Margin="1"/>
         </Button>
         <TextBlock FontWeight="Medium" Margin="10,2,10,2" FlowDirection="LeftToRight" HorizontalAlignment="Stretch"
                    Text="{Binding Title, ElementName=titleBar}" />
