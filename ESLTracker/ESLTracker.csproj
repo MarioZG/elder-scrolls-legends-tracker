@@ -141,9 +141,11 @@
     </Compile>
     <Compile Include="Utils\Behaviors\DragBehavior.cs" />
     <Compile Include="Utils\Behaviors\DragDropEventInfo.cs" />
+    <Compile Include="Utils\Converters\ColorToBrushConverter.cs" />
     <Compile Include="Utils\Converters\EnumToIntConverter.cs" />
     <Compile Include="Utils\DebugTraceListener.cs" />
     <Compile Include="Utils\Behaviors\DropBehavior.cs" />
+    <Compile Include="Utils\ColorListBindingSourceExtension.cs" />
     <Compile Include="Utils\GuidProvider.cs" />
     <Compile Include="Utils\IGuidProvider.cs" />
     <Compile Include="Utils\ILogger.cs" />

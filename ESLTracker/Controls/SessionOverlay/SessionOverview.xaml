@@ -8,6 +8,8 @@
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              mc:Ignorable="d"
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[SessionOverlay.SessionOverviewViewModel]}"
+             Background="{Binding Path=SessionOverlay_BackgrounColor, Source={x:Static Properties:Settings.Default}, Converter={Converters:ColorToBrushConverter}}"
+             Foreground="{Binding Path=SessionOverlay_ForegroundColor, Source={x:Static Properties:Settings.Default}, Converter={Converters:ColorToBrushConverter}}"
              Opacity="1"
              >
     <StackPanel Orientation="Vertical">

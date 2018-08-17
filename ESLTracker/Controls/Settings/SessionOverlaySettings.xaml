@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Settings"
              xmlns:Properties="clr-namespace:ESLTracker.Properties"
+             xmlns:Utils="clr-namespace:ESLTracker.Utils"
              mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -14,10 +15,45 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+    <StackPanel 
+        Orientation="Vertical" 
+        Margin="10,10,10,10">
         <CheckBox IsChecked="{Binding Path=SessionOverlay_ResetOnApplicationStart, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Start new session with application"/>
         <CheckBox IsChecked="{Binding Path=SessionOverlay_ShowDuration, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Show session duration"/>
         <CheckBox IsChecked="{Binding Path=SessionOverlay_ShowWinrate, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Show winrate"/>
         <CheckBox IsChecked="{Binding Path=SessionOverlay_ShowRankProgress, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" Style="{DynamicResource CheckBox}" Content="Show rank progress"/>
+
+        <StackPanel>
+            <TextBlock Text="Background color:" Margin="0,5,0,5"/>
+            <ComboBox 
+                      ItemsSource="{Binding Source={Utils:ColorListBindingSourceExtension}}"
+                      SelectedItem="{Binding Path=SessionOverlay_BackgrounColor, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                      >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0 2 5 2" />
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock Text="Foreground color:" Margin="0,5,0,5"/>
+            <ComboBox 
+                      ItemsSource="{Binding Source={Utils:ColorListBindingSourceExtension}}"
+                      SelectedItem="{Binding Path=SessionOverlay_ForegroundColor, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                      >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0 2 5 2" />
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
     </StackPanel>
 </UserControl>

@@ -508,7 +508,7 @@ namespace ESLTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Yellow")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Transparent")]
         public global::System.Drawing.Color SessionOverlay_BackgrounColor {
             get {
                 return ((global::System.Drawing.Color)(this["SessionOverlay_BackgrounColor"]));
@@ -520,7 +520,7 @@ namespace ESLTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Blue")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
         public global::System.Drawing.Color SessionOverlay_ForegroundColor {
             get {
                 return ((global::System.Drawing.Color)(this["SessionOverlay_ForegroundColor"]));
