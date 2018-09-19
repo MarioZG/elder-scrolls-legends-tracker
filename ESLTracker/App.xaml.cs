@@ -27,6 +27,7 @@ namespace ESLTracker
     public partial class App : Application
     {
         public bool IsApplicationClosing { get; set; } = false;
+
         SingleInstanceApp singleInstance;
         private const string NewVersionAvailable = "New version of tracker is available.";
         private const string OpenChangelog = "Open changelog";
@@ -59,7 +60,7 @@ namespace ESLTracker
             string verInfo = String.Join(";",Assembly.GetEntryAssembly().CustomAttributes.Where(ca => ca.AttributeType == typeof(AssemblyInformationalVersionAttribute)).FirstOrDefault()?.ConstructorArguments);
             System.IO.File.WriteAllText(filename, "APP VERSION: "+ verInfo +Environment.NewLine);
             System.IO.File.AppendAllText(filename, ex.ToString());
-            MessageBox.Show("Application encountered unhandled exception. Log file has been created in " + "./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt with details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show("Application encountered unhandled exception. Log file has been created in " + "./crash" + DateTime.Now.ToString("yyyyMMddHHmm") + ".txt with details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.ServiceNotification);
         }
 
 
@@ -100,7 +101,12 @@ namespace ESLTracker
                 HandleUnhandledException(ex.Exception, "TaskScheduler.UnobservedTaskException");
 
             splash.UpdateProgress("Checking other instances");
-            CheckSingleInstance();
+            if (CheckSingleInstance())
+            {
+                splash.UpdateProgress("Other instance is running. Cancel start-up process");
+                IsApplicationClosing = true;
+                return; //if alrady running just stop
+            }
 
             splash.UpdateProgress("Checking data file");
             CheckDataFile(container.GetInstance<FileLoader>());
@@ -182,14 +188,16 @@ namespace ESLTracker
             }
         }
 
-        private void CheckSingleInstance()
+        private bool CheckSingleInstance()
         {
             singleInstance = new SingleInstanceApp();
             if (!singleInstance.CheckInstance())
             {
-                MessageBox.Show("ESL Tracker is alrady running", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("ESL Tracker is alrady running", "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK,MessageBoxOptions.ServiceNotification);
                 Application.Current.Shutdown();
+                return true;
             }
+            return false;
         }
     }
 }
