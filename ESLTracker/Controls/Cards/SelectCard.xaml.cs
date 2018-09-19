@@ -1,25 +1,13 @@
-﻿using System;
+﻿using ESLTracker.DataModel;
+using ESLTracker.Utils.Extensions;
+using ESLTracker.ViewModels.Cards;
+using ESLTracker.Windows;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using ESLTracker.BusinessLogic.Cards;
-using ESLTracker.BusinessLogic.DataFile;
-using ESLTracker.DataModel;
-using ESLTracker.Utils;
-using ESLTracker.Utils.Extensions;
-using ESLTracker.Utils.SimpleInjector;
-using ESLTracker.Windows;
 
 namespace ESLTracker.Controls.Cards
 {
@@ -34,38 +22,12 @@ namespace ESLTracker.Controls.Cards
             set { SetValue(CardProperty, value);  }
         }
 
-        // Using a DependencyProperty as the backing store for Card.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CardProperty =
             DependencyProperty.Register("CardInstance", typeof(CardInstance), typeof(SelectCard), new PropertyMetadata(null, CardInstanceChanged));
 
         private static void CardInstanceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            d.SetValue(CardNameProperty, ((CardInstance)e.NewValue)?.Card?.Name);
-        }
-
-        public string CardName
-        {
-            get { return (string)GetValue(CardNameProperty); }
-            set { SetValue(CardNameProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for CardName.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CardNameProperty =
-            DependencyProperty.Register("CardName", typeof(string), typeof(SelectCard), new PropertyMetadata(String.Empty, CardNameChanged));
-
-        private static void CardNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (e.NewValue != null)
-            {
-                if (((SelectCard)d).CardInstance == null)
-                {
-                    ((SelectCard)d).CardInstance = cardInstanceFactory.CreateFromCard(cardsDatabaseService.FindCardByName(e.NewValue?.ToString()));
-                }
-                else if (((SelectCard)d).CardInstance.Card?.Name != e.NewValue.ToString())
-                {
-                    ((SelectCard)d).CardInstance.Card = cardsDatabaseService.FindCardByName(e.NewValue?.ToString());
-                }
-            }
+            ((SelectCardViewModel)((SelectCard)d).LayoutRoot.DataContext).CardInstance = e.NewValue as CardInstance;
         }
 
         public bool ShowIsPremium
@@ -74,7 +36,6 @@ namespace ESLTracker.Controls.Cards
             set { SetValue(ShowIsPremiumProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ShowIsPremium.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ShowIsPremiumProperty =
             DependencyProperty.Register("ShowIsPremium", typeof(bool), typeof(SelectCard), new PropertyMetadata(false));
 
@@ -128,24 +89,26 @@ namespace ESLTracker.Controls.Cards
         // Using a DependencyProperty as the backing store for MouseLeftClick.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MouseLeftClickProperty =
             DependencyProperty.Register("MouseLeftClick", typeof(ICommand), typeof(SelectCard), new PropertyMetadata(null));
-
-        static ICardsDatabase cardsDatabaseService;
-        private static ICardInstanceFactory cardInstanceFactory;
         
-        static SelectCard()
-        {
-            cardsDatabaseService = MasserContainer.Container.GetInstance<ICardsDatabase>();
-            cardInstanceFactory = MasserContainer.Container.GetInstance<ICardInstanceFactory>(); 
-        }
-
         public SelectCard()
         {
             InitializeComponent();
 
-            LayoutRoot.DataContext = this;
             this.IsVisibleChanged += SelectCard_IsVisibleChanged;
+            ((SelectCardViewModel)this.LayoutRoot.DataContext).PropertyChanged += SelectCard_PropertyChanged;
         }
-  
+
+        private void SelectCard_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SelectCardViewModel.CardInstance))
+            {
+                if (this.CardInstance?.CardId != ((SelectCardViewModel)sender).CardInstance?.CardId)
+                {
+                    this.CardInstance = ((SelectCardViewModel)sender).CardInstance;
+                }
+            }
+        }
+
         //https://www.codeproject.com/Tips/478376/Setting-focus-to-a-control-inside-a-usercontrol-in
         //http://stackoverflow.com/questions/9535784/setting-default-keyboard-focus-on-loading-a-usercontrol
         private void SelectCard_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -170,7 +133,8 @@ namespace ESLTracker.Controls.Cards
         {
             if (e.Key == Key.P && Keyboard.Modifiers == ModifierKeys.Control)
             {
-                this.CardInstance.IsPremium = true;
+                var ci = ((SelectCardViewModel)this.LayoutRoot.DataContext).CardInstance;
+                ci.IsPremium = !ci.IsPremium;
             }
             else if (e.Key == Key.Enter)
             {
@@ -178,10 +142,7 @@ namespace ESLTracker.Controls.Cards
                 if (tb == null)
                     return;
 
-                //validate card name
-                CardNameChanged(
-                    this as DependencyObject,
-                    new DependencyPropertyChangedEventArgs(CardNameProperty, tb.Text, tb.Text));
+                ((SelectCardViewModel)(this.LayoutRoot.DataContext)).CardNameTyped(tb.Text);
             }
         }
 

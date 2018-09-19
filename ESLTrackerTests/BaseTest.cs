@@ -47,7 +47,7 @@ namespace ESLTrackerTests
             mockLogger
                 .Setup(ml => ml.Log(It.IsAny<TraceLevel>(), It.IsAny<Exception>(), It.IsAny<string>(), It.IsAny<object[]>()))
                 .Callback<TraceLevel, Exception, string, object[]>((level, ex, message, args) => 
-                        TestContext.WriteLine(ex?.Message + message, args)
+                        TestContext.WriteLine(ex?.Message + message, args?.DefaultIfEmpty(new object[] { }))
                 );
 
             new ESLTracker.Utils.SimpleInjector.MasserContainer();

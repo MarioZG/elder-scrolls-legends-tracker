@@ -18,7 +18,11 @@ namespace ESLTracker.BusinessLogic.Cards
     public class CardImage : ICardImage
     {
 
-        private static Dictionary<Guid, Media.Brush> CardMiniatureCache = new Dictionary<Guid, Media.Brush>();
+        internal static Dictionary<Guid, Media.Brush> CardMiniatureCache = new Dictionary<Guid, Media.Brush>();
+        internal static Dictionary<CardRarity, Media.Brush> RarityCache = new Dictionary<CardRarity, Media.Brush>();
+
+        private static readonly Media.SolidColorBrush EmptyRarityBrush = new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
+        private static readonly Media.SolidColorBrush EmptyCardBrush = new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
 
         private readonly IResources resourceService;
         private readonly ILogger logger;
@@ -48,7 +52,7 @@ namespace ESLTracker.BusinessLogic.Cards
             }
             else
             {
-                returnValue = new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
+                returnValue = EmptyCardBrush;
             }
             logger.Debug("End GetCardMiniature");
             return returnValue;
@@ -60,39 +64,47 @@ namespace ESLTracker.BusinessLogic.Cards
             Media.Brush returnValue = null;
             if (rarity.HasValue)
             {
-                switch (rarity)
+                if (!RarityCache.ContainsKey(rarity.Value))
                 {
-                    case CardRarity.Common:
-                        returnValue = new Media.RadialGradientBrush(
-                             Media.Color.FromArgb(255, 115, 115, 115),
-                             Media.Color.FromArgb(255, 200, 200, 200))
-                        { RadiusX = 0.6, RadiusY = 0.6 };
-                        break;
-                    case CardRarity.Rare:
-                        returnValue = new Media.RadialGradientBrush(
-                             Media.Color.FromArgb(255, 72, 132, 226),
-                             Media.Color.FromArgb(255, 135, 195, 224))
-                        { RadiusX = 0.6, RadiusY = 0.6 };
-                        break;
-                    case CardRarity.Epic:
-                        returnValue = new Media.RadialGradientBrush(
-                            Media.Color.FromArgb(255, 138, 43, 226),
-                            Media.Color.FromArgb(255, 204, 84, 199))
-                        { RadiusX = 0.6, RadiusY = 0.6 };
-                        break;
-                    case CardRarity.Legendary:
-                        returnValue = new Media.RadialGradientBrush(
-                            Media.Color.FromArgb(255, 240, 154, 35),
-                            Media.Color.FromArgb(255, 255, 255, 40))
-                        { RadiusX = 0.6, RadiusY = 0.6 };
-                        break;
-                    default:
-                        throw new NotImplementedException("Unknown card rarity");
+                    switch (rarity)
+                    {
+                        case CardRarity.Common:
+                            returnValue = new Media.RadialGradientBrush(
+                                 Media.Color.FromArgb(255, 115, 115, 115),
+                                 Media.Color.FromArgb(255, 200, 200, 200))
+                            { RadiusX = 0.6, RadiusY = 0.6 };
+                            break;
+                        case CardRarity.Rare:
+                            returnValue = new Media.RadialGradientBrush(
+                                 Media.Color.FromArgb(255, 72, 132, 226),
+                                 Media.Color.FromArgb(255, 135, 195, 224))
+                            { RadiusX = 0.6, RadiusY = 0.6 };
+                            break;
+                        case CardRarity.Epic:
+                            returnValue = new Media.RadialGradientBrush(
+                                Media.Color.FromArgb(255, 138, 43, 226),
+                                Media.Color.FromArgb(255, 204, 84, 199))
+                            { RadiusX = 0.6, RadiusY = 0.6 };
+                            break;
+                        case CardRarity.Legendary:
+                            returnValue = new Media.RadialGradientBrush(
+                                Media.Color.FromArgb(255, 240, 154, 35),
+                                Media.Color.FromArgb(255, 255, 255, 40))
+                            { RadiusX = 0.6, RadiusY = 0.6 };
+                            break;
+                        default:
+                            throw new NotImplementedException("Unknown card rarity");
+                    }
+                    RarityCache.Add(rarity.Value, returnValue);
+                }
+                else
+                {
+                    returnValue = RarityCache[rarity.Value];
                 }
             }
             else
             {
-                returnValue = new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
+                returnValue = EmptyRarityBrush;
             }
             logger.Debug("End GetRarityBrush");
             return returnValue;

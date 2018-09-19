@@ -240,23 +240,13 @@ namespace ESLTracker.ViewModels.Decks
             {
                 ver = new SerializableVersion(new Version(versionInc));
             }
-            ClearModifiedBorder();
             SaveDeck(tracker, ver, Deck.SelectedVersion.Cards);
         }
 
         private void CommandCancelExecute(object obj)
         {
-            ClearModifiedBorder();
             this.CancelEdit();
             messanger.Send(new Utils.Messages.EditDeck() { Deck = this.Deck }, Utils.Messages.EditDeck.Context.EditFinished);
-        }
-
-        private void ClearModifiedBorder()
-        {
-            foreach (var ci in Deck.SelectedVersion.Cards.Where(ci => ci.BorderBrush != null))
-            {
-                ci.BorderBrush = null;
-            }
         }
 
         public void BeginEdit()

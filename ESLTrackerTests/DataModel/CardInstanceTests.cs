@@ -29,8 +29,7 @@ namespace ESLTracker.DataModel.Tests
                 {
                     TestContext.WriteLine("Checking prop:{0}.{1};{2}", p.Name, p.GetValue(ci), p.GetValue(clone));
 
-                    if ((p.Name == nameof(CardInstance.Card))//skip do not clone as this will never change anyway! (read from DB)
-                        || (p.Name == nameof(CardInstance.BorderBrush))) //brush wont be modified
+                    if ((p.Name == nameof(CardInstance.Card)))//skip do not clone as this will never change anyway! (read from DB)
                     {
                         
                         continue;

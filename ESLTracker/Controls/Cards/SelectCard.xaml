@@ -56,6 +56,7 @@
         </Style>
     </UserControl.Resources>
     <Button x:Name="LayoutRoot"
+            DataContext="{Binding Source={StaticResource VMLocator}, Path=[Cards.SelectCardViewModel]}"
             HorizontalContentAlignment="Stretch" 
             Focusable="False"
             ToolTipService.IsEnabled="{Binding CardInstance.Card, Converter={Converters:ObjectToBool}}"
@@ -67,9 +68,9 @@
                   ToolTip="Premium card" 
                   FlowDirection="RightToLeft" 
                   VerticalAlignment="Center"
-                  Visibility="{Binding ShowIsPremium, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
-                  IsEnabled="{Binding ReadOnlyNot}"
-                  IsChecked="{Binding CardInstance.IsPremium, Mode=TwoWay}"/>
+                  Visibility="{Binding ShowIsPremium, ElementName=seletCard, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
+                  IsEnabled="{Binding ReadOnlyNot, ElementName=seletCard}"
+                  IsChecked="{Binding IsPremium, Mode=TwoWay}"/>
             <Border CornerRadius="45"
                     DockPanel.Dock="Right"
                     Width="25"
@@ -80,12 +81,12 @@
                     Panel.ZIndex="2"
                     Background="Black"
                     BorderBrush="Black"
-                    Visibility="{Binding ShowQuantity, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
+                    Visibility="{Binding ShowQuantity, ElementName=seletCard, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
                     BorderThickness="0">
                 <Viewbox VerticalAlignment="Stretch" Height="Auto">
                     <TextBlock 
                     FontSize="13" Foreground="White"
-                    Text="{Binding CardInstance.Quantity}" 
+                    Text="{Binding Quantity}" 
                      />
                 </Viewbox>
             </Border>
@@ -97,40 +98,40 @@
                         Padding="2"
                         HorizontalAlignment="Left"
                         Panel.ZIndex="2"
-                        Background="{Binding CardInstance.RarityColor}"
+                        Background="{Binding RarityColor}"
                         BorderBrush="Black"
                         BorderThickness="1">
                     <Viewbox VerticalAlignment="Stretch" Height="Auto">
-                        <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardInstance.Card.Cost, FallbackValue=-}" VerticalAlignment="Stretch"/>
+                        <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardCost, FallbackValue=-}" VerticalAlignment="Stretch"/>
                     </Viewbox>
                 </Border>
-                <Border BorderBrush="{x:Null}" Background="{Binding CardInstance.BackgroundColor}"  Height="25" VerticalAlignment="Center">
+                <Border BorderBrush="{x:Null}" Background="{Binding BackgroundColor}"  Height="25" VerticalAlignment="Center">
                     <Label 
                          Background="{x:Null}"  
                          Style="{StaticResource ShadowText}"
-                         Foreground="{Binding CardInstance.ForegroundColor}"                      
+                         Foreground="{Binding ForegroundColor}"                      
                          Content="{Binding Path=CardName}" 
                          MinWidth="180"
-                         Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibilty}}"/>
+                         Visibility="{Binding ReadOnly, ElementName=seletCard, Converter={Converters:BoolToVisibilty}}"/>
                 </Border>
                 <Border BorderThickness="0,1,1,1" 
                     BorderBrush="Gray" 
-                    Background="{Binding CardInstance.BackgroundColor}" 
-                    Visibility="{Binding ReadOnly, Converter={Converters:BoolToVisibilty}, ConverterParameter=not}"
+                    Background="{Binding BackgroundColor}" 
+                    Visibility="{Binding ReadOnly, ElementName=seletCard, Converter={Converters:BoolToVisibilty}, ConverterParameter=not}"
                     >
                     <TextBox 
-                    Style="{StaticResource ShadowText}"
+                        Style="{StaticResource ShadowText}"
                         TabIndex="10"
-                    Background="{x:Null}" 
-                    BorderBrush="{x:Null}"
-                    BorderThickness="0" 
-                     Foreground="{Binding CardInstance.ForegroundColor}" 
-                     x:Name="txtName"
-                     Height="25"
-                     Text="{Binding Path=CardName, Mode=TwoWay}" 
-                    KeyDown="OnPreviewKeyDown"
-                    AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete}" 
-                    AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}"
+                        BorderThickness="0" 
+                        Foreground="{Binding ForegroundColor}" 
+                        x:Name="txtName"
+                        Height="25"
+                        Text="{Binding Path=CardName, Mode=TwoWay}" 
+                        KeyDown="OnPreviewKeyDown"
+                        AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding CardNameAutocomplete, ElementName=seletCard}" 
+                        AutoCompleteBehavior:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
                     >
                     </TextBox>
                 </Border>
@@ -150,25 +151,25 @@
                 <TextBlock 
                 Style="{StaticResource toolTipAttackHealth}" 
                 DockPanel.Dock="Left" 
-                Text="{Binding CardInstance.Card.Attack}"/>
+                Text="{Binding Path=CardAttack}"/>
                 <TextBlock 
                 Style="{StaticResource toolTipAttackHealth}" 
                 DockPanel.Dock="Right" 
-                Text="{Binding CardInstance.Card.Health}"/>
+                Text="{Binding Path=CardHealth}"/>
                 <TextBlock 
                 Style="{StaticResource toolTipCardName}" 
                 DockPanel.Dock="Top"
                 HorizontalAlignment="Center" 
-                Text="{Binding CardInstance.Card.Name}"/>
+                Text="{Binding Path=CardName}"/>
                 <TextBlock 
                 DockPanel.Dock="Top" 
                 HorizontalAlignment="Center"
-                Text="{Binding CardInstance.Card.Type}"/>
+                Text="{Binding Path=CardType}"/>
                 <TextBlock 
                 TextWrapping="WrapWithOverflow" 
                 TextAlignment="Center" 
                 HorizontalAlignment="Center" 
-                Text="{Binding CardInstance.Card.Text}"/>
+                Text="{Binding Path=CardText}"/>
             </DockPanel>
         </Button.ToolTip>
     </Button>

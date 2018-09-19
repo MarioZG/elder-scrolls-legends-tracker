@@ -43,24 +43,6 @@ namespace ESLTrackerTests.BusinessLogic.Cards
         }
 
         [TestMethod]
-        public void CardsDatabaseTest_EnsureAllCardsHaveImages()
-        {
-            Resources resService = new Resources();
-            CardInstanceFactory cardInstanceFactory = new CardInstanceFactory();
-
-            foreach (Card card in CardsDatabase.Cards)
-            {
-                Assert.IsNotNull(cardInstanceFactory.CreateFromCard(card).BackgroundColor, card.Name);
-                Assert.IsNotNull(cardInstanceFactory.CreateFromCard(card).ForegroundColor, card.Name);
-                Assert.IsNotNull(cardInstanceFactory.CreateFromCard(card).RarityColor, card.Name);
-
-                Uri imageUri = new Uri(card.ImageName, UriKind.RelativeOrAbsolute);
-                Assert.IsTrue(resService.ResourceExists(imageUri), card.Name);
-            }
-
-        }
-
-        [TestMethod]
         public void DeserialiseCard001_StandardCard()
         {
             string json = @"[{""name"":""Abecean Navigator"",

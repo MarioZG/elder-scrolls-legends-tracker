@@ -41,12 +41,12 @@ namespace ESLTracker.DataModel
             get { return card; }
             set { card = value; RaisePropertyChangedEvent(String.Empty); }
         }
-        private bool isPremium;
 
+        private bool isPremium;
         public bool IsPremium
         {
             get { return isPremium; }
-            set { isPremium = value;  RaisePropertyChangedEvent(nameof(IsPremium)); }
+            set { SetProperty(ref isPremium, value, onChanged: () => { RaisePropertyChangedEvent(String.Empty); }); }
         }
 
         private int quantity = 1;
@@ -55,46 +55,6 @@ namespace ESLTracker.DataModel
         {
             get { return quantity; }
             set { quantity = value; RaisePropertyChangedEvent(nameof(Quantity)); }
-        }
-
-        [XmlIgnore]
-        public Brush BackgroundColor
-        {
-            get
-            {
-                return MasserContainer.Container.GetInstance<ICardImage>().GetCardMiniature(card);
-            }
-        }
-        [XmlIgnore]
-        public Brush ForegroundColor
-        {
-            get
-            {
-                if ((Card != null) && (Card != Card.Unknown))
-                {
-                    return new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-                }
-                else
-                {
-                    return new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
-                }
-            }
-        }
-        [XmlIgnore]
-        public Brush RarityColor
-        {
-            get
-            {
-                return MasserContainer.Container.GetInstance<ICardImage>().GetRarityBrush(card?.Rarity);
-            }
-        }
-
-        private Brush borderBrush = null;
-        [XmlIgnore]
-        public Brush BorderBrush
-        {
-            get { return borderBrush; }
-            set { borderBrush = value; RaisePropertyChangedEvent(nameof(BorderBrush)); }
         }
 
         public bool HasCard

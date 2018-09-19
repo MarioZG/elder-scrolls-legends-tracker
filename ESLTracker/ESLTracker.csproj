@@ -153,6 +153,7 @@
     <Compile Include="Utils\NLog\NLogLoggerProxy.cs" />
     <Compile Include="Utils\SplashScreenManager.cs" />
     <Compile Include="Utils\UserInfoMessages.cs" />
+    <Compile Include="ViewModels\Cards\SelectCardViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckItemMenuOperationsViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckItemViewModel.cs" />
     <Compile Include="ViewModels\SessionOverlay\SessionOverviewViewModel.cs" />

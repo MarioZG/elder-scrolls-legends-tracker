@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
 using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Decks
@@ -34,7 +36,16 @@ namespace ESLTracker.ViewModels.Decks
             }
             set
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Restart();
                 tracker.ActiveDeck = value;
+
+                App.Current.Dispatcher.BeginInvoke(
+                  System.Windows.Threading.DispatcherPriority.Loaded,
+                  new Action(() =>
+                  {
+                      logger.Debug($"Dispatcher Loaded. Elapsed time {sw.Elapsed}");
+                  }));
             }
         }
 
@@ -79,13 +90,15 @@ namespace ESLTracker.ViewModels.Decks
         private readonly IDeckService deckService;
         private readonly ISettings settings;
         private readonly DeckCalculations deckCalculations;
+        private readonly ILogger logger;
 
         public DeckListViewModel(
             IMessenger messanger,
             ITracker tracker,
             IDeckService deckService,
             ISettings settings,
-            DeckCalculations deckCalculations)
+            DeckCalculations deckCalculations,
+            ILogger logger)
         {
             this.messanger = messanger;
             messanger.Register<DeckListFilterChanged>(this, DeckFilterChanged, ControlMessangerContext.DeckList_DeckFilterControl);
@@ -101,6 +114,7 @@ namespace ESLTracker.ViewModels.Decks
             this.deckService = deckService;
             this.settings = settings;
             this.deckCalculations = deckCalculations;
+            this.logger = logger;
         }
 
         private void DeckFilterChanged(DeckListFilterChanged obj)

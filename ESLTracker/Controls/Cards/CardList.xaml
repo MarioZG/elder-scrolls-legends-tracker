@@ -34,7 +34,6 @@
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <local:SelectCard                     
-                    BorderBrush="{Binding BorderBrush}" 
                     BorderThickness="1"
                     Margin="0,0,0,0" 
                     CardInstance="{Binding}" 

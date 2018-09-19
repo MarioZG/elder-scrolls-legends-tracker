@@ -423,7 +423,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 tracker.Object, 
                 mockDeckService.Object,
                 mockSettings.Object,
-                new DeckCalculations(tracker.Object));
+                new DeckCalculations(tracker.Object),
+                base.mockLogger.Object);
         }
     }
 }

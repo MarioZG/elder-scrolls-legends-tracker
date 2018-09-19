@@ -77,6 +77,7 @@
     <Compile Include="Builders\GameListBuilder.cs" />
     <Compile Include="Builders\PackBuilder.cs" />
     <Compile Include="Builders\RewardBuilder.cs" />
+    <Compile Include="BusinessLogic\Cards\CardImageTests.cs" />
     <Compile Include="BusinessLogic\Cards\CardsDatabaseFactoryTests.cs" />
     <Compile Include="BusinessLogic\DataFile\FileUpdaterTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckCalculationsTests.cs" />
