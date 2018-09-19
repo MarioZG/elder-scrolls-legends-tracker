@@ -16,6 +16,7 @@ namespace ESLTracker.ViewModels.Game
     {
 
         static int RankJump = 10;
+        static readonly TimeSpan SeasonEndTime = TimeSpan.FromHours(7);
 
         public override IEnumerable<GameType> GameTypeSeletorValues
         {
@@ -114,8 +115,8 @@ namespace ESLTracker.ViewModels.Game
             var games = tracker
                  .Games
                  .Where(g => g.Type == GameType.PlayRanked
-                        && ((filterDateFrom == null) || (g.Date.Date >= filterDateFrom))
-                        && ((filterDateTo == null) || (g.Date.Date <= filterDateTo))
+                        && ((filterDateFrom == null) || (g.Date.Date >= filterDateFrom.Value.Add(SeasonEndTime)))
+                        && ((filterDateTo == null) || (g.Date.Date <= filterDateTo.Value.Add(SeasonEndTime)))
                         )
                  .OrderBy(g => g.Date);
 
@@ -173,10 +174,10 @@ namespace ESLTracker.ViewModels.Game
         {
             int currval = 0;
             PlayerRank? currentPR = null;
-            int? worstLegendRank = null;
+            int worstLegendRank = games.Where(g => g.PlayerRank == PlayerRank.TheLegend).Max(g => g.PlayerLegendRank).GetValueOrDefault();
             chartDatagameAfterGame = new Dictionary<string, Tuple<DateTime, int>>();
             chartDataMaxMin = new Dictionary<DateTime, Tuple<int, int, int>>();
-            foreach (dynamic r in games)
+            foreach (DataModel.Game r in games)
             {
                 if (currentPR != r.PlayerRank)
                 {
@@ -188,7 +189,7 @@ namespace ESLTracker.ViewModels.Game
                 {
                     if (r.Outcome == GameOutcome.Victory)
                     {
-                        currval += r.BonusRound ? 2 : 1;
+                        currval += r.BonusRound.GetValueOrDefault(false) ? 2 : 1;
                     }
                     else
                     {
@@ -201,11 +202,7 @@ namespace ESLTracker.ViewModels.Game
                 }
                 else
                 {
-                    //calc for legends
-                    if (!worstLegendRank.HasValue) {
-                        worstLegendRank = games.Where(g => g.PlayerRank == PlayerRank.TheLegend).Max(g => g.PlayerLegendRank);
-                    }
-                    currval = worstLegendRank - r.PlayerLegendRank;
+                    currval = worstLegendRank - r.PlayerLegendRank.GetValueOrDefault(currval+worstLegendRank); //currval+worstLegendRank = shouldn;t change currval if playerlegendrank is null
                 }
                 var value = currval + (12 - (int)currentPR) * RankJump;
                 chartDatagameAfterGame.Add(r.PlayerRank + "" + r.Outcome + r.Date + Guid.NewGuid().ToString(),
