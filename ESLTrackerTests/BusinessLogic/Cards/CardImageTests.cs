@@ -24,6 +24,15 @@ namespace ESLTrackerTests.BusinessLogic.Cards
             System.Windows.Application.ResourceAssembly = Assembly.GetAssembly(typeof(App));
         }
 
+        [TestInitialize]
+        override public void TestInitialize()
+        {
+            base.TestInitialize();
+
+            CardImage.CardMiniatureCache.Clear();
+            CardImage.RarityCache.Clear();
+        }
+
         [TestMethod]
         public void GetCardMiniature001_PerfTests()
         {
