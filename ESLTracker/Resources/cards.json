@@ -1,7 +1,7 @@
 {
-  "Version": "0.72.4.1",
-  "VersionInfo": "Patch 72.4  ",
-  "VersionDate": "2018-07-26T00:00:00Z",
+  "Version": "2.0",
+  "VersionInfo": "New client release",
+  "VersionDate": "2018-09-28T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -83,7 +83,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Treasure Hunt — Three (Neutral) cards: Sacrifice Abandoned Imperfect to summon an 8/8 Awakened Imperfect with Breakthrough and Guard to the lane of your choice."
+      "text": "Treasure Hunt — Three (Neutral) cards: Sacrifice Abandoned Imperfect to summon an 8/8 Awakened Imperfect with Guard and Breakthrough to the lane of your choice."
     },
     {
       "id": "094f4937-e5db-8a41-e441-1905cd7a1406",
@@ -96,7 +96,7 @@
       "cost": "2",
       "attack": "3",
       "health": "1",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Summon: If the top card of your deck is an action, draw it. Otherwise, put it on the bottom."
     },
@@ -111,7 +111,7 @@
       "cost": "3",
       "attack": "0",
       "health": "1",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard\r\nImmune to Silence.\r\nLast Gasp: Adoring Fan will return."
     },
@@ -126,7 +126,7 @@
       "cost": "7",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: Deal 1 damage.\r\nBeast Form: +2/+2 and destroy a Wounded creature."
     },
@@ -141,7 +141,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Beast Form: +1/+1 and draw a card."
     },
@@ -156,7 +156,7 @@
       "cost": "2",
       "attack": "3",
       "health": "1",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": [],
       "text": "Summon: Deal 2 damage to each player."
     },
@@ -171,7 +171,7 @@
       "cost": "4",
       "attack": "2",
       "health": "5",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "When Ageless Automaton attacks a Guard, it gains +3/+0 and Breakthrough this turn."
     },
@@ -186,7 +186,7 @@
       "cost": "5",
       "attack": "5",
       "health": "5",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Summon: Ahnassi steals all Keywords from enemy creatures."
     },
@@ -201,7 +201,7 @@
       "cost": "2",
       "attack": "1",
       "health": "2",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Lethal","Rally"],
       "text": "Lethal, Rally"
     },
@@ -216,7 +216,7 @@
       "cost": "1",
       "attack": "1",
       "health": "2",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Summon: +1/+1 if you have an action in your hand."
     },
@@ -231,7 +231,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Treasure Hunt - Action, Creature, Item, Support: +6/+6\r\nWhen a friendly treasure hunter finds something, summon Skywag or give Skywag +1/+1."
     },
@@ -246,7 +246,7 @@
       "cost": "4",
       "attack": "2",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Charge","Rally"],
       "text": "Charge, Rally"
     },
@@ -261,7 +261,7 @@
       "cost": "20",
       "attack": "12",
       "health": "12",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Costs 2 less for each Dragon in your discard pile.\r\nSummon: Destroy all other creatures.\r\nAt the start of your turn, summon a random Dragon from your discard pile."
     },
@@ -276,7 +276,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "When Alik'r Bandit equips an item, he gains +1/+1."
     },
@@ -291,7 +291,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "Summon: Put a Steel Dagger into your hand.\r\nWhen Alik'r Survivalist equips an item, he gains +1/+1."
     },
@@ -306,7 +306,7 @@
       "cost": "6",
       "attack": "1",
       "health": "1",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": ["Lethal"],
       "text": "Lethal\r\nSummon: Deal 1 damage."
     },
@@ -321,7 +321,7 @@
       "cost": "7",
       "attack": "6",
       "health": "6",
-      "race": "god",
+      "race": "God",
       "keywords": [],
       "text": "Exalt 3: +6/+6\r\nFriendly Exalted creatures are immune to damage."
     },
@@ -336,7 +336,7 @@
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Exalt 2: Heal all friendly creatures."
     },
@@ -351,7 +351,7 @@
       "cost": "4",
       "attack": "3",
       "health": "1",
-      "race": "wolf",
+      "race": "Wolf",
       "keywords": [],
       "text": "Other friendly Wolves have +2/+0."
     },
@@ -359,7 +359,7 @@
       "id": "80155aee-eea2-c528-258c-d2739576141e",
       "name": "Altar of Despair",
       "rarity": "Legendary",
-      "set": "Core",
+      "set": "Madhouse Collection",
       "isunique": false,
       "type": "support",
       "attributes": "neutral",
@@ -381,7 +381,7 @@
       "cost": "2",
       "attack": "1",
       "health": "1",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: Give another friendly creature power and health equal to Ambitious Hireling's power."
     },
@@ -396,7 +396,7 @@
       "cost": "8",
       "attack": "5",
       "health": "5",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nSummon: Deal 5 damage.\r\nYour actions have Breakthrough."
     },
@@ -409,8 +409,8 @@
       "type": "item",
       "attributes": "strength",
       "cost": "7",
-      "attack": "0",
-      "health": "0",
+      "attack": "4",
+      "health": "4",
       "race": "",
       "keywords": [],
       "text": "+4/+4\r\nSummon: Give the top creature of your deck +4/+4."
@@ -426,7 +426,7 @@
       "cost": "3",
       "attack": "2",
       "health": "4",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": [],
       "text": "Slay: Summon a Risen Dead."
     },
@@ -441,7 +441,7 @@
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": [],
       "text": "When you summon a Dragon, summon a 1/1 Draugr Sentry with Guard."
     },
@@ -456,24 +456,9 @@
       "cost": "4",
       "attack": "2",
       "health": "4",
-      "race": "troll",
+      "race": "Troll",
       "keywords": ["Regenerate"],
       "text": "Regenerate\r\nSummon: +2/+2 if your opponent has more cards in hand."
-    },
-    {
-      "id": "0c231803-4dd8-11e6-bdf4-0800200c9a66",
-      "name": "Angry Villager",
-      "rarity": "Common",
-      "set": "Heroes of Skyrim",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "neutral",
-      "cost": "1",
-      "attack": "1",
-      "health": "1",
-      "race": "nord",
-      "keywords": [],
-      "text": ""
     },
     {
       "id": "046cdabd-dee9-4157-693f-d2e100fdd0c0",
@@ -486,7 +471,7 @@
       "cost": "4",
       "attack": "5",
       "health": "3",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": ""
     },
@@ -516,7 +501,7 @@
       "cost": "2",
       "attack": "0",
       "health": "2",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "Gains +1/+0 when you draw a card during your turn."
     },
@@ -546,7 +531,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Choose a blessing from one of the Tribunal gods.\r\nExalt 3: Gain all three blessings instead."
     },
@@ -561,14 +546,14 @@
       "cost": "4",
       "attack": "3",
       "health": "5",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": ["Lethal"],
       "text": "Lethal"
     },
     {
       "id": "7c5d6525-45a6-3785-a334-d9eb33608774",
       "name": "Archein Guerrilla",
-      "rarity": "Rare",
+      "rarity": "Common",
       "set": "Core",
       "isunique": false,
       "type": "creature",
@@ -576,7 +561,7 @@
       "cost": "4",
       "attack": "2",
       "health": "4",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": ["Lethal"],
       "text": "Lethal"
     },
@@ -591,7 +576,7 @@
       "cost": "4",
       "attack": "1",
       "health": "4",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": ["Lethal"],
       "text": "Lethal\r\nSlay: Gain +1 max magicka."
     },
@@ -621,7 +606,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Summon: Steal all items from an enemy creature."
     },
@@ -681,7 +666,7 @@
       "cost": "3",
       "attack": "1",
       "health": "4",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "After you play an action, give a random friendly creature +1/+1."
     },
@@ -696,7 +681,7 @@
       "cost": "6",
       "attack": "3",
       "health": "6",
-      "race": "ashcreature",
+      "race": "Ash Creature",
       "keywords": ["Guard"],
       "text": "Guard\r\nAt the end of your turn, if you have a creature with 5 power or more, reduce the cost of all creatures in your hand by 1."
     },
@@ -711,7 +696,7 @@
       "cost": "4",
       "attack": "4",
       "health": "3",
-      "race": "ashcreature",
+      "race": "Ash Creature",
       "keywords": [],
       "text": "At the end of your turn, if you have a creature with 5 power or more, draw a card."
     },
@@ -726,7 +711,7 @@
       "cost": "3",
       "attack": "4",
       "health": "3",
-      "race": "ashcreature",
+      "race": "Ash Creature",
       "keywords": [],
       "text": "Summon: If you have a creature with 5 power or more, Shackle an enemy creature."
     },
@@ -741,7 +726,7 @@
       "cost": "5",
       "attack": "3",
       "health": "4",
-      "race": "ashcreature",
+      "race": "Ash Creature",
       "keywords": [],
       "text": "Summon: Deal 3 damage to a creature if you have a creature with 5 power or more."
     },
@@ -756,7 +741,7 @@
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "ashcreature",
+      "race": "Ash Creature",
       "keywords": [],
       "text": "Summon: Deal 2 damage to a creature."
     },
@@ -771,9 +756,9 @@
       "cost": "1",
       "attack": "1",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
-      "text": "SummonBattle an enemy creature."
+      "text": "Summon: Battle an enemy creature."
     },
     {
       "id": "37c60116-a080-4006-b00e-ef6e6ddf8672",
@@ -786,7 +771,7 @@
       "cost": "9",
       "attack": "6",
       "health": "6",
-      "race": "daedra",
+      "race": "Werewolf",
       "keywords": [],
       "text": "Summon: Choose one:\r\nStrength: +6/+6 and Guard.\r\nSpeed: Gains Charge."
     },
@@ -799,7 +784,7 @@
       "type": "item",
       "attributes": "strength",
       "cost": "3",
-      "attack": "0",
+      "attack": "3",
       "health": "0",
       "race": "",
       "keywords": [],
@@ -831,7 +816,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "factotum",
+      "race": "Factotum",
       "keywords": [],
       "text": "Assemble: +1/+0 and Breakthrough or +0/+1 and Regenerate."
     },
@@ -846,7 +831,7 @@
       "cost": "3",
       "attack": "1",
       "health": "2",
-      "race": "factotum",
+      "race": "Factotum",
       "keywords": [],
       "text": "Assemble: +2/+0 or Lethal."
     },
@@ -861,7 +846,7 @@
       "cost": "2",
       "attack": "1",
       "health": "1",
-      "race": "factotum",
+      "race": "Factotum",
       "keywords": [],
       "text": "Assemble: +0/+2 or Guard."
     },
@@ -876,7 +861,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "factotum",
+      "race": "Factotum",
       "keywords": [],
       "text": "Assemble: Choose two: +2/+0, +0/+2, deal 2 damage to your opponent, or you gain 2 health."
     },
@@ -884,16 +869,16 @@
       "id": "7f74e516-d2e1-11e6-bf26-cec0c932ce01",
       "name": "Astrid",
       "rarity": "Legendary",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": true,
       "type": "creature",
       "attributes": "agility",
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Lethal"],
-      "text": "Lethal\r\nFriendly Lethal creatures have \"Slay: Put a Completed Contract into your hand.\""
+      "text": "Lethal\r\nFriendly Lethal creatures have “Slay: Put a Completed Contract into your hand.”"
     },
     {
       "id": "3dfd6599-b7bd-4b72-88aa-47453a5fc910",
@@ -906,7 +891,7 @@
       "cost": "3",
       "attack": "4",
       "health": "3",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": [],
       "text": "At the end of your turn, if three or more creatures died this turn, put a random Blood Magic Spell into your hand."
     },
@@ -921,7 +906,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "When you play an action, Auridon Paladin gains Drain this turn."
     },
@@ -936,7 +921,7 @@
       "cost": "8",
       "attack": "5",
       "health": "7",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": ["Guard"],
       "text": "Guard\r\nWhen Auroran Sentry is dealt damage, you gain that much health."
     },
@@ -951,7 +936,7 @@
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "At the end of your turn, if you have a creature with 5 power or more, Awakened Dreamer gains +1/+1."
     },
@@ -966,7 +951,7 @@
       "cost": "8",
       "attack": "8",
       "health": "8",
-      "race": "imperfect",
+      "race": "Automaton",
       "keywords": ["Breakthrough","Guard"],
       "text": "Breakthrough, Guard"
     },
@@ -981,7 +966,7 @@
       "cost": "5",
       "attack": "5",
       "health": "5",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Summon: Draw a random action from your discard pile.\r\nYour actions cost 1 less."
     },
@@ -996,7 +981,7 @@
       "cost": "3",
       "attack": "3",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Pilfer: +3/+0"
     },
@@ -1011,7 +996,7 @@
       "cost": "4",
       "attack": "5",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Steal Cover from another creature."
     },
@@ -1026,7 +1011,7 @@
       "cost": "5",
       "attack": "3",
       "health": "6",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": ["Rally"],
       "text": "Rally"
     },
@@ -1041,7 +1026,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Rally"],
       "text": "Rally\r\nYour other Rallies give an extra +1/+1."
     },
@@ -1056,7 +1041,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Plot: +1/+1 for each other card you've played this turn."
     },
@@ -1071,7 +1056,7 @@
       "cost": "2",
       "attack": "0",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Last Gasp: Summon a random creature with cost less than or equal to your max magicka."
     },
@@ -1086,9 +1071,9 @@
       "cost": "6",
       "attack": "3",
       "health": "5",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
-      "text": "Summon: Other friendly creatures in this lane gain \"Pilfer: Draw a card\" this turn."
+      "text": "Summon: Other friendly creatures in this lane gain “Pilfer: Draw a card” this turn."
     },
     {
       "id": "39ddb301-92a3-00ad-a820-9b3011a566d0",
@@ -1101,7 +1086,7 @@
       "cost": "4",
       "attack": "4",
       "health": "3",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "Summon: +2/+2 if you have another Orc."
     },
@@ -1116,7 +1101,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "beast",
+      "race": "Daedra",
       "keywords": [],
       "text": "Summon: Choose one:\r\nStay: Gains +1/+1 and Guard.\r\nFetch: Put a random Daedra into your hand.\r\nRoll Over: Gains Charge."
     },
@@ -1131,7 +1116,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": [],
       "text": "Summon: Give a creature Guard."
     },
@@ -1161,7 +1146,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Give other friendly (Intelligence) creatures +1/+0 and Guard."
     },
@@ -1176,7 +1161,7 @@
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": ["Drain","Guard"],
       "text": "Drain, Guard"
     },
@@ -1206,7 +1191,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": ["Charge"],
       "text": "Charge\r\nSlay: Put a random item into your hand."
     },
@@ -1236,7 +1221,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "orc",
+      "race": "Orc",
       "keywords": ["Charge"],
       "text": "Charge"
     },
@@ -1244,14 +1229,14 @@
       "id": "83513857-ba27-9004-d4bd-98fc679017cc",
       "name": "Battlereeve of Dusk",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Promotional",
       "isunique": false,
       "type": "creature",
       "attributes": "intelligence",
       "cost": "6",
       "attack": "3",
       "health": "3",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Summon: Give friendly creatures +1/+1 for each Keyword they have."
     },
@@ -1266,7 +1251,7 @@
       "cost": "7",
       "attack": "7",
       "health": "4",
-      "race": "giant",
+      "race": "Giant",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nSummon: Unsummon a creature in this lane, or destroy an enemy support."
     },
@@ -1281,7 +1266,7 @@
       "cost": "5",
       "attack": "5",
       "health": "3",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: Secretly choose an enemy creature.\r\nLast Gasp: Destroy the chosen creature."
     },
@@ -1296,7 +1281,7 @@
       "cost": "3",
       "attack": "4",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "When you summon another creature with 5 power or more, give it +1/+1 and Breakthrough."
     },
@@ -1311,7 +1296,7 @@
       "cost": "5",
       "attack": "0",
       "health": "5",
-      "race": "",
+      "race": "Netch",
       "keywords": [],
       "text": "While Betty Netch is in play, your max magicka is increased by 2."
     },
@@ -1326,9 +1311,9 @@
       "cost": "3",
       "attack": "0",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Drain"],
-      "text": "Drain\r\nSummon: Deal 2 damage to a creature. >Last Gasp: Deal 2 damage to your opponent."
+      "text": "Drain\r\nSummon: Deal 2 damage to a creature. \r\n Last Gasp: Deal 2 damage to your opponent."
     },
     {
       "id": "14c71ca5-850b-140c-a8a8-770dc37c6b7f",
@@ -1341,7 +1326,7 @@
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "At the end of your turn, summon a 1/1 Argonian Recruit. If you have 7 or more max magicka, summon a 3/3 Argonian Veteran instead."
     },
@@ -1356,7 +1341,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: If you have more health than your opponent, summon a random creature from your discard pile."
     },
@@ -1386,7 +1371,7 @@
       "cost": "1",
       "attack": "0",
       "health": "1",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard\r\nSummon: Gain 2 health."
     },
@@ -1401,7 +1386,7 @@
       "cost": "3",
       "attack": "2",
       "health": "4",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "At the start of your turn, heal another random friendly creature."
     },
@@ -1416,7 +1401,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard"
     },
@@ -1431,7 +1416,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Pilfer: Gain 3 magicka this turn.\r\nSlay: Gain +1 max magicka."
     },
@@ -1446,7 +1431,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "When you summon a Dragon, draw a card."
     },
@@ -1461,7 +1446,7 @@
       "cost": "4",
       "attack": "5",
       "health": "5",
-      "race": "troll",
+      "race": "Troll",
       "keywords": [],
       "text": "Slay: +1/+1"
     },
@@ -1476,7 +1461,7 @@
       "cost": "3",
       "attack": "5",
       "health": "3",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": [],
       "text": "At the start of your turn, Blighted Alit deals 2 damage to you."
     },
@@ -1491,7 +1476,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "beast",
+      "race": "Beast",
       "keywords": ["Drain"],
       "text": "Drain\r\nAt the end of your turn, if you have a creature with 5 power or more, deal 2 damage to your opponent."
     },
@@ -1506,7 +1491,7 @@
       "cost": "5",
       "attack": "5",
       "health": "7",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Ignores Guards and may attack creatures in any lane."
     },
@@ -1521,7 +1506,7 @@
       "cost": "9",
       "attack": "6",
       "health": "6",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": [],
       "text": "Summon and Slay: Put a random Blood Magic Spell into your hand."
     },
@@ -1529,14 +1514,14 @@
       "id": "519f02a7-3180-4637-b922-f471cba5aa15",
       "name": "Blood Pact Messenger",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "willpower",
       "cost": "2",
       "attack": "1",
       "health": "1",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Pilfer: Draw two cards. Sacrifice Blood Pact Messenger at the end of the turn."
     },
@@ -1559,14 +1544,14 @@
       "id": "c6758770-9b9d-11e6-9f33-a24fc0d9649c",
       "name": "Blood Sorceress",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "intelligence",
       "cost": "1",
       "attack": "2",
       "health": "1",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "At the start of your turn, if you have 7 or more max magicka, deal 5 damage to your opponent."
     },
@@ -1581,7 +1566,7 @@
       "cost": "7",
       "attack": "7",
       "health": "7",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": [],
       "text": "When a creature dies, Bloodline Outcast gains Drain this turn."
     },
@@ -1596,7 +1581,7 @@
       "cost": "7",
       "attack": "3",
       "health": "8",
-      "race": "dreugh",
+      "race": "Dreugh",
       "keywords": [],
       "text": ""
     },
@@ -1611,7 +1596,7 @@
       "cost": "4",
       "attack": "9",
       "health": "1",
-      "race": "lurcher",
+      "race": "Lurcher",
       "keywords": [],
       "text": ""
     },
@@ -1626,7 +1611,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Rally"],
       "text": "Rally\r\nWhen you Rally with no creatures in your hand, first draw Bolvyn Venim from your deck."
     },
@@ -1639,7 +1624,7 @@
       "type": "item",
       "attributes": "strength",
       "cost": "2",
-      "attack": "0",
+      "attack": "1",
       "health": "0",
       "race": "",
       "keywords": [],
@@ -1656,7 +1641,7 @@
       "cost": "7",
       "attack": "5",
       "health": "5",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": [],
       "text": "Summon: Fill this lane with 1/1 Skeletons.\r\nOther friendly Skeletons have +1/+1."
     },
@@ -1671,7 +1656,7 @@
       "cost": "4",
       "attack": "1",
       "health": "2",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard\r\nSummon: +1/+1 for each enemy creature in this lane."
     },
@@ -1686,7 +1671,7 @@
       "cost": "6",
       "attack": "3",
       "health": "3",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "Last Gasp: Draw three different random 1-cost creatures from your deck."
     },
@@ -1701,7 +1686,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "fabricant",
+      "race": "Fabricant",
       "keywords": [],
       "text": "When Brassilisk takes damage and survives, summon a copy of it in the other lane."
     },
@@ -1716,7 +1701,7 @@
       "cost": "4",
       "attack": "1",
       "health": "1",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Ward"],
       "text": "Ward\r\nWhen Breton Conjurer's Ward is broken, summon a 5/5 Frost Atronach with Guard."
     },
@@ -1746,7 +1731,7 @@
       "cost": "7",
       "attack": "4",
       "health": "4",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": [],
       "text": "Summon: See a vision of a random creature, then you must choose a creature to transform into it."
     },
@@ -1754,7 +1739,7 @@
       "id": "8a5e1bc8-ce4a-11e6-9d9d-cec0c932ce01",
       "name": "Brotherhood Sanctuary",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "support",
       "attributes": "agility",
@@ -1769,14 +1754,14 @@
       "id": "751b4dc6-b11c-11e6-80f5-76304dec7eb7",
       "name": "Brotherhood Slayer",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "agility",
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSlay: Put a Completed Contract into your hand."
     },
@@ -1791,7 +1776,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "When you summon another creature, give it +0/+2."
     },
@@ -1806,7 +1791,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "When you summon another creature, you gain 1 health."
     },
@@ -1821,7 +1806,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Last Gasp: Deal 3 damage to a random enemy."
     },
@@ -1836,7 +1821,7 @@
       "cost": "5",
       "attack": "4",
       "health": "5",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Drain"],
       "text": "Drain\r\nWhen a friendly creature Pilfers or Drains, gain 1 magicka this turn."
     },
@@ -1896,7 +1881,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: Look at two of your opponent's cards. Guess the one in their hand. If you're right, give all creatures in your hand +1/+1."
     },
@@ -1956,7 +1941,7 @@
       "cost": "3",
       "attack": "2",
       "health": "4",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -1971,7 +1956,7 @@
       "cost": "3",
       "attack": "4",
       "health": "2",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "Summon: Deal 2 damage to your opponent."
     },
@@ -1986,7 +1971,7 @@
       "cost": "3",
       "attack": "2",
       "health": "4",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard"
     },
@@ -2001,7 +1986,7 @@
       "cost": "5",
       "attack": "4",
       "health": "3",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "Plot: Unsummon a creature in this lane with less power than Camonna Tong Heavy."
     },
@@ -2016,7 +2001,7 @@
       "cost": "5",
       "attack": "2",
       "health": "2",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: Summon a 2/2 Wood Elf Scout with Charge in each lane with a Wounded enemy creature."
     },
@@ -2031,7 +2016,7 @@
       "cost": "4",
       "attack": "2",
       "health": "5",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Guard","Charge"],
       "text": "Guard, Charge"
     },
@@ -2046,7 +2031,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "When Caravan Enforcer moves, he gains +1/+1."
     },
@@ -2091,7 +2076,7 @@
       "cost": "2",
       "attack": "1",
       "health": "5",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": ""
     },
@@ -2106,7 +2091,7 @@
       "cost": "5",
       "attack": "3",
       "health": "5",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: Give your Activated supports an extra use.\r\nYou may Activate your supports an extra time each turn."
     },
@@ -2121,7 +2106,7 @@
       "cost": "5",
       "attack": "5",
       "health": "6",
-      "race": "beast",
+      "race": "Beast",
       "keywords": [],
       "text": ""
     },
@@ -2136,7 +2121,7 @@
       "cost": "4",
       "attack": "2",
       "health": "4",
-      "race": "troll",
+      "race": "Troll",
       "keywords": ["Regenerate"],
       "text": "Regenerate"
     },
@@ -2144,14 +2129,14 @@
       "id": "751b50a0-b11c-11e6-80f5-76304dec7eb7",
       "name": "Chanter of Akatosh",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "willpower",
       "cost": "5",
       "attack": "1",
       "health": "2",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "After you play an action, summon a random creature from your deck with the same cost."
     },
@@ -2166,7 +2151,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "chaurus",
+      "race": "Chaurus",
       "keywords": [],
       "text": ""
     },
@@ -2174,7 +2159,7 @@
       "id": "e62d3ccb-6650-11e6-bdf4-0800200c9a66",
       "name": "Chaurus Breeding Pit",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Promotional",
       "isunique": false,
       "type": "action",
       "attributes": "agility",
@@ -2196,7 +2181,7 @@
       "cost": "7",
       "attack": "5",
       "health": "4",
-      "race": "chaurus",
+      "race": "Chaurus",
       "keywords": [],
       "text": "Summon: Give all enemy creatures in this lane -1/-1."
     },
@@ -2211,7 +2196,7 @@
       "cost": "1",
       "attack": "1",
       "health": "3",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Drain"],
       "text": "Drain"
     },
@@ -2241,7 +2226,7 @@
       "cost": "6",
       "attack": "6",
       "health": "7",
-      "race": "werewolf",
+      "race": "Werewolf",
       "keywords": [],
       "text": "Slay: May attack again this turn."
     },
@@ -2264,14 +2249,14 @@
       "id": "751b5226-b11c-11e6-80f5-76304dec7eb7",
       "name": "Cicero the Betrayer",
       "rarity": "Legendary",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": true,
       "type": "creature",
       "attributes": "endurance",
       "cost": "6",
       "attack": "1",
       "health": "6",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Lethal"],
       "text": "Lethal\r\nSlay: Draw two cards.\r\nCicero can attack friendly creatures."
     },
@@ -2286,7 +2271,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nBeast Form: +2/+1"
     },
@@ -2301,7 +2286,7 @@
       "cost": "2",
       "attack": "2",
       "health": "1",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Give a creature +0/+2."
     },
@@ -2316,7 +2301,7 @@
       "cost": "6",
       "attack": "3",
       "health": "3",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Battle an enemy creature."
     },
@@ -2331,7 +2316,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": ["Charge"],
       "text": "Charge"
     },
@@ -2361,7 +2346,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": ["Charge"],
       "text": "Charge\r\nCan't attack your opponent.\r\nAt the end of your turn, if there are no enemy creatures in this lane, move Cliff Strider."
     },
@@ -2376,7 +2361,7 @@
       "cost": "3",
       "attack": "2",
       "health": "5",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "When you summon a Dragon, Cliffside Lookout gains +1/+1."
     },
@@ -2391,7 +2376,7 @@
       "cost": "7",
       "attack": "3",
       "health": "3",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Summon: Give another friendly creature +4/+4. It becomes (Neutral)."
     },
@@ -2406,7 +2391,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": ["Guard"],
       "text": "Guard\r\nExalt 3: +2/+2."
     },
@@ -2421,7 +2406,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Summon: If Clockwork Dragon is in the left lane, +2/+0 and Drain. Otherwise, +0/+2 and Guard."
     },
@@ -2436,7 +2421,7 @@
       "cost": "6",
       "attack": "3",
       "health": "7",
-      "race": "fabricant",
+      "race": "Fabricant",
       "keywords": ["Drain","Lethal"],
       "text": "Drain, Lethal"
     },
@@ -2444,7 +2429,7 @@
       "id": "36237bad-224d-f1e3-e05a-4e693b86ecd4",
       "name": "Close Call",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Madhouse Collection",
       "isunique": false,
       "type": "action",
       "attributes": "neutral",
@@ -2466,9 +2451,9 @@
       "cost": "4",
       "attack": "4",
       "health": "3",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": ["Prophecy"],
-      "text": "Prophecy\r\nSummon: Give a creature -4/-0 this turn."
+      "text": "Prophecy\r\nSummon: Give a creature \r\n-4/-0 this turn."
     },
     {
       "id": "b01220e0-c69b-43e6-a569-203d4e18e0ab",
@@ -2481,7 +2466,7 @@
       "cost": "2",
       "attack": "1",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Pilfer: Add a gear to Cog Collector.\r\nLast Gasp: Summon a random (Neutral) creature with cost equal to the number of gears on Cog Collector."
     },
@@ -2511,7 +2496,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Beast Form: Give friendly Werewolves +1/+1."
     },
@@ -2526,7 +2511,7 @@
       "cost": "6",
       "attack": "1",
       "health": "2",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "Summon: Summon a 5/5 Frost Atronach with Guard."
     },
@@ -2534,14 +2519,14 @@
       "id": "0f0a947b-919e-42cb-95f5-6663918f4871",
       "name": "Conjuration Tutor",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Promotional",
       "isunique": false,
       "type": "creature",
       "attributes": "intelligence",
       "cost": "6",
       "attack": "3",
       "health": "3",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "Summon: Shuffle three Lava Atronachs into your deck.\r\nWhen you summon an Atronach, summon a copy of it in the other lane."
     },
@@ -2571,7 +2556,7 @@
       "cost": "3",
       "attack": "4",
       "health": "3",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: You must discard a card.\r\n"
     },
@@ -2601,7 +2586,7 @@
       "cost": "4",
       "attack": "5",
       "health": "5",
-      "race": "spirit",
+      "race": "Spirit",
       "keywords": ["Ward"],
       "text": "Ward\r\nAt the end of your turn, if Corrupted Shade doesn't have a Ward, sacrifice it."
     },
@@ -2609,7 +2594,7 @@
       "id": "8a5e197a-ce4a-11e6-9d9d-cec0c932ce01",
       "name": "Corsair Ship",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "support",
       "attributes": "intelligence",
@@ -2619,21 +2604,6 @@
       "race": "",
       "keywords": [],
       "text": "Summon: Summon a 1/1 Corsair.\r\nWhen you summon a creature, equip it with a Steel Dagger."
-    },
-    {
-      "id": "32500140-09a4-11e7-9598-0800200c9a66",
-      "name": "Counterfeit Trinket",
-      "rarity": "Common",
-      "set": "Heroes of Skyrim",
-      "isunique": false,
-      "type": "action",
-      "attributes": "neutral",
-      "cost": "0",
-      "attack": "0",
-      "health": "0",
-      "race": "",
-      "keywords": [],
-      "text": "Draw a card and Counterfeit Trinket deals 1 damage to you."
     },
     {
       "id": "070ed49e-35e0-40f5-a65b-ca31229260cb",
@@ -2646,7 +2616,7 @@
       "cost": "5",
       "attack": "3",
       "health": "5",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "Summon: Draw a card if you have two other (Intelligence) creatures."
     },
@@ -2661,7 +2631,7 @@
       "cost": "1",
       "attack": "2",
       "health": "1",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "+2/+0 while you have no cards in hand."
     },
@@ -2676,7 +2646,7 @@
       "cost": "6",
       "attack": "6",
       "health": "4",
-      "race": "giant",
+      "race": "Giant",
       "keywords": [],
       "text": "Summon: Deal 2 damage to all other creatures in this lane."
     },
@@ -2691,7 +2661,7 @@
       "cost": "3",
       "attack": "1",
       "health": "2",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "When you play or activate a support, Craglorn Scavenger gains +1/+1."
     },
@@ -2721,7 +2691,7 @@
       "cost": "1",
       "attack": "2",
       "health": "1",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "Summon: Put a Steel Dagger into your hand."
     },
@@ -2781,7 +2751,7 @@
       "cost": "2",
       "attack": "1",
       "health": "1",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "After you play an action, Crystal Tower Crafter gains +1/+1."
     },
@@ -2796,7 +2766,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Put a Firebolt into your hand if the top card of your deck is (Intelligence)."
     },
@@ -2826,7 +2796,7 @@
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "spirit",
+      "race": "Spirit",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Silence another creature."
     },
@@ -2839,9 +2809,9 @@
       "type": "item",
       "attributes": "endurance",
       "cost": "3",
-      "attack": "0",
-      "health": "0",
-      "race": "",
+      "attack": "2",
+      "health": "2",
+      "race": "DaedricCrescent",
       "keywords": [],
       "text": "+2/+2\r\nSlay: +1/+1"
     },
@@ -2854,8 +2824,8 @@
       "type": "item",
       "attributes": "endurance",
       "cost": "2",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "1",
       "race": "",
       "keywords": ["Lethal"],
       "text": "Lethal\r\n+1/+1"
@@ -2871,7 +2841,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Ward"],
       "text": "Ward\r\nWhen Daggerfall Mage's Ward is broken, put a Tome of Alteration into your hand."
     },
@@ -2879,7 +2849,7 @@
       "id": "751b45ba-b11c-11e6-80f5-76304dec7eb7",
       "name": "Daggers in the Dark",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "action",
       "attributes": "intelligence",
@@ -2901,7 +2871,7 @@
       "cost": "5",
       "attack": "4",
       "health": "5",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Pilfer: Draw a random support from your deck."
     },
@@ -2914,8 +2884,8 @@
       "type": "item",
       "attributes": "strength",
       "cost": "1",
-      "attack": "0",
-      "health": "0",
+      "attack": "2",
+      "health": "1",
       "race": "",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\n+2/+1"
@@ -2931,7 +2901,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "ashcreature",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: If you have a...\r\n(Agility) card in play, +1/+1.\r\n(Intelligence) card in play, +1/+1."
     },
@@ -2946,7 +2916,7 @@
       "cost": "12",
       "attack": "8",
       "health": "8",
-      "race": "god",
+      "race": "God",
       "keywords": ["Breakthrough","Drain","Guard","Charge","Lethal","Ward"],
       "text": "Breakthrough, Drain, Guard, Charge, Lethal, Ward"
     },
@@ -2961,7 +2931,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nPilfer: +1/+1"
     },
@@ -2984,14 +2954,14 @@
       "id": "dca9eab2-d613-4401-9ae9-19494f0b1dc8",
       "name": "Dark Guardian",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "endurance",
       "cost": "3",
       "attack": "2",
       "health": "5",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": ["Guard"],
       "text": "Guard\r\nWhen your opponent draws a Prophecy from a rune being destroyed, draw a card."
     },
@@ -3006,7 +2976,7 @@
       "cost": "7",
       "attack": "2",
       "health": "4",
-      "race": "dreugh",
+      "race": "Dreugh",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard\r\nSummon: Gain 4 health."
     },
@@ -3049,8 +3019,8 @@
       "type": "item",
       "attributes": "willpower",
       "cost": "4",
-      "attack": "0",
-      "health": "0",
+      "attack": "4",
+      "health": "4",
       "race": "",
       "keywords": [],
       "text": "+4/+4\r\nSummon: Destroy an enemy Undead."
@@ -3081,7 +3051,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "After an enemy rune is destroyed, you gain 3 health."
     },
@@ -3096,7 +3066,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": ["Lethal"],
       "text": "Lethal"
     },
@@ -3111,7 +3081,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": [],
       "text": "Last Gasp: Summon a 1/1 Skeleton."
     },
@@ -3126,7 +3096,7 @@
       "cost": "1",
       "attack": "1",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Guard"],
       "text": "Guard\r\nShackle creatures damaged by Deepwood Trapper."
     },
@@ -3141,7 +3111,7 @@
       "cost": "2",
       "attack": "0",
       "health": "1",
-      "race": "ashcreature",
+      "race": "Ash Creature",
       "keywords": [],
       "text": "Deranged Corprus has +5/+0 on your turn."
     },
@@ -3156,7 +3126,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Pilfer: +1/+1 and gains a random Keyword."
     },
@@ -3171,7 +3141,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Last Gasp: Summon a 3/3 Deshaan Sneak."
     },
@@ -3186,7 +3156,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": ""
     },
@@ -3246,7 +3216,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "When another friendly creature in this lane dies, draw a card."
     },
@@ -3276,7 +3246,7 @@
       "cost": "11",
       "attack": "6",
       "health": "6",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Deal 6 damage to a random enemy.\r\nAt the start of your turn, Divayth Fyr summons a Daughter of Fyr."
     },
@@ -3336,7 +3306,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": ["Lethal"],
       "text": "Lethal\r\nOther friendly creatures in this lane have Lethal."
     },
@@ -3351,7 +3321,7 @@
       "cost": "5",
       "attack": "1",
       "health": "1",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": [],
       "text": "Summon: Transform Doppelganger into a copy of another friendly creature."
     },
@@ -3366,7 +3336,7 @@
       "cost": "3",
       "attack": "3",
       "health": "5",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "Dormant Centurion can't attack unless you've played an action this turn."
     },
@@ -3381,7 +3351,7 @@
       "cost": "7",
       "attack": "6",
       "health": "4",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Last Gasp: Put a random Shout into your hand."
     },
@@ -3411,7 +3381,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "spirit",
+      "race": "Spirit",
       "keywords": [],
       "text": "Spend all your available magicka to play Dragon Cult Ghost. Its power and health are equal to the magicka spent."
     },
@@ -3439,8 +3409,8 @@
       "type": "item",
       "attributes": "intelligence",
       "cost": "6",
-      "attack": "0",
-      "health": "0",
+      "attack": "2",
+      "health": "2",
       "race": "",
       "keywords": [],
       "text": "+2/+2\r\nSummon: Trigger the wielder’s summon ability."
@@ -3454,8 +3424,8 @@
       "type": "item",
       "attributes": "endurance",
       "cost": "4",
-      "attack": "0",
-      "health": "0",
+      "attack": "2",
+      "health": "2",
       "race": "",
       "keywords": [],
       "text": "+2/+2\r\nSummon: +2/+2 if you have a Dragon in your discard pile."
@@ -3486,7 +3456,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "When Dragonstar Rider equips an item, draw a card."
     },
@@ -3501,7 +3471,7 @@
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "Summon: +1/+0 for each enemy creature in this lane."
     },
@@ -3536,21 +3506,6 @@
       "text": "Give an enemy creature -1/-1."
     },
     {
-      "id": "979ba8a8-9bb1-11e6-80f5-76304dec7eb7",
-      "name": "Draugr Sentry",
-      "rarity": "Common",
-      "set": "Heroes of Skyrim",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "endurance",
-      "cost": "1",
-      "attack": "1",
-      "health": "1",
-      "race": "skeleton",
-      "keywords": ["Guard"],
-      "text": "Guard"
-    },
-    {
       "id": "902e422c-d1cc-2887-2276-05ce830c954e",
       "name": "Dread Clannfear",
       "rarity": "Epic",
@@ -3561,7 +3516,7 @@
       "cost": "6",
       "attack": "6",
       "health": "3",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": [],
       "text": "Summon: All enemy creatures lose Guard."
     },
@@ -3576,7 +3531,7 @@
       "cost": "10",
       "attack": "5",
       "health": "5",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: Double a creature's power and health."
     },
@@ -3591,7 +3546,7 @@
       "cost": "5",
       "attack": "5",
       "health": "5",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -3606,7 +3561,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -3621,7 +3576,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Guard"],
       "text": "Guard\r\nOther friendly creatures are immune to Shackle."
     },
@@ -3636,7 +3591,7 @@
       "cost": "0",
       "attack": "1",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Look at the top card of your deck. You may discard it."
     },
@@ -3651,7 +3606,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "When an enemy creature becomes Shackled, deal 3 damage to it."
     },
@@ -3664,8 +3619,8 @@
       "type": "item",
       "attributes": "neutral",
       "cost": "4",
-      "attack": "0",
-      "health": "0",
+      "attack": "3",
+      "health": "3",
       "race": "",
       "keywords": [],
       "text": "+3/+3"
@@ -3696,7 +3651,7 @@
       "cost": "5",
       "attack": "4",
       "health": "5",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "The first time you play a card each turn, draw a random card from your deck with cost equal to your remaining magicka."
     },
@@ -3711,7 +3666,7 @@
       "cost": "2",
       "attack": "3",
       "health": "1",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": ["Prophecy"],
       "text": "Prophecy"
     },
@@ -3726,7 +3681,7 @@
       "cost": "3",
       "attack": "3",
       "health": "1",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Summon: Move another friendly creature in this lane.\r\nWhen a friendly creature moves, give it +1/+1."
     },
@@ -3741,7 +3696,7 @@
       "cost": "2",
       "attack": "3",
       "health": "1",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Move another friendly creature in this lane."
     },
@@ -3756,7 +3711,7 @@
       "cost": "2",
       "attack": "2",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Last Gasp: Put an Iron Sword into your hand."
     },
@@ -3771,7 +3726,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "orc",
+      "race": "Orc",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: Deal 1 damage or destroy an enemy support."
     },
@@ -3784,8 +3739,8 @@
       "type": "item",
       "attributes": "neutral",
       "cost": "6",
-      "attack": "0",
-      "health": "0",
+      "attack": "5",
+      "health": "5",
       "race": "",
       "keywords": [],
       "text": "+5/+5"
@@ -3801,7 +3756,7 @@
       "cost": "6",
       "attack": "5",
       "health": "5",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough"
     },
@@ -3816,7 +3771,7 @@
       "cost": "7",
       "attack": "6",
       "health": "8",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nWhen Dwarven Centurion takes damage, put a 0/3 Dwarven Spider with Guard into your hand."
     },
@@ -3831,7 +3786,7 @@
       "cost": "11",
       "attack": "11",
       "health": "11",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "Summon: Summon a Power Sphere in each lane."
     },
@@ -3846,7 +3801,7 @@
       "cost": "4",
       "attack": "2",
       "health": "1",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "Summon: Give another (Neutral) creature +3/+3 and Guard."
     },
@@ -3861,7 +3816,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "Summon: Shackle an enemy creature."
     },
@@ -3876,7 +3831,7 @@
       "cost": "0",
       "attack": "0",
       "health": "3",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -3906,7 +3861,7 @@
       "cost": "4",
       "attack": "3",
       "health": "2",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: Silence another creature, then deal 1 damage to it."
     },
@@ -3921,7 +3876,7 @@
       "cost": "3",
       "attack": "2",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "When you summon another creature with 5 health or more, give it +1/+1 and Guard."
     },
@@ -3936,7 +3891,7 @@
       "cost": "3",
       "attack": "4",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: Draw a card if your opponent has a destroyed rune."
     },
@@ -3951,7 +3906,7 @@
       "cost": "5",
       "attack": "3",
       "health": "5",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Drain"],
       "text": "Drain\r\nDouble the amount of health you gain."
     },
@@ -3966,7 +3921,7 @@
       "cost": "6",
       "attack": "5",
       "health": "5",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "When you draw a creature, give it a random Keyword."
     },
@@ -3974,14 +3929,14 @@
       "id": "9edea6a2-da08-11e6-bf26-cec0c932ce01",
       "name": "Eclipse Baroness",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "agility",
       "cost": "8",
       "attack": "5",
       "health": "5",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon and Last Gasp: Draw a card and reduce its cost by 2."
     },
@@ -4011,7 +3966,7 @@
       "cost": "5",
       "attack": "5",
       "health": "4",
-      "race": "centaur",
+      "race": "Centaur",
       "keywords": [],
       "text": "After Elder Centaur attacks, give him Cover."
     },
@@ -4026,7 +3981,7 @@
       "cost": "3",
       "attack": "4",
       "health": "2",
-      "race": "spriggan",
+      "race": "Spriggan",
       "keywords": [],
       "text": "Summon: Put a random Animal into your hand."
     },
@@ -4124,14 +4079,14 @@
       "id": "b40a3cf3-89a0-0c6e-aeb5-0062ebc05203",
       "name": "Elsweyr Lookout",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Promotional",
       "isunique": false,
       "type": "creature",
       "attributes": "willpower",
       "cost": "3",
       "attack": "1",
       "health": "1",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Pilfer: Double Elsweyr Lookout's power and health."
     },
@@ -4146,7 +4101,7 @@
       "cost": "4",
       "attack": "3",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Draw a card.\r\nLast Gasp: Shuffle a 0-cost Elusive Schemer into your deck."
     },
@@ -4160,7 +4115,7 @@
       "attributes": "agility",
       "cost": "2",
       "attack": "0",
-      "health": "0",
+      "health": "1",
       "race": "",
       "keywords": [],
       "text": "+0/+1\r\nSummon: Draw a card. The wielder has Cover until it attacks."
@@ -4176,7 +4131,7 @@
       "cost": "2",
       "attack": "0",
       "health": "4",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": ["Prophecy","Guard","Ward"],
       "text": "Prophecy, Guard, Ward"
     },
@@ -4191,7 +4146,7 @@
       "cost": "4",
       "attack": "1",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "At the end of your turn, give the top creature of your deck +1/+1 and Guard."
     },
@@ -4199,14 +4154,14 @@
       "id": "aea1dfe1-81d9-11e7-9598-0800200c9a66",
       "name": "Emperor's Blade",
       "rarity": "Epic",
-      "set": "",
+      "set": "Promotional",
       "isunique": false,
       "type": "creature",
       "attributes": "willpower,endurance",
       "cost": "4",
       "attack": "4",
       "health": "5",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Guard"],
       "text": "Guard\r\nSlay: You gain 3 health."
     },
@@ -4221,7 +4176,7 @@
       "cost": "3",
       "attack": "4",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Exalt 5: Equip a +5/+0 Heirloom Greatsword to Enamor's Keeper."
     },
@@ -4235,7 +4190,7 @@
       "attributes": "endurance",
       "cost": "2",
       "attack": "0",
-      "health": "0",
+      "health": "3",
       "race": "",
       "keywords": [],
       "text": "+0/+3\r\nSummon: Draw a card."
@@ -4251,7 +4206,7 @@
       "cost": "1",
       "attack": "2",
       "health": "3",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Shackle Encumbered Explorer after he attacks."
     },
@@ -4266,7 +4221,7 @@
       "cost": "1",
       "attack": "2",
       "health": "1",
-      "race": "mudcrab",
+      "race": "Mudcrab",
       "keywords": [],
       "text": ""
     },
@@ -4281,7 +4236,7 @@
       "cost": "2",
       "attack": "1",
       "health": "1",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Guard","Ward"],
       "text": "Guard, Ward"
     },
@@ -4326,7 +4281,7 @@
       "cost": "10",
       "attack": "3",
       "health": "3",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "Summon: Summon a 5/3 Flame Atronach with Breakthrough in each lane."
     },
@@ -4356,7 +4311,7 @@
       "cost": "8",
       "attack": "5",
       "health": "5",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: Destroy all Wounded enemy creatures in this lane."
     },
@@ -4364,14 +4319,14 @@
       "id": "8a5e1b00-ce4a-11e6-9d9d-cec0c932ce01",
       "name": "Falkreath Defiler",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "endurance",
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Slay: Summon a creature from your discard pile."
     },
@@ -4386,7 +4341,7 @@
       "cost": "2",
       "attack": "5",
       "health": "5",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: Falling Wizard deals 5 damage to himself.\r\nLast Gasp: Put an Experimental Scroll into your hand."
     },
@@ -4401,7 +4356,7 @@
       "cost": "4",
       "attack": "5",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Your opponent can't gain health."
     },
@@ -4416,7 +4371,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "nereid",
+      "race": "Nereid",
       "keywords": [],
       "text": "Summon: Reveal the top card of your opponent's deck."
     },
@@ -4431,7 +4386,7 @@
       "cost": "6",
       "attack": "3",
       "health": "3",
-      "race": "nereid",
+      "race": "Nereid",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Draw a card. If it's a Prophecy, you may play it for free."
     },
@@ -4446,7 +4401,7 @@
       "cost": "6",
       "attack": "3",
       "health": "3",
-      "race": "nereid",
+      "race": "Nereid",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Draw a card."
     },
@@ -4461,7 +4416,7 @@
       "cost": "3",
       "attack": "2",
       "health": "5",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nWhen Fearless Northlander takes damage, he gains +2/+0."
     },
@@ -4476,7 +4431,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: You gain 1 health for each enemy creature."
     },
@@ -4491,7 +4446,7 @@
       "cost": "3",
       "attack": "3",
       "health": "2",
-      "race": "beast",
+      "race": "Beast",
       "keywords": [],
       "text": "Summon: +2/+2 if a creature died this turn."
     },
@@ -4499,7 +4454,7 @@
       "id": "53ed8864-6ce8-4e73-855a-c7bd98ff2bb9",
       "name": "Fell the Mighty",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "action",
       "attributes": "strength",
@@ -4521,7 +4476,7 @@
       "cost": "4",
       "attack": "3",
       "health": "5",
-      "race": "dreugh",
+      "race": "Dreugh",
       "keywords": [],
       "text": ""
     },
@@ -4536,7 +4491,7 @@
       "cost": "5",
       "attack": "5",
       "health": "5",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": [],
       "text": "When Fetcherfly Golem takes damage and survives, summon a 2/2 Fetcherfly Swarm."
     },
@@ -4551,7 +4506,7 @@
       "cost": "2",
       "attack": "1",
       "health": "4",
-      "race": "orc",
+      "race": "Orc",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard"
     },
@@ -4566,7 +4521,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "imp",
+      "race": "Imp",
       "keywords": [],
       "text": "When Fiery Imp attacks, deal 2 damage to your opponent."
     },
@@ -4581,7 +4536,7 @@
       "cost": "2",
       "attack": "1",
       "health": "3",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "When you summon another creature, give it +1/+0."
     },
@@ -4611,7 +4566,7 @@
       "cost": "2",
       "attack": "1",
       "health": "2",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": ["Prophecy","Guard","Lethal"],
       "text": "Prophecy, Guard, Lethal"
     },
@@ -4626,7 +4581,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: A friendly creature with 5 or more power Battles an enemy creature."
     },
@@ -4716,7 +4671,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "fabricant",
+      "race": "Fabricant",
       "keywords": [],
       "text": "Last Gasp: Deal 1 damage to all creatures in this lane."
     },
@@ -4746,7 +4701,7 @@
       "cost": "6",
       "attack": "1",
       "health": "1",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": [],
       "text": "Summon: +1/+1 for each creature in your discard pile."
     },
@@ -4754,7 +4709,7 @@
       "id": "751b8110-b11c-11e6-80f5-76304dec7eb7",
       "name": "Flesh Sculpture",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "support",
       "attributes": "neutral",
@@ -4769,14 +4724,14 @@
       "id": "8c917665-c7e0-ae6a-8861-a728bc24def0",
       "name": "Forsaken Champion",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Madhouse Collection",
       "isunique": false,
       "type": "creature",
       "attributes": "neutral",
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "reachman",
+      "race": "Reachman",
       "keywords": [],
       "text": "Summon: Choose a friendly creature.\r\nFriendly creatures of the chosen type have +1/+1."
     },
@@ -4791,7 +4746,7 @@
       "cost": "3",
       "attack": "1",
       "health": "1",
-      "race": "reachman",
+      "race": "Reachman",
       "keywords": [],
       "text": "Summon: Unsummon another friendly creature to give Forsworn Guide +2/+2."
     },
@@ -4806,7 +4761,7 @@
       "cost": "2",
       "attack": "1",
       "health": "1",
-      "race": "reachman",
+      "race": "Reachman",
       "keywords": [],
       "text": "Pilfer: Draw a random item from your deck with cost equal to Forsworn Looter's power."
     },
@@ -4821,7 +4776,7 @@
       "cost": "5",
       "attack": "5",
       "health": "4",
-      "race": "orc",
+      "race": "Orc",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -4836,7 +4791,7 @@
       "cost": "3",
       "attack": "2",
       "health": "1",
-      "race": "reachman",
+      "race": "Reachman",
       "keywords": [],
       "text": "Summon: Give a creature +2/+1."
     },
@@ -4851,7 +4806,7 @@
       "cost": "8",
       "attack": "10",
       "health": "10",
-      "race": "giant",
+      "race": "Giant",
       "keywords": ["Regenerate"],
       "text": "Regenerate\r\nWhen a creature heals, you gain that much health."
     },
@@ -4866,7 +4821,7 @@
       "cost": "4",
       "attack": "1",
       "health": "6",
-      "race": "troll",
+      "race": "Troll",
       "keywords": ["Regenerate"],
       "text": "Regenerate\r\nWhen Frost Troll takes damage, it gains that much power."
     },
@@ -4881,7 +4836,7 @@
       "cost": "3",
       "attack": "3",
       "health": "2",
-      "race": "spider",
+      "race": "Spider",
       "keywords": ["Prophecy","Lethal"],
       "text": "Prophecy, Lethal"
     },
@@ -4896,7 +4851,7 @@
       "cost": "9",
       "attack": "6",
       "health": "6",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Summon: Deal 4 damage to an enemy creature and 1 damage to all other enemy creatures."
     },
@@ -4911,7 +4866,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Choose a creature or item in your hand. Shuffle three copies of it with +3/+3 into your deck."
     },
@@ -4919,14 +4874,14 @@
       "id": "b1cfb66d-3a00-c877-a5f1-f6a0165b588b",
       "name": "Gardener of Swords",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Madhouse Collection",
       "isunique": false,
       "type": "creature",
       "attributes": "intelligence",
       "cost": "3",
       "attack": "1",
       "health": "1",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "When you equip an item to another creature, equip a copy of it to Gardener of Swords."
     },
@@ -4934,27 +4889,27 @@
       "id": "751b5b04-b11c-11e6-80f5-76304dec7eb7",
       "name": "Garnag, Dark Adherent",
       "rarity": "Legendary",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": true,
       "type": "creature",
       "attributes": "strength",
       "cost": "4",
       "attack": "4",
       "health": "5",
-      "race": "orc",
+      "race": "Orc",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nPlayers can’t have more than 7 magicka."
     },
     {
       "id": "e3565ad0-9040-42eb-8320-f5e914c1085a",
       "name": "Gavel of the Ordinator",
-      "rarity": "Common",
+      "rarity": "Rare",
       "set": "Houses of Morrowind",
       "isunique": false,
       "type": "item",
       "attributes": "willpower",
       "cost": "2",
-      "attack": "0",
+      "attack": "2",
       "health": "0",
       "race": "",
       "keywords": [],
@@ -4971,7 +4926,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard\r\nSummon: Summon all Gearwork Spiders in your discard pile."
     },
@@ -4986,7 +4941,7 @@
       "cost": "6",
       "attack": "2",
       "health": "2",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: Summon a 2/2 Colovian Trooper with Guard in each lane.\r\nWhen a friendly creature dies, General Tullius gains +1/+1."
     },
@@ -5001,7 +4956,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "Summon: Summon a random creature from your deck with cost equal to your current magicka."
     },
@@ -5016,7 +4971,7 @@
       "cost": "7",
       "attack": "5",
       "health": "4",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "Summon: Your opponent chooses a card in their hand and gives it to you."
     },
@@ -5031,7 +4986,7 @@
       "cost": "3",
       "attack": "4",
       "health": "2",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "When you summon a Dragon, Ghost Sea Lookout gains a Ward."
     },
@@ -5046,7 +5001,7 @@
       "cost": "1",
       "attack": "1",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Guard"],
       "text": "Guard\r\nExalt 3: Deal 2 damage to a creature."
     },
@@ -5061,7 +5016,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "beast",
+      "race": "Beast",
       "keywords": ["Drain","Charge"],
       "text": "Drain, Charge"
     },
@@ -5076,7 +5031,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": [],
       "text": "Summon: Shackle all enemy creatures in this lane."
     },
@@ -5104,8 +5059,8 @@
       "type": "item",
       "attributes": "agility",
       "cost": "1",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "1",
       "race": "",
       "keywords": [],
       "text": "+1/+1\r\nPlot: Reduce the cost of a random card in your hand by 1."
@@ -5120,7 +5075,7 @@
       "attributes": "neutral",
       "cost": "4",
       "attack": "0",
-      "health": "0",
+      "health": "4",
       "race": "",
       "keywords": [],
       "text": "+0/+4\r\nSummon: You gain 4 health."
@@ -5136,7 +5091,7 @@
       "cost": "5",
       "attack": "5",
       "health": "1",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Ward"],
       "text": "Ward"
     },
@@ -5151,7 +5106,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "spirit",
+      "race": "Spirit",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nSummon: +1/+1 for each other friendly (Endurance) creature."
     },
@@ -5166,7 +5121,7 @@
       "cost": "2",
       "attack": "3",
       "health": "1",
-      "race": "falmer",
+      "race": "Falmer",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Give a creature Cover."
     },
@@ -5181,7 +5136,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "goblin",
+      "race": "Goblin",
       "keywords": [],
       "text": "Pilfer: Draw a random 0-cost card from your deck."
     },
@@ -5211,7 +5166,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: If you have more health than your opponent, summon a copy of Golden Saint in the other lane."
     },
@@ -5226,7 +5181,7 @@
       "cost": "6",
       "attack": "4",
       "health": "6",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "At the start of your turn, summon a random creature from your deck to a random lane."
     },
@@ -5241,7 +5196,7 @@
       "cost": "5",
       "attack": "4",
       "health": "2",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Deal 1 damage to all enemy creatures in this lane."
     },
@@ -5249,7 +5204,7 @@
       "id": "ca46dfa0-21b1-409c-85df-e9c73761da7e",
       "name": "Grand Ball",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "action",
       "attributes": "agility",
@@ -5271,24 +5226,9 @@
       "cost": "4",
       "attack": "2",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Exalt 4: +3/+3.\r\nSummon: Destroy a creature with less power than Grand Inquisitor."
-    },
-    {
-      "id": "ee153b80-09bc-11e7-9598-0800200c9a66",
-      "name": "Grandmaster Delphine",
-      "rarity": "Legendary",
-      "set": "Heroes of Skyrim",
-      "isunique": true,
-      "type": "creature",
-      "attributes": "endurance",
-      "cost": "3",
-      "attack": "5",
-      "health": "5",
-      "race": "breton",
-      "keywords": [],
-      "text": "Can't be damaged or targeted by enemy Dragons."
     },
     {
       "id": "f3244c3d-0d41-4519-ba85-c02c6e34d8ee",
@@ -5299,8 +5239,8 @@
       "type": "item",
       "attributes": "strength",
       "cost": "4",
-      "attack": "0",
-      "health": "0",
+      "attack": "3",
+      "health": "2",
       "race": "",
       "keywords": [],
       "text": "+3/+2\r\nSummon: Move an enemy creature into this lane. It loses Cover."
@@ -5309,14 +5249,14 @@
       "id": "9edeaa80-da08-11e6-bf26-cec0c932ce01",
       "name": "Gravesinger",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "endurance",
       "cost": "10",
       "attack": "6",
       "health": "6",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "At the start of your turn, summon the highest cost creature from your discard pile and give it Charge. At the end of the turn, put it on the bottom of your deck."
     },
@@ -5331,7 +5271,7 @@
       "cost": "2",
       "attack": "4",
       "health": "1",
-      "race": "orc",
+      "race": "Orc",
       "keywords": ["Prophecy"],
       "text": "Prophecy"
     },
@@ -5346,7 +5286,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: +2/+2 if there is a Wounded enemy creature in this lane."
     },
@@ -5361,7 +5301,7 @@
       "cost": "3",
       "attack": "1",
       "health": "5",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": ["Charge"],
       "text": "Charge"
     },
@@ -5376,7 +5316,7 @@
       "cost": "5",
       "attack": "1",
       "health": "5",
-      "race": "spriggan",
+      "race": "Spriggan",
       "keywords": [],
       "text": "When you gain health, Green-Touched Spriggan gains that much power."
     },
@@ -5391,7 +5331,7 @@
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: Draw a random Shout from your deck."
     },
@@ -5406,7 +5346,7 @@
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": [],
       "text": "When a creature in this lane dies, Grim Champion gains +1/+1."
     },
@@ -5421,7 +5361,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Beast Form: +1/+1 and Drain."
     },
@@ -5436,7 +5376,7 @@
       "cost": "3",
       "attack": "2",
       "health": "1",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: Transform an enemy creature with 2 power or less into a Sweet Roll."
     },
@@ -5444,14 +5384,14 @@
       "id": "751b62f2-b11c-11e6-80f5-76304dec7eb7",
       "name": "Gristlehide Dreugh",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "neutral",
       "cost": "5",
       "attack": "3",
       "health": "5",
-      "race": "dreugh",
+      "race": "Dreugh",
       "keywords": [],
       "text": "When Gristlehide Dreugh takes damage and survives, draw a card."
     },
@@ -5466,7 +5406,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: +1/+1 and Guard if you have an Animal."
     },
@@ -5481,7 +5421,7 @@
       "cost": "2",
       "attack": "1",
       "health": "2",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": ["Lethal"],
       "text": "Lethal"
     },
@@ -5496,7 +5436,7 @@
       "cost": "5",
       "attack": "5",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "When a friendly creature destroys an enemy rune, equip it with a random item."
     },
@@ -5509,8 +5449,8 @@
       "type": "item",
       "attributes": "endurance",
       "cost": "3",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "3",
       "race": "",
       "keywords": ["Regenerate"],
       "text": "Regenerate\r\n+1/+3"
@@ -5526,7 +5466,7 @@
       "cost": "5",
       "attack": "3",
       "health": "5",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": [],
       "text": "Summon: Transform the highest cost creature in your opponent's hand into a Shriveled Mummy."
     },
@@ -5556,7 +5496,7 @@
       "cost": "5",
       "attack": "5",
       "health": "4",
-      "race": "ashcreature",
+      "race": "Ash Creature",
       "keywords": ["Breakthrough","Drain","Ward"],
       "text": "Breakthrough, Drain, Ward"
     },
@@ -5571,7 +5511,7 @@
       "cost": "4",
       "attack": "5",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Swap a creature's power and health."
     },
@@ -5601,7 +5541,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "spirit",
+      "race": "Spirit",
       "keywords": [],
       "text": "Last Gasp: Give a random friendly creature +3/+3."
     },
@@ -5644,8 +5584,8 @@
       "type": "item",
       "attributes": "strength",
       "cost": "4",
-      "attack": "0",
-      "health": "0",
+      "attack": "4",
+      "health": "1",
       "race": "",
       "keywords": [],
       "text": "+4/+1"
@@ -5659,7 +5599,7 @@
       "type": "item",
       "attributes": "intelligence",
       "cost": "6",
-      "attack": "0",
+      "attack": "5",
       "health": "0",
       "race": "",
       "keywords": [],
@@ -5676,7 +5616,7 @@
       "cost": "2",
       "attack": "0",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "When another friendly creature attacks, Helgen Squad Leader gains +1/+0."
     },
@@ -5691,7 +5631,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": ""
     },
@@ -5706,7 +5646,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Hero of Anvil costs 1 less for each creature summoned this turn."
     },
@@ -5714,7 +5654,7 @@
       "id": "1ccaad69-ab04-dfd2-4c81-dc4a970a3aca",
       "name": "Heroic Rebirth",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Promotional",
       "isunique": false,
       "type": "support",
       "attributes": "neutral",
@@ -5766,7 +5706,7 @@
       "cost": "6",
       "attack": "5",
       "health": "5",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Ward"],
       "text": "Ward\r\nSummon: Deal 2 damage for each friendly creature with a Ward."
     },
@@ -5781,7 +5721,7 @@
       "cost": "2",
       "attack": "1",
       "health": "1",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "Summon: Put a random Atronach into your hand."
     },
@@ -5796,7 +5736,7 @@
       "cost": "6",
       "attack": "7",
       "health": "5",
-      "race": "lurcher",
+      "race": "Lurcher",
       "keywords": [],
       "text": ""
     },
@@ -5804,7 +5744,7 @@
       "id": "f46113f1-62a4-ad73-09c8-6854d7d7c1b1",
       "name": "Hist Grove",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Promotional",
       "isunique": false,
       "type": "support",
       "attributes": "endurance",
@@ -5826,7 +5766,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "While Hist Speaker is in play, your max magicka is increased by 1."
     },
@@ -5856,7 +5796,7 @@
       "cost": "4",
       "attack": "3",
       "health": "6",
-      "race": "kwama",
+      "race": "Kwama",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -5871,7 +5811,7 @@
       "cost": "4",
       "attack": "6",
       "health": "3",
-      "race": "kwama",
+      "race": "Kwama",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough"
     },
@@ -5886,7 +5826,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "kwama",
+      "race": "Kwama",
       "keywords": [],
       "text": ""
     },
@@ -5901,7 +5841,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: If you have a...\r\n(Agility) card in play, gain 3 magicka this turn.\r\n(Strength) card in play, draw a card."
     },
@@ -5916,7 +5856,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Plot: Silence a creature, then deal 1 damage to it."
     },
@@ -5929,11 +5869,11 @@
       "type": "item",
       "attributes": "neutral",
       "cost": "3",
-      "attack": "0",
-      "health": "0",
+      "attack": "2",
+      "health": "3",
       "race": "",
       "keywords": [],
-      "text": ""
+      "text": "+2/+3"
     },
     {
       "id": "bac505af-406b-4bce-2a5f-d58d6c355e89",
@@ -5946,24 +5886,9 @@
       "cost": "3",
       "attack": "3",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Last Gasp: Deal 3 damage to your opponent and gain 3 health."
-    },
-    {
-      "id": "5b44e8b0-09b6-11e7-9598-0800200c9a66",
-      "name": "Hulking Draugr",
-      "rarity": "Common",
-      "set": "Heroes of Skyrim",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "endurance",
-      "cost": "5",
-      "attack": "5",
-      "health": "5",
-      "race": "skeleton",
-      "keywords": [],
-      "text": ""
     },
     {
       "id": "7995a91e-454b-40e5-b035-f3ce9b2cd9a6",
@@ -5976,7 +5901,7 @@
       "cost": "5",
       "attack": "5",
       "health": "5",
-      "race": "fabricant",
+      "race": "Fabricant",
       "keywords": [],
       "text": "Summon: If you have a (Neutral) card in play, +3/+3."
     },
@@ -5991,7 +5916,7 @@
       "cost": "7",
       "attack": "3",
       "health": "4",
-      "race": "fabricant",
+      "race": "Fabricant",
       "keywords": [],
       "text": "Summon: Battle an enemy creature, then Battle another enemy creature."
     },
@@ -6036,7 +5961,7 @@
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "wraith",
+      "race": "Wraith",
       "keywords": [],
       "text": "At the start of your turn, put an Ice Spike into your hand."
     },
@@ -6051,7 +5976,7 @@
       "cost": "6",
       "attack": "6",
       "health": "4",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Summon: Shackle an enemy creature."
     },
@@ -6066,7 +5991,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Ward"],
       "text": "Ward\r\nWhen Iliac Sorcerer's Ward is broken, double his power."
     },
@@ -6089,14 +6014,14 @@
       "id": "3c9bdcc6-212a-0f59-2828-c7a9cb7e46eb",
       "name": "Illusory Mimic",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Madhouse Collection",
       "isunique": false,
       "type": "creature",
       "attributes": "neutral",
       "cost": "6",
       "attack": "5",
       "health": "5",
-      "race": "spirit",
+      "race": "Spirit",
       "keywords": [],
       "text": "Summon: Illusory Mimic gains all Keywords that the top three cards of your deck have."
     },
@@ -6125,7 +6050,7 @@
       "attributes": "endurance",
       "cost": "3",
       "attack": "0",
-      "health": "0",
+      "health": "6",
       "race": "",
       "keywords": [],
       "text": "+0/+6"
@@ -6156,7 +6081,7 @@
       "cost": "3",
       "attack": "3",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": ""
     },
@@ -6201,7 +6126,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: +1/+1 for each other friendly creature."
     },
@@ -6246,7 +6171,7 @@
       "cost": "4",
       "attack": "7",
       "health": "7",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": [],
       "text": "When an enemy creature is summoned, Shackle Imprisoned Deathlord."
     },
@@ -6259,8 +6184,8 @@
       "type": "item",
       "attributes": "strength",
       "cost": "0",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "1",
       "race": "",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\n+1/+1"
@@ -6276,7 +6201,7 @@
       "cost": "5",
       "attack": "5",
       "health": "5",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Guard"],
       "text": "Guard\r\nExalt 1: Your opponent can't target Indomitable Ordinator with actions."
     },
@@ -6291,7 +6216,7 @@
       "cost": "8",
       "attack": "6",
       "health": "6",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Guard"],
       "text": "Guard\r\nLast Gasp: Deals 6 damage to all enemy creatures in this lane."
     },
@@ -6306,7 +6231,7 @@
       "cost": "3",
       "attack": "2",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Look at the top two cards of your deck. Draw one, and discard the other."
     },
@@ -6321,7 +6246,7 @@
       "cost": "6",
       "attack": "4",
       "health": "5",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Slay: May attack again this turn."
     },
@@ -6336,7 +6261,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "After you play a Dragon or Shout, Innkeeper Delphine changes into Grandmaster Delphine."
     },
@@ -6351,7 +6276,7 @@
       "cost": "5",
       "attack": "2",
       "health": "3",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Draw a card for each card your opponent drew this turn."
     },
@@ -6366,14 +6291,14 @@
       "cost": "4",
       "attack": "2",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Rally"],
       "text": "Rally\r\nLast Gasp: Give a random creature in your hand +2/+2."
     },
     {
       "id": "04cd7446-6fee-11e6-8b77-86f30ca893d3",
       "name": "Inspiring Stormcloak",
-      "rarity": "Rare",
+      "rarity": "Common",
       "set": "Heroes of Skyrim",
       "isunique": false,
       "type": "creature",
@@ -6381,7 +6306,7 @@
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Last Gasp: Summon a 2/2 Rallying Stormcloak in each lane."
     },
@@ -6411,7 +6336,7 @@
       "cost": "12",
       "attack": "12",
       "health": "12",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": ["Breakthrough","Guard","Regenerate"],
       "text": "Breakthrough, Guard, Regenerate\r\nYour opponent can't target Iron Atronach with actions."
     },
@@ -6426,7 +6351,7 @@
       "cost": "7",
       "attack": "7",
       "health": "7",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": ["Regenerate"],
       "text": "Regenerate"
     },
@@ -6441,7 +6366,7 @@
       "cost": "7",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: Summon a Stormcloak Skirmisher in the left lane and a Colovian Trooper in the right lane.\r\nAt the start of your turn, if your lanes are full, you win the game."
     },
@@ -6456,7 +6381,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": ""
     },
@@ -6471,7 +6396,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Slay: Change into Saint Jiub, Eradicator of the Winged Menace."
     },
@@ -6501,7 +6426,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Summon: Put an Experimental Scroll into your hand."
     },
@@ -6516,7 +6441,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "fabricant",
+      "race": "Fabricant",
       "keywords": [],
       "text": "Summon: If you have a (Neutral) card in play, summon a copy of Kagouti Fabricant in the other lane."
     },
@@ -6531,7 +6456,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Summon: Give all enemy creatures in this lane -1/-0."
     },
@@ -6546,7 +6471,7 @@
       "cost": "3",
       "attack": "3",
       "health": "4",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "Other friendly creatures are immune to Silence."
     },
@@ -6561,7 +6486,7 @@
       "cost": "3",
       "attack": "1",
       "health": "6",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Guard","Rally"],
       "text": "Guard, Rally"
     },
@@ -6569,7 +6494,7 @@
       "id": "751b7f94-b11c-11e6-80f5-76304dec7eb7",
       "name": "Knife to the Throat",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "action",
       "attributes": "neutral",
@@ -6591,7 +6516,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Rally"],
       "text": "Rally\r\nSummon: Put a 2/2 Colovian Trooper with Guard into your hand."
     },
@@ -6599,14 +6524,14 @@
       "id": "751b84f8-b11c-11e6-80f5-76304dec7eb7",
       "name": "Knight of the Hour",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "willpower",
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard\r\nSummon: You gain 3 health."
     },
@@ -6621,7 +6546,7 @@
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -6636,7 +6561,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "kwama",
+      "race": "Kwama",
       "keywords": [],
       "text": "Plot: Summon a 1/1 Kwama Forager in each lane.\r\nOther friendly Kwama have +1/+0."
     },
@@ -6651,7 +6576,7 @@
       "cost": "9",
       "attack": "6",
       "health": "6",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Draw a card of your choice from your deck."
     },
@@ -6666,7 +6591,7 @@
       "cost": "6",
       "attack": "5",
       "health": "6",
-      "race": "ashcreature",
+      "race": "Ash Creature",
       "keywords": [],
       "text": ""
     },
@@ -6696,7 +6621,7 @@
       "cost": "5",
       "attack": "4",
       "health": "3",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: Destroy a Wounded creature."
     },
@@ -6726,7 +6651,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "When you summon an Imperial, summon a 1/1 Imperial Grunt  in the other lane."
     },
@@ -6741,7 +6666,7 @@
       "cost": "7",
       "attack": "4",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: Give other friendly creatures +1/+1."
     },
@@ -6754,8 +6679,8 @@
       "type": "item",
       "attributes": "willpower",
       "cost": "2",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "3",
       "race": "",
       "keywords": ["Guard"],
       "text": "Guard\r\n+1/+3"
@@ -6801,7 +6726,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Exalt 2: Give other friendly creatures in this lane +2/+2."
     },
@@ -6831,7 +6756,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "After you play an action, deal 2 damage to your opponent."
     },
@@ -6846,7 +6771,7 @@
       "cost": "4",
       "attack": "2",
       "health": "3",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "When you summon another creature in this lane, give it a Ward."
     },
@@ -6854,14 +6779,14 @@
       "id": "8a5e17b8-ce4a-11e6-9d9d-cec0c932ce01",
       "name": "Little Girl",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "endurance",
       "cost": "4",
       "attack": "0",
       "health": "2",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": [],
       "text": "At the start of your turn, Little Girl changes into a 5/5 Ageless Vampire with Drain."
     },
@@ -6876,7 +6801,7 @@
       "cost": "2",
       "attack": "0",
       "health": "0",
-      "race": "",
+      "race": "Lockpick",
       "keywords": [],
       "text": "Either put another Lockpick into your hand or draw a card and reduce its cost by 2, chosen randomly."
     },
@@ -6891,7 +6816,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Plot: Equip a friendly creature with a +2/+2 Steel Scimitar."
     },
@@ -6906,7 +6831,7 @@
       "cost": "7",
       "attack": "4",
       "health": "8",
-      "race": "troll",
+      "race": "Troll",
       "keywords": ["Regenerate"],
       "text": "Regenerate"
     },
@@ -6921,9 +6846,9 @@
       "cost": "5",
       "attack": "2",
       "health": "2",
-      "race": "nord",
-      "keywords": ["Prophecy","Guard"],
-      "text": "Prophecy, Guard\r\nSummon: Give a creature +2/+2 and Guard."
+      "race": "Nord",
+      "keywords": ["Prophecy"],
+      "text": "Prophecy\r\nSummon: Give a creature +2/+2 and Guard."
     },
     {
       "id": "cba167eb-2160-cb86-1251-b8808c94c085",
@@ -6936,9 +6861,9 @@
       "cost": "4",
       "attack": "1",
       "health": "5",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Lethal"],
-      "text": "Lethal\r\nOther friendly creatures have \"Slay: +2/+2.\""
+      "text": "Lethal\r\nOther friendly creatures have “Slay: +2/+2.”"
     },
     {
       "id": "6aececba-9f30-2492-9b25-32a19e913b19",
@@ -6951,7 +6876,7 @@
       "cost": "4",
       "attack": "7",
       "health": "4",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": [],
       "text": "Lumbering Ogrim can't gain Cover."
     },
@@ -6966,7 +6891,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": ["Prophecy"],
       "text": "Prophecy"
     },
@@ -6981,7 +6906,7 @@
       "cost": "5",
       "attack": "2",
       "health": "6",
-      "race": "mummy",
+      "race": "Mummy",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard"
     },
@@ -6994,8 +6919,8 @@
       "type": "item",
       "attributes": "neutral",
       "cost": "1",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "2",
       "race": "",
       "keywords": [],
       "text": "+1/+2\r\nThe wielder is immune to Silence."
@@ -7011,7 +6936,7 @@
       "cost": "5",
       "attack": "3",
       "health": "8",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Guard"],
       "text": "Guard\r\nLydia guards both lanes."
     },
@@ -7024,8 +6949,8 @@
       "type": "item",
       "attributes": "intelligence",
       "cost": "3",
-      "attack": "0",
-      "health": "0",
+      "attack": "2",
+      "health": "1",
       "race": "",
       "keywords": [],
       "text": "+2/+1\r\nSummon: Shackle an enemy creature."
@@ -7041,7 +6966,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Mage Slayer can't be damaged by actions."
     },
@@ -7056,7 +6981,7 @@
       "cost": "2",
       "attack": "1",
       "health": "2",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Summon: Reduce the cost of an action in your hand by 2."
     },
@@ -7116,7 +7041,7 @@
       "cost": "10",
       "attack": "6",
       "health": "6",
-      "race": "mantikora",
+      "race": "Mantikora",
       "keywords": [],
       "text": "Summon: Destroy an enemy creature in this lane."
     },
@@ -7130,7 +7055,7 @@
       "attributes": "neutral",
       "cost": "0",
       "attack": "0",
-      "health": "0",
+      "health": "3",
       "race": "",
       "keywords": [],
       "text": "+0/+3"
@@ -7146,7 +7071,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "When Markarth Bannerman attacks, put two 1/1 Nord Firebrands with Charge into your hand."
     },
@@ -7154,14 +7079,14 @@
       "id": "ff8e58d0-ed59-11e6-9598-0800200c9a66",
       "name": "Marked Man",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "willpower",
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: Put a 0/2 Makeshift Defenses with Guard into your hand."
     },
@@ -7176,7 +7101,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "Summon: Master of Arms equips the two highest cost items from your discard pile."
     },
@@ -7191,7 +7116,7 @@
       "cost": "4",
       "attack": "3",
       "health": "5",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Friendly creatures with Pilfer may attack an extra time each turn."
     },
@@ -7206,7 +7131,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "At the start of your turn, give each item in your deck +1/+1."
     },
@@ -7214,14 +7139,14 @@
       "id": "0809f2c0-e537-8201-14c5-ecd90ea7b6c5",
       "name": "Mechanical Ally",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Promotional",
       "isunique": false,
       "type": "creature",
       "attributes": "neutral",
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "Summon: Summon a Spider Worker if the top card of your deck is (Neutral)."
     },
@@ -7236,7 +7161,7 @@
       "cost": "8",
       "attack": "4",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Stitch together the top creature from both decks to create an Abomination and put it into your hand."
     },
@@ -7266,7 +7191,7 @@
       "cost": "5",
       "attack": "5",
       "health": "5",
-      "race": "spirit",
+      "race": "Spirit",
       "keywords": [],
       "text": "Summon: Banish your opponent’s discard pile."
     },
@@ -7281,7 +7206,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard\r\nSummon: Give a creature in your hand Guard."
     },
@@ -7294,8 +7219,8 @@
       "type": "item",
       "attributes": "intelligence",
       "cost": "5",
-      "attack": "0",
-      "health": "0",
+      "attack": "3",
+      "health": "3",
       "race": "",
       "keywords": [],
       "text": "+3/+3\r\nSummon: Give this creature's Keywords to each other friendly creature."
@@ -7304,14 +7229,14 @@
       "id": "cd8efed9-dc06-ba4d-d751-af1c157493b3",
       "name": "Merchant's Camel",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Madhouse Collection",
       "isunique": false,
       "type": "creature",
       "attributes": "neutral",
       "cost": "4",
       "attack": "1",
       "health": "4",
-      "race": "beast",
+      "race": "Beast",
       "keywords": [],
       "text": "Summon: Look at the top three cards of your deck. Draw one and discard the others."
     },
@@ -7326,7 +7251,7 @@
       "cost": "7",
       "attack": "2",
       "health": "2",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "Summon: Equip each friendly creature in this lane with a random item."
     },
@@ -7341,7 +7266,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard\r\nLast Gasp: Reduce the cost of a random Dragon in your hand by 1."
     },
@@ -7371,7 +7296,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: +3/+0 and Breakthrough if the top card of your deck is (Strength)."
     },
@@ -7401,7 +7326,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "Summon: Draw a random Orc from your discard pile.\r\nOther friendly Orcs have +1/+1."
     },
@@ -7416,7 +7341,7 @@
       "cost": "11",
       "attack": "5",
       "health": "5",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: Steal an enemy creature."
     },
@@ -7431,7 +7356,7 @@
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Ward"],
       "text": "Ward\r\nSummon: +2/+0 if you have another creature with Ward."
     },
@@ -7446,7 +7371,7 @@
       "cost": "3",
       "attack": "2",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Treasure Hunt — Guard: Give the Guard +1/+2."
     },
@@ -7491,7 +7416,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Last Gasp: Gain 2 magicka this turn."
     },
@@ -7506,7 +7431,7 @@
       "cost": "4",
       "attack": "4",
       "health": "2",
-      "race": "beast",
+      "race": "Beast",
       "keywords": ["Drain","Prophecy"],
       "text": "Drain, Prophecy"
     },
@@ -7521,7 +7446,7 @@
       "cost": "4",
       "attack": "4",
       "health": "3",
-      "race": "imperial",
+      "race": "Nord",
       "keywords": ["Guard"],
       "text": "Guard\r\nPlot: Put a random Guard into your hand."
     },
@@ -7536,7 +7461,7 @@
       "cost": "1",
       "attack": "2",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Slay: Summon a copy of Morag Tong Aspirant."
     },
@@ -7551,7 +7476,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Summon a 0/1 Target with Guard for your opponent.\r\nSlay: +1/+1"
     },
@@ -7566,7 +7491,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Summon a 0/1 Target with Guard for your opponent.\r\nSlay: Draw a card. If it's an action, reduce its cost to 0."
     },
@@ -7581,7 +7506,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "orc",
+      "race": "Orc",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard\r\nSummon: Give a creature +2/+0."
     },
@@ -7596,7 +7521,7 @@
       "cost": "5",
       "attack": "5",
       "health": "5",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": [],
       "text": "Summon: If you started the game with no duplicate cards in your deck, you gain 5 health and restore a rune."
     },
@@ -7611,7 +7536,7 @@
       "cost": "3",
       "attack": "2",
       "health": "4",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "When an enemy rune is destroyed, Morthal Executioner gains +2/+0."
     },
@@ -7626,7 +7551,7 @@
       "cost": "1",
       "attack": "2",
       "health": "1",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": ""
     },
@@ -7641,7 +7566,7 @@
       "cost": "6",
       "attack": "6",
       "health": "6",
-      "race": "giant",
+      "race": "Giant",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -7656,7 +7581,7 @@
       "cost": "1",
       "attack": "2",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -7671,7 +7596,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Regenerate"],
       "text": "Regenerate\r\nExalt 3: +2/+2"
     },
@@ -7686,7 +7611,7 @@
       "cost": "2",
       "attack": "4",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Last Gasp: Your opponent summons a 2/1 Mournhold Guardian with Guard."
     },
@@ -7716,7 +7641,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "mudcrab",
+      "race": "Mudcrab",
       "keywords": [],
       "text": "Summon: Deal 1 damage to your opponent."
     },
@@ -7731,7 +7656,7 @@
       "cost": "1",
       "attack": "1",
       "health": "2",
-      "race": "mudcrab",
+      "race": "Mudcrab",
       "keywords": [],
       "text": "Summon: The Merchant shows you two cards he has for sale. Choose one to put into your hand. He puts the other into your opponent's hand."
     },
@@ -7776,7 +7701,7 @@
       "cost": "3",
       "attack": "3",
       "health": "2",
-      "race": "goblin",
+      "race": "Goblin",
       "keywords": [],
       "text": "If Murkwater Butcher is in your hand during your first turn, reduce his cost to 1."
     },
@@ -7791,7 +7716,7 @@
       "cost": "0",
       "attack": "0",
       "health": "1",
-      "race": "goblin",
+      "race": "Goblin",
       "keywords": [],
       "text": "Murkwater Goblin has +2/+0 on your turn."
     },
@@ -7806,9 +7731,9 @@
       "cost": "3",
       "attack": "4",
       "health": "2",
-      "race": "goblin",
+      "race": "Goblin",
       "keywords": [],
-      "text": "Treasure Hunt — 0-cost card: Put a copy of the \"treasure\" into your hand."
+      "text": "Treasure Hunt — 0-cost card: Put a copy of the “treasure” into your hand."
     },
     {
       "id": "2274594f-3d71-c36a-9b1c-91c0d44df5a5",
@@ -7821,7 +7746,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "goblin",
+      "race": "Goblin",
       "keywords": [],
       "text": "When you summon another (Agility) creature, Murkwater Savage gains +1/+1."
     },
@@ -7836,7 +7761,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "goblin",
+      "race": "Goblin",
       "keywords": [],
       "text": "At the start of your turn, put a Curse into your hand."
     },
@@ -7851,7 +7776,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "goblin",
+      "race": "Goblin",
       "keywords": [],
       "text": "Summon: Give all other friendly Goblins +2/+2."
     },
@@ -7866,9 +7791,9 @@
       "cost": "2",
       "attack": "1",
       "health": "1",
-      "race": "goblin",
+      "race": "Goblin",
       "keywords": ["Guard"],
-      "text": "Guard\r\nSummon: Give a creature -1/-1."
+      "text": "Guard\r\nSummon: Give a creature \r\n-1/-1."
     },
     {
       "id": "a8439940-e2d0-434b-a830-76226810e99d",
@@ -7883,7 +7808,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Betray\r\nYour actions have Betray."
+      "text": "Your actions have Betray."
     },
     {
       "id": "979ba1e6-9bb1-11e6-80f5-76304dec7eb7",
@@ -7896,7 +7821,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": ["Prophecy"],
       "text": "Prophecy"
     },
@@ -7911,7 +7836,7 @@
       "cost": "7",
       "attack": "7",
       "health": "7",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": ["Guard"],
       "text": "Guard\r\nYour opponent can't target Nahagliiv with actions."
     },
@@ -7926,7 +7851,7 @@
       "cost": "9",
       "attack": "5",
       "health": "5",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": [],
       "text": "Summon: Draw a card and reduce its cost to 0."
     },
@@ -7956,9 +7881,9 @@
       "cost": "6",
       "attack": "6",
       "health": "6",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
-      "text": "Summon: Summon a 0/1 Target with Guard for your opponent in each lane.\r\nFriendly creatures have \"Slay: +1/+1 and Lethal.\""
+      "text": "Summon: Summon a 0/1 Target with Guard for your opponent in each lane.\r\nFriendly creatures have “Slay: +1/+1 and Lethal.”"
     },
     {
       "id": "c9a32e5e-83b8-b20a-8950-1c1d77d835d2",
@@ -7971,7 +7896,7 @@
       "cost": "5",
       "attack": "5",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Trigger the Last Gasp of each friendly creature."
     },
@@ -8016,7 +7941,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "+2/+0 while there are no enemy creatures in this lane."
     },
@@ -8031,7 +7956,7 @@
       "cost": "6",
       "attack": "5",
       "health": "5",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough"
     },
@@ -8046,7 +7971,7 @@
       "cost": "6",
       "attack": "5",
       "health": "6",
-      "race": "werewolf",
+      "race": "Werewolf",
       "keywords": ["Breakthrough","Regenerate"],
       "text": "Breakthrough, Regenerate"
     },
@@ -8061,7 +7986,7 @@
       "cost": "6",
       "attack": "6",
       "health": "5",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": ["Breakthrough","Drain"],
       "text": "Breakthrough, Drain"
     },
@@ -8076,7 +8001,7 @@
       "cost": "9",
       "attack": "8",
       "health": "8",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": ["Drain"],
       "text": "Drain\r\nSlay: Summon the slain creature."
     },
@@ -8091,7 +8016,7 @@
       "cost": "6",
       "attack": "5",
       "health": "3",
-      "race": "falmer",
+      "race": "Falmer",
       "keywords": [],
       "text": "When Nightprowler gains Cover, draw a card."
     },
@@ -8106,7 +8031,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: +1/+1 and Lethal if the top card of your deck is (Agility)."
     },
@@ -8121,7 +8046,7 @@
       "cost": "4",
       "attack": "3",
       "health": "2",
-      "race": "beast",
+      "race": "Beast",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Shackle each enemy creature with less power than Nix-Hound."
     },
@@ -8136,7 +8061,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "fabricant",
+      "race": "Fabricant",
       "keywords": ["Drain"],
       "text": "Drain\r\nSummon: If you have a (Neutral) card in play, Shackle an enemy creature."
     },
@@ -8151,7 +8076,7 @@
       "cost": "7",
       "attack": "5",
       "health": "5",
-      "race": "beast",
+      "race": "Beast",
       "keywords": [],
       "text": "Summon: Gain 5 magicka this turn."
     },
@@ -8166,7 +8091,7 @@
       "cost": "0",
       "attack": "1",
       "health": "1",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Charge"],
       "text": "Charge"
     },
@@ -8181,7 +8106,7 @@
       "cost": "4",
       "attack": "4",
       "health": "2",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "Summon: Summon a 0/4 Northpoint Herald with Guard."
     },
@@ -8196,7 +8121,7 @@
       "cost": "4",
       "attack": "4",
       "health": "2",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": ""
     },
@@ -8226,7 +8151,7 @@
       "cost": "12",
       "attack": "10",
       "health": "10",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Summon: Deal 4 damage to all enemy creatures."
     },
@@ -8241,7 +8166,7 @@
       "cost": "6",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Summon a creature  from your discard pile with less power than Odirniran Necromancer."
     },
@@ -8256,7 +8181,7 @@
       "cost": "2",
       "attack": "0",
       "health": "5",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Guard","Regenerate"],
       "text": "Guard, Regenerate"
     },
@@ -8286,7 +8211,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "Other friendly creatures in this lane have +1/+0."
     },
@@ -8301,7 +8226,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "orc",
+      "race": "Orc",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nOther friendly Orcs in this lane have Breakthrough."
     },
@@ -8316,7 +8241,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "Summon: Give a creature +1/+0."
     },
@@ -8329,8 +8254,8 @@
       "type": "item",
       "attributes": "strength",
       "cost": "4",
-      "attack": "0",
-      "health": "0",
+      "attack": "3",
+      "health": "3",
       "race": "",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\n+3/+3"
@@ -8346,7 +8271,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "beast",
+      "race": "Beast",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough"
     },
@@ -8376,7 +8301,7 @@
       "cost": "12",
       "attack": "9",
       "health": "9",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Summon: Put three random Shouts into your hand and reduce their costs to 0."
     },
@@ -8391,7 +8316,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "wolf",
+      "race": "Wolf",
       "keywords": [],
       "text": "Pilfer: Summon a 1/1 Young Wolf.\r\nOther friendly Wolves have +1/+1."
     },
@@ -8406,7 +8331,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "wolf",
+      "race": "Wolf",
       "keywords": [],
       "text": "Summon: Summon a 1/1 Young Wolf in the other lane."
     },
@@ -8421,7 +8346,7 @@
       "cost": "5",
       "attack": "4",
       "health": "6",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Slay: Draw a card."
     },
@@ -8429,14 +8354,14 @@
       "id": "751b43d0-b11c-11e6-80f5-76304dec7eb7",
       "name": "Palace Conspirator",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "intelligence",
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Draw a card, then discard a card."
     },
@@ -8451,7 +8376,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": ["Drain"],
       "text": "Drain\r\nPilfer: Gain 1 magicka this turn."
     },
@@ -8474,14 +8399,14 @@
       "id": "9dde53af-31a1-4dbe-bd0d-d58af40fdaf0",
       "name": "Penitus Oculatus Agent",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "willpower",
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: Steal a creature's Keywords."
     },
@@ -8496,7 +8421,7 @@
       "cost": "5",
       "attack": "5",
       "health": "6",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Guard"],
       "text": "Guard\r\nWhen your opponent draws a Prophecy from a rune being destroyed, put a 1/2 Septim Guardsman with Guard into your hand."
     },
@@ -8526,7 +8451,7 @@
       "cost": "5",
       "attack": "5",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: Give a friendly creature Drain this turn."
     },
@@ -8541,7 +8466,7 @@
       "cost": "3",
       "attack": "5",
       "health": "5",
-      "race": "beast",
+      "race": "Beast",
       "keywords": [],
       "text": "Pit Lion can't be played unless there's a friendly creature in each lane."
     },
@@ -8586,7 +8511,7 @@
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Exalt 1: Gain a random Keyword."
     },
@@ -8601,7 +8526,7 @@
       "cost": "5",
       "attack": "0",
       "health": "9",
-      "race": "defense",
+      "race": "Defense",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard"
     },
@@ -8631,7 +8556,7 @@
       "cost": "6",
       "attack": "3",
       "health": "3",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: Give creatures in your deck +1/+1."
     },
@@ -8646,7 +8571,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "+2/+2 and Guard while you have 7 or more max magicka."
     },
@@ -8661,7 +8586,7 @@
       "cost": "2",
       "attack": "2",
       "health": "1",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: Draw a card if you have two other (Willpower) creatures."
     },
@@ -8676,7 +8601,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: You gain 2 health."
     },
@@ -8691,7 +8616,7 @@
       "cost": "3",
       "attack": "0",
       "health": "5",
-      "race": "defense",
+      "race": "Defense",
       "keywords": [],
       "text": "Summon: Shackle an enemy creature while you have Prison Ship."
     },
@@ -8706,7 +8631,7 @@
       "cost": "5",
       "attack": "0",
       "health": "1",
-      "race": "beast",
+      "race": "Beast",
       "keywords": [],
       "text": "Last Gasp: Fill this lane with 1/1 Angry Villagers."
     },
@@ -8721,7 +8646,7 @@
       "cost": "1",
       "attack": "2",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Exalt 5: Fill this lane with 1/1 Risen Dead with Guard."
     },
@@ -8729,14 +8654,14 @@
       "id": "751b58b6-b11c-11e6-80f5-76304dec7eb7",
       "name": "Protector of the Innocent",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "strength",
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard"
     },
@@ -8744,14 +8669,14 @@
       "id": "277bbf44-3f25-4fc5-96c9-6642aaa83de6",
       "name": "Protector of the Mane",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Promotional",
       "isunique": false,
       "type": "creature",
       "attributes": "willpower,agility",
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": ["Drain","Guard"],
       "text": "Drain, Guard\r\nWhen you gain health, Protector of the Mane gains +1/+1."
     },
@@ -8759,14 +8684,14 @@
       "id": "fedfabf1-51e3-4dcf-ba84-a90457d3b549",
       "name": "Pure-Blood Elder",
       "rarity": "Epic",
-      "set": "",
+      "set": "Promotional",
       "isunique": false,
       "type": "creature",
       "attributes": "endurance",
       "cost": "7",
       "attack": "8",
       "health": "8",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": [],
       "text": "When you gain max magicka, double the amount you gain.\r\nWhile you have 18 or more max magicka, Pure-Blood Elder has +8/+8 and Breakthrough."
     },
@@ -8781,7 +8706,7 @@
       "cost": "2",
       "attack": "1",
       "health": "5",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": ["Drain"],
       "text": "Drain"
     },
@@ -8796,7 +8721,7 @@
       "cost": "4",
       "attack": "6",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Drain"],
       "text": "Drain\r\nSummon: Give all other friendly creatures in this lane Guard."
     },
@@ -8804,13 +8729,13 @@
       "id": "751b6b44-b11c-11e6-80f5-76304dec7eb7",
       "name": "Quicksilver Crossbow",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "item",
       "attributes": "strength",
       "cost": "3",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "1",
       "race": "",
       "keywords": [],
       "text": "+1/+1\r\nSummon: The wielder deals 1 damage."
@@ -8826,7 +8751,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": ["Drain"],
       "text": "Drain\r\nPilfer: +4/+4"
     },
@@ -8841,7 +8766,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Pilfer: +4/+4"
     },
@@ -8856,7 +8781,7 @@
       "cost": "2",
       "attack": "1",
       "health": "3",
-      "race": "beast",
+      "race": "Beast",
       "keywords": [],
       "text": "When Raging Horker takes damage, it gains +1/+1."
     },
@@ -8886,24 +8811,9 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Pilfer: Draw a card."
-    },
-    {
-      "id": "f404c5dc-1a34-4d49-a6a9-6dd437df003c",
-      "name": "Rallying Stormcloak",
-      "rarity": "Common",
-      "set": "Heroes of Skyrim",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "strength",
-      "cost": "2",
-      "attack": "2",
-      "health": "2",
-      "race": "nord",
-      "keywords": [],
-      "text": ""
     },
     {
       "id": "79a73e4d-23b4-75c0-3289-69fb56b4b6a1",
@@ -8916,7 +8826,7 @@
       "cost": "4",
       "attack": "3",
       "health": "2",
-      "race": "minotaur",
+      "race": "Minotaur",
       "keywords": ["Breakthrough","Charge"],
       "text": "Breakthrough, Charge"
     },
@@ -8961,7 +8871,7 @@
       "cost": "1",
       "attack": "1",
       "health": "2",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Treasure Hunt - Support, Item, Action: +5/+5 \r\n After Ratway Prospector attacks, give her Cover."
     },
@@ -8976,7 +8886,7 @@
       "cost": "2",
       "attack": "3",
       "health": "4",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": [],
       "text": "Summon: You must deal 2 damage to a friendly creature."
     },
@@ -8991,7 +8901,7 @@
       "cost": "2",
       "attack": "4",
       "health": "1",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": [],
       "text": "Summon: Gains Drain if there is an enemy creature in this lane."
     },
@@ -9006,7 +8916,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "reachman",
+      "race": "Reachman",
       "keywords": [],
       "text": "At the start of your turn, give another random friendly creature +1/+1."
     },
@@ -9021,7 +8931,7 @@
       "cost": "8",
       "attack": "8",
       "health": "8",
-      "race": "giant",
+      "race": "Giant",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough"
     },
@@ -9051,21 +8961,21 @@
       "cost": "9",
       "attack": "5",
       "health": "5",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Summon: Silence and Shackle all enemy creatures in this lane."
     },
     {
       "id": "30f5aeaf-0298-4e40-a9e1-db658deb6222",
       "name": "Redoran Battlespear",
-      "rarity": "Common",
+      "rarity": "Rare",
       "set": "Houses of Morrowind",
       "isunique": false,
       "type": "item",
       "attributes": "strength",
       "cost": "3",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "3",
       "race": "",
       "keywords": ["Rally"],
       "text": "Rally\r\n+1/+3"
@@ -9081,7 +8991,7 @@
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": ""
     },
@@ -9096,7 +9006,7 @@
       "cost": "2",
       "attack": "1",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Drain","Charge","Ward"],
       "text": "Drain, Charge, Ward"
     },
@@ -9111,7 +9021,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: If you have a...\r\n (Willpower) card in play, double Redoran Oathman's health.\r\n(Strength) card in play, double Redoran Oathman's power."
     },
@@ -9126,7 +9036,7 @@
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "factotum",
+      "race": "Factotum",
       "keywords": [],
       "text": "Reflective Automaton has all creature types."
     },
@@ -9141,7 +9051,7 @@
       "cost": "4",
       "attack": "3",
       "health": "5",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": [],
       "text": "When Reive attacks, deal 2 damage to your opponent, then increase the damage dealt by 2."
     },
@@ -9156,7 +9066,7 @@
       "cost": "1",
       "attack": "2",
       "health": "1",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "After an enemy rune is destroyed, deal 1 damage to your opponent."
     },
@@ -9171,7 +9081,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "Treasure Hunt — Item: Give the item +1/+1."
     },
@@ -9186,7 +9096,7 @@
       "cost": "7",
       "attack": "5",
       "health": "5",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nSummon: Summon a 1/1 Imperial Grunt, then gain 1 health for each friendly creature."
     },
@@ -9201,7 +9111,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Summon: Give other friendly creatures in this lane +1/+1 if the top card of your deck is (Willpower)."
     },
@@ -9216,7 +9126,7 @@
       "cost": "4",
       "attack": "5",
       "health": "2",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": [],
       "text": "Last Gasp: Gain 5 health."
     },
@@ -9231,7 +9141,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: Heal a creature."
     },
@@ -9276,7 +9186,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -9291,7 +9201,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: If you have less health than your opponent, +0/+2 and Guard. Otherwise, +2/+0 and Breakthrough."
     },
@@ -9306,7 +9216,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nSummon: You gain 4 health."
     },
@@ -9321,7 +9231,7 @@
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Reveal three random cards in your opponent’s deck. Choose one and draw a copy of it."
     },
@@ -9336,7 +9246,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: +1/+1 for each destroyed enemy rune."
     },
@@ -9351,7 +9261,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "+0/+3 and Guard while equipped with an item."
     },
@@ -9366,7 +9276,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "+3/+0 and Breakthrough while equipped with an item."
     },
@@ -9381,7 +9291,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": ""
     },
@@ -9389,13 +9299,13 @@
       "id": "728a3472-f34e-94f9-e22e-83c668f9dea5",
       "name": "Ring of Imaginary Might",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Madhouse Collection",
       "isunique": false,
       "type": "item",
       "attributes": "endurance",
       "cost": "4",
       "attack": "0",
-      "health": "0",
+      "health": "2",
       "race": "",
       "keywords": [],
       "text": "+0/+2\r\nSummon: The wielder's power becomes equal to its health."
@@ -9426,7 +9336,7 @@
       "cost": "7",
       "attack": "5",
       "health": "5",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nSummon: Summon a 1/1 Imperial Grunt."
     },
@@ -9456,7 +9366,7 @@
       "cost": "3",
       "attack": "1",
       "health": "6",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": ["Guard"],
       "text": "Guard\r\nPilfer: Move."
     },
@@ -9471,7 +9381,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": [],
       "text": ""
     },
@@ -9486,7 +9396,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Summon: If you have more health than your opponent, give each friendly creature a random Keyword."
     },
@@ -9501,7 +9411,7 @@
       "cost": "3",
       "attack": "2",
       "health": "5",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Treasure Hunt — Support: Draw a card."
     },
@@ -9516,7 +9426,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Treasure Hunt — Drain: +1/+1 and Drain.\r\nTreasure Hunt — Lethal: +1/+1 and Lethal."
     },
@@ -9531,7 +9441,7 @@
       "cost": "4",
       "attack": "4",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Guard"],
       "text": "Guard\r\nLast Gasp: Summon a 2/1 Mournhold Guardian with Guard."
     },
@@ -9546,7 +9456,7 @@
       "cost": "6",
       "attack": "5",
       "health": "5",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Pilfer: Summon the top creature of your deck."
     },
@@ -9554,14 +9464,14 @@
       "id": "751b76fc-b11c-11e6-80f5-76304dec7eb7",
       "name": "Sanctuary Pet",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "agility",
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "spider",
+      "race": "Spider",
       "keywords": ["Lethal"],
       "text": "Lethal\r\nSummon: Shackle an enemy creature in this lane."
     },
@@ -9569,7 +9479,7 @@
       "id": "751b60b8-b11c-11e6-80f5-76304dec7eb7",
       "name": "Sanctuary Raid",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "action",
       "attributes": "willpower",
@@ -9591,7 +9501,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Rally"],
       "text": "Rally"
     },
@@ -9606,7 +9516,7 @@
       "cost": "7",
       "attack": "5",
       "health": "5",
-      "race": "ogre",
+      "race": "Ogre",
       "keywords": [],
       "text": "Summon: Give a creature +5/+0 this turn."
     },
@@ -9651,7 +9561,7 @@
       "cost": "1",
       "attack": "1",
       "health": "2",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Ward"],
       "text": "Ward\r\nTreasure Hunt — Two actions: +1/+0"
     },
@@ -9666,7 +9576,7 @@
       "cost": "1",
       "attack": "1",
       "health": "2",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": [],
       "text": ""
     },
@@ -9696,7 +9606,7 @@
       "cost": "6",
       "attack": "4",
       "health": "7",
-      "race": "beast",
+      "race": "Beast",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -9709,7 +9619,7 @@
       "type": "item",
       "attributes": "strength,intelligence",
       "cost": "4",
-      "attack": "0",
+      "attack": "4",
       "health": "0",
       "race": "",
       "keywords": ["Ward"],
@@ -9726,7 +9636,7 @@
       "cost": "0",
       "attack": "1",
       "health": "2",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Guard"],
       "text": "Guard"
     },
@@ -9741,7 +9651,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Slay: +2/+0\r\nMay move to attack creatures in the other lane."
     },
@@ -9756,7 +9666,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "ashcreature",
+      "race": "Ash Creature",
       "keywords": [],
       "text": "Summon: If you have a creature with 5 power or more, +2/+2 and Guard."
     },
@@ -9771,7 +9681,7 @@
       "cost": "2",
       "attack": "0",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Equip a +3/+0 Steel Sword to a friendly creature."
     },
@@ -9801,7 +9711,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Summon: Silence another creature, or destroy an enemy support."
     },
@@ -9816,7 +9726,7 @@
       "cost": "7",
       "attack": "5",
       "health": "5",
-      "race": "spriggan",
+      "race": "Spriggan",
       "keywords": [],
       "text": "Summon: Give other friendly Spriggans and Animals +2/+2."
     },
@@ -9831,7 +9741,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "falmer",
+      "race": "Falmer",
       "keywords": [],
       "text": "Summon: Give a friendly creature Cover. Your opponent can't target it with actions until your next turn."
     },
@@ -9839,14 +9749,14 @@
       "id": "751b792c-b11c-11e6-80f5-76304dec7eb7",
       "name": "Shadowmere",
       "rarity": "Legendary",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": true,
       "type": "creature",
       "attributes": "neutral",
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "beast",
+      "race": "Beast",
       "keywords": ["Charge"],
       "text": "Charge\r\nLast Gasp: Shuffle Shadowmere into your deck, give it +3/+3, and increase its cost by 3."
     },
@@ -9861,7 +9771,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": ["Lethal"],
       "text": "Lethal\r\nSummon: +0/+2 if you have another creature with Lethal."
     },
@@ -9876,7 +9786,7 @@
       "cost": "3",
       "attack": "2",
       "health": "4",
-      "race": "fabricant",
+      "race": "Fabricant",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: If you have a (Neutral) card in play, put a random action into your hand."
     },
@@ -9891,7 +9801,7 @@
       "cost": "6",
       "attack": "6",
       "health": "6",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Plot: Discard your hand, then draw three cards."
     },
@@ -9906,7 +9816,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Deal 1 damage."
     },
@@ -9921,7 +9831,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Summon: Give a creature -2/-2.\r\nWhen you reduce a creature's power or health with another effect, reduce it by an extra 1."
     },
@@ -9934,8 +9844,8 @@
       "type": "item",
       "attributes": "strength",
       "cost": "3",
-      "attack": "0",
-      "health": "0",
+      "attack": "2",
+      "health": "2",
       "race": "",
       "keywords": [],
       "text": "+2/+2\r\nSummon: An enemy creature loses Guard."
@@ -9951,7 +9861,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "At the end of each turn, if you played two actions, draw a card."
     },
@@ -9959,14 +9869,14 @@
       "id": "595904e7-9eed-c017-cff7-3c3d3e153818",
       "name": "Shivering Apothecary",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Madhouse Collection",
       "isunique": false,
       "type": "creature",
       "attributes": "willpower",
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: Summon a random elixir."
     },
@@ -9981,7 +9891,7 @@
       "cost": "8",
       "attack": "4",
       "health": "4",
-      "race": "wamasu",
+      "race": "Wamasu",
       "keywords": [],
       "text": "Summon: Deal 4 damage to a creature."
     },
@@ -9996,7 +9906,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Breakthrough","Ward"],
       "text": "Breakthrough, Ward\r\nWhen Shornhelm Champion's Ward is broken, he gains +3/+3."
     },
@@ -10011,7 +9921,7 @@
       "cost": "2",
       "attack": "2",
       "health": "1",
-      "race": "harpy",
+      "race": "Harpy",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Shackle an enemy creature."
     },
@@ -10026,7 +9936,7 @@
       "cost": "8",
       "attack": "8",
       "health": "8",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": ["Guard"],
       "text": "Guard\r\nWhen your opponent summons a creature, reduce its power to 0 until the start of your turn."
     },
@@ -10041,7 +9951,7 @@
       "cost": "2",
       "attack": "5",
       "health": "5",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Siege Catapult can't attack unless your side of its lane is full."
     },
@@ -10071,7 +9981,7 @@
       "cost": "4",
       "attack": "4",
       "health": "3",
-      "race": "falmer",
+      "race": "Falmer",
       "keywords": [],
       "text": "Summon: Draw a card if you have two other (Agility) creatures."
     },
@@ -10086,7 +9996,7 @@
       "cost": "3",
       "attack": "1",
       "health": "1",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Draw a random multi-attribute card from your deck."
     },
@@ -10101,7 +10011,7 @@
       "cost": "2",
       "attack": "0",
       "health": "4",
-      "race": "beast",
+      "race": "Beast",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard\r\nSummon:  Move a friendly creature to this lane."
     },
@@ -10116,7 +10026,7 @@
       "cost": "2",
       "attack": "3",
       "health": "1",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: Gains Charge if there is a Wounded enemy creature in this lane."
     },
@@ -10129,8 +10039,8 @@
       "type": "item",
       "attributes": "intelligence",
       "cost": "1",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "1",
       "race": "",
       "keywords": [],
       "text": "+1/+1\r\nSummon: If the wielder has 5 power or more, it gains a Ward."
@@ -10146,7 +10056,7 @@
       "cost": "6",
       "attack": "5",
       "health": "5",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": ["Rally"],
       "text": "Rally\r\nWhen Skar Drillmaster Rallies a creature, put a copy of the rallied creature into your hand with +1/+1."
     },
@@ -10161,7 +10071,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "Summon: Deal 1 damage to all other creatures in this lane."
     },
@@ -10176,7 +10086,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "skeever",
+      "race": "Automaton",
       "keywords": [],
       "text": "Summon: +1/+1 for each other Skeever you’ve summoned this game."
     },
@@ -10184,7 +10094,7 @@
       "id": "751b622a-b11c-11e6-80f5-76304dec7eb7",
       "name": "Skeever Infestation",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "action",
       "attributes": "strength",
@@ -10206,7 +10116,7 @@
       "cost": "8",
       "attack": "5",
       "health": "5",
-      "race": "skeleton",
+      "race": "Dragon",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: Give all creatures in your discard pile +2/+2.\r\nLast Gasp: Draw another random creature from your discard pile."
     },
@@ -10221,7 +10131,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "skeleton",
+      "race": "Skeleton",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: Give other friendly Skeletons +1/+1."
     },
@@ -10236,7 +10146,7 @@
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "Your items cost 1 less."
     },
@@ -10251,7 +10161,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": ""
     },
@@ -10281,7 +10191,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Summon: Give a creature Lethal."
     },
@@ -10289,14 +10199,14 @@
       "id": "b929efbe-7eb7-42c5-a30c-10fbab2d5814",
       "name": "Skooma Underboss",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "agility",
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Friendly Pilfer abilities are also Slay abilities."
     },
@@ -10311,7 +10221,7 @@
       "cost": "6",
       "attack": "7",
       "health": "3",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Summon: Battle an enemy creature."
     },
@@ -10341,7 +10251,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Summon: Deal 2 damage to an enemy creature or give a friendly creature +2/+2."
     },
@@ -10356,7 +10266,7 @@
       "cost": "4",
       "attack": "1",
       "health": "1",
-      "race": "fish",
+      "race": "Fish",
       "keywords": [],
       "text": "Slaughterfish gains +2/+0 at the start of your turn."
     },
@@ -10386,7 +10296,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Last Gasp: Draw a card if you have 7 or more max magicka."
     },
@@ -10394,7 +10304,7 @@
       "id": "79fab68a-cecf-231a-549c-2649d4633a5d",
       "name": "Smuggler's Haul",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Promotional",
       "isunique": false,
       "type": "action",
       "attributes": "agility",
@@ -10414,8 +10324,8 @@
       "type": "item",
       "attributes": "agility",
       "cost": "2",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "1",
       "race": "",
       "keywords": [],
       "text": "+1/+1\r\nSummon: Give the wielder Drain this turn."
@@ -10431,7 +10341,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "dreugh",
+      "race": "Dreugh",
       "keywords": [],
       "text": ""
     },
@@ -10446,7 +10356,7 @@
       "cost": "2",
       "attack": "1",
       "health": "3",
-      "race": "wolf",
+      "race": "Wolf",
       "keywords": [],
       "text": "+2/+0 while you have the most creatures in this lane."
     },
@@ -10461,7 +10371,7 @@
       "cost": "5",
       "attack": "3",
       "health": "5",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: +1/+1 if you have another creature with Guard."
     },
@@ -10476,7 +10386,7 @@
       "cost": "5",
       "attack": "3",
       "health": "7",
-      "race": "beast",
+      "race": "Beast",
       "keywords": [],
       "text": "May attack an extra time each turn."
     },
@@ -10491,7 +10401,7 @@
       "cost": "1",
       "attack": "2",
       "health": "2",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": ""
     },
@@ -10521,7 +10431,7 @@
       "cost": "9",
       "attack": "4",
       "health": "4",
-      "race": "god",
+      "race": "God",
       "keywords": [],
       "text": "Exalt 3: +4/+4\r\nAt the end of your turn, if you have an Exalted creature in play, summon an Awakened Imperfect."
     },
@@ -10566,37 +10476,22 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Summon: If you have more health than your opponent, the next card you play this turn costs 6 less."
-    },
-    {
-      "id": "3487d1cd-42c0-48ec-808a-b6dd745bd335",
-      "name": "Sovngarde Hero",
-      "rarity": "Common",
-      "set": "Heroes of Skyrim",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "willpower",
-      "cost": "3",
-      "attack": "3",
-      "health": "3",
-      "race": "spirit",
-      "keywords": [],
-      "text": ""
     },
     {
       "id": "168198e7-5104-f5c3-9f1f-5f626479d91d",
       "name": "Sower of Revenge",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Promotional",
       "isunique": false,
       "type": "creature",
       "attributes": "strength,endurance",
       "cost": "5",
       "attack": "5",
       "health": "5",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": ["Guard"],
       "text": "Guard\r\nLast Gasp: Deals 5 damage to your opponent."
     },
@@ -10611,7 +10506,7 @@
       "cost": "4",
       "attack": "2",
       "health": "3",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": ["Prophecy","Guard"],
       "text": "Prophecy, Guard"
     },
@@ -10619,14 +10514,14 @@
       "id": "751b71c0-b11c-11e6-80f5-76304dec7eb7",
       "name": "Speaker Terenus",
       "rarity": "Legendary",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": true,
       "type": "creature",
       "attributes": "intelligence",
       "cost": "10",
       "attack": "6",
       "health": "6",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "After you play an action, put a random action into your hand."
     },
@@ -10634,13 +10529,13 @@
       "id": "751b4696-b11c-11e6-80f5-76304dec7eb7",
       "name": "Spear of Embers",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "item",
       "attributes": "intelligence",
       "cost": "5",
-      "attack": "0",
-      "health": "0",
+      "attack": "3",
+      "health": "3",
       "race": "",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\n+3/+3\r\nInstead of equipping Spear of Embers, you may throw it at an enemy creature to deal 3 damage."
@@ -10671,7 +10566,7 @@
       "cost": "8",
       "attack": "4",
       "health": "2",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": [],
       "text": "Summon: Fill your lanes with 2/1 Spiderlings.\r\nLast Gasp: Destroy all friendly Spiderlings."
     },
@@ -10701,7 +10596,7 @@
       "cost": "2",
       "attack": "0",
       "health": "1",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": ["Prophecy"],
       "text": "Prophecy\r\nSummon: Draw a card."
     },
@@ -10716,7 +10611,7 @@
       "cost": "6",
       "attack": "6",
       "health": "6",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": [],
       "text": "Summon: Gain +1 max magicka."
     },
@@ -10746,7 +10641,7 @@
       "cost": "5",
       "attack": "4",
       "health": "3",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": [],
       "text": "Summon: Destroy a creature with 2 power or less."
     },
@@ -10759,7 +10654,7 @@
       "type": "item",
       "attributes": "intelligence",
       "cost": "6",
-      "attack": "0",
+      "attack": "3",
       "health": "0",
       "race": "",
       "keywords": [],
@@ -10776,7 +10671,7 @@
       "cost": "2",
       "attack": "3",
       "health": "2",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": [],
       "text": ""
     },
@@ -10784,14 +10679,14 @@
       "id": "751b6bf8-b11c-11e6-80f5-76304dec7eb7",
       "name": "Stalking Shadowscale",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "endurance",
       "cost": "3",
       "attack": "3",
       "health": "4",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Slay: +1/+1"
     },
@@ -10806,7 +10701,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Summon: +0/+2 and Guard if the top card of your deck is (Endurance)."
     },
@@ -10814,14 +10709,14 @@
       "id": "72ac5adf-fbbf-5442-14cf-ea61ea0ad69d",
       "name": "Stampede Sentinel",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Promotional",
       "isunique": false,
       "type": "creature",
       "attributes": "strength",
       "cost": "6",
       "attack": "7",
       "health": "7",
-      "race": "giant",
+      "race": "Giant",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nYou can't be damaged by actions or supports."
     },
@@ -10836,7 +10731,7 @@
       "cost": "5",
       "attack": "4",
       "health": "6",
-      "race": "mammoth",
+      "race": "Mammoth",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nStampeding Mammoth has +2/+0 for each other friendly creature with Breakthrough."
     },
@@ -10866,7 +10761,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Immune to Silence.\r\nYour Unique cards cost 1 less."
     },
@@ -10881,7 +10776,7 @@
       "cost": "2",
       "attack": "4",
       "health": "1",
-      "race": "daedra",
+      "race": "Daedra",
       "keywords": [],
       "text": ""
     },
@@ -10889,14 +10784,14 @@
       "id": "751b684c-b11c-11e6-80f5-76304dec7eb7",
       "name": "Stealer of Secrets",
       "rarity": "Common",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "intelligence",
       "cost": "6",
       "attack": "1",
       "health": "1",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": ["Ward"],
       "text": "Ward\r\nSummon: +1/+1 for each action in your discard pile."
     },
@@ -10911,7 +10806,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "Summon: If you have a (Neutral) card in your hand, summon a 1/1 Reconstructed Spider."
     },
@@ -10924,8 +10819,8 @@
       "type": "item",
       "attributes": "strength",
       "cost": "1",
-      "attack": "0",
-      "health": "0",
+      "attack": "2",
+      "health": "2",
       "race": "",
       "keywords": [],
       "text": "+2/+2"
@@ -10939,7 +10834,7 @@
       "type": "item",
       "attributes": "intelligence",
       "cost": "2",
-      "attack": "0",
+      "attack": "3",
       "health": "0",
       "race": "",
       "keywords": [],
@@ -10956,7 +10851,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "Slay: Give friendly Orcs +1/+1."
     },
@@ -10984,8 +10879,8 @@
       "type": "item",
       "attributes": "neutral",
       "cost": "2",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "1",
       "race": "",
       "keywords": [],
       "text": "+1/+1\r\nSummon: Summon a 0/1 Sheepish Dunmer in the other lane.\r\nLast Gasp: Give Sheepish Dunmer his pants."
@@ -11016,7 +10911,7 @@
       "cost": "6",
       "attack": "5",
       "health": "7",
-      "race": "mammoth",
+      "race": "Mammoth",
       "keywords": [],
       "text": "Summon: Draw a card if you have two other (Endurance) creatures."
     },
@@ -11024,14 +10919,14 @@
       "id": "fa22ceed-9c1c-c918-5fec-28eb266b8f08",
       "name": "Stoneshard Orc",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Madhouse Collection",
       "isunique": false,
       "type": "creature",
       "attributes": "strength",
       "cost": "3",
       "attack": "2",
       "health": "1",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "Summon: Deal 1 damage to an enemy creature for each friendly Orc."
     },
@@ -11046,7 +10941,7 @@
       "cost": "4",
       "attack": "4",
       "health": "5",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": ""
     },
@@ -11061,24 +10956,9 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "At the end of your turn, if three or more friendly creatures died this turn, summon a 2/2 Rallying Stormcloak."
-    },
-    {
-      "id": "b27e0c40-662f-11e6-bdf4-0800200c9a66",
-      "name": "Stormcloak Battalion",
-      "rarity": "Common",
-      "set": "Heroes of Skyrim",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "strength",
-      "cost": "4",
-      "attack": "5",
-      "health": "5",
-      "race": "nord",
-      "keywords": [],
-      "text": ""
     },
     {
       "id": "df2e5b90-09b4-11e7-9598-0800200c9a66",
@@ -11096,21 +10976,6 @@
       "text": "At the end of your turn, if a creature died this turn, deal 2 damage to your opponent."
     },
     {
-      "id": "aab4a9a2-7dda-11e6-ae22-56b6b6499611",
-      "name": "Stormcloak Skirmisher",
-      "rarity": "Common",
-      "set": "Heroes of Skyrim",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "strength",
-      "cost": "2",
-      "attack": "3",
-      "health": "1",
-      "race": "nord",
-      "keywords": ["Breakthrough"],
-      "text": "Breakthrough"
-    },
-    {
       "id": "b27e0c41-662f-11e6-bdf4-0800200c9a66",
       "name": "Stormcloak Vanguard",
       "rarity": "Common",
@@ -11121,7 +10986,7 @@
       "cost": "2",
       "attack": "1",
       "health": "1",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Charge"],
       "text": "Charge\r\nLast Gasp: Put a 5/5 Stormcloak Battalion in your hand."
     },
@@ -11136,7 +11001,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "+2/+2 while you have 7 or more max magicka."
     },
@@ -11151,22 +11016,7 @@
       "cost": "5",
       "attack": "6",
       "health": "4",
-      "race": "giant",
-      "keywords": [],
-      "text": ""
-    },
-    {
-      "id": "aad0bd70-09a5-11e7-9598-0800200c9a66",
-      "name": "Stricken Draugr",
-      "rarity": "Common",
-      "set": "Heroes of Skyrim",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "endurance",
-      "cost": "2",
-      "attack": "2",
-      "health": "2",
-      "race": "skeleton",
+      "race": "Giant",
       "keywords": [],
       "text": ""
     },
@@ -11181,7 +11031,7 @@
       "cost": "5",
       "attack": "6",
       "health": "6",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "Summon: Give all enemy creatures in this lane Guard."
     },
@@ -11196,7 +11046,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "Last Gasp: Put two random Dwemer into your hand."
     },
@@ -11211,7 +11061,7 @@
       "cost": "3",
       "attack": "3",
       "health": "2",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "Summon: Draw a card if you have two other (Strength) creatures."
     },
@@ -11226,7 +11076,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "Last Gasp: Put a random Dwemer into your hand."
     },
@@ -11241,7 +11091,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "Summon: Equip Student of Arms with the highest cost item from your discard pile."
     },
@@ -11256,7 +11106,7 @@
       "cost": "1",
       "attack": "0",
       "health": "4",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "At the start of your turn, look at the top card of your deck. You may discard it."
     },
@@ -11271,7 +11121,7 @@
       "cost": "6",
       "attack": "6",
       "health": "3",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Summon: Each player draws two cards."
     },
@@ -11301,7 +11151,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Other friendly creatures in this lane have +0/+1."
     },
@@ -11316,7 +11166,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "Summon: Give a creature +0/+2."
     },
@@ -11331,7 +11181,7 @@
       "cost": "5",
       "attack": "4",
       "health": "6",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Summon: Permanently Shackle another friendly creature to draw an action of your choice from your deck."
     },
@@ -11361,7 +11211,7 @@
       "cost": "10",
       "attack": "3",
       "health": "3",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "Summon: Summon a Flame Atronach in each lane.\r\nWhen you summon another creature, deal 2 damage to your opponent."
     },
@@ -11376,7 +11226,7 @@
       "cost": "2",
       "attack": "2",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Plot: Put a random 0-cost card into your hand."
     },
@@ -11391,7 +11241,7 @@
       "cost": "7",
       "attack": "8",
       "health": "8",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": [],
       "text": ""
     },
@@ -11421,7 +11271,7 @@
       "cost": "8",
       "attack": "5",
       "health": "5",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": ["Charge"],
       "text": "Charge"
     },
@@ -11436,7 +11286,7 @@
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Summon: Put a random 0-cost card into your hand.\r\nAfter you play a 0-cost card, Swims-at-Night gains +1/+1."
     },
@@ -11444,7 +11294,7 @@
       "id": "28bc7476-4193-fe91-7567-365dfa4b4006",
       "name": "Swindler's Market",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Madhouse Collection",
       "isunique": false,
       "type": "support",
       "attributes": "agility",
@@ -11466,7 +11316,7 @@
       "cost": "9",
       "attack": "6",
       "health": "6",
-      "race": "goblin",
+      "race": "Goblin",
       "keywords": ["Breakthrough","Charge"],
       "text": "Breakthrough, Charge\r\nLast Gasp: Summon a 4/4 Durzog."
     },
@@ -11481,7 +11331,7 @@
       "cost": "6",
       "attack": "5",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Ward"],
       "text": "Ward\r\nAt the end of your turn, if Tel Vos Magister has a Ward, you gain a Ward."
     },
@@ -11496,7 +11346,7 @@
       "cost": "3",
       "attack": "3",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Last Gasp: Put a random action into your hand."
     },
@@ -11511,7 +11361,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Last Gasp: Draw a card. If Telvanni Catspaw was sacrificed, draw two cards instead."
     },
@@ -11526,7 +11376,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: If you have a... \r\n(Intelligence) card in play, draw a random action from your deck.\r\n(Endurance) card in play, summon a Risen Dead in each lane."
     },
@@ -11541,7 +11391,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Exalt 4: Summon a 5/3 Flame Atronach with Breakthrough."
     },
@@ -11556,7 +11406,7 @@
       "cost": "7",
       "attack": "5",
       "health": "5",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Trigger the Exalt of each friendly creature."
     },
@@ -11571,7 +11421,7 @@
       "cost": "4",
       "attack": "2",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Pilfer: +1/+1\r\nMay attack an extra time each turn."
     },
@@ -11586,7 +11436,7 @@
       "cost": "4",
       "attack": "1",
       "health": "1",
-      "race": "reptile",
+      "race": "Reptile",
       "keywords": ["Charge","Lethal"],
       "text": "Charge, Lethal"
     },
@@ -11616,37 +11466,22 @@
       "cost": "3",
       "attack": "1",
       "health": "3",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": [],
       "text": "After you play an action, summon a 1/1 Thalmor Soldier."
-    },
-    {
-      "id": "979b9110-9bb1-11e6-80f5-76304dec7eb7",
-      "name": "Thalmor Soldier",
-      "rarity": "Common",
-      "set": "Heroes of Skyrim",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "willpower",
-      "cost": "1",
-      "attack": "1",
-      "health": "1",
-      "race": "highelf",
-      "keywords": [],
-      "text": ""
     },
     {
       "id": "751b6ec8-b11c-11e6-80f5-76304dec7eb7",
       "name": "The Black Dragon",
       "rarity": "Legendary",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": true,
       "type": "creature",
       "attributes": "willpower",
       "cost": "4",
       "attack": "5",
       "health": "5",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Immune to Lethal.\r\nSlay: Discard all creatures from your opponent's deck with the same name as the slain creature."
     },
@@ -11669,7 +11504,7 @@
       "id": "7f74e0c0-d2e1-11e6-bf26-cec0c932ce01",
       "name": "The Night Mother",
       "rarity": "Legendary",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": true,
       "type": "support",
       "attributes": "neutral",
@@ -11706,7 +11541,7 @@
       "cost": "5",
       "attack": "3",
       "health": "8",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "After you play an action, shuffle three 0-cost copies of that action into your deck."
     },
@@ -11721,7 +11556,7 @@
       "cost": "8",
       "attack": "5",
       "health": "5",
-      "race": "highelf",
+      "race": "High Elf",
       "keywords": ["Guard","Ward"],
       "text": "Guard, Ward"
     },
@@ -11736,7 +11571,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Summon: See a vision of two of your opponent's cards. Guess which one is in their hand. If you're right, draw a copy of it."
     },
@@ -11768,7 +11603,7 @@
       "health": "0",
       "race": "",
       "keywords": [],
-      "text": "Friendly creatures have \"Pilfer: +1/+1.\""
+      "text": "Friendly creatures have “Pilfer: +1/+1.”"
     },
     {
       "id": "1b9e8ef0-2adb-11e7-9598-0800200c9a66",
@@ -11781,7 +11616,7 @@
       "cost": "3",
       "attack": "3",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "When you draw a card on your turn, reduce its cost by 1."
     },
@@ -11796,7 +11631,7 @@
       "cost": "2",
       "attack": "1",
       "health": "2",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Summon: Draw a card. If it costs 7 or more, reduce its cost by 1."
     },
@@ -11811,7 +11646,7 @@
       "cost": "3",
       "attack": "2",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": [],
       "text": "Summon: Steal the top card of the opponent's deck and replace it with a Counterfeit Trinket."
     },
@@ -11826,7 +11661,7 @@
       "cost": "5",
       "attack": "2",
       "health": "4",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: Gain +1 max magicka.\r\nGains +1/+0 when your max magicka increases."
     },
@@ -11841,7 +11676,7 @@
       "cost": "1",
       "attack": "1",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Beast Form: +1/+1"
     },
@@ -11854,8 +11689,8 @@
       "type": "item",
       "attributes": "intelligence",
       "cost": "2",
-      "attack": "0",
-      "health": "0",
+      "attack": "3",
+      "health": "3",
       "race": "",
       "keywords": ["Guard"],
       "text": "Guard\r\n+3/+3\r\nSummon: Shackle the wielder."
@@ -11869,8 +11704,8 @@
       "type": "item",
       "attributes": "intelligence",
       "cost": "4",
-      "attack": "0",
-      "health": "0",
+      "attack": "2",
+      "health": "2",
       "race": "",
       "keywords": [],
       "text": "+2/+2\r\nSummon: Draw a card."
@@ -11886,7 +11721,7 @@
       "cost": "4",
       "attack": "1",
       "health": "4",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": ["Charge"],
       "text": "Charge\r\nPilfer: Gain 2 magicka this turn."
     },
@@ -11901,7 +11736,7 @@
       "cost": "3",
       "attack": "2",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Your Activated supports have unlimited uses."
     },
@@ -11929,8 +11764,8 @@
       "type": "item",
       "attributes": "neutral",
       "cost": "3",
-      "attack": "0",
-      "health": "0",
+      "attack": "1",
+      "health": "1",
       "race": "",
       "keywords": [],
       "text": "+1/+1\r\nSummon: Draw a card. If the wielder has Treasure Hunt, draw something they are hunting for instead."
@@ -11946,7 +11781,7 @@
       "cost": "4",
       "attack": "0",
       "health": "4",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "At the start of your turn, deal 4 damage to a random enemy."
     },
@@ -11961,7 +11796,7 @@
       "cost": "3",
       "attack": "1",
       "health": "1",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: Gain +1 max magicka."
     },
@@ -12006,7 +11841,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: If you have a...\r\n(Willpower) card in play, you gain 4 health.\r\n (Endurance) card in play, gain +1 max magicka."
     },
@@ -12021,7 +11856,7 @@
       "cost": "6",
       "attack": "4",
       "health": "4",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: If you have more health than your opponent, draw two cards."
     },
@@ -12051,7 +11886,7 @@
       "cost": "5",
       "attack": "5",
       "health": "5",
-      "race": "beast",
+      "race": "Beast",
       "keywords": [],
       "text": ""
     },
@@ -12066,7 +11901,7 @@
       "cost": "4",
       "attack": "4",
       "health": "2",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": ["Prophecy"],
       "text": "Prophecy"
     },
@@ -12081,7 +11916,7 @@
       "cost": "3",
       "attack": "2",
       "health": "4",
-      "race": "argonian",
+      "race": "Argonian",
       "keywords": [],
       "text": "Plot: Lethal and Guard."
     },
@@ -12111,7 +11946,7 @@
       "cost": "4",
       "attack": "5",
       "health": "4",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Breakthrough","Prophecy","Guard"],
       "text": "Breakthrough, Prophecy, Guard"
     },
@@ -12126,7 +11961,7 @@
       "cost": "5",
       "attack": "6",
       "health": "5",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nWhen you play a Shout, draw a random Nord from your deck."
     },
@@ -12141,7 +11976,7 @@
       "cost": "4",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "When an enemy rune is destroyed, draw a card."
     },
@@ -12171,7 +12006,7 @@
       "cost": "4",
       "attack": "5",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Last Gasp: Put a Heavy Battleaxe into your hand."
     },
@@ -12184,54 +12019,24 @@
       "type": "item",
       "attributes": "willpower",
       "cost": "6",
-      "attack": "0",
-      "health": "0",
+      "attack": "3",
+      "health": "5",
       "race": "",
       "keywords": [],
       "text": "+3/+5\r\nAt the start of your turn, the wielder Battles an enemy creature of Umbra’s choosing."
     },
     {
-      "id": "0c231800-4dd8-11e6-bdf4-0800200c9a66",
-      "name": "Uncaged Wolf",
-      "rarity": "Common",
-      "set": "Heroes of Skyrim",
-      "isunique": false,
-      "type": "creature",
-      "attributes": "willpower",
-      "cost": "3",
-      "attack": "2",
-      "health": "2",
-      "race": "wolf",
-      "keywords": [],
-      "text": "Summon: +1/+1 for each other friendly Wolf."
-    },
-    {
-      "id": "c4b250ec-b92e-4894-bd32-63937a390d35",
-      "name": "Underforge",
-      "rarity": "Legendary",
-      "set": "Heroes of Skyrim",
-      "isunique": true,
-      "type": "support",
-      "attributes": "strength",
-      "cost": "3",
-      "attack": "0",
-      "health": "0",
-      "race": "",
-      "keywords": [],
-      "text": "Activate:  A friendly creature becomes a Werewolf.\r\nFriendly Werewolves have +1/+1."
-    },
-    {
       "id": "7f74e6f6-d2e1-11e6-bf26-cec0c932ce01",
       "name": "Underworld Vigilante",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "strength",
       "cost": "5",
       "attack": "4",
       "health": "1",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": ["Charge"],
       "text": "Charge\r\nSummon: All enemy creatures in this lane lose Cover."
     },
@@ -12246,7 +12051,7 @@
       "cost": "6",
       "attack": "5",
       "health": "5",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": ["Drain"],
       "text": "Drain\r\n+5/+5 while you have 30 or more health."
     },
@@ -12261,7 +12066,7 @@
       "cost": "1",
       "attack": "1",
       "health": "1",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: Shuffle three Brotherhood Assassins into your deck."
     },
@@ -12299,7 +12104,7 @@
       "id": "f7ebbd0a-adaf-11e6-80f5-76304dec7eb7",
       "name": "Unstoppable Rage",
       "rarity": "Epic",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "action",
       "attributes": "strength",
@@ -12321,7 +12126,7 @@
       "cost": "3",
       "attack": "3",
       "health": "1",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: Deal 1 damage."
     },
@@ -12336,7 +12141,7 @@
       "cost": "3",
       "attack": "3",
       "health": "1",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": ""
     },
@@ -12351,7 +12156,7 @@
       "cost": "3",
       "attack": "1",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": ["Guard"],
       "text": "Guard\r\nLast Gasp: Draw a card."
     },
@@ -12366,7 +12171,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "fabricant",
+      "race": "Fabricant",
       "keywords": [],
       "text": "Summon: If you have a (Neutral) card in play, Silence another creature."
     },
@@ -12381,7 +12186,7 @@
       "cost": "4",
       "attack": "3",
       "health": "4",
-      "race": "dreugh",
+      "race": "Dreugh",
       "keywords": [],
       "text": "Summon: Destroy an enemy support."
     },
@@ -12396,7 +12201,7 @@
       "cost": "3",
       "attack": "5",
       "health": "4",
-      "race": "spirit",
+      "race": "Spirit",
       "keywords": ["Guard"],
       "text": "Guard\r\nVigilant Ancestor is permanently Shackled."
     },
@@ -12411,7 +12216,7 @@
       "cost": "8",
       "attack": "8",
       "health": "8",
-      "race": "giant",
+      "race": "Giant",
       "keywords": ["Breakthrough","Guard"],
       "text": "Breakthrough, Guard\r\nSummon: Draw a card."
     },
@@ -12426,7 +12231,7 @@
       "cost": "3",
       "attack": "5",
       "health": "2",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": ""
     },
@@ -12441,7 +12246,7 @@
       "cost": "5",
       "attack": "5",
       "health": "5",
-      "race": "god",
+      "race": "God",
       "keywords": [],
       "text": "Exalt 3: +5/+5\r\nWhile you have an Exalted creature in play, you can't lose the game."
     },
@@ -12456,7 +12261,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": ["Drain"],
       "text": "Drain\r\nExalt 3: +2/+2"
     },
@@ -12471,7 +12276,7 @@
       "cost": "4",
       "attack": "4",
       "health": "4",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Summon: +4/+4 and Guard if you have an action, item, and support in your discard pile or in play."
     },
@@ -12493,7 +12298,7 @@
     {
       "id": "06c3c7ef-61c6-cf10-cf62-2b7ad6005916",
       "name": "Volkihar Lord",
-      "rarity": "Legendary",
+      "rarity": "Common",
       "set": "Core",
       "isunique": false,
       "type": "creature",
@@ -12501,7 +12306,7 @@
       "cost": "9",
       "attack": "7",
       "health": "7",
-      "race": "vampire",
+      "race": "Vampire",
       "keywords": ["Drain"],
       "text": "Drain"
     },
@@ -12516,7 +12321,7 @@
       "cost": "1",
       "attack": "2",
       "health": "1",
-      "race": "spriggan",
+      "race": "Spriggan",
       "keywords": ["Drain"],
       "text": "Drain"
     },
@@ -12576,7 +12381,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "khajiit",
+      "race": "Khajiit",
       "keywords": ["Rally"],
       "text": "Rally"
     },
@@ -12591,7 +12396,7 @@
       "cost": "2",
       "attack": "2",
       "health": "1",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "Summon: Give a creature a Ward."
     },
@@ -12621,7 +12426,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "imperial",
+      "race": "Imperial",
       "keywords": [],
       "text": "Summon: Give all friendly Guards +1/+2."
     },
@@ -12666,7 +12471,7 @@
       "cost": "6",
       "attack": "5",
       "health": "5",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "When Whirling Duelist equips an item, deal 1 damage to all enemy creatures in this lane."
     },
@@ -12681,7 +12486,7 @@
       "cost": "5",
       "attack": "4",
       "health": "4",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "Beast Form: +2/+2, Guard, and Regenerate."
     },
@@ -12696,7 +12501,7 @@
       "cost": "4",
       "attack": "4",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": ""
     },
@@ -12711,7 +12516,7 @@
       "cost": "4",
       "attack": "6",
       "health": "2",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": ""
     },
@@ -12726,7 +12531,7 @@
       "cost": "6",
       "attack": "3",
       "health": "4",
-      "race": "spriggan",
+      "race": "Spriggan",
       "keywords": [],
       "text": "Summon: Summon a random Animal."
     },
@@ -12756,7 +12561,7 @@
       "cost": "6",
       "attack": "3",
       "health": "4",
-      "race": "spriggan",
+      "race": "Spriggan",
       "keywords": [],
       "text": "Summon: Summon a 2/3 Snow Fox."
     },
@@ -12771,7 +12576,7 @@
       "cost": "7",
       "attack": "6",
       "health": "6",
-      "race": "dragon",
+      "race": "Dragon",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nSummon: Deal 1 damage to all other creatures.\r\nSlay: +1/+1."
     },
@@ -12786,7 +12591,7 @@
       "cost": "2",
       "attack": "2",
       "health": "2",
-      "race": "breton",
+      "race": "Breton",
       "keywords": ["Ward"],
       "text": "Ward"
     },
@@ -12801,7 +12606,7 @@
       "cost": "5",
       "attack": "3",
       "health": "3",
-      "race": "darkelf",
+      "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Another creature disappears, then returns at the end of the turn."
     },
@@ -12861,7 +12666,7 @@
       "cost": "7",
       "attack": "5",
       "health": "5",
-      "race": "spirit",
+      "race": "Spirit",
       "keywords": [],
       "text": "When you summon a creature that costs 2 or less, summon a copy of that creature in the other lane."
     },
@@ -12876,7 +12681,7 @@
       "cost": "3",
       "attack": "3",
       "health": "4",
-      "race": "redguard",
+      "race": "Redguard",
       "keywords": [],
       "text": "All actions cost 2 more."
     },
@@ -12906,7 +12711,7 @@
       "cost": "5",
       "attack": "5",
       "health": "4",
-      "race": "orc",
+      "race": "Orc",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nSummon: Gains Charge if you have another Orc."
     },
@@ -12921,7 +12726,7 @@
       "cost": "3",
       "attack": "3",
       "health": "4",
-      "race": "woodelf",
+      "race": "Wood Elf",
       "keywords": [],
       "text": "When you summon a Dragon, gain 4 health."
     },
@@ -12936,7 +12741,7 @@
       "cost": "1",
       "attack": "0",
       "health": "4",
-      "race": "defense",
+      "race": "Defense",
       "keywords": ["Guard"],
       "text": "Guard\r\nSummon: Upgrade a Shout in your hand."
     },
@@ -12959,14 +12764,14 @@
       "id": "a6afa30d-2c6e-4984-a75d-aa4a323155aa",
       "name": "Worm King's Agent",
       "rarity": "Epic",
-      "set": "Return to Clockwork City",
+      "set": "Promotional",
       "isunique": false,
       "type": "creature",
       "attributes": "intelligence,endurance",
       "cost": "7",
       "attack": "4",
       "health": "4",
-      "race": "breton",
+      "race": "Breton",
       "keywords": [],
       "text": "Summon: Deal 2 damage to a creature.\r\nSlay: Summon a 2/2 Worm Thrall with Guard."
     },
@@ -12974,14 +12779,14 @@
       "id": "d3ad93ae-898b-4f58-86ab-3dacaf7ceb95",
       "name": "Wrath of Sithis",
       "rarity": "Rare",
-      "set": "Core",
+      "set": "Dark Brotherhood",
       "isunique": false,
       "type": "creature",
       "attributes": "endurance",
       "cost": "6",
       "attack": "5",
       "health": "6",
-      "race": "spirit",
+      "race": "Spirit",
       "keywords": [],
       "text": "Summon: Your opponent’s cards cost 1 more next turn."
     },
@@ -13011,7 +12816,7 @@
       "cost": "3",
       "attack": "2",
       "health": "3",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "Summon: Give a creature +1/+1."
     },
@@ -13041,7 +12846,7 @@
       "cost": "2",
       "attack": "1",
       "health": "1",
-      "race": "orc",
+      "race": "Orc",
       "keywords": [],
       "text": "When you summon another Orc, Wrothgar Kingpin gains +1/+1."
     },
@@ -13056,7 +12861,7 @@
       "cost": "3",
       "attack": "2",
       "health": "4",
-      "race": "dwemer",
+      "race": "Dwemer",
       "keywords": [],
       "text": "Summon: Draw a Dwemer from your discard pile and give it +2/+2."
     },
@@ -13073,7 +12878,7 @@
       "health": "0",
       "race": "",
       "keywords": ["Guard"],
-      "text": "Guard\r\n[if:103490>0, +0/+0>Summon: +1/+1 for each enemy creature in this lane."
+      "text": "Guard\r\nSummon: +1/+1 for each enemy creature in this lane."
     },
     {
       "id": "105c88ed-c6fa-41dd-b69a-df10f66daf3d",
@@ -13086,7 +12891,7 @@
       "cost": "3",
       "attack": "3",
       "health": "3",
-      "race": "nord",
+      "race": "Nord",
       "keywords": [],
       "text": "When Young Dragonborn Slays a Dragon, put a random Shout into your hand.\r\nAfter you play a Shout, Young Dragonborn gains +1/+1."
     },
@@ -13101,7 +12906,7 @@
       "cost": "3",
       "attack": "4",
       "health": "4",
-      "race": "mammoth",
+      "race": "Mammoth",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough"
     }
