@@ -1,7 +1,7 @@
 {
-  "Version": "2.0",
-  "VersionInfo": "New client release",
-  "VersionDate": "2018-09-28T00:00:00Z",
+  "Version": "2.3",
+  "VersionInfo": "FrostSpark Collection and October 2018 Monthly card",
+  "VersionDate": "2018-11-01T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -37,6 +37,11 @@
       "name": "Houses of Morrowind",
       "id": "81a42256-7ef4-4325-a261-4ce57f7f9b3b",
       "haspacks": "true"
+    },    
+    {
+      "name": "FrostSpark Collection",
+      "id": "c6cbdb1c-f099-491c-bd31-e71d9dfe3495",
+      "haspacks": "false"
     }
   ],
   "Cards": [
@@ -371,6 +376,21 @@
       "text": "Uses: 12.\r\nActivate: Sacrifice a creature to summon a creature from your deck that costs 1, then increase the cost of creatures this summons by 1."
     },
     {
+      "id": "9c2e42a0-ffff-ffff-0000-000000000000",
+      "name": "Altmer Dragonknight",
+      "rarity": "Epic",
+      "set": "Promotional",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence,willpower",
+      "cost": "3",
+      "attack": "3",
+      "health": "2",
+      "race": "High Elf",
+      "keywords": [],
+      "text": "At the end of your turn, if you played an action, Altmer Dragonknight gains +2/+2."
+    },
+    {
       "id": "f4c047f2-12b6-11e8-b566-0800200c9a66",
       "name": "Ambitious Hireling",
       "rarity": "Common",
@@ -474,6 +494,21 @@
       "race": "Argonian",
       "keywords": [],
       "text": ""
+    },
+    {
+      "id": "ef127139-ffff-ffff-0000-000000000000",
+      "name": "Apex Wolf",
+      "rarity": "Epic",
+      "set": "FrostSpark Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "willpower",
+      "cost": "6",
+      "attack": "4",
+      "health": "4",
+      "race": "Wolf",
+      "keywords": ["Breakthrough","Drain"],
+      "text": "Breakthrough, Drain\r\nLast Gasp: Draw the top creature of your deck and give it Breakthrough and Drain."
     },
     {
       "id": "02caf274-7704-2298-e0db-dd35f87fbe7e",
@@ -3071,6 +3106,21 @@
       "text": "Lethal"
     },
     {
+      "id": "3a94e5f3-0000-0000-0000-000000000000",
+      "name": "Death Hound",
+      "rarity": "Epic",
+      "set": "FrostSpark Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "5",
+      "attack": "6",
+      "health": "6",
+      "race": "Beast",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nDeath Hound's power is equal to its health."
+    },
+    {
       "id": "1beab957-2573-6a3b-fdd6-864312dbf3d4",
       "name": "Deathless Draugr",
       "rarity": "Common",
@@ -3174,6 +3224,21 @@
       "race": "",
       "keywords": [],
       "text": "Sacrifice a creature to summon a random creature that costs 2 more."
+    },
+    {
+      "id": "9c56e0ae-ffff-ffff-0000-000000000000",
+      "name": "Destruction Tutor",
+      "rarity": "Rare",
+      "set": "FrostSpark Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "5",
+      "attack": "3",
+      "health": "5",
+      "race": "High Elf",
+      "keywords": [],
+      "text": "Your actions that deal damage cost 2 less."
     },
     {
       "id": "044cc748-5dab-1d0a-4b8c-ff6400c27907",
@@ -5276,6 +5341,21 @@
       "text": "Prophecy"
     },
     {
+      "id": "76f13e40-0000-0000-0000-000000000000",
+      "name": "Green Pact Ambusher",
+      "rarity": "Epic",
+      "set": "FrostSpark Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "2",
+      "attack": "4",
+      "health": "1",
+      "race": "Wood Elf",
+      "keywords": ["Prophecy","Guard"],
+      "text": "Prophecy, Guard\r\nAt the end of your opponent's turn, if they have a full lane and Green Pact Ambusher is in your hand, summon her to that lane."
+    },
+    {
       "id": "18d9ae9a-b748-feee-9674-9fc8b6eefa6d",
       "name": "Green Pact Stalker",
       "rarity": "Rare",
@@ -5499,6 +5579,21 @@
       "race": "Ash Creature",
       "keywords": ["Breakthrough","Drain","Ward"],
       "text": "Breakthrough, Drain, Ward"
+    },
+    {
+      "id": "e747106d-ffff-ffff-0000-000000000000",
+      "name": "Harmony",
+      "rarity": "Rare",
+      "set": "FrostSpark Collection",
+      "isunique": false,
+      "type": "action",
+      "attributes": "willpower",
+      "cost": "2",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": ["Prophecy"],
+      "text": "Prophecy\r\nGive all enemy creatures -2/-0 until the start of your turn."
     },
     {
       "id": "b6d4290a-4010-4a3e-85ce-ea29ecae0828",
@@ -6459,6 +6554,21 @@
       "race": "Dragon",
       "keywords": [],
       "text": "Summon: Give all enemy creatures in this lane -1/-0."
+    },
+    {
+      "id": "d96c5dec-ffff-ffff-0000-000000000000",
+      "name": "Karthspire Scout",
+      "rarity": "Rare",
+      "set": "FrostSpark Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "endurance",
+      "cost": "1",
+      "attack": "1",
+      "health": "1",
+      "race": "Orc",
+      "keywords": [],
+      "text": "Last Gasp: Draw a card and increase its cost by 1."
     },
     {
       "id": "880f905a-03d0-1a15-3966-3d52cb303d14",
@@ -8441,6 +8551,21 @@
       "text": "Prophecy\r\nDestroy a creature."
     },
     {
+      "id": "73313e1a-0000-0000-0000-000000000000",
+      "name": "Piercing Twilight",
+      "rarity": "Epic",
+      "set": "FrostSpark Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "intelligence",
+      "cost": "4",
+      "attack": "4",
+      "health": "4",
+      "race": "Daedra",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nSummon: Choose a card in your opponent's discard pile. Banish all cards from your opponent's discard pile and deck with the same name as the chosen card."
+    },
+    {
       "id": "52b70184-4895-4975-65e5-32b57d514b40",
       "name": "Pillaging Tribune",
       "rarity": "Epic",
@@ -9729,6 +9854,21 @@
       "race": "Spriggan",
       "keywords": [],
       "text": "Summon: Give other friendly Spriggans and Animals +2/+2."
+    },
+    {
+      "id": "10e6c2a8-0000-0000-0000-000000000000",
+      "name": "Shadowmarking",
+      "rarity": "Epic",
+      "set": "FrostSpark Collection",
+      "isunique": false,
+      "type": "action",
+      "attributes": "agility",
+      "cost": "3",
+      "attack": "0",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "Look at the top three cards of your deck. Choose one to put into your opponent’s hand and draw the other two."
     },
     {
       "id": "a9d2eda2-260e-11e7-9598-0800200c9a66",
@@ -11306,6 +11446,21 @@
       "text": "When you play a 0-cost card, deal 1 damage to your opponent and gain 1 health."
     },
     {
+      "id": "640a2386-0000-0000-0000-000000000000",
+      "name": "Sword of the Inferno",
+      "rarity": "Rare",
+      "set": "FrostSpark Collection",
+      "isunique": false,
+      "type": "item",
+      "attributes": "strength",
+      "cost": "2",
+      "attack": "2",
+      "health": "0",
+      "race": "",
+      "keywords": [],
+      "text": "+2/+0\r\nSummon: The wielder deals 2 damage to itself and another creature."
+    },
+    {
       "id": "ed038dfb-a539-0df1-b91a-56e857c2ec23",
       "name": "Tazkad the Packmaster",
       "rarity": "Legendary",
@@ -11724,6 +11879,21 @@
       "race": "Khajiit",
       "keywords": ["Charge"],
       "text": "Charge\r\nPilfer: Gain 2 magicka this turn."
+    },
+    {
+      "id": "68161252-0000-0000-0000-000000000000",
+      "name": "Torval Extortionist",
+      "rarity": "Rare",
+      "set": "FrostSpark Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "agility",
+      "cost": "5",
+      "attack": "7",
+      "health": "5",
+      "race": "Khajiit",
+      "keywords": [],
+      "text": "Slay: Gain magicka this turn equal to the slain creature's cost."
     },
     {
       "id": "84b0450e-4018-60fc-e30f-0a3c195233bd",
@@ -12579,6 +12749,21 @@
       "race": "Dragon",
       "keywords": ["Breakthrough"],
       "text": "Breakthrough\r\nSummon: Deal 1 damage to all other creatures.\r\nSlay: +1/+1."
+    },
+    {
+      "id": "553a7901-0000-0000-0000-000000000000",
+      "name": "Wilds Incarnate",
+      "rarity": "Legendary",
+      "set": "FrostSpark Collection",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "neutral",
+      "cost": "7",
+      "attack": "5",
+      "health": "6",
+      "race": "Beast",
+      "keywords": ["Guard"],
+      "text": "Guard\r\nSummon: Draw a card if you have 4 runes. Draw an additional card if you have 5 runes."
     },
     {
       "id": "583b0bca-af97-6b4d-2cd7-57ea1a6dc47f",
