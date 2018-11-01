@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.SessionOverlay"
              xmlns:Properties="clr-namespace:ESLTracker.Properties"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[SessionOverlay.SessionOverviewViewModel]}"
              Background="{Binding Path=SessionOverlay_BackgrounColor, Source={x:Static Properties:Settings.Default}, Converter={Converters:ColorToBrushConverter}}"
@@ -13,14 +14,26 @@
              Opacity="1"
              >
     <StackPanel Orientation="Vertical">
-        <StackPanel 
-            HorizontalAlignment="Center" 
-            Orientation="Horizontal"
-            Visibility="{Binding Path=SessionOverlay_ShowDuration, Source={x:Static Properties:Settings.Default}, Converter={Converters:BoolToVisibilty}}"
-            >
-            <TextBlock Text="Session duration:" FontSize="14"/>
-            <TextBlock Text="{Binding TimePassed,StringFormat=hh\\:mm}" FontSize="14"/>
-        </StackPanel>
+        <DockPanel>
+            <Button
+                DockPanel.Dock="Right" 
+                ToolTip="Reset session" 
+                Height="20"
+                Command="{Binding CommandResetSession}" 
+                Background="{x:Null}">
+                <fa:ImageAwesome Icon="Refresh" Margin="1"/>
+            </Button>
+            <StackPanel 
+                DockPanel.Dock="Top"
+                HorizontalAlignment="Center" 
+                Orientation="Horizontal"
+                Visibility="{Binding Path=SessionOverlay_ShowDuration, Source={x:Static Properties:Settings.Default}, Converter={Converters:BoolToVisibilty}}"
+                >
+                <TextBlock Text="Session duration:" FontSize="14"/>
+                <TextBlock Text="{Binding TimePassed,StringFormat=hh\\:mm}" FontSize="14"/>
+            </StackPanel>
+
+        </DockPanel>
         <local:GamesOverview HorizontalAlignment="Center" 
                              FontSize="16" 
                              FontWeight="Bold" 

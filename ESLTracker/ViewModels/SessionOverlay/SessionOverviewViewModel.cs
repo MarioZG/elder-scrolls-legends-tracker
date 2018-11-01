@@ -24,6 +24,9 @@ namespace ESLTracker.ViewModels.SessionOverlay
         private readonly RankCalculations rankCalculations;
         private readonly ISettings settings;
 
+        public RelayCommand CommandResetSession { get; private set; }
+
+
         public IEnumerable<DataModel.Game> Games
         {
             get
@@ -94,6 +97,8 @@ namespace ESLTracker.ViewModels.SessionOverlay
             this.rankCalculations = rankCalculations;
             this.settings = settings;
 
+            CommandResetSession = new RelayCommand(new Action<object>(CommandResetSessionExecut));
+
             messenger.Register<EditDeck>(this, GameAdded, EditDeck.Context.StatsUpdated);
 
             StartDate = settings.SessionOverlay_ResetOnApplicationStart ? dateTimeProvider.DateTimeNow : settings.SessionOverlay_SessionStartDateTime;
@@ -150,5 +155,13 @@ namespace ESLTracker.ViewModels.SessionOverlay
             RaisePropertyChangedEvent(nameof(LegendMaxRank));
             RaisePropertyChangedEvent(nameof(LegendCurrentRank));
         }
+
+        private void CommandResetSessionExecut(object obj)
+        {
+            StartDate = dateTimeProvider.DateTimeNow;
+            RaisePropertyChangedEvent(String.Empty);
+        }
+
+
     }
 }
