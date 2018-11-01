@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="ESLTracker.Controls.Cards.SelectCardPresenter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ESLTracker.Controls.Cards"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+             x:Name="seletCard"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <Style x:Key="ShadowText" TargetType="{x:Type Control}">
+            <Style.Triggers>
+                <!-- no shadow when cad unknown or not set-->
+                <DataTrigger Binding="{Binding CardInstance.Card}"  Value="{x:Null}">
+                    <Setter Property="Effect" Value="{x:Null}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CardInstance.Card.Text}"  Value="{x:Null}">
+                    <Setter Property="Effect" Value="{x:Null}"/>
+                </DataTrigger>
+            </Style.Triggers>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect
+                          ShadowDepth="2"
+                          Direction="315"
+                          Color="Black"
+                          Opacity="1"
+                          BlurRadius="1"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="17,0,0,2" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="toolTipAttackHealth" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5,0,5,0"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CardInstance.Card.Type}" Value="Creature">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="toolTipCardName" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <Button x:Name="LayoutRoot"
+            DataContext="{Binding Source={StaticResource VMLocator}, Path=[Cards.SelectCardViewModel]}"
+            HorizontalContentAlignment="Stretch" 
+            Focusable="False"
+            ToolTipService.IsEnabled="{Binding CardInstance.Card, Converter={Converters:ObjectToBool}}"
+            Command="{Binding MouseLeftClick, ElementName=seletCard}" CommandParameter="{Binding CardInstance}">
+        <DockPanel >
+            <CheckBox DockPanel.Dock="Right" 
+                  Margin="5,0,0,0" 
+                  Content="P" 
+                  ToolTip="Premium card" 
+                  FlowDirection="RightToLeft" 
+                  VerticalAlignment="Center"
+                  Visibility="{Binding ShowIsPremium, ElementName=seletCard, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
+                  IsEnabled="{Binding ReadOnlyNot, ElementName=seletCard}"
+                  IsChecked="{Binding IsPremium, Mode=TwoWay}"/>
+            <Border CornerRadius="45"
+                    DockPanel.Dock="Right"
+                    Width="25"
+                    Height="25"
+                    Margin="-10,0,0,0"
+                    Padding="2"
+                    HorizontalAlignment="Left"
+                    Panel.ZIndex="2"
+                    Background="Black"
+                    BorderBrush="Black"
+                    Visibility="{Binding ShowQuantity, ElementName=seletCard, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
+                    BorderThickness="0">
+                <Viewbox VerticalAlignment="Stretch" Height="Auto">
+                    <TextBlock 
+                    FontSize="13" Foreground="White"
+                    Text="{Binding Quantity}" 
+                     />
+                </Viewbox>
+            </Border>
+            <Grid Height="25" VerticalAlignment="Center" Margin="10,0,0,0">
+                <Border CornerRadius="45"
+                        Width="25"
+                        Height="25"
+                        Margin="-10,0,0,0"
+                        Padding="2"
+                        HorizontalAlignment="Left"
+                        Panel.ZIndex="2"
+                        Background="{Binding RarityColor}"
+                        BorderBrush="Black"
+                        BorderThickness="1">
+                    <Viewbox VerticalAlignment="Stretch" Height="Auto">
+                        <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardCost, FallbackValue=-}" VerticalAlignment="Stretch"/>
+                    </Viewbox>
+                </Border>
+                <Image Source="{Binding CardImageName}"/>
+                <Border BorderBrush="{x:Null}" Height="25" VerticalAlignment="Center">
+                    <Label 
+                         Background="{x:Null}"  
+                         Style="{StaticResource ShadowText}"
+                         Foreground="{Binding ForegroundColor}"                      
+                         Content="{Binding Path=CardName, FallbackValue=Unknown}" 
+                         MinWidth="180"
+                         Visibility="{Binding ReadOnly, ElementName=seletCard, Converter={Converters:BoolToVisibilty}}"/>
+                </Border>
+
+            </Grid>
+        </DockPanel>
+        <Button.Template>
+            <ControlTemplate TargetType="{x:Type ButtonBase}">
+                <Border Background="#00000000">
+                    <ContentPresenter Margin="0"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Border>
+            </ControlTemplate>
+        </Button.Template>
+        <Button.ToolTip>
+            <DockPanel Width="200">
+                <TextBlock 
+                Style="{StaticResource toolTipAttackHealth}" 
+                DockPanel.Dock="Left" 
+                Text="{Binding Path=CardAttack}"/>
+                <TextBlock 
+                Style="{StaticResource toolTipAttackHealth}" 
+                DockPanel.Dock="Right" 
+                Text="{Binding Path=CardHealth}"/>
+                <TextBlock 
+                Style="{StaticResource toolTipCardName}" 
+                DockPanel.Dock="Top"
+                HorizontalAlignment="Center" 
+                Text="{Binding Path=CardName}"/>
+                <TextBlock 
+                DockPanel.Dock="Top" 
+                HorizontalAlignment="Center"
+                Text="{Binding Path=CardType}"/>
+                <TextBlock 
+                TextWrapping="WrapWithOverflow" 
+                TextAlignment="Center" 
+                HorizontalAlignment="Center" 
+                Text="{Binding Path=CardText}"/>
+            </DockPanel>
+        </Button.ToolTip>
+    </Button>
+</UserControl>

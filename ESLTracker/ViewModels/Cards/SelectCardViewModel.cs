@@ -93,6 +93,15 @@ namespace ESLTracker.ViewModels.Cards
                 return cardInstance?.Card?.Cost;
             }
         }
+        public string CardImageName
+        {
+            get
+            {
+                return cardInstance?.Card?.ImageName;
+                //return $"/Resources/Cards/{cardInstance?.Card?.ImageName}.png";
+            }
+        }
+
         private static readonly Brush CardForegroud = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
         private static readonly Brush EmptyCardForegroud = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
 

@@ -35,7 +35,7 @@ namespace ESLTracker.BusinessLogic.Cards
 
         public Media.Brush GetCardMiniature(Card card)
         {
-            logger.Debug("Start GetCardMiniature");
+            logger?.Debug("Start GetCardMiniature");
             Media.Brush returnValue = null;
             if((card != null) && (card != Card.Unknown))
             {
@@ -54,13 +54,13 @@ namespace ESLTracker.BusinessLogic.Cards
             {
                 returnValue = EmptyCardBrush;
             }
-            logger.Debug("End GetCardMiniature");
+            logger?.Debug("End GetCardMiniature");
             return returnValue;
         }
 
         public Media.Brush GetRarityBrush(CardRarity? rarity)
         {
-            logger.Debug("Start GetRarityBrush");
+            logger?.Debug("Start GetRarityBrush");
             Media.Brush returnValue = null;
             if (rarity.HasValue)
             {
@@ -106,17 +106,17 @@ namespace ESLTracker.BusinessLogic.Cards
             {
                 returnValue = EmptyRarityBrush;
             }
-            logger.Debug("End GetRarityBrush");
+            logger?.Debug("End GetRarityBrush");
             return returnValue;
         }
 
         private Media.Brush MergeAttribsAndCArd(Drawing.Bitmap attribsBitmap, Drawing.Bitmap cardBitmap)
         {
-            var bitmap = new Drawing.Bitmap(160 + 269, 44);
+            var bitmap = new Drawing.Bitmap(269, 44);
             using (Drawing.Graphics g = Drawing.Graphics.FromImage(bitmap))
             {
-                g.DrawImage(attribsBitmap, 0, 0);
-                g.DrawImage(cardBitmap, 160, 0, 265, 44);
+             //   g.DrawImage(attribsBitmap, 0, 0);
+                g.DrawImage(cardBitmap, 0, 0, 269, 44);
             }
 
             using (MemoryStream memory = new MemoryStream())

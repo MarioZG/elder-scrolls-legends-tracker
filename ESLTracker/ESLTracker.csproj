@@ -120,6 +120,9 @@
     <Compile Include="BusinessLogic\Packs\PackFactory.cs" />
     <Compile Include="BusinessLogic\Rewards\IRewardFactory.cs" />
     <Compile Include="BusinessLogic\Rewards\RewardFactory.cs" />
+    <Compile Include="Controls\Cards\SelectCardPresenter.xaml.cs">
+      <DependentUpon>SelectCardPresenter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Game\MoveToOtherDeck.xaml.cs">
       <DependentUpon>MoveToOtherDeck.xaml</DependentUpon>
     </Compile>
@@ -485,6 +488,10 @@
     <Compile Include="Windows\SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\Cards\SelectCardPresenter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Decks\DeckItemMenuOperations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

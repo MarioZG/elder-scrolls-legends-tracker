@@ -63,13 +63,13 @@ namespace ESLTracker.ViewModels.Decks
                 if (cardCollection != null)
                 {
                     var breakdown = cardBreakdownService.GetCardsColorBreakdown(cardCollection);
-                    foreach(var item in breakdown)
+                    foreach (var item in breakdown)
                     {
                         sc.Add(
                            new StackedRowSeries
                            {
                                Title = item.Key.ToString(),
-                               Values = new ChartValues<decimal> { item.Value},
+                               Values = new ChartValues<decimal> { item.Value },
                                StackMode = StackMode.Percentage,
                                DataLabels = true,
                                LabelsPosition = BarLabelPosition.Parallel,
@@ -77,7 +77,7 @@ namespace ESLTracker.ViewModels.Decks
                            }
                            );
                     }
-                  
+
                     return sc;
                 }
                 return null;
