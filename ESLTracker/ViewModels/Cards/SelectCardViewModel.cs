@@ -122,11 +122,11 @@ namespace ESLTracker.ViewModels.Cards
         {
             if (CardInstance == null)
             {
-                CardInstance = cardInstanceFactory.CreateFromCard(cardsDatabase.FindCardByName(newName));
+                CardInstance = cardInstanceFactory.CreateFromCard(cardsDatabaseFactory.GetCardsDatabase().FindCardByName(newName));
             }
             else if (CardInstance.Card?.Name != newName)
             {
-                CardInstance.Card = cardsDatabase.FindCardByName(newName);
+                CardInstance.Card = cardsDatabaseFactory.GetCardsDatabase().FindCardByName(newName);
                 CardInstanceChanged();
             }
             return CardInstance;
@@ -168,16 +168,16 @@ namespace ESLTracker.ViewModels.Cards
 
         private readonly ICardImage cardImage;
         private readonly ICardInstanceFactory cardInstanceFactory;
-        private readonly ICardsDatabase cardsDatabase;
+        private readonly ICardsDatabaseFactory cardsDatabaseFactory;
 
         public SelectCardViewModel(
             ICardImage cardImage,
             ICardInstanceFactory cardInstanceFactory,
-            ICardsDatabase cardsDatabase)
+            ICardsDatabaseFactory cardsDatabaseFactory)
         {
             this.cardImage = cardImage;
             this.cardInstanceFactory = cardInstanceFactory;
-            this.cardsDatabase = cardsDatabase;
+            this.cardsDatabaseFactory = cardsDatabaseFactory;
         }
 
         public void CardInstanceChanged()

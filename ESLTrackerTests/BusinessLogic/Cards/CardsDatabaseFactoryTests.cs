@@ -1,6 +1,7 @@
 ﻿using System;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.DataFile;
+using ESLTracker.Utils;
 using ESLTracker.Utils.IOWrappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -12,6 +13,7 @@ namespace ESLTrackerTests.BusinessLogic.Cards
     {
 
         Mock<IFileWrapper> mockFileWrapper = new Mock<IFileWrapper>();
+        Mock<IMessenger> mockMessenger = new Mock<IMessenger>();
         PathManager pathManager;
 
         [TestInitialize]
@@ -62,8 +64,8 @@ namespace ESLTrackerTests.BusinessLogic.Cards
         {
             return new CardsDatabaseFactory(
                 mockFileWrapper.Object,
-                pathManager
-                );
+                pathManager,
+                mockMessenger.Object);
         }
     }
 }

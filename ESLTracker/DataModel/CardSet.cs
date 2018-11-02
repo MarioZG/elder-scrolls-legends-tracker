@@ -35,8 +35,8 @@ namespace ESLTracker.DataModel
 
         public static explicit operator CardSet(string name)
         {
-            var cardDatabase = MasserContainer.Container.GetInstance<ICardsDatabase>();
-            return cardDatabase.CardSets.Where(cs => cs.Name.ToLower() == name.ToLower()).SingleOrDefault();
+            var cardDatabaseFactory = MasserContainer.Container.GetInstance<ICardsDatabaseFactory>();
+            return cardDatabaseFactory.GetCardsDatabase().CardSets.Where(cs => cs.Name.ToLower() == name.ToLower()).SingleOrDefault();
         }
 
         public override string ToString()

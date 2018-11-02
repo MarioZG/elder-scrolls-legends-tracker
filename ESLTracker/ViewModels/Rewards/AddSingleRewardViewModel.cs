@@ -37,7 +37,7 @@ namespace ESLTracker.ViewModels.Rewards
         {
             get
             {
-                return cardsDatabase.GetCardsNames();
+                return cardsDatabaseFactory.GetCardsDatabase().GetCardsNames();
             }
         }
 
@@ -57,13 +57,13 @@ namespace ESLTracker.ViewModels.Rewards
         public ICommand CommandDeleteClicked { get; private set; }
         #endregion
 
-        ICardsDatabase cardsDatabase;
+        ICardsDatabaseFactory cardsDatabaseFactory;
         ICardInstanceFactory cardInstanceFactory;
 
-        public AddSingleRewardViewModel(ICardInstanceFactory cardInstanceFactory, ICardsDatabase cardsDatabase)
+        public AddSingleRewardViewModel(ICardInstanceFactory cardInstanceFactory, ICardsDatabaseFactory cardsDatabaseFactory)
         {
             this.cardInstanceFactory = cardInstanceFactory;
-            this.cardsDatabase = cardsDatabase;
+            this.cardsDatabaseFactory = cardsDatabaseFactory;
 
             CommandAddButtonPressed = new RelayCommand(new Action<object>(AddClicked));
             CommandDeleteClicked = new RelayCommand(new Action<object>(DeleteClicked));

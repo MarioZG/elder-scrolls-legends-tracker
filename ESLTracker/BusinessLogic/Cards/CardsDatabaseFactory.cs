@@ -1,6 +1,7 @@
 ﻿using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.Utils;
 using ESLTracker.Utils.IOWrappers;
+using ESLTracker.Utils.Messages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,15 +13,17 @@ namespace ESLTracker.BusinessLogic.Cards
 {
     public class CardsDatabaseFactory : ICardsDatabaseFactory
     {
-        private IFileWrapper fileWrapper;
-        private PathManager pathManager;
+        private readonly IFileWrapper fileWrapper;
+        private readonly PathManager pathManager;
+        private readonly IMessenger messenger;
 
         static CardsDatabase _instance;
 
-        public CardsDatabaseFactory(IFileWrapper fileWrapper, PathManager pathManager)
+        public CardsDatabaseFactory(IFileWrapper fileWrapper, PathManager pathManager, IMessenger messenger)
         {
             this.fileWrapper = fileWrapper;
             this.pathManager = pathManager;
+            this.messenger = messenger;
         }
 
         public CardsDatabase LoadCardsDatabase()
@@ -28,7 +31,7 @@ namespace ESLTracker.BusinessLogic.Cards
             var databasePath = pathManager.CardsDatabasePath;
             if (fileWrapper.Exists(databasePath))
             {
-                CardsDatabase database = SerializationHelper.DeserializeJson<CardsDatabase>(System.IO.File.ReadAllText(databasePath));
+                CardsDatabase database = SerializationHelper.DeserializeJson<CardsDatabase>(File.ReadAllText(databasePath));
                 return database;
             }
             else
@@ -40,6 +43,7 @@ namespace ESLTracker.BusinessLogic.Cards
         public ICardsDatabase RealoadDB()
         {
             _instance = LoadCardsDatabase();
+            messenger.Send<CardsDbReloaded>(new CardsDbReloaded(_instance));
             return _instance;
         }
 

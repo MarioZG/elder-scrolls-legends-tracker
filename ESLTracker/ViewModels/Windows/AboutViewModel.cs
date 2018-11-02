@@ -76,21 +76,22 @@ namespace ESLTracker.ViewModels.Windows
         {
             get
             {
+                var cardsDb = cardsDatabasefactory.GetCardsDatabase();
                 return string.Format("{0} ({1} from {2:d})",
-                    cardsDB.Version,
-                    cardsDB.VersionInfo,
-                    cardsDB.VersionDate);
+                    cardsDb.Version,
+                    cardsDb.VersionInfo,
+                    cardsDb.VersionDate);
             }
         }
 
         IApplicationInfo applicationService;
-        ICardsDatabase cardsDB;
+        ICardsDatabaseFactory cardsDatabasefactory;
         ITracker tracker;
 
-        public AboutViewModel(ITracker tracker, IApplicationInfo applicationService, ICardsDatabase cardsDB)
+        public AboutViewModel(ITracker tracker, IApplicationInfo applicationService, ICardsDatabaseFactory cardsDatabasefactory)
         {
             this.applicationService = applicationService;
-            this.cardsDB = cardsDB;
+            this.cardsDatabasefactory = cardsDatabasefactory;
             this.tracker = tracker;
         }
     }

@@ -153,6 +153,7 @@
     <Compile Include="Utils\IGuidProvider.cs" />
     <Compile Include="Utils\ILogger.cs" />
     <Compile Include="Utils\Extensions\ILoggerExtensions.cs" />
+    <Compile Include="Utils\Messages\CardsDbReloaded.cs" />
     <Compile Include="Utils\NLog\NLogLoggerProxy.cs" />
     <Compile Include="Utils\SplashScreenManager.cs" />
     <Compile Include="Utils\UserInfoMessages.cs" />
@@ -770,7 +771,7 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Resources\cards.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

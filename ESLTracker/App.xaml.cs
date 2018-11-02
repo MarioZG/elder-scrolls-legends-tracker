@@ -130,12 +130,15 @@ namespace ESLTracker
             if (vc.IsNewCardsDBAvailable())
             {
                 ICardsDatabase cardsDB = vc.GetLatestCardsDB();
-                var userMessages = container.GetInstance<UserInfoMessages>();
-                userMessages.AddMessage(
-                        string.Format(CardsDatabaseUpdated, 
-                                    new object[] { cardsDB.Version, cardsDB.VersionDate.ToShortDateString(), cardsDB.VersionInfo }
-                        )
-                    );
+                if (cardsDB != null)
+                {
+                    var userMessages = container.GetInstance<UserInfoMessages>();
+                    userMessages.AddMessage(
+                            string.Format(CardsDatabaseUpdated,
+                                        new object[] { cardsDB.Version, cardsDB.VersionDate.ToShortDateString(), cardsDB.VersionInfo }
+                            )
+                        );
+                }
             }
 
             bool isShiftPressed = (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift;

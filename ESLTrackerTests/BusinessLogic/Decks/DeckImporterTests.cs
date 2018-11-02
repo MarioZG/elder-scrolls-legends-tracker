@@ -20,6 +20,7 @@ namespace ESLTrackerTests.BusinessLogic.Decks
     public class DeckImporterTests
     {
         Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
+        Mock<ICardsDatabaseFactory> cardsDatabaseFactory = new Mock<ICardsDatabaseFactory>();
         Mock<ICardInstanceFactory> cardInstanceFactory = new Mock<ICardInstanceFactory>();
 
         [TestInitialize]
@@ -27,6 +28,8 @@ namespace ESLTrackerTests.BusinessLogic.Decks
         {
             cardInstanceFactory.Setup(cif => cif.CreateFromCard(It.IsAny<Card>(), It.IsAny<int>()))
                     .Returns((Card card, int qty) => new CardInstanceFactory().CreateFromCard(card, qty));
+            cardsDatabaseFactory.Setup(cdf => cdf.GetCardsDatabase()).Returns(cardsDatabase.Object);
+
         }
 
         [TestMethod]
@@ -118,7 +121,7 @@ namespace ESLTrackerTests.BusinessLogic.Decks
 
         private DeckImporter CreateDeckImporter()
         {
-            return new DeckImporter(cardsDatabase.Object, cardInstanceFactory.Object);
+            return new DeckImporter(cardsDatabaseFactory.Object, cardInstanceFactory.Object);
         }
     }
 }

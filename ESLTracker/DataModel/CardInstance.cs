@@ -80,7 +80,7 @@ namespace ESLTracker.DataModel
 
         private void LoadCardFromDataBase(Guid value)
         {
-            this.Card = MasserContainer.Container.GetInstance<ICardsDatabase>().FindCardById(value);
+            this.Card = MasserContainer.Container.GetInstance<ICardsDatabaseFactory>().GetCardsDatabase().FindCardById(value);
         }
 
         public object Clone()

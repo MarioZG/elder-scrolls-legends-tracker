@@ -9,6 +9,7 @@ using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Messages;
 
 namespace ESLTracker.ViewModels.Cards
 {
@@ -38,7 +39,7 @@ namespace ESLTracker.ViewModels.Cards
         {
             get
             {
-                return cardsDatabase.GetCardsNames();
+                return cardsDatabaseFactory.GetCardsDatabase().GetCardsNames();
             }
         }
 
@@ -60,14 +61,23 @@ namespace ESLTracker.ViewModels.Cards
             }
         }
 
-        private ICardsDatabase cardsDatabase;
+        private readonly ICardsDatabaseFactory cardsDatabaseFactory;
         private readonly IDeckService deckService;
+        private readonly IMessenger messanger;
 
 
-        public CardListEditorViewModel(ICardsDatabase cardsDatabase, IDeckService deckService)
+        public CardListEditorViewModel(ICardsDatabaseFactory cardsDatabaseFactory, IDeckService deckService, IMessenger messanger)
         {
-            this.cardsDatabase = cardsDatabase;
+            this.cardsDatabaseFactory = cardsDatabaseFactory;
             this.deckService = deckService;
+            this.messanger = messanger;
+
+            messanger.Register<CardsDbReloaded>(this, OnCardsDbReloaded);
+        }
+
+        private void OnCardsDbReloaded(CardsDbReloaded obj)
+        {
+            RaisePropertyChangedEvent(nameof(CardNamesList));
         }
 
         private void CommandAddCardToDeckExecute(object obj)

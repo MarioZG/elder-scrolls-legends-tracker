@@ -93,7 +93,7 @@ namespace ESLTrackerTests.BusinessLogic.General
             cardsDatabase.Setup(a => a.Version).Returns(
                 new Version(0, 4)
                 );
-
+            cardsDatabaseFactory.Setup(cdf => cdf.GetCardsDatabase()).Returns(cardsDatabase.Object);
 
             VersionService vc = CreateVersionServiceObject();
             bool actual = vc.IsNewCardsDBAvailable();
@@ -133,6 +133,7 @@ namespace ESLTrackerTests.BusinessLogic.General
             cardsDatabase.Setup(a => a.Version).Returns(
                 new Version(0, 4)
                 );
+            cardsDatabaseFactory.Setup(cdf => cdf.GetCardsDatabase()).Returns(cardsDatabase.Object);
 
             VersionService vc = CreateVersionServiceObject();
             string actual = vc.GetLatestDownladUrl();
@@ -160,6 +161,7 @@ namespace ESLTrackerTests.BusinessLogic.General
             cardsDatabase.Setup(a => a.Version).Returns(
                 new Version(0, 4)
                 );
+            cardsDatabaseFactory.Setup(cdf => cdf.GetCardsDatabase()).Returns(cardsDatabase.Object);
 
             VersionService vc = CreateVersionServiceObject();
             string actual = vc.GetLatestDownladUrl();
@@ -169,7 +171,7 @@ namespace ESLTrackerTests.BusinessLogic.General
 
         private VersionService CreateVersionServiceObject()
         {
-            return new VersionService(mockLogger.Object, settings.Object, cardsDatabase.Object, httpService.Object, appService.Object, cardsDatabaseFactory.Object, new UserInfoMessages());
+            return new VersionService(mockLogger.Object, settings.Object, httpService.Object, appService.Object, cardsDatabaseFactory.Object, new UserInfoMessages());
         }
     }
 }

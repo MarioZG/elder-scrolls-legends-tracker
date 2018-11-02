@@ -29,7 +29,6 @@ namespace ESLTracker.BusinessLogic.General
         }      
 
         private readonly ISettings settings;
-        private readonly ICardsDatabase cardsDatabase;
         private readonly ICardsDatabaseFactory cardsDatabaseFactory;
         private readonly ILogger logger;
         private readonly UserInfoMessages userInfoMessages;
@@ -39,13 +38,11 @@ namespace ESLTracker.BusinessLogic.General
         public VersionService(
             ILogger logger,
             ISettings settings,
-            ICardsDatabase cardsDatabase,
             IHTTPService httpService,
             IApplicationInfo applicationService,
             ICardsDatabaseFactory cardsDatabaseFactory,
             UserInfoMessages userInfoMessages)
         {
-            this.cardsDatabase = cardsDatabase;
             this.settings = settings;
             this.httpService = httpService;
             this.applicationService = applicationService;
@@ -107,7 +104,7 @@ namespace ESLTracker.BusinessLogic.General
                 string versionJSON = httpService.SendGetRequest(url);
                 JObject versions = JObject.Parse(versionJSON);
                 Version latest = new Version(versions["CardsDB"].ToString());
-                return latest > cardsDatabase.Version;
+                return latest > cardsDatabaseFactory.GetCardsDatabase().Version;
             });
         }
 
@@ -118,18 +115,18 @@ namespace ESLTracker.BusinessLogic.General
             var requestErrorPolicy = Policy
                         .Handle<System.Net.WebException>()
                         .Fallback(
-                            () => { returnValue = cardsDatabase; },
+                            () => { /*empty*/ },
                             (ex, context) => {
-                                logger.Trace(ex, "Exception when retreiving cards DB from {0}", url);
-                                userInfoMessages.AddMessage(ex.Message);
+                                logger?.Trace(ex, "Exception when retreiving cards DB from {0}", url);
+                                userInfoMessages.AddMessage("Connection error during card list update, please check your internet connection.");
                             }
                         );
             requestErrorPolicy.Execute(() =>
             {
-                logger.Trace("Start retreiving cards DB from {0}", url);
+                logger?.Trace("Start retreiving cards DB from {0}", url);
                 string cardsDBContent = httpService.SendGetRequest(url);
-                ICardsDatabase cardsDB = cardsDatabaseFactory.UpdateCardsDB(cardsDBContent, cardsDatabase.Version);
-                logger.Trace("Finished retreiving cards DB from {0}", url);
+                ICardsDatabase cardsDB = cardsDatabaseFactory.UpdateCardsDB(cardsDBContent, cardsDatabaseFactory.GetCardsDatabase().Version);
+                logger?.Trace("Finished retreiving cards DB from {0}", url);
                 returnValue = cardsDB;
             });
 

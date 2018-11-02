@@ -42,7 +42,7 @@ namespace ESLTracker.ViewModels.Packs
         {
             get
             {
-                return cardsDatabase.GetCardsNames(pack?.CardSet?.Name);
+                return cardsDatabaseFactory.GetCardsDatabase().GetCardsNames(pack?.CardSet?.Name);
             }
         }
 
@@ -72,12 +72,12 @@ namespace ESLTracker.ViewModels.Packs
 
         public IEnumerable<CardSet> PackSetAutocomplete
         {
-            get { return cardsDatabase.CardSets.Where(cs => cs.HasPacks).ToList(); }
+            get { return cardsDatabaseFactory.GetCardsDatabase().CardSets.Where(cs => cs.HasPacks).ToList(); }
         }
 
         private readonly ICardInstanceFactory cardInstanceFactory;
         private readonly ISettings settings;
-        private readonly ICardsDatabase cardsDatabase;
+        private readonly ICardsDatabaseFactory cardsDatabaseFactory;
         private readonly IScreenShot screenShot;
         private readonly ITracker tracker;
         private readonly IDateTimeProvider dateTimeProvider;
@@ -87,7 +87,7 @@ namespace ESLTracker.ViewModels.Packs
 
         public OpenPackViewModel(
             ICardInstanceFactory cardInstanceFactory,
-            ICardsDatabase cardsDatabase,
+            ICardsDatabaseFactory cardsDatabaseFactory,
             ISettings settings,
             ITracker tracker,
             IDateTimeProvider dateTimeProvider,
@@ -101,7 +101,7 @@ namespace ESLTracker.ViewModels.Packs
             CommandSave = new RealyAsyncCommand<object>(CommandSaveExecute);
 
             this.settings = settings;
-            this.cardsDatabase = cardsDatabase;
+            this.cardsDatabaseFactory = cardsDatabaseFactory;
             this.tracker = tracker;
             this.dateTimeProvider = dateTimeProvider;
             this.fileManager = fileManager;
@@ -158,7 +158,7 @@ namespace ESLTracker.ViewModels.Packs
 
         private CardSet GetDefaultPackSet()
         {
-            return cardsDatabase.FindCardSetById(settings.Packs_LastOpenedPackSetId);
+            return cardsDatabaseFactory.GetCardsDatabase().FindCardSetById(settings.Packs_LastOpenedPackSetId);
         }
     }
 }

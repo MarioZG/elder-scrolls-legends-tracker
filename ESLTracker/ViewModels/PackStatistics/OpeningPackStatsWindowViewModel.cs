@@ -32,12 +32,12 @@ namespace ESLTracker.ViewModels.PackStatistics
 
         public IEnumerable<CardSet> PackSetAutocomplete
         {
-            get { return new CardSet[] { AllFilter }.Union(cardsDatabase.CardSets.Where(cs => cs.HasPacks)).ToList(); }
+            get { return new CardSet[] { AllFilter }.Union(cardsDatabaseFactory.GetCardsDatabase().CardSets.Where(cs => cs.HasPacks)).ToList(); }
         }
 
         private readonly ICardImage cardImageService;
         private readonly IWinDialogs winDialogs;
-        private readonly ICardsDatabase cardsDatabase;
+        private readonly ICardsDatabaseFactory cardsDatabaseFactory;
         private readonly ICardInstanceFactory cardInstanceFactory;
         private readonly ILogger logger;
         private readonly ITracker tracker;
@@ -50,14 +50,14 @@ namespace ESLTracker.ViewModels.PackStatistics
             ICardInstanceFactory cardInstanceFactory,
             ICardImage cardImageService,
             IWinDialogs winDialogs,
-            ICardsDatabase cardsDatabase) : base(settings, dateTimeProvider)
+            ICardsDatabaseFactory cardsDatabaseFactory) : base(settings, dateTimeProvider)
         {
             this.logger = logger;
             this.tracker = tracker;
             this.cardInstanceFactory = cardInstanceFactory;
             this.cardImageService = cardImageService;
             this.winDialogs = winDialogs;
-            this.cardsDatabase = cardsDatabase; ;
+            this.cardsDatabaseFactory = cardsDatabaseFactory; ;
 
             CommandExportToCsv = new RealyAsyncCommand<object>(CommandExportToCsvExecute);
             CommandOpenCsv = new RealyAsyncCommand<object>(CommandOpenCsvExcute);

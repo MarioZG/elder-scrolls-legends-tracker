@@ -38,6 +38,7 @@ namespace ESLTrackerTests
         protected Mock<IDateTimeProvider> mockDatetimeProvider = new Mock<IDateTimeProvider>();
         protected Mock<IGuidProvider> mockGuidProvider = new Mock<IGuidProvider>();
         protected Mock<ILogger> mockLogger = new Mock<ILogger>();
+        protected Mock<ICardsDatabaseFactory> mockCardsDatabaseFactory = new Mock<ICardsDatabaseFactory>();
 
         [TestInitialize]
         public virtual void TestInitialize()
@@ -49,6 +50,7 @@ namespace ESLTrackerTests
                 .Callback<TraceLevel, Exception, string, object[]>((level, ex, message, args) => 
                         TestContext.WriteLine(ex?.Message + message, args?.DefaultIfEmpty(new object[] { }))
                 );
+            mockCardsDatabaseFactory.Setup(cdf => cdf.GetCardsDatabase()).Returns(CardsDatabase);
 
             new ESLTracker.Utils.SimpleInjector.MasserContainer();
         }

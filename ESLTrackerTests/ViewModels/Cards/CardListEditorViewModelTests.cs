@@ -10,6 +10,7 @@ using ESLTrackerTests;
 using ESLTracker.BusinessLogic.Decks;
 using Moq;
 using ESLTrackerTests.Builders;
+using ESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Cards.Tests
 {
@@ -18,6 +19,7 @@ namespace ESLTracker.ViewModels.Cards.Tests
     {
 
         Mock<IDeckService> mockDeckService = new Mock<IDeckService>();
+        Mock<IMessenger> mockMessenger = new Mock<IMessenger>();
 
         [TestMethod()]
         public void AddCardTest001_AddToEmpty()
@@ -35,7 +37,7 @@ namespace ESLTracker.ViewModels.Cards.Tests
 
         private CardListEditorViewModel CreateListEditorVM()
         {
-            return new CardListEditorViewModel(CardsDatabase, mockDeckService.Object);
+            return new CardListEditorViewModel(mockCardsDatabaseFactory.Object, mockDeckService.Object, mockMessenger.Object);
         }
 
         [TestMethod()]

@@ -23,12 +23,12 @@ namespace ESLTracker.BusinessLogic.Decks
 
         private TaskCompletionSource<bool> taskCompletonSource;
 
-        private readonly ICardsDatabase cardsDatabase;
+        private readonly ICardsDatabaseFactory cardsDatabaseFactory;
         private readonly ICardInstanceFactory cardInstanceFactory;
 
-        public DeckImporter(ICardsDatabase cardsDatabase, ICardInstanceFactory cardInstanceFactory)
+        public DeckImporter(ICardsDatabaseFactory cardsDatabaseFactory, ICardInstanceFactory cardInstanceFactory)
         {
-            this.cardsDatabase = cardsDatabase;
+            this.cardsDatabaseFactory = cardsDatabaseFactory;
             this.cardInstanceFactory = cardInstanceFactory;
         }
 
@@ -115,6 +115,7 @@ namespace ESLTracker.BusinessLogic.Decks
 
             this.DeckName = importLines[0].Replace("###", String.Empty).Trim();
 
+            ICardsDatabase cardsDatabase = this.cardsDatabaseFactory.GetCardsDatabase();
             foreach (string cardLine in importLines.Skip(1))
             {
                 if (String.IsNullOrWhiteSpace(cardLine))
@@ -127,7 +128,7 @@ namespace ESLTracker.BusinessLogic.Decks
                 int cardCount = GetCardQty(splitedLine);
                 string cardName = GetCardName(splitedLine);
 
-                Card card = this.cardsDatabase.FindCardByName(cardName);
+                Card card = cardsDatabase.FindCardByName(cardName);
 
                 CardInstance cardInstance = cardInstanceFactory.CreateFromCard(card, cardCount);
 
