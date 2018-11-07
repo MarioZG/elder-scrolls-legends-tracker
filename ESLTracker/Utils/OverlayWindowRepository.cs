@@ -65,10 +65,13 @@ namespace ESLTracker.Utils
             {
                 mainWindow.Dispatcher.Invoke(() =>
                 {
-                    var win = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+                    bool isGameActive = winAPI.IsGameActive();
+                    bool isGameProcessRunning = winAPI.GetEslProcess() != null;
+                    bool isActive = mainWindow.IsActive;
+                    bool isOtherWindowActive = winAPI.IsTrackerActive();
                     foreach (IOverlayWindow window in this)
                     {
-                        window.UpdateVisibilty(winAPI.IsGameActive(), winAPI.GetEslProcess() != null, mainWindow.IsActive, winAPI.IsTrackerActive());
+                        window.UpdateVisibilty(isGameActive, isGameProcessRunning, isActive, isOtherWindowActive);
                     }
                 });
                 await Task.Delay(1000);
