@@ -80,6 +80,7 @@
     <Compile Include="BusinessLogic\Cards\CardImageTests.cs" />
     <Compile Include="BusinessLogic\Cards\CardsDatabaseFactoryTests.cs" />
     <Compile Include="BusinessLogic\DataFile\FileUpdaterTests.cs" />
+    <Compile Include="BusinessLogic\Decks\CardBreakdownTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckCalculationsTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckVersionService.cs" />
     <Compile Include="BusinessLogic\Games\GameFactoryTests.cs" />

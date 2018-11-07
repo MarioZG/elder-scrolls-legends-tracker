@@ -16,7 +16,10 @@ namespace ESLTracker.DataModel
     [DebuggerDisplay("Name={Name}")]
     public class Card
     {
-        public static Card Unknown { get; } = new Card() { Name = "Unknown" };
+        public static Card Unknown { get; } = new Card() {
+            Name = "Unknown" ,
+            Attributes = ClassAttributesHelper.Classes[DeckClass.Neutral]
+        };
 
         private Guid id;
         public Guid Id
@@ -41,7 +44,7 @@ namespace ESLTracker.DataModel
         public bool IsUnique { get; set; }
 
         [XmlIgnore]
-        public DeckAttributes Attributes { get; set; }
+        public DeckAttributes Attributes { get; set; } 
 
         [XmlIgnore]
         public CardType Type { get; set; }
