@@ -146,6 +146,7 @@
     <Compile Include="Utils\Behaviors\DragDropEventInfo.cs" />
     <Compile Include="Utils\Converters\ColorToBrushConverter.cs" />
     <Compile Include="Utils\Converters\EnumToIntConverter.cs" />
+    <Compile Include="Utils\Converters\NullImageConverter.cs" />
     <Compile Include="Utils\DebugTraceListener.cs" />
     <Compile Include="Utils\Behaviors\DropBehavior.cs" />
     <Compile Include="Utils\ColorListBindingSourceExtension.cs" />
@@ -1712,7 +1713,6 @@
   <ItemGroup>
     <Resource Include="Resources\Sets\HousesOfMorrowind.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
   <Import Project="..\build\versions.targets" Condition="Exists('..\build\versions.targets')" />

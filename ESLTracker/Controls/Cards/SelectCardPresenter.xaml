@@ -101,7 +101,7 @@
                         <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding CardCost, FallbackValue=-}" VerticalAlignment="Stretch"/>
                     </Viewbox>
                 </Border>
-                <Image Source="{Binding CardImageName}"/>
+                <Image Source="{Binding CardImageName, Converter={Converters:NullImageConverter}}"/>
                 <Border BorderBrush="{x:Null}" Height="25" VerticalAlignment="Center">
                     <Label 
                          Background="{x:Null}"  

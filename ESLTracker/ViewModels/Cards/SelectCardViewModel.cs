@@ -98,7 +98,6 @@ namespace ESLTracker.ViewModels.Cards
             get
             {
                 return cardInstance?.Card?.ImageName;
-                //return $"/Resources/Cards/{cardInstance?.Card?.ImageName}.png";
             }
         }
 
