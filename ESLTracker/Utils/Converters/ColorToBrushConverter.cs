@@ -19,7 +19,8 @@ namespace ESLTracker.Utils.Converters
         {
             if (value != null && value is Color)
             {
-                return ((Color)value).ToMediaBrush();
+                var convertedValue = (Color)value;
+                return convertedValue != Color.Transparent ? convertedValue.ToMediaBrush() : null;
             }
             return null;
         }
