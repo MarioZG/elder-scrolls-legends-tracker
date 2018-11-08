@@ -108,9 +108,6 @@ namespace ESLTracker
                 return; //if alrady running just stop
             }
 
-            splash.UpdateProgress("Checking data file");
-            CheckDataFile(container.GetInstance<FileLoader>());
-
             splash.UpdateProgress("Checking for new version");
             IVersionService vc = container.GetInstance<IVersionService>();
             var settings = container.GetInstance<ISettings>();
@@ -125,6 +122,9 @@ namespace ESLTracker
                             { Download, newVersion.DownloadUrl }
                         });
             }
+
+            splash.UpdateProgress("Checking data file");
+            CheckDataFile(container.GetInstance<FileLoader>());
 
             splash.UpdateProgress("Checking for card database updates");
             if (vc.IsNewCardsDBAvailable())
