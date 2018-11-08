@@ -1,6 +1,7 @@
 ﻿using ESLTracker.DataModel;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,16 +16,19 @@ namespace ESLTracker.BusinessLogic.DataFile
         private readonly PathManager pathManager;
         private readonly FileUpdater fileUpdater;
         private readonly ISettings settings;
+        private readonly ILogger logger;
 
-        public FileLoader(ISettings settings, PathManager pathManager, FileUpdater fileUpdater)
+        public FileLoader(ISettings settings, PathManager pathManager, FileUpdater fileUpdater, ILogger logger)
         {
             this.pathManager = pathManager;
             this.fileUpdater = fileUpdater;
             this.settings = settings;
+            this.logger = logger;
         }
 
         public Tracker LoadDatabase(bool throwDataFileException = false)
         {
+            logger?.Trace("LoadDatabase: Start loading tracker database");
             Tracker tracker = null;
             try
             {
@@ -35,6 +39,9 @@ namespace ESLTracker.BusinessLogic.DataFile
                     //check for data update
                     if (tracker.Version < Tracker.CurrentFileVersion)
                     {
+                        logger?.Trace("LoadDatabase: newer version detected - update on file needs to be performed");
+
+
                         if (fileUpdater.UpdateFile(tracker.Version, tracker))
                         {
                             //reload after update
@@ -47,6 +54,8 @@ namespace ESLTracker.BusinessLogic.DataFile
                     }
                     else if (tracker.Version > Tracker.CurrentFileVersion)
                     {
+                        logger?.Trace("LoadDatabase: using newer file can suppers");
+
                         //using old application
                         throw new DataFileException(
                             string.Format("You are using old version of application. If you continue you might loose data!" + Environment.NewLine + Environment.NewLine + "Press Yes to start anyway (and potencailly loose data), No to cancel." + Environment.NewLine + Environment.NewLine + " File version={0}. Application works with {1}", tracker.Version, Tracker.CurrentFileVersion),
@@ -55,12 +64,16 @@ namespace ESLTracker.BusinessLogic.DataFile
                 }
                 else
                 {
+                    logger?.Trace("LoadDatabase: tracker db does not exist.Creating empty one");
+
                     tracker = new Tracker();
                     tracker.Version = Tracker.CurrentFileVersion;
                 }
             }
-            catch (DataFileException)
+            catch (DataFileException ex)
             {
+                logger?.Trace(ex, "LoadDatabase: DataFileException");
+                
                 //Datafile isses should have been resolved on app init
                 if (throwDataFileException) //should be true only in app init code
                 {
@@ -101,6 +114,9 @@ namespace ESLTracker.BusinessLogic.DataFile
                     }
                 }
             }
+
+            logger?.Trace($"LoadDatabase: finished. Tracker version={tracker.Version}");
+
             return tracker;
         }
     }

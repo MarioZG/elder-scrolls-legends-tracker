@@ -74,7 +74,7 @@ namespace ESLTracker
             splash.UpdateProgress("Configuring dependecies");
 
             var container = new MasserContainer();
-            container.Verify();  //must be here, otherwise lot of XAML errors in unit tests
+
 
 
             #if DEBUG
@@ -123,9 +123,6 @@ namespace ESLTracker
                         });
             }
 
-            splash.UpdateProgress("Checking data file");
-            CheckDataFile(container.GetInstance<FileLoader>());
-
             splash.UpdateProgress("Checking for card database updates");
             if (vc.IsNewCardsDBAvailable())
             {
@@ -140,6 +137,14 @@ namespace ESLTracker
                         );
                 }
             }
+
+
+            splash.UpdateProgress("Checking data file");
+            CheckDataFile(container.GetInstance<FileLoader>());
+
+            container.Verify();  //must be outside container constrcutor, otherwise lot of XAML errors in unit tests
+                                 //executed after check for new cards db, otheriwse issues when deserailising tracker db - cards from old version can be missing
+                                
 
             bool isShiftPressed = (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift;
             if (settings.General_StartGameWithTracker && !isShiftPressed)
