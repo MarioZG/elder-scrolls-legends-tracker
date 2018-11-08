@@ -46,7 +46,7 @@ namespace ESLTracker.DataModel
         public bool IsPremium
         {
             get { return isPremium; }
-            set { SetProperty(ref isPremium, value, onChanged: () => { RaisePropertyChangedEvent(String.Empty); }); }
+            set { SetProperty(ref isPremium, value, onChanged: () => { RaisePropertyChangedEvent(nameof(IsPremium)); }); }
         }
 
         private int quantity = 1;
