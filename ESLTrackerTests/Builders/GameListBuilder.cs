@@ -62,7 +62,7 @@ namespace ESLTrackerTests.Builders
                             .WithType(gameType)
                             .WithPlayerRank(playerRank)
                             .WithPlayerLegendRank(playerLegendRank)
-                            .WithDate(gameDate)
+                            .WithDate(gameDate?.AddSeconds(x))  //add seconds to distinguish time 
                             .Build()
                         );
             games = games.Union(newGames).ToList();

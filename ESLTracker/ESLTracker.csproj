@@ -150,6 +150,7 @@
     <Compile Include="Utils\DebugTraceListener.cs" />
     <Compile Include="Utils\Behaviors\DropBehavior.cs" />
     <Compile Include="Utils\ColorListBindingSourceExtension.cs" />
+    <Compile Include="Utils\Extensions\ObjectExtensions.cs" />
     <Compile Include="Utils\GuidProvider.cs" />
     <Compile Include="Utils\IGuidProvider.cs" />
     <Compile Include="Utils\ILogger.cs" />

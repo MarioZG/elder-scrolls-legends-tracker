@@ -1,5 +1,6 @@
 ﻿using ESLTracker.BusinessLogic.Games;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Utils.Extensions;
 using ESLTrackerTests.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -93,8 +94,11 @@ namespace ESLTrackerTests.BusinessLogic.Games
                 .UsingPlayerRank(PlayerRank.TheRitual)
                 .UsingDate(today)
                 .WithOutcome(1, GameOutcome.Victory)
+                .UsingDate(today.AddMinutes(10))
                 .WithOutcome(2, GameOutcome.Defeat)
+                .UsingDate(today.AddMinutes(20))
                 .WithOutcome(1, GameOutcome.Victory)
+                .UsingDate(today.AddMinutes(30))
                 .WithOutcome(4, GameOutcome.Defeat)
                 .Build();
 
@@ -118,7 +122,7 @@ namespace ESLTrackerTests.BusinessLogic.Games
                 out legendCurrent);
 
             Assert.AreEqual(PlayerRank.TheRitual, actualRank);
-            Assert.AreEqual(-1, actualProgress);
+            Assert.AreEqual(-2, actualProgress);
             Assert.AreEqual(3, actualMaxStars);
 
         }
@@ -160,17 +164,24 @@ namespace ESLTrackerTests.BusinessLogic.Games
 
         }
 
-
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "./BusinessLogic/Games/RankCalculationsTests_Data/CalculateCurrentRankProgress005_RankuUpNoGamesInNextRank.csv", "CalculateCurrentRankProgress005_RankuUpNoGamesInNextRank#csv", DataAccessMethod.Sequential)]
+        [DeploymentItem("./BusinessLogic/Games/RankCalculationsTests_Data/CalculateCurrentRankProgress005_RankuUpNoGamesInNextRank.csv"
+            , "./BusinessLogic/Games/RankCalculationsTests_Data/")]
         [TestMethod]
         public void CalculateCurrentRankProgress005_RankuUpNoGamesInNextRank()
         {
             DateTime today = new DateTime(2018, 8, 5);
 
+            PlayerRank current = TestContext.DataRow["CurrentRank"].ConvertToEnum<PlayerRank>();
+            int  noOfWins = TestContext.DataRow["noOfWins"].ConvertToInt();
+            PlayerRank expectedRank = TestContext.DataRow["expectedRank"].ConvertToEnum<PlayerRank>();
+            int expectedMaxStars = (int)TestContext.DataRow["expectedMaxStars"].ConvertToInt();
+
             var games = new GameListBuilder()
                 .UsingType(GameType.PlayRanked)
-                .UsingPlayerRank(PlayerRank.TheRitual)
+                .UsingPlayerRank(current)
                 .UsingDate(today)
-                .WithOutcome(4, GameOutcome.Victory)
+                .WithOutcome(noOfWins, GameOutcome.Victory)
                 .Build();
 
             mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(today);
@@ -192,9 +203,9 @@ namespace ESLTrackerTests.BusinessLogic.Games
                 out legedmax,
                 out legendCurrent);
 
-            Assert.AreEqual(PlayerRank.TheLover, actualRank);
+            Assert.AreEqual(expectedRank, actualRank);
             Assert.AreEqual(0, actualProgress);
-            Assert.AreEqual(3, actualMaxStars);
+            Assert.AreEqual(expectedMaxStars, actualMaxStars);
         }
 
         [TestMethod]

@@ -156,7 +156,11 @@ namespace ESLTrackerTests
             {
                 if (cardsDatabase == null)
                 {
-                    cardsDatabase =  SerializationHelper.DeserializeJson<CardsDatabase>(System.IO.File.ReadAllText(new PathManager(null).CardsDatabasePath));
+                    string cardsDatabasePath = new PathManager(null).CardsDatabasePath;
+                    if (System.IO.File.Exists(cardsDatabasePath))
+                    {
+                        cardsDatabase = SerializationHelper.DeserializeJson<CardsDatabase>(System.IO.File.ReadAllText(cardsDatabasePath));
+                    }
                 }
                 return cardsDatabase;
             }

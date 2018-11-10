@@ -1,0 +1,13 @@
+Row#,CurrentRank,noOfWins,expectedRank,expectedMaxStars
+ 0,TheRitual		,4	,TheLover		,3
+ 1,TheLover		,4	,TheLord		,3
+ 2,TheLord			,4	,TheMage		,6
+ 3,TheMage			,7	,TheShadow		,4
+ 4,TheShadow		,5	,TheSteed		,4
+ 5,TheSteed		,5	,TheApprentice	,4
+ 6,TheApprentice	,5	,TheWarrior		,6
+ 7,TheWarrior		,7	,TheLady		,5
+ 8,TheLady			,6	,TheTower		,5
+ 9,TheTower		,6	,TheAtronach	,5
+10,TheAtronach		,6	,TheThief		,6
+11,TheThief		,7	,TheLegend		,-1

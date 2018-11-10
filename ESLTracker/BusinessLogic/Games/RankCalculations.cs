@@ -107,7 +107,7 @@ namespace ESLTracker.BusinessLogic.Games
                 {
                     rankProgress += game.BonusRound.GetValueOrDefault(false) ? 2 : 1;
                     //last game was to advance rank,no games after that
-                    if (rankProgress > starsInRank && game.Equals(games.Last()))
+                    if (rankProgress > starsInRank && game.Equals(games.First()))
                     {
                         rank = (PlayerRank)((int)rank - 1);
                         rankProgress = 0;
@@ -141,6 +141,7 @@ namespace ESLTracker.BusinessLogic.Games
         {
             //-1 in allreturns as one star is neutral - stars in ui represent filled line between two stars
             // filled star represent won game (or empty star inserpen represents lost game)
+            //case cale (ex: 7-1): no of games to advance - 1 less to show
             switch (rank)
             {
                 case PlayerRank.TheRitual:
