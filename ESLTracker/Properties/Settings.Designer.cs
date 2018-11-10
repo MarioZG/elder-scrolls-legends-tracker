@@ -553,5 +553,29 @@ namespace ESLTracker.Properties {
                 this["SessionOverlay_ShowTitlebar"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SeaGreen")]
+        public global::System.Drawing.Color SessionOverlay_RankSnakeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SessionOverlay_RankSnakeColor"]));
+            }
+            set {
+                this["SessionOverlay_RankSnakeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkBlue")]
+        public global::System.Drawing.Color SessionOverlay_RankProgresColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SessionOverlay_RankProgresColor"]));
+            }
+            set {
+                this["SessionOverlay_RankProgresColor"] = value;
+            }
+        }
     }
 }

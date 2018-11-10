@@ -56,5 +56,37 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
+        <StackPanel>
+            <TextBlock Text="Snake progress star color:" Margin="0,5,0,5"/>
+            <ComboBox 
+                      ItemsSource="{Binding Source={Utils:ColorListBindingSourceExtension}}"
+                      SelectedItem="{Binding Path=SessionOverlay_RankSnakeColor, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                      >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0 2 5 2" />
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock Text="Progress star color:" Margin="0,5,0,5"/>
+            <ComboBox 
+                      ItemsSource="{Binding Source={Utils:ColorListBindingSourceExtension}}"
+                      SelectedItem="{Binding Path=SessionOverlay_RankProgresColor, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                      >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0 2 5 2" />
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
     </StackPanel>
 </UserControl>
