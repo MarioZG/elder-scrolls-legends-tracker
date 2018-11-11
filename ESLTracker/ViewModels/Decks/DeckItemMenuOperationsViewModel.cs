@@ -104,6 +104,10 @@ namespace ESLTracker.ViewModels.Decks
 
         public void CommandHideDeckExecute(Deck deck)
         {
+
+            var cards = deck.SelectedVersion.Cards.Select(c => $"{c.Quantity} [card]{c.Card.Name}[/card]").ToList();
+            System.Windows.Clipboard.SetText(string.Join(Environment.NewLine, cards));
+
             if (deck != null)
             {
                 deck.IsHidden = true;
