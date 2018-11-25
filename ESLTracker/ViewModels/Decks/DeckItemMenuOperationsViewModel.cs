@@ -4,12 +4,14 @@ using ESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.DiagnosticsWrappers;
 using ESLTracker.Utils.Messages;
+using ESLTracker.Utils.SystemWindowsWrappers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ESLTracker.ViewModels.Decks
@@ -81,19 +83,28 @@ namespace ESLTracker.ViewModels.Decks
         private readonly IFileSaver fileSaver;
         private readonly ITracker tracker;
         private readonly IProcessWrapper processWrapper;
+        private readonly IDeckTextExport deckTextExportFormat;
+        private readonly UserInfoMessages userInfoMessages;
+        private readonly IClipboardWrapper clipboardWrapper;
 
         public DeckItemMenuOperationsViewModel(
             IMessenger messanger,
             IFileSaver fileSaver,
             ITracker tracker,
             IDeckService deckService,
-            IProcessWrapper processWrapper)
+            IProcessWrapper processWrapper,
+            IDeckTextExport deckTextExportFormat,
+            UserInfoMessages userInfoMessages,
+            IClipboardWrapper clipboardWrapper)
         {
             this.deckService = deckService;
             this.messanger = messanger;
             this.fileSaver = fileSaver;
             this.tracker = tracker;
             this.processWrapper = processWrapper;
+            this.deckTextExportFormat = deckTextExportFormat;
+            this.userInfoMessages = userInfoMessages;
+            this.clipboardWrapper = clipboardWrapper;
         }
 
         public void NewDeck(object parameter)
@@ -151,17 +162,20 @@ namespace ESLTracker.ViewModels.Decks
             processWrapper.Start(param.DeckUrl);
         }
 
-        private void CommandExportToTextExecute(Deck deck)
+        public void CommandExportToTextExecute(Deck deck)
         {
             if (deckService.CanExport(deck)) {
                 var cards = deck.SelectedVersion.Cards
                     .OrderBy(c => c?.Card?.Cost)
                     .ThenBy(c => c?.Card?.Name)
-                    .Select(c => $"{c.Quantity} [card]{c.Card.Name}[/card]").ToList();
+                    .Select(c=> this.deckTextExportFormat.FormatCardLine(c)).ToList();
 
-                cards.Insert(0, $"### {deck.Name} ###");
+                cards.Insert(0, this.deckTextExportFormat.FormatDeckHeader(deck));
+                cards.Add(this.deckTextExportFormat.FormatDeckFooter(deck));
 
-                System.Windows.Clipboard.SetText(string.Join(Environment.NewLine, cards));
+                clipboardWrapper.SetText(string.Join(Environment.NewLine, cards));
+
+                userInfoMessages.AddMessage($" {deck.Name} content has been exported as BB text to clipboard. Ctrl+v to paste.");
             }
         }
     }

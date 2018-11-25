@@ -110,8 +110,10 @@
     </ApplicationDefinition>
     <Compile Include="BusinessLogic\DataFile\FileLoader.cs" />
     <Compile Include="BusinessLogic\DataFile\FileUpdater.cs" />
+    <Compile Include="BusinessLogic\Decks\BBCodeExport.cs" />
     <Compile Include="BusinessLogic\Decks\DeckCalculations.cs" />
     <Compile Include="BusinessLogic\Decks\DeckVersionFactory.cs" />
+    <Compile Include="BusinessLogic\Decks\IDeckTextExport.cs" />
     <Compile Include="BusinessLogic\Decks\IDeckVersionFactory.cs" />
     <Compile Include="BusinessLogic\Games\ChangeGameDeck.cs" />
     <Compile Include="BusinessLogic\Games\GameFactory.cs" />
@@ -158,6 +160,8 @@
     <Compile Include="Utils\Messages\CardsDbReloaded.cs" />
     <Compile Include="Utils\NLog\NLogLoggerProxy.cs" />
     <Compile Include="Utils\SplashScreenManager.cs" />
+    <Compile Include="Utils\SystemWindowsWrappers\ClipboardWrapper.cs" />
+    <Compile Include="Utils\SystemWindowsWrappers\IClipboardWrapper.cs" />
     <Compile Include="Utils\UserInfoMessages.cs" />
     <Compile Include="ViewModels\Cards\SelectCardViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckItemMenuOperationsViewModel.cs" />

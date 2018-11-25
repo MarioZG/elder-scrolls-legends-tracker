@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.Utils.Messages;
+using ESLTracker.Utils.SystemWindowsWrappers;
 
 namespace ESLTrackerTests.ViewModels.Decks
 {
@@ -25,6 +26,9 @@ namespace ESLTrackerTests.ViewModels.Decks
         Mock<IFileSaver> mockfileSaver;
         Mock<ITracker> mockTracker;
         Mock<IProcessWrapper> mockProcessWrapper;
+        Mock<IDeckTextExport> mockDeckTextExportFormat;
+        UserInfoMessages userInfoMessages;
+        Mock<IClipboardWrapper> mockClipboardWrapper;
 
         [TestInitialize]
         public override void TestInitialize()
@@ -36,6 +40,9 @@ namespace ESLTrackerTests.ViewModels.Decks
             mockfileSaver = new Mock<IFileSaver>();
             mockTracker = new Mock<ITracker>();
             mockProcessWrapper = new Mock<IProcessWrapper>();
+            mockDeckTextExportFormat = new Mock<IDeckTextExport>();
+            mockClipboardWrapper = new Mock<IClipboardWrapper>();
+            userInfoMessages = new UserInfoMessages();
         }
 
         [TestMethod()]
@@ -162,6 +169,33 @@ namespace ESLTrackerTests.ViewModels.Decks
 
         }
 
+        [TestMethod]
+        public void CommandExportToTextExecute()
+        {
+            List<CardInstance> samplecards = new List<CardInstance>()
+                { new CardInstanceBuilder().WithQuantity(1).WithCard(CardsDatabase.FindCardByName("paarthurnax")).Build(),
+                     new CardInstanceBuilder().WithQuantity(2).WithCard(CardsDatabase.FindCardByName("Miraak")).Build()
+                };
+            Deck deck = new DeckBuilder()
+                .WithName("test")
+                .WithSelectedVersion(
+                    new DeckVersionBuilder().WithCards(samplecards).Build()
+                ).Build();
+
+            mockDeckService.Setup(ds => ds.CanExport(deck)).Returns(true);
+
+            DeckItemMenuOperationsViewModel deckOps = CreateDeckItemMenuOperationsViewModelObject();
+
+            deckOps.CommandExportToTextExecute(deck);
+
+            mockDeckTextExportFormat.Verify(dtf  => dtf.FormatCardLine(It.Is<CardInstance>( ci=> ci.Quantity == 1)), Times.Once);
+            mockDeckTextExportFormat.Verify(dtf  => dtf.FormatCardLine(It.Is<CardInstance>( ci=> ci.Quantity == 2)), Times.Once);
+            mockDeckTextExportFormat.Verify(dtf  => dtf.FormatDeckHeader(It.IsAny<Deck>()), Times.Once);
+            mockDeckTextExportFormat.Verify(dtf  => dtf.FormatDeckFooter(It.IsAny<Deck>()), Times.Once);
+            mockClipboardWrapper.Verify(cw => cw.SetText(It.IsAny<string>()), Times.Once);
+
+        }
+
         private DeckItemMenuOperationsViewModel CreateDeckItemMenuOperationsViewModelObject()
         {
             return new DeckItemMenuOperationsViewModel(
@@ -169,7 +203,10 @@ namespace ESLTrackerTests.ViewModels.Decks
                 mockfileSaver.Object,
                 mockTracker.Object,
                 mockDeckService.Object,
-                mockProcessWrapper.Object);
+                mockProcessWrapper.Object,
+                mockDeckTextExportFormat.Object,
+                userInfoMessages,
+                mockClipboardWrapper.Object);
         }
     }
 }

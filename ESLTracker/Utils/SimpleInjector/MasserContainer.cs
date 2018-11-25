@@ -12,6 +12,7 @@ using ESLTracker.Utils.DiagnosticsWrappers;
 using ESLTracker.Utils.FileUpdaters;
 using ESLTracker.Utils.IOWrappers;
 using ESLTracker.Utils.NLog;
+using ESLTracker.Utils.SystemWindowsWrappers;
 using ESLTracker.ViewModels;
 using ESLTracker.Windows;
 using SimpleInjector;
@@ -64,7 +65,10 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IGameFactory, GameFactory>();
             Register<IScreenShot, ScreenShot>();
             Register<IWinDialogs, WinDialogs>();
-           
+            Register<IClipboardWrapper, ClipboardWrapper>();
+            Register<IDeckTextExport, BBCodeExport>();
+            
+
             Collection.Register<OverlayWindowBase>(typeof(App).Assembly);  //overlay windows
             Collection.Register<ViewModelBase>(typeof(App).Assembly);  //all view models, not needed but allows to verify all view models when Verify() is called
             Collection.Register<UpdateBase>(typeof(App).Assembly); //file updates

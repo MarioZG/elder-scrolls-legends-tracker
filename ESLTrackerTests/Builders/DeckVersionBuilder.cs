@@ -29,6 +29,15 @@ namespace ESLTrackerTests.Builders
             return this;
         }
 
+        internal DeckVersionBuilder WithCards(IEnumerable<CardInstance> cards)
+        {
+            foreach (CardInstance c in cards)
+            {
+                deckVersion.Cards.Add(c);
+            }
+            return this;
+        }
+
         public DeckVersion Build()
         {
             return deckVersion;

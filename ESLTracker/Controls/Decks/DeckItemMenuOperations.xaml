@@ -69,7 +69,8 @@
         <MenuItem 
             Command="{Binding CommandExportToText}" 
             VerticalAlignment="Center"
-            Header="Export to text - BB code from legends decks"
+            Header="Export to text"
+            ToolTip="Export to text in BB code fotmat from legends decks"
             >
             <MenuItem.Icon>
                 <fa:ImageAwesome Icon="SignOut"/>
