@@ -17,5 +17,6 @@ namespace ESLTracker.BusinessLogic.Decks
 
         DeckVersion CreateDeckVersion();
         DeckVersion CreateDeckVersion(Deck deck, int major, int minor, DateTime createdDate);
+        bool CanExport(Deck deck);
     }
 }

@@ -76,20 +76,22 @@ namespace ESLTrackerTests.ViewModels.Decks
 
         }
 
-        //[TestMethod()]
-        //public void CommandHideDeckExecute()
-        //{
-        //    Deck deck = new DeckBuilder().Build();
+        [TestMethod()]
+        public void CommandHideDeckExecute()
+        {
+            Deck deck = new DeckBuilder().Build();
 
-        //    DeckItemMenuOperationsViewModel deckOps = CreateDeckItemMenuOperationsViewModelObject();
+            DeckItemMenuOperationsViewModel deckOps = CreateDeckItemMenuOperationsViewModelObject();
 
-        //    deckOps.CommandHideDeckExecute(deck);
+            deckOps.CommandHideDeckExecute(deck);
 
-        //    Assert.AreEqual(true, deck.IsHidden);
+            Assert.AreEqual(true, deck.IsHidden);
 
-        //    mockfileSaver.Verify(ms => ms.SaveDatabase(mockTracker.Object), Times.Once);
+            mockfileSaver.Verify(ms => ms.SaveDatabase(mockTracker.Object), Times.Once);
+            
 
-        //}
+
+        }
 
         [TestMethod()]
         public void CommandUnHideDeckExecute()

@@ -173,5 +173,9 @@ namespace ESLTracker.BusinessLogic.Decks
             return dv;
         }
 
+        public bool CanExport(Deck deck)
+        {
+            return deck != null && deck.SelectedVersion != null;
+        }
     }
 }

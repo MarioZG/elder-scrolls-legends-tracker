@@ -66,6 +66,15 @@
                 <fa:ImageAwesome Icon="Globe"/>
             </MenuItem.Icon>
         </MenuItem>
+        <MenuItem 
+            Command="{Binding CommandExportToText}" 
+            VerticalAlignment="Center"
+            Header="Export to text - BB code from legends decks"
+            >
+            <MenuItem.Icon>
+                <fa:ImageAwesome Icon="SignOut"/>
+            </MenuItem.Icon>
+        </MenuItem>
     </x:Array>
 
 </ResourceDictionary>

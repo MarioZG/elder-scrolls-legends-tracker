@@ -66,6 +66,16 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        public ICommand CommandExportToText
+        {
+            get
+            {
+                return new RelayCommand(
+                    (object param) => CommandExportToTextExecute((Deck)param),
+                    (object param) => ((param is Deck) && ((Deck)param).SelectedVersion != null));
+            }
+        }
+
         private readonly IDeckService deckService;
         private readonly IMessenger messanger;
         private readonly IFileSaver fileSaver;
@@ -104,10 +114,6 @@ namespace ESLTracker.ViewModels.Decks
 
         public void CommandHideDeckExecute(Deck deck)
         {
-
-            var cards = deck.SelectedVersion.Cards.Select(c => $"{c.Quantity} [card]{c.Card.Name}[/card]").ToList();
-            System.Windows.Clipboard.SetText(string.Join(Environment.NewLine, cards));
-
             if (deck != null)
             {
                 deck.IsHidden = true;
@@ -140,6 +146,20 @@ namespace ESLTracker.ViewModels.Decks
         public void CommandOpenUrlExecute(Deck param)
         {
             processWrapper.Start(param.DeckUrl);
+        }
+
+        private void CommandExportToTextExecute(Deck deck)
+        {
+            if (deckService.CanExport(deck)) {
+                var cards = deck.SelectedVersion.Cards
+                    .OrderBy(c => c?.Card?.Cost)
+                    .ThenBy(c => c?.Card?.Name)
+                    .Select(c => $"{c.Quantity} [card]{c.Card.Name}[/card]").ToList();
+
+                cards.Insert(0, $"### {deck.Name} ###");
+
+                System.Windows.Clipboard.SetText(string.Join(Environment.NewLine, cards));
+            }
         }
     }
 }
