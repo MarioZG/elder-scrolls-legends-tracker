@@ -91,6 +91,13 @@ namespace ESLTrackerTests.ViewModels.Decks
             
 
 
+            mockMessanger.Verify(messanger =>
+                       messanger.Send(
+                           It.Is<EditDeck>(m => m.Deck == deck),
+                           It.Is<EditDeck.Context>(c => c == EditDeck.Context.Hide)
+                           ),
+                       Times.Once,
+                 "hide message not send ");
         }
 
         [TestMethod()]
@@ -106,6 +113,13 @@ namespace ESLTrackerTests.ViewModels.Decks
 
             mockfileSaver.Verify(ms => ms.SaveDatabase(mockTracker.Object), Times.Once);
 
+            mockMessanger.Verify(messanger =>
+                 messanger.Send(
+                     It.Is<EditDeck>(m => m.Deck == deck),
+                     It.Is<EditDeck.Context>(c => c == EditDeck.Context.UnHide)
+                     ),
+                 Times.Once,
+                 "unhide message not send ");
         }
 
         [TestMethod()]
@@ -122,21 +136,13 @@ namespace ESLTrackerTests.ViewModels.Decks
             mockDeckService.Verify(ds => ds.DeleteDeck(deck), Times.Once);
             mockfileSaver.Verify(ms => ms.SaveDatabase(mockTracker.Object), Times.Once);
 
-        }
-
-        [TestMethod()]
-        public void CommandDeleteDeckExecute002_Cannotdelete()
-        {
-            Deck deck = new DeckBuilder().Build();
-
-            mockDeckService.Setup(ds => ds.CanDelete(deck)).Returns(false);
-
-            DeckItemMenuOperationsViewModel deckOps = CreateDeckItemMenuOperationsViewModelObject();
-
-            deckOps.CommandDeleteDeckExecute(deck);
-
-            mockDeckService.Verify(ds => ds.DeleteDeck(deck), Times.Never);
-            mockfileSaver.Verify(ms => ms.SaveDatabase(mockTracker.Object), Times.Never);
+            mockMessanger.Verify(messanger =>
+                 messanger.Send(
+                     It.Is<EditDeck>(m => m.Deck == deck),
+                     It.Is<EditDeck.Context>(c => c == EditDeck.Context.Delete)
+                     ),
+                 Times.Once,
+                 "delete message not send ");
 
         }
 

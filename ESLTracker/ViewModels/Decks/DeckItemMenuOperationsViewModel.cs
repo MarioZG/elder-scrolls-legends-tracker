@@ -118,6 +118,7 @@ namespace ESLTracker.ViewModels.Decks
             {
                 deck.IsHidden = true;
                 messanger.Send(new EditDeck() { Deck = deck });  //send message to enfore deck list refresh
+                messanger.Send(new EditDeck() { Deck = deck }, EditDeck.Context.Hide);  //send message to enfore deck list refresh
                 fileSaver.SaveDatabase(tracker);
             }
         }
@@ -129,6 +130,7 @@ namespace ESLTracker.ViewModels.Decks
             {
                 deck.IsHidden = false;
                 messanger.Send(new EditDeck() { Deck = deck });  //send message to enfore deck list refresh
+                messanger.Send(new EditDeck() { Deck = deck }, EditDeck.Context.UnHide);  //send message to enfore deck list refresh
                 fileSaver.SaveDatabase(tracker);
             }
         }
@@ -139,6 +141,7 @@ namespace ESLTracker.ViewModels.Decks
             {
                 deckService.DeleteDeck(deck);
                 messanger.Send(new EditDeck() { Deck = deck });  //send message to enfore deck list refresh
+                messanger.Send(new EditDeck() { Deck = deck }, EditDeck.Context.Delete);  //send message to enfore deck list refresh
                 fileSaver.SaveDatabase(tracker);
             }
         }
