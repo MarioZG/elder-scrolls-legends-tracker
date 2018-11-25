@@ -788,57 +788,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\RewardType\Gold.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\RewardType\Card.png" />
-    <Resource Include="Resources\RewardType\Pack.png" />
-    <Resource Include="Resources\RewardType\Soulgem.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\closeicon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\DeckAttribute\agility.png" />
-    <Resource Include="Resources\DeckAttribute\endurance.png" />
-    <Resource Include="Resources\DeckAttribute\intelligence.png" />
-    <Resource Include="Resources\DeckAttribute\strength.png" />
-    <Resource Include="Resources\DeckAttribute\willpower.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\DeckAttribute\neutral.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\TrayIcon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Temp\all attribs.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Temp\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\AppLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Sets\Core.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Sets\HeroesofSkyrim.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Cards\abandonedimperfect.png" />
     <Resource Include="Resources\Cards\abeceannavigator.png" />
     <Resource Include="Resources\Cards\adoringfan.png" />
@@ -860,6 +809,7 @@
     <Resource Include="Resources\Cards\almalexiasdisciple.png" />
     <Resource Include="Resources\Cards\alphawolf.png" />
     <Resource Include="Resources\Cards\altarofdespair.png" />
+    <Resource Include="Resources\Cards\altmerdragonknight.png" />
     <Resource Include="Resources\Cards\ambitioushireling.png" />
     <Resource Include="Resources\Cards\ancano.png" />
     <Resource Include="Resources\Cards\ancestorsbattleaxe.png" />
@@ -869,6 +819,7 @@
     <Resource Include="Resources\Cards\angryvillager.png" />
     <Resource Include="Resources\Cards\anighttoremember.png" />
     <Resource Include="Resources\Cards\anxileelinvader.png" />
+    <Resource Include="Resources\Cards\apexwolf.png" />
     <Resource Include="Resources\Cards\apprenticespotion.png" />
     <Resource Include="Resources\Cards\arcanaeumlibrarian.png" />
     <Resource Include="Resources\Cards\arcaneenchanter.png" />
@@ -930,6 +881,7 @@
     <Resource Include="Resources\Cards\blackreachrebuilder.png" />
     <Resource Include="Resources\Cards\blackroseherbalist.png" />
     <Resource Include="Resources\Cards\blacksapprotector.png" />
+    <Resource Include="Resources\Cards\blackwooddistiller.png" />
     <Resource Include="Resources\Cards\blackwormnecromancer.png" />
     <Resource Include="Resources\Cards\bladeslookout.png" />
     <Resource Include="Resources\Cards\bleakcoasttroll.png" />
@@ -1005,6 +957,7 @@
     <Resource Include="Resources\Cards\companionharbinger.png" />
     <Resource Include="Resources\Cards\conjurationscholar.png" />
     <Resource Include="Resources\Cards\conjurationtutor.png" />
+    <Resource Include="Resources\Cards\conjurersspirit.png" />
     <Resource Include="Resources\Cards\cornerclubgambler.png" />
     <Resource Include="Resources\Cards\corprusdisease.png" />
     <Resource Include="Resources\Cards\corruptedshade.png" />
@@ -1415,6 +1368,7 @@
     <Resource Include="Resources\Cards\priestofthemoons.png" />
     <Resource Include="Resources\Cards\prisonship.png" />
     <Resource Include="Resources\Cards\prizedchicken.png" />
+    <Resource Include="Resources\Cards\prophetofbones.png" />
     <Resource Include="Resources\Cards\protectoroftheinnocent.png" />
     <Resource Include="Resources\Cards\protectorofthemane.png" />
     <Resource Include="Resources\Cards\purebloodelder.png" />
@@ -1707,18 +1661,70 @@
     <Resource Include="Resources\Cards\yewshield.png" />
     <Resource Include="Resources\Cards\youngdragonborn.png" />
     <Resource Include="Resources\Cards\youngmammoth.png" />
+    <Resource Include="Resources\RewardType\Gold.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Cards\blackwooddistiller.png" />
+    <Resource Include="Resources\RewardType\Card.png" />
+    <Resource Include="Resources\RewardType\Pack.png" />
+    <Resource Include="Resources\RewardType\Soulgem.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Cards\conjurersspirit.png" />
+    <Resource Include="Resources\closeicon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Cards\prophetofbones.png" />
+    <Resource Include="Resources\DeckAttribute\agility.png" />
+    <Resource Include="Resources\DeckAttribute\endurance.png" />
+    <Resource Include="Resources\DeckAttribute\intelligence.png" />
+    <Resource Include="Resources\DeckAttribute\strength.png" />
+    <Resource Include="Resources\DeckAttribute\willpower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DeckAttribute\neutral.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TrayIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Temp\all attribs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Temp\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AppLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Sets\Core.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Sets\HeroesofSkyrim.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Sets\HousesOfMorrowind.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Cards\deathhound.png" />
+    <Resource Include="Resources\Cards\destructiontutor.png" />
+    <Resource Include="Resources\Cards\greenpactambusher.png" />
+    <Resource Include="Resources\Cards\harmony.png" />
+    <Resource Include="Resources\Cards\karthspirescout.png" />
+    <Resource Include="Resources\Cards\piercingtwilight.png" />
+    <Resource Include="Resources\Cards\shadowmarking.png" />
+    <Resource Include="Resources\Cards\swordoftheinferno.png" />
+    <Resource Include="Resources\Cards\torvalextortionist.png" />
+    <Resource Include="Resources\Cards\wildsincarnate.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
