@@ -29,6 +29,7 @@ namespace ESLTrackerTests.ViewModels.Decks
         Mock<IDeckTextExport> mockDeckTextExportFormat;
         UserInfoMessages userInfoMessages;
         Mock<IClipboardWrapper> mockClipboardWrapper;
+        Mock<IDeckExporterText> mockDeckExporterText;
 
         [TestInitialize]
         public override void TestInitialize()
@@ -40,9 +41,7 @@ namespace ESLTrackerTests.ViewModels.Decks
             mockfileSaver = new Mock<IFileSaver>();
             mockTracker = new Mock<ITracker>();
             mockProcessWrapper = new Mock<IProcessWrapper>();
-            mockDeckTextExportFormat = new Mock<IDeckTextExport>();
-            mockClipboardWrapper = new Mock<IClipboardWrapper>();
-            userInfoMessages = new UserInfoMessages();
+            mockDeckExporterText = new Mock<IDeckExporterText>();
         }
 
         [TestMethod()]
@@ -188,12 +187,7 @@ namespace ESLTrackerTests.ViewModels.Decks
 
             deckOps.CommandExportToTextExecute(deck);
 
-            mockDeckTextExportFormat.Verify(dtf  => dtf.FormatCardLine(It.Is<CardInstance>( ci=> ci.Quantity == 1)), Times.Once);
-            mockDeckTextExportFormat.Verify(dtf  => dtf.FormatCardLine(It.Is<CardInstance>( ci=> ci.Quantity == 2)), Times.Once);
-            mockDeckTextExportFormat.Verify(dtf  => dtf.FormatDeckHeader(It.IsAny<Deck>()), Times.Once);
-            mockDeckTextExportFormat.Verify(dtf  => dtf.FormatDeckFooter(It.IsAny<Deck>()), Times.Once);
-            mockClipboardWrapper.Verify(cw => cw.SetText(It.IsAny<string>()), Times.Once);
-
+            mockDeckExporterText.Verify(dtf  => dtf.ExportDeck(deck), Times.Once);
         }
 
         private DeckItemMenuOperationsViewModel CreateDeckItemMenuOperationsViewModelObject()
@@ -204,9 +198,7 @@ namespace ESLTrackerTests.ViewModels.Decks
                 mockTracker.Object,
                 mockDeckService.Object,
                 mockProcessWrapper.Object,
-                mockDeckTextExportFormat.Object,
-                userInfoMessages,
-                mockClipboardWrapper.Object);
+                mockDeckExporterText.Object);
         }
     }
 }

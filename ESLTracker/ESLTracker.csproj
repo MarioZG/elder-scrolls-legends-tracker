@@ -112,7 +112,9 @@
     <Compile Include="BusinessLogic\DataFile\FileUpdater.cs" />
     <Compile Include="BusinessLogic\Decks\BBCodeExport.cs" />
     <Compile Include="BusinessLogic\Decks\DeckCalculations.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckExporterText.cs" />
     <Compile Include="BusinessLogic\Decks\DeckVersionFactory.cs" />
+    <Compile Include="BusinessLogic\Decks\IDeckExporterText.cs" />
     <Compile Include="BusinessLogic\Decks\IDeckTextExport.cs" />
     <Compile Include="BusinessLogic\Decks\IDeckVersionFactory.cs" />
     <Compile Include="BusinessLogic\Games\ChangeGameDeck.cs" />

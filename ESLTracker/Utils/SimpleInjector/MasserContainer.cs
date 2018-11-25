@@ -67,7 +67,7 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IWinDialogs, WinDialogs>();
             Register<IClipboardWrapper, ClipboardWrapper>();
             Register<IDeckTextExport, BBCodeExport>();
-            
+            Register<IDeckExporterText, DeckExporterText>();
 
             Collection.Register<OverlayWindowBase>(typeof(App).Assembly);  //overlay windows
             Collection.Register<ViewModelBase>(typeof(App).Assembly);  //all view models, not needed but allows to verify all view models when Verify() is called

@@ -83,9 +83,7 @@ namespace ESLTracker.ViewModels.Decks
         private readonly IFileSaver fileSaver;
         private readonly ITracker tracker;
         private readonly IProcessWrapper processWrapper;
-        private readonly IDeckTextExport deckTextExportFormat;
-        private readonly UserInfoMessages userInfoMessages;
-        private readonly IClipboardWrapper clipboardWrapper;
+        private readonly IDeckExporterText deckExporterText;
 
         public DeckItemMenuOperationsViewModel(
             IMessenger messanger,
@@ -93,18 +91,15 @@ namespace ESLTracker.ViewModels.Decks
             ITracker tracker,
             IDeckService deckService,
             IProcessWrapper processWrapper,
-            IDeckTextExport deckTextExportFormat,
-            UserInfoMessages userInfoMessages,
-            IClipboardWrapper clipboardWrapper)
+            IDeckExporterText deckExporterText
+           )
         {
             this.deckService = deckService;
             this.messanger = messanger;
             this.fileSaver = fileSaver;
             this.tracker = tracker;
             this.processWrapper = processWrapper;
-            this.deckTextExportFormat = deckTextExportFormat;
-            this.userInfoMessages = userInfoMessages;
-            this.clipboardWrapper = clipboardWrapper;
+            this.deckExporterText = deckExporterText;
         }
 
         public void NewDeck(object parameter)
@@ -165,17 +160,7 @@ namespace ESLTracker.ViewModels.Decks
         public void CommandExportToTextExecute(Deck deck)
         {
             if (deckService.CanExport(deck)) {
-                var cards = deck.SelectedVersion.Cards
-                    .OrderBy(c => c?.Card?.Cost)
-                    .ThenBy(c => c?.Card?.Name)
-                    .Select(c=> this.deckTextExportFormat.FormatCardLine(c)).ToList();
-
-                cards.Insert(0, this.deckTextExportFormat.FormatDeckHeader(deck));
-                cards.Add(this.deckTextExportFormat.FormatDeckFooter(deck));
-
-                clipboardWrapper.SetText(string.Join(Environment.NewLine, cards));
-
-                userInfoMessages.AddMessage($" {deck.Name} content has been exported as BB text to clipboard. Ctrl+v to paste.");
+                deckExporterText.ExportDeck(deck);
             }
         }
     }
