@@ -1,7 +1,7 @@
 {
-  "Version": "2.3",
-  "VersionInfo": "FrostSpark Collection and October 2018 Monthly card",
-  "VersionDate": "2018-11-01T00:00:00Z",
+  "Version": "2.4",
+  "VersionInfo": "November 2018 Monthly card",
+  "VersionDate": "2018-11-26T00:00:00Z",
   "CardSets": [
     {
       "name": "Core",
@@ -4844,6 +4844,21 @@
       "race": "Orc",
       "keywords": ["Guard"],
       "text": "Guard"
+    },
+    {
+      "id": "d90a5cdc-ffff-ffff-0000-000000000000",
+      "name": "Frenzied Alit",
+      "rarity": "Epic",
+      "set": "Promotional",
+      "isunique": false,
+      "type": "creature",
+      "attributes": "strength",
+      "cost": "1",
+      "attack": "1",
+      "health": "3",
+      "race": "Reptile",
+      "keywords": [],
+      "text": "When Frenzied Alit takes damage, it gains +1/+0."
     },
     {
       "id": "f0d38f2c-54e1-3e94-e5b3-070b54277a88",
