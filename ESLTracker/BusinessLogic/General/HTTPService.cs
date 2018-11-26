@@ -14,6 +14,13 @@ namespace ESLTracker.BusinessLogic.General
     {
         private ITrackerFactory trackerFactory;
 
+        static HTTPService()
+        {
+            //enable TSL 1.1 and 1.2
+            //https://stackoverflow.com/questions/28286086/default-securityprotocol-in-net-4-5  
+            ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+        }
+
         public HTTPService(ITrackerFactory trackerFactory)
         {
             this.trackerFactory = trackerFactory;
