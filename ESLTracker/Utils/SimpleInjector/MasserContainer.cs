@@ -4,6 +4,7 @@ using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.GameClient;
 using ESLTracker.BusinessLogic.Games;
 using ESLTracker.BusinessLogic.General;
+using ESLTracker.BusinessLogic.Packs;
 using ESLTracker.BusinessLogic.Rewards;
 using ESLTracker.Controls;
 using ESLTracker.DataModel;
@@ -11,6 +12,7 @@ using ESLTracker.Properties;
 using ESLTracker.Utils.DiagnosticsWrappers;
 using ESLTracker.Utils.FileUpdaters;
 using ESLTracker.Utils.IOWrappers;
+using ESLTracker.Utils.LiveCharts;
 using ESLTracker.Utils.NLog;
 using ESLTracker.Utils.SystemWindowsWrappers;
 using ESLTracker.ViewModels;
@@ -68,6 +70,7 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IClipboardWrapper, ClipboardWrapper>();
             Register<IDeckTextExport, BBCodeExport>();
             Register<IDeckExporterText, DeckExporterText>();
+            Register<IDataToSeriesTranslator, DataToSeriesTranslator>();
 
             Collection.Register<OverlayWindowBase>(typeof(App).Assembly);  //overlay windows
             Collection.Register<ViewModelBase>(typeof(App).Assembly);  //all view models, not needed but allows to verify all view models when Verify() is called

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESLTracker", "ESLTracker\ESLTracker.csproj", "{5DF69785-80FD-4D08-A500-BC029B4FDF61}"
 EndProject
@@ -40,5 +40,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{200098ED-62E7-40D1-B607-013A7799C167} = {EFCDD6F0-FB4C-4153-B003-569825DC212C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B190BAF7-4AD9-4246-B38F-636C45823701}
 	EndGlobalSection
 EndGlobal

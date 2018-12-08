@@ -1,4 +1,5 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.Packs;
 using ESLTracker.DataModel;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
@@ -21,48 +22,35 @@ namespace ESLTracker.ViewModels.PackStatistics
 
         public string TargetCsvFile { get; set; }
 
-        private readonly CardSet AllFilter = new CardSet() { Name = "All"};
-
         private CardSet packSetFilter;
         public CardSet PackSetFilter
         {
             get { return packSetFilter; }
-            set { SetProperty<CardSet>(ref packSetFilter, value) ; RaiseDataPropertyChange(); }
+            set { SetProperty(ref packSetFilter, value) ; RaiseDataPropertyChange(); }
         }
 
-        public IEnumerable<CardSet> PackSetAutocomplete
-        {
-            get { return new CardSet[] { AllFilter }.Union(cardsDatabaseFactory.GetCardsDatabase().CardSets.Where(cs => cs.HasPacks)).ToList(); }
-        }
-
-        private readonly ICardImage cardImageService;
-        private readonly IWinDialogs winDialogs;
-        private readonly ICardsDatabaseFactory cardsDatabaseFactory;
-        private readonly ICardInstanceFactory cardInstanceFactory;
         private readonly ILogger logger;
         private readonly ITracker tracker;
+        private readonly PacksChartsDataCalculator packsChartsDataCalculator;
+        private readonly PacksDataCSVExporter packsDataCSVExporter;
 
         public OpeningPackStatsWindowViewModel(
             ILogger logger,
             ISettings settings,
             IDateTimeProvider dateTimeProvider, 
-            ITracker tracker, 
-            ICardInstanceFactory cardInstanceFactory,
-            ICardImage cardImageService,
-            IWinDialogs winDialogs,
-            ICardsDatabaseFactory cardsDatabaseFactory) : base(settings, dateTimeProvider)
+            ITracker tracker,
+            PacksDataCSVExporter packsDataCSVExporter,
+            PacksChartsDataCalculator packsChartsDataCalculator) : base(settings, dateTimeProvider)
         {
             this.logger = logger;
             this.tracker = tracker;
-            this.cardInstanceFactory = cardInstanceFactory;
-            this.cardImageService = cardImageService;
-            this.winDialogs = winDialogs;
-            this.cardsDatabaseFactory = cardsDatabaseFactory; ;
+            this.packsChartsDataCalculator = packsChartsDataCalculator;
+            this.packsDataCSVExporter = packsDataCSVExporter;
 
             CommandExportToCsv = new RealyAsyncCommand<object>(CommandExportToCsvExecute);
             CommandOpenCsv = new RealyAsyncCommand<object>(CommandOpenCsvExcute);
 
-            packSetFilter = AllFilter;
+            packSetFilter = CardSetsListProvider.AllSets;
         }
 
         protected override void RaiseDataPropertyChange()
@@ -80,25 +68,7 @@ namespace ESLTracker.ViewModels.PackStatistics
             get
             {
                 logger.Trace($"PieChartByClass");
-                var rawData = ((IEnumerable<CardInstance>)GetDataSet())
-                    .SelectMany(c => c.Card.Attributes, ( ci, a) => new { Attribute = a, Qty = (decimal) 1 / ci.Card.Attributes.Count});
-                decimal totalCount = rawData.Sum( d=> d.Qty);
-                var data = rawData
-                    .GroupBy(c => c.Attribute)
-                    .OrderBy(c => c.Key)
-                    .Select(c => new PieSeries
-                    {
-                        Title = $"{ c.Key.ToString()} { Math.Round(c.Sum(d => d.Qty) / totalCount * 100, 2)}% ({c.Sum(d => d.Qty).ToString("0.#")})",
-                        Fill = ClassAttributesHelper.DeckAttributeColors[c.Key].ToMediaBrush(),
-                        Values = new ChartValues<decimal>() { c.Sum(d => d.Qty) },
-                        DataLabels = false,
-                        LabelPoint = chartPoint => string.Format("{0:P}", chartPoint.Participation)
-                    });
-
-                SeriesCollection sc = new SeriesCollection();
-
-                sc.AddRange(data);
-                return sc;
+                return packsChartsDataCalculator.GetPieChartByClassData(GetDataSet());
             }
         }
 
@@ -107,26 +77,7 @@ namespace ESLTracker.ViewModels.PackStatistics
             get
             {
                 logger.Trace($"PieChartByRarity");
-                var rawData = ((IEnumerable<CardInstance>)GetDataSet())
-                    .Select(c => c.Card.Rarity);
-                int totalCount = rawData.Count();
-                var data = rawData
-                    .GroupBy(c => c)
-                    .OrderBy(c=> c.Key)
-                    .Select(c => new PieSeries
-                    {
-                        Title = $"{ c.Key.ToString()} { Math.Round((decimal)c.Count()/totalCount*100, 2)}% ({c.Count()})",
-                        Fill = cardImageService.GetRarityBrush(c.Key),
-                        Values = new ChartValues<int>() { c.Count() },
-                        DataLabels = false,
-                        LabelPoint = chartPoint => string.Format("{0:P}", chartPoint.Participation),
-                        
-                    });
-
-                SeriesCollection sc = new SeriesCollection();
-
-                sc.AddRange(data);
-                return sc;
+                return packsChartsDataCalculator.GetPieChartByRarityData(GetDataSet());
             }
         }
 
@@ -135,27 +86,7 @@ namespace ESLTracker.ViewModels.PackStatistics
             get
             {
                 logger.Trace($"PieChartPremiumByRarity");
-                var rawData = ((IEnumerable<CardInstance>)GetDataSet())
-                    .Where(ci=> ci.IsPremium)
-                    .Select(c => c.Card.Rarity);
-                int totalCount = rawData.Count();
-                var data = rawData
-                    .GroupBy(c => c)
-                    .OrderBy(c => c.Key)
-                    .Select(c => new PieSeries
-                    {
-                        Title = $"{ c.Key.ToString()} { Math.Round((decimal)c.Count() / totalCount * 100, 2)}% ({c.Count()})",
-                        Fill = cardImageService.GetRarityBrush(c.Key),
-                        Values = new ChartValues<int>() { c.Count() },
-                        DataLabels = false,
-                        LabelPoint = chartPoint => string.Format("{0:P}", chartPoint.Participation),
-
-                    });
-
-                SeriesCollection sc = new SeriesCollection();
-
-                sc.AddRange(data);
-                return sc;
+                return packsChartsDataCalculator.GetPieChartPremiumByRarityData(GetDataSet());
             }
         }
 
@@ -165,14 +96,10 @@ namespace ESLTracker.ViewModels.PackStatistics
             get
             {
                 logger.Trace($"Top10Cards");
-                var rawData = ((IEnumerable<CardInstance>)GetDataSet())
-                    .GroupBy(ci => ci.Card)
-                    .Select(ci => cardInstanceFactory.CreateFromCard(ci.Key, ci.Count()))
-                    .OrderByDescending(cis => cis.Quantity)
-                    .Take(10);
+                IEnumerable<CardInstance> top10CardsData = packsChartsDataCalculator.GetTopXCardsData(GetDataSet(), 10);
 
                 top10Cards.Clear();
-                rawData.All(ci => { top10Cards.Add(ci); return true; });
+                top10CardsData.All(ci => { top10Cards.Add(ci); return true; });
                 return top10Cards;
             }
         }
@@ -182,8 +109,7 @@ namespace ESLTracker.ViewModels.PackStatistics
             logger.Trace($"GetDataSet");
             logger.Trace($"Filtering packs from={this.filterDateFrom}; to={this.filterDateTo};");
 
-            var dataSet = GetPacksInDateRange
-                .SelectMany(p => p.Cards);
+            var dataSet = GetPacksInDateRange.SelectMany(p => p.Cards);
 
             logger.Trace($"DataSet.Count={dataSet.Count()}");
 
@@ -201,43 +127,14 @@ namespace ESLTracker.ViewModels.PackStatistics
             }
         }
 
-        private Task<object> CommandExportToCsvExecute(object arg)
+        private async Task<object> CommandExportToCsvExecute(object arg)
         {
-
-            string targetCsvFile = winDialogs.SaveFileDialog(
-                "PacksOpeningDetails" + DateTime.Now.ToString("yyyyMMdd")+".csv",
-                "Csv files(*.csv)|*.csv|All files(*.*)|*.*",
-                true);
-
+            string targetCsvFile = await packsDataCSVExporter.ExportToCSVFile(GetPacksInDateRange);
             if (!String.IsNullOrWhiteSpace(targetCsvFile))
             {
-                System.IO.File.WriteAllText(
-                    targetCsvFile,
-                    GetPacksInDateRange
-                        .SelectMany(p=> p.Cards, (pack, ci) => new
-                        {
-                            pack.DateOpened,
-                            ci.Card.Name,
-                            ci.Card.Rarity,
-                            ci.Card.IsUnique,
-                            ci.IsPremium,
-                            ci.Card.Race,
-                            ci.Card.Set,
-                            ci.Card.Type,
-                            Agility = ci.Card.Attributes.Contains(DataModel.Enums.DeckAttribute.Agility) ? (ci.Card.Attributes.Count() == 2 ? 0.5 : 1) : 0,
-                            Endurance = ci.Card.Attributes.Contains(DataModel.Enums.DeckAttribute.Endurance) ? (ci.Card.Attributes.Count() == 2 ? 0.5 : 1) : 0,
-                            Intelligence = ci.Card.Attributes.Contains(DataModel.Enums.DeckAttribute.Intelligence) ? (ci.Card.Attributes.Count() == 2 ? 0.5 : 1) : 0,
-                            Neutral = ci.Card.Attributes.Contains(DataModel.Enums.DeckAttribute.Neutral) ? (ci.Card.Attributes.Count() == 2 ? 0.5 : 1) : 0,
-                            Strength = ci.Card.Attributes.Contains(DataModel.Enums.DeckAttribute.Strength) ? (ci.Card.Attributes.Count() == 2 ? 0.5 : 1) : 0,
-                            Willpower = ci.Card.Attributes.Contains(DataModel.Enums.DeckAttribute.Willpower) ? (ci.Card.Attributes.Count() == 2 ? 0.5 : 1) : 0,
-                        })
-                    .ToCsv());
-
                 TargetCsvFile = targetCsvFile;
                 RaisePropertyChangedEvent(nameof(TargetCsvFile));
             }
-
-
             return null;
         }
 

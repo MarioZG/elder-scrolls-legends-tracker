@@ -28,6 +28,12 @@ namespace ESLTrackerTests.Builders
             return this;
         }
 
+        public CardInstanceBuilder WithIsPremium(bool isPremium)
+        {
+            cardInstance.IsPremium = isPremium;
+            return this;
+        }
+
         public CardInstance Build()
         {
             return cardInstance;

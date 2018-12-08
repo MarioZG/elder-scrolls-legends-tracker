@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="ESLTracker.Controls.Packs.SetsDropdown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ESLTracker.Controls.Packs"
+             mc:Ignorable="d">
+    <Grid>
+        <ComboBox
+                      IsEditable="False" 
+                      SelectedItem="{Binding SelectedSet, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                      ItemsSource="{Binding SetsList, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding ImagePath}" Width="16" Height="16" Margin="0,2,5,2" />
+                        <TextBlock Text="{Binding Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <FrameworkElement x:Name="vmProvider" 
+                    DataContext="{Binding Source={StaticResource VMLocator}, Path=[Packs.SetsDropdownViewModel]}"/>
+    </Grid>
+</UserControl>

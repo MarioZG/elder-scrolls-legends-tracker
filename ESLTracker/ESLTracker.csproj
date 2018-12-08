@@ -121,7 +121,11 @@
     <Compile Include="BusinessLogic\Games\GameFactory.cs" />
     <Compile Include="BusinessLogic\Games\IGameFactory.cs" />
     <Compile Include="BusinessLogic\Games\RankCalculations.cs" />
+    <Compile Include="BusinessLogic\Packs\CardSetsListProvider.cs" />
+    <Compile Include="Utils\LiveCharts\DataToSeriesTranslator.cs" />
     <Compile Include="BusinessLogic\Packs\PackFactory.cs" />
+    <Compile Include="BusinessLogic\Packs\PacksChartsDataCalculator.cs" />
+    <Compile Include="BusinessLogic\Packs\PacksDataCSVExporter.cs" />
     <Compile Include="BusinessLogic\Rewards\IRewardFactory.cs" />
     <Compile Include="BusinessLogic\Rewards\RewardFactory.cs" />
     <Compile Include="Controls\Cards\SelectCardPresenter.xaml.cs">
@@ -134,6 +138,9 @@
       <DependentUpon>OverlayWindowTitlebarButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\OverlayWindowTitlebarButtonsCollection.cs" />
+    <Compile Include="Controls\Packs\SetsDropdown.xaml.cs">
+      <DependentUpon>SetsDropdown.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SessionOverlay\CurrentRank.xaml.cs">
       <DependentUpon>CurrentRank.xaml</DependentUpon>
     </Compile>
@@ -159,6 +166,7 @@
     <Compile Include="Utils\IGuidProvider.cs" />
     <Compile Include="Utils\ILogger.cs" />
     <Compile Include="Utils\Extensions\ILoggerExtensions.cs" />
+    <Compile Include="BusinessLogic\Packs\IDataToSeriesTranslator.cs" />
     <Compile Include="Utils\Messages\CardsDbReloaded.cs" />
     <Compile Include="Utils\NLog\NLogLoggerProxy.cs" />
     <Compile Include="Utils\SplashScreenManager.cs" />
@@ -168,6 +176,7 @@
     <Compile Include="ViewModels\Cards\SelectCardViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckItemMenuOperationsViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckItemViewModel.cs" />
+    <Compile Include="ViewModels\Packs\SetsDropdownViewModel.cs" />
     <Compile Include="ViewModels\SessionOverlay\SessionOverviewViewModel.cs" />
     <Compile Include="ViewModels\Windows\AboutViewModel.cs" />
     <Compile Include="Windows\About.xaml.cs">
@@ -256,9 +265,6 @@
     </Compile>
     <Compile Include="Controls\PackStatistics\OpeningPackSummaryForPeriod.xaml.cs">
       <DependentUpon>OpeningPackSummaryForPeriod.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\PackStatistics\SetFilter.xaml.cs">
-      <DependentUpon>SetFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Packs\OpenPack.xaml.cs">
       <DependentUpon>OpenPack.xaml</DependentUpon>
@@ -513,6 +519,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Packs\SetsDropdown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SessionOverlay\CurrentRank.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -654,10 +664,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\PackStatistics\OpeningPackSummaryForPeriod.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\PackStatistics\SetFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

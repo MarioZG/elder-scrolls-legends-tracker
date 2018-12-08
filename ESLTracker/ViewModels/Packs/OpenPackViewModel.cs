@@ -70,11 +70,6 @@ namespace ESLTracker.ViewModels.Packs
             set { buttonSaveEnabled = value; RaisePropertyChangedEvent(nameof(ButtonSaveEnabled)); }
         }
 
-        public IEnumerable<CardSet> PackSetAutocomplete
-        {
-            get { return cardsDatabaseFactory.GetCardsDatabase().CardSets.Where(cs => cs.HasPacks).ToList(); }
-        }
-
         private readonly ICardInstanceFactory cardInstanceFactory;
         private readonly ISettings settings;
         private readonly ICardsDatabaseFactory cardsDatabaseFactory;

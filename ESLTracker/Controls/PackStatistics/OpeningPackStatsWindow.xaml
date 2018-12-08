@@ -5,128 +5,145 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ESLTracker.Controls.PackStatistics"
         xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.PackStatistics"
-        xmlns:Packs="clr-namespace:ESLTracker.Controls.Packs" x:Class="ESLTracker.Controls.PackStatistics.OpeningPackStatsWindow"
+        xmlns:Packs="clr-namespace:ESLTracker.Controls.Packs" 
+        x:Class="ESLTracker.Controls.PackStatistics.OpeningPackStatsWindow"
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         x:Name="openingPacksWindow"
+        DataContext="{Binding Source={StaticResource VMLocator}, Path=[PackStatistics.OpeningPackStatsWindowViewModel]}"
         Title="Opening Packs Statistics" Height="700" Width="800">
-    <Window.DataContext>
-        <ViewModels:OpeningPackStatsWindowViewModel/>
-    </Window.DataContext>
     <Window.Resources>
         <Style x:Key="ChartHeader" TargetType="TextBlock">
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="100,0,0,0"/>
+        </Style>
+        <Style x:Key="ChartNoData" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="100,0,0,0"/>
+        </Style>
+        <Style x:Key="ChartContainer" TargetType="DockPanel">
+            <Setter Property="Margin" Value="0,5,0,5" />
         </Style>
     </Window.Resources>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Controls:StatisticsDateFilter />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            </DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <StackPanel
+                        HorizontalAlignment="Left" 
+                        Orientation="Horizontal"
+                        Margin="10,0,0,0">
+                <TextBlock Text="Filter by sets:   " VerticalAlignment="Center"/>
+                <Packs:SetsDropdown SelectedSet="{Binding PackSetFilter, Mode=TwoWay}" ShowAllOption="True" VerticalAlignment="Center"/>            
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <TextBlock Text="Export packs data:" VerticalAlignment="Center" Margin="10,0,10,0"/>
                 <Button 
-                    BorderThickness="0" 
-                    Background="{x:Null}"                 
-                    Command="{Binding CommandExportToCsv}"
-                    ToolTip="Export pack statistics to csv"
-                    VerticalAlignment="Top"
-                >
+                        BorderThickness="0" 
+                        Background="{x:Null}"                 
+                        Command="{Binding CommandExportToCsv}"
+                        ToolTip="Export pack statistics to csv"
+                        VerticalAlignment="Top"
+                    >
                     <StackPanel Orientation="Horizontal">
                         <fa:ImageAwesome 
 
-                            Icon="Download" 
-                            Width="24"
-                            Margin="5" 
-                            VerticalAlignment="Center"
-                        />
+                                Icon="Download" 
+                                Width="24"
+                                Margin="5" 
+                                VerticalAlignment="Center"
+                            />
                     </StackPanel>
                 </Button>
                 <Button 
-                    BorderThickness="0" 
-                    Background="{x:Null}"                 
-                    Command="{Binding CommandOpenCsv}"
-                    ToolTip="Open exported file"
-                    Visibility="{Binding TargetCsvFile, Converter={Converters:ObjectToVisibilty}}"
-                    VerticalAlignment="Top"
-                >
+                        BorderThickness="0" 
+                        Background="{x:Null}"                 
+                        Command="{Binding CommandOpenCsv}"
+                        ToolTip="Open exported file"
+                        Visibility="{Binding TargetCsvFile, Converter={Converters:ObjectToVisibilty}}"
+                        VerticalAlignment="Top"
+                    >
                     <StackPanel Orientation="Horizontal">
                         <fa:ImageAwesome 
-                            Icon="FileExcelOutline" 
-                            Width="24"
-                            Margin="5" 
-                            VerticalAlignment="Center"
-                        />
+                                Icon="FileExcelOutline" 
+                                Width="24"
+                                Margin="5" 
+                                VerticalAlignment="Center"
+                            />
                     </StackPanel>
                 </Button>
             </StackPanel>
-        </DockPanel>
-        <StackPanel DockPanel.Dock="Top" 
-                    HorizontalAlignment="Left" 
-                    Orientation="Horizontal"
-                    Margin="10,0,0,0">
-            <TextBlock Text="Filter by sets:   " VerticalAlignment="Center"/>
-            <ComboBox
-                      IsEditable="False" 
-                      SelectedItem="{Binding PackSetFilter}"
-                      ItemsSource="{Binding PackSetAutocomplete}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding ImagePath}" Width="16" Height="16" Margin="0,2,5,2" />
-                            <TextBlock Text="{Binding Name, FallbackValue=All2, TargetNullValue=All3}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
         </StackPanel>
-        <StackPanel>
-            <DockPanel>
+        <StackPanel Margin="10,10,0,20" Orientation="Horizontal">
+            <StackPanel>
                 <local:OpeningPackSummaryForPeriod 
                     DockPanel.Dock="Left"
                     PacksData="{Binding DataContext.GetPacksInDateRange, ElementName=openingPacksWindow, Mode=OneWay}"
-                    Margin="10,10,0,20"/>
+                    />
                 <TextBlock 
-                    HorizontalAlignment="Right"
                     DockPanel.Dock="Top"
                     Margin="0,0,30,0"
                     Text="Most popular cards"
                     Style="{StaticResource ChartHeader}"  />
                 <Cards:CardList 
-                    HorizontalAlignment="Right"
                     DockPanel.Dock="Right"
                     MaxWidth="200" 
                     Margin="10,10,30,20"
                     SortingProperties="Quantity"
                     SortingDirections="D"
                     DataContext="{Binding DataContext.Top10Cards, ElementName=openingPacksWindow}"  />
-            </DockPanel>
-            <UniformGrid Columns="3" Margin="0,0,0,10">
-                <TextBlock Text="Cards by Class"
-                           Style="{StaticResource ChartHeader}" />
-                <TextBlock Text="Cards by Rarity"
-                           Style="{StaticResource ChartHeader}"  />
-                <TextBlock Text="Premium cards by rarity"
-                           Style="{StaticResource ChartHeader}"  />
-            </UniformGrid>
-            <UniformGrid Columns="3">
-                <lvc:PieChart Height="150" LegendLocation="Right"  Series="{Binding PieChartByClass}">
-                    <lvc:PieChart.DataTooltip>
-                        <lvc:DefaultTooltip SelectionMode="OnlySender" Background="LightGray"/>
-                    </lvc:PieChart.DataTooltip>
-                </lvc:PieChart>
-                <lvc:PieChart Height="150" LegendLocation="Right" Series="{Binding PieChartByRarity}">
-                    <lvc:PieChart.DataTooltip>
-                        <lvc:DefaultTooltip SelectionMode="OnlySender" Background="LightGray"/>
-                    </lvc:PieChart.DataTooltip>
-                </lvc:PieChart>
-                <lvc:PieChart Height="150" LegendLocation="Right" Series="{Binding PieChartPremiumByRarity}">
-                    <lvc:PieChart.DataTooltip>
-                        <lvc:DefaultTooltip SelectionMode="OnlySender" Background="LightGray"/>
-                    </lvc:PieChart.DataTooltip>
-                </lvc:PieChart>
-            </UniformGrid>
+            </StackPanel>
+           
         </StackPanel>
+        <UniformGrid Rows="3">
+            <DockPanel Style="{StaticResource ChartContainer}">
+                <TextBlock DockPanel.Dock="Top" Text="Cards by Class" Style="{StaticResource ChartHeader}" />
+                <TextBlock 
+                    Text="No packs within filters" 
+                    Style="{StaticResource ChartNoData}"
+                    Visibility="{Binding PieChartByClass,Converter={Converters:ObjectToVisibilty}, ConverterParameter=not}"  />
+                <lvc:PieChart 
+                        LegendLocation="Right"
+                        Series="{Binding PieChartByClass}">
+                    <lvc:PieChart.DataTooltip>
+                        <lvc:DefaultTooltip SelectionMode="OnlySender" Background="LightGray"/>
+                    </lvc:PieChart.DataTooltip>
+                </lvc:PieChart>
+            </DockPanel>
+            <DockPanel Style="{StaticResource ChartContainer}">
+                <TextBlock DockPanel.Dock="Top" Text="Cards by Rarity" Style="{StaticResource ChartHeader}"  />
+                <TextBlock 
+                    Text="No packs within filters" 
+                    Style="{StaticResource ChartNoData}"
+                    Visibility="{Binding PieChartByRarity,Converter={Converters:ObjectToVisibilty}, ConverterParameter=not}"  />
+                <lvc:PieChart LegendLocation="Right" Series="{Binding PieChartByRarity}">
+                    <lvc:PieChart.DataTooltip>
+                        <lvc:DefaultTooltip SelectionMode="OnlySender" Background="LightGray"/>
+                    </lvc:PieChart.DataTooltip>
+                </lvc:PieChart>
+            </DockPanel>
+            <DockPanel Style="{StaticResource ChartContainer}">
+                <TextBlock DockPanel.Dock="Top" Text="Premium cards by rarity" Style="{StaticResource ChartHeader}"  />
+                <TextBlock 
+                    Text="No packs within filters" 
+                    Style="{StaticResource ChartNoData}"
+                    HorizontalAlignment="Center"
+                    Visibility="{Binding PieChartPremiumByRarity,Converter={Converters:ObjectToVisibilty}, ConverterParameter=not}"  />
+                <lvc:PieChart LegendLocation="Right" Series="{Binding PieChartPremiumByRarity}">
+                    <lvc:PieChart.DataTooltip>
+                        <lvc:DefaultTooltip SelectionMode="OnlySender" Background="LightGray"/>
+                    </lvc:PieChart.DataTooltip>
+                </lvc:PieChart>
+            </DockPanel>
+        </UniformGrid>
     </DockPanel>
+   
+   
 </Window>

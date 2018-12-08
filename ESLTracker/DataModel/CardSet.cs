@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Xml.Serialization;
 
 namespace ESLTracker.DataModel
@@ -22,14 +23,22 @@ namespace ESLTracker.DataModel
         [XmlIgnore]
         public bool HasPacks { get; set; }
 
+        //this shuld be in other class - decorator pattern or wpf converter?. Due to isses with serialisation left here
         [XmlIgnore]
-        public string ImagePath
+        public object ImagePath
         {
             get
             {
-                Regex rgx = new Regex("[^a-zA-Z0-9]");
-                var name = rgx.Replace(Name, "");
-                return "pack://application:,,,/Resources/Sets/" + name + ".png";
+                if (this.Id != Guid.Empty)
+                {
+                    Regex rgx = new Regex("[^a-zA-Z0-9]");
+                    var name = rgx.Replace(this.Name, "");
+                    return "pack://application:,,,/Resources/Sets/" + name + ".png";
+                }
+                else
+                {
+                    return Binding.DoNothing;
+                }
             }
         }
 
