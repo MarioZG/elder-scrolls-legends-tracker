@@ -1,4 +1,0 @@
-#!/bin/sh
-CYAN=`echo -e '\033[0;36m'`
-NC=`echo -e '\033[0m'` # No Color
-./packages/TDLUpdaterFromGit.0.1.0/tools/TDLUpdaterFromGit.exe "./todolistfile.tdl" "username" "repository" | sed "s/.*/$CYAN&$NC/"
