@@ -137,6 +137,24 @@ namespace WPFTextBoxAutoComplete
                     SuggestMatch(tb, match);
                 }
             }
+            else if (e.Key == Key.Back)
+            {
+                e.Handled = true;
+                int caretIndex = tb.CaretIndex;
+                if (caretIndex > 0)
+                {
+                    tb.Text = tb.Text.Substring(0, caretIndex - 1);
+                    tb.CaretIndex = caretIndex - 1;
+
+                    string match = GetCurrentSuggestions(tb).FirstOrDefault();
+
+                    //Nothing.  Leave 'em alone
+                    if (!String.IsNullOrEmpty(match))
+                    {
+                        SuggestMatch(tb, match);
+                    }
+                }
+            }
         }
 
 
