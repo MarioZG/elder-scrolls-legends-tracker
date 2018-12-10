@@ -15,7 +15,9 @@ namespace ESLTrackerTests.Builders
 
         public GameBuilder()
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             game = new Game();
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         public GameBuilder WithDeck(Deck deck)
@@ -63,6 +65,36 @@ namespace ESLTrackerTests.Builders
         internal GameBuilder WithESLVersion(SerializableVersion serializableVersion)
         {
             game.ESLVersion = serializableVersion;
+            return this;
+        }
+
+        internal GameBuilder WithBonusRound(bool? bonusRound)
+        {
+            game.BonusRound = bonusRound;
+            return this;
+        }
+
+        internal GameBuilder WithOpponentRank(PlayerRank opponentRank)
+        {
+            game.OpponentRank = opponentRank;
+            return this;
+        }
+
+        internal GameBuilder WithOrderOfPlay(OrderOfPlay prderOfPlay)
+        {
+            game.OrderOfPlay = prderOfPlay;
+            return this;
+        }
+
+        internal GameBuilder WithOpponentName(string opponentName)
+        {
+            game.OpponentName = opponentName;
+            return this;
+        }
+
+        internal GameBuilder WithOpponentLegendRank(int? oppLegendRank)
+        {
+            game.OpponentLegendRank = oppLegendRank;
             return this;
         }
 

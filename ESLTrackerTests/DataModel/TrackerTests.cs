@@ -11,31 +11,13 @@ using ESLTrackerTests;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.Utils.IOWrappers;
 using ESLTracker.Utils;
+using ESLTrackerTests.Builders;
 
 namespace ESLTracker.DataModel.Tests
 {
     [TestClass()]
     public class TrackerTests : BaseTest
     {
-
-
-        private TestContext testContextInstance;
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
         [TestMethod()]
         [Ignore()]
         public void LargeFilesSerialiseDeserialiseSpeedtest()
@@ -66,20 +48,20 @@ namespace ESLTracker.DataModel.Tests
 
             for (int i = 0; i < MAX_GAMES; i++)
             {
-                tracker.Games.Add(new Game()
-                {
-                    BonusRound = false,
-                    Deck = tracker.Decks[new Random().Next(MAX_DECKS)],
-                    OpponentClass = DeckClass.Spellsword,
-                    OpponentLegendRank = 1,
-                    OpponentName = "Game" + i.ToString("0000000000"),
-                    OpponentRank = PlayerRank.TheLady,
-                    OrderOfPlay = OrderOfPlay.Second,
-                    Outcome = GameOutcome.Draw,
-                    PlayerLegendRank = 1,
-                    PlayerRank = PlayerRank.TheLover,
-                    Type = GameType.PlayRanked
-                });
+                tracker.Games.Add(new GameBuilder()
+                    .WithBonusRound(false)
+                    .WithDeck(tracker.Decks[new Random().Next(MAX_DECKS)])
+                    .WithOpponentClass(DeckClass.Spellsword)
+                    .WithOpponentLegendRank(1)
+                    .WithOpponentName("Game" + i.ToString("0000000000"))
+                    .WithOpponentRank(PlayerRank.TheLady)
+                    .WithOrderOfPlay(OrderOfPlay.Second)
+                    .WithOutcome(GameOutcome.Draw)
+                    .WithPlayerLegendRank(1)
+                    .WithPlayerRank(PlayerRank.TheLover)
+                    .WithType(GameType.PlayRanked)
+                    .Build()
+                );
             }
 
             //data ready, lets save!

@@ -113,7 +113,7 @@ namespace ESLTracker.DataModel
             set { SetProperty(ref opponentDeckTag, value); }
         }
 
-        [Obsolete("Use factory in production code or deckbuilder in unit tests to create new decks")]
+        [Obsolete("Use factory in production code or gamebuilder in unit tests to create new games")]
         public Game()
         {
 

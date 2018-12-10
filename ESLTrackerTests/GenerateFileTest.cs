@@ -90,15 +90,15 @@ namespace ESLTrackerTests
                     int gamesCount = rand.Next(300);
                     for (; gamesCount > 0; gamesCount--)
                     {
-                        Game g = new Game();
-                        g.BonusRound = rand.Next(2) % 2 == 1;
-                        g.Date = d.CreatedDate.AddMinutes(rand.Next(10000));
-                        g.Deck = d;
-                        g.OpponentClass = (DeckClass)rand.Next(16);
-                        g.OpponentName = "opp1";
-                        g.OrderOfPlay = (OrderOfPlay)rand.Next(2);
-                        g.Outcome = (GameOutcome)rand.Next(3);
-                        g.OpponentDeckTag = deckTags[rand.Next(deckTags.Length)];
+                        Game g = new GameBuilder()
+                            .WithBonusRound(rand.Next(2) % 2 == 1)
+                            .WithDate(d.CreatedDate.AddMinutes(rand.Next(10000)))
+                            .WithDeck(d)
+                            .WithOpponentClass((DeckClass)rand.Next(16))
+                            .WithOpponentName("opp1")
+                            .WithOrderOfPlay((OrderOfPlay)rand.Next(2))
+                            .WithOutcome((GameOutcome)rand.Next(3))
+                            .Build();
                         switch (d.Type)
                         {
                             case DeckType.Constructed:
@@ -113,6 +113,7 @@ namespace ESLTrackerTests
                             default:
                                 break;
                         }
+                        g.OpponentDeckTag = deckTags[rand.Next(deckTags.Length)];
                         g.DeckVersionId = version.VersionId;
                         tracker.Games.Add(g);
                     }

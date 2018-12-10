@@ -21,7 +21,7 @@ namespace ESLTracker.DataModel.Tests
         [TestMethod()]
         public void EqualsTest001_x_Equals_x_True()
         {
-            Game g = new Game();
+            Game g = new GameBuilder().Build();
 
             PopulateObject(g, StartProp);
 
@@ -33,8 +33,8 @@ namespace ESLTracker.DataModel.Tests
         [TestMethod()]
         public void EqualsTest002_x_Equals_y_same_as_y_eqals_x_diff_values()
         {
-            Game x = new Game();
-            Game y = new Game();
+            Game x = new GameBuilder().Build();
+            Game y = new GameBuilder().Build();
 
             PopulateObject(x, StartProp);
             PopulateObject(y, EditProp);
@@ -45,8 +45,8 @@ namespace ESLTracker.DataModel.Tests
         [TestMethod()]
         public void EqualsTest003_x_Equals_y_same_as_y_eqals_x_same_values()
         {
-            Game x = new Game();
-            Game y = new Game();
+            Game x = new GameBuilder().Build();
+            Game y = new GameBuilder().Build();
 
             PopulateObject(x, StartProp);
             PopulateObject(y, StartProp);
@@ -57,7 +57,7 @@ namespace ESLTracker.DataModel.Tests
         [TestMethod()]
         public void EqualsTest004_x_Equals_null_False()
         {
-            Game x = new Game();
+            Game x = new GameBuilder().Build();
 
             PopulateObject(x, StartProp);
 
@@ -93,7 +93,7 @@ namespace ESLTracker.DataModel.Tests
         [TestMethod]
         public void CloneTest()
         {
-            Game game = new Game();
+            Game game = new GameBuilder().Build();
             PopulateObject(game, StartProp);
 
             game.PropertyChanged += (s, e) => { };

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTrackerTests.Builders;
+using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.ViewModels.Game.Tests
 {
@@ -19,12 +21,12 @@ namespace ESLTracker.ViewModels.Game.Tests
             int legendRankValue = RankedProgressChartViewModel.GetPlayerRankStartValue(DataModel.Enums.PlayerRank.TheLegend);
             List<DataModel.Game> games = new List<DataModel.Game>()
             {
-                new DataModel.Game() {PlayerLegendRank= 300, Date = date.AddMinutes(minutes++), Type = DataModel.Enums.GameType.PlayRanked, PlayerRank = DataModel.Enums.PlayerRank.TheLegend},
-                new DataModel.Game() {PlayerLegendRank= 245, Date = date.AddMinutes(minutes++), Type = DataModel.Enums.GameType.PlayRanked, PlayerRank = DataModel.Enums.PlayerRank.TheLegend},
-                new DataModel.Game() {PlayerLegendRank= 423, Date = date.AddMinutes(minutes++), Type = DataModel.Enums.GameType.PlayRanked, PlayerRank = DataModel.Enums.PlayerRank.TheLegend},
-                new DataModel.Game() {PlayerLegendRank= 12, Date = date.AddMinutes(minutes++), Type = DataModel.Enums.GameType.PlayRanked, PlayerRank = DataModel.Enums.PlayerRank.TheLegend},
-                new DataModel.Game() {PlayerLegendRank= 76, Date = date.AddMinutes(minutes++), Type = DataModel.Enums.GameType.PlayRanked, PlayerRank = DataModel.Enums.PlayerRank.TheLegend},
-                new DataModel.Game() {PlayerLegendRank= 150, Date = date.AddMinutes(minutes++), Type = DataModel.Enums.GameType.PlayRanked, PlayerRank = DataModel.Enums.PlayerRank.TheLegend}
+                new GameBuilder().WithPlayerLegendRank(300).WithDate(date.AddMinutes(minutes++)).WithType(GameType.PlayRanked).WithPlayerRank(PlayerRank.TheLegend).Build(),
+                new GameBuilder().WithPlayerLegendRank(245).WithDate(date.AddMinutes(minutes++)).WithType(GameType.PlayRanked).WithPlayerRank(PlayerRank.TheLegend).Build(),
+                new GameBuilder().WithPlayerLegendRank(423).WithDate(date.AddMinutes(minutes++)).WithType(GameType.PlayRanked).WithPlayerRank(PlayerRank.TheLegend).Build(),
+                new GameBuilder().WithPlayerLegendRank(12 ).WithDate(date.AddMinutes(minutes++)).WithType(GameType.PlayRanked).WithPlayerRank(PlayerRank.TheLegend).Build(),
+                new GameBuilder().WithPlayerLegendRank(76 ).WithDate(date.AddMinutes(minutes++)).WithType(GameType.PlayRanked).WithPlayerRank(PlayerRank.TheLegend).Build(),
+                new GameBuilder().WithPlayerLegendRank(150).WithDate(date.AddMinutes(minutes++)).WithType(GameType.PlayRanked).WithPlayerRank(PlayerRank.TheLegend).Build(),
             };
             int index = 0;
             Dictionary<string, Tuple<DateTime, int>> chartDatagameAfterGame;

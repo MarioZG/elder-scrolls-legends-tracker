@@ -31,19 +31,19 @@ namespace ESLTracker.BusinessLogic.Games
 
         public Game CreateGame(Game previousGame)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             var game = CreateGame();
-#pragma warning restore CS0618 // Type or member is obsolete
 
 
             game.Deck = previousGame.Deck;
 
             //restore values that are likely the same,  like game type, player rank etc
             game.Type = previousGame.Type;
-            game.PlayerRank = previousGame.PlayerRank;
-            game.PlayerLegendRank = previousGame.PlayerLegendRank;
-            game.BonusRound = false;
-
+            if (game.Type == DataModel.Enums.GameType.PlayRanked)
+            {
+                game.PlayerRank = previousGame.PlayerRank;
+                game.PlayerLegendRank = previousGame.PlayerLegendRank;
+                game.BonusRound = false;
+            }
             return game;
         }
     }
