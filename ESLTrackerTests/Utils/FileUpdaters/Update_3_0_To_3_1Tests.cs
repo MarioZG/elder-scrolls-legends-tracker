@@ -1,10 +1,12 @@
 ﻿using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.DataModel;
+using ESLTracker.Utils.IOWrappers;
 using ESLTracker.Utils.SimpleInjector;
 using ESLTrackerTests;
 using ESLTrackerTests.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -17,7 +19,12 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
         [TestMethod()]
         public void UpdateDataFile_001()
         {
-            //Mock<ITracker> tracker = new Mock<ITracker>();
+            Mock<IPathWrapper> mockPathWrapper = new Mock<IPathWrapper>();
+            Mock<IFileWrapper> mockFileWrapper = new Mock<IFileWrapper>();
+
+            mockPathWrapper
+                .Setup(pw => pw.ChangeExtension(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns((string p, string e) => { return p; });
 
             new MasserContainer();
 
@@ -84,7 +91,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
             tracker.Packs.Add(pack);
 
             string dataFileName = "./data" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xml";
-            new FileSaver(null, null, null, null).SaveDatabase(dataFileName, tracker);
+            new FileSaver(null, mockPathWrapper.Object, null, mockFileWrapper.Object).SaveDatabase(dataFileName, tracker);
 
 
             XmlDocument xmlDoc = new XmlDocument();

@@ -28,9 +28,13 @@ namespace ESLTracker.Utils.Tests
         Mock<ITrackerFactory> trackerFactory = new Mock<ITrackerFactory>();
 
         [TestInitialize]
-        public void TestInitialize()
+        public override void TestInitialize()
         {
+            base.TestInitialize();
+
             pathManager = new PathManager(mockSettings.Object);
+            pathWrapper.Setup(pw => pw.ChangeExtension(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns((string p, string e) => { return p; });
         }
 
         [TestMethod()]

@@ -8,6 +8,7 @@ namespace ESLTracker.Utils.IOWrappers
 {
     public interface IFileWrapper
     {
+        void Copy(string sourceFileName, string destFileName, bool overwrite = false);
         void Delete(string s);
         void Move(string sourceFileName, string destFileName);
         void WriteAllText(string path, string contents);

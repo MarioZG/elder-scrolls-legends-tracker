@@ -18,6 +18,11 @@ namespace ESLTracker.Utils.IOWrappers
             System.IO.File.Move(sourceFileName, destFileName);
         }
 
+        public void Copy(string sourceFileName, string destFileName, bool overwrite = false)
+        {
+            System.IO.File.Copy(sourceFileName, destFileName, overwrite);
+        }
+
         public void WriteAllText(string path, string contents)
         {
             System.IO.File.WriteAllText(path, contents);

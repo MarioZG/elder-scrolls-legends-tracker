@@ -55,11 +55,26 @@ namespace ESLTracker.BusinessLogic.DataFile
             {
                 BackupDatabase(path);
             }
+            string writePath = pathWrapper.ChangeExtension(path, "temp");
             //standard serialization
-            using (TextWriter writer = new StreamWriter(path))
+            using (TextWriter writer = new StreamWriter(writePath))
             {
                 var xml = new XmlSerializer(typeof(T));
                 xml.Serialize(writer, tracker);
+            }
+            fileWrapper.Delete(path); //backed up in backup step
+            try
+            {
+                fileWrapper.Move(writePath, path);
+            }
+            catch
+            {
+                //if failed check if data.xml exsts, if not restore from backup
+                if (! fileWrapper.Exists(path))
+                {
+                    IOrderedEnumerable<string> backupFiles = GetBackupFiles(path);
+                    fileWrapper.Copy(backupFiles.First(), path); 
+                }
             }
         }
 
@@ -85,22 +100,28 @@ namespace ESLTracker.BusinessLogic.DataFile
 
         public void ManageBackups(string path)
         {
-            string dataFileFilter = Path.ChangeExtension(
-                string.Format("{0}*", Path.GetFileNameWithoutExtension(pathManager.DataFile)),
-                Path.GetExtension(pathManager.DataFile));
-            var backupFiles = directoryWrapper.EnumerateFiles(
-                            pathWrapper.GetDirectoryName(path),
-                            dataFileFilter).Where(f=> f != pathManager.FullDataFilePath).OrderByDescending(f => f);
+            IOrderedEnumerable<string> backupFiles = GetBackupFiles(path);
             //first save of day - delete old backups
             int backupcount = backupFiles.Count();
             int skipfiles = 7; //backups to keep
-            if (backupcount > skipfiles) 
+            if (backupcount > skipfiles)
             {
                 foreach (string s in backupFiles.Skip(skipfiles))
                 {
                     fileWrapper.Delete(s);
                 }
             }
+        }
+
+        private IOrderedEnumerable<string> GetBackupFiles(string path)
+        {
+            string dataFileFilter = Path.ChangeExtension(
+                string.Format("{0}*", Path.GetFileNameWithoutExtension(pathManager.DataFile)),
+                Path.GetExtension(pathManager.DataFile));
+            var backupFiles = directoryWrapper.EnumerateFiles(
+                            pathWrapper.GetDirectoryName(path),
+                            dataFileFilter).Where(f => f != pathManager.FullDataFilePath).OrderByDescending(f => f);
+            return backupFiles;
         }
     }
 }
