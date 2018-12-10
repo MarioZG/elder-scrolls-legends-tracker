@@ -20,12 +20,20 @@ namespace ESLTracker.ViewModels.Decks
     {
         public ICommand CommandNewDeck
         {
-            get { return new RelayCommand(new Action<object>(NewDeck)); }
+            get {
+                return new RelayCommand(
+                            (object param) => NewDeck(param as Deck));
+            }
         }
 
         public ICommand CommandEditDeck
         {
-            get { return new RelayCommand(new Action<object>(CommandEditDeckExecute)); }
+            get {
+                return new RelayCommand(
+                            (object param) => CommandEditDeckExecute(param as Deck),
+                            (object param) => CommandHideDeckCanExecute(param as Deck)
+                            );
+            }
         }
 
         public ICommand CommandHideDeck
@@ -33,8 +41,8 @@ namespace ESLTracker.ViewModels.Decks
             get
             {
                 return new RelayCommand(
-                          (object param) => CommandHideDeckExecute(param as Deck),
-                          (object param) => deckService.CommandHideDeckCanExecute(param as Deck));
+                            (object param) => CommandHideDeckExecute(param as Deck),
+                            (object param) => deckService.CommandHideDeckCanExecute(param as Deck));
             }
         }
 
@@ -43,8 +51,8 @@ namespace ESLTracker.ViewModels.Decks
             get
             {
                 return new RelayCommand(
-                  (object param) => CommandUnHideDeckExecute(param as Deck),
-                  (object param) => deckService.CommandUnHideDeckCanExecute((Deck)param));
+                            (object param) => CommandUnHideDeckExecute(param as Deck),
+                            (object param) => deckService.CommandUnHideDeckCanExecute((Deck)param));
             }
         }
 
@@ -53,8 +61,8 @@ namespace ESLTracker.ViewModels.Decks
             get
             {
                 return new RelayCommand(
-                    (object param) => CommandDeleteDeckExecute(param as Deck),
-                    (object param) => deckService.CanDelete(param as Deck));
+                            (object param) => CommandDeleteDeckExecute(param as Deck),
+                            (object param) => deckService.CanDelete(param as Deck));
             }
         }
 
@@ -63,8 +71,8 @@ namespace ESLTracker.ViewModels.Decks
             get
             {
                 return new RelayCommand(
-                    (object param) => CommandOpenUrlExecute((Deck)param),
-                    (object param) => ((param is Deck) && ((Deck)param).IsWebDeck));
+                            (object param) => CommandOpenUrlExecute((Deck)param),
+                            (object param) => ((param is Deck) && ((Deck)param).IsWebDeck));
             }
         }
 
@@ -73,8 +81,8 @@ namespace ESLTracker.ViewModels.Decks
             get
             {
                 return new RelayCommand(
-                    (object param) => CommandExportToTextExecute((Deck)param),
-                    (object param) => ((param is Deck) && ((Deck)param).SelectedVersion != null));
+                            (object param) => CommandExportToTextExecute((Deck)param),
+                            (object param) => ((param is Deck) && ((Deck)param).SelectedVersion != null));
             }
         }
 
@@ -116,6 +124,11 @@ namespace ESLTracker.ViewModels.Decks
             messanger.Send(
                 new EditDeck() { Deck = (Deck)param },
                 EditDeck.Context.StartEdit);
+        }
+
+        private bool CommandHideDeckCanExecute(Deck deck)
+        {
+            return deck != null;
         }
 
         public void CommandHideDeckExecute(Deck deck)
