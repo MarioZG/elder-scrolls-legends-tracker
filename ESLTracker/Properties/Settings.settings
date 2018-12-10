@@ -140,5 +140,8 @@
     <Setting Name="SessionOverlay_RankProgresColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">DarkBlue</Value>
     </Setting>
+    <Setting Name="General_RankedSeasonResetTime" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

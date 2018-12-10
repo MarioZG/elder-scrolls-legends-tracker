@@ -380,9 +380,103 @@ namespace ESLTrackerTests.BusinessLogic.Games
 
         }
 
+        [TestMethod]
+        public void CalculateCurrentRankProgress007_1stOfMonthBeforeCutOff()
+        {
+            var timezone = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time"); //UTC -3
+
+            DateTime midnightAt1st = TimeZoneInfo.ConvertTimeToUtc(new DateTime(2018, 12, 1, 0, 0, 0));
+            TimeSpan lastGameTime = TimeSpan.FromHours(2);
+
+            mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(midnightAt1st.Add(lastGameTime)); //2:00 am arg time
+            
+            int seasonEndTime = 6;
+
+            mockSettings.SetupGet(s => s.General_RankedSeasonResetTime).Returns(seasonEndTime);
+
+
+            var games = new GameListBuilder()
+                .UsingType(GameType.PlayRanked)
+                .UsingPlayerRank(PlayerRank.TheLegend)
+                .UsingDate(midnightAt1st.AddDays(-2))
+                .WithOutcome(1, GameOutcome.Victory)  //game last month
+                .UsingDate(midnightAt1st.Add(lastGameTime))
+                .WithOutcome(1, GameOutcome.Victory)  //game on 1st at 2:00 am arg time (5:00 utc)
+                .Build();
+
+            RankCalculations rankCalculations = CreateRankCalulations();
+
+            PlayerRank actualRank;
+            int actualProgress;
+            int actualMaxStars;
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                midnightAt1st,
+                out actualRank,
+                out actualProgress,
+                out actualMaxStars,
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
+
+            Assert.AreEqual(PlayerRank.TheLegend, actualRank);
+        }
+
+        [TestMethod]
+        public void CalculateCurrentRankProgress008_1stOfMonthAfterCutOff()
+        {
+            var timezone = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time"); //UTC -3
+
+            DateTime midnightAt1st = TimeZoneInfo.ConvertTimeToUtc(new DateTime(2018, 12, 1, 0, 0, 0));
+
+            TimeSpan lastGameTime = TimeSpan.FromHours(2); //2:00 amd arg time
+
+            int seasonEndTime = 6;
+
+            mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(
+                midnightAt1st.AddHours(seasonEndTime) //6 am utc
+                .Add(timezone.BaseUtcOffset) //offset for timezone
+                .AddMinutes(1) //ensure passed
+                ); //3:01 arg time,  6:01 am UTC, 
+
+
+            mockSettings.SetupGet(s => s.General_RankedSeasonResetTime).Returns(seasonEndTime);
+
+
+            var games = new GameListBuilder()
+                .UsingType(GameType.PlayRanked)
+                .UsingPlayerRank(PlayerRank.TheLegend)
+                .UsingDate(midnightAt1st.AddDays(-2))
+                .WithOutcome(1, GameOutcome.Victory)  //game last month
+                .UsingDate(midnightAt1st.Add(lastGameTime))
+                .WithOutcome(1, GameOutcome.Victory)  //game on 1st at 2:00 am arg time (5:00 utc)
+                .Build();
+
+            RankCalculations rankCalculations = CreateRankCalulations();
+
+            PlayerRank actualRank;
+            int actualProgress;
+            int actualMaxStars;
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                midnightAt1st,
+                out actualRank,
+                out actualProgress,
+                out actualMaxStars,
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
+
+            Assert.AreEqual(PlayerRank.TheWarrior, actualRank);
+        }
+
         private RankCalculations CreateRankCalulations()
         {
-            return new RankCalculations(mockDatetimeProvider.Object);
+            return new RankCalculations(mockDatetimeProvider.Object, mockSettings.Object);
         }
     }
 }

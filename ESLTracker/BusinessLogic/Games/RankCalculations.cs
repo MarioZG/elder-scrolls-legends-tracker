@@ -1,5 +1,6 @@
 ﻿using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
+using ESLTracker.Properties;
 using ESLTracker.Utils;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace ESLTracker.BusinessLogic.Games
     public class RankCalculations
     {
         private readonly IDateTimeProvider dateTimeProvider;
+        private readonly ISettings settings;
 
-        public RankCalculations(IDateTimeProvider dateTimeProvider)
+        public RankCalculations(IDateTimeProvider dateTimeProvider, ISettings settings)
         {
             this.dateTimeProvider = dateTimeProvider;
+            this.settings = settings;
         }
 
         public void CalculateCurrentRankProgress(
@@ -39,7 +42,8 @@ namespace ESLTracker.BusinessLogic.Games
                 starsInRank = GetStarsperRank(rank);
             }
             else if (lastGame.Date.Month != dateTimeProvider.DateTimeNow.Month
-                && lastGame.Date.Year == dateTimeProvider.DateTimeNow.Year)
+                && lastGame.Date.Year == dateTimeProvider.DateTimeNow.Year
+                || PassedSeasonresetTime(dateTimeProvider.DateTimeNow, settings.General_RankedSeasonResetTime))
             {
                 CalculateEndofMonthRankReset(out rank, out rankProgress, out starsInRank, lastGame);
             }
@@ -167,6 +171,17 @@ namespace ESLTracker.BusinessLogic.Games
                 default:
                     throw new NotImplementedException($"Unknown player rank={rank}");
             }
+        }
+
+        /// <summary>
+        /// checks if today is first, reset time has passed
+        /// </summary>
+        /// <param name="now"></param>
+        /// <param name="resetTime"></param>
+        /// <returns></returns>
+        private bool PassedSeasonresetTime(DateTime now, int resetTime)
+        {
+            return (now.ToUniversalTime().Day == 1 && now.ToUniversalTime().Hour >= resetTime);
         }
     }
 }

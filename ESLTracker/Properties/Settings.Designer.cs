@@ -577,5 +577,17 @@ namespace ESLTracker.Properties {
                 this["SessionOverlay_RankProgresColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public int General_RankedSeasonResetTime {
+            get {
+                return ((int)(this["General_RankedSeasonResetTime"]));
+            }
+            set {
+                this["General_RankedSeasonResetTime"] = value;
+            }
+        }
     }
 }

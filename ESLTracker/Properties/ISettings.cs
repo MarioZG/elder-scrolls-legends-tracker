@@ -60,6 +60,8 @@ namespace ESLTracker.Properties
         DateTime SessionOverlay_SessionStartDateTime { get; set; }
         bool SessionOverlay_ResetOnApplicationStart { get; set; }
 
+        int General_RankedSeasonResetTime { get; set; }
+
         event PropertyChangedEventHandler PropertyChanged;
 
         void Save();
