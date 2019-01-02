@@ -385,7 +385,7 @@ namespace ESLTrackerTests.BusinessLogic.Games
         {
             var timezone = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time"); //UTC -3
 
-            DateTime midnightAt1st = TimeZoneInfo.ConvertTimeToUtc(new DateTime(2018, 12, 1, 0, 0, 0));
+            DateTime midnightAt1st = TimeZoneInfo.ConvertTimeFromUtc(new DateTime(2018, 12, 1, 0, 0, 0), timezone);
             TimeSpan lastGameTime = TimeSpan.FromHours(2);
 
             mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(midnightAt1st.Add(lastGameTime)); //2:00 am arg time
@@ -427,9 +427,9 @@ namespace ESLTrackerTests.BusinessLogic.Games
         [TestMethod]
         public void CalculateCurrentRankProgress008_1stOfMonthAfterCutOff()
         {
-            var timezone = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time"); //UTC -3
+            //var timezone = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time"); //UTC -3
 
-            DateTime midnightAt1st = TimeZoneInfo.ConvertTimeToUtc(new DateTime(2018, 12, 1, 0, 0, 0));
+            DateTime midnightAt1st = new DateTime(2018, 12, 1, 0, 0, 0, DateTimeKind.Utc);
 
             TimeSpan lastGameTime = TimeSpan.FromHours(2); //2:00 amd arg time
 
@@ -437,7 +437,6 @@ namespace ESLTrackerTests.BusinessLogic.Games
 
             mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(
                 midnightAt1st.AddHours(seasonEndTime) //6 am utc
-                .Add(timezone.BaseUtcOffset) //offset for timezone
                 .AddMinutes(1) //ensure passed
                 ); //3:01 arg time,  6:01 am UTC, 
 
@@ -472,6 +471,45 @@ namespace ESLTrackerTests.BusinessLogic.Games
                 out legendCurrent);
 
             Assert.AreEqual(PlayerRank.TheWarrior, actualRank);
+        }
+
+        [TestMethod]
+        public void CalculateCurrentRankProgress009_NewYearsReset()
+        {
+            DateTime lastGame = new DateTime(2019, 1, 1, 10, 0, 0);
+            DateTime sessionStart = new DateTime(2019, 1, 1, 12, 0, 0);
+
+            mockDatetimeProvider.SetupGet(mdp => mdp.DateTimeNow).Returns(sessionStart.AddHours(1));
+
+
+            var games = new GameListBuilder()
+                .UsingType(GameType.PlayRanked)
+                .UsingPlayerRank(PlayerRank.TheWarrior)
+                .UsingDate(lastGame)
+                .WithOutcome(1, GameOutcome.Victory)
+                .Build();
+
+            RankCalculations rankCalculations = CreateRankCalulations();
+
+            PlayerRank actualRank;
+            int actualProgress;
+            int actualMaxStars;
+            int? legendStart, legendMin, legedmax, legendCurrent;
+            rankCalculations.CalculateCurrentRankProgress(
+                games,
+                sessionStart,
+                out actualRank,
+                out actualProgress,
+                out actualMaxStars,
+                out legendStart,
+                out legendMin,
+                out legedmax,
+                out legendCurrent);
+
+            Assert.AreEqual(PlayerRank.TheWarrior, actualRank);
+            Assert.AreEqual(1, actualProgress);
+            Assert.AreEqual(6, actualMaxStars);
+
         }
 
         private RankCalculations CreateRankCalulations()

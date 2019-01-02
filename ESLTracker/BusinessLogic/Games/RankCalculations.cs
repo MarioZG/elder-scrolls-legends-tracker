@@ -41,9 +41,7 @@ namespace ESLTracker.BusinessLogic.Games
                 rankProgress = 0;
                 starsInRank = GetStarsperRank(rank);
             }
-            else if (lastGame.Date.Month != dateTimeProvider.DateTimeNow.Month
-                && lastGame.Date.Year == dateTimeProvider.DateTimeNow.Year
-                || PassedSeasonresetTime(dateTimeProvider.DateTimeNow, settings.General_RankedSeasonResetTime))
+            else if (CalculaterankedSeasonString(lastGame.Date) != CalculaterankedSeasonString(dateTimeProvider.DateTimeNow))
             {
                 CalculateEndofMonthRankReset(out rank, out rankProgress, out starsInRank, lastGame);
             }
@@ -173,15 +171,9 @@ namespace ESLTracker.BusinessLogic.Games
             }
         }
 
-        /// <summary>
-        /// checks if today is first, reset time has passed
-        /// </summary>
-        /// <param name="now"></param>
-        /// <param name="resetTime"></param>
-        /// <returns></returns>
-        private bool PassedSeasonresetTime(DateTime now, int resetTime)
+        private string CalculaterankedSeasonString(DateTime datetime)
         {
-            return (now.ToUniversalTime().Day == 1 && now.ToUniversalTime().Hour >= resetTime);
+            return datetime.ToUniversalTime().AddHours(-1 * settings.General_RankedSeasonResetTime).ToString("yyyyMM");
         }
     }
 }
