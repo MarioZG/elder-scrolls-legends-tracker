@@ -1,7 +1,7 @@
 {
-    "Version": "2.5",
-    "VersionInfo": "Patch 2.5 and December 2018 Monthly card",
-    "VersionDate": "2018-12-16T00:00:00Z",
+    "Version": "2.5.1",
+    "VersionInfo": "Festival of Madness promo cards",
+    "VersionDate": "2019-01-06T00:00:00Z",
     "CardSets": [
   {
     "name": "Core",
@@ -46,6 +46,11 @@
   {
     "name": "Monthlies",
     "id": "6a97cf16-d4c7-480a-987f-1946bc123ba5",
+    "haspacks": false
+  },
+  {
+    "name": "Festival of Madness",
+    "id": "7cb204d0-76e0-4de9-a1a7-06e3aff6db68",
     "haspacks": false
   }
 ],
@@ -2239,6 +2244,21 @@
                   "race": "Chaurus",
                   "keywords": [],
                   "text": "Summon: Give all enemy creatures in this lane -1/-1."
+                },
+                {
+                  "id": "257fd74c-0000-0000-0000-000000000000",
+                  "name": "Cheesemancer",
+                  "rarity": "Epic",
+                  "set": "Festival of Madness",
+                  "isunique": false,
+                  "type": "creature",
+                  "attributes": "neutral",
+                  "cost": "5",
+                  "attack": "4",
+                  "health": "4",
+                  "race": "Imperial",
+                  "keywords": [],
+                  "text": "At the start of the game, Cheesemancer gains the abilities of a random creature from Isle of Madness."
                 },
                 {
                   "id": "1fd87abf-4fdb-4141-6ca7-ffb9acabfacc",
@@ -7099,6 +7119,21 @@
                   "race": "",
                   "keywords": [],
                   "text": "+2/+1\r\nSummon: Shackle an enemy creature."
+                },
+                {
+                  "id": "03f4cf14-0000-0000-0000-000000000000",
+                  "name": "Madness Beckons",
+                  "rarity": "Epic",
+                  "set": "Festival of Madness",
+                  "isunique": false,
+                  "type": "action",
+                  "attributes": "neutral",
+                  "cost": "1",
+                  "attack": "0",
+                  "health": "0",
+                  "race": "",
+                  "keywords": [],
+                  "text": "Put a random Isle of Madness card into your hand."
                 },
                 {
                   "id": "c90316fa-431f-298d-e586-e537815cab56",
