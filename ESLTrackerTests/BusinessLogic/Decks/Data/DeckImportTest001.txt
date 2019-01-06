@@ -14,8 +14,8 @@
 
 <!-- CSS -->
 <link type="text/css" href="https://www.legends-decks.com/css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" media="screen" type="text/css" href="https://www.legends-decks.com/css/template.css?v=9" /> 
-<link rel="stylesheet" media="screen" type="text/css" href="https://www.legends-decks.com/css/legends.css?v=13" /> 
+<link rel="stylesheet" media="screen" type="text/css" href="https://www.legends-decks.com/css/template.css?v=10" /> 
+<link rel="stylesheet" media="screen" type="text/css" href="https://www.legends-decks.com/css/legends.css?v=15" /> 
 
 <!-- Thumb Image-->
 <link rel="shortcut icon" href="https://www.legends-decks.com/interface/thumbs_0.png" />
@@ -62,7 +62,7 @@ window.cookieconsent.initialise({
 			newimages[i].src=arr[i]
 		}
 	}		
-	preloadimages(['https://www.legends-decks.com/img_cards/murkwaterwitch.png','https://www.legends-decks.com/img_cards/soultear.png','https://www.legends-decks.com/img_cards/thievesguildrecruit.png','https://www.legends-decks.com/img_cards/darkguardian.png','https://www.legends-decks.com/img_cards/histgrove.png','https://www.legends-decks.com/img_cards/sanctuarypet.png','https://www.legends-decks.com/img_cards/treeminder.png','https://www.legends-decks.com/img_cards/woodlandlookout.png','https://www.legends-decks.com/img_cards/preserveroftheroot.png','https://www.legends-decks.com/img_cards/giantsnake.png','https://www.legends-decks.com/img_cards/leaflurker.png','https://www.legends-decks.com/img_cards/shadowfenpriest.png','https://www.legends-decks.com/img_cards/thornhistmage.png','https://www.legends-decks.com/img_cards/shearpointdragon.png','https://www.legends-decks.com/img_cards/spineofeldersblood.png','https://www.legends-decks.com/img_cards/nahagliiv.png','https://www.legends-decks.com/img_cards/skeletaldragon.png','https://www.legends-decks.com/img_cards/redbramman.png','https://www.legends-decks.com/img_cards/tazkadthepackmaster.png','https://www.legends-decks.com/img_cards/odahviing.png','https://www.legends-decks.com/img_cards/paarthurnax.png',]);
+	preloadimages(['https://www.legends-decks.com/img_cards/murkwaterwitch.png','https://www.legends-decks.com/img_cards/thievesguildrecruit.png','https://www.legends-decks.com/img_cards/darkguardian.png','https://www.legends-decks.com/img_cards/sanctuarypet.png','https://www.legends-decks.com/img_cards/soultear.png','https://www.legends-decks.com/img_cards/treeminder.png','https://www.legends-decks.com/img_cards/woodlandlookout.png','https://www.legends-decks.com/img_cards/histgrove.png','https://www.legends-decks.com/img_cards/preserveroftheroot.png','https://www.legends-decks.com/img_cards/giantsnake.png','https://www.legends-decks.com/img_cards/leaflurker.png','https://www.legends-decks.com/img_cards/shadowfenpriest.png','https://www.legends-decks.com/img_cards/thornhistmage.png','https://www.legends-decks.com/img_cards/shearpointdragon.png','https://www.legends-decks.com/img_cards/spineofeldersblood.png','https://www.legends-decks.com/img_cards/nahagliiv.png','https://www.legends-decks.com/img_cards/skeletaldragon.png','https://www.legends-decks.com/img_cards/redbramman.png','https://www.legends-decks.com/img_cards/tazkadthepackmaster.png','https://www.legends-decks.com/img_cards/odahviing.png','https://www.legends-decks.com/img_cards/paarthurnax.png',]);
 		
 $(document).ready(function(){
 	var hash = document.location.hash;
@@ -78,7 +78,7 @@ $(document).ready(function(){
 			pointStrokeColor: "#fff",
 			pointHighlightFill: "#fff",
 			pointHighlightStroke: "rgba(220,220,220,1)",
-			data: [0, 0, 9, 14, 3, 10, 6, 8]
+			data: [0, 0, 6, 14, 6, 10, 6, 8]
 		}]
 	};
 	
@@ -179,15 +179,14 @@ $(document).ready(function(){
 	// Copy to clipboard
 	$.fn.modal.Constructor.prototype.enforceFocus = function() {}; // Bootstrap hack
 	function copyToClipboard(element) {
-		var text = $(element).clone().find('br').prepend('\r\n').end().text()
-		element = $('<textarea>').appendTo('body').val(text).select()
-
+		var $temp = $("<input>");
+		$("body").append($temp);
+		$temp.val($.trim($(element).text())).select();
 		document.execCommand("copy");
-
 		$('#suc').show();
-	
+		$temp.remove();
 	}
-	</script>
+	</script>						
 	<title>[#2 Legend] Ramp Scout - Scout Deck - Control - Legends Decks - The Elder Scrolls: Legends</title>
 		<meta name="description" content="[#2 Legend] Ramp Scout - Scout Deck - Control - Legends Decks - The Elder Scrolls: Legends" />
 		<meta name="keywords" content="Scout, deck, decks, deck list, lists, esl,tesl,legends,elder scrolls,decks,deck,list,elder,scroll,scrolls,cards,card,news"/>
@@ -203,27 +202,30 @@ $(document).ready(function(){
 			<a data-dismiss="modal" class="dismiss_box">X</a>
 			<div class="panel-body">
 				<div class="center">
-					<h3>Universal Deck Tracker Export</h3>
+					<h3>Export</h3>
 				</div>
 				</br>
 				</br>
-				<div class="submit_description">
-					<b class="white">How to use:</b>
-					<ul>
-						<li>Download the latest version of <a href="https://github.com/extesy/DeckTracker/releases" target="_blank">Universal Deck Tracker by extesy</a> (the .exe).</li>
-						<li>Launch The Elder Scrolls: Legends and Universal Deck Tracker</li>
-						<li>Copy the deck list below</li>
-						<li>Click the Import Deck button on Universal Deck Tracker and paste there.</li>
-						<li>Profit!</li>
-					</ul>
+				<div class="well_full" id="clipcopy">
+								<input type="text" class="form-control" placeholder="Copy Here" value="SPAFlkmOqclHlRADqNjynNANlhqyednwoPrZijmmhdqBnXpaor"> 
+				<span class="hidden" id="clipcopy">SPAFlkmOqclHlRADqNjynNANlhqyednwoPrZijmmhdqBnXpaor</span>
 				</div>
-				<div class="well_full" id="clipcopy">###[#2 Legend] Ramp Scout###<br/>3 Murkwater Witch (Set1 #1457)<br/>3 Soul Tear (Set3 #3055)<br/>3 Thieves Guild Recruit (Set1 #1471)<br/>3 Dark Guardian (Set2 #2017)<br/>3 Hist Grove (Set999 #2006)<br/>3 Sanctuary Pet (Set2 #2020)<br/>2 Tree Minder (Set1 #1212)<br/>3 Woodland Lookout (Set3 #3066)<br/>3 Preserver of the Root (Set1 #1262)<br/>3 Giant Snake (Set1 #1729)<br/>2 Leaflurker (Set1 #1277)<br/>2 Shadowfen Priest (Set1 #1526)<br/>3 Thorn Histmage (Set1 #1208)<br/>3 Shearpoint Dragon (Set3 #2095)<br/>3 Spine of Eldersblood (Set3 #3057)<br/>1 Nahagliiv (Set1 #1559)<br/>3 Skeletal Dragon (Set3 #2131)<br/>1 Red Bramman (Set1 #1740)<br/>1 Tazkad the Packmaster (Set1 #1595)<br/>1 Odahviing (Set1 #1768)<br/>1 Paarthurnax (Set3 #2080)<br/></div>
 				<br/>
 				<button class="btn btn-default large_button" onclick="copyToClipboard('#clipcopy')">Copy to Clipboard</button>
 				</br>
 				<div class="alert alert-dismissible alert-success" style="display:none" id="suc">
 					<button type="button" class="close" data-dismiss="alert">X</button>
 					<p>Deck List Copied!</p>
+				</div>
+				<div class="submit_description">
+					<b class="white">How to use:</b>
+					<ul>
+						<li>Copy the code above by pressing "Copy to Clipboard".</li>
+						<li>Launch The Elder Scrolls: Legends</li>
+						<li>Press the "New Deck" button</li>
+						<li>The game should automatically detect your deck.</li>
+						<li>Profit!</li>
+					</ul>
 				</div>
 			</div>	
 		</div>
@@ -238,15 +240,15 @@ $(document).ready(function(){
 					<h3>[#2 Legend] Ramp Scout</h3>
 				</div>
 				<div class="well_full">
-3 [card]Murkwater Witch[/card]<br/>3 [card]Soul Tear[/card]<br/>3 [card]Thieves Guild Recruit[/card]<br/>3 [card]Dark Guardian[/card]<br/>3 [card]Hist Grove[/card]<br/>3 [card]Sanctuary Pet[/card]<br/>2 [card]Tree Minder[/card]<br/>3 [card]Woodland Lookout[/card]<br/>3 [card]Preserver of the Root[/card]<br/>3 [card]Giant Snake[/card]<br/>2 [card]Leaflurker[/card]<br/>2 [card]Shadowfen Priest[/card]<br/>3 [card]Thorn Histmage[/card]<br/>3 [card]Shearpoint Dragon[/card]<br/>3 [card]Spine of Eldersblood[/card]<br/>1 [card]Nahagliiv[/card]<br/>3 [card]Skeletal Dragon[/card]<br/>1 [card]Red Bramman[/card]<br/>1 [card]Tazkad the Packmaster[/card]<br/>1 [card]Odahviing[/card]<br/>1 [card]Paarthurnax[/card]<br/>				
+3 [card]Murkwater Witch[/card]<br/>3 [card]Thieves Guild Recruit[/card]<br/>3 [card]Dark Guardian[/card]<br/>3 [card]Sanctuary Pet[/card]<br/>3 [card]Soul Tear[/card]<br/>2 [card]Tree Minder[/card]<br/>3 [card]Woodland Lookout[/card]<br/>3 [card]Hist Grove[/card]<br/>3 [card]Preserver of the Root[/card]<br/>3 [card]Giant Snake[/card]<br/>2 [card]Leaflurker[/card]<br/>2 [card]Shadowfen Priest[/card]<br/>3 [card]Thorn Histmage[/card]<br/>3 [card]Shearpoint Dragon[/card]<br/>3 [card]Spine of Eldersblood[/card]<br/>1 [card]Nahagliiv[/card]<br/>3 [card]Skeletal Dragon[/card]<br/>1 [card]Red Bramman[/card]<br/>1 [card]Tazkad the Packmaster[/card]<br/>1 [card]Odahviing[/card]<br/>1 [card]Paarthurnax[/card]<br/>				
 				</div>
 			</div>	
 		</div>
 	</div>
 </div>
-
 <nav class="navbar navbar-default custom_network_navbar hidden-xs">
 	<div class="collapse navbar-collapse">
+		<!--
 		<ul class="nav navbar-nav">
 			<li><img src="https://www.legends-decks.com/interface/ashcorp.png" alt="Ashcorp" class="network_logo"/></li>
 			<li class="dropdown">
@@ -256,121 +258,142 @@ $(document).ready(function(){
 					</ul>
 			</li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right">
-
-					<li><a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span>&nbsp;Log In!</a></li>
-					<li><a href="#" data-toggle="modal" data-target="#registerModal"><span class="glyphicon glyphicon-fire"></span>&nbsp;Register</a></li>
+		-->
+		<ul class="nav navbar-nav navbar-right">	
+					<!--
+					<li ><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=morrowind&filters=Filter">Houses of Morrowind Cards List</a></li>
+					-->
+					<li><a href="https://www.legends-decks.com/collection-manager"><u>Collection Manager</u></a></li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#addCardModal" onclick="loadCardModal()">
+							<span class="glyphicon glyphicon-plus"></span>
+						</a>
+					</li>	
+					<li>
+						<a href="#" data-toggle="modal" data-target="#importModal">
+							<span class="glyphicon glyphicon-import"></span>
+						</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" onclick="refreshMail()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<span class="glyphicon glyphicon-envelope"></span>
+						</a>
+						<ul class="dropdown-menu network_nav_dropdown" role="menu" id="pm_notif_box">
+							<li class="li_loading" id="pm_notif_box_loading"></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" onclick="refreshNotif('')" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<span class="glyphicon glyphicon-globe"></span>
+									<span id="notif_notif">
+										<span class="notif"></span>
+									</span>
+						</a>
+						<ul class="dropdown-menu network_nav_dropdown" role="menu" id="notif_notif_box">
+							<li class="li_loading" id="notif_notif_box_loading"></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span></a>
+							<ul class="dropdown-menu network_nav_dropdown" role="menu">
+								<li>
+									<a href="https://www.legends-decks.com/profile/6160">
+										<div class="network_nav_avatar">
+											<div class="avatar" style="background-image:url('')">
+											</div>
+										</div>
+										<div class="network_nav_username">
+											<span class="midlarge"></span>
+												<br/>
+											<span class="light">
+												LEVEL: <b>0</b>
+											</span>&nbsp;
+											<img src="https://www.legends-decks.com/interface/badges/star_blank.png" class="star_navbar" alt="blank" />
+										</div>
+									</a>
+								</li>
+								<li class="divider"></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/overview"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;My Account</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/decks"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;My Decks</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/collection"><span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;My Collection</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/saved"><span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;Saved Decks</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/mailbox#prmenu"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Mail-Box</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/notifications#prmenu"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Notifications</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/wall#prmenu"><span class="glyphicon glyphicon-align-justify"></span>&nbsp;&nbsp;Wall</a></li>
+								<li class="divider"></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/settings#prmenu"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Settings</a></li>
+								<li><a href="https://www.legends-decks.com/profile/6160/avatar#prmenu"><span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;Change Avatar</a></li>
+								<li class="divider"></li>
+								<li><a href="https://www.legends-decks.com/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Log Out</a></li>
+							</ul>
+					</li>
 		</ul>
 	</div>
-</nav><div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="panel panel-primary">
-			<div class="panel-body"><a data-dismiss="modal" class="dismiss_box">X</a>
-				<div class="login-form">	
-					<img src="https://www.legends-decks.com/interface/ashcorp_logo.png" alt="logo" class="the_logo the_logo_forms"/>
-					<form action="https://www.legends-decks.com/login" method="post" autocomplete="on">
-						<div class="row">
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<a href="https://www.legends-decks.com/login-facebook" class="btn btn-social btn-fb">
-									Facebook Login
-								</a>
+</nav>	<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="panel panel-primary" id="loadingModal">
+				<a data-dismiss="modal" class="dismiss_box">X</a>
+				<div class="panel-body">
+					<div class="row center">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h3>Import your Collection</h3>
+							
+							<div class="blacker_well margintop" style="text-align:left;">
+								<b class="white">How to use:</b>
+								<br/>
+								<ul>
+									<li>Download the latest version of <a href="https://github.com/extesy/DeckTracker/releases" target="_blank">Universal Deck Tracker by extesy</a> (the .exe).</li>
+									<li>Launch The Elder Scrolls: Legends and Universal Deck Tracker</li>
+									<li>Click "Export Full Collection" on Universal Deck Tracker</li>
+									<li>Paste the result below and click "Import Collection"</li>
+									<li>Profit!</li>
+								</ul>
 							</div>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<a href="https://www.legends-decks.com/login-google" class="btn btn-social btn-google">
-									Google Login
-								</a>
-							</div>
-						</div>
-						<div class="center">
-							<h3>or log in with your Legends Decks account</h3>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<input name="email" id="email" type="text" class="form-control" placeholder="Email" autofocus>
-							</div>
-							<div class="col-md-12 margintop marginbottom">
-								<input name="password" id="password" type="password" class="form-control" placeholder="Password">
-							</div>
-						</div>
-						<div class="center marginbottom">
-								<label>
-									<input type="hidden" id="login_redirect" name="redirect" value="http://www.legends-decks.com/deck/16602/2-legend-ramp-scout"/>
-									<input type="checkbox" name="remember" value="y" checked> Remember Me
-								</label>
-						</div>
-						<div class="row">
-							<div class="col-md-12 marginbottom">
-								<button type="submit" name="submit_log" id="submit_log" class="btn btn-default btn_widthmax">Log In</button>
-							</div>
-						</div>
-					</form>	
-				</div>
-				<div class="row">
-					<div class=" col-md-12 col-xs-12">
-						<div class="center">
-							<a href="https://www.legends-decks.com/forget-password">Forgot your password?</a><br/>
-							Don't have an account? <a href="https://www.legends-decks.com/register">Register now!</a>
+							<br/>
+							<textarea name="import_col" id="import_col" class="form-control nomarkitup small" placeholder="Paste Universal Deck Tracker data here (CTRL+V / CMD+V)"></textarea>
+							<br/>
+							<button onclick="importCollection()" class="form-control">Import Collection</button>
+							<br/>
+							<div id="col_message"></div>
 						</div>
 					</div>
-				</div>
+				</div>	
 			</div>
 		</div>
 	</div>
-</div>
-
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="panel panel-primary">
-			<div class="panel-body"><a data-dismiss="modal" class="dismiss_box">X</a>
-				<img src="https://www.legends-decks.com/interface/ashcorp_logo.png" alt="logo" class="the_logo the_logo_forms"/>
-				<div class="row">
-					<div class="col-md-6">
-						<a href="https://www.legends-decks.com/login-facebook" class="btn btn-social btn-fb">
-							Facebook Login
-						</a>
-					</div>
-					<div class="col-md-6">
-						<a href="https://www.legends-decks.com/login-google" class="btn btn-social btn-google">
-							Google Login
-						</a>
-					</div>
-				</div>
-				<div class="center">
-					<h3>or register a Legends Decks account</h3>
-				</div>
-				<div class="row">
-					<form action="https://www.legends-decks.com/register" method="post">
-						<div class="col-lg-12 margintop">
-							<input name="username" id="username" type="text" class="form-control" placeholder="Username" > 
-						</div>
-						<div class="col-lg-12 margintop">
-							<input name="email" id="email" type="email" class="form-control" placeholder="Email address" > 
-						</div>
-						<div class="col-lg-6 margintop">
-							<input name="password" id="password" type="password" class="form-control" placeholder="Password"> 
-						</div>
-						<div class="col-lg-6 margintop">
-							<input name="passwordConfirm" id="passwordConfirm" type="password" class="form-control" placeholder="Confirm Password"> 
-						</div>
-						<div class="col-lg-12 margintop marginbottom">
-							<button class="btn btn-default btn_widthmax" type="submit_reg" name="submit_reg">Register</button>
-						</div>
-						<input type="text" class="form-control" name="bot_catcher" style="display: none;" autofill="off">
-					</form>
-				</div>
-				
-				<div class="row">
-					<div class="col-xs-12 col-md-12">
-						<div class="center">
-							<a href="https://www.legends-decks.com/forget-password">Forgot your password?</a><br/>
-							Already have an account? <a href="https://www.legends-decks.com/login">Log in now!</a>
+	
+	<div class="modal fade" id="addCardModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="panel panel-primary" id="loadingModal">
+				<a data-dismiss="modal" class="dismiss_box">X</a>
+				<div class="panel-body">
+					<div class="row center">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h3>Add cards to your collection</h3>
+							
+							<div id="modal_card_data" class="blacker_well marginbottom" style="text-align:left;padding-bottom:30px;">
+							</div>
+							
+							<input type="checkbox" name="above_limit" id="above_limit" checked />&nbsp;Don't go over 3 copies (or 1 copy for uniques).
+							<input type="submit" class="btn btn-default large_button margintop" name="add_card_submit" onclick="submitAddCard()" value="Add Cards"/>
+							
+							<div class="blacker_well small margintop" style="text-align:left;">
+								<b class="white">Tips:</b>
+								<br/>
+								<ul>
+									<li>Each Card you select will be added to your collection.</li>
+									<li>If you want to add 2 copies of the same card, just select it twice.</li>
+									<li>If you don't want a card to be added because you probably have the complete set (3 copies, or 1 for uniques) and will soul trap it in-game, just check the "limit" checkbox (checked by default).</li>
+								</ul>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>	
+				</div>	
+			</div>
 		</div>
 	</div>
-</div>
+	
+
 <div class="modal fade" id="messagesModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="panel panel-primary">
@@ -396,6 +419,11 @@ $(document).ready(function(){
 				<span class="sr-only">Toggle User</span>
 				<span class="glyphicon glyphicon-user"></span>
 			</button>
+			
+			<button type="button" class="navbar-toggle collapsed toggle_network" data-toggle="modal" data-target="#addCardModal" onclick="loadCardModal()" aria-controls="navbar">
+				<span class="sr-only">Toggle Add Card Modal</span>
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
 		
 			<a class="navbar-brand" href="https://www.legends-decks.com/index"><img src="https://www.legends-decks.com/interface/logo.png" alt="logo" class="the_logo_nav"/></a>
 		</div>
@@ -410,6 +438,52 @@ $(document).ready(function(){
 							<li class="divider"></li>
 							<li><a href="https://www.legends-decks.com/decks/all/1/date-down/week?f-search=&f-type=&f-patch=&f-pve=only&f-spec-pve=0&filters=Filter">PvE / Story Decks</a></li>
 							<li class="divider"></li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/dagoth">								
+									<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+									
+									House Dagoth decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/hlaalu">								
+									<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+									
+									House Hlaalu decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/redoran">								
+									<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+									
+									House Redoran decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/telvanni">								
+									<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+									
+									House Telvanni decks
+								</a>
+							</li>
+							<li>
+								<a href="https://www.legends-decks.com/decks/tribunal">								
+									<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+									<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+									
+									Tribunal Temple decks
+								</a>
+							</li>
+						
 							<li>
 								<a href="https://www.legends-decks.com/decks/archer">								
 									<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
@@ -553,14 +627,19 @@ $(document).ready(function(){
 							<li class="divider"></li>
 									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=base&filters=Filter">Core Set</a></li>
 									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=monthly&filters=Filter">Monthly Reward</a></li>
+									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=promo&filters=Filter">Promotional Cards</a></li>
 									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=madhouse&filters=Filter">Madhouse Collection</a></li>
 									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=darkbrotherhood&filters=Filter">The Fall of the Dark Brotherhood</a></li>
 									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=skyrim&filters=Filter">Heroes of Skyrim</a></li>
+									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=clockworkcity&filters=Filter">Return to Clockwork City</a></li>
+									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=forgotten&filters=Filter">Forgotten Hero Collection</a></li>
+									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=morrowind&filters=Filter">Houses of Morrowind</a></li>
+									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=frostfall&filters=Filter">FrostSpark Collection</a></li>
+									<li><a href="https://www.legends-decks.com/cards/all/mana-up/1/thumbs?f-search=&f-type=all&f-quality=all&f-race=all&f-attack-min=&f-attack-max=&f-health-min=&f-health-max=&f-magicka-min=&f-magicka-max=&f-collectible=&f-set=madness&filters=Filter">Isle of Madness</a></li>
 						</ul>
 				</li>
 				<li ><a href="https://www.legends-decks.com/streams">Streams</a></li>
-				<li ><a href="https://www.legends-decks.com/tournaments">Tournaments</a></li>
-				<li class="dropdown">
+								<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tools <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li ><a href="https://www.legends-decks.com/deck-builder">Deck Builder</a></li>
@@ -570,15 +649,7 @@ $(document).ready(function(){
 							<li><a href="https://www.legends-decks.com/arena-simulator">Arena Simulator</a></li>
 						</ul>
 				</li>
-				<li class="dropdown " >
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Forum <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="https://www.legends-decks.com/forum">Forum</a></li>
-							<li><a href="https://www.legends-decks.com/all-threads/1/hottest">Hottest Threads</a></li>
-							<li><a href="https://www.legends-decks.com/all-threads/1/latest">Latest Threads</a></li>
-						</ul>
-				</li>
-			</ul>
+							</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span>&nbsp;<span class="glyphicon glyphicon-search"></span></a>
@@ -598,8 +669,35 @@ $(document).ready(function(){
 		
 		<div id="networkbar_small" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav hidden-lg hidden-sm hidden-md visible-xs">
-				<li><a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span>&nbsp;Log In!</a></li>
-				<li><a href="#" data-toggle="modal" data-target="#registerModal"><span class="glyphicon glyphicon-fire"></span>&nbsp;Register</a></li>
+				<li>
+					<a href="https://www.legends-decks.com/profile/6160">
+						<div class="network_nav_avatar">
+							<div class="avatar" style="background-image:url('')">
+							</div>
+						</div>
+						<div class="network_nav_username">
+															<span class="midlarge"></span>
+									<br/>
+								<span class="light">
+									LEVEL: <b>0</b>
+								</span>&nbsp;
+							<img src="https://www.legends-decks.com/interface/badges/star_blank.png" class="star_navbar" alt="blank" />
+						</div>
+					</a>
+				</li>
+				<li class="divider"></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/overview#prmenu"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;My Account</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/decks"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;My Decks</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/collection"><span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;My Collection</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/saved"><span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;Saved Decks</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/mailbox#prmenu"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Mail-Box</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/notifications#prmenu"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Notifications</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/wall#prmenu"><span class="glyphicon glyphicon-align-justify"></span>&nbsp;&nbsp;Wall</a></li>
+				<li class="divider"></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/settings#prmenu"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Settings</a></li>
+				<li><a href="https://www.legends-decks.com/profile/6160/avatar#prmenu"><span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;Change Avatar</a></li>
+				<li class="divider"></li>
+				<li><a href="https://www.legends-decks.com/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Log Out</a></li>
 			</ul>
 		</div> 
 	</div>
@@ -608,8 +706,8 @@ $(document).ready(function(){
 			<ul class="breadcrumb hidden-xs">
 				<li><a href="https://www.legends-decks.com/index">Home</a></li>
 				<li><a href="https://www.legends-decks.com/decks/1/latest">Decks</a></li>
-				<li><a href="https://www.legends-decks.com/decks/scout/1/latest">Scout</a></li>
-				<li class="active">[#2 Legend] Ramp Scout</li>
+								<li><a href="https://www.legends-decks.com/decks/scout/1/latest">Scout</a></li>
+								<li class="active">[#2 Legend] Ramp Scout</li>
 			</ul>		
 			<div class="row">
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-push-8 col-md-push-8">
@@ -623,7 +721,8 @@ $(document).ready(function(){
 									<div class="center copper midlarge marginbottom">
 										<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="large_class" />
 												<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="large_class" />
-		
+	
+			
 										<br/>
 										<span class="large">Scout deck</span><br/>
 										Control									</div>
@@ -646,22 +745,6 @@ $(document).ready(function(){
 													</span>
 												</div>
 												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/murkwaterwitch.png" alt="Murkwater Witch"/>
-											</a>
-	
-											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/653/soultear">
-												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/soultear.png')">
-													<span class="gradient">
-														<span class="mana">
-															2														</span>
-														<span class="name endurance">
-															Soul Tear 
-														</span>											
-														<span class="number">
-															3														</span>
-														
-													</span>
-												</div>
-												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/soultear.png" alt="Soul Tear"/>
 											</a>
 	
 											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/65/thievesguildrecruit">
@@ -696,22 +779,6 @@ $(document).ready(function(){
 												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/darkguardian.png" alt="Dark Guardian"/>
 											</a>
 	
-											<a class="card_builder tooltipcard card_epic" href="https://www.legends-decks.com/card/445/histgrove">
-												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/histgrove.png')">
-													<span class="gradient">
-														<span class="mana">
-															3														</span>
-														<span class="name endurance">
-															Hist Grove 
-														</span>											
-														<span class="number">
-															3														</span>
-														
-													</span>
-												</div>
-												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/histgrove.png" alt="Hist Grove"/>
-											</a>
-	
 											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/475/sanctuarypet">
 												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/sanctuarypet.png')">
 													<span class="gradient">
@@ -726,6 +793,22 @@ $(document).ready(function(){
 													</span>
 												</div>
 												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/sanctuarypet.png" alt="Sanctuary Pet"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/653/soultear">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/soultear.png')">
+													<span class="gradient">
+														<span class="mana">
+															3														</span>
+														<span class="name endurance">
+															Soul Tear 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/soultear.png" alt="Soul Tear"/>
 											</a>
 	
 											<a class="card_builder tooltipcard card_common" href="https://www.legends-decks.com/card/137/treeminder">
@@ -758,6 +841,22 @@ $(document).ready(function(){
 													</span>
 												</div>
 												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/woodlandlookout.png" alt="Woodland Lookout"/>
+											</a>
+	
+											<a class="card_builder tooltipcard card_epic" href="https://www.legends-decks.com/card/445/histgrove">
+												<div class="card_deck" style="background-image:url('https://www.legends-decks.com/img_cards/histgrove.png')">
+													<span class="gradient">
+														<span class="mana">
+															4														</span>
+														<span class="name endurance">
+															Hist Grove 
+														</span>											
+														<span class="number">
+															3														</span>
+														
+													</span>
+												</div>
+												<img class="tooltipedcard" src="https://www.legends-decks.com/img_cards/histgrove.png" alt="Hist Grove"/>
 											</a>
 	
 											<a class="card_builder tooltipcard card_epic" href="https://www.legends-decks.com/card/125/preserveroftheroot">
@@ -985,9 +1084,9 @@ $(document).ready(function(){
 												<tr>
 													<td class="td_mana_width"><span id="mana_0">0</span></td>
 													<td class="td_mana_width"><span id="mana_1">0</span></td>
-													<td class="td_mana_width"><span id="mana_2">9</span></td>
+													<td class="td_mana_width"><span id="mana_2">6</span></td>
 													<td class="td_mana_width"><span id="mana_3">14</span></td>
-													<td class="td_mana_width"><span id="mana_4">3</span></td>
+													<td class="td_mana_width"><span id="mana_4">6</span></td>
 													<td class="td_mana_width"><span id="mana_5">10</span></td>
 													<td class="td_mana_width"><span id="mana_6">6</span></td>
 													<td class="td_mana_width"><span id="mana_7">8</span></td>
@@ -1027,19 +1126,15 @@ $(document).ready(function(){
 												<td class="text_right white ">4</td>
 											</tr>
 											<tr>
-												<td >Prophecy</td>
-												<td class="text_right white ">3</td>
-											</tr>
-											<tr>
 												<td >Lethal</td>
 												<td class="text_right white ">3</td>
 											</tr>
 											<tr>
-												<td >Breakthrough</td>
+												<td >Charge</td>
 												<td class="text_right white ">1</td>
 											</tr>
 											<tr>
-												<td >Charge</td>
+												<td >Breakthrough</td>
 												<td class="text_right white ">1</td>
 											</tr>
 											<tr>
@@ -1047,7 +1142,7 @@ $(document).ready(function(){
 												<td class="text_right white ">0</td>
 											</tr>
 											<tr>
-												<td >Slay</td>
+												<td >Rally</td>
 												<td class="text_right white ">0</td>
 											</tr>
 											<tr>
@@ -1055,11 +1150,39 @@ $(document).ready(function(){
 												<td class="text_right white ">0</td>
 											</tr>
 											<tr>
-												<td >Drain</td>
+												<td >Slay</td>
+												<td class="text_right white ">0</td>
+											</tr>
+											<tr>
+												<td >Prophecy</td>
+												<td class="text_right white ">0</td>
+											</tr>
+											<tr>
+												<td >Treasure Hunt</td>
 												<td class="text_right white ">0</td>
 											</tr>
 											<tr>
 												<td >Pilfer</td>
+												<td class="text_right white ">0</td>
+											</tr>
+											<tr>
+												<td >Drain</td>
+												<td class="text_right white ">0</td>
+											</tr>
+											<tr>
+												<td >Exalt</td>
+												<td class="text_right white ">0</td>
+											</tr>
+											<tr>
+												<td >Betray</td>
+												<td class="text_right white ">0</td>
+											</tr>
+											<tr>
+												<td >Assemble</td>
+												<td class="text_right white ">0</td>
+											</tr>
+											<tr>
+												<td >Plot</td>
 												<td class="text_right white ">0</td>
 											</tr>
 										</table>
@@ -1073,8 +1196,8 @@ $(document).ready(function(){
 									<h1 class="panel-title">Export</h1>
 								</div>
 								<div class="panel-body">			
-									<span class="copper midlarge">To Universal Deck Tracker:</span>
-										<a class="btn btn-default large_button" href="#" data-toggle="modal" data-target="#deckModal">Export to Universal Deck Tracker</a>
+									<span class="copper midlarge">To The Elder Scrolls: Legends:</span>
+										<a class="btn btn-default large_button" href="#" data-toggle="modal" data-target="#deckModal">Export to The Elder Scrolls: Legends</a>
 									<span class="copper midlarge">To BBCode:</h1>
 										<a class="btn btn-default large_button" href="#" data-toggle="modal" data-target="#bbModal">Export BB Code File</a>
 									<span class="copper midlarge">BB Code:</span>
@@ -1099,10 +1222,19 @@ $(document).ready(function(){
 												<img src="https://www.legends-decks.com/interface/endurance.png" class="launcher_attributes" alt="endurance" />
 												<img src="https://www.legends-decks.com/interface/agility.png" class="launcher_attributes" alt="agility" />
 	
+	
 											</div>		
 											<div class="deck_head_buttons">
+												<a href="#" class="deck_head_button hidden-xs" data-toggle="modal" data-target="#deckModal">
+													<span class="glyphicon glyphicon-triangle-right"></span>&nbsp;Export
+												</a>											
 												<a href="https://www.legends-decks.com/deck-builder#c22b33c44a60c65a115c125b129b137a239a414c420c445c475c494c522c534c537c636c653a674" class="deck_head_button hidden-xs">
 													<span class="glyphicon glyphicon-triangle-right"></span>&nbsp;Open in Deck Builder
+												</a>
+	
+												<a onclick="saveDeck('409ad2875df93d6f6365224f613070c1')"  class="deck_head_button">
+													<span id="save_glyphicon" class="glyphicon glyphicon-heart-empty"></span>&nbsp;<span id="save_text">Save</span>
+													
 												</a>
 														
 											</div>
@@ -1111,20 +1243,20 @@ $(document).ready(function(){
 											<div class="row">
 												<div class="col-lg-1 col-md-1 hidden-sm hidden-xs comment_portrait">
 													<a href="https://www.legends-decks.com/profile/9768">
-														<div class="avatar avatar_comment" style="background-image:url('https://lh4.googleusercontent.com/-qjYQRULQUjQ/AAAAAAAAAAI/AAAAAAAAACc/4e8KWnLeYM0/photo.jpg')">
+														<div class="avatar avatar_comment" style="background-image:url('https://lh4.googleusercontent.com/-jspYh1YM03Q/AAAAAAAAAAI/AAAAAAAAAAA/AGDgw-gZ4-FwgdZnGJEWLF2WPRgL_-Xb2A/mo/photo.jpg')">
 														</div>
 													</a>
-													<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="avatar_rank" alt="star_2"/>
+													<img src="https://www.legends-decks.com/interface/badges/star_5.png" class="avatar_rank" alt="star_5"/>
 												</div>
 												<div class="col-lg-9 col-md-9 col-sm-10 col-xs-12">
 													<div class="inner_deck_head">
-														<b>By:</b>  <a class="a_alt" onclick="user_box('9768','4931','right')">Weipeng Yang</a><span id="user_box_4931"></span>														<br/>
-														<a href="https://www.legends-decks.com/profile/9768/decks#prmenu">View other Decks by Weipeng Yang</a> 
+														<b>By:</b>  <a class="a_alt" onclick="user_box('9768','7707','right')">Wilhelmyang</a><span id="user_box_7707"></span>														<br/>
+														<a href="https://www.legends-decks.com/profile/9768/decks#prmenu">View other Decks by Wilhelmyang</a> 
 														<br/>
-														<b>Posted:</b> 6 days ago														<br/>
+														<b>Posted:</b> 1 year ago														<br/>
 					
-														<b>Updated: </b> 6 days ago														<br/>
-<b class='green'>Up to date (Skyrim patch)</b>
+														<b>Updated: </b> 1 year ago														<br/>
+<b class='red'>Outdated (Skyrim patch)</b>
 														<br/>
 														<b>Crafting Cost:</b> <b>17750</b><img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
 														<br/>
@@ -1136,11 +1268,10 @@ $(document).ready(function(){
 													<div class="comment_vote deck_vote" id="vote_4-409ad2875df93d6f6365224f613070c1">
 			<div class="vote_results">
 				<span class="large">
-<span id='results_4-409ad2875df93d6f6365224f613070c1' class='vote_blue'>+9</span>				</span>
+<span id='results_4-409ad2875df93d6f6365224f613070c1' class='vote_blue'>+22</span>				</span>
 			</div>
 			<a class="vote_button margintop vote_up " 
-rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="You have to be logged in to vote." 
- id="vote_up_4-409ad2875df93d6f6365224f613070c1">
+ onclick="vote('4-409ad2875df93d6f6365224f613070c1','+')"  id="vote_up_4-409ad2875df93d6f6365224f613070c1">
 					<span class="glyphicon glyphicon-thumbs-up large"></span>
 			</a>
 													</div>
@@ -1205,234 +1336,6 @@ We know there is a new meta growing with the introduction of the new Monthly car
 										</div>
 									</div>
 								</div>
-																
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<h1 class="panel-title margintop">Other scout Decks</h1>
-								</div>	
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<div class="well_full">
-										<div class="row">
-											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-												<table class="table_large">
-													<tbody>
-				
-												<tr>
-													<td class="td_date td_date_deck_full td_2">
-														12<br/>Aug													</td>
-													<td class="td_class_img_deck_full td_2 center hidden-xs">
-														<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
-																<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class" />
-														
-													</td>
-													<td class="td_name_deck_small td_2">
-														<a href="https://www.legends-decks.com/deck/17405/slay-arnold">Slay Arnold!</a>
-														<br/>
-														By: <a class="a_alt" onclick="user_box('8515','7088','right')">Nijiiyo</a><span id="user_box_7088"></span>													</td>
-													<td class="td_type_deck_full td_2 hidden-xs">
-														Aggro													</td>	
-													<td class="td_cost_deck_full td_2 hidden-xs">
-														8050<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
-													</td>										
-													<td class="td_comments_deck_full td_2 hidden-xs">
-														<a href="https://www.legends-decks.com/deck/17405/slay-arnold#comments">
-															0															<span class="glyphicon glyphicon-comment"></span>
-														</a>
-													</td>
-													<td class="td_rating_deck_full td_2 hidden-xs">
-														<b><span class='vote_blue'>0</span></b>
-													</td>	
-													<td class="td_views_deck_full td_2 hidden-xs">
-														35&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
-													</td>									
-												</tr>
-				
-												<tr>
-													<td class="td_date td_date_deck_full td_1">
-														11<br/>Aug													</td>
-													<td class="td_class_img_deck_full td_1 center hidden-xs">
-														<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
-																<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class" />
-														
-													</td>
-													<td class="td_name_deck_small td_1">
-														<a href="https://www.legends-decks.com/deck/17310/spooky-scary-the-return">Spooky Scary the return</a>
-														<br/>
-														By: <a class="a_alt" onclick="user_box('16550','9718','right')">Hound Brothers</a><span id="user_box_9718"></span>													</td>
-													<td class="td_type_deck_full td_1 hidden-xs">
-														Combo													</td>	
-													<td class="td_cost_deck_full td_1 hidden-xs">
-														14400<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
-													</td>										
-													<td class="td_comments_deck_full td_1 hidden-xs">
-														<a href="https://www.legends-decks.com/deck/17310/spooky-scary-the-return#comments">
-															0															<span class="glyphicon glyphicon-comment"></span>
-														</a>
-													</td>
-													<td class="td_rating_deck_full td_1 hidden-xs">
-														<b><span class='vote_blue'>+1</span></b>
-													</td>	
-													<td class="td_views_deck_full td_1 hidden-xs">
-														108&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
-													</td>									
-												</tr>
-				
-												<tr>
-													<td class="td_date td_date_deck_full td_2">
-														11<br/>Aug													</td>
-													<td class="td_class_img_deck_full td_2 center hidden-xs">
-														<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
-																<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class" />
-														
-													</td>
-													<td class="td_name_deck_small td_2">
-														<a href="https://www.legends-decks.com/deck/17270/turquoiselinks-ramp-scout">TurquoiseLink's Ramp Scout</a>
-														<br/>
-														By: <a class="a_alt" onclick="user_box('9452','9294','right')">romg117</a><span id="user_box_9294"></span>													</td>
-													<td class="td_type_deck_full td_2 hidden-xs">
-														Other													</td>	
-													<td class="td_cost_deck_full td_2 hidden-xs">
-														18200<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
-													</td>										
-													<td class="td_comments_deck_full td_2 hidden-xs">
-														<a href="https://www.legends-decks.com/deck/17270/turquoiselinks-ramp-scout#comments">
-															0															<span class="glyphicon glyphicon-comment"></span>
-														</a>
-													</td>
-													<td class="td_rating_deck_full td_2 hidden-xs">
-														<b><span class='vote_blue'>+1</span></b>
-													</td>	
-													<td class="td_views_deck_full td_2 hidden-xs">
-														254&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
-													</td>									
-												</tr>
-				
-												<tr>
-													<td class="td_date td_date_deck_full td_1">
-														10<br/>Aug													</td>
-													<td class="td_class_img_deck_full td_1 center hidden-xs">
-														<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
-																<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class" />
-														
-													</td>
-													<td class="td_name_deck_small td_1">
-														<a href="https://www.legends-decks.com/deck/17221/im-ojais-advance">Im-Ojai's Advance</a>
-														<br/>
-														By: <a class="a_alt" onclick="user_box('20807','5096','right')">Patrick Reeves-...</a><span id="user_box_5096"></span>													</td>
-													<td class="td_type_deck_full td_1 hidden-xs">
-														Control													</td>	
-													<td class="td_cost_deck_full td_1 hidden-xs">
-														15400<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
-													</td>										
-													<td class="td_comments_deck_full td_1 hidden-xs">
-														<a href="https://www.legends-decks.com/deck/17221/im-ojais-advance#comments">
-															0															<span class="glyphicon glyphicon-comment"></span>
-														</a>
-													</td>
-													<td class="td_rating_deck_full td_1 hidden-xs">
-														<b><span class='vote_blue'>0</span></b>
-													</td>	
-													<td class="td_views_deck_full td_1 hidden-xs">
-														92&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
-													</td>									
-												</tr>
-				
-												<tr>
-													<td class="td_date td_date_deck_full td_2">
-														10<br/>Aug													</td>
-													<td class="td_class_img_deck_full td_2 center hidden-xs">
-														<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
-																<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class" />
-														
-													</td>
-													<td class="td_name_deck_small td_2">
-														<a href="https://www.legends-decks.com/deck/17212/dragon-trinity">Dragon Trinity</a>
-														<br/>
-														By: <a class="a_alt" onclick="user_box('20269','9979','right')">Grunt Hazard</a><span id="user_box_9979"></span>													</td>
-													<td class="td_type_deck_full td_2 hidden-xs">
-														Control													</td>	
-													<td class="td_cost_deck_full td_2 hidden-xs">
-														16500<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
-													</td>										
-													<td class="td_comments_deck_full td_2 hidden-xs">
-														<a href="https://www.legends-decks.com/deck/17212/dragon-trinity#comments">
-															0															<span class="glyphicon glyphicon-comment"></span>
-														</a>
-													</td>
-													<td class="td_rating_deck_full td_2 hidden-xs">
-														<b><span class='vote_blue'>0</span></b>
-													</td>	
-													<td class="td_views_deck_full td_2 hidden-xs">
-														87&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
-													</td>									
-												</tr>
-				
-												<tr>
-													<td class="td_date td_date_deck_full td_1">
-														10<br/>Aug													</td>
-													<td class="td_class_img_deck_full td_1 center hidden-xs">
-														<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
-																<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class" />
-														
-													</td>
-													<td class="td_name_deck_small td_1">
-														<a href="https://www.legends-decks.com/deck/17203/shout-with-dragon-ramp-scout">Shout! - with dragon ramp scout!</a>
-														<br/>
-														By: <a class="a_alt" onclick="user_box('20778','2295','right')">derKrappers</a><span id="user_box_2295"></span>													</td>
-													<td class="td_type_deck_full td_1 hidden-xs">
-														Combo													</td>	
-													<td class="td_cost_deck_full td_1 hidden-xs">
-														9800<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
-													</td>										
-													<td class="td_comments_deck_full td_1 hidden-xs">
-														<a href="https://www.legends-decks.com/deck/17203/shout-with-dragon-ramp-scout#comments">
-															0															<span class="glyphicon glyphicon-comment"></span>
-														</a>
-													</td>
-													<td class="td_rating_deck_full td_1 hidden-xs">
-														<b><span class='vote_blue'>0</span></b>
-													</td>	
-													<td class="td_views_deck_full td_1 hidden-xs">
-														159&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
-													</td>									
-												</tr>
-				
-												<tr>
-													<td class="td_date td_date_deck_full td_2">
-														10<br/>Aug													</td>
-													<td class="td_class_img_deck_full td_2 center hidden-xs">
-														<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class" />
-																<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class" />
-														
-													</td>
-													<td class="td_name_deck_small td_2">
-														<a href="https://www.legends-decks.com/deck/17177/slayer">Slayer</a>
-														<br/>
-														By: <a class="a_alt" onclick="user_box('2866','1300','right')">hustlersquare</a><span id="user_box_1300"></span>													</td>
-													<td class="td_type_deck_full td_2 hidden-xs">
-														Other													</td>	
-													<td class="td_cost_deck_full td_2 hidden-xs">
-														15750<img src="https://www.legends-decks.com/interface/crystal.png" alt="crystal" class="small_crystal" />
-													</td>										
-													<td class="td_comments_deck_full td_2 hidden-xs">
-														<a href="https://www.legends-decks.com/deck/17177/slayer#comments">
-															0															<span class="glyphicon glyphicon-comment"></span>
-														</a>
-													</td>
-													<td class="td_rating_deck_full td_2 hidden-xs">
-														<b><span class='vote_blue'>0</span></b>
-													</td>	
-													<td class="td_views_deck_full td_2 hidden-xs">
-														127&nbsp;<span class="glyphicon glyphicon-eye-open"></span>
-													</td>									
-												</tr>
-		
-													</tbody>
-												</table>
-											</div>
-										</div>
-										<br/>
-									</div>
-								</div>
 						</div>
 					</div>
 				</div>
@@ -1469,16 +1372,59 @@ We know there is a new meta growing with the introduction of the new Monthly car
 			</div>
 		</span>
 			<br/><br/>
-				<h4 class="uppertight"><span id="total_comments_4-409ad2875df93d6f6365224f613070c1">3</span> Comments</h4>
+				<h4 class="uppertight"><span id="total_comments_4-409ad2875df93d6f6365224f613070c1">22</span> Comments</h4>
 					<div class="pagination">
-					</div>										
+<span class="activepagin"> 1 </span><a class="pagin" href="https://www.legends-decks.com/deck/16602/2-legend-ramp-scout/2#comments">2</a><a class="pagin" href="https://www.legends-decks.com/deck/16602/2-legend-ramp-scout/2#comments">&gt;</a>					</div>										
 	
 				<div class="row comment_wrapper ajx" id="comment_a330f9fecc388ce67f87b09855480ca3">
 						
 	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-a330f9fecc388ce67f87b09855480ca3','+')"  id="vote_up_small_2-a330f9fecc388ce67f87b09855480ca3">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span >
+				<span id='results_small_2-a330f9fecc388ce67f87b09855480ca3'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-a330f9fecc388ce67f87b09855480ca3','-')"  id="vote_down_small_2-a330f9fecc388ce67f87b09855480ca3">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('a330f9fecc388ce67f87b09855480ca3')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li><a onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','a330f9fecc388ce67f87b09855480ca3','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a></li>
+							<li>
+								<a id="report_2_a330f9fecc388ce67f87b09855480ca3"  onclick="report('a330f9fecc388ce67f87b09855480ca3')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
 		
 		<span class="hidden-xs">By</span> 
-		<a onclick="user_box('17813','6556','regular')">
+		<a onclick="user_box('17813','908','regular')">
 			<span class="hidden-xs">
 				<span class="midlarge ">
 					YannyCash				</span>&nbsp;
@@ -1488,11 +1434,19 @@ We know there is a new meta growing with the introduction of the new Monthly car
 					YannyCash				</span>
 			</span>
 		</a>
-		<span id="user_box_6556"></span>
-		<i>1 day ago</i>
+		<span id="user_box_908"></span>
+		<i>1 year ago</i>
 		<span class="right hidden-md hidden-xs hidden-sm">
 			<i>
 			</i>
+	
+						<a class="comment_button" onclick="quote('a330f9fecc388ce67f87b09855480ca3')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button" onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','a330f9fecc388ce67f87b09855480ca3','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a>
+						<a class="comment_button " id="report_1_a330f9fecc388ce67f87b09855480ca3" onclick="report('a330f9fecc388ce67f87b09855480ca3')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
 		</span>
 	</div>
 	
@@ -1508,8 +1462,7 @@ We know there is a new meta growing with the introduction of the new Monthly car
 						</div>
 	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-a330f9fecc388ce67f87b09855480ca3">
 			<a class="vote_button vote_up " 
-rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="You have to be logged in to vote." 
- id="vote_up_2-a330f9fecc388ce67f87b09855480ca3">
+ onclick="vote('2-a330f9fecc388ce67f87b09855480ca3','+')"  id="vote_up_2-a330f9fecc388ce67f87b09855480ca3">
 					<span class="glyphicon glyphicon-chevron-up"></span>
 			</a>
 			<div class="vote_results">
@@ -1518,8 +1471,7 @@ rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right"
 			</div>
 
 			<a class="vote_button vote_down "
- rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="You have to be logged in to vote." 
- id="vote_down_2-a330f9fecc388ce67f87b09855480ca3">
+ onclick="vote('2-a330f9fecc388ce67f87b09855480ca3','-')"  id="vote_down_2-a330f9fecc388ce67f87b09855480ca3">
 				<span class="glyphicon glyphicon-chevron-down"></span>
 			</a>
 	</div>
@@ -1555,9 +1507,51 @@ Usualy I like to play video games, study english language and watch TV series, f
 					<div class="row comment_wrapper comment_reply ajx" id="comment_2e976ab88a42d723d9f2ee6027b707f5">
 							
 	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-2e976ab88a42d723d9f2ee6027b707f5','+')"  id="vote_up_small_2-2e976ab88a42d723d9f2ee6027b707f5">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 2 votes">
+				<span id='results_small_2-2e976ab88a42d723d9f2ee6027b707f5' class='vote_blue'>+2</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-2e976ab88a42d723d9f2ee6027b707f5','-')"  id="vote_down_small_2-2e976ab88a42d723d9f2ee6027b707f5">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('2e976ab88a42d723d9f2ee6027b707f5')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_2e976ab88a42d723d9f2ee6027b707f5"  onclick="report('2e976ab88a42d723d9f2ee6027b707f5')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
 		
 		<span class="hidden-xs">By</span> 
-		<a onclick="user_box('14505','6775','regular')">
+		<a onclick="user_box('14505','7647','regular')">
 			<span class="hidden-xs">
 				<span class="midlarge ">
 					COAXET				</span>&nbsp;
@@ -1567,11 +1561,18 @@ Usualy I like to play video games, study english language and watch TV series, f
 					COAXET				</span>
 			</span>
 		</a>
-		<span id="user_box_6775"></span>
-		<i>1 day ago</i>
+		<span id="user_box_7647"></span>
+		<i>1 year ago</i>
 		<span class="right hidden-md hidden-xs hidden-sm">
 			<i>
 			</i>
+	
+						<a class="comment_button" onclick="quote('2e976ab88a42d723d9f2ee6027b707f5')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_2e976ab88a42d723d9f2ee6027b707f5" onclick="report('2e976ab88a42d723d9f2ee6027b707f5')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
 		</span>
 	</div>
 	
@@ -1583,22 +1584,20 @@ Usualy I like to play video games, study english language and watch TV series, f
 		</a>
 			<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="avatar_rank" alt="star_2"/>
 				<br/>
-					LEVEL.<b>8</b>
+					LEVEL.<b>9</b>
 						</div>
 	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-2e976ab88a42d723d9f2ee6027b707f5">
 			<a class="vote_button vote_up " 
-rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="You have to be logged in to vote." 
- id="vote_up_2-2e976ab88a42d723d9f2ee6027b707f5">
+ onclick="vote('2-2e976ab88a42d723d9f2ee6027b707f5','+')"  id="vote_up_2-2e976ab88a42d723d9f2ee6027b707f5">
 					<span class="glyphicon glyphicon-chevron-up"></span>
 			</a>
 			<div class="vote_results">
-				<span >
-<span id='results_2-2e976ab88a42d723d9f2ee6027b707f5'>0</span>				</span>
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 2 votes">
+<span id='results_2-2e976ab88a42d723d9f2ee6027b707f5' class='vote_blue'>+2</span>				</span>
 			</div>
 
 			<a class="vote_button vote_down "
- rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="You have to be logged in to vote." 
- id="vote_down_2-2e976ab88a42d723d9f2ee6027b707f5">
+ onclick="vote('2-2e976ab88a42d723d9f2ee6027b707f5','-')"  id="vote_down_2-2e976ab88a42d723d9f2ee6027b707f5">
 				<span class="glyphicon glyphicon-chevron-down"></span>
 			</a>
 	</div>
@@ -1615,9 +1614,52 @@ Eclipse Baroness its very good.	</div>
 				<div class="row comment_wrapper ajx" id="comment_39d4b545fb02556829aab1db805021c3">
 						
 	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-39d4b545fb02556829aab1db805021c3','+')"  id="vote_up_small_2-39d4b545fb02556829aab1db805021c3">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span >
+				<span id='results_small_2-39d4b545fb02556829aab1db805021c3'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-39d4b545fb02556829aab1db805021c3','-')"  id="vote_down_small_2-39d4b545fb02556829aab1db805021c3">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('39d4b545fb02556829aab1db805021c3')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li><a onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','39d4b545fb02556829aab1db805021c3','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a></li>
+							<li>
+								<a id="report_2_39d4b545fb02556829aab1db805021c3"  onclick="report('39d4b545fb02556829aab1db805021c3')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
 		
 		<span class="hidden-xs">By</span> 
-		<a onclick="user_box('17813','4547','regular')">
+		<a onclick="user_box('17813','8067','regular')">
 			<span class="hidden-xs">
 				<span class="midlarge ">
 					YannyCash				</span>&nbsp;
@@ -1627,11 +1669,19 @@ Eclipse Baroness its very good.	</div>
 					YannyCash				</span>
 			</span>
 		</a>
-		<span id="user_box_4547"></span>
-		<i>20 hours ago</i>
+		<span id="user_box_8067"></span>
+		<i>1 year ago</i>
 		<span class="right hidden-md hidden-xs hidden-sm">
 			<i>
 			</i>
+	
+						<a class="comment_button" onclick="quote('39d4b545fb02556829aab1db805021c3')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button" onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','39d4b545fb02556829aab1db805021c3','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a>
+						<a class="comment_button " id="report_1_39d4b545fb02556829aab1db805021c3" onclick="report('39d4b545fb02556829aab1db805021c3')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
 		</span>
 	</div>
 	
@@ -1647,8 +1697,7 @@ Eclipse Baroness its very good.	</div>
 						</div>
 	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-39d4b545fb02556829aab1db805021c3">
 			<a class="vote_button vote_up " 
-rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="You have to be logged in to vote." 
- id="vote_up_2-39d4b545fb02556829aab1db805021c3">
+ onclick="vote('2-39d4b545fb02556829aab1db805021c3','+')"  id="vote_up_2-39d4b545fb02556829aab1db805021c3">
 					<span class="glyphicon glyphicon-chevron-up"></span>
 			</a>
 			<div class="vote_results">
@@ -1657,8 +1706,7 @@ rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right"
 			</div>
 
 			<a class="vote_button vote_down "
- rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="You have to be logged in to vote." 
- id="vote_down_2-39d4b545fb02556829aab1db805021c3">
+ onclick="vote('2-39d4b545fb02556829aab1db805021c3','-')"  id="vote_down_2-39d4b545fb02556829aab1db805021c3">
 				<span class="glyphicon glyphicon-chevron-down"></span>
 			</a>
 	</div>
@@ -1679,6 +1727,1867 @@ Usualy I like to play video games, study english language and watch TV series, f
 	
 				</div>	
 					<div id="replies_39d4b545fb02556829aab1db805021c3" class="ajx">	
+										
+
+			<div class="row comment_wrapper_replies comment_reply">
+				<div class="col-md-12">
+					<span class="right">
+						<a onclick="hide_div('39d4b545fb02556829aab1db805021c3')">
+							<span id="glyphicon_hide_div_39d4b545fb02556829aab1db805021c3" class="glyphicon_show_hide glyphicon glyphicon-chevron-up"></span>
+						</a>
+					</span>
+					1 Reply				</div>
+			</div>
+			<div id="show_hide_39d4b545fb02556829aab1db805021c3" class="show_hide_replies">					
+					<div class="row comment_wrapper comment_reply ajx" id="comment_c42f76f3b235e177ed57983b6721d0f3">
+							
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-c42f76f3b235e177ed57983b6721d0f3','+')"  id="vote_up_small_2-c42f76f3b235e177ed57983b6721d0f3">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span >
+				<span id='results_small_2-c42f76f3b235e177ed57983b6721d0f3'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-c42f76f3b235e177ed57983b6721d0f3','-')"  id="vote_down_small_2-c42f76f3b235e177ed57983b6721d0f3">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('c42f76f3b235e177ed57983b6721d0f3')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_c42f76f3b235e177ed57983b6721d0f3"  onclick="report('c42f76f3b235e177ed57983b6721d0f3')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('9768','6727','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Wilhelmyang				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Wilhelmyang				</span>
+			</span>
+		</a>
+		<span id="user_box_6727"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('c42f76f3b235e177ed57983b6721d0f3')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_c42f76f3b235e177ed57983b6721d0f3" onclick="report('c42f76f3b235e177ed57983b6721d0f3')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/9768">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh4.googleusercontent.com/-jspYh1YM03Q/AAAAAAAAAAI/AAAAAAAAAAA/AGDgw-gZ4-FwgdZnGJEWLF2WPRgL_-Xb2A/mo/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_5.png" class="avatar_rank" alt="star_5"/>
+				<br/>
+					LEVEL.<b>21</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-c42f76f3b235e177ed57983b6721d0f3">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-c42f76f3b235e177ed57983b6721d0f3','+')"  id="vote_up_2-c42f76f3b235e177ed57983b6721d0f3">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span >
+<span id='results_2-c42f76f3b235e177ed57983b6721d0f3'>0</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-c42f76f3b235e177ed57983b6721d0f3','-')"  id="vote_down_2-c42f76f3b235e177ed57983b6721d0f3">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_c42f76f3b235e177ed57983b6721d0f3">
+		
+Glad you like it <img src="https://www.legends-decks.com/bbcode/smileys/smile.gif" width="16" height="16" alt=":)" title=":)" class="bbcode_smiley" />	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+					</div>
+
+			</div>
+							</div>
+<div class="ad_leader">
+	<span class="hidden-sm hidden-xs">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+			 style="display:inline-block;width:728px;height:90px"
+			 data-ad-client="ca-pub-2322698083913231"
+			 data-ad-slot="1485311104"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</span>
+	<span class="visible-sm visible-xs hidden-md hidden-lg">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+			 style="display:inline-block;width:320px;height:100px"
+			 data-ad-client="ca-pub-2322698083913231"
+			 data-ad-slot="7392243906"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</span>
+</div>	
+				<div class="row comment_wrapper ajx" id="comment_dccb1c3a558c50d389c24d69a9856730">
+						
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-dccb1c3a558c50d389c24d69a9856730','+')"  id="vote_up_small_2-dccb1c3a558c50d389c24d69a9856730">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span >
+				<span id='results_small_2-dccb1c3a558c50d389c24d69a9856730'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-dccb1c3a558c50d389c24d69a9856730','-')"  id="vote_down_small_2-dccb1c3a558c50d389c24d69a9856730">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('dccb1c3a558c50d389c24d69a9856730')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li><a onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','dccb1c3a558c50d389c24d69a9856730','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a></li>
+							<li>
+								<a id="report_2_dccb1c3a558c50d389c24d69a9856730"  onclick="report('dccb1c3a558c50d389c24d69a9856730')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('332','7663','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Rayonaie				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Rayonaie				</span>
+			</span>
+		</a>
+		<span id="user_box_7663"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('dccb1c3a558c50d389c24d69a9856730')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button" onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','dccb1c3a558c50d389c24d69a9856730','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a>
+						<a class="comment_button " id="report_1_dccb1c3a558c50d389c24d69a9856730" onclick="report('dccb1c3a558c50d389c24d69a9856730')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/332">
+			<div class="avatar avatar_comment" style="background-image:url('https://www.legends-decks.com/img_profile/0-unknown.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="avatar_rank" alt="star_2"/>
+				<br/>
+					LEVEL.<b>8</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-dccb1c3a558c50d389c24d69a9856730">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-dccb1c3a558c50d389c24d69a9856730','+')"  id="vote_up_2-dccb1c3a558c50d389c24d69a9856730">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span >
+<span id='results_2-dccb1c3a558c50d389c24d69a9856730'>0</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-dccb1c3a558c50d389c24d69a9856730','-')"  id="vote_down_2-dccb1c3a558c50d389c24d69a9856730">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_dccb1c3a558c50d389c24d69a9856730">
+		
+I havent played for a while and see a lot of scoutramp decks arent including bloodmagic lord anymore, it still seems a powerfull card, where do i go wrong in my assumption ?is there a specific answer to it ?	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 j_reply" id="reply_dccb1c3a558c50d389c24d69a9856730"></div>
+				</div>
+	
+				</div>	
+					<div id="replies_dccb1c3a558c50d389c24d69a9856730" class="ajx">	
+										
+
+			<div class="row comment_wrapper_replies comment_reply">
+				<div class="col-md-12">
+					<span class="right">
+						<a onclick="hide_div('dccb1c3a558c50d389c24d69a9856730')">
+							<span id="glyphicon_hide_div_dccb1c3a558c50d389c24d69a9856730" class="glyphicon_show_hide glyphicon glyphicon-chevron-up"></span>
+						</a>
+					</span>
+					3 Replies				</div>
+			</div>
+			<div id="show_hide_dccb1c3a558c50d389c24d69a9856730" class="show_hide_replies">					
+					<div class="row comment_wrapper comment_reply ajx" id="comment_b7a8486459730bea9569414ef76cf03f">
+							
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-b7a8486459730bea9569414ef76cf03f','+')"  id="vote_up_small_2-b7a8486459730bea9569414ef76cf03f">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span >
+				<span id='results_small_2-b7a8486459730bea9569414ef76cf03f'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-b7a8486459730bea9569414ef76cf03f','-')"  id="vote_down_small_2-b7a8486459730bea9569414ef76cf03f">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('b7a8486459730bea9569414ef76cf03f')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_b7a8486459730bea9569414ef76cf03f"  onclick="report('b7a8486459730bea9569414ef76cf03f')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('4208','2241','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					nkaers				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					nkaers				</span>
+			</span>
+		</a>
+		<span id="user_box_2241"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('b7a8486459730bea9569414ef76cf03f')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_b7a8486459730bea9569414ef76cf03f" onclick="report('b7a8486459730bea9569414ef76cf03f')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/4208">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh5.googleusercontent.com/-KIBDZoqZOtg/AAAAAAAAAAI/AAAAAAAAAFM/gKkXOz325IE/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_1.png" class="avatar_rank" alt="star_1"/>
+				<br/>
+					LEVEL.<b>4</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-b7a8486459730bea9569414ef76cf03f">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-b7a8486459730bea9569414ef76cf03f','+')"  id="vote_up_2-b7a8486459730bea9569414ef76cf03f">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span >
+<span id='results_2-b7a8486459730bea9569414ef76cf03f'>0</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-b7a8486459730bea9569414ef76cf03f','-')"  id="vote_down_2-b7a8486459730bea9569414ef76cf03f">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_b7a8486459730bea9569414ef76cf03f">
+		
+Asked myself the same question...<br />
+And what about Ungolim? He was in every deck too...	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+					</div>
+
+					<div class="row comment_wrapper comment_reply ajx" id="comment_d08726019e4a2a15cb1d49092e4d0522">
+							
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-d08726019e4a2a15cb1d49092e4d0522','+')"  id="vote_up_small_2-d08726019e4a2a15cb1d49092e4d0522">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+				<span id='results_small_2-d08726019e4a2a15cb1d49092e4d0522' class='vote_blue'>+1</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-d08726019e4a2a15cb1d49092e4d0522','-')"  id="vote_down_small_2-d08726019e4a2a15cb1d49092e4d0522">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('d08726019e4a2a15cb1d49092e4d0522')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_d08726019e4a2a15cb1d49092e4d0522"  onclick="report('d08726019e4a2a15cb1d49092e4d0522')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('9768','4541','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Wilhelmyang				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Wilhelmyang				</span>
+			</span>
+		</a>
+		<span id="user_box_4541"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('d08726019e4a2a15cb1d49092e4d0522')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_d08726019e4a2a15cb1d49092e4d0522" onclick="report('d08726019e4a2a15cb1d49092e4d0522')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/9768">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh4.googleusercontent.com/-jspYh1YM03Q/AAAAAAAAAAI/AAAAAAAAAAA/AGDgw-gZ4-FwgdZnGJEWLF2WPRgL_-Xb2A/mo/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_5.png" class="avatar_rank" alt="star_5"/>
+				<br/>
+					LEVEL.<b>21</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-d08726019e4a2a15cb1d49092e4d0522">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-d08726019e4a2a15cb1d49092e4d0522','+')"  id="vote_up_2-d08726019e4a2a15cb1d49092e4d0522">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+<span id='results_2-d08726019e4a2a15cb1d49092e4d0522' class='vote_blue'>+1</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-d08726019e4a2a15cb1d49092e4d0522','-')"  id="vote_down_2-d08726019e4a2a15cb1d49092e4d0522">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_d08726019e4a2a15cb1d49092e4d0522">
+		
+We do admit that the BML is a very powerful card yet first its Blood Magics are kinda random (the most useful being raise dead yet there is only 25% getting a one) and then you can hardly get another BM with it again, either your opponent's got answer for it or they will summon his/her creature to another lane.<br />
+Afterall, BML can be considered as a slightly aggressive card yet the key about ramp scout is to hold your ground and quietly accumulating an overwhelming power. It can be inferred that SDs have replaced BMLs for they could buff your graveyard, provide some protection to your face and bring back a probably buffed card if they died. In a word, it could bring more value than BMLs.	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+					</div>
+
+					<div class="row comment_wrapper comment_reply ajx" id="comment_3c550e0c211fc613cc6ea50b88bffc0c">
+							
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-3c550e0c211fc613cc6ea50b88bffc0c','+')"  id="vote_up_small_2-3c550e0c211fc613cc6ea50b88bffc0c">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+				<span id='results_small_2-3c550e0c211fc613cc6ea50b88bffc0c' class='vote_red'>-1</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-3c550e0c211fc613cc6ea50b88bffc0c','-')"  id="vote_down_small_2-3c550e0c211fc613cc6ea50b88bffc0c">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('3c550e0c211fc613cc6ea50b88bffc0c')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_3c550e0c211fc613cc6ea50b88bffc0c"  onclick="report('3c550e0c211fc613cc6ea50b88bffc0c')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('9768','9494','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Wilhelmyang				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Wilhelmyang				</span>
+			</span>
+		</a>
+		<span id="user_box_9494"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+<span class='light'>Edited 1 year ago</span>&nbsp;&nbsp;			</i>
+	
+						<a class="comment_button" onclick="quote('3c550e0c211fc613cc6ea50b88bffc0c')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_3c550e0c211fc613cc6ea50b88bffc0c" onclick="report('3c550e0c211fc613cc6ea50b88bffc0c')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/9768">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh4.googleusercontent.com/-jspYh1YM03Q/AAAAAAAAAAI/AAAAAAAAAAA/AGDgw-gZ4-FwgdZnGJEWLF2WPRgL_-Xb2A/mo/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_5.png" class="avatar_rank" alt="star_5"/>
+				<br/>
+					LEVEL.<b>21</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-3c550e0c211fc613cc6ea50b88bffc0c">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-3c550e0c211fc613cc6ea50b88bffc0c','+')"  id="vote_up_2-3c550e0c211fc613cc6ea50b88bffc0c">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+<span id='results_2-3c550e0c211fc613cc6ea50b88bffc0c' class='vote_red'>-1</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-3c550e0c211fc613cc6ea50b88bffc0c','-')"  id="vote_down_2-3c550e0c211fc613cc6ea50b88bffc0c">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_3c550e0c211fc613cc6ea50b88bffc0c">
+		
+
+<div class="bbcode_quote">
+<div class="bbcode_quote_head">nkaers wrote:</div>
+<div class="bbcode_quote_body">Asked myself the same question...<br />
+And what about Ungolim? He was in every deck too...</div>
+</div>
+This will &quot;Dilute&quot; your deck and maybe you will miss important draws.	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+					</div>
+
+			</div>
+							</div>
+	
+				<div class="row comment_wrapper ajx" id="comment_d9eb09a4dbf0b2098faf20331f294afe">
+						
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-d9eb09a4dbf0b2098faf20331f294afe','+')"  id="vote_up_small_2-d9eb09a4dbf0b2098faf20331f294afe">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span >
+				<span id='results_small_2-d9eb09a4dbf0b2098faf20331f294afe'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-d9eb09a4dbf0b2098faf20331f294afe','-')"  id="vote_down_small_2-d9eb09a4dbf0b2098faf20331f294afe">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('d9eb09a4dbf0b2098faf20331f294afe')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li><a onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','d9eb09a4dbf0b2098faf20331f294afe','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a></li>
+							<li>
+								<a id="report_2_d9eb09a4dbf0b2098faf20331f294afe"  onclick="report('d9eb09a4dbf0b2098faf20331f294afe')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('21675','8101','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					E Redd				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					E Redd				</span>
+			</span>
+		</a>
+		<span id="user_box_8101"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('d9eb09a4dbf0b2098faf20331f294afe')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button" onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','d9eb09a4dbf0b2098faf20331f294afe','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a>
+						<a class="comment_button " id="report_1_d9eb09a4dbf0b2098faf20331f294afe" onclick="report('d9eb09a4dbf0b2098faf20331f294afe')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/21675">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_1.png" class="avatar_rank" alt="star_1"/>
+				<br/>
+					LEVEL.<b>2</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-d9eb09a4dbf0b2098faf20331f294afe">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-d9eb09a4dbf0b2098faf20331f294afe','+')"  id="vote_up_2-d9eb09a4dbf0b2098faf20331f294afe">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span >
+<span id='results_2-d9eb09a4dbf0b2098faf20331f294afe'>0</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-d9eb09a4dbf0b2098faf20331f294afe','-')"  id="vote_down_2-d9eb09a4dbf0b2098faf20331f294afe">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_d9eb09a4dbf0b2098faf20331f294afe">
+		
+I cant get nahagliiv, I'm on mobile, that card diet even show up with soulsight on. Got a decent replacement? 	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 j_reply" id="reply_d9eb09a4dbf0b2098faf20331f294afe"></div>
+				</div>
+	
+				</div>	
+					<div id="replies_d9eb09a4dbf0b2098faf20331f294afe" class="ajx">	
+										
+
+			<div class="row comment_wrapper_replies comment_reply">
+				<div class="col-md-12">
+					<span class="right">
+						<a onclick="hide_div('d9eb09a4dbf0b2098faf20331f294afe')">
+							<span id="glyphicon_hide_div_d9eb09a4dbf0b2098faf20331f294afe" class="glyphicon_show_hide glyphicon glyphicon-chevron-up"></span>
+						</a>
+					</span>
+					2 Replies				</div>
+			</div>
+			<div id="show_hide_d9eb09a4dbf0b2098faf20331f294afe" class="show_hide_replies">					
+					<div class="row comment_wrapper comment_reply ajx" id="comment_3d8a0e750ff4f9b65d2c112a7095d1ce">
+							
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-3d8a0e750ff4f9b65d2c112a7095d1ce','+')"  id="vote_up_small_2-3d8a0e750ff4f9b65d2c112a7095d1ce">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span >
+				<span id='results_small_2-3d8a0e750ff4f9b65d2c112a7095d1ce'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-3d8a0e750ff4f9b65d2c112a7095d1ce','-')"  id="vote_down_small_2-3d8a0e750ff4f9b65d2c112a7095d1ce">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('3d8a0e750ff4f9b65d2c112a7095d1ce')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_3d8a0e750ff4f9b65d2c112a7095d1ce"  onclick="report('3d8a0e750ff4f9b65d2c112a7095d1ce')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('21675','352','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					E Redd				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					E Redd				</span>
+			</span>
+		</a>
+		<span id="user_box_352"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('3d8a0e750ff4f9b65d2c112a7095d1ce')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_3d8a0e750ff4f9b65d2c112a7095d1ce" onclick="report('3d8a0e750ff4f9b65d2c112a7095d1ce')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/21675">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_1.png" class="avatar_rank" alt="star_1"/>
+				<br/>
+					LEVEL.<b>2</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-3d8a0e750ff4f9b65d2c112a7095d1ce">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-3d8a0e750ff4f9b65d2c112a7095d1ce','+')"  id="vote_up_2-3d8a0e750ff4f9b65d2c112a7095d1ce">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span >
+<span id='results_2-3d8a0e750ff4f9b65d2c112a7095d1ce'>0</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-3d8a0e750ff4f9b65d2c112a7095d1ce','-')"  id="vote_down_2-3d8a0e750ff4f9b65d2c112a7095d1ce">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_3d8a0e750ff4f9b65d2c112a7095d1ce">
+		
+NM, I'm an idiot. 	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+					</div>
+
+					<div class="row comment_wrapper comment_reply ajx" id="comment_247411fabf61b4245eaaee76924795b7">
+							
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-247411fabf61b4245eaaee76924795b7','+')"  id="vote_up_small_2-247411fabf61b4245eaaee76924795b7">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+				<span id='results_small_2-247411fabf61b4245eaaee76924795b7' class='vote_blue'>+1</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-247411fabf61b4245eaaee76924795b7','-')"  id="vote_down_small_2-247411fabf61b4245eaaee76924795b7">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('247411fabf61b4245eaaee76924795b7')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_247411fabf61b4245eaaee76924795b7"  onclick="report('247411fabf61b4245eaaee76924795b7')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('9768','8382','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Wilhelmyang				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Wilhelmyang				</span>
+			</span>
+		</a>
+		<span id="user_box_8382"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('247411fabf61b4245eaaee76924795b7')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_247411fabf61b4245eaaee76924795b7" onclick="report('247411fabf61b4245eaaee76924795b7')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/9768">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh4.googleusercontent.com/-jspYh1YM03Q/AAAAAAAAAAI/AAAAAAAAAAA/AGDgw-gZ4-FwgdZnGJEWLF2WPRgL_-Xb2A/mo/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_5.png" class="avatar_rank" alt="star_5"/>
+				<br/>
+					LEVEL.<b>21</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-247411fabf61b4245eaaee76924795b7">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-247411fabf61b4245eaaee76924795b7','+')"  id="vote_up_2-247411fabf61b4245eaaee76924795b7">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+<span id='results_2-247411fabf61b4245eaaee76924795b7' class='vote_blue'>+1</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-247411fabf61b4245eaaee76924795b7','-')"  id="vote_down_2-247411fabf61b4245eaaee76924795b7">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_247411fabf61b4245eaaee76924795b7">
+		
+Nahagliiv is very useful in almost all purple related decks. I strongly suggest you craft a one on PC.	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+					</div>
+
+			</div>
+							</div>
+	
+				<div class="row comment_wrapper ajx" id="comment_d75320797f266ba9ed6dd6dc218cb1b5">
+						
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-d75320797f266ba9ed6dd6dc218cb1b5','+')"  id="vote_up_small_2-d75320797f266ba9ed6dd6dc218cb1b5">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span >
+				<span id='results_small_2-d75320797f266ba9ed6dd6dc218cb1b5'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-d75320797f266ba9ed6dd6dc218cb1b5','-')"  id="vote_down_small_2-d75320797f266ba9ed6dd6dc218cb1b5">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('d75320797f266ba9ed6dd6dc218cb1b5')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li><a onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','d75320797f266ba9ed6dd6dc218cb1b5','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a></li>
+							<li>
+								<a id="report_2_d75320797f266ba9ed6dd6dc218cb1b5"  onclick="report('d75320797f266ba9ed6dd6dc218cb1b5')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('19218','6231','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Daine Quinton Reno				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Daine Quinton...				</span>
+			</span>
+		</a>
+		<span id="user_box_6231"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('d75320797f266ba9ed6dd6dc218cb1b5')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button" onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','d75320797f266ba9ed6dd6dc218cb1b5','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a>
+						<a class="comment_button " id="report_1_d75320797f266ba9ed6dd6dc218cb1b5" onclick="report('d75320797f266ba9ed6dd6dc218cb1b5')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/19218">
+			<div class="avatar avatar_comment" style="background-image:url('https://graph.facebook.com/10155340221670630/picture?type=large')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="avatar_rank" alt="star_2"/>
+				<br/>
+					LEVEL.<b>8</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-d75320797f266ba9ed6dd6dc218cb1b5">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-d75320797f266ba9ed6dd6dc218cb1b5','+')"  id="vote_up_2-d75320797f266ba9ed6dd6dc218cb1b5">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span >
+<span id='results_2-d75320797f266ba9ed6dd6dc218cb1b5'>0</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-d75320797f266ba9ed6dd6dc218cb1b5','-')"  id="vote_down_2-d75320797f266ba9ed6dd6dc218cb1b5">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_d75320797f266ba9ed6dd6dc218cb1b5">
+		
+Can you please explain why you went down 1 <a href="/?page=tree_minder" class="bbcode_wiki">tree minder</a>? i actually had an identical deck already except i have the 3rd <a href="/?page=tree_minder" class="bbcode_wiki">tree minder</a> and only 2 <a href="/?page=skeletal_dragon" class="bbcode_wiki">skeletal dragon</a>s. what are your thoughts on this? 	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 j_reply" id="reply_d75320797f266ba9ed6dd6dc218cb1b5"></div>
+				</div>
+	
+				</div>	
+					<div id="replies_d75320797f266ba9ed6dd6dc218cb1b5" class="ajx">	
+										
+
+			<div class="row comment_wrapper_replies comment_reply">
+				<div class="col-md-12">
+					<span class="right">
+						<a onclick="hide_div('d75320797f266ba9ed6dd6dc218cb1b5')">
+							<span id="glyphicon_hide_div_d75320797f266ba9ed6dd6dc218cb1b5" class="glyphicon_show_hide glyphicon glyphicon-chevron-up"></span>
+						</a>
+					</span>
+					2 Replies				</div>
+			</div>
+			<div id="show_hide_d75320797f266ba9ed6dd6dc218cb1b5" class="show_hide_replies">					
+					<div class="row comment_wrapper comment_reply ajx" id="comment_e64c9ec33f19c7de745bd6b6d1a7a86e">
+							
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-e64c9ec33f19c7de745bd6b6d1a7a86e','+')"  id="vote_up_small_2-e64c9ec33f19c7de745bd6b6d1a7a86e">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+				<span id='results_small_2-e64c9ec33f19c7de745bd6b6d1a7a86e' class='vote_red'>-1</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-e64c9ec33f19c7de745bd6b6d1a7a86e','-')"  id="vote_down_small_2-e64c9ec33f19c7de745bd6b6d1a7a86e">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('e64c9ec33f19c7de745bd6b6d1a7a86e')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_e64c9ec33f19c7de745bd6b6d1a7a86e"  onclick="report('e64c9ec33f19c7de745bd6b6d1a7a86e')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('9768','6153','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Wilhelmyang				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Wilhelmyang				</span>
+			</span>
+		</a>
+		<span id="user_box_6153"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('e64c9ec33f19c7de745bd6b6d1a7a86e')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_e64c9ec33f19c7de745bd6b6d1a7a86e" onclick="report('e64c9ec33f19c7de745bd6b6d1a7a86e')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/9768">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh4.googleusercontent.com/-jspYh1YM03Q/AAAAAAAAAAI/AAAAAAAAAAA/AGDgw-gZ4-FwgdZnGJEWLF2WPRgL_-Xb2A/mo/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_5.png" class="avatar_rank" alt="star_5"/>
+				<br/>
+					LEVEL.<b>21</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-e64c9ec33f19c7de745bd6b6d1a7a86e">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-e64c9ec33f19c7de745bd6b6d1a7a86e','+')"  id="vote_up_2-e64c9ec33f19c7de745bd6b6d1a7a86e">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+<span id='results_2-e64c9ec33f19c7de745bd6b6d1a7a86e' class='vote_red'>-1</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-e64c9ec33f19c7de745bd6b6d1a7a86e','-')"  id="vote_down_2-e64c9ec33f19c7de745bd6b6d1a7a86e">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_e64c9ec33f19c7de745bd6b6d1a7a86e">
+		
+You are not trying to draw Alduin are you? Ramp scouts in late games often face extra magickas so why not replace magicka boosters with more valuable minions?	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+					</div>
+
+					<div class="row comment_wrapper comment_reply ajx" id="comment_68c86f3f9a4eefdc3180f488ac749db5">
+							
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-68c86f3f9a4eefdc3180f488ac749db5','+')"  id="vote_up_small_2-68c86f3f9a4eefdc3180f488ac749db5">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+				<span id='results_small_2-68c86f3f9a4eefdc3180f488ac749db5' class='vote_blue'>+1</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-68c86f3f9a4eefdc3180f488ac749db5','-')"  id="vote_down_small_2-68c86f3f9a4eefdc3180f488ac749db5">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('68c86f3f9a4eefdc3180f488ac749db5')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_68c86f3f9a4eefdc3180f488ac749db5"  onclick="report('68c86f3f9a4eefdc3180f488ac749db5')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('19218','6681','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Daine Quinton Reno				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Daine Quinton...				</span>
+			</span>
+		</a>
+		<span id="user_box_6681"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+<span class='light'>Edited 1 year ago</span>&nbsp;&nbsp;			</i>
+	
+						<a class="comment_button" onclick="quote('68c86f3f9a4eefdc3180f488ac749db5')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_68c86f3f9a4eefdc3180f488ac749db5" onclick="report('68c86f3f9a4eefdc3180f488ac749db5')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/19218">
+			<div class="avatar avatar_comment" style="background-image:url('https://graph.facebook.com/10155340221670630/picture?type=large')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="avatar_rank" alt="star_2"/>
+				<br/>
+					LEVEL.<b>8</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-68c86f3f9a4eefdc3180f488ac749db5">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-68c86f3f9a4eefdc3180f488ac749db5','+')"  id="vote_up_2-68c86f3f9a4eefdc3180f488ac749db5">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+<span id='results_2-68c86f3f9a4eefdc3180f488ac749db5' class='vote_blue'>+1</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-68c86f3f9a4eefdc3180f488ac749db5','-')"  id="vote_down_2-68c86f3f9a4eefdc3180f488ac749db5">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_68c86f3f9a4eefdc3180f488ac749db5">
+		
+@Weipeng Yang<br />
+<br />
+No, I do not like Alduin. Way too slow in my experience.<br />
+But the point is to get to the late game sooner than later. This helps extraordinarily at doing just that. a 1/1 guard that ramps. Forces them to attack into it or use a removal spell to continue.<br />
+<br />
+I just find it is super useful to t3 <a href="/?page=tree_minder" class="bbcode_wiki">tree minder</a> into t4 <a href="/?page=leaflurker" class="bbcode_wiki">leaflurker</a> for the continued board presence + removal to slow the aggro beats. Do you feel this is not the current meta? or do you feel <a href="/?page=tree_minder" class="bbcode_wiki">tree minder</a> is never worth the 3rd copy?	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+					</div>
+
+			</div>
+							</div>
+	
+				<div class="row comment_wrapper ajx" id="comment_d93c96e6a23fff65b91b900aaa541998">
+						
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-d93c96e6a23fff65b91b900aaa541998','+')"  id="vote_up_small_2-d93c96e6a23fff65b91b900aaa541998">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 2 votes">
+				<span id='results_small_2-d93c96e6a23fff65b91b900aaa541998'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-d93c96e6a23fff65b91b900aaa541998','-')"  id="vote_down_small_2-d93c96e6a23fff65b91b900aaa541998">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('d93c96e6a23fff65b91b900aaa541998')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li><a onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','d93c96e6a23fff65b91b900aaa541998','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a></li>
+							<li>
+								<a id="report_2_d93c96e6a23fff65b91b900aaa541998"  onclick="report('d93c96e6a23fff65b91b900aaa541998')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('21457','8402','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Xiuitli				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Xiuitli				</span>
+			</span>
+		</a>
+		<span id="user_box_8402"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('d93c96e6a23fff65b91b900aaa541998')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button" onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','d93c96e6a23fff65b91b900aaa541998','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a>
+						<a class="comment_button " id="report_1_d93c96e6a23fff65b91b900aaa541998" onclick="report('d93c96e6a23fff65b91b900aaa541998')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/21457">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh3.googleusercontent.com/-0p23Pbkmd9I/AAAAAAAAAAI/AAAAAAAAADE/AoJdjGnKBN4/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="avatar_rank" alt="star_2"/>
+				<br/>
+					LEVEL.<b>6</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-d93c96e6a23fff65b91b900aaa541998">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-d93c96e6a23fff65b91b900aaa541998','+')"  id="vote_up_2-d93c96e6a23fff65b91b900aaa541998">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 2 votes">
+<span id='results_2-d93c96e6a23fff65b91b900aaa541998'>0</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-d93c96e6a23fff65b91b900aaa541998','-')"  id="vote_down_2-d93c96e6a23fff65b91b900aaa541998">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_d93c96e6a23fff65b91b900aaa541998">
+		
+do you suggest journey to sovengard?<br />
+	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 j_reply" id="reply_d93c96e6a23fff65b91b900aaa541998"></div>
+				</div>
+	
+				</div>	
+					<div id="replies_d93c96e6a23fff65b91b900aaa541998" class="ajx">	
+													</div>
+	
+				<div class="row comment_wrapper ajx" id="comment_1980fa3bbff704c8bec1b7196cf7dfbc">
+						<div class="col-md-12 comment_title">
+		<span>Deleted Comment</span>
+	</div>
+	
+	<div class="col-md-1 hidden-xs hidden-sm comment_portrait">
+		<div class="avatar avatar_comment" style="background-image:url('https://www.legends-decks.com/images/unknown.jpg')"></div>
+	</div>
+	
+	<div class="col-md-1 hidden-xs hidden-sm comment_vote">
+		<div class="vote_button vote_button_active custom_tooltip" rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="Votes are closed for a deleted comment"><span class="glyphicon glyphicon-chevron-up"></span></div>
+		<div class="vote_results">
+			<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 votes.">
+				<span class='vote_blue'>+1</span>			</span>
+		</div>
+		<div class="vote_button vote_button_active" rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="Votes are closed for a deleted comment"><span class="glyphicon glyphicon-chevron-down"></span></div>
+	</div>
+	
+	<div class="col-md-10 col-sm-12 col-xs-12 comment_text" id="text_1980fa3bbff704c8bec1b7196cf7dfbc"><i>Deleted Comment</i></div>
+	
+				</div>	
+					<div id="replies_1980fa3bbff704c8bec1b7196cf7dfbc" class="ajx">	
+										
+
+			<div class="row comment_wrapper_replies comment_reply">
+				<div class="col-md-12">
+					<span class="right">
+						<a onclick="hide_div('1980fa3bbff704c8bec1b7196cf7dfbc')">
+							<span id="glyphicon_hide_div_1980fa3bbff704c8bec1b7196cf7dfbc" class="glyphicon_show_hide glyphicon glyphicon-chevron-up"></span>
+						</a>
+					</span>
+					1 Reply				</div>
+			</div>
+			<div id="show_hide_1980fa3bbff704c8bec1b7196cf7dfbc" class="show_hide_replies">					
+					<div class="row comment_wrapper comment_reply ajx" id="comment_6591d327f6f731e589b0e869adadf940">
+							
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-6591d327f6f731e589b0e869adadf940','+')"  id="vote_up_small_2-6591d327f6f731e589b0e869adadf940">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+				<span id='results_small_2-6591d327f6f731e589b0e869adadf940' class='vote_blue'>+1</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-6591d327f6f731e589b0e869adadf940','-')"  id="vote_down_small_2-6591d327f6f731e589b0e869adadf940">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('6591d327f6f731e589b0e869adadf940')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li>
+								<a id="report_2_6591d327f6f731e589b0e869adadf940"  onclick="report('6591d327f6f731e589b0e869adadf940')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('19218','3748','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Daine Quinton Reno				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Daine Quinton...				</span>
+			</span>
+		</a>
+		<span id="user_box_3748"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('6591d327f6f731e589b0e869adadf940')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button " id="report_1_6591d327f6f731e589b0e869adadf940" onclick="report('6591d327f6f731e589b0e869adadf940')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/19218">
+			<div class="avatar avatar_comment" style="background-image:url('https://graph.facebook.com/10155340221670630/picture?type=large')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="avatar_rank" alt="star_2"/>
+				<br/>
+					LEVEL.<b>8</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-6591d327f6f731e589b0e869adadf940">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-6591d327f6f731e589b0e869adadf940','+')"  id="vote_up_2-6591d327f6f731e589b0e869adadf940">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+<span id='results_2-6591d327f6f731e589b0e869adadf940' class='vote_blue'>+1</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-6591d327f6f731e589b0e869adadf940','-')"  id="vote_down_2-6591d327f6f731e589b0e869adadf940">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_6591d327f6f731e589b0e869adadf940">
+		
+if you are having a hard time, try add the 3 <a href="/?page=drain_vitality" class="bbcode_wiki">drain vitality</a> shouts. As to what to take out? I'd say <a href="/?page=sanctuary_pet" class="bbcode_wiki">sanctuary pet</a>. but then that leaves you more susceptible to crusader beats. 	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+					</div>
+
+			</div>
+							</div>
+	
+				<div class="row comment_wrapper ajx" id="comment_ad80947c9909dd9d70739ca2b8f3fd2d">
+						
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-ad80947c9909dd9d70739ca2b8f3fd2d','+')"  id="vote_up_small_2-ad80947c9909dd9d70739ca2b8f3fd2d">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 2 votes">
+				<span id='results_small_2-ad80947c9909dd9d70739ca2b8f3fd2d'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-ad80947c9909dd9d70739ca2b8f3fd2d','-')"  id="vote_down_small_2-ad80947c9909dd9d70739ca2b8f3fd2d">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('ad80947c9909dd9d70739ca2b8f3fd2d')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li><a onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','ad80947c9909dd9d70739ca2b8f3fd2d','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a></li>
+							<li>
+								<a id="report_2_ad80947c9909dd9d70739ca2b8f3fd2d"  onclick="report('ad80947c9909dd9d70739ca2b8f3fd2d')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('8741','8522','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Andres Felipe Asprilla Lo				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Andres Felipe...				</span>
+			</span>
+		</a>
+		<span id="user_box_8522"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('ad80947c9909dd9d70739ca2b8f3fd2d')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button" onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','ad80947c9909dd9d70739ca2b8f3fd2d','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a>
+						<a class="comment_button " id="report_1_ad80947c9909dd9d70739ca2b8f3fd2d" onclick="report('ad80947c9909dd9d70739ca2b8f3fd2d')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/8741">
+			<div class="avatar avatar_comment" style="background-image:url('https://graph.facebook.com/1360617117294681/picture?type=large')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="avatar_rank" alt="star_2"/>
+				<br/>
+					LEVEL.<b>9</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-ad80947c9909dd9d70739ca2b8f3fd2d">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-ad80947c9909dd9d70739ca2b8f3fd2d','+')"  id="vote_up_2-ad80947c9909dd9d70739ca2b8f3fd2d">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 2 votes">
+<span id='results_2-ad80947c9909dd9d70739ca2b8f3fd2d'>0</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-ad80947c9909dd9d70739ca2b8f3fd2d','-')"  id="vote_down_2-ad80947c9909dd9d70739ca2b8f3fd2d">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_ad80947c9909dd9d70739ca2b8f3fd2d">
+		
+
+<div class="bbcode_quote">
+<div class="bbcode_quote_head">COAXET wrote:</div>
+<div class="bbcode_quote_body">Eclipse Baroness its very good.</div>
+</div>
+Nel perro	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 j_reply" id="reply_ad80947c9909dd9d70739ca2b8f3fd2d"></div>
+				</div>
+	
+				</div>	
+					<div id="replies_ad80947c9909dd9d70739ca2b8f3fd2d" class="ajx">	
+													</div>
+	
+				<div class="row comment_wrapper ajx" id="comment_a5329a91ef79db75900bd9cab3d96e43">
+						
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-a5329a91ef79db75900bd9cab3d96e43','+')"  id="vote_up_small_2-a5329a91ef79db75900bd9cab3d96e43">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span >
+				<span id='results_small_2-a5329a91ef79db75900bd9cab3d96e43'>0</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-a5329a91ef79db75900bd9cab3d96e43','-')"  id="vote_down_small_2-a5329a91ef79db75900bd9cab3d96e43">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('a5329a91ef79db75900bd9cab3d96e43')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li><a onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','a5329a91ef79db75900bd9cab3d96e43','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a></li>
+							<li>
+								<a id="report_2_a5329a91ef79db75900bd9cab3d96e43"  onclick="report('a5329a91ef79db75900bd9cab3d96e43')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('20027','961','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					realFuccboi				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					realFuccboi				</span>
+			</span>
+		</a>
+		<span id="user_box_961"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('a5329a91ef79db75900bd9cab3d96e43')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button" onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','a5329a91ef79db75900bd9cab3d96e43','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a>
+						<a class="comment_button " id="report_1_a5329a91ef79db75900bd9cab3d96e43" onclick="report('a5329a91ef79db75900bd9cab3d96e43')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/20027">
+			<div class="avatar avatar_comment" style="background-image:url('https://www.legends-decks.com/img_profile/datboi.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_2.png" class="avatar_rank" alt="star_2"/>
+				<br/>
+					LEVEL.<b>9</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-a5329a91ef79db75900bd9cab3d96e43">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-a5329a91ef79db75900bd9cab3d96e43','+')"  id="vote_up_2-a5329a91ef79db75900bd9cab3d96e43">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span >
+<span id='results_2-a5329a91ef79db75900bd9cab3d96e43'>0</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-a5329a91ef79db75900bd9cab3d96e43','-')"  id="vote_down_2-a5329a91ef79db75900bd9cab3d96e43">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_a5329a91ef79db75900bd9cab3d96e43">
+		
+nice one boi	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 j_reply" id="reply_a5329a91ef79db75900bd9cab3d96e43"></div>
+				</div>
+	
+				</div>	
+					<div id="replies_a5329a91ef79db75900bd9cab3d96e43" class="ajx">	
+													</div>
+	
+				<div class="row comment_wrapper ajx" id="comment_d69bc0b1aeafcc63c7d99509a65e0492">
+						
+	<div class="col-md-12 col-sm-12 col-xs-12 comment_title">
+	
+			<span class="right visible-md visible-xs visible-sm">
+				<ul class="nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-option-horizontal"></span>
+						</a>
+						<ul class="dropdown-menu dropdown_right">
+						
+							<li>
+								<div class="row">
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_up " 
+				 onclick="vote('2-d69bc0b1aeafcc63c7d99509a65e0492','+')"  id="vote_up_small_2-d69bc0b1aeafcc63c7d99509a65e0492">
+											<span class="glyphicon glyphicon-chevron-up"></span>
+										</a>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+				<span id='results_small_2-d69bc0b1aeafcc63c7d99509a65e0492' class='vote_blue'>+1</span>										</span>
+									</div>
+									<div class="col-xs-4 small_col_vote">
+										<a class="vote_button vote_down "
+				 onclick="vote('2-d69bc0b1aeafcc63c7d99509a65e0492','-')"  id="vote_down_small_2-d69bc0b1aeafcc63c7d99509a65e0492">
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a onclick="quote('d69bc0b1aeafcc63c7d99509a65e0492')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a></li>
+							<li><a onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','d69bc0b1aeafcc63c7d99509a65e0492','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a></li>
+							<li>
+								<a id="report_2_d69bc0b1aeafcc63c7d99509a65e0492"  onclick="report('d69bc0b1aeafcc63c7d99509a65e0492')">
+	
+										<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+								</a>
+							</li>
+						
+					</ul>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="hidden-xs">By</span> 
+		<a onclick="user_box('22083','6536','regular')">
+			<span class="hidden-xs">
+				<span class="midlarge ">
+					Imperatrix				</span>&nbsp;
+			</span>
+			<span class="visible-xs">
+				<span >
+					Imperatrix				</span>
+			</span>
+		</a>
+		<span id="user_box_6536"></span>
+		<i>1 year ago</i>
+		<span class="right hidden-md hidden-xs hidden-sm">
+			<i>
+			</i>
+	
+						<a class="comment_button" onclick="quote('d69bc0b1aeafcc63c7d99509a65e0492')"><span class="glyphicon glyphicon-comment"></span>&nbsp;Quote</a>
+			
+						<a class="comment_button" onclick="replyBox('4-409ad2875df93d6f6365224f613070c1','d69bc0b1aeafcc63c7d99509a65e0492','1')"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Reply</a>
+						<a class="comment_button " id="report_1_d69bc0b1aeafcc63c7d99509a65e0492" onclick="report('d69bc0b1aeafcc63c7d99509a65e0492')">
+	
+								<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Report
+						</a>
+		</span>
+	</div>
+	
+	<div class="col-md-1 hidden-sm hidden-xs comment_portrait">
+		<a href="https://www.legends-decks.com/profile/22083">
+			<div class="avatar avatar_comment" style="background-image:url('https://lh5.googleusercontent.com/-eIwarJ8VP-w/AAAAAAAAAAI/AAAAAAAAACs/Nfk9H_N2CIo/photo.jpg')">
+				
+			</div>
+		</a>
+			<img src="https://www.legends-decks.com/interface/badges/star_3.png" class="avatar_rank" alt="star_3"/>
+				<br/>
+					LEVEL.<b>14</b>
+						</div>
+	<div class="col-md-1 col-sm-1 hidden-xs comment_vote" id="vote_2-d69bc0b1aeafcc63c7d99509a65e0492">
+			<a class="vote_button vote_up " 
+ onclick="vote('2-d69bc0b1aeafcc63c7d99509a65e0492','+')"  id="vote_up_2-d69bc0b1aeafcc63c7d99509a65e0492">
+					<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<div class="vote_results">
+				<span  rel="tooltip" data-container="body" data-toggle="tooltip" data-placement="right" title="" data-original-title="From 1 vote">
+<span id='results_2-d69bc0b1aeafcc63c7d99509a65e0492' class='vote_blue'>+1</span>				</span>
+			</div>
+
+			<a class="vote_button vote_down "
+ onclick="vote('2-d69bc0b1aeafcc63c7d99509a65e0492','-')"  id="vote_down_2-d69bc0b1aeafcc63c7d99509a65e0492">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</a>
+	</div>
+	<div class="col-md-10 col-sm-10 col-xs-11 comment_text" id="text_d69bc0b1aeafcc63c7d99509a65e0492">
+		
+
+<div class="bbcode_quote">
+<div class="bbcode_quote_head">Weipeng Yang wrote:</div>
+<div class="bbcode_quote_body">
+<div class="bbcode_quote">
+<div class="bbcode_quote_head">nkaers wrote:</div>
+<div class="bbcode_quote_body">Asked myself the same question...<br />
+And what about Ungolim? He was in every deck too...</div>
+</div>
+This will &quot;Dilute&quot; your deck and maybe you will miss important draws.</div>
+</div>
+<br />
+why miss some draw? that card cost 1 to play and give you 3 cards that cost also 1 with 3/3 and letal..also when summon those will draw you a card, it's just a draw that cost 1 magika and will grant you a very good card meanwhile filling the field	</div>
+			<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 signature hidden-xs"></div>
+	
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 j_reply" id="reply_d69bc0b1aeafcc63c7d99509a65e0492"></div>
+				</div>
+	
+				</div>	
+					<div id="replies_d69bc0b1aeafcc63c7d99509a65e0492" class="ajx">	
 													</div>
 <div class="ad_leader">
 	<span class="hidden-sm hidden-xs">
@@ -1702,18 +3611,16 @@ Usualy I like to play video games, study english language and watch TV series, f
 		</script>
 	</span>
 </div>					<div class="pagination">
-					</div>									
+<span class="activepagin"> 1 </span><a class="pagin" href="https://www.legends-decks.com/deck/16602/2-legend-ramp-scout/2#comments">2</a><a class="pagin" href="https://www.legends-decks.com/deck/16602/2-legend-ramp-scout/2#comments">&gt;</a>					</div>									
 		</div>
 	</div>
 	
 	<div class="well">
 		<div class="well_title" id="reply_title">Reply</div>
 		<div class="well_body">
-					<div class="well_deny">
-						You must be logged in to reply.<br/>
-						Please
-							<a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span>&nbsp;Log In</a> or 
-							<a href="#" data-toggle="modal" data-target="#registerModal"><span class="glyphicon glyphicon-fire"></span>&nbsp;Register</a>
+					<div id="reply">
+						<textarea id="textarea_comment" name="textarea_comment" class="form-control"></textarea>
+						<button type="submit" id="submit_comment" onclick="insertComment('4-409ad2875df93d6f6365224f613070c1','1')" class="btn btn-default btn_widthmax">Reply</button>
 					</div>
 								
 		</div>
@@ -1728,7 +3635,7 @@ Usualy I like to play video games, study english language and watch TV series, f
 	</div>
 	<div class="footer">
 	<div class="row margintop max_container">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
 			<h3 class="panel-title">Navigate</h3>
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -1736,30 +3643,26 @@ Usualy I like to play video games, study english language and watch TV series, f
 						<a class="footer_link" href="https://www.legends-decks.com/deck-builder"><span class=" glyphicon glyphicon-th-list"></span>&nbsp;Deck Builder</a>
 						<a class="footer_link" href="https://www.legends-decks.com/articles"><span class=" glyphicon glyphicon-pencil"></span>&nbsp;Articles</a>
 						<a class="footer_link" href="https://www.legends-decks.com/cards"><span class=" glyphicon glyphicon-th-large"></span>&nbsp;Cards</a>
-						<a class="footer_link" href="https://www.legends-decks.com/forum"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Forum</a>
-						<a class="footer_link" href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span>&nbsp;Log In!</a>
-						<a class="footer_link" href="#" data-toggle="modal" data-target="#registerModal"><span class="glyphicon glyphicon-fire"></span>&nbsp;Register</a>
-					
-					</div>
+											</div>
 				</div>
 		</div>
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 			<h3 class="panel-title">More</h3>
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<a class="footer_link" href="https://www.legends-decks.com/tournaments">Tournaments Calendar</a>
-						<a class="footer_link" target="_blank" href="https://www.facebook.com/legendsdecks">Our Facebook</a>
-						<a class="footer_link" target="_blank" href="https://twitter.com/DecksLegends">Our Twitter</a>
+																		<a class="footer_link" href="https://www.legends-decks.com/profile/6160"><span class="glyphicon glyphicon-user"></span>&nbsp;My Profile</a>
+						<a class="footer_link" href="https://www.legends-decks.com/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log Out</a>
+		
 						<a class="footer_link" href="https://www.legends-decks.com/contact-us">Contact Us</a></a>
 						<a class="footer_link" href="https://www.legends-decks.com/terms-conditions">Terms and Conditions</a>
 						<a class="footer_link" href="https://www.legends-decks.com/privacy-policy">Privacy policy</a>
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+		<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
 			<h3 class="panel-title">Fetch Decks</h3>
 				<div class="row">
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 					
 						<a class="footer_link" href="https://www.legends-decks.com/decks/archer">
 							<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
@@ -1786,7 +3689,7 @@ Usualy I like to play video games, study english language and watch TV series, f
 							<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
 	
 							Mage						</a>
-</div><div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'>						<a class="footer_link" href="https://www.legends-decks.com/decks/monk">
+						<a class="footer_link" href="https://www.legends-decks.com/decks/monk">
 							<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
 							<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
 	
@@ -1811,7 +3714,7 @@ Usualy I like to play video games, study english language and watch TV series, f
 							<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
 	
 							Warrior						</a>
-</div><div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'>						<a class="footer_link" href="https://www.legends-decks.com/decks/strength">
+</div><div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'>						<a class="footer_link" href="https://www.legends-decks.com/decks/strength">
 							<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
 	
 							Strength						</a>
@@ -1835,12 +3738,37 @@ Usualy I like to play video games, study english language and watch TV series, f
 							<img src="https://www.legends-decks.com/interface/neutral.png" alt="neutral" class="small_class"/>
 	
 							Neutral						</a>
+</div><div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>						<a class="footer_link" href="https://www.legends-decks.com/decks/dagoth">
+							<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+							House Dagoth						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/hlaalu">
+							<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+							House Hlaalu						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/redoran">
+							<img src="https://www.legends-decks.com/interface/strength.png" alt="strength" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+							House Redoran						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/telvanni">
+							<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/agility.png" alt="agility" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+							House Telvanni						</a>
+						<a class="footer_link" href="https://www.legends-decks.com/decks/tribunal">
+							<img src="https://www.legends-decks.com/interface/intelligence.png" alt="intelligence" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/willpower.png" alt="willpower" class="small_class"/>
+							<img src="https://www.legends-decks.com/interface/endurance.png" alt="endurance" class="small_class"/>
+							Tribunal Temple						</a>
 						
 					</div>
 				</div>
 		</div>
 	</div>
-	
+	<!--
 	<div class="ashcorp_featured">
 		<div class="row">
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -1854,12 +3782,12 @@ Usualy I like to play video games, study english language and watch TV series, f
 			</div>
 		</div>
 	</div>
-	
+	-->
 	<div class="row margintop max_container">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center small margintop">
 			The Elder Scrolls, The Elder Scrolls: Legends, ZeniMax, Bethesda, Bethesda Softworks and related logos are registered trademarks or trademarks of ZeniMax Media Inc.
 			This website is not produced, endorsed, supported, or affiliated with ZeniMax Media Inc.&nbsp;
-			©Legends Decks 2017		</div>
+			©Legends Decks 2019		</div>
 	</div>
 </div>
 

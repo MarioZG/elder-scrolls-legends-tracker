@@ -13,11 +13,12 @@ using ESLTracker.BusinessLogic.Cards;
 using ESLTrackerTests.Builders;
 using ESLTracker.DataModel;
 using ESLTracker.BusinessLogic.Decks;
+using ESLTracker.BusinessLogic.Decks.DeckImports;
 
-namespace ESLTrackerTests.BusinessLogic.Decks
+namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
 {
     [TestClass()]
-    public class DeckImporterTests
+    public class WebImporterTests
     {
         Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
         Mock<ICardsDatabaseFactory> cardsDatabaseFactory = new Mock<ICardsDatabaseFactory>();
@@ -32,48 +33,16 @@ namespace ESLTrackerTests.BusinessLogic.Decks
 
         }
 
-        [TestMethod]
-        public void GetCardQtyTest001()
-        {
-            string line = "3 some card name wirh number 2";
-
-            int actual = CreateDeckImporter().GetCardQty(line.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-
-            Assert.AreEqual(3, actual);
-        }
-
-        [TestMethod]
-        public void GetCardQtyTest002()
-        {
-            string line = "-2 some card name wirh number 5";
-
-            int actual = CreateDeckImporter().GetCardQty(line.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-
-            Assert.AreEqual(-2, actual);
-        }
-
-        [TestMethod]
-        public void GetCardNameTest()
-        {
-            string line = "-2 some card name wirh number 5";
-
-            string actual = CreateDeckImporter().GetCardName(line.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-
-            Assert.AreEqual("some card name wirh number 5", actual);
-        }
-
         [TestMethod()]
         [DeploymentItem("./BusinessLogic/Decks/Data/DeckImportTest001.txt", "./BusinessLogic/Decks/Data/")]
-        public void FindCardsDataTest001_SampleDeck()
+        public async Task FindCardsDataTest001_SampleDeck()
         {
-            string data = File.ReadAllText("./BusinessLogic/Decks/Data/DeckImportTest001.txt");
+            string data = "./BusinessLogic/Decks/Data/DeckImportTest001.txt";
 
             cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new CardBuilder().Build());
 
             var di = CreateDeckImporter();
-            di.Cards = new List<CardInstance>();
-            data = di.FindCardsData(data);
-            di.ImportFromTextProcess(data);
+            await di.Import(data);
 
             Assert.IsTrue(di.Cards.Count > 0);
             Assert.AreEqual(50, di.Cards.Sum( c=> c.Quantity));
@@ -81,17 +50,15 @@ namespace ESLTrackerTests.BusinessLogic.Decks
 
         [TestMethod()]
         [DeploymentItem("./BusinessLogic/Decks/Data/DeckImportTest002.txt", "./BusinessLogic/Decks/Data/")]
-        public void FindCardsDataTest002_SampleDeckWithTitle()
+        public async Task FindCardsDataTest002_SampleDeckWithTitle()
         {
-            string data = File.ReadAllText("./BusinessLogic/Decks/Data/DeckImportTest002.txt");
+            string data = "./BusinessLogic/Decks/Data/DeckImportTest002.txt";
             string expectedName = "CVH's Reanimator Control Rage Warrior";
 
             cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new Card());
 
             var di = CreateDeckImporter();
-            di.Cards = new List<CardInstance>();
-            data = di.FindCardsData(data);
-            di.ImportFromTextProcess(data);
+            await di.Import(data);
 
 
             Assert.IsTrue(di.Cards.Count > 0);
@@ -101,17 +68,15 @@ namespace ESLTrackerTests.BusinessLogic.Decks
 
         [TestMethod()]
         [DeploymentItem("./BusinessLogic/Decks/Data/DeckImportTest003.txt", "./BusinessLogic/Decks/Data/")]
-        public void FindCardsDataTest003_SampleDeckWithTitleWithBraces()
+        public async Task FindCardsDataTest003_SampleDeckWithTitleWithBraces()
         {
-            string data = File.ReadAllText("./BusinessLogic/Decks/Data/DeckImportTest003.txt");
+            string data = "./BusinessLogic/Decks/Data/DeckImportTest003.txt";
             string expectedName = "Control Resummon Monk (Rank 5~)";
 
             cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new Card());
 
             var di = CreateDeckImporter();
-            di.Cards = new List<CardInstance>();
-            data = di.FindCardsData(data);
-            di.ImportFromTextProcess(data);
+            await di.Import(data);
 
 
             Assert.IsTrue(di.Cards.Count > 0);
@@ -119,9 +84,9 @@ namespace ESLTrackerTests.BusinessLogic.Decks
             Assert.AreEqual(expectedName, di.DeckName);
         }
 
-        private DeckImporter CreateDeckImporter()
+        private WebImporter CreateDeckImporter()
         {
-            return new DeckImporter(cardsDatabaseFactory.Object, cardInstanceFactory.Object);
+            return new WebImporter(cardsDatabaseFactory.Object, cardInstanceFactory.Object);
         }
     }
 }

@@ -83,13 +83,13 @@ namespace ESLTracker.ViewModels.Decks.Tests
         {
             return new DeckEditViewModel(
                 mockLogger.Object,
-                mockCardInstanceFactory, 
-                mockDeckImporter.Object,
+                mockCardInstanceFactory,
                 mockTracker.Object, 
                 mockMessenger.Object, 
                 mockDatetimeProvider.Object, 
                 mockFileManager.Object, 
-                mockDeckService);
+                mockDeckService,
+                new DeckEditImportDeckViewModel(mockLogger.Object));
         }
 
         [TestMethod()]
@@ -104,37 +104,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Assert.AreEqual(deck, model.savedState);
         }
 
-        [TestMethod()]
-        public void LimitCardCountForDeckTest001_Constructed()
-        {
-            DeckEditViewModel model = CreateDeckEditVM();
-
-            bool actual = model.LimitCardCountForDeck(new Deck() { Type = DataModel.Enums.DeckType.Constructed });
-
-            Assert.AreEqual(true, actual);
-
-        }
-
-        [TestMethod()]
-        public void LimitCardCountForDeckTest001_SoloArena()
-        {
-            DeckEditViewModel model = CreateDeckEditVM();
-
-            bool actual = model.LimitCardCountForDeck(new Deck() { Type = DataModel.Enums.DeckType.SoloArena });
-
-            Assert.AreEqual(false, actual);
-        }
-
-
-        [TestMethod()]
-        public void LimitCardCountForDeckTest001_VersusArena()
-        {
-            DeckEditViewModel model = CreateDeckEditVM();
-
-            bool actual = model.LimitCardCountForDeck(new Deck() { Type = DataModel.Enums.DeckType.VersusArena });
-
-            Assert.AreEqual(false, actual);
-        }
+     
 
         [TestMethod()]
         public void SaveDeckTest001_OverwriteCurrent()

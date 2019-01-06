@@ -8,6 +8,7 @@ namespace ESLTracker.BusinessLogic.Decks
     {
         bool CanDelete(Deck deck);
         void DeleteDeck(Deck deck);
+        bool LimitCardCountForDeck(Deck deckToCheck);
         void EnforceCardLimit(CardInstance card);
         IEnumerable<Game> GetDeckGames(Deck deck);
         bool SearchString(Deck d, string searchString);

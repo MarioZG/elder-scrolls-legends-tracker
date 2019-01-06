@@ -142,6 +142,10 @@ namespace ESLTracker
             splash.UpdateProgress("Checking data file");
             CheckDataFile(container.GetInstance<FileLoader>());
 
+#if DEBUG
+            var dependecies = container.AnalizeDependecies();
+#endif
+
             container.Verify();  //must be outside container constrcutor, otherwise lot of XAML errors in unit tests
                                  //executed after check for new cards db, otheriwse issues when deserailising tracker db - cards from old version can be missing
                                 

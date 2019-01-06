@@ -14,21 +14,23 @@ namespace ESLTracker.BusinessLogic.Decks
         ISettings settings;
         IDateTimeProvider dateTimeProvider;
         IGuidProvider guidProvider;
-        //IDeckVersionFactory deckVersionFactory;
 
         public DeckService(
             ITracker tracker, 
             ISettings settings, 
             IDateTimeProvider dateTimeProvider,
             IGuidProvider guidProvider
-          //  IDeckVersionFactory deckVersionFactory
           )
         {
             this.tracker = tracker;
             this.settings = settings;
             this.dateTimeProvider = dateTimeProvider;
             this.guidProvider = guidProvider;
-           // this.deckVersionFactory = deckVersionFactory;
+        }
+
+        public bool LimitCardCountForDeck(Deck deckToCheck)
+        {
+            return deckToCheck?.Type == DataModel.Enums.DeckType.Constructed;
         }
 
         public void EnforceCardLimit(CardInstance card)

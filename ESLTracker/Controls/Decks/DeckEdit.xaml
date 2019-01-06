@@ -9,6 +9,7 @@
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:Cards="clr-namespace:ESLTracker.Controls.Cards" 
+             xmlns:DeckImporters="clr-namespace:ESLTracker.BusinessLogic.Decks.DeckImports"
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckEditViewModel]}"
              mc:Ignorable="d" 
              x:Name="deckEdit"
@@ -20,8 +21,9 @@
         <DockPanel>
             <Menu FontSize="14" DockPanel.Dock="Top">
                 <MenuItem Header="Import">
-                    <MenuItem Header="From web" Command="{Binding CommandStartImportWeb}"/>
-                    <MenuItem Header="From text" Command="{Binding CommandImport}" CommandParameter="{Binding DataContext.DeckImporter, ElementName=importControl}"/>
+                    <MenuItem Header="From web" Command="{Binding CommandImport}" CommandParameter="{x:Type DeckImporters:WebImporter}"/>
+                    <MenuItem Header="From text" Command="{Binding CommandImport}" CommandParameter="{x:Type DeckImporters:TextImporter}"/>
+                    <MenuItem Header="From SP code" Command="{Binding CommandImport}" CommandParameter="{x:Type DeckImporters:SPCodeImporter}"/>
                 </MenuItem>
                 <MenuItem Header="Cancel" Command="{Binding CommandCancel}"/>
                 <MenuItem Header="Save"
@@ -81,7 +83,6 @@
                 <Border 
             MinWidth="200"
             DockPanel.Dock="Right" 
-            Visibility="{Binding DataContext.ShowImportPanel, ElementName=deckEdit, ConverterParameter=not, Converter={Converters:BoolToVisibilty}}"
             Style="{StaticResource EditDeck_FormSection}">
                     <DockPanel>
                         <TextBlock 
@@ -103,50 +104,19 @@
                     </DockPanel>
                 </Border>
                 <Border 
-                Visibility="{Binding DataContext.ShowImportPanel, ElementName=deckEdit, ConverterParameter=not, Converter={Converters:BoolToVisibilty}}"
                 Style="{StaticResource EditDeck_FormSection}">
                     <Cards:CardListEditor MinWidth="200"
                     CardCollection="{Binding DataContext.CurrentVersion.Cards, ElementName=deckEdit}" 
                     LimitCardCount="{Binding DataContext.LimitCardCount, ElementName=deckEdit}"/>
                 </Border>
-                <WrapPanel
-            Visibility="{Binding DataContext.ShowImportPanel, ElementName=deckEdit, Converter={Converters:BoolToVisibilty}}">
-                    <local:ImportText x:Name="importControl" />
-                </WrapPanel>
             </DockPanel>
 
         </DockPanel>
-        <Grid Visibility="{Binding ShowImportFromUrlPanel, Converter={Converters:BoolToVisibilty}}">
+        <Grid Visibility="{Binding ShowImportPanel, Converter={Converters:BoolToVisibilty}}">
             <Grid Background="Black" Opacity="0.5"/>
-            <Border
-                MinWidth="250"
-                Margin="10,50,10,0"
-                BorderBrush="Black" 
-                BorderThickness="1" 
-                HorizontalAlignment="Stretch" 
-                VerticalAlignment="Top">
-                <DockPanel Background="White">
-                    <Label Margin="7,0,0,0" DockPanel.Dock="Top">Please provide url</Label>
-                    <UniformGrid DockPanel.Dock="Bottom" Margin="10,0,10,10">
-                        <Button Command="{Binding CommandImportWeb}" CommandParameter="{Binding DataContext.DeckImporter, ElementName=importControl}">Import</Button>
-                        <Button Command="{Binding CommandImportWebCancel}">Cancel</Button>
-                    </UniformGrid>
-                    <StackPanel 
-                        Orientation="Horizontal" 
-                        DockPanel.Dock="Bottom"
-                        Margin="5"
-                        Visibility="{Binding CommandImportWeb.Execution.IsNotCompleted, Converter={Converters:BoolToVisibilty}, FallbackValue=Collapsed}">
-                        <fa:ImageAwesome Icon="Cog" Spin="True" Width="16" Margin="5,0,5,5" />
-                        <TextBlock Text="Importing...." />
-                    </StackPanel>
-                    <Label
-                        DockPanel.Dock="Bottom"
-                        Content="{Binding WebDeckUrlImportError}"
-                        Visibility="{Binding WebDeckUrlImportError,
-                        Converter={Converters:ObjectToVisibilty}}" Foreground="Red" />
-                    <TextBox Margin="10,0,10,10" HorizontalAlignment="Stretch" Text="{Binding WebDeckUrl}"></TextBox>
-                </DockPanel>
-            </Border>
+            <local:DeckEditImportDeck Margin="10,50,10,0"
+                DataContext="{Binding DeckEditImportDeckDataContext}"
+            />
         </Grid>
     </Grid>
 </UserControl>

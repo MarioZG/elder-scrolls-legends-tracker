@@ -1,6 +1,7 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
+using ESLTracker.BusinessLogic.Decks.DeckImports;
 using ESLTracker.BusinessLogic.GameClient;
 using ESLTracker.BusinessLogic.Games;
 using ESLTracker.BusinessLogic.General;
@@ -16,8 +17,12 @@ using ESLTracker.Utils.LiveCharts;
 using ESLTracker.Utils.NLog;
 using ESLTracker.Utils.SystemWindowsWrappers;
 using ESLTracker.ViewModels;
+using ESLTracker.ViewModels.Decks;
 using ESLTracker.Windows;
 using SimpleInjector;
+using SimpleInjector.Diagnostics;
+using System.Linq;
+using System.Text;
 
 namespace ESLTracker.Utils.SimpleInjector
 {
@@ -60,7 +65,6 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IVersionService, VersionService>();
             Register<IHTTPService, HTTPService>();
             Register<IApplicationInfo, ApplicationInfo>();
-            Register<IDeckImporter, DeckImporter>();
             Register<IRewardFactory, RewardFactory>();
             Register<IResources, Resources>();
             Register<IGuidProvider, GuidProvider>();
@@ -71,10 +75,15 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IDeckTextExport, BBCodeExport>();
             Register<IDeckExporterText, DeckExporterText>();
             Register<IDataToSeriesTranslator, DataToSeriesTranslator>();
+            Register<ICardSPCodeProvider, CardSPCodeProvider>();
+            Register<DeckEditImportDeckViewModel, DeckEditImportDeckViewModel>();
+            
 
             Collection.Register<OverlayWindowBase>(typeof(App).Assembly);  //overlay windows
             Collection.Register<ViewModelBase>(typeof(App).Assembly);  //all view models, not needed but allows to verify all view models when Verify() is called
             Collection.Register<UpdateBase>(typeof(App).Assembly); //file updates
+
+            Collection.Register<IDeckImporter>(typeof(App).Assembly); //text, web and code importers
 
             RegisterConditional(
                 typeof(ILogger),
@@ -88,6 +97,37 @@ namespace ESLTracker.Utils.SimpleInjector
                 c => typeof(NLogLoggerProxy<>).MakeGenericType(typeof(object)),
                 Lifestyle.Singleton,
                 c => c.Consumer == null);
+        }
+
+        public string AnalizeDependecies()
+        {
+            try
+            {
+                Verify();
+            }
+            catch
+            {
+
+            }
+            var results = Analyzer.Analyze(this)
+                .OfType<ShortCircuitedDependencyDiagnosticResult>();
+
+            StringBuilder dependecies = new StringBuilder();
+            foreach (var result in results)
+            {
+                dependecies.AppendLine(result.Description);
+                dependecies.AppendLine(
+                    "Lifestyle of service with the short circuited dependency: " +
+                    result.Relationship.Lifestyle.Name);
+
+                dependecies.AppendLine("One of the following types was expected instead:");
+                foreach (var expected in result.ExpectedDependencies)
+                {
+                    dependecies.AppendLine("-" + expected.ServiceType.FullName);
+                }
+            }
+
+            return dependecies.ToString();
         }
     }
 }

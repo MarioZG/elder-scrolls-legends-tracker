@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ESLTracker.Controls.Decks
 {
     /// <summary>
-    /// Interaction logic for ImportText.xaml
+    /// Interaction logic for DeckEditImportDeck.xaml
     /// </summary>
-    public partial class ImportText : UserControl
+    public partial class DeckEditImportDeck : UserControl
     {
-        public ImportText()
+        public DeckEditImportDeck()
         {
             InitializeComponent();
         }

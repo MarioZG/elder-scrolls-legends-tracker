@@ -1,19 +1,10 @@
-﻿using ESLTracker.BusinessLogic.Decks;
-using ESLTracker.ViewModels.Decks;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ESLTracker.Controls.Decks
 {
@@ -87,7 +78,13 @@ namespace ESLTracker.Controls.Decks
                 DataModel.Deck deck = e.NewValue as DataModel.Deck;
                 DeckLastGamesIndicator control = d as DeckLastGamesIndicator;
                 deck.PropertyChanged += delegate {
-                    RefreshLastGamesIndicator(d.GetValue(LastGamesOutcomeProperty) as IEnumerable<bool>, control);
+                        d.Dispatcher.BeginInvoke(
+                            DispatcherPriority.ContextIdle,
+                             new Action(delegate ()
+                             {
+                                 RefreshLastGamesIndicator(d.GetValue(LastGamesOutcomeProperty) as IEnumerable<bool>, control);
+                             }
+                         ));
                 };
                 RefreshLastGamesIndicator(d.GetValue(LastGamesOutcomeProperty) as IEnumerable<bool>, control);
             }

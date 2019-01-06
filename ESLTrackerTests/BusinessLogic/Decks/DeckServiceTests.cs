@@ -579,6 +579,38 @@ namespace ESLTrackerTests.BusinessLogic.Decks
             Assert.AreEqual(activeDeck, mockTracker.Object.ActiveDeck);
         }
 
+        [TestMethod()]
+        public void LimitCardCountForDeckTest001_Constructed()
+        {
+            var deckService = CreateDeckService();
+
+            bool actual = deckService.LimitCardCountForDeck(new DeckBuilder().WithType(DeckType.Constructed).Build());
+
+            Assert.AreEqual(true, actual);
+
+        }
+
+        [TestMethod()]
+        public void LimitCardCountForDeckTest001_SoloArena()
+        {
+            var deckService = CreateDeckService();
+
+            bool actual = deckService.LimitCardCountForDeck(new DeckBuilder().WithType(DeckType.Constructed).Build());
+
+            Assert.AreEqual(false, actual);
+        }
+
+
+        [TestMethod()]
+        public void LimitCardCountForDeckTest001_VersusArena()
+        {
+            var deckService = CreateDeckService();
+
+            bool actual = deckService.LimitCardCountForDeck(new DeckBuilder().WithType(DeckType.Constructed).Build());
+
+            Assert.AreEqual(false, actual);
+        }
+
         private DeckService CreateDeckService()
         {
             return new DeckService(mockTracker.Object, mockSettings.Object, mockDatetimeProvider.Object, mockGuidProvider.Object);

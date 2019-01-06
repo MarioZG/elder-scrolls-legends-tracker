@@ -113,15 +113,26 @@
     <Compile Include="BusinessLogic\Decks\BBCodeExport.cs" />
     <Compile Include="BusinessLogic\Decks\DeckCalculations.cs" />
     <Compile Include="BusinessLogic\Decks\DeckExporterText.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckImports\BaseImporter.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckImports\CardSPCodeProvider.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckImports\ICardSPCodeProvider.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckImports\MissingSPCodeException.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckImports\SPCodeImporter.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckImports\WebImporter.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckImports\TextImporter.cs" />
     <Compile Include="BusinessLogic\Decks\DeckVersionFactory.cs" />
     <Compile Include="BusinessLogic\Decks\IDeckExporterText.cs" />
     <Compile Include="BusinessLogic\Decks\IDeckTextExport.cs" />
-    <Compile Include="BusinessLogic\Decks\IDeckVersionFactory.cs" />
     <Compile Include="BusinessLogic\Games\ChangeGameDeck.cs" />
     <Compile Include="BusinessLogic\Games\GameFactory.cs" />
     <Compile Include="BusinessLogic\Games\IGameFactory.cs" />
     <Compile Include="BusinessLogic\Games\RankCalculations.cs" />
     <Compile Include="BusinessLogic\Packs\CardSetsListProvider.cs" />
+    <Compile Include="Controls\Decks\DeckEditImportDeck.xaml.cs">
+      <DependentUpon>DeckEditImportDeck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Decks\DeckEditImportDeckViewModel.cs" />
+    <Compile Include="ViewModels\Decks\DeckImports\IImportUIOptions.cs" />
     <Compile Include="Utils\LiveCharts\DataToSeriesTranslator.cs" />
     <Compile Include="BusinessLogic\Packs\PackFactory.cs" />
     <Compile Include="BusinessLogic\Packs\PacksChartsDataCalculator.cs" />
@@ -174,6 +185,10 @@
     <Compile Include="Utils\SystemWindowsWrappers\IClipboardWrapper.cs" />
     <Compile Include="Utils\UserInfoMessages.cs" />
     <Compile Include="ViewModels\Cards\SelectCardViewModel.cs" />
+    <Compile Include="ViewModels\Decks\DeckImports\ImportUIOptionsFactory.cs" />
+    <Compile Include="ViewModels\Decks\DeckImports\Options\SPCodeImporterUIOptions.cs" />
+    <Compile Include="ViewModels\Decks\DeckImports\Options\TextImporterUIOptions.cs" />
+    <Compile Include="ViewModels\Decks\DeckImports\Options\WebImporterUIOptions.cs" />
     <Compile Include="ViewModels\Decks\DeckItemMenuOperationsViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckItemViewModel.cs" />
     <Compile Include="ViewModels\Packs\SetsDropdownViewModel.cs" />
@@ -234,9 +249,6 @@
     </Compile>
     <Compile Include="Controls\Decks\ArenaRank.xaml.cs">
       <DependentUpon>ArenaRank.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Decks\ImportText.xaml.cs">
-      <DependentUpon>ImportText.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\GameStatistics\GamesStatsDataGrid.xaml.cs">
       <DependentUpon>GamesStatsDataGrid.xaml</DependentUpon>
@@ -316,7 +328,6 @@
       <DependentUpon>RankedProgressChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="BusinessLogic\Decks\CardBreakdown.cs" />
-    <Compile Include="BusinessLogic\Decks\DeckImporter.cs" />
     <Compile Include="BusinessLogic\Cards\ICardImage.cs" />
     <Compile Include="BusinessLogic\Decks\IDeckImporter.cs" />
     <Compile Include="BusinessLogic\General\IVersionService.cs" />
@@ -426,7 +437,6 @@
     <Compile Include="ViewModels\Decks\DeckEditViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckPreviewViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckViewSortOrder.cs" />
-    <Compile Include="ViewModels\Decks\ImportTextViewModel.cs" />
     <Compile Include="ViewModels\FilterDateViewModel.cs" />
     <Compile Include="ViewModels\Windows\GameStatisticsViewModel.cs" />
     <Compile Include="ViewModels\Game\ChangeGameDeckViewModel.cs" />
@@ -504,6 +514,10 @@
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\Cards\SelectCardPresenter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Decks\DeckEditImportDeck.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -618,10 +632,6 @@
     <Page Include="Controls\Decks\ArenaRank.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\Decks\ImportText.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\GameStatistics\GamesStatsDataGrid.xaml">
       <SubType>Designer</SubType>
@@ -787,6 +797,7 @@
     <None Include="Resources\cards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="Resources\cardToCode.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

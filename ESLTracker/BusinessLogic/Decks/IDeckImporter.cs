@@ -10,12 +10,11 @@ namespace ESLTracker.BusinessLogic.Decks
     public interface IDeckImporter
     {
         string DeckName { get; }
-        StringBuilder sbErrors { get; }
+        StringBuilder Errors { get; }
         List<CardInstance> Cards { get; }
 
+        bool ValidateInput(object data);
         void CancelImport();
-        Task ImportFromText(string importData);
-        void ImportFinished(TaskCompletionSource<bool> tcs);
-        Task ImportFromWeb(string webDeckUrl);
+        Task<bool> Import(object data, Deck deck);
     }
 }

@@ -149,20 +149,25 @@ namespace ESLTrackerTests
             return t.GetFields(flags).Concat(GetAllFields(t.BaseType));
         }
 
+        private object lockObject = new object();
+
         private CardsDatabase cardsDatabase;
         protected CardsDatabase CardsDatabase
         {
             get
             {
-                if (cardsDatabase == null)
+                lock (lockObject)
                 {
-                    string cardsDatabasePath = new PathManager(null).CardsDatabasePath;
-                    if (System.IO.File.Exists(cardsDatabasePath))
+                    if (cardsDatabase == null)
                     {
-                        cardsDatabase = SerializationHelper.DeserializeJson<CardsDatabase>(System.IO.File.ReadAllText(cardsDatabasePath));
+                        string cardsDatabasePath = new PathManager(null).CardsDatabasePath;
+                        if (System.IO.File.Exists(cardsDatabasePath))
+                        {
+                            cardsDatabase = SerializationHelper.DeserializeJson<CardsDatabase>(System.IO.File.ReadAllText(cardsDatabasePath));
+                        }
                     }
+                    return cardsDatabase;
                 }
-                return cardsDatabase;
             }
         }
     }
