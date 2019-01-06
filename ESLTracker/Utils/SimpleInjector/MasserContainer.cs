@@ -76,7 +76,7 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IDeckExporterText, DeckExporterText>();
             Register<IDataToSeriesTranslator, DataToSeriesTranslator>();
             Register<ICardSPCodeProvider, CardSPCodeProvider>();
-            Register<DeckEditImportDeckViewModel, DeckEditImportDeckViewModel>();
+            Register<IDeckEditImportDeckViewModel, DeckEditImportDeckViewModel>();
             
 
             Collection.Register<OverlayWindowBase>(typeof(App).Assembly);  //overlay windows

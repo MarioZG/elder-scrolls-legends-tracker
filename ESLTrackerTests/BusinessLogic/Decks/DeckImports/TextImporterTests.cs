@@ -24,7 +24,7 @@ namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
         Mock<ICardsDatabase> cardsDatabase = new Mock<ICardsDatabase>();
         Mock<ICardsDatabaseFactory> cardsDatabaseFactory = new Mock<ICardsDatabaseFactory>();
         Mock<ICardInstanceFactory> cardInstanceFactory = new Mock<ICardInstanceFactory>();
-        Mock<DeckService> mockDeckService = new Mock<DeckService>();
+        Mock<IDeckService> mockDeckService = new Mock<IDeckService>();
 
         [TestInitialize]
         public void TestInitialize()

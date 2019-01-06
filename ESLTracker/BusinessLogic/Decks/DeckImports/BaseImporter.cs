@@ -18,7 +18,7 @@ namespace ESLTracker.BusinessLogic.Decks.DeckImports
         //out
         public StringBuilder Errors { get; } = new StringBuilder();
         public string Status { get; set; }
-        public List<CardInstance> Cards { get; set; }
+        public List<CardInstance> Cards { get; set; } = new List<CardInstance>();
         public string DeckName { get; protected set; }
 
         private bool wasCancelled = false;
@@ -32,11 +32,11 @@ namespace ESLTracker.BusinessLogic.Decks.DeckImports
             this.cardInstanceFactory = cardInstanceFactory;
         }
 
-        public async Task<bool> Import(object importData, Deck deck)
+        public async Task<bool> Import(object importData, Deck deck = null)
         {
             ImportData = importData;
 
-            Cards = new List<CardInstance>();
+            Cards.Clear();
             Errors.Clear();
 
             try

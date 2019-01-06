@@ -595,7 +595,7 @@ namespace ESLTrackerTests.BusinessLogic.Decks
         {
             var deckService = CreateDeckService();
 
-            bool actual = deckService.LimitCardCountForDeck(new DeckBuilder().WithType(DeckType.Constructed).Build());
+            bool actual = deckService.LimitCardCountForDeck(new DeckBuilder().WithType(DeckType.SoloArena).Build());
 
             Assert.AreEqual(false, actual);
         }
@@ -606,7 +606,7 @@ namespace ESLTrackerTests.BusinessLogic.Decks
         {
             var deckService = CreateDeckService();
 
-            bool actual = deckService.LimitCardCountForDeck(new DeckBuilder().WithType(DeckType.Constructed).Build());
+            bool actual = deckService.LimitCardCountForDeck(new DeckBuilder().WithType(DeckType.VersusArena).Build());
 
             Assert.AreEqual(false, actual);
         }

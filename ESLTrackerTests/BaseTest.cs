@@ -165,6 +165,10 @@ namespace ESLTrackerTests
                         {
                             cardsDatabase = SerializationHelper.DeserializeJson<CardsDatabase>(System.IO.File.ReadAllText(cardsDatabasePath));
                         }
+                        else
+                        {
+                            throw new DataFileException("cards.json not deployed");
+                        }
                     }
                     return cardsDatabase;
                 }

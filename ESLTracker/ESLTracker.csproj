@@ -191,6 +191,7 @@
     <Compile Include="ViewModels\Decks\DeckImports\Options\WebImporterUIOptions.cs" />
     <Compile Include="ViewModels\Decks\DeckItemMenuOperationsViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckItemViewModel.cs" />
+    <Compile Include="ViewModels\Decks\IDeckEditImportDeckViewModel.cs" />
     <Compile Include="ViewModels\Packs\SetsDropdownViewModel.cs" />
     <Compile Include="ViewModels\SessionOverlay\SessionOverviewViewModel.cs" />
     <Compile Include="ViewModels\Windows\AboutViewModel.cs" />

@@ -15,6 +15,6 @@ namespace ESLTracker.BusinessLogic.Decks
 
         bool ValidateInput(object data);
         void CancelImport();
-        Task<bool> Import(object data, Deck deck);
+        Task<bool> Import(object data, Deck deck = null);
     }
 }

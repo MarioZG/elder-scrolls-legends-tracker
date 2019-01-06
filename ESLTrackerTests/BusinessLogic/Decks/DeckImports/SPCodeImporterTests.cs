@@ -10,18 +10,19 @@ using System.Threading.Tasks;
 
 namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
 {
-    [TestClass()]
+    [TestClass]
+    [DeploymentItem("./Resources/cards.json", "./Resources/")]
     public class SPCodeImporterTests : BaseTest
     {
         private Mock<ICardInstanceFactory> mockCardInstanceFactory = new Mock<ICardInstanceFactory>();
         //protected Mock<ICardSPCodeProvider> mockCardSPCodeProvider = new Mock<ICardSPCodeProvider>();
 
         [TestMethod()]
-        public async Task ImportOneCardTest()
+        public void ImportOneCardTest()
         {
             SPCodeImporter importer = CreateObject();
 
-            await importer.Import("SPABakAAAA");
+            importer.ExecuteImport("SPABakAAAA");
 
             Assert.AreEqual(1, importer.Cards.Count);
             Assert.AreEqual(1, importer.Cards[0].Quantity);
@@ -30,11 +31,11 @@ namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
         }
 
         [TestMethod()]
-        public async Task ImportFullDeck()
+        public void ImportFullDeck()
         {
             SPCodeImporter importer = CreateObject();
 
-            await importer.Import("SPAKhyrrlxcdmvgOddeehqqqACmmkvAMmGqamyoorkakbDiSqNaMgalI"); //batman with sword!
+            importer.ExecuteImport("SPAKhyrrlxcdmvgOddeehqqqACmmkvAMmGqamyoorkakbDiSqNaMgalI"); //batman with sword!
 
             Assert.AreEqual(24, importer.Cards.Count);
             

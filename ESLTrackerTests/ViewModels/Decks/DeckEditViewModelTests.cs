@@ -29,7 +29,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
         Mock<IMessenger> mockMessenger = new Mock<IMessenger>();
         Mock<IFileSaver> mockFileManager = new Mock<IFileSaver>();
         DeckService mockDeckService;// = new DeckService();
-        //IDeckVersionFactory mockDeckVersionFactory;
+        Mock<IDeckEditImportDeckViewModel> mockDeckEditImportDeckViewModel = new Mock<IDeckEditImportDeckViewModel>();
 
         [TestInitialize]
         public override void TestInitialize()
@@ -89,7 +89,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
                 mockDatetimeProvider.Object, 
                 mockFileManager.Object, 
                 mockDeckService,
-                new DeckEditImportDeckViewModel(mockLogger.Object));
+                mockDeckEditImportDeckViewModel.Object);
         }
 
         [TestMethod()]

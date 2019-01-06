@@ -35,14 +35,14 @@ namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
 
         [TestMethod()]
         [DeploymentItem("./BusinessLogic/Decks/Data/DeckImportTest001.txt", "./BusinessLogic/Decks/Data/")]
-        public async Task FindCardsDataTest001_SampleDeck()
+        public void FindCardsDataTest001_SampleDeck()
         {
             string data = "./BusinessLogic/Decks/Data/DeckImportTest001.txt";
 
             cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new CardBuilder().Build());
 
             var di = CreateDeckImporter();
-            await di.Import(data);
+            di.ExecuteImport(data);
 
             Assert.IsTrue(di.Cards.Count > 0);
             Assert.AreEqual(50, di.Cards.Sum( c=> c.Quantity));
@@ -50,7 +50,7 @@ namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
 
         [TestMethod()]
         [DeploymentItem("./BusinessLogic/Decks/Data/DeckImportTest002.txt", "./BusinessLogic/Decks/Data/")]
-        public async Task FindCardsDataTest002_SampleDeckWithTitle()
+        public void FindCardsDataTest002_SampleDeckWithTitle()
         {
             string data = "./BusinessLogic/Decks/Data/DeckImportTest002.txt";
             string expectedName = "CVH's Reanimator Control Rage Warrior";
@@ -58,7 +58,7 @@ namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
             cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new Card());
 
             var di = CreateDeckImporter();
-            await di.Import(data);
+            di.ExecuteImport(data);
 
 
             Assert.IsTrue(di.Cards.Count > 0);
@@ -68,7 +68,7 @@ namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
 
         [TestMethod()]
         [DeploymentItem("./BusinessLogic/Decks/Data/DeckImportTest003.txt", "./BusinessLogic/Decks/Data/")]
-        public async Task FindCardsDataTest003_SampleDeckWithTitleWithBraces()
+        public void FindCardsDataTest003_SampleDeckWithTitleWithBraces()
         {
             string data = "./BusinessLogic/Decks/Data/DeckImportTest003.txt";
             string expectedName = "Control Resummon Monk (Rank 5~)";
@@ -76,7 +76,7 @@ namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
             cardsDatabase.Setup(cb => cb.FindCardByName(It.IsAny<string>())).Returns(new Card());
 
             var di = CreateDeckImporter();
-            await di.Import(data);
+            di.ExecuteImport(data);
 
 
             Assert.IsTrue(di.Cards.Count > 0);

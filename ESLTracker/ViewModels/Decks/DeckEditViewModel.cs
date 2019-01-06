@@ -156,15 +156,13 @@ namespace ESLTracker.ViewModels.Decks
         //priate ariable used for IEditableObject implemenation. Keeps inital state of object
         internal Deck savedState;
 
-
-
         private ITracker tracker;
         private IMessenger messanger;
         private IDateTimeProvider dateTimeProvider;
         private IFileSaver fileManager;
         private IDeckService deckService;
         private ILogger logger;
-        public DeckEditImportDeckViewModel DeckEditImportDeckDataContext { get; set; }
+        public IDeckEditImportDeckViewModel DeckEditImportDeckDataContext { get; set; }
 
         public DeckEditViewModel(
             ILogger logger, 
@@ -174,7 +172,7 @@ namespace ESLTracker.ViewModels.Decks
             IDateTimeProvider dateTimeProvider,
             IFileSaver fileManager,
             IDeckService deckService,
-            DeckEditImportDeckViewModel deckEditImportDeckDataContext
+            IDeckEditImportDeckViewModel deckEditImportDeckDataContext
           )
         {
             this.cardInstanceFactory = cardInstanceFactory;

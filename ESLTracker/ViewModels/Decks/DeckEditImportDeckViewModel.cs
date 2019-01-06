@@ -12,10 +12,10 @@ using System.Windows.Input;
 
 namespace ESLTracker.ViewModels.Decks
 {
-    public class DeckEditImportDeckViewModel : ViewModelBase
+    public class DeckEditImportDeckViewModel : ViewModelBase, IDeckEditImportDeckViewModel
     {
         //deckiMporter last chosen from menu, should be set to null when finished
-        internal IDeckImporter SelectedDeckImporter { get; private set; }
+        public IDeckImporter SelectedDeckImporter { get; private set; }
         private DeckEditViewModel parentVM { get; set; }
 
         private readonly ILogger logger;
@@ -62,7 +62,7 @@ namespace ESLTracker.ViewModels.Decks
             CommandImport = new RealyAsyncCommand<object>(CommandImportExecute, CommandImportCanExecute);
         }
 
-        internal void SetCurrentImporter(Type type, DeckEditViewModel parentVM, bool getDataFromClipboard = false)
+        public void SetCurrentImporter(Type type, DeckEditViewModel parentVM, bool getDataFromClipboard = false)
         {
             this.parentVM = parentVM;
             if (type == null)
