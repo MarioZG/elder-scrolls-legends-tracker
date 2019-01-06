@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESLTracker.BusinessLogic.Decks
+namespace ESLTracker.BusinessLogic.Decks.DeckExports
 {
     public class BBCodeExport : IDeckTextExport
     {

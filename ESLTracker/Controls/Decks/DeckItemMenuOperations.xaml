@@ -7,10 +7,10 @@
                     >
     <x:Array Type="{x:Type sys:Object}" x:Key="newDeckMenuItem">
         <MenuItem 
-                              Command="{Binding CommandNewDeck}" 
-                              VerticalAlignment="Center"
-                              Header="New Deck"
-                              >
+            Command="{Binding CommandNewDeck}" 
+            VerticalAlignment="Center"
+            Header="New Deck"
+            >
             <MenuItem.Icon>
                 <Grid>
                     <fa:ImageAwesome Icon="Plus" HorizontalAlignment="Left" VerticalAlignment="Top" Height="10"/>
@@ -71,6 +71,16 @@
             VerticalAlignment="Center"
             Header="Export to text"
             ToolTip="Export to text in BB code fotmat from legends decks"
+            >
+            <MenuItem.Icon>
+                <fa:ImageAwesome Icon="SignOut"/>
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem 
+            Command="{Binding CommandExportToSPCode}" 
+            VerticalAlignment="Center"
+            Header="Export to SP code"
+            ToolTip="Export code used by game client"
             >
             <MenuItem.Icon>
                 <fa:ImageAwesome Icon="SignOut"/>

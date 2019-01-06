@@ -10,8 +10,9 @@ using ESLTracker.DataModel;
 using Moq;
 using ESLTracker.Utils;
 using ESLTracker.Utils.SystemWindowsWrappers;
+using ESLTracker.BusinessLogic.Decks.DeckExports;
 
-namespace ESLTracker.BusinessLogic.Decks.Tests
+namespace ESLTracker.BusinessLogic.Decks.DeckExports.Tests
 {
     [TestClass()]
     public class DeckExporterTextTests 

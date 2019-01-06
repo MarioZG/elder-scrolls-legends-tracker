@@ -1,6 +1,6 @@
 ﻿using ESLTracker.DataModel;
 
-namespace ESLTracker.BusinessLogic.Decks
+namespace ESLTracker.BusinessLogic.Decks.DeckExports
 {
     public interface IDeckTextExport
     {

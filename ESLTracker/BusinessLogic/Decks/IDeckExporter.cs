@@ -2,7 +2,7 @@
 
 namespace ESLTracker.BusinessLogic.Decks
 {
-    public interface IDeckExporterText
+    public interface IDeckExporter
     {
         bool ExportDeck(Deck deck);
     }

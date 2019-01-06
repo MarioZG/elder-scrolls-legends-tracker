@@ -1,5 +1,6 @@
 ﻿using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
+using ESLTracker.BusinessLogic.Decks.DeckExports;
 using ESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.DiagnosticsWrappers;
@@ -86,12 +87,22 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
+        public ICommand CommandExportToSPCode
+        {
+            get
+            {
+                return new RelayCommand(
+                            (object param) => CommandExportToSpCodeExecute((Deck)param),
+                            (object param) => ((param is Deck) && ((Deck)param).SelectedVersion != null));
+            }
+        }
+
         private readonly IDeckService deckService;
         private readonly IMessenger messanger;
         private readonly IFileSaver fileSaver;
         private readonly ITracker tracker;
         private readonly IProcessWrapper processWrapper;
-        private readonly IDeckExporterText deckExporterText;
+        private readonly IEnumerable<IDeckExporter> deckExporters;
 
         public DeckItemMenuOperationsViewModel(
             IMessenger messanger,
@@ -99,7 +110,7 @@ namespace ESLTracker.ViewModels.Decks
             ITracker tracker,
             IDeckService deckService,
             IProcessWrapper processWrapper,
-            IDeckExporterText deckExporterText
+            IEnumerable<IDeckExporter> deckExporters
            )
         {
             this.deckService = deckService;
@@ -107,7 +118,7 @@ namespace ESLTracker.ViewModels.Decks
             this.fileSaver = fileSaver;
             this.tracker = tracker;
             this.processWrapper = processWrapper;
-            this.deckExporterText = deckExporterText;
+            this.deckExporters = deckExporters;
         }
 
         public void NewDeck(object parameter)
@@ -170,10 +181,21 @@ namespace ESLTracker.ViewModels.Decks
             processWrapper.Start(param.DeckUrl);
         }
 
+        //command param used for deck, cannot pass export type here as in imports :(
         public void CommandExportToTextExecute(Deck deck)
         {
-            if (deckService.CanExport(deck)) {
-                deckExporterText.ExportDeck(deck);
+            if (deckService.CanExport(deck))
+            {
+                deckExporters.Where(de=> de.GetType() == typeof(DeckExporterText)).Single().ExportDeck(deck);
+            }
+        }
+
+        //command param used for deck, cannot pass export type here as in imports :(
+        public void CommandExportToSpCodeExecute(Deck deck)
+        {
+            if (deckService.CanExport(deck))
+            {
+                deckExporters.Where(de => de.GetType() == typeof(DeckExporterSPCode)).Single().ExportDeck(deck);
             }
         }
     }

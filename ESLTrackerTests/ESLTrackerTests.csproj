@@ -84,7 +84,7 @@
     <Compile Include="BusinessLogic\DataFile\FileUpdaterTests.cs" />
     <Compile Include="BusinessLogic\Decks\CardBreakdownTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckCalculationsTests.cs" />
-    <Compile Include="BusinessLogic\Decks\DeckExporterTextTests.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckExports\DeckExporterTextTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckImports\SPCodeImporterTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckImports\WebImporterTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckVersionService.cs" />

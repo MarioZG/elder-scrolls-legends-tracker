@@ -1,6 +1,7 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
+using ESLTracker.BusinessLogic.Decks.DeckExports;
 using ESLTracker.BusinessLogic.Decks.DeckImports;
 using ESLTracker.BusinessLogic.GameClient;
 using ESLTracker.BusinessLogic.Games;
@@ -73,7 +74,7 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<IWinDialogs, WinDialogs>();
             Register<IClipboardWrapper, ClipboardWrapper>();
             Register<IDeckTextExport, BBCodeExport>();
-            Register<IDeckExporterText, DeckExporterText>();
+            Register<IDeckExporter, DeckExporterText>();
             Register<IDataToSeriesTranslator, DataToSeriesTranslator>();
             Register<ICardSPCodeProvider, CardSPCodeProvider>();
             Register<IDeckEditImportDeckViewModel, DeckEditImportDeckViewModel>();
@@ -84,6 +85,7 @@ namespace ESLTracker.Utils.SimpleInjector
             Collection.Register<UpdateBase>(typeof(App).Assembly); //file updates
 
             Collection.Register<IDeckImporter>(typeof(App).Assembly); //text, web and code importers
+            Collection.Register<IDeckExporter>(typeof(App).Assembly); //text, web and code importers
 
             RegisterConditional(
                 typeof(ILogger),
