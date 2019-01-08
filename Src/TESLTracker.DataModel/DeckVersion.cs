@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using TESLTracker.Utils;
+using TESLTracker.Utils.Extensions;
 
 namespace TESLTracker.DataModel
 {

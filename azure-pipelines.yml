@@ -1,0 +1,113 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@0
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: GitVersion@4
+  inputs:
+    updateAssemblyInfo: true
+    updateAssemblyInfoFilename: ESLTracker/Properties/AssemblyVersion.cs
+
+- script: echo $(Build.BuildNumber)
+- script: echo $(GitVersion.NuGetVersion)
+- script: echo $(GitVersion.SemVer)
+- script: echo 'Major:'+$(GitVersion.Major)
+- script: echo 'Patch:'+$(GitVersion.Patch)
+   
+
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+# Create drop artifact - zip with application
+# copy to have root folder in zip file
+- task: CopyFiles@1
+  inputs:
+    sourceFolder: $(Build.SourcesDirectory)\ESLTracker\bin\Release
+    contents: '**\*'
+    targetFolder: '$(Build.ArtifactStagingDirectory)\ESLTracker'    
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)\ESLTracker' 
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/ESLTracker_$(Build.BuildNumber).zip' 
+    replaceExistingArchive: true 
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: $(Build.ArtifactStagingDirectory)\ESLTracker_$(Build.BuildNumber).zip
+    artifactName: Drops
+# create drop artifctr finished
+
+#create and push nuget with lastest version
+- task: NuGetCommand@2
+  inputs:
+    command: pack
+    packagesToPack: '**/ESLTracker.csproj'
+    includeReferencedProjects: true
+    # versioningScheme: byEnvVar
+    # versionEnvVar: $(GitVersion.SemVer)
+    versioningScheme: byPrereleaseNumber
+    majorVersion: $(GitVersion.Major) # Required when versioningScheme == ByPrereleaseNumber
+    minorVersion: $(GitVersion.Minor) # Required when versioningScheme == ByPrereleaseNumber
+    patchVersion: $(GitVersion.Patch) # Required when versioningScheme == ByPrereleaseNumber
+    packTimezone: 'utc' # Required when versioningScheme == ByPrereleaseNumber# Options: utc, local
+    # versioningScheme: byBuildNumber
+  
+- task: NuGetCommand@2
+  displayName: 'NuGet push'
+  inputs:
+    command: push
+    publishVstsFeed: 'Masser-Release'
+    allowPackageConflicts: true
+
+
+#create and push data model nuget
+- task: NuGetCommand@2
+  inputs:
+    command: pack
+    packagesToPack: '**\*.nuspec'
+    includeReferencedProjects: true
+    # versioningScheme: byEnvVar
+    # EnvVar: $(GitVersion.SemVer)
+    versioningScheme: byPrereleaseNumber
+    majorVersion: $(GitVersion.Major) # Required when versioningScheme == ByPrereleaseNumber
+    minorVersion: $(GitVersion.Minor) # Required when versioningScheme == ByPrereleaseNumber
+    patchVersion: $(GitVersion.Patch) # Required when versioningScheme == ByPrereleaseNumber
+    packTimezone: 'utc' # Required when versioningScheme == ByPrereleaseNumber# Options: utc, local
+    # versioningScheme: byBuildNumber
+  
+- script: echo 'DM package'$(Build.SourcesDirectory)\Src\TESLTracker.DataModel\bin\Debug\TESLTracker.DataModel.1.0.0.nupkg # Required when command == Push
+
+- task: NuGetCommand@2
+  displayName: 'NuGet push Datamodel'
+  inputs:
+    command: push
+    packagesToPush: '$(Build.ArtifactStagingDirectory)\**\TESLTracker.*.nupkg' # Required when command == Push
+    publishVstsFeed: 'Masser-Release'
+    allowPackageConflicts: true

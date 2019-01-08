@@ -15,14 +15,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{200098ED-62E7-40D1-B607-013A7799C167}"
 	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
 		Build\build.xml = Build\build.xml
 		Build\versions.json = Build\versions.json
 		Build\versions.targets = Build\versions.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TESLTracker.DataModel", "Src\TESLTracker.DataModel\TESLTracker.DataModel.csproj", "{B99AABE7-B02D-46EF-A4FE-7B536C2838FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TESLTracker.DataModel", "Src\TESLTracker.DataModel\TESLTracker.DataModel.csproj", "{B99AABE7-B02D-46EF-A4FE-7B536C2838FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TESLTracker.Utils", "Src\TESLTracker.Utils\TESLTracker.Utils.csproj", "{F6CFD416-634F-4E9E-A728-D5642728BD56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TESLTracker.Utils", "Src\TESLTracker.Utils\TESLTracker.Utils.csproj", "{F6CFD416-634F-4E9E-A728-D5642728BD56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
