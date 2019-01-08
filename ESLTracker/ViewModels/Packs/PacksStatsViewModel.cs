@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.DataModel;
 using ESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
@@ -90,7 +91,7 @@ namespace ESLTracker.ViewModels.Packs
             {
                 if (OrderedPacks.Count() > 0)
                 {
-                    return Math.Round(OrderedPacks.Average(p => p.SoulGemsValue), 0);
+                    return Math.Round(OrderedPacks.Average(p => soulGemCalculator.CalculateCardsSellValue(p.Cards)), 0);
                 }
                 else
                 {
@@ -111,7 +112,7 @@ namespace ESLTracker.ViewModels.Packs
         {
             get
             {
-                return OrderedPacks.Sum(p => p.SoulGemsValue);
+                return OrderedPacks.Sum(p => soulGemCalculator.CalculateCardsSellValue(p.Cards));
             }
         }
 
@@ -129,7 +130,7 @@ namespace ESLTracker.ViewModels.Packs
             get
             {
                 var count = OrderedPacks.Count();
-                return count > 0 ? (int?)OrderedPacks.Max(p => p.SoulGemsValue) : null;
+                return count > 0 ? (int?)OrderedPacks.Max(p => soulGemCalculator.CalculateCardsSellValue(p.Cards)) : null;
             }
         }
 
@@ -151,11 +152,13 @@ namespace ESLTracker.ViewModels.Packs
         }
 
         private ITracker tracker;
+        private SoulGemCalculator soulGemCalculator;
 
-        public PacksStatsViewModel(ITracker tracker)
+        public PacksStatsViewModel(ITracker tracker, SoulGemCalculator soulGemCalculator)
         {
             this.tracker = tracker;
             this.tracker.Packs.CollectionChanged += Packs_CollectionChanged;
+            this.soulGemCalculator = soulGemCalculator;
         }
 
         private void Packs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

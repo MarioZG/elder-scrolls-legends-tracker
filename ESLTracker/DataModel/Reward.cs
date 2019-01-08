@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
-using ESLTracker.Utils;
 using ESLTracker.ViewModels;
 
 namespace ESLTracker.DataModel

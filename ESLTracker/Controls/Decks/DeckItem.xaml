@@ -45,7 +45,7 @@
         HorizontalAlignment="Stretch" 
         x:Name="LayoutRoot" >
         <StackPanel DockPanel.Dock="Left">
-            <ItemsControl ItemsSource="{Binding Path=Deck.Attributes.ImageSources}" BorderThickness="0"
+            <ItemsControl ItemsSource="{Binding Path=Deck, Converter={Converters:DeckOrDeckClassToAttributes}}" BorderThickness="0"
                           ToolTip="{Binding Deck.Class}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

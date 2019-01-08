@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ESLTracker.BusinessLogic.Cards
 {
-    internal class SoulGemCalculator
+    public class SoulGemCalculator
     {
         internal int CalculateCardsSellValue(IEnumerable<CardInstance> cards)
         {

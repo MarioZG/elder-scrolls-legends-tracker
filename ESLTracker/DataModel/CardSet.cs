@@ -23,30 +23,11 @@ namespace ESLTracker.DataModel
         [XmlIgnore]
         public bool HasPacks { get; set; }
 
-        //this shuld be in other class - decorator pattern or wpf converter?. Due to isses with serialisation left here
-        [XmlIgnore]
-        public object ImagePath
-        {
-            get
-            {
-                if (this.Id != Guid.Empty)
-                {
-                    Regex rgx = new Regex("[^a-zA-Z0-9]");
-                    var name = rgx.Replace(this.Name, "");
-                    return "pack://application:,,,/Resources/Sets/" + name + ".png";
-                }
-                else
-                {
-                    return Binding.DoNothing;
-                }
-            }
-        }
-
-        public static explicit operator CardSet(string name)
-        {
-            var cardDatabaseFactory = MasserContainer.Container.GetInstance<ICardsDatabaseFactory>();
-            return cardDatabaseFactory.GetCardsDatabase().CardSets.Where(cs => cs.Name.ToLower() == name.ToLower()).SingleOrDefault();
-        }
+        //public static explicit operator CardSet(string name)
+        //{
+        //    var cardDatabaseFactory = MasserContainer.Container.GetInstance<ICardsDatabaseFactory>();
+        //    return cardDatabaseFactory.GetCardsDatabase().CardSets.Where(cs => cs.Name.ToLower() == name.ToLower()).SingleOrDefault();
+        //}
 
         public override string ToString()
         {

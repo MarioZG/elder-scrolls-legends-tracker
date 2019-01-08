@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Packs"
+             xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters.NameToResourcePath"
              mc:Ignorable="d">
     <Grid>
         <ComboBox
@@ -13,7 +14,7 @@
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding ImagePath}" Width="16" Height="16" Margin="0,2,5,2" />
+                        <Image Source="{Binding Name, Converter={Converters:NameToResourcePathCardSetConverter}, ConverterParameter=Resources/Sets}" Width="16" Height="16" Margin="0,2,5,2" />
                         <TextBlock Text="{Binding Name}" />
                     </StackPanel>
                 </DataTemplate>

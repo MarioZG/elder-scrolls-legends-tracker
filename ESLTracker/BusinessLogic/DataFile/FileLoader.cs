@@ -1,7 +1,10 @@
-﻿using ESLTracker.DataModel;
+﻿using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.DataModel;
+using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
+using ESLTracker.Utils.SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,13 +20,20 @@ namespace ESLTracker.BusinessLogic.DataFile
         private readonly FileUpdater fileUpdater;
         private readonly ISettings settings;
         private readonly ILogger logger;
+        private readonly ICardsDatabaseFactory cardsDatabaseFactory;
 
-        public FileLoader(ISettings settings, PathManager pathManager, FileUpdater fileUpdater, ILogger logger)
+        public FileLoader(
+            ISettings settings, 
+            PathManager pathManager, 
+            FileUpdater fileUpdater, 
+            ILogger logger,
+            ICardsDatabaseFactory cardsDatabaseFactory)
         {
             this.pathManager = pathManager;
             this.fileUpdater = fileUpdater;
             this.settings = settings;
             this.logger = logger;
+            this.cardsDatabaseFactory = cardsDatabaseFactory;
         }
 
         public Tracker LoadDatabase(bool throwDataFileException = false)
@@ -35,6 +45,8 @@ namespace ESLTracker.BusinessLogic.DataFile
                 if (File.Exists(pathManager.FullDataFilePath))
                 {
                     tracker = SerializationHelper.DeserializeXmlPath<Tracker>(pathManager.FullDataFilePath);
+
+                    FixUpDataFileAfterDeserialisation(tracker);
 
                     //check for data update
                     if (tracker.Version < Tracker.CurrentFileVersion)
@@ -118,6 +130,26 @@ namespace ESLTracker.BusinessLogic.DataFile
             logger?.Trace($"LoadDatabase: finished. Tracker version={tracker.Version}");
 
             return tracker;
+        }
+
+        // populates Card property on CardInsatnce object (due to removing dependies in datamdel namesapce)
+        private void FixUpDataFileAfterDeserialisation(Tracker tracker)
+        {
+            var cardsDB = cardsDatabaseFactory.GetCardsDatabase();
+            foreach (CardInstance ci in tracker.Decks.SelectMany(d => d.History.SelectMany(h => h.Cards)))
+            {
+                ci.Card = cardsDB.FindCardById(ci.CardId);
+            }
+
+            foreach (CardInstance ci in tracker.Packs.SelectMany(p => p.Cards))
+            {
+                ci.Card = cardsDB.FindCardById(ci.CardId);
+            }
+
+            foreach (CardInstance ci in tracker.Rewards.Where(r => r.Type == RewardType.Card).Select(r => r.CardInstance))
+            {
+                ci.Card = cardsDB.FindCardById(ci.CardId);
+            }
         }
     }
 }

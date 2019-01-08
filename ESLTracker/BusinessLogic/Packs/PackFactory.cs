@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +16,10 @@ namespace ESLTracker.BusinessLogic.Packs
         public const int PackSize = 6;
         IEnumerable<CardInstance> CardsForEmptyPack => Enumerable.Range(1, PackSize).Select(i => new CardInstance());
 
-        public Pack CreatePack(IEnumerable<CardInstance> startringCards)
-        {
-            return CreatePack(startringCards, false);
-        }
-
-        public Pack CreatePack(IEnumerable<CardInstance> startringCards, bool raiseChangeEventsOnCards)
+        public Pack CreatePack(
+            IEnumerable<CardInstance> startringCards, 
+            bool raiseChangeEventsOnCards, 
+            PropertyChangedEventHandler refreshHandler)
         {
             #pragma warning disable CS0618 // used in factory
             Pack pack = new Pack();
@@ -35,54 +35,53 @@ namespace ESLTracker.BusinessLogic.Packs
 
             if (raiseChangeEventsOnCards)
             {
-                SetUpChangeEvents(pack);
+                SetUpChangeEvents(pack, refreshHandler);
             }
 
             return pack;
         }
 
-        public Pack CreateEmptyPack(bool raiseChangeEventsOnCards)
+        public Pack CreateEmptyPack(
+            bool raiseChangeEventsOnCards,
+            PropertyChangedEventHandler refreshHandler)
         {
             return CreatePack(
                 CardsForEmptyPack,
-                raiseChangeEventsOnCards);
+                raiseChangeEventsOnCards,
+                refreshHandler);
         }
 
-        public void ClearPack(Pack pack)
+        public void ClearPack(Pack pack, PropertyChangedEventHandler refreshHandler)
         {
             pack.Cards = new ObservableCollection<CardInstance>(CardsForEmptyPack);
-            SetUpChangeEvents(pack);
+            SetUpChangeEvents(pack, refreshHandler);
         }
 
-        private void SetUpChangeEvents(Pack pack)
+        private void SetUpChangeEvents(Pack pack, PropertyChangedEventHandler refreshHandler)
         {
-            pack.Cards.CollectionChanged += Cards_CollectionChanged;
+            pack.Cards.CollectionChanged += delegate (object sender, NotifyCollectionChangedEventArgs e)
+            {
+                if (e.NewItems != null)
+                {
+                    foreach (CardInstance ci in e.NewItems)
+                    {
+                        ci.PropertyChanged += refreshHandler;
+                    }
+                }
+
+                if (e.OldItems != null)
+                {
+                    foreach (CardInstance ci in e.OldItems)
+                    {
+                        ci.PropertyChanged -= refreshHandler;
+                    }
+                }
+            };
 
             if (pack.Cards != null)
             {
-                pack.Cards.All(c => { c.PropertyChanged += pack.RefreshBindings; return true; });
+                pack.Cards.All(c => { c.PropertyChanged += refreshHandler; return true; });
             }
         }
-
-        private void Cards_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (CardInstance ci in e.NewItems)
-                {
-                    ci.PropertyChanged += ((Pack)sender).RefreshBindings;// CardInstance_PropertyChanged;
-                }
-            }
-
-            if (e.OldItems != null)
-            {
-                foreach (CardInstance ci in e.OldItems)
-                {
-                       ci.PropertyChanged -= ((Pack)sender).RefreshBindings;//CardInstance_PropertyChanged;
-                }
-            }
-        }
-
-
     }
 }

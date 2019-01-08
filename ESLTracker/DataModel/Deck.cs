@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
-using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.DataModel
@@ -30,22 +29,6 @@ namespace ESLTracker.DataModel
         {
             get { return name; }
             set { SetProperty<string>(ref name, value); }
-        }
-
-        [XmlIgnore]
-        public DeckAttributes Attributes
-        {
-            get
-            {
-                if (Class.HasValue)
-                {
-                    return new DeckAttributes(Class.Value, ClassAttributesHelper.Classes[Class.Value]);
-                }
-                else
-                {
-                    return new DeckAttributes();
-                }
-            }
         }
 
         private DeckClass? deckClass;

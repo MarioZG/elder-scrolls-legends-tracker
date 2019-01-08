@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using ESLTracker.Utils;
+using ESLTracker.Utils.Extensions;
+using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ESLTracker.BusinessLogic.General;
-using ESLTracker.Utils;
-using ESLTracker.Utils.Extensions;
 
 namespace ESLTracker.DataModel
 {

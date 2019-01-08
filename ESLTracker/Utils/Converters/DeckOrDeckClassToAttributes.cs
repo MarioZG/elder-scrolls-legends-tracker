@@ -16,7 +16,15 @@ namespace ESLTracker.Utils.Converters
         {
             if (value is Deck)
             {
-                return ((Deck)value).Attributes.ImageSources;
+                Deck deck = (Deck)value;
+                if (deck.Class.HasValue)
+                {
+                    return ClassAttributesHelper.Classes[deck.Class.Value].ImageSources;
+                }
+                else
+                {
+                    return new DeckAttributes();
+                }
             }
             else if (value is DeckClass)
             {

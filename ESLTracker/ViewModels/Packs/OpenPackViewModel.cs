@@ -27,13 +27,22 @@ namespace ESLTracker.ViewModels.Packs
             }
         }
 
+        public int PackSoulGemsValue
+        {
+            get
+            {
+                return soulGemCalculator.CalculateCardsSellValue(Pack.Cards);
+            }
+        }
+           
+
         private void Pack_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(pack.CardSet))
             {
 
                 RaisePropertyChangedEvent(nameof(CardNamesList));
-                packFactory.ClearPack(Pack);
+                packFactory.ClearPack(Pack, this.RefreshBindings);
                 RaisePropertyChangedEvent(String.Empty);
             }
         }
@@ -79,6 +88,7 @@ namespace ESLTracker.ViewModels.Packs
         private readonly IFileSaver fileManager;
         private readonly ScreenshotNameProvider screenshotNameProvider;
         private readonly PackFactory packFactory;
+        private readonly SoulGemCalculator soulGemCalculator;
 
         public OpenPackViewModel(
             ICardInstanceFactory cardInstanceFactory,
@@ -89,7 +99,8 @@ namespace ESLTracker.ViewModels.Packs
             IFileSaver fileManager,
             IScreenShot screenShot,
             ScreenshotNameProvider screenshotNameProvider,
-            PackFactory packFactory)
+            PackFactory packFactory,
+            SoulGemCalculator soulGemCalculator)
         {
             this.cardInstanceFactory = cardInstanceFactory;
             this.screenShot = screenShot;
@@ -102,13 +113,14 @@ namespace ESLTracker.ViewModels.Packs
             this.fileManager = fileManager;
             this.screenshotNameProvider = screenshotNameProvider;
             this.packFactory = packFactory;
+            this.soulGemCalculator = soulGemCalculator;
 
             InitNewPack();
         }
 
         private void InitNewPack()
         {
-            Pack = packFactory.CreateEmptyPack(true);
+            Pack = packFactory.CreateEmptyPack(true, this.RefreshBindings);
             Pack.CardSet = GetDefaultPackSet();
         }
 
@@ -154,6 +166,17 @@ namespace ESLTracker.ViewModels.Packs
         private CardSet GetDefaultPackSet()
         {
             return cardsDatabaseFactory.GetCardsDatabase().FindCardSetById(settings.Packs_LastOpenedPackSetId);
+        }
+
+
+        internal void RefreshBindings(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(e.PropertyName)
+                  || (e.PropertyName == nameof(CardInstance.Card))
+                  || (e.PropertyName == nameof(CardInstance.IsPremium)))
+            {
+                RaisePropertyChangedEvent(nameof(PackSoulGemsValue));
+            }
         }
     }
 }

@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using ESLTracker.DataModel.Enums;
-using ESLTracker.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -17,8 +13,8 @@ namespace ESLTracker.DataModel
     public class Card
     {
         public static Card Unknown { get; } = new Card() {
-            Name = "Unknown" ,
-            Attributes = ClassAttributesHelper.Classes[DeckClass.Neutral]
+            Name = "Unknown",
+            Attributes = new DeckAttributes(DeckClass.Neutral, new DeckAttribute[] { DeckAttribute.Neutral })
         };
 
         private Guid id;

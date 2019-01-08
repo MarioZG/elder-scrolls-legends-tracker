@@ -25,7 +25,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <ItemsControl ItemsSource="{Binding Path=Attributes.ImageSources}" BorderThickness="0"
+                        <ItemsControl ItemsSource="{Binding Converter={Converters:DeckOrDeckClassToAttributes}}" BorderThickness="0"
                                 ToolTip="{Binding Class}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>

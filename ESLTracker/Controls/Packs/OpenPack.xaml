@@ -23,7 +23,7 @@
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[3], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" ShowIsPremium="True" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[4], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" ShowIsPremium="True" />
         <Cards:SelectCard CardInstance="{Binding Pack.Cards[5], Mode=TwoWay}" CardNameAutocomplete="{Binding CardNamesList}" ShowIsPremium="True" />
-        <TextBlock Margin="0,5,5,0" Text="{Binding Pack.SoulGemsValue, StringFormat={}Pack value: {0}}"/>
+        <TextBlock Margin="0,5,5,0" Text="{Binding PackSoulGemsValue, StringFormat={}Pack value: {0}}"/>
         <local:PacksStats Margin="-4,0,0,0" />
         <Button 
             Content="{Binding ButtonSaveLabel}"             

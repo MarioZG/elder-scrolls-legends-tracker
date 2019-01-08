@@ -10,10 +10,6 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
-using ESLTracker.BusinessLogic.Cards;
-using ESLTracker.Utils;
-using ESLTracker.Utils.Extensions;
-using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels;
 
 
@@ -22,15 +18,17 @@ namespace ESLTracker.DataModel
     [DebuggerDisplay("{DebuggerInfo}")]
     public class CardInstance : ViewModelBase, ICloneable
     {
+        private Guid cardId;
         public Guid CardId
         {
             get
             {
-                return Card != null ? Card.Id : Card.Unknown.Id;
+                return Card?.Id ?? cardId;
+
             }
             set
             {
-                LoadCardFromDataBase(value);
+                cardId = value;
             }
         }
 
@@ -76,11 +74,6 @@ namespace ESLTracker.DataModel
         public CardInstance()
         {
 
-        }
-
-        private void LoadCardFromDataBase(Guid value)
-        {
-            this.Card = MasserContainer.Container.GetInstance<ICardsDatabaseFactory>().GetCardsDatabase().FindCardById(value);
         }
 
         public object Clone()
