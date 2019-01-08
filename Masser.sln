@@ -20,6 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{200098ED
 		Build\versions.targets = Build\versions.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TESLTracker.DataModel", "Src\TESLTracker.DataModel\TESLTracker.DataModel.csproj", "{B99AABE7-B02D-46EF-A4FE-7B536C2838FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TESLTracker.Utils", "Src\TESLTracker.Utils\TESLTracker.Utils.csproj", "{F6CFD416-634F-4E9E-A728-D5642728BD56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +38,14 @@ Global
 		{8ECDB105-470D-4A59-830C-BA5F297CC449}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8ECDB105-470D-4A59-830C-BA5F297CC449}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8ECDB105-470D-4A59-830C-BA5F297CC449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B99AABE7-B02D-46EF-A4FE-7B536C2838FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B99AABE7-B02D-46EF-A4FE-7B536C2838FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B99AABE7-B02D-46EF-A4FE-7B536C2838FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B99AABE7-B02D-46EF-A4FE-7B536C2838FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6CFD416-634F-4E9E-A728-D5642728BD56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6CFD416-634F-4E9E-A728-D5642728BD56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6CFD416-634F-4E9E-A728-D5642728BD56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6CFD416-634F-4E9E-A728-D5642728BD56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

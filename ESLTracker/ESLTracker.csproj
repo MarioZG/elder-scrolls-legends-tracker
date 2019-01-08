@@ -133,6 +133,7 @@
       <DependentUpon>DeckEditImportDeck.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\Converters\NameToResourcePath\BaseConverter.cs" />
+    <Compile Include="Utils\Converters\NameToResourcePath\RewardTypeConverter.cs" />
     <Compile Include="Utils\Converters\NameToResourcePath\CardSetConverter.cs" />
     <Compile Include="ViewModels\Decks\DeckEditImportDeckViewModel.cs" />
     <Compile Include="ViewModels\Decks\DeckImports\IImportUIOptions.cs" />

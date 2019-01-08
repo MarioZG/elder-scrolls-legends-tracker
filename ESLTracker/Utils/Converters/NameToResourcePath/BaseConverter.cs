@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace ESLTracker.Utils.Converters.NameToResourcePath
 {
-    public abstract class NameToResourcePathBaseConverter<T> : MarkupConverter<T>, IValueConverter
+    public abstract class BaseConverter<T> : MarkupConverter<T>, IValueConverter
         where T : new()
     {
 
@@ -17,11 +17,8 @@ namespace ESLTracker.Utils.Converters.NameToResourcePath
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is string))
-            {
-                throw new ArgumentException(nameof(NameToResourcePathBaseConverter<T>) + " can accept only string as value");
-            }
-            string castedValue = (string)value;
+            ValidateValue(value);
+            string castedValue = value?.ToString();
             if (ShouldConvert(castedValue))
             {
                 Regex rgx = new Regex("[^a-zA-Z0-9]");
@@ -33,6 +30,8 @@ namespace ESLTracker.Utils.Converters.NameToResourcePath
                 return null;// Binding.DoNothing;
             }
         }
+
+        protected abstract void ValidateValue(object value);
 
         protected abstract bool ShouldConvert(string castedValue);
 

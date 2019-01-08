@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Xml.Serialization;
-using ESLTracker.DataModel.Enums;
-using ESLTracker.ViewModels;
+using TESLTracker.DataModel.Enums;
+using TESLTracker.Utils;
 
-namespace ESLTracker.DataModel
+namespace TESLTracker.DataModel
 {
     public class Reward : ViewModelBase
     {

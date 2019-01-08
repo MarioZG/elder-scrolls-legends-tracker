@@ -7,6 +7,7 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+             xmlns:ConvertersNameToRes="clr-namespace:ESLTracker.Utils.Converters.NameToResourcePath"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Rewards"
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
@@ -34,7 +35,7 @@
 
     <DockPanel LastChildFill="False" x:Name="dockPanel">
         <Image x:Name="image" Height="24" Width="24" Margin="0,0,0,10"
-               Source="{Binding Reward.TypeIcon}"
+               Source="{Binding Reward.Type, Converter={ConvertersNameToRes:RewardTypeConverter}}"
               >
         </Image>
         <TextBlock Width="60" Text="{Binding Reward.Type}"></TextBlock>
