@@ -69,7 +69,7 @@ steps:
   inputs:
     command: pack
     packagesToPack: '$(Build.SourcesDirectory)/ESLTracker/ESLTracker.csproj'
-    includeReferencedProjects: true
+    includeReferencedProjects: false
     # versioningScheme: byEnvVar
     # versionEnvVar: $(GitVersion.SemVer)
     versioningScheme: byPrereleaseNumber
