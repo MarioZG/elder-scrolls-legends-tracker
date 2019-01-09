@@ -1,10 +1,11 @@
-﻿using ESLTracker.DataModel;
+﻿using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TESLTracker.DataModel.Enums;
 
 namespace ESLTracker.BusinessLogic.Games
 {
@@ -38,7 +39,7 @@ namespace ESLTracker.BusinessLogic.Games
 
             //restore values that are likely the same,  like game type, player rank etc
             game.Type = previousGame.Type;
-            if (game.Type == DataModel.Enums.GameType.PlayRanked)
+            if (game.Type == GameType.PlayRanked)
             {
                 game.PlayerRank = previousGame.PlayerRank;
                 game.PlayerLegendRank = previousGame.PlayerLegendRank;

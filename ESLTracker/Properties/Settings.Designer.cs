@@ -110,9 +110,9 @@ namespace ESLTracker.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("TheRitual")]
-        public global::ESLTracker.DataModel.Enums.PlayerRank PlayerRank {
+        public global::TESLTracker.DataModel.Enums.PlayerRank PlayerRank {
             get {
-                return ((global::ESLTracker.DataModel.Enums.PlayerRank)(this["PlayerRank"]));
+                return ((global::TESLTracker.DataModel.Enums.PlayerRank)(this["PlayerRank"]));
             }
             set {
                 this["PlayerRank"] = value;

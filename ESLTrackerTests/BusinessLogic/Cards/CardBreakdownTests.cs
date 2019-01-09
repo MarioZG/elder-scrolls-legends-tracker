@@ -1,5 +1,5 @@
-﻿using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+﻿using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

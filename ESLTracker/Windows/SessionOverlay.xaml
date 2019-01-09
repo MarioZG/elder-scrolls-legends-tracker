@@ -7,7 +7,6 @@
         xmlns:base="clr-namespace:ESLTracker.Controls"
         xmlns:local="clr-namespace:ESLTracker.Windows"
         xmlns:Controls="clr-namespace:ESLTracker.Controls"
-        xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
         xmlns:Properties="clr-namespace:ESLTracker.Properties"
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         mc:Ignorable="d"

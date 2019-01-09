@@ -9,8 +9,6 @@
         xmlns:Decks="clr-namespace:ESLTracker.Controls.Decks" 
         x:Class="ESLTracker.Windows.MainWindow"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
-        xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
-        xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels"
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         xmlns:Properties="clr-namespace:ESLTracker.Properties" 
         xmlns:Controls="clr-namespace:ESLTracker.Controls" 

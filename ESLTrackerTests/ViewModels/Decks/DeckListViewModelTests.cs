@@ -6,8 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTrackerTests;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using Moq;
 using System.Collections.ObjectModel;
 using ESLTracker.Utils;
@@ -64,8 +64,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
         public new void TestInitialize()
         {
             base.TestInitialize();
-            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
-            tracker.Setup(t => t.Decks).Returns(new ObservableCollection<DataModel.Deck>());
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<TESLTracker.DataModel.Game>());
+            tracker.Setup(t => t.Decks).Returns(new ObservableCollection<TESLTracker.DataModel.Deck>());
 
         }
 
@@ -313,7 +313,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Deck deckToHide = new DeckBuilder().WithType(DeckType.VersusArena).WithClass(classFilter).Build();
 
             tracker.Setup(t => t.Games).Returns(
-                new ObservableCollection<DataModel.Game>(
+                new ObservableCollection<TESLTracker.DataModel.Game>(
                     GenerateGamesList(deckToShow, 2, 2).Union(GenerateGamesList(deckToHide, 7, 2))
                 ));
 
@@ -350,7 +350,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             Deck deckToHide = new DeckBuilder().WithType(DeckType.VersusArena).WithClass(DeckClass.Inteligence).Build();
 
             tracker.Setup(t => t.Games).Returns(
-                new ObservableCollection<DataModel.Game>(
+                new ObservableCollection<TESLTracker.DataModel.Game>(
                     GenerateGamesList(deckToShow, 2, 2).Union(GenerateGamesList(deckToHide, 7, 2))
                 ));
 

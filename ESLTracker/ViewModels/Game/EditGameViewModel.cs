@@ -7,21 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.Utils;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils.Messages;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Games;
 using ESLTracker.ViewModels.Decks;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Game
 {
     public class EditGameViewModel : ViewModelBase, IEditableObject
     {
-        public DataModel.Game game;
-        public DataModel.Game Game
+        public TESLTracker.DataModel.Game game;
+        public TESLTracker.DataModel.Game Game
         {
             get { return game; }
             set
@@ -37,7 +38,7 @@ namespace ESLTracker.ViewModels.Game
         {
             get
             {
-                return this.Game.Type == DataModel.Enums.GameType.PlayRanked;
+                return this.Game.Type == GameType.PlayRanked;
             }
         }
 
@@ -45,7 +46,7 @@ namespace ESLTracker.ViewModels.Game
         {   
             get
             {
-                return this.Game.Type == DataModel.Enums.GameType.PlayRanked;
+                return this.Game.Type == GameType.PlayRanked;
             }
         }
 
@@ -294,7 +295,7 @@ namespace ESLTracker.ViewModels.Game
             {
                 UpdateGameData(outcome);
 
-                DataModel.Game addedGame = this.Game;
+                TESLTracker.DataModel.Game addedGame = this.Game;
                 Game.Deck.LastUsed = Game.Date;
                 tracker.Games.Add(this.Game);
 
@@ -485,11 +486,11 @@ namespace ESLTracker.ViewModels.Game
             Game.UpdateAllBindings();
         }
 
-        DataModel.Game savedState;
+        TESLTracker.DataModel.Game savedState;
 
         public void BeginEdit()
         {
-            savedState = Game.Clone() as DataModel.Game;
+            savedState = Game.Clone() as TESLTracker.DataModel.Game;
         }
 
         public void EndEdit()

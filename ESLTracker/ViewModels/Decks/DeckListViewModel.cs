@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 using ESLTracker.Utils.Messages;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Decks
 {

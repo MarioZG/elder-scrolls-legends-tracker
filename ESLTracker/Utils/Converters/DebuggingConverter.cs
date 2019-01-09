@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 
 namespace ESLTracker.Utils.Converters
 {

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
+using TESLTracker.Utils;
 
 namespace ESLTracker.Utils.FileUpdaters
 {

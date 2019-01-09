@@ -13,9 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.ViewModels.Rewards;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 
 namespace ESLTracker.Controls.Rewards
 {

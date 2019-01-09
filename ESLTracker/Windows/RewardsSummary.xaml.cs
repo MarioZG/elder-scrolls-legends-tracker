@@ -11,8 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 
 namespace ESLTracker.Windows
@@ -38,7 +38,7 @@ namespace ESLTracker.Windows
                 // this tab is selected!
                 this.rewardsSummary.DataContext = tracker.Rewards
                     .GroupBy(r=> new { r.Type, r.Reason })
-                    .Select(rs=> new DataModel.Reward() {
+                    .Select(rs=> new Reward() {
                         Type = rs.Key.Type,
                         Reason = rs.Key.Reason,
                         Quantity = rs.Where(r=> r.Type == rs.Key.Type).Sum(r=> r.Quantity)

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Converters;
 using ESLTracker.Utils.SimpleInjector;

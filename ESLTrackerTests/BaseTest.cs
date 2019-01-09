@@ -9,13 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.DataFile;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTrackerTests.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using TESLTracker.Utils;
 
 namespace ESLTrackerTests
 {

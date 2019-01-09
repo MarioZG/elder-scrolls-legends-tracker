@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils.Extensions;
 using Media = System.Windows.Media;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 
 namespace ESLTracker.BusinessLogic.Cards

@@ -8,17 +8,18 @@ using System.Threading.Tasks;
 using Moq;
 using System.ComponentModel;
 using ESLTracker.Properties;
-using ESLTracker.DataModel.Enums;
 using ESLTrackerTests;
 using System.Reflection;
 using ESLTracker.Utils;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using ESLTracker.Utils.Messages;
 using ESLTrackerTests.Builders;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Games;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Game.Tests
 {
@@ -46,7 +47,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         {
 
 
-            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<TESLTracker.DataModel.Game>());
             tracker.Setup(t => t.ActiveDeck).Returns(new DeckBuilder().Build());
 
             winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);
@@ -105,7 +106,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod()]
         public void CommandButtonCreateExecuteTest003_ValidateRequiredFeilds()
         {
-            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<TESLTracker.DataModel.Game>());
             tracker.Setup(t => t.ActiveDeck).Returns<Deck>(null);
 
             EditGameViewModel model = CreateGameVM();
@@ -125,7 +126,7 @@ namespace ESLTracker.ViewModels.Game.Tests
         [TestMethod()]
         public void CommandButtonCreateExecuteTest004_CheckIfESLFileVersionAdded()
         {
-            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<TESLTracker.DataModel.Game>());
             tracker.Setup(t => t.ActiveDeck).Returns(new DeckBuilder().Build());
 
             FileVersionInfo expected = FileVersionInfo.GetVersionInfo(Assembly.GetAssembly(this.GetType()).Location);
@@ -154,7 +155,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             DateTime date = new DateTime(2018, 8, 10, 12, 12, 12);
 
             //add two games wit hdiff version - ensure correct is copied
-            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>() {
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<TESLTracker.DataModel.Game>() {
                 new GameBuilder().WithDate(date).WithESLVersion(new SerializableVersion(new Version(expected.ProductVersion.ToString()))).Build(),
                 new GameBuilder().WithDate(date.AddDays(-7)).WithESLVersion(new SerializableVersion(2, 3)).Build(),
                 new GameBuilder().WithDate(date).WithESLVersion(null).Build()
@@ -267,7 +268,7 @@ namespace ESLTracker.ViewModels.Game.Tests
             Mock<IDeckClassSelectorViewModel> deckClassSelector = new Mock<IDeckClassSelectorViewModel>();
 
             EditGameViewModel model = CreateGameVM();
-            DataModel.Game game = new GameBuilder().Build();
+            TESLTracker.DataModel.Game game = new GameBuilder().Build();
 
             model.Game = game;
 
@@ -290,7 +291,7 @@ namespace ESLTracker.ViewModels.Game.Tests
                     if (p.Name == "DeckId")
                     {
                         //deck id is handled different way, depends on Deck
-                        DataModel.Deck staringDeck = (DataModel.Deck)StartProp[typeof(DataModel.Deck)];
+                        Deck staringDeck = (Deck)StartProp[typeof(Deck)];
                         Assert.AreEqual(staringDeck.DeckId, p.GetValue(game), "Failed validation of prop {0} of type {1}", p.Name, p.PropertyType);
                     }
                     else
@@ -308,7 +309,7 @@ namespace ESLTracker.ViewModels.Game.Tests
 
             DateTime timeConcluded = new DateTime(2016, 12, 12, 23, 45, 5);
 
-            tracker.Setup(t => t.Games).Returns(new ObservableCollection<DataModel.Game>());
+            tracker.Setup(t => t.Games).Returns(new ObservableCollection<TESLTracker.DataModel.Game>());
             tracker.Setup(t => t.ActiveDeck).Returns(new DeckBuilder().Build());
 
             winApi.Setup(w => w.GetEslFileVersionInfo()).Returns<FileVersionInfo>(null);

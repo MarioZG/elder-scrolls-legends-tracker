@@ -9,7 +9,7 @@ using ESLTracker.BusinessLogic.General;
 using ESLTracker.BusinessLogic.Packs;
 using ESLTracker.BusinessLogic.Rewards;
 using ESLTracker.Controls;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Properties;
 using ESLTracker.Utils.DiagnosticsWrappers;
 using ESLTracker.Utils.FileUpdaters;
@@ -24,6 +24,7 @@ using SimpleInjector;
 using SimpleInjector.Diagnostics;
 using System.Linq;
 using System.Text;
+using TESLTracker.Utils;
 
 namespace ESLTracker.Utils.SimpleInjector
 {

@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using ESLTracker.BusinessLogic.Decks;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
+using TESLTracker.Utils;
 
 namespace ESLTracker.Utils.FileUpdaters
 {
@@ -70,7 +71,7 @@ namespace ESLTracker.Utils.FileUpdaters
 
         private void UpdateCardInstanceQtyTo1_OnPacks(Tracker tracker)
         {
-            foreach (Reward r in tracker.Rewards.Where( r=> r.Type == DataModel.Enums.RewardType.Card))
+            foreach (Reward r in tracker.Rewards.Where( r=> r.Type == TESLTracker.DataModel.Enums.RewardType.Card))
             {
                 if ((r.CardInstance != null) && (r.CardInstance.Quantity == 0))
                 {

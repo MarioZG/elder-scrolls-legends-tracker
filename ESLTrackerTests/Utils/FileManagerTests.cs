@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using ESLTracker.Utils.IOWrappers;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTrackerTests;
 using System.Xml;
 using ESLTracker.Properties;

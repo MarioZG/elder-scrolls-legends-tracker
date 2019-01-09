@@ -1,6 +1,6 @@
 ﻿using ESLTracker.BusinessLogic.Decks;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTrackerTests.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

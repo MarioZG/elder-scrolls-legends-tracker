@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
+using TESLTracker.Utils;
 
 namespace ESLTracker.Utils.FileUpdaters
 {

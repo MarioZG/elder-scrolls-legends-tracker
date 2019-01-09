@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using System.Collections.ObjectModel;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTrackerTests.Builders;

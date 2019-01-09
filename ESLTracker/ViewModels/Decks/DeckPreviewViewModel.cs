@@ -5,13 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.Utils.Extensions;
 using System.Collections.ObjectModel;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Cards;
+using TESLTracker.Utils;
+using TESLTracker.Utils.Extensions;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -70,7 +72,7 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        public ObservableCollection<DataModel.Reward> ActiveDeckRewards
+        public ObservableCollection<Reward> ActiveDeckRewards
         {
             get
             {

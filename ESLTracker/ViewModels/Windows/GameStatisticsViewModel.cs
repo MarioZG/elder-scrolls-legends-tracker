@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 using ESLTracker.Utils;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.Utils.Extensions;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Windows
 {
@@ -171,7 +172,7 @@ namespace ESLTracker.ViewModels.Windows
         }
 
 
-        public IEnumerable<DataModel.Game> GamesList
+        public IEnumerable<TESLTracker.DataModel.Game> GamesList
         {
             get
             {
@@ -342,7 +343,7 @@ namespace ESLTracker.ViewModels.Windows
                 foreach (var r in totalOpponents)
                 {
                     DeckClass dc = (DeckClass)Enum.Parse(typeof(DeckClass), r.Opp);
-                    DataModel.DeckAttributes da = ClassAttributesHelper.Classes[dc];
+                    TESLTracker.DataModel.DeckAttributes da = ClassAttributesHelper.Classes[dc];
                     DeckAttribute da1 = da[0];
                     DeckAttribute da2 = (da.Count > 1 ? da[1] : da[0]);
                     opponentClassHeatMap.Add(new HeatPoint((int)da1, (int)da2, Int32.Parse(r.Win)));
@@ -352,7 +353,7 @@ namespace ESLTracker.ViewModels.Windows
 
         private IEnumerable<DeckStatsDataRecord> FirstSecondStats(
             IEnumerable<DeckStatsDataRecord> result,
-            Func<DataModel.Game, SerializableVersion> groupByVersion)
+            Func<TESLTracker.DataModel.Game, SerializableVersion> groupByVersion)
         {
             //add % of gaames you went first
             result = result.Union(
@@ -387,9 +388,9 @@ namespace ESLTracker.ViewModels.Windows
         }
 
         private IEnumerable<DeckStatsDataRecord> GetBreakDownByDeck(
-            Func<DataModel.Game, object> groupByDeck,
-            Func<DataModel.Game,SerializableVersion> groupByVersion,
-            Func<DataModel.Game, string> groupByOpponnetClass)
+            Func<TESLTracker.DataModel.Game, object> groupByDeck,
+            Func<TESLTracker.DataModel.Game,SerializableVersion> groupByVersion,
+            Func<TESLTracker.DataModel.Game, string> groupByOpponnetClass)
         {
             return GamesList
                 .GroupBy(g => new { D = groupByDeck(g), VS = groupByVersion(g), OC = groupByOpponnetClass(g) })
@@ -405,9 +406,9 @@ namespace ESLTracker.ViewModels.Windows
         }
 
         private IEnumerable<DeckStatsDataRecord> GetBreakDownByOpponentClass(
-            Func<DataModel.Game, object> groupByDeck,
-            Func<DataModel.Game, SerializableVersion> groupByVersion,
-            Func<DataModel.Game, string> groupByOpponnetClass)
+            Func<TESLTracker.DataModel.Game, object> groupByDeck,
+            Func<TESLTracker.DataModel.Game, SerializableVersion> groupByVersion,
+            Func<TESLTracker.DataModel.Game, string> groupByOpponnetClass)
         {
             return GamesList
                 .GroupBy(g => new { D = groupByDeck(g), VS = groupByVersion(g), OC = groupByOpponnetClass(g) })
@@ -423,8 +424,8 @@ namespace ESLTracker.ViewModels.Windows
 
 
         private IEnumerable<DeckStatsDataRecord> GetFirstSecondData(
-           Func<DataModel.Game, SerializableVersion> groupByVersion,
-           Func<DataModel.Game, string> groupByOpponnetClass)
+           Func<TESLTracker.DataModel.Game, SerializableVersion> groupByVersion,
+           Func<TESLTracker.DataModel.Game, string> groupByOpponnetClass)
         {
             return GamesList
                 .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = groupByVersion(g), OC = groupByOpponnetClass(g) })
@@ -441,8 +442,8 @@ namespace ESLTracker.ViewModels.Windows
 
         private IEnumerable<DeckStatsDataRecord> GetFirstSecondWinrateData(
                 OrderOfPlay orderOfPlay,
-                Func<DataModel.Game, SerializableVersion> groupByVersion,
-                Func<DataModel.Game, string> groupByOpponnetClass)
+                Func<TESLTracker.DataModel.Game, SerializableVersion> groupByVersion,
+                Func<TESLTracker.DataModel.Game, string> groupByOpponnetClass)
         {
             return GamesList
                 .GroupBy(g => new { D = GetPropertyValue(g, GroupBy), VS = groupByVersion(g), OC = groupByOpponnetClass(g) })
@@ -457,7 +458,7 @@ namespace ESLTracker.ViewModels.Windows
                         });
         }
 
-        private string GetOpponentGroupMethod(DataModel.Game g)
+        private string GetOpponentGroupMethod(TESLTracker.DataModel.Game g)
         {
             if (this.gropuByOpponent == "opponentDeckTag")
             {

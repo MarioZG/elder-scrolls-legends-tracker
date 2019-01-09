@@ -1,5 +1,5 @@
-﻿using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+﻿using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using System;

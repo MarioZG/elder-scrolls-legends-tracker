@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTrackerTests;
 using System.Collections.ObjectModel;
 using ESLTracker.ViewModels.Game;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.ViewModels.Enums;
 using ESLTrackerTests.Builders;
@@ -54,7 +54,7 @@ namespace ESLTracker.ViewModels.Tests
                 );
 
             tracker.Setup(t => t.Rewards).Returns(
-                 new ObservableCollection<DataModel.Reward>()
+                 new ObservableCollection<Reward>()
                      {
                      //d1 rewards
                      new RewardBuilder().WithDeck(d1).WithType(RewardType.Gold).WithQuantity(12).Build(),
@@ -73,7 +73,7 @@ namespace ESLTracker.ViewModels.Tests
                  );
 
             ArenaStatsViewModel model = CreateArenaStatsVM();
-            model.GameType = DataModel.Enums.GameType.VersusArena;
+            model.GameType = GameType.VersusArena;
 
             var result = model.GetDataSet();
 
@@ -134,7 +134,7 @@ namespace ESLTracker.ViewModels.Tests
 
 
             tracker.Setup(t => t.Rewards).Returns(
-                 new ObservableCollection<DataModel.Reward>()
+                 new ObservableCollection<Reward>()
                      {
                      //d1 rewards
                      new RewardBuilder().WithDeck(d1).WithType(RewardType.Gold).WithQuantity(12).Build(),
@@ -169,7 +169,7 @@ namespace ESLTracker.ViewModels.Tests
             ArenaStatsViewModel model = CreateArenaStatsVM();
             model.FilterDateFrom = new DateTime(2016, 11, 1);
             model.FilterDateTo = DateTime.Today.Date;
-            model.GameType = DataModel.Enums.GameType.VersusArena;
+            model.GameType = GameType.VersusArena;
 
             var result = model.GetDataSet();
 

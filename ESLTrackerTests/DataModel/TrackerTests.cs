@@ -1,11 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
 using System.Diagnostics;
 using ESLTrackerTests;
 using ESLTracker.BusinessLogic.DataFile;
@@ -41,8 +41,8 @@ namespace ESLTracker.DataModel.Tests
                 tracker.Decks.Add(new Deck()
                 {
                     Name = "test" + i.ToString("00000"),
-                    Class = Enums.DeckClass.Agility,
-                    Type = Enums.DeckType.Constructed,
+                    Class = DeckClass.Agility,
+                    Type = DeckType.Constructed,
                 });
             }
 

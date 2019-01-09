@@ -1,6 +1,6 @@
 ﻿using ESLTracker.BusinessLogic.Decks;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using System;
@@ -39,7 +39,7 @@ namespace ESLTracker.ViewModels.Windows
 
         public override dynamic GetDataSet()
         {
-            var groupby = typeof(DataModel.Deck).GetProperty("Class");
+            var groupby = typeof(Deck).GetProperty("Class");
 
             var result = tracker.Decks
             .Where(d => deckCalculations.GetDeckGames(d).Any( g => g.Type == GameType)
@@ -52,22 +52,22 @@ namespace ESLTracker.ViewModels.Windows
                 NumberOfRuns = ds.Count(),
                 AvgWins = ds.Average(d => deckCalculations.Victories(d)),
                 Best = ds.Max(d => deckCalculations.Victories(d)),
-                Total = new RewardsTotal(ds.SelectMany(d => deckCalculations.GetArenaRewards(d.DeckId)).GroupBy(r => r.Type).Select(rg => new ESLTracker.DataModel.Reward { Type = rg.Key, Quantity = rg.Sum(r => r.Quantity) }).ToList()),
+                Total = new RewardsTotal(ds.SelectMany(d => deckCalculations.GetArenaRewards(d.DeckId)).GroupBy(r => r.Type).Select(rg => new Reward { Type = rg.Key, Quantity = rg.Sum(r => r.Quantity) }).ToList()),
 
                 Avg = new RewardsTotal(
                         ds.SelectMany(d => deckCalculations.GetArenaRewards(d.DeckId).GroupBy(r => new { r.Type, r.ArenaDeckId }).Select(rg => new { rg.Key, Qty = rg.Sum(r => r.Quantity) }))
                         .GroupBy(r => new { r.Key.Type })
-                        .Select(rg => new ESLTracker.DataModel.Reward() { Type = rg.Key.Type, Quantity = (int)rg.Average(r => r.Qty) })
+                        .Select(rg => new Reward() { Type = rg.Key.Type, Quantity = (int)rg.Average(r => r.Qty) })
                         ),
                 Max = new RewardsTotal(
                         ds.SelectMany(d => deckCalculations.GetArenaRewards(d.DeckId).GroupBy(r => new { r.Type, r.ArenaDeckId }).Select(rg => new { rg.Key, Qty = rg.Sum(r => r.Quantity) }))
                         .GroupBy(r => new { r.Key.Type })
-                        .Select(rg => new ESLTracker.DataModel.Reward() { Type = rg.Key.Type, Quantity = (int)rg.Max(r => r.Qty) })
+                        .Select(rg => new Reward() { Type = rg.Key.Type, Quantity = (int)rg.Max(r => r.Qty) })
                         ),
-                TotalGold = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Gold).Sum(r => r.Quantity)),
-                TotalGems = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.SoulGem).Sum(r => r.Quantity)),
-                TotalPacks = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Pack).Sum(r => r.Quantity)),
-                TotalCards = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == ESLTracker.DataModel.Enums.RewardType.Card).Sum(r => r.Quantity))
+                TotalGold = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == RewardType.Gold).Sum(r => r.Quantity)),
+                TotalGems = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == RewardType.SoulGem).Sum(r => r.Quantity)),
+                TotalPacks = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == RewardType.Pack).Sum(r => r.Quantity)),
+                TotalCards = ds.Sum(d => deckCalculations.GetArenaRewards(d.DeckId).Where(r => r.Type == RewardType.Card).Sum(r => r.Quantity))
             }).ToList();
 
             //mark best averages
@@ -137,22 +137,22 @@ namespace ESLTracker.ViewModels.Windows
 
         }
 
-        public RewardsTotal(IEnumerable<DataModel.Reward> rewards)
+        public RewardsTotal(IEnumerable<Reward> rewards)
         {
-            foreach (DataModel.Reward r in rewards)
+            foreach (Reward r in rewards)
             {
                 switch (r.Type)
                 {
-                    case DataModel.Enums.RewardType.Gold:
+                    case RewardType.Gold:
                         Gold += r.Quantity;
                         break;
-                    case DataModel.Enums.RewardType.SoulGem:
+                    case RewardType.SoulGem:
                         SoulGem += r.Quantity;
                         break;
-                    case DataModel.Enums.RewardType.Pack:
+                    case RewardType.Pack:
                         Pack += r.Quantity;
                         break;
-                    case DataModel.Enums.RewardType.Card:
+                    case RewardType.Card:
                         Card += r.Quantity;
                         break;
                     default:

@@ -1,7 +1,7 @@
 ﻿using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.Decks.DeckExports;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.DiagnosticsWrappers;
 using ESLTracker.Utils.Messages;
@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Decks
 {

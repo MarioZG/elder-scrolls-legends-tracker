@@ -1,10 +1,11 @@
 ﻿using ESLTracker.BusinessLogic.Packs;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Packs
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Reflection;
 using System.Collections;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTrackerTests.Builders;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
 using System.Collections.ObjectModel;
 using ESLTracker.ViewModels.Decks;
 

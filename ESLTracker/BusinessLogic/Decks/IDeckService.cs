@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 
 namespace ESLTracker.BusinessLogic.Decks
 {

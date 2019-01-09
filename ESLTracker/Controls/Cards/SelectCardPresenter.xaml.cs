@@ -1,4 +1,4 @@
-﻿using ESLTracker.DataModel;
+﻿using TESLTracker.DataModel;
 using ESLTracker.Utils.Extensions;
 using ESLTracker.ViewModels.Cards;
 using ESLTracker.Windows;

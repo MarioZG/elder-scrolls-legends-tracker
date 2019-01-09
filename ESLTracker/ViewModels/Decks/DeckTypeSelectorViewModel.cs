@@ -5,9 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Decks
 {

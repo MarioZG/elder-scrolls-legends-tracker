@@ -6,11 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using ESLTracker.BusinessLogic.Decks;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Behaviors;
 using ESLTracker.Utils.Messages;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -30,13 +31,13 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        private ObservableCollection<DataModel.Game> activeDeckGames;
-        public ObservableCollection<DataModel.Game> ActiveDeckGames {
+        private ObservableCollection<TESLTracker.DataModel.Game> activeDeckGames;
+        public ObservableCollection<TESLTracker.DataModel.Game> ActiveDeckGames {
             get {
                 if (selectedClassFilter != null)
                 {
                     dynamic d = selectedClassFilter;
-                    return new ObservableCollection<DataModel.Game>(activeDeckGames.Where(g => g.OpponentClass == d.Class).OrderByDescending(g=> g.Date).ToList());
+                    return new ObservableCollection<TESLTracker.DataModel.Game>(activeDeckGames.Where(g => g.OpponentClass == d.Class).OrderByDescending(g=> g.Date).ToList());
                 }
                 else
                 {
@@ -96,7 +97,7 @@ namespace ESLTracker.ViewModels.Decks
         private void RefreshData()
         {
             WinRatioVsClass = deckCalculations.GetDeckVsClass(tracker.ActiveDeck, null);
-            ActiveDeckGames = new ObservableCollection<DataModel.Game>(deckCalculations.GetDeckGames(tracker.ActiveDeck).OrderByDescending(g=> g.Date));
+            ActiveDeckGames = new ObservableCollection<TESLTracker.DataModel.Game>(deckCalculations.GetDeckGames(tracker.ActiveDeck).OrderByDescending(g=> g.Date));
             RaisePropertyChangedEvent("WinRatioVsClass");
 
             //hide if no games

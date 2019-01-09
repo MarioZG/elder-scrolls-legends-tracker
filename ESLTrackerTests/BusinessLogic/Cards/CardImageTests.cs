@@ -1,6 +1,6 @@
 ﻿using ESLTracker;
 using ESLTracker.BusinessLogic.Cards;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

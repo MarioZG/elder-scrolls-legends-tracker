@@ -1,9 +1,10 @@
-﻿using ESLTracker.DataModel;
+﻿using TESLTracker.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TESLTracker.Utils;
 
 namespace ESLTrackerTests.Builders
 {
@@ -19,7 +20,7 @@ namespace ESLTrackerTests.Builders
 
         public DeckVersionBuilder WithVersion(int major = 0, int minor = 0)
         {
-            deckVersion.Version = new ESLTracker.Utils.SerializableVersion(major, minor);
+            deckVersion.Version = new SerializableVersion(major, minor);
             return this;
         }
 

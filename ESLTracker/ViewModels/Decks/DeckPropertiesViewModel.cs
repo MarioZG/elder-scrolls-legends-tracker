@@ -1,12 +1,13 @@
 ﻿using ESLTracker.BusinessLogic.Decks;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -89,13 +90,13 @@ namespace ESLTracker.ViewModels.Decks
         {
             switch (newType)
             {
-                case DataModel.Enums.DeckType.Constructed:
+                case TESLTracker.DataModel.Enums.DeckType.Constructed:
                     Deck.Name = String.Empty;
                     break;
-                case DataModel.Enums.DeckType.VersusArena:
+                case TESLTracker.DataModel.Enums.DeckType.VersusArena:
                     Deck.Name = string.Format(settings.NewDeck_VersusArenaName, dateTimeProvider.DateTimeNow);
                     break;
-                case DataModel.Enums.DeckType.SoloArena:
+                case TESLTracker.DataModel.Enums.DeckType.SoloArena:
                     Deck.Name = string.Format(settings.NewDeck_SoloArenaName, dateTimeProvider.DateTimeNow);
                     break;
                 default:

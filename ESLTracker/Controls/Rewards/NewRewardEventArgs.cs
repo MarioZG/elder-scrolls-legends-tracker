@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TESLTracker.DataModel;
 
 namespace ESLTracker.Controls.Rewards
 {
     public class NewRewardEventArgs : EventArgs
     {
-        public DataModel.Reward Reward { get; set; }
+        public Reward Reward { get; set; }
 
-        public NewRewardEventArgs(DataModel.Reward reward)
+        public NewRewardEventArgs(Reward reward)
         {
             Reward = reward;
         }

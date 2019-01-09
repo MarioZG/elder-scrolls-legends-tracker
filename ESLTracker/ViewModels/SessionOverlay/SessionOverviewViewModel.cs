@@ -1,7 +1,7 @@
 ﻿using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.Games;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.SessionOverlay
 {
@@ -27,7 +28,7 @@ namespace ESLTracker.ViewModels.SessionOverlay
         public RelayCommand CommandResetSession { get; private set; }
 
 
-        public IEnumerable<DataModel.Game> Games
+        public IEnumerable<TESLTracker.DataModel.Game> Games
         {
             get
             {

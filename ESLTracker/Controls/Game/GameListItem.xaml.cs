@@ -37,7 +37,7 @@ namespace ESLTracker.Controls.Game
         {
             var messanger = MasserContainer.Container.GetInstance<IMessenger>();
             messanger.Send(
-                new Utils.Messages.EditGame(this.DataContext as DataModel.Game),
+                new Utils.Messages.EditGame(this.DataContext as TESLTracker.DataModel.Game),
                 Utils.Messages.EditGame.Context.StartEdit);
         }
 

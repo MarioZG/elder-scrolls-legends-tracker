@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTrackerTests;
+using TESLTracker.Utils;
 
 namespace ESLTracker.Utils.Tests
 {

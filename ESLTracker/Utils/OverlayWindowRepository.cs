@@ -8,6 +8,7 @@ using System.Windows;
 using ESLTracker.Controls;
 using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.Windows;
+using TESLTracker.Utils;
 
 namespace ESLTracker.Utils
 {

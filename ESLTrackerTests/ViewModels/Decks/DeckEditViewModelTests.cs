@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.Utils;
 using Moq;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTrackerTests;
 using System.Reflection;
 using System.Collections;
@@ -16,7 +16,8 @@ using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTrackerTests.Builders;
 using ESLTracker.BusinessLogic.Cards;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Decks.Tests
 {

@@ -1,7 +1,7 @@
 ﻿using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Rewards;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels.Rewards;
@@ -64,7 +64,7 @@ namespace ESLTrackerTests.ViewModels.Rewards
         {
             RewardSetViewModel model = CreateRewardSetVM();
 
-            ESLTracker.DataModel.Enums.RewardReason reason = ESLTracker.DataModel.Enums.RewardReason.LevelUp;
+            RewardReason reason = RewardReason.LevelUp;
 
             model.RewardReason = reason;
 
@@ -80,8 +80,8 @@ namespace ESLTrackerTests.ViewModels.Rewards
         {
             RewardSetViewModel model = CreateRewardSetVM();
 
-            ESLTracker.DataModel.Enums.RewardReason reason = ESLTracker.DataModel.Enums.RewardReason.LevelUp;
-            ESLTracker.DataModel.Enums.RewardReason reason2 = ESLTracker.DataModel.Enums.RewardReason.Quest;
+            RewardReason reason = RewardReason.LevelUp;
+            RewardReason reason2 = RewardReason.Quest;
 
             model.RewardReason = reason;
 
@@ -102,8 +102,8 @@ namespace ESLTrackerTests.ViewModels.Rewards
         {
             RewardSetViewModel model = CreateRewardSetVM();
 
-            ESLTracker.DataModel.Enums.RewardReason reason = ESLTracker.DataModel.Enums.RewardReason.LevelUp;
-            ESLTracker.DataModel.Enums.RewardReason reason2 = ESLTracker.DataModel.Enums.RewardReason.Quest;
+            RewardReason reason = RewardReason.LevelUp;
+            RewardReason reason2 = RewardReason.Quest;
 
             model.RewardReason = reason;
 

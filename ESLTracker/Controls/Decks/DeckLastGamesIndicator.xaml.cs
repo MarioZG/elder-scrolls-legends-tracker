@@ -54,28 +54,28 @@ namespace ESLTracker.Controls.Decks
             {
                 control.grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star)});
             }
-            DataModel.Deck deck = d.GetValue(DeckProperty) as DataModel.Deck;
+            TESLTracker.DataModel.Deck deck = d.GetValue(DeckProperty) as TESLTracker.DataModel.Deck;
             if (deck != null)
             {
                 RefreshLastGamesIndicator(d.GetValue(LastGamesOutcomeProperty) as IEnumerable<bool>, control);
             }
         }
 
-        public DataModel.Deck Deck
+        public TESLTracker.DataModel.Deck Deck
         {
-            get { return (DataModel.Deck)GetValue(DeckProperty); }
+            get { return (TESLTracker.DataModel.Deck)GetValue(DeckProperty); }
             set { SetValue(DeckProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ValuesList.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DeckProperty =
-            DependencyProperty.Register("Deck", typeof(DataModel.Deck), typeof(DeckLastGamesIndicator), new PropertyMetadata(null, DeckChanged));
+            DependencyProperty.Register("Deck", typeof(TESLTracker.DataModel.Deck), typeof(DeckLastGamesIndicator), new PropertyMetadata(null, DeckChanged));
 
         private static void DeckChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (e.NewValue != null)
             {
-                DataModel.Deck deck = e.NewValue as DataModel.Deck;
+                TESLTracker.DataModel.Deck deck = e.NewValue as TESLTracker.DataModel.Deck;
                 DeckLastGamesIndicator control = d as DeckLastGamesIndicator;
                 deck.PropertyChanged += delegate {
                         d.Dispatcher.BeginInvoke(

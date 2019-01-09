@@ -1,6 +1,6 @@
 ﻿using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils.IOWrappers;
 using ESLTracker.Utils.SimpleInjector;
 using ESLTrackerTests;
@@ -10,6 +10,7 @@ using Moq;
 using System;
 using System.Text.RegularExpressions;
 using System.Xml;
+using TESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.FileUpdaters.Tests
 {
@@ -74,7 +75,7 @@ namespace ESLTracker.Utils.FileUpdaters.Tests
                                     new CardBuilder().WithId(Guid.Parse(trans.Key)).Build()
                             ).Build())
                         .WithQuantity(2)
-                        .WithType(DataModel.Enums.RewardType.Card)
+                        .WithType(RewardType.Card)
                         .Build());
             }
 

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Decks
 {

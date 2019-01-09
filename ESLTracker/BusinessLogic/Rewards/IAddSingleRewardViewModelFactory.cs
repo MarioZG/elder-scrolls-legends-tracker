@@ -1,4 +1,4 @@
-﻿using ESLTracker.DataModel;
+﻿using TESLTracker.DataModel;
 using ESLTracker.ViewModels.Rewards;
 using System;
 using System.Collections.Generic;

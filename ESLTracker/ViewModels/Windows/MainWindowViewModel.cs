@@ -10,7 +10,7 @@ using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.GameClient;
 using ESLTracker.Controls;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
@@ -18,6 +18,7 @@ using ESLTracker.Utils.NLog;
 using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels.Decks;
 using ESLTracker.Windows;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Windows
 {

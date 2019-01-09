@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
-             xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
+             xmlns:DataModel="clr-namespace:TESLTracker.DataModel;assembly=TESLTracker.DataModel"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckStatsViewModel]}"

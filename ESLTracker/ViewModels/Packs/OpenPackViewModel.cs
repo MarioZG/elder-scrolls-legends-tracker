@@ -2,7 +2,7 @@
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.General;
 using ESLTracker.BusinessLogic.Packs;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using System;
@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Packs
 {

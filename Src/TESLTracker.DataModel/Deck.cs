@@ -158,7 +158,7 @@ namespace TESLTracker.DataModel
         /// <summary>
         /// Apply history from other deck instance. used in cancel edit on view model
         /// </summary>
-        internal void CopyHistory(IEnumerable<DeckVersion> history)
+        public void CopyHistory(IEnumerable<DeckVersion> history)
         {
             if ((history == null) || (history.Count() == 0))
             {

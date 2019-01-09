@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Properties
 {

@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ESLTracker.ViewModels.Game;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESLTrackerTests.Builders;
-using ESLTracker.DataModel.Enums;
+using DM = TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 
 namespace ESLTracker.ViewModels.Game.Tests
 {
@@ -18,8 +18,8 @@ namespace ESLTracker.ViewModels.Game.Tests
         {
             DateTime date = new DateTime(2016, 12, 1);
             int minutes = 1;
-            int legendRankValue = RankedProgressChartViewModel.GetPlayerRankStartValue(DataModel.Enums.PlayerRank.TheLegend);
-            List<DataModel.Game> games = new List<DataModel.Game>()
+            int legendRankValue = RankedProgressChartViewModel.GetPlayerRankStartValue(PlayerRank.TheLegend);
+            List<DM.Game> games = new List<DM.Game>()
             {
                 new GameBuilder().WithPlayerLegendRank(300).WithDate(date.AddMinutes(minutes++)).WithType(GameType.PlayRanked).WithPlayerRank(PlayerRank.TheLegend).Build(),
                 new GameBuilder().WithPlayerLegendRank(245).WithDate(date.AddMinutes(minutes++)).WithType(GameType.PlayRanked).WithPlayerRank(PlayerRank.TheLegend).Build(),

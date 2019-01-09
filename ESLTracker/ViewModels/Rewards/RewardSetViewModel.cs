@@ -1,11 +1,12 @@
 ﻿using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Rewards;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Rewards
 {
@@ -64,11 +65,11 @@ namespace ESLTracker.ViewModels.Rewards
                 return false;
             }
             bool matchVersus = (tracker.ActiveDeck.Type == DeckType.VersusArena)
-                && (this.RewardReason == DataModel.Enums.RewardReason.VersusArena);
+                && (this.RewardReason == TESLTracker.DataModel.Enums.RewardReason.VersusArena);
             bool matchSolo = (tracker.ActiveDeck.Type == DeckType.SoloArena)
-                && (this.RewardReason == DataModel.Enums.RewardReason.SoloArena);
+                && (this.RewardReason == TESLTracker.DataModel.Enums.RewardReason.SoloArena);
             bool gauntlet = (tracker.ActiveDeck.Type == DeckType.Constructed)
-                && (this.RewardReason == DataModel.Enums.RewardReason.Gauntlet);
+                && (this.RewardReason == TESLTracker.DataModel.Enums.RewardReason.Gauntlet);
             return matchSolo || matchVersus || gauntlet;
         }
 

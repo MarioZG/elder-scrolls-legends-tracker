@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils.SimpleInjector;
 using ESLTracker.ViewModels.Rewards;
 

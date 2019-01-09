@@ -1,10 +1,12 @@
-﻿using ESLTracker.DataModel;
+﻿using TESLTracker.DataModel;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.ViewModels.Decks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TESLTracker.DataModel.Enums;
+using TESLTracker.Utils;
 
 namespace ESLTracker.BusinessLogic.Decks
 {
@@ -30,7 +32,7 @@ namespace ESLTracker.BusinessLogic.Decks
 
         public bool LimitCardCountForDeck(Deck deckToCheck)
         {
-            return deckToCheck?.Type == DataModel.Enums.DeckType.Constructed;
+            return deckToCheck?.Type == DeckType.Constructed;
         }
 
         public void EnforceCardLimit(CardInstance card)

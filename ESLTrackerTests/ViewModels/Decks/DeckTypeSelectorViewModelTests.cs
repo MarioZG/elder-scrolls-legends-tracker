@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
 using Moq;
 using ESLTracker.Utils;
 

@@ -9,6 +9,7 @@ using Moq;
 using ESLTracker.Properties;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.General;
+using TESLTracker.Utils;
 
 namespace ESLTrackerTests.BusinessLogic.General
 {

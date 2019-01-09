@@ -1,5 +1,5 @@
-﻿using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+﻿using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using LiveCharts;
@@ -168,7 +168,7 @@ namespace ESLTracker.ViewModels.Game
             return seriesCollection;
         }
 
-        public static void GetChartData(IOrderedEnumerable<DataModel.Game> games, 
+        public static void GetChartData(IOrderedEnumerable<TESLTracker.DataModel.Game> games, 
             out Dictionary<string, Tuple<DateTime, int>> chartDatagameAfterGame,
             out Dictionary<DateTime, Tuple<int, int, int>> chartDataMaxMin)
         {
@@ -177,7 +177,7 @@ namespace ESLTracker.ViewModels.Game
             int worstLegendRank = games.Where(g => g.PlayerRank == PlayerRank.TheLegend).Max(g => g.PlayerLegendRank).GetValueOrDefault();
             chartDatagameAfterGame = new Dictionary<string, Tuple<DateTime, int>>();
             chartDataMaxMin = new Dictionary<DateTime, Tuple<int, int, int>>();
-            foreach (DataModel.Game r in games)
+            foreach (TESLTracker.DataModel.Game r in games)
             {
                 if (currentPR != r.PlayerRank)
                 {

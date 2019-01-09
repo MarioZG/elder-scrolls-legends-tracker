@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
-             xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
+             xmlns:Enums="clr-namespace:TESLTracker.DataModel.Enums;assembly=TESLTracker.DataModel"
              xmlns:Controls="clr-namespace:ESLTracker.Controls" 
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks" 

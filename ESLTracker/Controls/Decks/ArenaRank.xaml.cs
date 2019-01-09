@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Enums = TESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Controls.Decks
 {
@@ -22,15 +23,15 @@ namespace ESLTracker.Controls.Decks
     {
 
 
-        public DataModel.Enums.ArenaRank? SelectedRank
+        public Enums.ArenaRank? SelectedRank
         {
-            get { return (DataModel.Enums.ArenaRank?)GetValue(SelectedRankProperty); }
+            get { return (Enums.ArenaRank?)GetValue(SelectedRankProperty); }
             set { SetValue(SelectedRankProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for SelectedRank.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedRankProperty =
-            DependencyProperty.Register("SelectedRank", typeof(DataModel.Enums.ArenaRank?), typeof(ArenaRank), new PropertyMetadata(null));
+            DependencyProperty.Register("SelectedRank", typeof(Enums.ArenaRank?), typeof(ArenaRank), new PropertyMetadata(null));
 
 
 

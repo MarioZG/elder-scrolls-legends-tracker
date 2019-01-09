@@ -1,6 +1,6 @@
 ﻿using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.DiagnosticsWrappers;
 using ESLTracker.ViewModels.Decks;

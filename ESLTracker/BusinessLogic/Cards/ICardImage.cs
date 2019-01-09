@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 
 namespace ESLTracker.BusinessLogic.Cards
 {

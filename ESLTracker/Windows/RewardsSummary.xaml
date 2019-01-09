@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ESLTracker.Windows"
-        xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
         xmlns:Rewards="clr-namespace:ESLTracker.Controls.Rewards"  
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource VMLocator}, Path=[Windows.RewardsSummaryViewModel]}"

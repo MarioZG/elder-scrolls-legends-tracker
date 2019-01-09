@@ -11,7 +11,7 @@ using Moq;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTrackerTests.Builders;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.Decks.DeckImports;
 

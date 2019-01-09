@@ -1,5 +1,5 @@
 ﻿using ESLTracker.BusinessLogic.Packs;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.ViewModels.Packs;
 using System;
 using System.Collections.Generic;

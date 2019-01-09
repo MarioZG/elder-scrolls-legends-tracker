@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.Decks;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Cards
 {

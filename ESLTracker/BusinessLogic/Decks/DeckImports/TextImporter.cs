@@ -1,6 +1,6 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.DataFile;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using Polly;
 using System;

@@ -1,7 +1,7 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.General;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Properties;
 using ESLTracker.Utils.Extensions;
 using ESLTracker.Utils.FileUpdaters;

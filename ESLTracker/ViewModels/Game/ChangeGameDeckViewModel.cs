@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.BusinessLogic.Games;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Game
 {
@@ -87,7 +88,7 @@ namespace ESLTracker.ViewModels.Game
         /// <param name="obj"></param>
         private void MoveGameToDeckExecute(object obj)
         {
-            DataModel.Game game = obj as DataModel.Game;
+            TESLTracker.DataModel.Game game = obj as TESLTracker.DataModel.Game;
             if (game != null)
             {
                 changeGameDeck.MoveGameBetweenDecks(game, SelectedDeck, SelectedVersion);

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
 
 namespace ESLTracker.Utils.Converters
 {

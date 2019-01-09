@@ -26,9 +26,9 @@ namespace ESLTracker.Controls
 
         #region dp SelectedClass
 
-        public DataModel.Enums.DeckClass? SelectedClass
+        public TESLTracker.DataModel.Enums.DeckClass? SelectedClass
         {
-            get { return (DataModel.Enums.DeckClass?)GetValue(SelectedClassProperty); }
+            get { return (TESLTracker.DataModel.Enums.DeckClass?)GetValue(SelectedClassProperty); }
             set { SetValue(SelectedClassProperty, value); }
         }
 
@@ -36,7 +36,7 @@ namespace ESLTracker.Controls
         public static readonly DependencyProperty SelectedClassProperty =
             DependencyProperty.Register(
                 "SelectedClass", 
-                typeof(DataModel.Enums.DeckClass?), 
+                typeof(TESLTracker.DataModel.Enums.DeckClass?), 
                 typeof(DeckClassSelector), 
                 new PropertyMetadata(null, SelectedClassChanged));
 
@@ -47,7 +47,7 @@ namespace ESLTracker.Controls
         /// <param name="e"></param>
         private static void SelectedClassChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DeckClassSelector)d).DataContext.SelectedClass = e.NewValue as DataModel.Enums.DeckClass?;
+            ((DeckClassSelector)d).DataContext.SelectedClass = e.NewValue as TESLTracker.DataModel.Enums.DeckClass?;
         }
 
         #endregion

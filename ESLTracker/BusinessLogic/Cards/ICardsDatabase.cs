@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 
 namespace ESLTracker.BusinessLogic.Cards
 {

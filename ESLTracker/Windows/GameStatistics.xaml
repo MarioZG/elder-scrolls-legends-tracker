@@ -8,7 +8,7 @@
         xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
         xmlns:Game="clr-namespace:ESLTracker.Controls.Game"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-        xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
+        xmlns:Enums="clr-namespace:TESLTracker.DataModel.Enums;assembly=TESLTracker.DataModel"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Games analysis"

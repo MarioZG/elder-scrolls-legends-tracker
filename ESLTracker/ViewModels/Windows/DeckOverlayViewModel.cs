@@ -1,4 +1,4 @@
-﻿using ESLTracker.DataModel;
+﻿using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using System;
@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Windows
 {

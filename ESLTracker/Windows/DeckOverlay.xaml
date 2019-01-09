@@ -7,7 +7,6 @@
         xmlns:base="clr-namespace:ESLTracker.Controls"
         xmlns:local="clr-namespace:ESLTracker.Windows"
         xmlns:Controls="clr-namespace:ESLTracker.Controls"
-        xmlns:DataModel="clr-namespace:ESLTracker.DataModel"
         xmlns:Properties="clr-namespace:ESLTracker.Properties"
         DataContext="{Binding Source={StaticResource VMLocator}, Path=[Windows.DeckOverlayViewModel]}"
         mc:Ignorable="d"

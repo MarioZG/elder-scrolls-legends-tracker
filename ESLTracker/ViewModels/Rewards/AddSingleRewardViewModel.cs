@@ -8,9 +8,10 @@ using System.Windows.Input;
 using ESLTracker.BusinessLogic.Cards;
 using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.Controls.Rewards;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Utils;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Rewards
 {

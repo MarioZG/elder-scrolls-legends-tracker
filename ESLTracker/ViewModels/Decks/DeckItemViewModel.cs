@@ -1,8 +1,8 @@
 ﻿using ESLTracker.BusinessLogic.DataFile;
 using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.Games;
-using ESLTracker.DataModel;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TESLTracker.Utils;
 
 namespace ESLTracker.ViewModels.Decks
 {
@@ -65,7 +66,7 @@ namespace ESLTracker.ViewModels.Decks
         private void CommandDropExecute(object obj)
         {
             var data = obj as IDataObject;
-            DataModel.Game game = data.GetData(typeof(DataModel.Game)) as DataModel.Game;
+            TESLTracker.DataModel.Game game = data.GetData(typeof(TESLTracker.DataModel.Game)) as TESLTracker.DataModel.Game;
             var prevDeck = game.Deck;
             changeGameDeck.MoveGameBetweenDecks(game, Deck, Deck.SelectedVersion);
             messanger.Send(new EditDeck() { Deck = game.Deck }, EditDeck.Context.StatsUpdated);

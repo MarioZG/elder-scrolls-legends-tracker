@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
-             xmlns:Enums="clr-namespace:ESLTracker.DataModel.Enums"
+             xmlns:Enums="clr-namespace:TESLTracker.DataModel.Enums;assembly=TESLTracker.DataModel"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
              x:Name="rankControl"
              mc:Ignorable="d"

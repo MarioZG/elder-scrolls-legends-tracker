@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
 using System.Collections.ObjectModel;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 
 namespace ESLTracker.BusinessLogic.Decks.Tests
 {

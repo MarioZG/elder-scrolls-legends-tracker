@@ -1,5 +1,5 @@
 ﻿using ESLTracker.BusinessLogic.Games;
-using ESLTracker.DataModel.Enums;
+using TESLTracker.DataModel.Enums;
 using ESLTracker.Utils.Extensions;
 using ESLTrackerTests.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

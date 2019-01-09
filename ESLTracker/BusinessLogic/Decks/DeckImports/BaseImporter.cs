@@ -1,5 +1,5 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using System;
 using System.Collections.Generic;
@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TESLTracker.Utils;
 
 namespace ESLTracker.BusinessLogic.Decks.DeckImports
 {

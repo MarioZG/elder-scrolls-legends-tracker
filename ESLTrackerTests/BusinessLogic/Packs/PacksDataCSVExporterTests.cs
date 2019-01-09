@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Moq;
 using ESLTracker.Utils;
 using ESLTrackerTests.Builders;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using ESLTracker.Utils.IOWrappers;
 
 namespace ESLTracker.BusinessLogic.Packs.Tests

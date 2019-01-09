@@ -1,5 +1,5 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
-using ESLTracker.DataModel;
+using TESLTracker.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

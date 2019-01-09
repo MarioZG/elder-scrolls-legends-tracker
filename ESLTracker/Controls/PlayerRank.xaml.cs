@@ -21,20 +21,20 @@ namespace ESLTracker.Controls
     public partial class PlayerRank : UserControl
     {
 
-        public DataModel.Enums.PlayerRank? SelectedRank
+        public TESLTracker.DataModel.Enums.PlayerRank? SelectedRank
         {
-            get { return (DataModel.Enums.PlayerRank?)GetValue(SelectedItemProperty); }
+            get { return (TESLTracker.DataModel.Enums.PlayerRank?)GetValue(SelectedItemProperty); }
             set { SetValue(SelectedItemProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for PlayerRank.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedItemProperty =
-            DependencyProperty.Register("SelectedRank", typeof(DataModel.Enums.PlayerRank?), typeof(PlayerRank), new PropertyMetadata(null));
+            DependencyProperty.Register("SelectedRank", typeof(TESLTracker.DataModel.Enums.PlayerRank?), typeof(PlayerRank), new PropertyMetadata(null));
 
 
         public int? LegendRank
         {
-            get { return (SelectedRank == DataModel.Enums.PlayerRank.TheLegend) ?
+            get { return (SelectedRank == TESLTracker.DataModel.Enums.PlayerRank.TheLegend) ?
                         (int?)GetValue(LegendRankProperty) : null; }
             set { SetValue(LegendRankProperty, value); }
         }
@@ -79,7 +79,7 @@ namespace ESLTracker.Controls
         {
             var input = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             typedChars += input;
-            DataModel.Enums.PlayerRank rank;
+            TESLTracker.DataModel.Enums.PlayerRank rank;
             if (IsValidPlayerRank(typedChars, out rank))
             {
                 ((ComboBox)sender).SelectedItem = rank;
@@ -98,9 +98,9 @@ namespace ESLTracker.Controls
             }
         }
 
-        private bool IsValidPlayerRank(string value, out DataModel.Enums.PlayerRank rank)
+        private bool IsValidPlayerRank(string value, out TESLTracker.DataModel.Enums.PlayerRank rank)
         {
-            return Enum.TryParse(value, out rank) && Enum.IsDefined(typeof(DataModel.Enums.PlayerRank), rank);
+            return Enum.TryParse(value, out rank) && Enum.IsDefined(typeof(TESLTracker.DataModel.Enums.PlayerRank), rank);
         }
 
         private void txtPlayerLegendRank_GotFocus(object sender, RoutedEventArgs e)
