@@ -68,7 +68,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: pack
-    packagesToPack: '**/ESLTracker.csproj'
+    packagesToPack: '$(Build.SourcesDirectory)/ESLTracker/ESLTracker.csproj'
     includeReferencedProjects: true
     # versioningScheme: byEnvVar
     # versionEnvVar: $(GitVersion.SemVer)

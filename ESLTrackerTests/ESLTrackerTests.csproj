@@ -144,11 +144,11 @@
       <Name>ESLTracker</Name>
     </ProjectReference>
     <ProjectReference Include="..\Src\TESLTracker.DataModel\TESLTracker.DataModel.csproj">
-      <Project>{b99aabe7-b02d-46ef-a4fe-7b536c2838fa}</Project>
+      <Project>{0e7a6abe-8eb2-4e75-b8ab-1ade96acf6cb}</Project>
       <Name>TESLTracker.DataModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Src\TESLTracker.Utils\TESLTracker.Utils.csproj">
-      <Project>{f6cfd416-634f-4e9e-a728-d5642728bd56}</Project>
+      <Project>{57fdb382-ceb7-416c-add5-567f6a78e349}</Project>
       <Name>TESLTracker.Utils</Name>
     </ProjectReference>
   </ItemGroup>
