@@ -7,6 +7,7 @@
              xmlns:DataModel="clr-namespace:TESLTracker.DataModel;assembly=TESLTracker.DataModel"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
+             xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
              DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.DeckStatsViewModel]}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -25,7 +26,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <ItemsControl ItemsSource="{Binding Converter={Converters:DeckOrDeckClassToAttributes}}" BorderThickness="0"
+                        <ItemsControl ItemsSource="{Binding Path=Class, Converter={Converters:DeckOrDeckClassToAttributes}}" BorderThickness="0"
                                 ToolTip="{Binding Class}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -53,7 +54,10 @@
             ItemsSource="{Binding ActiveDeckGames}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Game:GameListItem DataContext="{Binding}" />
+                    <Game:GameListItem DataContext="{Binding}" 
+                            Behaviors:DragBehavior.StartDragCommand="{Binding DataContext.CommandStartDrag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                            Behaviors:DragBehavior.StartDragCommandParameter="{Binding}"
+                        />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -5,11 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ESLTracker.Controls.Game"
              xmlns:Converters="clr-namespace:ESLTracker.Utils.Converters"
-             xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
              mc:Ignorable="d"
              x:Name="gameListItem"
-             Behaviors:DragBehavior.StartDragCommand="{Binding DataContext.CommandStartDrag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
-             Behaviors:DragBehavior.StartDragCommandParameter="{Binding}"
             >
     <UserControl.Resources>
     </UserControl.Resources>
