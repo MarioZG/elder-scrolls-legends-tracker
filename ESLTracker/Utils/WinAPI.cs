@@ -51,6 +51,9 @@ namespace ESLTracker.Utils
         [DllImport("user32.dll")]
         internal static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
 
+        [DllImport("user32.dll")]
+        public static extern int GetDpiForWindow(IntPtr hWnd);
+
         public bool IsGameActive()
         {
             IntPtr fw = GetForegroundWindow();

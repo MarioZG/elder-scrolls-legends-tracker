@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -40,8 +41,13 @@ namespace ESLTracker.BusinessLogic.General
             {
                 WinAPI.SetForegroundWindow(eslHandle.Value);
 
+
                 var rect = new WinAPI.Rect();
                 WinAPI.GetWindowRect(eslHandle.Value, ref rect);
+
+                int dpi = WinAPI.GetDpiForWindow(eslHandle.Value);
+
+                rect = AdjustForMultimonitorDPI(rect, dpi);
 
                 int width = rect.right - rect.left;
                 int height = rect.bottom - rect.top;
@@ -86,7 +92,7 @@ namespace ESLTracker.BusinessLogic.General
                     w.Dispatcher.Invoke(() => w.Show());
                 }
 
-                activeWindow?.Dispatcher.Invoke(() => activeWindow?.Activate()); 
+                activeWindow?.Dispatcher.Invoke(() => activeWindow?.Activate());
 
                 string path = Path.Combine(
                     pathManager.DataPath,
@@ -104,6 +110,22 @@ namespace ESLTracker.BusinessLogic.General
             }
 
             return Task.FromResult<object>(null);
+        }
+
+        private WinAPI.Rect AdjustForMultimonitorDPI(WinAPI.Rect rect, int dpi)
+        {
+            //https://docs.microsoft.com/en-us/windows/desktop/hidpi/high-dpi-desktop-application-development-on-windows#updating-existing-applications
+            // /2 - not sure why - it returns doubled values!
+            rect.right = MulDiv(rect.right, dpi, 96) / 2;
+            rect.left = MulDiv(rect.left, dpi, 96) / 2;
+            rect.bottom = MulDiv(rect.bottom, dpi, 96) / 2;
+            rect.top = MulDiv(rect.top, dpi, 96) / 2;
+            return rect;
+        }
+
+        public int MulDiv(int number, int numerator, int denominator)
+        {
+            return (int)(((long)number * numerator + (denominator >> 1)) / denominator);
         }
     }
 }
