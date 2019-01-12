@@ -35,7 +35,7 @@ namespace ESLTracker.Windows
         {
             get
             {
-                return $"Loading TESL Tracker version {applicationInfo.GetAssemblyVersion()}";
+                return $"Loading TESL Tracker version {applicationInfo.GetAssemblyFullSemVer()}";
             }
         }
 

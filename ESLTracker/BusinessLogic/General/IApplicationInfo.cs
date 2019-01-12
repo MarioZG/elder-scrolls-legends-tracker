@@ -7,5 +7,6 @@ namespace ESLTracker.BusinessLogic.General
     {
         string GetAssemblyInformationalVersion();
         SerializableVersion GetAssemblyVersion();
+        string GetAssemblyFullSemVer();
     }
 }

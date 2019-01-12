@@ -19,5 +19,10 @@ namespace ESLTracker.BusinessLogic.General
         {
             return string.Format("{0} ({1})", GitVersionInformation.FullSemVer, GitVersionInformation.Sha);
         }
+
+        public string GetAssemblyFullSemVer()
+        {
+            return GitVersionInformation.FullSemVer;
+        }
     }
 }
