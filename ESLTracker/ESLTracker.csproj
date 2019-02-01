@@ -988,6 +988,7 @@
     <Resource Include="Resources\Cards\dawnstarhealer.png" />
     <Resource Include="Resources\Cards\dawnswrath.png" />
     <Resource Include="Resources\Cards\deadlydraugr.png" />
+    <Resource Include="Resources\Cards\deathhound.png" />
     <Resource Include="Resources\Cards\deathlessdraugr.png" />
     <Resource Include="Resources\Cards\deepwoodtrapper.png" />
     <Resource Include="Resources\Cards\derangedcorprus.png" />
@@ -995,6 +996,7 @@
     <Resource Include="Resources\Cards\deshaanavenger.png" />
     <Resource Include="Resources\Cards\deshaansneak.png" />
     <Resource Include="Resources\Cards\desperateconjuring.png" />
+    <Resource Include="Resources\Cards\destructiontutor.png" />
     <Resource Include="Resources\Cards\detain.png" />
     <Resource Include="Resources\Cards\devour.png" />
     <Resource Include="Resources\Cards\discipleofnamira.png" />
@@ -1103,6 +1105,7 @@
     <Resource Include="Resources\Cards\forswornguide.png" />
     <Resource Include="Resources\Cards\forswornlooter.png" />
     <Resource Include="Resources\Cards\fortresswatchman.png" />
+    <Resource Include="Resources\Cards\frenziedalit.png" />
     <Resource Include="Resources\Cards\frenziedwitchman.png" />
     <Resource Include="Resources\Cards\frostbitespider.png" />
     <Resource Include="Resources\Cards\frostgiant.png" />
@@ -1138,6 +1141,7 @@
     <Resource Include="Resources\Cards\gravesinger.png" />
     <Resource Include="Resources\Cards\graystoneravager.png" />
     <Resource Include="Resources\Cards\greenheartknight.png" />
+    <Resource Include="Resources\Cards\greenpactambusher.png" />
     <Resource Include="Resources\Cards\greenpactstalker.png" />
     <Resource Include="Resources\Cards\greentouchedspriggan.png" />
     <Resource Include="Resources\Cards\greybeardmentor.png" />
@@ -1152,6 +1156,7 @@
     <Resource Include="Resources\Cards\halloweddeathpriest.png" />
     <Resource Include="Resources\Cards\hallsofthedwemer.png" />
     <Resource Include="Resources\Cards\handofdagoth.png" />
+    <Resource Include="Resources\Cards\harmony.png" />
     <Resource Include="Resources\Cards\hatcherymeddler.png" />
     <Resource Include="Resources\Cards\hauntedmanor.png" />
     <Resource Include="Resources\Cards\hauntingspirit.png" />
@@ -1217,6 +1222,7 @@
     <Resource Include="Resources\Cards\jzargo.png" />
     <Resource Include="Resources\Cards\kagoutifabricant.png" />
     <Resource Include="Resources\Cards\karthspirescourge.png" />
+    <Resource Include="Resources\Cards\karthspirescout.png" />
     <Resource Include="Resources\Cards\keeperofwhispers.png" />
     <Resource Include="Resources\Cards\khuullawkeeper.png" />
     <Resource Include="Resources\Cards\knifetothethroat.png" />
@@ -1349,6 +1355,7 @@
     <Resource Include="Resources\Cards\penitusoculatusagent.png" />
     <Resource Include="Resources\Cards\phalanxexemplar.png" />
     <Resource Include="Resources\Cards\piercingjavelin.png" />
+    <Resource Include="Resources\Cards\piercingtwilight.png" />
     <Resource Include="Resources\Cards\pillagingtribune.png" />
     <Resource Include="Resources\Cards\pitlion.png" />
     <Resource Include="Resources\Cards\pleatokynareth.png" />
@@ -1435,6 +1442,7 @@
     <Resource Include="Resources\Cards\seydaneencourier.png" />
     <Resource Include="Resources\Cards\shadowfenpriest.png" />
     <Resource Include="Resources\Cards\shadowgreenelder.png" />
+    <Resource Include="Resources\Cards\shadowmarking.png" />
     <Resource Include="Resources\Cards\shadowmaster.png" />
     <Resource Include="Resources\Cards\shadowmere.png" />
     <Resource Include="Resources\Cards\shadowscalepartisan.png" />
@@ -1545,6 +1553,7 @@
     <Resource Include="Resources\Cards\swiftwingdragon.png" />
     <Resource Include="Resources\Cards\swimsatnight.png" />
     <Resource Include="Resources\Cards\swindlersmarket.png" />
+    <Resource Include="Resources\Cards\swordoftheinferno.png" />
     <Resource Include="Resources\Cards\tazkadthepackmaster.png" />
     <Resource Include="Resources\Cards\telvanniarcanist.png" />
     <Resource Include="Resources\Cards\telvannicatspaw.png" />
@@ -1574,6 +1583,7 @@
     <Resource Include="Resources\Cards\thronealigned.png" />
     <Resource Include="Resources\Cards\tomeofalteration.png" />
     <Resource Include="Resources\Cards\torvalcrook.png" />
+    <Resource Include="Resources\Cards\torvalextortionist.png" />
     <Resource Include="Resources\Cards\toweralchemist.png" />
     <Resource Include="Resources\Cards\traitorsflames.png" />
     <Resource Include="Resources\Cards\treasuremap.png" />
@@ -1632,6 +1642,7 @@
     <Resource Include="Resources\Cards\wildbeastcaller.png" />
     <Resource Include="Resources\Cards\wildclumsiness.png" />
     <Resource Include="Resources\Cards\wildfiredragon.png" />
+    <Resource Include="Resources\Cards\wildsincarnate.png" />
     <Resource Include="Resources\Cards\wildspriggan.png" />
     <Resource Include="Resources\Cards\windkeepspellsword.png" />
     <Resource Include="Resources\Cards\winterholdillusionist.png" />
@@ -1709,21 +1720,6 @@
     <Resource Include="Resources\Sets\HousesOfMorrowind.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Cards\deathhound.png" />
-    <Resource Include="Resources\Cards\destructiontutor.png" />
-    <Resource Include="Resources\Cards\greenpactambusher.png" />
-    <Resource Include="Resources\Cards\harmony.png" />
-    <Resource Include="Resources\Cards\karthspirescout.png" />
-    <Resource Include="Resources\Cards\piercingtwilight.png" />
-    <Resource Include="Resources\Cards\shadowmarking.png" />
-    <Resource Include="Resources\Cards\swordoftheinferno.png" />
-    <Resource Include="Resources\Cards\torvalextortionist.png" />
-    <Resource Include="Resources\Cards\wildsincarnate.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Cards\frenziedalit.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Src\TESLTracker.DataModel\TESLTracker.DataModel.csproj">
       <Project>{0e7a6abe-8eb2-4e75-b8ab-1ade96acf6cb}</Project>
       <Name>TESLTracker.DataModel</Name>
@@ -1732,6 +1728,74 @@
       <Project>{57fdb382-ceb7-416c-add5-567f6a78e349}</Project>
       <Name>TESLTracker.Utils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Cards\ashlanderpunisher.png" />
+    <Resource Include="Resources\Cards\baliwog.png" />
+    <Resource Include="Resources\Cards\baliwogtidecrawlers.png" />
+    <Resource Include="Resources\Cards\bedevilingscamp.png" />
+    <Resource Include="Resources\Cards\blessingofthegrove.png" />
+    <Resource Include="Resources\Cards\brellachcommander.png" />
+    <Resource Include="Resources\Cards\cheesemancer.png" />
+    <Resource Include="Resources\Cards\cloak.png" />
+    <Resource Include="Resources\Cards\crazedhunger.png" />
+    <Resource Include="Resources\Cards\crucibleblacksmith.png" />
+    <Resource Include="Resources\Cards\cyriel.png" />
+    <Resource Include="Resources\Cards\dagger.png" />
+    <Resource Include="Resources\Cards\darkseducer.png" />
+    <Resource Include="Resources\Cards\dawnfang.png" />
+    <Resource Include="Resources\Cards\dementedgrummite.png" />
+    <Resource Include="Resources\Cards\doomfangally.png" />
+    <Resource Include="Resources\Cards\drivemad.png" />
+    <Resource Include="Resources\Cards\eagertorturer.png" />
+    <Resource Include="Resources\Cards\elytranoble.png" />
+    <Resource Include="Resources\Cards\felldew.png" />
+    <Resource Include="Resources\Cards\forkofhorripilation.png" />
+    <Resource Include="Resources\Cards\fortressguard.png" />
+    <Resource Include="Resources\Cards\gardenersharvest.png" />
+    <Resource Include="Resources\Cards\gatesofmadness.png" />
+    <Resource Include="Resources\Cards\ghostfanatic.png" />
+    <Resource Include="Resources\Cards\giantchicken.png" />
+    <Resource Include="Resources\Cards\gnarlrootbender.png" />
+    <Resource Include="Resources\Cards\goldeninitiate.png" />
+    <Resource Include="Resources\Cards\greatwoodelder.png" />
+    <Resource Include="Resources\Cards\grummitemagus.png" />
+    <Resource Include="Resources\Cards\haskill.png" />
+    <Resource Include="Resources\Cards\hereticconjurer.png" />
+    <Resource Include="Resources\Cards\hulkingscalon.png" />
+    <Resource Include="Resources\Cards\icyshambles.png" />
+    <Resource Include="Resources\Cards\jyggalagsincursion.png" />
+    <Resource Include="Resources\Cards\knightoforder.png" />
+    <Resource Include="Resources\Cards\ladysylscruelty.png" />
+    <Resource Include="Resources\Cards\luzrahgroshar.png" />
+    <Resource Include="Resources\Cards\maddash.png" />
+    <Resource Include="Resources\Cards\madnessbeckons.png" />
+    <Resource Include="Resources\Cards\manicgrummite.png" />
+    <Resource Include="Resources\Cards\manicjack.png" />
+    <Resource Include="Resources\Cards\manicmutation.png" />
+    <Resource Include="Resources\Cards\nervousgiant.png" />
+    <Resource Include="Resources\Cards\pointywallofspikes.png" />
+    <Resource Include="Resources\Cards\preyingelytra.png" />
+    <Resource Include="Resources\Cards\rayvatthemage.png" />
+    <Resource Include="Resources\Cards\renegademagister.png" />
+    <Resource Include="Resources\Cards\ringoflordship.png" />
+    <Resource Include="Resources\Cards\seducerdarkfire.png" />
+    <Resource Include="Resources\Cards\seethingfleshgolem.png" />
+    <Resource Include="Resources\Cards\shiningsaint.png" />
+    <Resource Include="Resources\Cards\skinnedhound.png" />
+    <Resource Include="Resources\Cards\smokedbaliwogleg.png" />
+    <Resource Include="Resources\Cards\spawnmother.png" />
+    <Resource Include="Resources\Cards\squishthewimpy.png" />
+    <Resource Include="Resources\Cards\sylduchessofdementia.png" />
+    <Resource Include="Resources\Cards\tavyartheknight.png" />
+    <Resource Include="Resources\Cards\thadondukeofmania.png" />
+    <Resource Include="Resources\Cards\thegatekeeper.png" />
+    <Resource Include="Resources\Cards\tinydragon.png" />
+    <Resource Include="Resources\Cards\transmogrify.png" />
+    <Resource Include="Resources\Cards\troubleseeker.png" />
+    <Resource Include="Resources\Cards\unstablemadman.png" />
+    <Resource Include="Resources\Cards\wakethedead.png" />
+    <Resource Include="Resources\Cards\xavaraatronach.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
