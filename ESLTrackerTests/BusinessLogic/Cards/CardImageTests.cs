@@ -69,7 +69,7 @@ namespace ESLTrackerTests.BusinessLogic.Cards
             Resources resService = new Resources();
             CardImage cardImage = CreateCardImageObject();
 
-            foreach (Card card in CardsDatabase.Cards)
+            foreach (Card card in CardsDatabase.Cards.Where(c => c.Type != TESLTracker.DataModel.Enums.CardType.Double))
             {
                 Assert.IsNotNull(cardImage.GetCardMiniature(card), card.Name);
 
