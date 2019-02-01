@@ -11,6 +11,7 @@ namespace TESLTracker.DataModel.Enums
         Creature,
         Action,
         Item,
-        Support
+        Support,
+        Double
     }
 }
