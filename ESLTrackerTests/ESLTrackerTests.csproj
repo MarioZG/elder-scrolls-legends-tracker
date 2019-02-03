@@ -90,6 +90,7 @@
     <Compile Include="BusinessLogic\Decks\DeckVersionService.cs" />
     <Compile Include="BusinessLogic\Games\GameFactoryTests.cs" />
     <Compile Include="BusinessLogic\Games\RankCalculationsTests.cs" />
+    <Compile Include="BusinessLogic\General\ScreenShotTests.cs" />
     <Compile Include="BusinessLogic\Packs\PacksChartsDataCalculatorTests.cs" />
     <Compile Include="BusinessLogic\Packs\PacksDataCSVExporterTests.cs" />
     <Compile Include="DataModel\CardInstanceTests.cs" />

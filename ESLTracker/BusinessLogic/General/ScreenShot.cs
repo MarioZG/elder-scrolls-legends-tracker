@@ -41,13 +41,7 @@ namespace ESLTracker.BusinessLogic.General
             {
                 WinAPI.SetForegroundWindow(eslHandle.Value);
 
-
-                var rect = new WinAPI.Rect();
-                WinAPI.GetWindowRect(eslHandle.Value, ref rect);
-
-                int dpi = WinAPI.GetDpiForWindow(eslHandle.Value);
-
-                rect = AdjustForMultimonitorDPI(rect, dpi);
+                WinAPI.Rect rect = FindWindowCoordiantes(eslHandle);
 
                 int width = rect.right - rect.left;
                 int height = rect.bottom - rect.top;
@@ -61,11 +55,6 @@ namespace ESLTracker.BusinessLogic.General
                 {
                     foreach (Window w in overlayWindowRepository)
                     {
-                        //System.Diagnostics.Debugger.Log(1, "", "w" + w.Title);
-                        //System.Diagnostics.Debugger.Log(1, "", "  w.IsActive=" + w.IsActive);
-                        //System.Diagnostics.Debugger.Log(1, "", "   w.IsVisible=" + w.IsVisible);
-                        //System.Diagnostics.Debugger.Log(1, "", "   w.Topmost=" + w.Topmost);
-                        //System.Diagnostics.Debugger.Log(1, "", Environment.NewLine);
                         if (w.IsActive) //if other if visible - cannot do anything; otherwise if it was in back, it would be show at the top:/...
                         {
                             activeWindow = w;
@@ -112,20 +101,39 @@ namespace ESLTracker.BusinessLogic.General
             return Task.FromResult<object>(null);
         }
 
-        private WinAPI.Rect AdjustForMultimonitorDPI(WinAPI.Rect rect, int dpi)
+        private WinAPI.Rect FindWindowCoordiantes(IntPtr? eslHandle)
         {
-            //https://docs.microsoft.com/en-us/windows/desktop/hidpi/high-dpi-desktop-application-development-on-windows#updating-existing-applications
-            // /2 - not sure why - it returns doubled values!
-            rect.right = MulDiv(rect.right, dpi, 96) / 2;
-            rect.left = MulDiv(rect.left, dpi, 96) / 2;
-            rect.bottom = MulDiv(rect.bottom, dpi, 96) / 2;
-            rect.top = MulDiv(rect.top, dpi, 96) / 2;
+            var rect = new WinAPI.Rect();
+            WinAPI.GetWindowRect(eslHandle.Value, ref rect);
+
+            System.Drawing.Point point = new System.Drawing.Point(rect.left + 1, rect.top + 1);
+            IntPtr monitorPtr = WinAPI.MonitorFromPoint(point, 2);
+
+            uint dpix, dpiy;
+            WinAPI.GetDpiForMonitor(monitorPtr, WinAPI.DpiType.Effective, out dpix, out dpiy);
+
+            var appDpi = WinAPI.GetDpiForWindow(eslHandle.Value);
+
+            if (appDpi != dpix)
+            {
+                rect = AdjustForMultimonitorDPI(rect, (int)dpix);
+            }
             return rect;
         }
 
-        public int MulDiv(int number, int numerator, int denominator)
+        public WinAPI.Rect AdjustForMultimonitorDPI(WinAPI.Rect rect, int dpi)
         {
-            return (int)(((long)number * numerator + (denominator >> 1)) / denominator);
+            //https://docs.microsoft.com/en-us/windows/desktop/hidpi/high-dpi-desktop-application-development-on-windows#updating-existing-applications
+            if(dpi  == 0)
+            {
+                throw new ArgumentException("dpi cannot be {dpi}");
+            }
+            var dpiRatio = dpi / 96D;
+            rect.right = (int)(rect.right / dpiRatio);
+            rect.left = (int)(rect.left / dpiRatio);
+            rect.top = (int)(rect.top / dpiRatio);
+            rect.bottom = (int)(rect.bottom / dpiRatio);
+            return rect;
         }
     }
 }

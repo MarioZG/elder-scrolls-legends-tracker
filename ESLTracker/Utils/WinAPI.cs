@@ -54,6 +54,19 @@ namespace ESLTracker.Utils
         [DllImport("user32.dll")]
         public static extern int GetDpiForWindow(IntPtr hWnd);
 
+        [DllImport("User32.dll")]
+        public static extern IntPtr MonitorFromPoint([In]System.Drawing.Point pt, [In]uint dwFlags);
+
+        [DllImport("Shcore.dll")]
+        public static extern IntPtr GetDpiForMonitor([In]IntPtr hmonitor, [In]DpiType dpiType, [Out]out uint dpiX, [Out]out uint dpiY);
+
+        public enum DpiType
+        {
+            Effective = 0,
+            Angular = 1,
+            Raw = 2,
+        }
+
         public bool IsGameActive()
         {
             IntPtr fw = GetForegroundWindow();
