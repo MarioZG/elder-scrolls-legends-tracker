@@ -10,6 +10,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  TESL_package_version: MyValue
 
 steps:
 - task: NuGetToolInstaller@0
@@ -87,23 +88,25 @@ steps:
     allowPackageConflicts: true
 
 
+# Create a variable with pakcage version
+# - script: |
+#     echo '##vso[task.setvariable variable=TESL_package_version]$(GitVersion.Major).$(GitVersion.Minor).$(GitVersion.Patch)'
+
 #create and push data model nuget
 - task: NuGetCommand@2
   inputs:
     command: pack
     packagesToPack: '**\*.nuspec'
     includeReferencedProjects: true
-    # versioningScheme: byEnvVar
-    # EnvVar: $(GitVersion.SemVer)
-    versioningScheme: byPrereleaseNumber
-    majorVersion: $(GitVersion.Major) # Required when versioningScheme == ByPrereleaseNumber
-    minorVersion: $(GitVersion.Minor) # Required when versioningScheme == ByPrereleaseNumber
-    patchVersion: $(GitVersion.Patch) # Required when versioningScheme == ByPrereleaseNumber
-    packTimezone: 'utc' # Required when versioningScheme == ByPrereleaseNumber# Options: utc, local
+    versioningScheme: byEnvVar
+    versionEnvVar: Build.BuildNumber
+    # versioningScheme: byPrereleaseNumber
+    # majorVersion: $(GitVersion.Major) # Required when versioningScheme == ByPrereleaseNumber
+    # minorVersion: $(GitVersion.Minor) # Required when versioningScheme == ByPrereleaseNumber
+    # patchVersion: $(GitVersion.Patch) # Required when versioningScheme == ByPrereleaseNumber
+    # packTimezone: 'utc' # Required when versioningScheme == ByPrereleaseNumber# Options: utc, local
     # versioningScheme: byBuildNumber
   
-- script: echo 'DM package'$(Build.SourcesDirectory)\Src\TESLTracker.DataModel\bin\Debug\TESLTracker.DataModel.1.0.0.nupkg # Required when command == Push
-
 - task: NuGetCommand@2
   displayName: 'NuGet push Datamodel'
   inputs:
