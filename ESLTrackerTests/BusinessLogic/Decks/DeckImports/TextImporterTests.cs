@@ -67,7 +67,8 @@ namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
 
         private TextImporter CreateDeckImporter()
         {
-            return new TextImporter(cardsDatabaseFactory.Object, cardInstanceFactory.Object, mockDeckService.Object);
+            return new TextImporter(cardsDatabaseFactory.Object, cardInstanceFactory.Object, mockDeckService.Object, 
+                new DeckCardsEditor(cardInstanceFactory.Object, cardsDatabase.Object));
         }
     }
 }

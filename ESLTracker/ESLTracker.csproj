@@ -109,8 +109,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusinessLogic\Cards\DoubleCardException.cs" />
+    <Compile Include="BusinessLogic\Cards\DoubleCardsCalculator.cs" />
     <Compile Include="BusinessLogic\DataFile\FileLoader.cs" />
     <Compile Include="BusinessLogic\DataFile\FileUpdater.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckCardsEditor.cs" />
     <Compile Include="BusinessLogic\Decks\DeckExports\BBCodeExport.cs" />
     <Compile Include="BusinessLogic\Decks\DeckCalculations.cs" />
     <Compile Include="BusinessLogic\Decks\DeckExports\DeckExporterSPCode.cs" />

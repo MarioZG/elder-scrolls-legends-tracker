@@ -31,8 +31,14 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        private CardBreakdown cardBreakdownService = new CardBreakdown();
-        private SoulGemCalculator soulGemCalculator = new SoulGemCalculator();
+        private readonly CardBreakdown cardBreakdown;
+        private readonly SoulGemCalculator soulGemCalculator;
+
+        public CardBreakdownViewModel(CardBreakdown cardBreakdownService, SoulGemCalculator soulGemCalculator)
+        {
+            this.cardBreakdown = cardBreakdownService;
+            this.soulGemCalculator = soulGemCalculator;
+        }
 
         private void CardCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
@@ -44,7 +50,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             get
             {
-                return cardCollection?.Sum(c => c.Quantity);
+                return cardBreakdown.GetTotalCount(cardCollection);
             }
         }
 
@@ -63,7 +69,7 @@ namespace ESLTracker.ViewModels.Decks
                 SeriesCollection sc = new SeriesCollection();
                 if (cardCollection != null)
                 {
-                    var breakdown = cardBreakdownService.GetCardsColorBreakdown(cardCollection);
+                    var breakdown = cardBreakdown.GetCardsColorBreakdown(cardCollection);
                     foreach (var item in breakdown)
                     {
                         sc.Add(
@@ -101,7 +107,7 @@ namespace ESLTracker.ViewModels.Decks
                 );
                 if (cardCollection != null)
                 {
-                    var breakdown = cardBreakdownService.GetManaBreakdown(cardCollection);
+                    var breakdown = cardBreakdown.GetManaBreakdown(cardCollection);
                     foreach(var item in breakdown)
                     {                       
                         sc[0].Values.Add(item.Value);
@@ -124,7 +130,7 @@ namespace ESLTracker.ViewModels.Decks
                 StringBuilder text = new StringBuilder();
                 if (cardCollection != null)
                 {
-                    var breakdown = cardBreakdownService.GetCardTypeBreakdown(cardCollection);
+                    var breakdown = cardBreakdown.GetCardTypeBreakdown(cardCollection);
 
                     foreach (var item in breakdown)
                     {
@@ -146,8 +152,8 @@ namespace ESLTracker.ViewModels.Decks
                     decimal count = cardCollection.Sum(ci => ci.Quantity);
 
 
-                    var keywordsBreakdown = cardBreakdownService.GetCardKeywordsBreakdown<CardKeyword>(cardCollection, c => c.Keywords);
-                    var mechanicsBreakdown = cardBreakdownService.GetCardKeywordsBreakdown<CardMechanic>(cardCollection, c => c.Mechanics);
+                    var keywordsBreakdown = cardBreakdown.GetCardKeywordsBreakdown<CardKeyword>(cardCollection, c => c.Keywords);
+                    var mechanicsBreakdown = cardBreakdown.GetCardKeywordsBreakdown<CardMechanic>(cardCollection, c => c.Mechanics);
 
                     foreach (var ct in keywordsBreakdown)
                     {

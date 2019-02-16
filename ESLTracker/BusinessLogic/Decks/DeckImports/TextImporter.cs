@@ -23,8 +23,9 @@ namespace ESLTracker.BusinessLogic.Decks.DeckImports
         public TextImporter(
             ICardsDatabaseFactory cardsDatabaseFactory, 
             ICardInstanceFactory cardInstanceFactory, 
-            IDeckService deckService)
-                : base(cardsDatabaseFactory, cardInstanceFactory)
+            IDeckService deckService,
+            DeckCardsEditor deckCardsEditor)
+                : base(cardsDatabaseFactory, cardInstanceFactory, deckCardsEditor)
         {
             this.deckService = deckService;
         }
@@ -50,7 +51,6 @@ namespace ESLTracker.BusinessLogic.Decks.DeckImports
                 titleLine = 1;
             }
 
-            ICardsDatabase cardsDatabase = cardsDatabaseFactory.GetCardsDatabase();
             foreach (string cardLine in importLines.Skip(titleLine))
             {
                 if (String.IsNullOrWhiteSpace(cardLine))
@@ -63,11 +63,7 @@ namespace ESLTracker.BusinessLogic.Decks.DeckImports
                 int cardCount = GetCardQty(splitedLine);
                 string cardName = GetCardName(splitedLine);
 
-                Card card = cardsDatabase.FindCardByName(cardName);
-
-                CardInstance cardInstance = cardInstanceFactory.CreateFromCard(card, cardCount);
-
-                Cards.Add(cardInstance);
+                deckCardsEditor.ChangeCardQuantity(Cards, cardName, cardCount, false);
             }
         }
 
@@ -78,23 +74,11 @@ namespace ESLTracker.BusinessLogic.Decks.DeckImports
             {
                 foreach (var importedCard in Cards)
                 {
-                    var instance = deck.SelectedVersion.Cards.Where(ci => ci.Card.Id == importedCard.CardId).FirstOrDefault();
-                    if (instance != null)
-                    {
-                        instance.Quantity += importedCard.Quantity;
-                        if (instance.Quantity <= 0)
-                        {
-                            deck.SelectedVersion.Cards.Remove(instance);
-                        }
-                        if (deckService.LimitCardCountForDeck(deck))
-                        {
-                            deckService.EnforceCardLimit(instance);
-                        }
-                    }
-                    else if (importedCard.Quantity > 0)
-                    {
-                        deck.SelectedVersion.Cards.Add(importedCard);
-                    }
+                    deckCardsEditor.ChangeCardQuantity(
+                        deck.SelectedVersion.Cards,
+                        importedCard.Card,
+                        importedCard.Quantity,
+                        deckService.LimitCardCountForDeck(deck));
                 }
             }
         }

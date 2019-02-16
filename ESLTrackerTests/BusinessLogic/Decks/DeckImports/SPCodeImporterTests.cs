@@ -1,4 +1,5 @@
 ﻿using ESLTracker.BusinessLogic.Cards;
+using ESLTracker.BusinessLogic.Decks;
 using ESLTracker.BusinessLogic.Decks.DeckImports;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -68,7 +69,11 @@ namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
 
         private SPCodeImporter CreateObject()
         {
-           return new SPCodeImporter(mockCardsDatabaseFactory.Object, new CardInstanceFactory(), new CardSPCodeProvider());
+           return new SPCodeImporter(
+               mockCardsDatabaseFactory.Object, 
+               new CardInstanceFactory(),
+               new CardSPCodeProvider(),
+               new DeckCardsEditor(new CardInstanceFactory(), CardsDatabase));
         }
     }
 }

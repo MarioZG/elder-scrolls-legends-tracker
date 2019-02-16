@@ -35,18 +35,6 @@ namespace ESLTracker.BusinessLogic.Decks
             return deckToCheck?.Type == DeckType.Constructed;
         }
 
-        public void EnforceCardLimit(CardInstance card)
-        {
-            if (card.Card.IsUnique && (card.Quantity > 1))
-            {
-                card.Quantity = 1;
-            }
-            else if ((!card.Card.IsUnique) && (card.Quantity > 3))
-            {
-                card.Quantity = 3;
-            }
-        }
-
         public virtual IEnumerable<Game> GetDeckGames(Deck deck)
         {
             return tracker.Games.Where(g => g.Deck.DeckId == deck.DeckId);

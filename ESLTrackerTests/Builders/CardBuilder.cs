@@ -34,6 +34,18 @@ namespace ESLTrackerTests.Builders
             return this;
         }
 
+        public CardBuilder WithDoubleCard(Guid parentDoubleCardId)
+        {
+            card.DoubleCard = parentDoubleCardId;
+            return this;
+        }
+
+        public CardBuilder WithDoubleCardComponents(List<Guid> doubleCardIds)
+        {
+            card.DoubleCardComponents = doubleCardIds;
+            return this;
+        }
+
         public Card Build()
         {
             return card;

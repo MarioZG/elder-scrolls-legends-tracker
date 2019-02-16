@@ -86,7 +86,7 @@ namespace ESLTrackerTests.BusinessLogic.Decks.DeckImports
 
         private WebImporter CreateDeckImporter()
         {
-            return new WebImporter(cardsDatabaseFactory.Object, cardInstanceFactory.Object);
+            return new WebImporter(cardsDatabaseFactory.Object, cardInstanceFactory.Object, new DeckCardsEditor(cardInstanceFactory.Object, cardsDatabase.Object));
         }
     }
 }

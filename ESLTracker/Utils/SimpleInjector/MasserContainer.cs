@@ -25,6 +25,7 @@ using SimpleInjector.Diagnostics;
 using System.Linq;
 using System.Text;
 using TESLTracker.Utils;
+using System;
 
 namespace ESLTracker.Utils.SimpleInjector
 {
@@ -53,6 +54,7 @@ namespace ESLTracker.Utils.SimpleInjector
             Register<ICardsDatabaseFactory, CardsDatabaseFactory>(Lifestyle.Singleton); 
             Register<ICardInstanceFactory, CardInstanceFactory>(Lifestyle.Singleton); 
             Register<ICardsDatabase>(() => GetInstance<ICardsDatabaseFactory>().GetCardsDatabase());  // can be reloaded, singelton is not good here 
+            Register<DoubleCardsCalculator, DoubleCardsCalculator>(Lifestyle.Singleton); 
             Register<ISettings>(() => Settings.Default, Lifestyle.Singleton);
             Register<IWinAPI, WinAPI>();
             Register<IProcessWrapper, ProcessWrapper>();
@@ -108,9 +110,9 @@ namespace ESLTracker.Utils.SimpleInjector
             {
                 Verify();
             }
-            catch
+            catch (Exception ex)
             {
-
+                return ex.ToString();
             }
             var results = Analyzer.Analyze(this)
                 .OfType<ShortCircuitedDependencyDiagnosticResult>();

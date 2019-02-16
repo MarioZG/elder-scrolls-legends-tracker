@@ -84,6 +84,7 @@
     <Compile Include="BusinessLogic\DataFile\FileUpdaterTests.cs" />
     <Compile Include="BusinessLogic\Decks\CardBreakdownTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckCalculationsTests.cs" />
+    <Compile Include="BusinessLogic\Decks\DeckCardsEditorTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckExports\DeckExporterTextTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckImports\SPCodeImporterTests.cs" />
     <Compile Include="BusinessLogic\Decks\DeckImports\WebImporterTests.cs" />
@@ -127,7 +128,6 @@
     <Compile Include="Utils\SimpleInjector\MasserContainerTests.cs" />
     <Compile Include="Utils\WinAPITests.cs" />
     <Compile Include="ViewModels\ArenaStatsViewModelTests.cs" />
-    <Compile Include="ViewModels\Cards\CardListEditorViewModelTests.cs" />
     <Compile Include="ViewModels\DeckClassSelectorViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\DeckEditViewModelTests.cs" />
     <Compile Include="ViewModels\Decks\DeckItemMenuOperationsViewModelTests.cs" />
@@ -159,7 +159,9 @@
     </Content>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\Cards\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="BusinessLogic\Decks\Data\DeckImportTest001.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

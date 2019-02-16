@@ -26,11 +26,13 @@ namespace ESLTracker.BusinessLogic.Decks.DeckImports
 
         protected readonly ICardsDatabaseFactory cardsDatabaseFactory;
         protected readonly ICardInstanceFactory cardInstanceFactory;
+        protected readonly DeckCardsEditor deckCardsEditor;
 
-        public BaseImporter(ICardsDatabaseFactory cardsDatabaseFactory, ICardInstanceFactory cardInstanceFactory)
+        public BaseImporter(ICardsDatabaseFactory cardsDatabaseFactory, ICardInstanceFactory cardInstanceFactory, DeckCardsEditor deckCardsEditor)
         {
             this.cardsDatabaseFactory = cardsDatabaseFactory;
             this.cardInstanceFactory = cardInstanceFactory;
+            this.deckCardsEditor = deckCardsEditor;
         }
 
         public async Task<bool> Import(object importData, Deck deck = null)

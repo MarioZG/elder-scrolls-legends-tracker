@@ -65,13 +65,14 @@ namespace ESLTracker.ViewModels.Cards
         private readonly ICardsDatabaseFactory cardsDatabaseFactory;
         private readonly IDeckService deckService;
         private readonly IMessenger messanger;
+        private readonly DeckCardsEditor deckCardsEditor;
 
-
-        public CardListEditorViewModel(ICardsDatabaseFactory cardsDatabaseFactory, IDeckService deckService, IMessenger messanger)
+        public CardListEditorViewModel(ICardsDatabaseFactory cardsDatabaseFactory, IDeckService deckService, IMessenger messanger, DeckCardsEditor deckCardsEditor)
         {
             this.cardsDatabaseFactory = cardsDatabaseFactory;
             this.deckService = deckService;
             this.messanger = messanger;
+            this.deckCardsEditor = deckCardsEditor;
 
             messanger.Register<CardsDbReloaded>(this, OnCardsDbReloaded);
         }
@@ -89,26 +90,11 @@ namespace ESLTracker.ViewModels.Cards
 
         internal void AddCard(CardInstance value, int qty)
         {
-            if (value == null)
+            if (value != null)
             {
-                return;
+                deckCardsEditor.ChangeCardQuantity(CardsCollection, value.Card, qty, LimitCardCount);
+                NewCard = null;
             }
-            var card = CardsCollection.Where(ci => ci.CardId == value.CardId).FirstOrDefault();
-            if (card != null)
-            {
-                card.Quantity += qty; //if already in deck, inc qty
-            }
-            else
-            {
-                card = value;
-                card.Quantity = qty;
-                CardsCollection.Add(card);
-            }
-            if (LimitCardCount)
-            {
-                deckService.EnforceCardLimit(card);
-            }
-            NewCard = null;
         }
 
 
@@ -127,10 +113,9 @@ namespace ESLTracker.ViewModels.Cards
 
         private void RemoveCard(CardInstance cardInstance)
         {
-            cardInstance.Quantity -= 1;
-            if (cardInstance.Quantity == 0)
+            if (cardInstance != null)
             {
-                cardsCollection.Remove(cardInstance);
+                deckCardsEditor.ChangeCardQuantity(CardsCollection, cardInstance.Card, -1, false);
             }
         }
     }

@@ -7,6 +7,7 @@ using ESLTracker.BusinessLogic.Decks.DeckImports;
 using TESLTracker.DataModel;
 using ESLTracker.Utils;
 using ESLTracker.Utils.SystemWindowsWrappers;
+using ESLTracker.BusinessLogic.Cards;
 
 namespace ESLTracker.BusinessLogic.Decks.DeckExports
 {
@@ -15,15 +16,21 @@ namespace ESLTracker.BusinessLogic.Decks.DeckExports
         private readonly ICardSPCodeProvider cardSPCodeProvider;
         private readonly UserInfoMessages userInfoMessages;
         private readonly IClipboardWrapper clipboardWrapper;
+        private readonly ICardsDatabase cardsDatabase;
+        private readonly ICardInstanceFactory cardsInstanceFactory;
 
         public DeckExporterSPCode(
             ICardSPCodeProvider cardSPCodeProvider,
             UserInfoMessages userInfoMessages,
-            IClipboardWrapper clipboardWrapper)
+            IClipboardWrapper clipboardWrapper,
+            ICardsDatabase cardsDatabase,
+            ICardInstanceFactory cardsInstanceFactory)
         {
             this.cardSPCodeProvider = cardSPCodeProvider;
             this.userInfoMessages = userInfoMessages;
             this.clipboardWrapper = clipboardWrapper;
+            this.cardsDatabase = cardsDatabase;
+            this.cardsInstanceFactory = cardsInstanceFactory;
         }
 
         public bool ExportDeck(Deck deck)
@@ -31,6 +38,8 @@ namespace ESLTracker.BusinessLogic.Decks.DeckExports
             if (deck != null)
             {
                 var codeChars = deck.SelectedVersion.Cards
+                            .Select(c => c.Card.DoubleCard.HasValue ? cardsInstanceFactory.CreateFromCard(cardsDatabase.FindCardById(c.Card.DoubleCard.Value), c.Quantity) : c )
+                            .Select(c => c.Card.DoubleCardComponents != null ? cardsInstanceFactory.CreateFromCard(c.Card, c.Quantity/2) : c )
                             .OrderBy(c => c?.Card?.Cost)
                             .ThenBy(c => c?.Card?.Name)
                             .Union(new[] {

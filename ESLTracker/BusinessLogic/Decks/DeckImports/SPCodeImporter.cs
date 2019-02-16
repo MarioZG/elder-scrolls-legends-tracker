@@ -19,8 +19,9 @@ namespace ESLTracker.BusinessLogic.Decks.DeckImports
         public SPCodeImporter(
             ICardsDatabaseFactory cardsDatabaseFactory, 
             ICardInstanceFactory cardInstanceFactory,
-            ICardSPCodeProvider cardSPCodeProvider) 
-            : base(cardsDatabaseFactory, cardInstanceFactory)
+            ICardSPCodeProvider cardSPCodeProvider,
+            DeckCardsEditor deckCardsEditor) 
+            : base(cardsDatabaseFactory, cardInstanceFactory, deckCardsEditor)
         {
             this.cardSPCodeProvider = cardSPCodeProvider;
         }
@@ -47,8 +48,7 @@ namespace ESLTracker.BusinessLogic.Decks.DeckImports
                         try
                         {
                             var name = cardSPCodeProvider.GetCardByCode(code.Substring(2 + cardNo * 2, 2));
-                            var card = cardsDatabase.FindCardByName(name);
-                            Cards.Add(cardInstanceFactory.CreateFromCard(card, qty));
+                            deckCardsEditor.ChangeCardQuantity(Cards, name, qty, false);
                         }
                         catch (MissingSPCodeException ex)
                         {

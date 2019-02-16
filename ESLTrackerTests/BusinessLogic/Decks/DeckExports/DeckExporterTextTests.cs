@@ -64,7 +64,9 @@ namespace ESLTracker.BusinessLogic.Decks.DeckExports.Tests
             return new DeckExporterText(
                 mockDeckTextExportFormat.Object,
                 userInfoMessages,
-                mockClipboardWrapper.Object);
+                mockClipboardWrapper.Object,
+                null, //used only for double cards cases
+                null);//used only for double cards cases
         }
     }
 }

@@ -34,16 +34,22 @@ namespace TESLTracker.DataModel
         public string Name { get; set; }
 
         [XmlIgnore]
+        [JsonConverter(typeof(StringEnumConverter))]
         public CardRarity Rarity { get; set; }
+
+        [XmlIgnore]
+        public string Set { get; set; }
 
         [XmlIgnore]
         public bool IsUnique { get; set; }
 
         [XmlIgnore]
-        public DeckAttributes Attributes { get; set; } 
+        [JsonConverter(typeof(StringEnumConverter))]
+        public CardType Type { get; set; }
 
         [XmlIgnore]
-        public CardType Type { get; set; }
+        [JsonProperty(ItemConverterType = typeof(StringEnumConverter))]
+        public DeckAttributes Attributes { get; set; } 
 
         [XmlIgnore]
         public int Cost { get; set; }
@@ -58,19 +64,30 @@ namespace TESLTracker.DataModel
         public string Race { get; set; }
 
         [XmlIgnore]
-        public string Text { get; set; }
-
-        [XmlIgnore]
-        public string Set { get; set; }
-
-        [XmlIgnore]
         [JsonProperty(ItemConverterType = typeof(StringEnumConverter))]
         public List<CardKeyword> Keywords { get; set; } = new List<CardKeyword>();
 
         [XmlIgnore]
+        public string Text { get; set; }
+
+        /// <summary>
+        /// list of double cards included in this card. Filled when typ == double
+        /// </summary>
+        [XmlIgnore]
+        public IEnumerable<Guid> DoubleCardComponents { get; set; }
+
+        /// <summary>
+        /// doble card that tis card is part of 
+        /// </summary>
+        [XmlIgnore]
+        public Guid? DoubleCard { get; set; }
+
+        [XmlIgnore]
         [JsonProperty(ItemConverterType = typeof(StringEnumConverter))]
+        [JsonIgnore]
         public List<CardMechanic> Mechanics { get; set; } = new List<CardMechanic>();
 
+        [JsonIgnore]
         public string ImageName
         {
             get

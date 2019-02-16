@@ -15,8 +15,8 @@ namespace ESLTracker.BusinessLogic.Decks.DeckImports
 {
     public class WebImporter : TextImporter
     {
-        public WebImporter(ICardsDatabaseFactory cardsDatabaseFactory, ICardInstanceFactory cardInstanceFactory)
-            :base(cardsDatabaseFactory, cardInstanceFactory, null)
+        public WebImporter(ICardsDatabaseFactory cardsDatabaseFactory, ICardInstanceFactory cardInstanceFactory, DeckCardsEditor deckCardsEditor)
+            :base(cardsDatabaseFactory, cardInstanceFactory, null, deckCardsEditor)
         {
 
         }
