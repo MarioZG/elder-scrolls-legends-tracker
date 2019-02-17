@@ -6,10 +6,8 @@
              xmlns:local="clr-namespace:ESLTracker.Controls.Decks"
              xmlns:ViewModels="clr-namespace:ESLTracker.ViewModels.Decks"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             DataContext="{Binding Source={StaticResource VMLocator}, Path=[Decks.CardBreakdownViewModel]}" 
              mc:Ignorable="d">
-    <UserControl.DataContext>
-        <ViewModels:CardBreakdownViewModel/>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <Style x:Key="sectionHeader" TargetType="{x:Type TextBlock}">
             <Setter Property="Margin" Value="0,7,0,5" />

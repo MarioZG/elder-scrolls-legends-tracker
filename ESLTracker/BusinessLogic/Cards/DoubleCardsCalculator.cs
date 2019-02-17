@@ -9,14 +9,14 @@ namespace ESLTracker.BusinessLogic.Cards
 {
     public class DoubleCardsCalculator
     {
-        private readonly CardsDatabase cardsDatabase;
+        private readonly ICardsDatabase cardsDatabase;
 
         private Dictionary<Guid, decimal> cardsByTypeCount = new Dictionary<Guid, decimal>();
         private Dictionary<Guid, int> cardsByAttribute = new Dictionary<Guid, int>();  //onw ill have 1 other zer whn same colour
 
-        public DoubleCardsCalculator(CardsDatabase cardsDatabase)
+        public DoubleCardsCalculator(ICardsDatabaseFactory cardsDatabaseFactory)
         {
-            this.cardsDatabase = cardsDatabase;
+            this.cardsDatabase = cardsDatabaseFactory.GetCardsDatabase();
             Init();
         }
 
