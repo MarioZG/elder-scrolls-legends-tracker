@@ -250,7 +250,7 @@ namespace ESLTracker.BusinessLogic.Decks.Tests
 
         private CardBreakdown CreateCardBreakdownObject()
         {
-            return new CardBreakdown(new DoubleCardsCalculator(CardsDatabase));
+            return new CardBreakdown(new DoubleCardsCalculator(mockCardsDatabaseFactory.Object));
         }
     }
 }
