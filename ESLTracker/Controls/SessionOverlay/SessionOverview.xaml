@@ -23,7 +23,10 @@
                 Height="20"
                 Command="{Binding CommandResetSession}" 
                 Background="{x:Null}">
-                <fa:ImageAwesome Icon="Refresh" Margin="1"/>
+                <fa:ImageAwesome 
+                    Foreground="{Binding Path=SessionOverlay_ForegroundColor, Source={x:Static Properties:Settings.Default}, Converter={Converters:ColorToBrushConverter}}" 
+                    Icon="Refresh" 
+                    Margin="1"/>
             </Button>
             <StackPanel 
                 DockPanel.Dock="Top"
