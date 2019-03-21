@@ -1,7 +1,7 @@
 {
-"Version": "2.7",
-"VersionInfo": "Patch 2.7 and February 2019 monthly",
-"VersionDate": "2019-02-26T00:00:00Z",
+"Version": "2.8",
+"VersionInfo": "Patch 2.8 and March 2019 monthly",
+"VersionDate": "2019-03-21T00:00:00Z",
 "CardSets": [
   {
     "name": "Core",
@@ -143,7 +143,7 @@
       "Prophecy",
       "Guard"
     ],
-    "text": "Prophecy, Guard\r\nImmune to Silence.\nLast Gasp: Adoring Fan will return."
+    "text": "Prophecy, Guard\r\nImmune to Silence.\r\nLast Gasp: Adoring Fan will return."
   },
   {
     "id": "925259a6-95df-4d97-806d-895e3f2605a4",
@@ -354,7 +354,7 @@
     "health": 4,
     "race": "Redguard",
     "keywords": [],
-    "text": "Summon: Put a Steel Dagger into your hand.\nWhen Alik'r Survivalist equips an item, he gains +1/+1."
+    "text": "Summon: Put a Steel Dagger into your hand.\r\nWhen Alik'r Survivalist equips an item, he gains +1/+1."
   },
   {
     "id": "beb041cb-4596-11e3-8f96-0800200c9a66",
@@ -984,7 +984,7 @@
     "attack": 3,
     "health": 0,
     "keywords": [],
-    "text": "+3/+0\nSummon: Give the wielder Cover at the end of turn."
+    "text": "+3/+0\r\nSummon: Give the wielder Cover at the end of turn."
   },
   {
     "id": "1472842b-a646-4a5c-9236-c354b9dd1f9d",
@@ -1196,7 +1196,7 @@
     "health": 5,
     "race": "High Elf",
     "keywords": [],
-    "text": "Summon: Draw a random action from your discard pile.\nYour actions cost 1 less."
+    "text": "Summon: Draw a random action from your discard pile.\r\nYour actions cost 1 less."
   },
   {
     "id": "8e0d6f6c-f400-11e4-b939-0800200c9a66",
@@ -2087,7 +2087,7 @@
     "attack": 1,
     "health": 0,
     "keywords": [],
-    "text": "+1/+0\nSummon: Silence another creature."
+    "text": "+1/+0\r\nSummon: Silence another creature."
   },
   {
     "id": "fbcc5ef2-78b7-11e3-981f-0800200c9a66",
@@ -2104,7 +2104,7 @@
     "health": 5,
     "race": "Skeleton",
     "keywords": [],
-    "text": "Summon: Fill this lane with 1/1 Skeletons.\nOther friendly Skeletons have +1/+1."
+    "text": "Summon: Fill this lane with 1/1 Skeletons.\r\nOther friendly Skeletons have +1/+1."
   },
   {
     "id": "a9659838-7e9c-43d6-abe8-6422a3be617e",
@@ -2851,7 +2851,7 @@
     "keywords": [
       "Lethal"
     ],
-    "text": "Lethal\r\nSlay: Draw two cards.\nCicero can attack friendly creatures."
+    "text": "Lethal\r\nSlay: Draw two cards.\r\nCicero can attack friendly creatures."
   },
   {
     "id": "7843fde3-4596-45f3-acbc-8ffc376597d7",
@@ -3293,7 +3293,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Summon: Summon a 1/1 Corsair.\nWhen you summon a creature, equip it with a Steel Dagger."
+    "text": "Summon: Summon a 1/1 Corsair.\r\nWhen you summon a creature, equip it with a Steel Dagger."
   },
   {
     "id": "070ed49e-35e0-40f5-a65b-ca31229260cb",
@@ -3872,7 +3872,7 @@
     "attack": 4,
     "health": 4,
     "keywords": [],
-    "text": "+4/+4\nSummon: Destroy an enemy Undead."
+    "text": "+4/+4\r\nSummon: Destroy an enemy Undead."
   },
   {
     "id": "0c05eb51-e08c-443f-b67c-6f23afeec266",
@@ -4217,7 +4217,7 @@
     "health": 6,
     "race": "Dark Elf",
     "keywords": [],
-    "text": "Summon: Deal 6 damage to a random enemy.\nAt the start of your turn, Divayth Fyr summons a Daughter of Fyr."
+    "text": "Summon: Deal 6 damage to a random enemy.\r\nAt the start of your turn, Divayth Fyr summons a Daughter of Fyr."
   },
   {
     "id": "9e4b1fbd-ac35-4d3a-a7e0-590065358a8c",
@@ -4747,7 +4747,7 @@
     "health": 1,
     "race": "Khajiit",
     "keywords": [],
-    "text": "Summon: Move another friendly creature in this lane.\nWhen a friendly creature moves, give it +1/+1."
+    "text": "Summon: Move another friendly creature in this lane.\r\nWhen a friendly creature moves, give it +1/+1."
   },
   {
     "id": "69e88f63-87a1-11e3-baa7-0800200c9a66",
@@ -5244,7 +5244,7 @@
     "health": 1,
     "race": "Dark Elf",
     "keywords": [],
-    "text": "Summon: Draw a card.\nLast Gasp: Shuffle a 0-cost Elusive Schemer into your deck."
+    "text": "Summon: Draw a card.\r\nLast Gasp: Shuffle a 0-cost Elusive Schemer into your deck."
   },
   {
     "id": "05ebb48a-2528-4821-8265-d1fb61e353c8",
@@ -5394,7 +5394,7 @@
     "attack": 0,
     "health": 3,
     "keywords": [],
-    "text": "+0/+3\nSummon: Draw a card."
+    "text": "+0/+3\r\nSummon: Draw a card."
   },
   {
     "id": "541abeb0-09bc-11e7-9598-0800200c9a66",
@@ -6048,7 +6048,7 @@
     "health": 3,
     "race": "Reachman",
     "keywords": [],
-    "text": "Summon: Choose a friendly creature.\nFriendly creatures of the chosen type have +1/+1."
+    "text": "Summon: Choose a friendly creature.\r\nFriendly creatures of the chosen type have +1/+1."
   },
   {
     "id": "086621fd-ff5d-11e4-b939-0800200c9a66",
@@ -6369,7 +6369,7 @@
     "health": 2,
     "race": "Imperial",
     "keywords": [],
-    "text": "Summon: Summon a 2/2 Colovian Trooper with Guard in each lane.\nWhen a friendly creature dies, General Tullius gains +1/+1."
+    "text": "Summon: Summon a 2/2 Colovian Trooper with Guard in each lane.\r\nWhen a friendly creature dies, General Tullius gains +1/+1."
   },
   {
     "id": "0205429f-b68f-444f-a008-3968f53723e8",
@@ -7128,7 +7128,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Summon: Put a 0/3 Dwarven Spider with Guard into your hand.\nFriendly Dwemer have +3/+0."
+    "text": "Summon: Put a 0/3 Dwarven Spider with Guard into your hand.\r\nFriendly Dwemer have +3/+0."
   },
   {
     "id": "fc7e4300-64c8-4a87-b73c-d71d05e88bf3",
@@ -7304,7 +7304,7 @@
     "attack": 5,
     "health": 0,
     "keywords": [],
-    "text": "+5/+0\nLast Gasp: Returns to your hand."
+    "text": "+5/+0\r\nLast Gasp: Returns to your hand."
   },
   {
     "id": "beb01ab6-4596-11e3-8f96-0800200c9a66",
@@ -7406,7 +7406,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Summon: All Field Lanes become Shadow Lanes.\nFriendly creatures have +1/+0."
+    "text": "Summon: All Field Lanes become Shadow Lanes.\r\nFriendly creatures have +1/+0."
   },
   {
     "id": "f98dc169-4d53-11e6-bdf4-0800200c9a66",
@@ -7492,7 +7492,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Summon: +1 max magicka.\nAt the start of your turn, if you have 15 or more max magicka, sacrifice this to summon an 8/8 Swamp Leviathan in each lane."
+    "text": "Summon: +1 max magicka.\r\nAt the start of your turn, if you have 15 or more max magicka, sacrifice this to summon an 8/8 Swamp Leviathan in each lane."
   },
   {
     "id": "beb041c6-4596-11e3-8f96-0800200c9a66",
@@ -7714,7 +7714,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Deal 2 damage to your opponent.\nDraw a card."
+    "text": "Deal 2 damage to your opponent.\r\nDraw a card."
   },
   {
     "id": "00f37237-52f0-11e3-8f96-0800200c9a66",
@@ -8071,7 +8071,7 @@
     "health": 1,
     "race": "Dark Elf",
     "keywords": [],
-    "text": "Summon: Look at the top two cards of your deck. Draw one, and discard the other."
+    "text": "Summon: Draw a card."
   },
   {
     "id": "33acb175-300a-11e5-a2cb-0800200c9a66",
@@ -8615,7 +8615,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Give a creature +1/+1.\nWhen you gain health, draw Leafwater Blessing from your discard pile."
+    "text": "Give a creature +1/+1.\r\nWhen you gain health, draw Leafwater Blessing from your discard pile."
   },
   {
     "id": "c6759594-9b9d-11e6-9f33-a24fc0d9649c",
@@ -9000,7 +9000,7 @@
     "attack": 2,
     "health": 1,
     "keywords": [],
-    "text": "+2/+1\nSummon: Shackle an enemy creature."
+    "text": "+2/+1\r\nSummon: Shackle an enemy creature."
   },
   {
     "id": "0e6b5648-0000-0000-0000-000000000000",
@@ -9411,7 +9411,7 @@
     "attack": 3,
     "health": 3,
     "keywords": [],
-    "text": "+3/+3\nSummon: Give this creature's Keywords to each other friendly creature."
+    "text": "+3/+3\r\nSummon: Give this creature's Keywords to each other friendly creature."
   },
   {
     "id": "345a4d52-d3a7-48ef-a65d-8dd4fc713606",
@@ -9535,7 +9535,7 @@
     "health": 3,
     "race": "Orc",
     "keywords": [],
-    "text": "Summon: Draw a random Orc from your discard pile.\nOther friendly Orcs have +1/+1."
+    "text": "Summon: Draw a random Orc from your discard pile.\r\nOther friendly Orcs have +1/+1."
   },
   {
     "id": "00f37244-52f0-11e3-8f96-0800200c9a66",
@@ -10026,6 +10026,23 @@
     "race": "Goblin",
     "keywords": [],
     "text": "When you summon another (Agility) creature, Murkwater Savage gains +1/+1."
+  },
+  {
+    "id": "33199ee3-0000-0000-0000-000000000000",
+    "name": "Murkwater Scourge",
+    "rarity": "Epic",
+    "set": "Monthlies",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 4,
+    "attack": 3,
+    "health": 1,
+    "race": "Goblin",
+    "keywords": [],
+    "text": "Summon and Last Gasp: Put a Curse into your hand."
   },
   {
     "id": "5e26d8d9-f451-11e4-b939-0800200c9a66",
@@ -11262,7 +11279,7 @@
     "attack": 1,
     "health": 1,
     "keywords": [],
-    "text": "+1/+1\nSummon: The wielder deals 1 damage."
+    "text": "+1/+1\r\nSummon: The wielder deals 1 damage."
   },
   {
     "id": "8e0d6f67-f400-11e4-b939-0800200c9a66",
@@ -11987,7 +12004,7 @@
     "attack": 0,
     "health": 2,
     "keywords": [],
-    "text": "+0/+2\nSummon: The wielder's power becomes equal to its health."
+    "text": "+0/+2\r\nSummon: The wielder's power becomes equal to its health."
   },
   {
     "id": "6d1f86d5-0000-0000-0000-000000000000",
@@ -12492,7 +12509,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Move a friendly creature.\nDraw a card."
+    "text": "Move a friendly creature.\r\nDraw a card."
   },
   {
     "id": "4cde7090-e289-11e3-8b68-0800200c9a66",
@@ -12825,8 +12842,8 @@
       "Endurance"
     ],
     "cost": 2,
-    "attack": 5,
-    "health": 5,
+    "attack": 4,
+    "health": 4,
     "race": "Imperial",
     "keywords": [],
     "text": "Siege Catapult can't attack unless your side of its lane is full."
@@ -13290,7 +13307,7 @@
     "attack": 1,
     "health": 1,
     "keywords": [],
-    "text": "+1/+1\nSummon: Give the wielder Drain this turn."
+    "text": "+1/+1\r\nSummon: Give the wielder Drain this turn."
   },
   {
     "id": "7e68620f-20ce-11e5-867f-0800200c9a66",
@@ -13553,7 +13570,7 @@
     "keywords": [
       "Prophecy"
     ],
-    "text": "Prophecy\r\n+3/+3\nInstead of equipping Spear of Embers, you may throw it at an enemy creature to deal 3 damage."
+    "text": "Prophecy\r\n+3/+3\r\nInstead of equipping Spear of Embers, you may throw it at an enemy creature to deal 3 damage."
   },
   {
     "id": "c6759c4c-9b9d-11e6-9f33-a24fc0d9649c",
@@ -13587,7 +13604,7 @@
     "health": 2,
     "race": "Daedra",
     "keywords": [],
-    "text": "Summon: Fill your lanes with 2/1 Spiderlings.\nLast Gasp: Destroy all friendly Spiderlings."
+    "text": "Summon: Fill your lanes with 2/1 Spiderlings.\r\nLast Gasp: Destroy all friendly Spiderlings."
   },
   {
     "id": "0dadeaf1-0efb-11e5-b939-0800200c9a66",
@@ -13704,7 +13721,7 @@
     "attack": 3,
     "health": 0,
     "keywords": [],
-    "text": "+3/+0\nWhen the wielder attacks, it deals 1 damage to all enemy creatures in this lane."
+    "text": "+3/+0\r\nWhen the wielder attacks, it deals 1 damage to all enemy creatures in this lane."
   },
   {
     "id": "0dadeaf9-0efb-11e5-b939-0800200c9a66",
@@ -14336,7 +14353,7 @@
     "health": 3,
     "race": "Breton",
     "keywords": [],
-    "text": "Summon: Summon a Flame Atronach in each lane.\nWhen you summon another creature, deal 2 damage to your opponent."
+    "text": "Summon: Summon a Flame Atronach in each lane.\r\nWhen you summon another creature, deal 2 damage to your opponent."
   },
   {
     "id": "ca289a86-075b-4e49-9659-3e2ff19029ac",
@@ -14636,7 +14653,7 @@
     "health": 2,
     "race": "Khajiit",
     "keywords": [],
-    "text": "Pilfer: +1/+1\nMay attack an extra time each turn."
+    "text": "Pilfer: +1/+1\r\nMay attack an extra time each turn."
   },
   {
     "id": "5e26d8d8-f451-11e4-b939-0800200c9a66",
@@ -14774,7 +14791,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Activate: Summon a 0/1 Target with Guard for your opponent.\nWhen 20 enemy creatures have died, deal 20 damage to your opponent, gain 20 health, and draw up to 10 cards."
+    "text": "Activate: Summon a 0/1 Target with Guard for your opponent.\r\nWhen 20 enemy creatures have died, deal 20 damage to your opponent, gain 20 health, and draw up to 10 cards."
   },
   {
     "id": "88eeece7-47a7-413a-89b0-a2d8fa72c3a4",
@@ -14947,7 +14964,7 @@
     "keywords": [
       "Guard"
     ],
-    "text": "Guard\r\nSummon: Gain +1 max magicka.\nGains +1/+0 when your max magicka increases."
+    "text": "Guard\r\nSummon: Gain +1 max magicka.\r\nGains +1/+0 when your max magicka increases."
   },
   {
     "id": "c4016b90-9a2e-11e7-9598-0800200c9a66",
@@ -15015,7 +15032,7 @@
     "attack": 2,
     "health": 2,
     "keywords": [],
-    "text": "+2/+2\nSummon: Draw a card."
+    "text": "+2/+2\r\nSummon: Draw a card."
   },
   {
     "id": "fd235b53-0afb-11e5-b939-0800200c9a66",
