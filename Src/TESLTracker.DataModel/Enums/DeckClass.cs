@@ -28,6 +28,11 @@ namespace TESLTracker.DataModel.Enums
         Telvanni,
         Hlaalu,
         Tribunal,
-        Dagoth
+        Dagoth,
+        Aldmeri,
+        Daggerfall,
+        Ebonheart,
+        Empire,
+        Guildsworn
     }
 }

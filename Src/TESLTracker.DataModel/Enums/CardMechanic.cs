@@ -26,6 +26,14 @@ namespace TESLTracker.DataModel.Enums
         //houses of morrowind
         Betray = 256,
         Plot = 512,
-        Exalt = 1024
+        Exalt = 1024,
+
+        //Aliance wars
+        Empower = 2048,
+        Mobilize = 4096,
+        Veteran = 80192,
+        Expertise = 16384
+
+        //32768
     }
 }
