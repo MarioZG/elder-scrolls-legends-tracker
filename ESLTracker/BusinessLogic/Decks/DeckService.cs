@@ -131,6 +131,7 @@ namespace ESLTracker.BusinessLogic.Decks
             deck.CreatedDate = dateTimeProvider.DateTimeNow;
             CreateDeckVersion(deck, 1, 0, dateTimeProvider.DateTimeNow);
             deck.Name = deckName;
+            deck.LastUsed = dateTimeProvider.DateTimeNow;
             return deck;
         }
 
