@@ -130,7 +130,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             int expectedCount = 3 +//random data - archer i battlemage y strength
                 5 + //one for every class
-                3 ; //hom 3-color classes
+                3 + //hom 3-color classes
+                3; //aliance wars classes
 
             DeckListViewModel model = CreateDeckListVM();
 
@@ -162,7 +163,8 @@ namespace ESLTracker.ViewModels.Decks.Tests
 
             int expectedCount = 0 +//none inrandom data
                 1 + //one for every class
-                1; //hom 3-color classes
+                1 + //hom 3-color classes
+                2; //aiance wars classes
 
             DeckListViewModel model = CreateDeckListVM();
 
@@ -378,7 +380,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             List<DeckType> typeFilter = new List<DeckType>() { DeckType.Constructed };
             var filteredTypes = new ObservableCollection<DeckType>(typeFilter);
 
-            int expectedCount = 24;
+            int expectedCount = 29;
 
             DeckListViewModel model = CreateDeckListVM();
 
@@ -400,7 +402,7 @@ namespace ESLTracker.ViewModels.Decks.Tests
             List<DeckType> typeFilter = new List<DeckType>() { DeckType.Constructed };
             var filteredTypes = new ObservableCollection<DeckType>(typeFilter);
 
-            int expectedCount = 28;
+            int expectedCount = 33;
 
             DeckListViewModel model = CreateDeckListVM();
 

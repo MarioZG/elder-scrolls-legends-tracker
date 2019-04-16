@@ -1,7 +1,7 @@
 {
-"Version": "2.8",
-"VersionInfo": "Patch 2.8 and March 2019 monthly",
-"VersionDate": "2019-03-21T00:00:00Z",
+"Version": "2.9",
+"VersionInfo": "Alliance War",
+"VersionDate": "2019-04-16T00:00:00Z",
 "CardSets": [
   {
     "name": "Core",
@@ -57,6 +57,11 @@
     "name": "Isle of Madness",
     "id": "c3e0740d-a918-48a9-aee9-ff2e42115368",
     "haspacks": false
+  },
+  {
+    "name": "Alliance war",
+    "id": "c3f45688-2e7e-426f-b18d-5388a3dfb6b7",
+    "haspacks": true
   }
 ],
 "Cards": [
@@ -124,6 +129,23 @@
     "race": "High Elf",
     "keywords": [],
     "text": "Summon: If the top card of your deck is an action, draw it. Otherwise, put it on the bottom."
+  },
+  {
+    "id": "93079bbd-ffff-ffff-0000-000000000000",
+    "name": "Abnur Tharn",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 6,
+    "attack": 5,
+    "health": 5,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Summon: Abnur Tharn uses the summon ability of a creature."
   },
   {
     "id": "51f31711-300a-11e5-a2cb-0800200c9a66",
@@ -230,6 +252,22 @@
     "race": "Khajiit",
     "keywords": [],
     "text": "Summon: Ahnassi steals all Keywords from enemy creatures."
+  },
+  {
+    "id": "9f99bb7b-ffff-ffff-0000-000000000000",
+    "name": "Alchemy",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 2,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Give your Activated supports add:390390,1 extra use.\r\nEmpower: +1 use."
   },
   {
     "id": "aca5d2ab-8dc0-49b6-b275-16a21c767ec8",
@@ -460,6 +498,25 @@
     "race": "High Elf",
     "keywords": [],
     "text": "At the end of your turn, if you played an action, Altmer Dragonknight gains +2/+2."
+  },
+  {
+    "id": "677fc374-0000-0000-0000-000000000000",
+    "name": "Altmer Flameslinger",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 2,
+    "attack": 1,
+    "health": 3,
+    "race": "High Elf",
+    "keywords": [
+      "Ward"
+    ],
+    "text": "Ward\r\nAt the start of your turn, Altmer Flameslinger deals 1 damage to your opponent."
   },
   {
     "id": "f4c047f2-12b6-11e8-b566-0800200c9a66",
@@ -971,6 +1028,25 @@
     "text": "Summon: Choose one:\r\nStrength: +6/+6 and Guard.\r\nSpeed: Gains Charge."
   },
   {
+    "id": "bceb8a99-ffff-ffff-0000-000000000000",
+    "name": "Assassin Beetle",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 5,
+    "attack": 2,
+    "health": 2,
+    "race": "Beast",
+    "keywords": [
+      "Prophecy"
+    ],
+    "text": "Prophecy\r\nSummon: Play a Prophecy from your hand."
+  },
+  {
     "id": "8e0d6f61-f400-11e4-b939-0800200c9a66",
     "name": "Assassin's Bow",
     "rarity": "Rare",
@@ -1199,6 +1275,45 @@
     "text": "Summon: Draw a random action from your discard pile.\r\nYour actions cost 1 less."
   },
   {
+    "id": "44b8a5e6-0000-0000-0000-000000000000",
+    "name": "Ayrenn, Dominion Queen",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence",
+      "Willpower",
+      "Agility"
+    ],
+    "cost": 8,
+    "attack": 6,
+    "health": 6,
+    "race": "High Elf",
+    "keywords": [
+      "Drain"
+    ],
+    "text": "Drain\r\nSummon: Draw a random action from your discard pile.\r\nWhen you draw an action on your turn, deal 1 damage to your opponent."
+  },
+  {
+    "id": "c7646757-ffff-ffff-0000-000000000000",
+    "name": "Ayrenn's Chosen",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Intelligence",
+      "Willpower",
+      "Agility"
+    ],
+    "cost": 6,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Summon a add:390390,1]/[add:390390,1 Recruit in each lane and give them Guard.\r\nEmpower: +1/+1."
+  },
+  {
     "id": "8e0d6f6c-f400-11e4-b939-0800200c9a66",
     "name": "Baandari Bruiser",
     "rarity": "Common",
@@ -1214,6 +1329,42 @@
     "race": "Khajiit",
     "keywords": [],
     "text": "Pilfer: +3/+0"
+  },
+  {
+    "id": "d5aae12b-ffff-ffff-0000-000000000000",
+    "name": "Baandari Opportunist",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 1,
+    "attack": 1,
+    "health": 1,
+    "race": "Khajiit",
+    "keywords": [
+      "Charge"
+    ],
+    "text": "Charge\r\nPilfer: Shuffle a Baandari Opportunist with “Summon: Draw a card” into your deck."
+  },
+  {
+    "id": "b58de75b-ffff-ffff-0000-000000000000",
+    "name": "Back-Alley Footpad",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 0,
+    "attack": 1,
+    "health": 1,
+    "race": "Dark Elf",
+    "keywords": [],
+    "text": "Summon: Give a creature Cover."
   },
   {
     "id": "04963471-941b-11e7-9598-0800200c9a66",
@@ -1526,6 +1677,22 @@
     "text": "Trade a card in your hand for a random card in your opponent's hand."
   },
   {
+    "id": "d3cb3d34-ffff-ffff-0000-000000000000",
+    "name": "Battle of Chalman Keep",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Action",
+    "attributes": [
+      "Neutral"
+    ],
+    "cost": 5,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Each player fills both lanes with 1/1 Recruits. Give all creatures Guard."
+  },
+  {
     "id": "97814af7-f938-48ad-83d6-b79af7fac0b6",
     "name": "Battlefield Scrounger",
     "rarity": "Rare",
@@ -1687,6 +1854,39 @@
     "text": "While Betty Netch is in play, your max magicka is increased by 2."
   },
   {
+    "id": "e0dc447e-ffff-ffff-0000-000000000000",
+    "name": "Bewildering Speed",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Move a friendly creature in each lane and give them +1/+1."
+  },
+  {
+    "id": "684bb350-0000-0000-0000-000000000000",
+    "name": "Bishop of the Hour",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 6,
+    "attack": 5,
+    "health": 5,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Summon: If you have another creature in each lane, give the top creature of your deck +5/+5."
+  },
+  {
     "id": "379d76ae-e140-445d-a933-35cb18c0bddc",
     "name": "Black Hand Messenger",
     "rarity": "Epic",
@@ -1705,6 +1905,40 @@
       "Drain"
     ],
     "text": "Drain\r\nSummon: Deal 2 damage to a creature. \r\n Last Gasp: Deal 2 damage to your opponent."
+  },
+  {
+    "id": "364751dd-0000-0000-0000-000000000000",
+    "name": "Black Marsh Centurion",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 6,
+    "attack": 4,
+    "health": 8,
+    "race": "Argonian",
+    "keywords": [],
+    "text": "Veteran: Guard"
+  },
+  {
+    "id": "27f205bb-0000-0000-0000-000000000000",
+    "name": "Black Marsh Prodigy",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 3,
+    "attack": 1,
+    "health": 1,
+    "race": "Argonian",
+    "keywords": [],
+    "text": "Veteran: +4/+4"
   },
   {
     "id": "fd235b50-0afb-11e5-b939-0800200c9a66",
@@ -2282,6 +2516,23 @@
     "text": "When you summon another creature, give it +0/+2."
   },
   {
+    "id": "6223886c-0000-0000-0000-000000000000",
+    "name": "Bruma Oppressor",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 4,
+    "attack": 3,
+    "health": 3,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Summon: If you have another creature in each lane, set a creature's power to 1."
+  },
+  {
     "id": "0cd2564e-e227-11e3-8b68-0800200c9a66",
     "name": "Bruma Profiteer",
     "rarity": "Rare",
@@ -2647,6 +2898,22 @@
     "text": "Guard\r\nSummon: Give your Activated supports an extra use.\r\nYou may Activate your supports an extra time each turn."
   },
   {
+    "id": "5066e592-0000-0000-0000-000000000000",
+    "name": "Cauterize",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 0,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Deal 2 damage to a Wounded creature."
+  },
+  {
     "id": "04fd7e70-2551-11e7-9598-0800200c9a66",
     "name": "Cave Bear",
     "rarity": "Common",
@@ -2681,6 +2948,22 @@
       "Regenerate"
     ],
     "text": "Regenerate"
+  },
+  {
+    "id": "ac90f68d-ffff-ffff-0000-000000000000",
+    "name": "Channeled Storm",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Deal add:390390,3 damage to a creature.\r\nEmpower: +1 damage."
   },
   {
     "id": "751b50a0-b11c-11e6-80f5-76304dec7eb7",
@@ -2980,6 +3263,25 @@
     "race": "Nord",
     "keywords": [],
     "text": "When you summon a Dragon, Cliffside Lookout gains +1/+1."
+  },
+  {
+    "id": "4564f01f-0000-0000-0000-000000000000",
+    "name": "Clivia Tharn",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Creature",
+    "attributes": [
+      "Willpower",
+      "Agility",
+      "Endurance"
+    ],
+    "cost": 6,
+    "attack": 4,
+    "health": 4,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Other friendly creatures in this lane have Guard.\r\nAt the end of your turn, summon a 1/1 Recruit in each lane."
   },
   {
     "id": "0feec831-64ba-4304-96c9-417d56f2bcd7",
@@ -3313,6 +3615,25 @@
     "text": "Summon: Draw a card if you have two other (Intelligence) creatures."
   },
   {
+    "id": "b20498f8-ffff-ffff-0000-000000000000",
+    "name": "Covenant Mail",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Item",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 3,
+    "attack": 1,
+    "health": 3,
+    "keywords": [
+      "Prophecy",
+      "Guard"
+    ],
+    "text": "Prophecy, Guard\r\n+1/+3"
+  },
+  {
     "id": "90431f42-94e0-11e3-baa8-0800200c9a66",
     "name": "Covenant Marauder",
     "rarity": "Rare",
@@ -3328,6 +3649,65 @@
     "race": "Orc",
     "keywords": [],
     "text": "+2/+0 while you have no cards in hand."
+  },
+  {
+    "id": "70220b97-0000-0000-0000-000000000000",
+    "name": "Covenant Masterpiece",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Item",
+    "attributes": [
+      "Strength",
+      "Intelligence",
+      "Endurance"
+    ],
+    "cost": 8,
+    "attack": 3,
+    "health": 3,
+    "keywords": [
+      "Breakthrough",
+      "Guard",
+      "Ward",
+      "Regenerate"
+    ],
+    "text": "Breakthrough, Guard, Ward, Regenerate\r\n+3/+3"
+  },
+  {
+    "id": "7e205e9f-0000-0000-0000-000000000000",
+    "name": "Covenant Oathman",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 4,
+    "attack": 2,
+    "health": 4,
+    "race": "Redguard",
+    "keywords": [],
+    "text": "Summon: If you have a...\r\n(Strength) card in play, draw a random item from your deck.\r\n(Endurance) card in play, give an item in your hand +2/+2."
+  },
+  {
+    "id": "49e58953-0000-0000-0000-000000000000",
+    "name": "Covenant Plate",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Item",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 3,
+    "attack": 3,
+    "health": 1,
+    "keywords": [
+      "Prophecy",
+      "Guard"
+    ],
+    "text": "Prophecy, Guard\r\n+3/+1"
   },
   {
     "id": "a84b78d4-84ca-45e7-ab65-2683ba65b4ff",
@@ -3378,6 +3758,23 @@
     "health": 0,
     "keywords": [],
     "text": "Summon two 1/1 Imperial Grunts to a lane.\r\nPlot: Gain 1 health for each friendly creature in that lane."
+  },
+  {
+    "id": "51708850-0000-0000-0000-000000000000",
+    "name": "Craven Conscript",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 3,
+    "attack": 5,
+    "health": 4,
+    "race": "Orc",
+    "keywords": [],
+    "text": "Craven Conscript is permanently Shackled unless equipped with an item."
   },
   {
     "id": "7e9c5f27-0000-0000-0000-000000000000",
@@ -3431,6 +3828,22 @@
     "race": "Wood Elf",
     "keywords": [],
     "text": "Summon: Draw an item of your choice from your deck."
+  },
+  {
+    "id": "346b85aa-0000-0000-0000-000000000000",
+    "name": "Cruel Axe",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Item",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 2,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "if:103490>0, +0/+0\r\nSummon: +1/+1 for each enemy creature in this lane."
   },
   {
     "id": "51f3170b-300a-11e5-a2cb-0800200c9a66",
@@ -3603,6 +4016,23 @@
     "text": "Lethal\r\n+1/+1"
   },
   {
+    "id": "e151afb7-ffff-ffff-0000-000000000000",
+    "name": "Daedric Titan",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 5,
+    "attack": 6,
+    "health": 4,
+    "race": "Daedra",
+    "keywords": [],
+    "text": "While you have another creature in each lane, Daedric Titan has Drain and your opponent can't target it with actions."
+  },
+  {
     "id": "1e951810-20bf-11e8-b566-0800200c9a66",
     "name": "Dagger",
     "rarity": "Common",
@@ -3637,6 +4067,25 @@
       "Ward"
     ],
     "text": "Ward\r\nWhen Daggerfall Mage's Ward is broken, put a Tome of Alteration into your hand."
+  },
+  {
+    "id": "cbb95538-ffff-ffff-0000-000000000000",
+    "name": "Daggerfall Phantom",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength",
+      "Intelligence",
+      "Endurance"
+    ],
+    "cost": 2,
+    "attack": 2,
+    "health": 2,
+    "race": "Spirit",
+    "keywords": [],
+    "text": "Last Gasp: Return all items equipped to Daggerfall Phantom to your hand."
   },
   {
     "id": "751b45ba-b11c-11e6-80f5-76304dec7eb7",
@@ -3766,6 +4215,23 @@
     "health": 0,
     "keywords": [],
     "text": "Draw two cards.\r\nDaring Heist can't be played unless a creature in each lane damaged your opponent this turn."
+  },
+  {
+    "id": "7b35a3d7-0000-0000-0000-000000000000",
+    "name": "Dark Anchor",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 5,
+    "attack": 0,
+    "health": 8,
+    "race": "Defense",
+    "keywords": [],
+    "text": "Your Daedra cost 1 less.\r\nWhen you draw a creature, transform it into a random Daedra."
   },
   {
     "id": "dca9eab2-d613-4401-9ae9-19494f0b1dc8",
@@ -3977,6 +4443,22 @@
     "race": "Skeleton",
     "keywords": [],
     "text": "Last Gasp: Summon a 1/1 Skeleton."
+  },
+  {
+    "id": "b3374338-ffff-ffff-0000-000000000000",
+    "name": "Debilitate",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 7,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Give all creatures -2/-2.\r\nEmpower: Costs 1 less."
   },
   {
     "id": "567c5c70-2ad9-11e7-9598-0800200c9a66",
@@ -4270,6 +4752,44 @@
     "text": "Friendly creatures have +1/+1."
   },
   {
+    "id": "b421ecb6-ffff-ffff-0000-000000000000",
+    "name": "Dominion Battlereeve",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence",
+      "Willpower",
+      "Agility"
+    ],
+    "cost": 3,
+    "attack": 3,
+    "health": 3,
+    "race": "High Elf",
+    "keywords": [
+      "Drain"
+    ],
+    "text": "Drain\r\nSummon, Last Gasp, and Slay: Deal 1 damage to your opponent."
+  },
+  {
+    "id": "eeefe70b-ffff-ffff-0000-000000000000",
+    "name": "Dominion Oathman",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 1,
+    "attack": 2,
+    "health": 2,
+    "race": "High Elf",
+    "keywords": [],
+    "text": "Summon: If you have a...\r\n(Willpower) card in play, Drain.\r\n(Intelligence) card in play, deal 2 damage to your opponent."
+  },
+  {
     "id": "beb041c2-4596-11e3-8f96-0800200c9a66",
     "name": "Doomcrag Vampire",
     "rarity": "Legendary",
@@ -4420,6 +4940,25 @@
     "health": 2,
     "keywords": [],
     "text": "+2/+2\r\nSummon: Trigger the wielder's summon ability."
+  },
+  {
+    "id": "fb740f73-ffff-ffff-0000-000000000000",
+    "name": "Dragonguard Outcast",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 3,
+    "attack": 1,
+    "health": 3,
+    "race": "Imperial",
+    "keywords": [
+      "Lethal"
+    ],
+    "text": "Lethal\r\nSummon: Dragonguard Outcast gains Cover until she attacks."
   },
   {
     "id": "5b56a0e2-f88f-11e6-bc64-92361f002671",
@@ -4786,6 +5325,25 @@
     "text": "Last Gasp: Put an Iron Sword into your hand."
   },
   {
+    "id": "e03d03cd-ffff-ffff-0000-000000000000",
+    "name": "Dunmer Tyro",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 3,
+    "attack": 1,
+    "health": 4,
+    "race": "Dark Elf",
+    "keywords": [
+      "Charge"
+    ],
+    "text": "Charge\r\nVeteran: +2/+0"
+  },
+  {
     "id": "aea1dfe0-81d9-11e7-9598-0800200c9a66",
     "name": "Dushnikh Yal Archer",
     "rarity": "Epic",
@@ -5030,6 +5588,22 @@
       "Drain"
     ],
     "text": "Drain\r\nDouble the amount of health you gain."
+  },
+  {
+    "id": "35ec3ba5-0000-0000-0000-000000000000",
+    "name": "Ebonthread Cloak",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Item",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 2,
+    "attack": 1,
+    "health": 2,
+    "keywords": [],
+    "text": "+1/+2\r\nSummon: Your opponent can't target the wielder with actions until your next turn."
   },
   {
     "id": "5b56a1a0-f88f-11e6-bc64-92361f002671",
@@ -5327,6 +5901,42 @@
     "text": "Prophecy, Guard, Ward"
   },
   {
+    "id": "2b67f034-0000-0000-0000-000000000000",
+    "name": "Emeric, Covenant King",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Creature",
+    "attributes": [
+      "Strength",
+      "Intelligence",
+      "Endurance"
+    ],
+    "cost": 9,
+    "attack": 7,
+    "health": 7,
+    "race": "Breton",
+    "keywords": [],
+    "text": "At the end of your turn, Emeric gains a Ward.\r\nSummon: Battle an enemy creature."
+  },
+  {
+    "id": "58e634f8-0000-0000-0000-000000000000",
+    "name": "Emeric's Warlord",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 2,
+    "attack": 1,
+    "health": 4,
+    "race": "Breton",
+    "keywords": [],
+    "text": "Your items have Mobilize.\r\nWhen a friendly Recruit equips an item, Emeric's Warlord gains +1/+0."
+  },
+  {
     "id": "3821cd90-09a6-11e7-9598-0800200c9a66",
     "name": "Emperor Titus Mede II",
     "rarity": "Legendary",
@@ -5362,6 +5972,59 @@
       "Guard"
     ],
     "text": "Guard\r\nSlay: You gain 3 health."
+  },
+  {
+    "id": "6e36696a-0000-0000-0000-000000000000",
+    "name": "Empire Dreadmage",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 7,
+    "attack": 7,
+    "health": 5,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Summon: If you have another creature in each lane, give a creature -2/-2."
+  },
+  {
+    "id": "d42094fc-ffff-ffff-0000-000000000000",
+    "name": "Empire Oathman",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 4,
+    "attack": 4,
+    "health": 4,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Summon: If you have a...\r\n(Agility) card in play, give other friendly creatures +1/+0.\r\n(Willpower) card in play, give other friendly creatures +0/+1."
+  },
+  {
+    "id": "45763006-0000-0000-0000-000000000000",
+    "name": "Empire Recruiter",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Willpower",
+      "Agility",
+      "Endurance"
+    ],
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Pilfer: Summon a 1/1 Recruit in the other lane."
   },
   {
     "id": "72fceb49-d733-4a47-b6a4-36bbbde6f733",
@@ -5412,6 +6075,23 @@
     "race": "Imperial",
     "keywords": [],
     "text": "Shackle Encumbered Explorer after he attacks."
+  },
+  {
+    "id": "49731cb7-0000-0000-0000-000000000000",
+    "name": "Enlistment Officer",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Neutral"
+    ],
+    "cost": 3,
+    "attack": 3,
+    "health": 3,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Summon: Give friendly Recruits +1/+1."
   },
   {
     "id": "33acb17c-300a-11e5-a2cb-0800200c9a66",
@@ -5816,6 +6496,40 @@
     "text": "When you summon another creature, give it +1/+0."
   },
   {
+    "id": "966b1e80-ffff-ffff-0000-000000000000",
+    "name": "Fighters Guild Berserker",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "race": "Orc",
+    "keywords": [],
+    "text": "Expertise: Deal 2 damage to your opponent."
+  },
+  {
+    "id": "a2d576da-ffff-ffff-0000-000000000000",
+    "name": "Fighters Guild Elite",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 5,
+    "attack": 2,
+    "health": 2,
+    "race": "Orc",
+    "keywords": [],
+    "text": "Expertise: Double Fighters Guild Elite's power and health."
+  },
+  {
     "id": "5ebf32f4-5e30-4908-a91b-8c88d67a9d7c",
     "name": "Fighters Guild Hall",
     "rarity": "Rare",
@@ -6018,6 +6732,25 @@
     "text": "Uses: 2.\r\nActivate: Transform each card in your hand into a random card."
   },
   {
+    "id": "adf578fe-ffff-ffff-0000-000000000000",
+    "name": "Forerunner of the Pact",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength",
+      "Agility",
+      "Endurance"
+    ],
+    "cost": 3,
+    "attack": 4,
+    "health": 3,
+    "race": "Dark Elf",
+    "keywords": [],
+    "text": "Veteran: Draw a Forerunner of the Pact from your deck."
+  },
+  {
     "id": "3eca0c91-8f5f-4843-aa94-b0d5889c6af9",
     "name": "Fork of Horripilation",
     "rarity": "Legendary",
@@ -6032,6 +6765,22 @@
     "health": 0,
     "keywords": [],
     "text": "2/+0\r\nSlay: Sacrifice Fork of Horripilation and draw three cards."
+  },
+  {
+    "id": "9140d5d5-ffff-ffff-0000-000000000000",
+    "name": "Forked Bolt",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 0,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Deal 1 damage to a creature and your opponent."
   },
   {
     "id": "c67594cc-9b9d-11e6-9f33-a24fc0d9649c",
@@ -6121,6 +6870,22 @@
       "Guard"
     ],
     "text": "Guard"
+  },
+  {
+    "id": "a74e1d9f-ffff-ffff-0000-000000000000",
+    "name": "Forward Camp",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Support",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Your supports cost 1 less.\r\nWhen you have 4 supports, sacrifice Forward Camp and summon an Eastmarch Crusader in each lane."
   },
   {
     "id": "d90a5cdc-ffff-ffff-0000-000000000000",
@@ -6810,6 +7575,23 @@
     "text": "At the start of your turn, summon the highest cost creature from your discard pile and give it Charge. At the end of the turn, put it on the bottom of your deck."
   },
   {
+    "id": "36a5e83b-0000-0000-0000-000000000000",
+    "name": "Gray Viper Brigand",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 3,
+    "attack": 3,
+    "health": 4,
+    "race": "Wood Elf",
+    "keywords": [],
+    "text": "Summon: Draw a card for each Gray Viper Brigand in your discard pile."
+  },
+  {
     "id": "112be60e-e814-4d62-96ad-4fa1258c4f7a",
     "name": "Graystone Ravager",
     "rarity": "Common",
@@ -6827,6 +7609,23 @@
       "Prophecy"
     ],
     "text": "Prophecy"
+  },
+  {
+    "id": "48ebc443-0000-0000-0000-000000000000",
+    "name": "Great Moot Squire",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 1,
+    "attack": 1,
+    "health": 2,
+    "race": "Argonian",
+    "keywords": [],
+    "text": "Veteran: +1/+1"
   },
   {
     "id": "d255ea90-4811-11e8-b566-0800200c9a66",
@@ -7061,6 +7860,147 @@
       "Lethal"
     ],
     "text": "Lethal"
+  },
+  {
+    "id": "d1a2e463-ffff-ffff-0000-000000000000",
+    "name": "Guildsworn Apprentice",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength",
+      "Intelligence",
+      "Willpower"
+    ],
+    "cost": 2,
+    "attack": 1,
+    "health": 2,
+    "race": "Argonian",
+    "keywords": [
+      "Prophecy",
+      "Guard"
+    ],
+    "text": "Prophecy, Guard\r\nSummon: Draw a card."
+  },
+  {
+    "id": "18973a8e-0000-0000-0000-000000000000",
+    "name": "Guildsworn Bloodluster",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 7,
+    "attack": 4,
+    "health": 4,
+    "race": "Nord",
+    "keywords": [],
+    "text": "Expertise: +2/+2 and Battle an enemy creature in this lane."
+  },
+  {
+    "id": "3956eed9-0000-0000-0000-000000000000",
+    "name": "Guildsworn Cavalier",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 5,
+    "attack": 3,
+    "health": 3,
+    "race": "Breton",
+    "keywords": [],
+    "text": "Expertise: Give friendly creatures +1/+1."
+  },
+  {
+    "id": "1c2a40ab-0000-0000-0000-000000000000",
+    "name": "Guildsworn Honeytongue",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 7,
+    "attack": 0,
+    "health": 5,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Expertise: You may trade Guildsworn Honeytongue for an enemy creature."
+  },
+  {
+    "id": "45835959-0000-0000-0000-000000000000",
+    "name": "Guildsworn Incendiary",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 4,
+    "attack": 2,
+    "health": 6,
+    "race": "Nord",
+    "keywords": [],
+    "text": "Expertise: Deal 1 damage to all creatures in this lane."
+  },
+  {
+    "id": "cffa8ddc-ffff-ffff-0000-000000000000",
+    "name": "Guildsworn Oathman",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 5,
+    "attack": 4,
+    "health": 6,
+    "race": "Nord",
+    "keywords": [],
+    "text": "Summon: If you have a...\r\n(Strength) card in play, put an Improvised Weapon into your hand.\r\n(Intelligence) card in play, put a Forked Bolt into your hand."
+  },
+  {
+    "id": "0bea03ae-0000-0000-0000-000000000000",
+    "name": "Guildsworn Revitalizer",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 2,
+    "attack": 1,
+    "health": 5,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Expertise: You gain 2 health."
+  },
+  {
+    "id": "5c0b6aa4-0000-0000-0000-000000000000",
+    "name": "Guildsworn Wayfarer",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 2,
+    "attack": 2,
+    "health": 2,
+    "race": "Redguard",
+    "keywords": [],
+    "text": "Expertise: +1/+1"
   },
   {
     "id": "6e151042-f451-11e4-b939-0800200c9a66",
@@ -7445,6 +8385,23 @@
     "text": "Ward\r\nSummon: Deal 2 damage for each friendly creature with a Ward."
   },
   {
+    "id": "3a1b3a14-0000-0000-0000-000000000000",
+    "name": "High Rock Stalwart",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 6,
+    "attack": 5,
+    "health": 5,
+    "race": "Orc",
+    "keywords": [],
+    "text": "Summon: +2/+2 if you have an item in play."
+  },
+  {
     "id": "beaff3a9-4596-11e3-8f96-0800200c9a66",
     "name": "High Rock Summoner",
     "rarity": "Rare",
@@ -7701,6 +8658,24 @@
     "text": "Summon: Battle an enemy creature, then Battle another enemy creature."
   },
   {
+    "id": "23b95f1b-0000-0000-0000-000000000000",
+    "name": "Hush",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [
+      "Prophecy"
+    ],
+    "text": "Prophecy\r\nSilence a creature."
+  },
+  {
     "id": "51f31705-300a-11e5-a2cb-0800200c9a66",
     "name": "Ice Spike",
     "rarity": "Common",
@@ -7884,6 +8859,23 @@
     "health": 0,
     "keywords": [],
     "text": "\r\nSummon: Put a 1/2 Septim Guardsman with Guard into your hand.\r\nFriendly Guards have +1/+0."
+  },
+  {
+    "id": "619105b0-0000-0000-0000-000000000000",
+    "name": "Imperial Lackey",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 2,
+    "attack": 2,
+    "health": 2,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Last Gasp: If you have another creature in each lane, summon a 1/1 Recruit in each lane."
   },
   {
     "id": "d77dcaf7-cad1-4125-8eba-cda9b6f3bcb5",
@@ -8148,6 +9140,23 @@
     "text": "Rally\r\nLast Gasp: Give a random creature in your hand +2/+2."
   },
   {
+    "id": "183f6042-0000-0000-0000-000000000000",
+    "name": "Inspiring Soldier",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 2,
+    "attack": 3,
+    "health": 2,
+    "race": "Dark Elf",
+    "keywords": [],
+    "text": "Veteran: Summon a 1/1 Recruit."
+  },
+  {
     "id": "04cd7446-6fee-11e6-8b77-86f30ca893d3",
     "name": "Inspiring Stormcloak",
     "rarity": "Common",
@@ -8179,6 +9188,23 @@
     "health": 0,
     "keywords": [],
     "text": "Enemy creatures lose Guard."
+  },
+  {
+    "id": "d9c8b097-ffff-ffff-0000-000000000000",
+    "name": "Invoker of the Hist",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 6,
+    "attack": 3,
+    "health": 6,
+    "race": "Argonian",
+    "keywords": [],
+    "text": "Veteran: Restore your magicka."
   },
   {
     "id": "de25f383-7a23-11e3-981f-0800200c9a66",
@@ -8235,7 +9261,7 @@
     "health": 3,
     "race": "Nord",
     "keywords": [],
-    "text": "Summon: Summon a Stormcloak Skirmisher in the left lane and a Colovian Trooper in the right lane.\r\nAt the start of your turn, if your lanes are full, you win the game."
+    "text": "Summon: Summon a Stormcloak Skirmisher in the left lane and a Kvatch Soldier in the right lane.\r\nAt the start of your turn, if your lanes are full, you win the game."
   },
   {
     "id": "d0d41313-a8a0-11e3-a5e2-0800200c9a66",
@@ -8270,6 +9296,42 @@
     "race": "Dark Elf",
     "keywords": [],
     "text": "Slay: Change into Saint Jiub, Eradicator of the Winged Menace."
+  },
+  {
+    "id": "25056c17-0000-0000-0000-000000000000",
+    "name": "Jorunn the Skald-King",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Creature",
+    "attributes": [
+      "Strength",
+      "Agility",
+      "Endurance"
+    ],
+    "cost": 5,
+    "attack": 5,
+    "health": 5,
+    "race": "Nord",
+    "keywords": [],
+    "text": "Immune to Silence.\r\nFriendly creatures cost 1 less.\r\nEnemy non-creatures cost 1 more."
+  },
+  {
+    "id": "91821512-ffff-ffff-0000-000000000000",
+    "name": "Jorunn's Vanguard",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 5,
+    "attack": 4,
+    "health": 4,
+    "race": "Nord",
+    "keywords": [],
+    "text": "Veteran: +2/+2 and give the top creature of your deck +2/+2."
   },
   {
     "id": "fde91430-2ad9-11e7-9598-0800200c9a66",
@@ -8670,6 +9732,25 @@
     "text": "Guard\r\n+1/+3"
   },
   {
+    "id": "453060e8-0000-0000-0000-000000000000",
+    "name": "Legion Zero Templar",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 4,
+    "attack": 2,
+    "health": 5,
+    "race": "Imperial",
+    "keywords": [
+      "Guard"
+    ],
+    "text": "Guard\r\nSummon: If you have another creature in each lane, +0/+3."
+  },
+  {
     "id": "fbcc37e8-78b7-11e3-981f-0800200c9a66",
     "name": "Lesser Ward",
     "rarity": "Common",
@@ -8752,6 +9833,22 @@
     "race": "High Elf",
     "keywords": [],
     "text": "After you play an action, deal 2 damage to your opponent."
+  },
+  {
+    "id": "3ffc109a-0000-0000-0000-000000000000",
+    "name": "Lion Guard Armaments",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Item",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 5,
+    "attack": 3,
+    "health": 4,
+    "keywords": [],
+    "text": "+3/+4"
   },
   {
     "id": "086621f6-ff5d-11e4-b939-0800200c9a66",
@@ -8896,6 +9993,22 @@
     "text": "Lumbering Ogrim can't gain Cover."
   },
   {
+    "id": "765402da-0000-0000-0000-000000000000",
+    "name": "Luminous Shards",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Destroy a creature with add:390390,1 power or less.\r\nEmpower: +1 power."
+  },
+  {
     "id": "62a40f7a-5be2-4ee6-b8fe-47678157e81b",
     "name": "Lurking Crocodile",
     "rarity": "Common",
@@ -8987,6 +10100,23 @@
     "text": "Guard\r\nLydia guards both lanes."
   },
   {
+    "id": "a1fe8b66-ffff-ffff-0000-000000000000",
+    "name": "Lyris Titanborn",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Creature",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 6,
+    "attack": 5,
+    "health": 5,
+    "race": "Nord",
+    "keywords": [],
+    "text": "At the start of your turn, destroy your opponent’s front rune."
+  },
+  {
     "id": "aab8e4b4-f7fc-11e3-a3ac-0800200c9a66",
     "name": "Mace of Encumbrance",
     "rarity": "Rare",
@@ -9050,6 +10180,23 @@
     "race": "Nord",
     "keywords": [],
     "text": "Mage Slayer can't be damaged by actions."
+  },
+  {
+    "id": "6510b10a-0000-0000-0000-000000000000",
+    "name": "Mages Guild Conjurer",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 6,
+    "attack": 2,
+    "health": 3,
+    "race": "Breton",
+    "keywords": [],
+    "text": "Expertise: Summon a  then upgrade the Atronach Mages Guild Conjurer summons."
   },
   {
     "id": "74359887-ae89-44eb-a1e8-6e6cd645eaf6",
@@ -9192,6 +10339,23 @@
     "doublecard": "f1abd6e8-ffff-ffff-0000-000000000000"
   },
   {
+    "id": "0890d51c-0000-0000-0000-000000000000",
+    "name": "Mannimarco",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 10,
+    "attack": 6,
+    "health": 6,
+    "race": "High Elf",
+    "keywords": [],
+    "text": "Summon: Summon a creature from your opponent's discard pile."
+  },
+  {
     "id": "d9087250-a8a0-11e3-a5e2-0800200c9a66",
     "name": "Mantikora",
     "rarity": "Epic",
@@ -9274,6 +10438,25 @@
     "race": "Redguard",
     "keywords": [],
     "text": "Summon: Master of Arms equips the two highest cost items from your discard pile."
+  },
+  {
+    "id": "55f86058-0000-0000-0000-000000000000",
+    "name": "Master of Incunabula",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength",
+      "Intelligence",
+      "Willpower"
+    ],
+    "cost": 4,
+    "attack": 3,
+    "health": 6,
+    "race": "High Elf",
+    "keywords": [],
+    "text": "Master of Incunabula has the Expertise abilities of all your creatures."
   },
   {
     "id": "8e0d6f6d-f400-11e4-b939-0800200c9a66",
@@ -9859,6 +11042,25 @@
     "text": "Regenerate\r\nExalt 3: +2/+2"
   },
   {
+    "id": "4089e312-0000-0000-0000-000000000000",
+    "name": "Mournhold Taskmaster",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength",
+      "Agility",
+      "Endurance"
+    ],
+    "cost": 4,
+    "attack": 5,
+    "health": 4,
+    "race": "Dark Elf",
+    "keywords": [],
+    "text": "Friendly creatures with Veteran have Charge."
+  },
+  {
     "id": "33acb182-300a-11e5-a2cb-0800200c9a66",
     "name": "Mournhold Traitor",
     "rarity": "Epic",
@@ -10133,6 +11335,23 @@
     "text": "Prophecy"
   },
   {
+    "id": "755a6e33-0000-0000-0000-000000000000",
+    "name": "Mystic of Ancient Rites",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "race": "Khajiit",
+    "keywords": [],
+    "text": "When Mystic of Ancient Rites Empowers an action in your hand, the Empower bonus does not expire at the end of turn."
+  },
+  {
     "id": "beaff3ab-4596-11e3-8f96-0800200c9a66",
     "name": "Nahagliiv",
     "rarity": "Legendary",
@@ -10233,6 +11452,23 @@
     "health": 0,
     "keywords": [],
     "text": "When a friendly creature dies, gain 1 health."
+  },
+  {
+    "id": "9d355820-ffff-ffff-0000-000000000000",
+    "name": "Nereid Sister",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 5,
+    "attack": 4,
+    "health": 5,
+    "race": "Nereid",
+    "keywords": [],
+    "text": "Summon: Gain a random Keyword.\r\nWhen Nereid Sister gains a Keyword, give all friendly Nereid Sisters in play, hand, and deck that keyword."
   },
   {
     "id": "96c03d7f-0c13-4760-8e16-0fd8fba5847e",
@@ -10662,6 +11898,24 @@
     "text": "Breakthrough\r\n+3/+3"
   },
   {
+    "id": "70488dad-0000-0000-0000-000000000000",
+    "name": "Ornamented Sword",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Item",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 2,
+    "attack": 2,
+    "health": 1,
+    "keywords": [
+      "Breakthrough"
+    ],
+    "text": "Breakthrough\r\n+2/+1"
+  },
+  {
     "id": "f4c020e1-12b6-11e8-b566-0800200c9a66",
     "name": "Ornery Kagouti",
     "rarity": "Common",
@@ -10681,6 +11935,22 @@
     "text": "Breakthrough"
   },
   {
+    "id": "8d31abde-ffff-ffff-0000-000000000000",
+    "name": "Orsinium Forge",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Support",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 5,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Uses: 3.\r\nActivate: Equip a creature with a +add:1000135,1]/+[add:1000135,1 Orsinium Plate. Then increase the power and health of Orsinium Plates this equips by 1."
+  },
+  {
     "id": "f4c020e0-12b6-11e8-b566-0800200c9a66",
     "name": "Orvas' Bargain",
     "rarity": "Rare",
@@ -10695,6 +11965,24 @@
     "health": 0,
     "keywords": [],
     "text": "Give an enemy creature -1/-0 and a friendly creature +1/+0 this turn."
+  },
+  {
+    "id": "7fb08fec-0000-0000-0000-000000000000",
+    "name": "Outflank",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [
+      "Prophecy"
+    ],
+    "text": "Prophecy\r\nGive a friendly creature in each lane +0/+2 and Guard."
   },
   {
     "id": "e62d15b0-6650-11e6-bdf4-0800200c9a66",
@@ -10746,6 +12034,40 @@
     "race": "Wolf",
     "keywords": [],
     "text": "Summon: Summon a 1/1 Young Wolf in the other lane."
+  },
+  {
+    "id": "821ba9fc-ffff-ffff-0000-000000000000",
+    "name": "Pact Oathman",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 2,
+    "attack": 1,
+    "health": 3,
+    "race": "Nord",
+    "keywords": [],
+    "text": "Summon: If you have a...\r\n(Agility) card in play, +2/+0.\r\n(Endurance) card in play, Battle an enemy creature."
+  },
+  {
+    "id": "08bc5588-0000-0000-0000-000000000000",
+    "name": "Pact Shieldbearer",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 4,
+    "attack": 3,
+    "health": 5,
+    "race": "Nord",
+    "keywords": [],
+    "text": "Veteran: Your opponent’s actions cost 4 more next turn."
   },
   {
     "id": "beb01acc-4596-11e3-8f96-0800200c9a66",
@@ -10991,6 +12313,24 @@
       "Guard"
     ],
     "text": "Prophecy, Guard\r\nWhen Pointy Wall of Spikes takes damage from a creature, it deals that much damage to that creature."
+  },
+  {
+    "id": "8258dc7f-ffff-ffff-0000-000000000000",
+    "name": "Poisoned Dagger",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Item",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 2,
+    "attack": 1,
+    "health": 0,
+    "keywords": [
+      "Lethal"
+    ],
+    "text": "Lethal\r\n+1/+0"
   },
   {
     "id": "90431f39-94e0-11e3-baa8-0800200c9a66",
@@ -11439,6 +12779,22 @@
     "text": "Treasure Hunt - Support, Item, Action: +5/+5 \r\n After Ratway Prospector attacks, give her Cover."
   },
   {
+    "id": "1c292b77-0000-0000-0000-000000000000",
+    "name": "Ravaging Elixir",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Support",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Uses: 3.\r\nActivate: Deal 1 damage to your opponent."
+  },
+  {
     "id": "086621fc-ff5d-11e4-b939-0800200c9a66",
     "name": "Ravenous Crocodile",
     "rarity": "Common",
@@ -11746,6 +13102,23 @@
     "race": "Dark Elf",
     "keywords": [],
     "text": "After a friendly action damages an enemy creature, Renegade Magister deals that much damage to that creature."
+  },
+  {
+    "id": "a4faa9ab-ffff-ffff-0000-000000000000",
+    "name": "Renowned Instructor",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 3,
+    "attack": 3,
+    "health": 3,
+    "race": "Nord",
+    "keywords": [],
+    "text": "Expertise: Summon a 1/1 Recruit."
   },
   {
     "id": "00f39950-52f0-11e3-8f96-0800200c9a66",
@@ -12181,6 +13554,23 @@
     "text": "Guard\r\nLast Gasp: Summon a 2/1 Mournhold Guardian with Guard."
   },
   {
+    "id": "32590728-0000-0000-0000-000000000000",
+    "name": "Sai Sahan",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 7,
+    "attack": 6,
+    "health": 3,
+    "race": "Redguard",
+    "keywords": [],
+    "text": "Immune to Wounded enemy creatures.\r\nSummon: Give all enemy creatures -1/-1."
+  },
+  {
     "id": "8610f8e5-db64-47e0-9398-64076429c270",
     "name": "Sails-Through-Storms",
     "rarity": "Legendary",
@@ -12196,6 +13586,22 @@
     "race": "Argonian",
     "keywords": [],
     "text": "Pilfer: Summon the top creature of your deck."
+  },
+  {
+    "id": "3019e983-0000-0000-0000-000000000000",
+    "name": "Salvage",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 2,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Choose an item in your discard pile. Draw it and all items with the same name from your discard pile."
   },
   {
     "id": "751b76fc-b11c-11e6-80f5-76304dec7eb7",
@@ -12337,6 +13743,7 @@
     "keywords": [],
     "text": ""
   },
+  
   {
     "id": "726f4ca7-8b6d-4d9c-b996-6122d0eab0a4",
     "name": "Seducer Darkfire",
@@ -12596,6 +14003,23 @@
       "Charge"
     ],
     "text": "Charge\r\nLast Gasp: Shuffle Shadowmere into your deck, give it +3/+3, and increase its cost by 3."
+  },
+  {
+    "id": "784bb18e-0000-0000-0000-000000000000",
+    "name": "Shadowscale Hunter",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 3,
+    "attack": 4,
+    "health": 3,
+    "race": "Argonian",
+    "keywords": [],
+    "text": "Veteran: Move."
   },
   {
     "id": "08877286-1b1f-11e7-9598-0800200c9a66",
@@ -13431,6 +14855,22 @@
     "text": "Exalt 3: +4/+4\r\nAt the end of your turn, if you have an Exalted creature in play, summon an Awakened Imperfect."
   },
   {
+    "id": "b0600690-ffff-ffff-0000-000000000000",
+    "name": "Soul Shred",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 5,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "For each attribute your opponent is playing, Banish the top add:390390,2 cards of your opponent's deck.\r\nEmpower: +1 card per attribute."
+  },
+  {
     "id": "0e06fa5d-1112-11e5-b939-0800200c9a66",
     "name": "Soul Split",
     "rarity": "Common",
@@ -13463,6 +14903,42 @@
     "text": "Draw a creature from your discard pile."
   },
   {
+    "id": "bc1c1cc9-ffff-ffff-0000-000000000000",
+    "name": "Soul Wraith",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 1,
+    "attack": 0,
+    "health": 5,
+    "race": "Spirit",
+    "keywords": [
+      "Prophecy",
+      "Guard"
+    ],
+    "text": "Prophecy, Guard"
+  },
+  {
+    "id": "7f1572e7-0000-0000-0000-000000000000",
+    "name": "Soulburst",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Action",
+    "attributes": [
+      "Neutral"
+    ],
+    "cost": 13,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Costs 1 less for each Unique creature in your discard pile.\r\nBanish a creature. Deal 2 damage to all enemies."
+  },
+  {
     "id": "fd235b54-0afb-11e5-b939-0800200c9a66",
     "name": "Soulrest Marshal",
     "rarity": "Rare",
@@ -13478,6 +14954,22 @@
     "race": "Argonian",
     "keywords": [],
     "text": "Summon: If you have more health than your opponent, the next card you play this turn costs 6 less."
+  },
+  {
+    "id": "679e903d-0000-0000-0000-000000000000",
+    "name": "Sound the Alarm",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 0,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Enemy creatures lose Cover."
   },
   {
     "id": "4c7d1cca-c22c-11e6-a4a6-cec0c932ce01",
@@ -13518,6 +15010,23 @@
       "Guard"
     ],
     "text": "Prophecy, Guard"
+  },
+  {
+    "id": "0b1cb2a4-0000-0000-0000-000000000000",
+    "name": "Sparksmith",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 4,
+    "attack": 4,
+    "health": 4,
+    "race": "Redguard",
+    "keywords": [],
+    "text": "When a friendly creature equips an item, deal 1 damage to your opponent."
   },
   {
     "id": "4ee65380-20bf-11e8-b566-0800200c9a66",
@@ -13659,6 +15168,23 @@
     "text": "Summon: Gain +1 max magicka."
   },
   {
+    "id": "6c02d892-0000-0000-0000-000000000000",
+    "name": "Spiny Haj Mota",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 4,
+    "attack": 4,
+    "health": 4,
+    "race": "Beast",
+    "keywords": [],
+    "text": "Summon: +4/+4 for each Spiny Haj Mota in your discard pile."
+  },
+  {
     "id": "01dfbd6f-df40-485b-a721-9f2efb28d281",
     "name": "Spirit Knife",
     "rarity": "Common",
@@ -13692,6 +15218,22 @@
     "text": "Summon: Destroy a creature with 2 power or less."
   },
   {
+    "id": "61a27840-0000-0000-0000-000000000000",
+    "name": "Spoils of War",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 5,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Draw two cards.\r\nEmpower: Costs 1 less."
+  },
+  {
     "id": "2221ab20-7a00-46df-9e62-656a0c1f6283",
     "name": "Squish the Wimpy",
     "rarity": "Rare",
@@ -13706,6 +15248,24 @@
     "health": 0,
     "keywords": [],
     "text": "A friendly creature Battles an enemy creature."
+  },
+  {
+    "id": "cbbc728b-ffff-ffff-0000-000000000000",
+    "name": "Staff of Ice",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Item",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 5,
+    "attack": 1,
+    "health": 1,
+    "keywords": [
+      "Prophecy"
+    ],
+    "text": "Prophecy\r\n+1/+1\r\nSummon: The wielder deals 2 damage."
   },
   {
     "id": "99c98993-b3a3-11e3-a5e2-0800200c9a66",
@@ -13933,6 +15493,23 @@
     "text": "+3/+0"
   },
   {
+    "id": "cc1106aa-ffff-ffff-0000-000000000000",
+    "name": "Steel-Eyed Visionary",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "race": "Argonian",
+    "keywords": [],
+    "text": "Veteran: Set each friendly creature’s power equal to its health."
+  },
+  {
     "id": "a0c49d4e-04af-4efc-a223-b2afd6d69074",
     "name": "Steelheart Vanquisher",
     "rarity": "Rare",
@@ -13963,7 +15540,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Summon: Double the wielder's power and health.\r\nThe wielder can only attack creatures."
+    "text": "if:103490>0, +0/+0\r\nSummon: Double the wielder's power and health.\r\nThe wielder can only attack creatures."
   },
   {
     "id": "87363a42-d565-4d76-867e-21b1f2a0cdfa",
@@ -14133,6 +15710,38 @@
     "race": "Giant",
     "keywords": [],
     "text": ""
+  },
+  {
+    "id": "e9ac42d1-ffff-ffff-0000-000000000000",
+    "name": "Strategic Deployment",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Summon two 1/1 Recruits in each lane."
+  },
+  {
+    "id": "d2be29aa-ffff-ffff-0000-000000000000",
+    "name": "Strategist's Map",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Support",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Uses: 3.\r\nActivate: Summon a 0/1 Target with Guard for you or your opponent."
   },
   {
     "id": "086621f1-ff5d-11e4-b939-0800200c9a66",
@@ -14321,6 +15930,23 @@
     "race": "Argonian",
     "keywords": [],
     "text": "Summon: Permanently Shackle another friendly creature to draw an action of your choice from your deck."
+  },
+  {
+    "id": "ed089d4d-ffff-ffff-0000-000000000000",
+    "name": "Supply Runner",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 3,
+    "attack": 3,
+    "health": 1,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "Summon: If you have another creature in each lane, gain +1 max magicka."
   },
   {
     "id": "aab8bda3-f7fc-11e3-a3ac-0800200c9a66",
@@ -14548,6 +16174,22 @@
       "Ward"
     ],
     "text": "Ward\r\nAt the end of your turn, if Tel Vos Magister has a Ward, you gain a Ward."
+  },
+  {
+    "id": "4a564c5b-0000-0000-0000-000000000000",
+    "name": "Telekinesis",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Equip all your items in play to a friendly creature."
   },
   {
     "id": "1a0d2aa0-16cf-11e5-b939-0800200c9a66",
@@ -14808,6 +16450,22 @@
     "health": 0,
     "keywords": [],
     "text": "Deal 10 damage to each creature."
+  },
+  {
+    "id": "ad779dcf-ffff-ffff-0000-000000000000",
+    "name": "The Ruby Throne",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Support",
+    "attributes": [
+      "Neutral"
+    ],
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Summon: Crown a creature.\r\nAt the end of each player’s turn, give crowned creatures +1/+1.\r\nIf there is no crowned creature in play, when either player summons a Unique creature, crown it."
   },
   {
     "id": "4ef005a6-86aa-4b25-a6c4-60ff4cfc6982",
@@ -15118,6 +16776,24 @@
     "health": 0,
     "keywords": [],
     "text": "Betray\r\nDeal 2 damage to all enemy creatures in a lane."
+  },
+  {
+    "id": "a238713f-ffff-ffff-0000-000000000000",
+    "name": "Transitus Shrine",
+    "rarity": "Epic",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Support",
+    "attributes": [
+      "Willpower",
+      "Agility",
+      "Endurance"
+    ],
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "While you have a creature in each lane, your cards cost 1 less."
   },
   {
     "id": "447626bd-447f-44f6-9c2b-5fd3a19a2f66",
@@ -15551,6 +17227,22 @@
     "text": "Unsummon an enemy creature with power 3 or less."
   },
   {
+    "id": "28478930-0000-0000-0000-000000000000",
+    "name": "Unrelenting Siege",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Support",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Friendly creatures with 1 power may attack an extra time each turn."
+  },
+  {
     "id": "045e6d65-0000-0000-0000-000000000000",
     "name": "Unstable Madman",
     "rarity": "Rare",
@@ -15601,6 +17293,26 @@
     "text": "Summon: Deal 1 damage."
   },
   {
+    "id": "ea01f3e4-ffff-ffff-0000-000000000000",
+    "name": "Valenwood Sentry",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Agility"
+    ],
+    "cost": 4,
+    "attack": 4,
+    "health": 3,
+    "race": "Wood Elf",
+    "keywords": [
+      "Prophecy",
+      "Guard"
+    ],
+    "text": "Prophecy, Guard"
+  },
+  {
     "id": "e967a7f0-a458-11e5-a837-0800200c9a66",
     "name": "Valenwood Trapper",
     "rarity": "Common",
@@ -15616,6 +17328,42 @@
     "race": "Wood Elf",
     "keywords": [],
     "text": ""
+  },
+  {
+    "id": "4cb04565-0000-0000-0000-000000000000",
+    "name": "Vanus Galerion",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Creature",
+    "attributes": [
+      "Strength",
+      "Intelligence",
+      "Willpower"
+    ],
+    "cost": 11,
+    "attack": 3,
+    "health": 3,
+    "race": "High Elf",
+    "keywords": [],
+    "text": "Expertise: Deal 3 damage, you gain 3 health, and draw 3 cards."
+  },
+  {
+    "id": "97c2e0b7-ffff-ffff-0000-000000000000",
+    "name": "Vanus's Scribe",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Intelligence"
+    ],
+    "cost": 3,
+    "attack": 4,
+    "health": 3,
+    "race": "High Elf",
+    "keywords": [],
+    "text": "Expertise: Reduce the cost of a random action in your hand by 1."
   },
   {
     "id": "0cd25650-e227-11e3-8b68-0800200c9a66",
@@ -15635,6 +17383,23 @@
       "Guard"
     ],
     "text": "Guard\r\nLast Gasp: Draw a card."
+  },
+  {
+    "id": "162eca8d-0000-0000-0000-000000000000",
+    "name": "Varen Aquilarios",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": true,
+    "type": "Creature",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 4,
+    "attack": 4,
+    "health": 6,
+    "race": "Imperial",
+    "keywords": [],
+    "text": "When one of your runes is destroyed, you gain 5 health instead of drawing a card."
   },
   {
     "id": "38f42d60-ccad-49b1-9b3c-81455c41cb6b",
@@ -16175,6 +17940,25 @@
     "text": "Ward"
   },
   {
+    "id": "2d00011f-0000-0000-0000-000000000000",
+    "name": "Windhelm Gatekeeper",
+    "rarity": "Common",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Strength"
+    ],
+    "cost": 4,
+    "attack": 2,
+    "health": 4,
+    "race": "Nord",
+    "keywords": [
+      "Guard"
+    ],
+    "text": "Guard\r\nVeteran: +3/+0"
+  },
+  {
     "id": "013f866a-92e4-4c3b-a4d0-1ff27b4c5e84",
     "name": "Winterhold Illusionist",
     "rarity": "Common",
@@ -16240,6 +18024,22 @@
       "Prophecy"
     ],
     "text": "Prophecy\r\nGive each friendly creature a random Keyword."
+  },
+  {
+    "id": "1a82b9cc-0000-0000-0000-000000000000",
+    "name": "Wish",
+    "rarity": "Rare",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Action",
+    "attributes": [
+      "Willpower"
+    ],
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "text": "Summon a random add:390390,2-cost creature.\r\nEmpower: +1 cost creature."
   },
   {
     "id": "3a751800-e810-11e3-ac10-0800200c9a66",
@@ -16479,6 +18279,25 @@
     "race": "Daedra",
     "keywords": [],
     "text": "Summon: You may sacrifice another creature to give Xavara Atronach its power and health."
+  },
+  {
+    "id": "f1958134-ffff-ffff-0000-000000000000",
+    "name": "Xivkyn Banelord",
+    "rarity": "Legendary",
+    "set": "Alliance war",
+    "isunique": false,
+    "type": "Creature",
+    "attributes": [
+      "Endurance"
+    ],
+    "cost": 7,
+    "attack": 1,
+    "health": 7,
+    "race": "Daedra",
+    "keywords": [
+      "Guard"
+    ],
+    "text": "Guard\r\nSummon: Set the health of each enemy creature in this lane to 1."
   },
   {
     "id": "3488e10d-373d-437b-a562-e84669855d92",

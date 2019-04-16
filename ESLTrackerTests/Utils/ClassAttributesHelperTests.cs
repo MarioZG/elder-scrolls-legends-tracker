@@ -70,7 +70,10 @@ namespace ESLTracker.Utils.Tests
                 DeckClass.Strength,
                 DeckClass.Dagoth,
                 DeckClass.Hlaalu,
-                DeckClass.Redoran
+                DeckClass.Redoran,
+                DeckClass.Daggerfall,
+                DeckClass.Ebonheart,
+                DeckClass.Guildsworn
             };
 
             IEnumerable<DeckClass> result = ClassAttributesHelper.FindClassByAttribute(filter);
