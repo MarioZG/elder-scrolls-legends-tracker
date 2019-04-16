@@ -30,9 +30,9 @@ namespace TESLTracker.DataModel.Enums
 
         //Aliance wars
         Empower = 2048,
-        Mobilize = 4096,
+        Expertise = 4096,
         Veteran = 80192,
-        Expertise = 16384
+        // 16384
 
         //32768
     }

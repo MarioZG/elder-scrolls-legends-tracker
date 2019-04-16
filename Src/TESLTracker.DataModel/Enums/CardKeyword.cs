@@ -18,5 +18,6 @@ namespace TESLTracker.DataModel.Enums
         Ward = 64,
         Regenerate = 128,
         Rally = 256,
+        Mobilize = 512 //aliance war
     }
 }
