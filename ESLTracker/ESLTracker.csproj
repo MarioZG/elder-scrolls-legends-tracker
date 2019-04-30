@@ -1906,6 +1906,9 @@
     <Resource Include="Resources\Cards\wish.png" />
     <Resource Include="Resources\Cards\xivkynbanelord.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Cards\seasonedcaptain.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
   <!--<Import Project="..\build\versions.targets" Condition="Exists('..\build\versions.targets')" />-->
