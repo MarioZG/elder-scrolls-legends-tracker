@@ -1094,7 +1094,7 @@
     "health": 3,
     "race": "Factotum",
     "keywords": [],
-    "text": ""
+    "text": "Assemble: +1/+0 and Breakthrough or +0/+1 and Regenerate."
   },
   {
     "id": "cf96405c-509e-4b83-a82c-14137f16c622",
@@ -1111,7 +1111,7 @@
     "health": 2,
     "race": "Factotum",
     "keywords": [],
-    "text": ""
+    "text": "Assemble: +2/+0 or Lethal."
   },
   {
     "id": "39f3f543-2336-4a88-a810-f889aac57425",
@@ -1128,7 +1128,7 @@
     "health": 1,
     "race": "Factotum",
     "keywords": [],
-    "text": ""
+    "text": "Assemble: +0/+2 or Guard."
   },
   {
     "id": "204e1580-c284-4347-bb56-e985f6d5ac11",
@@ -1145,7 +1145,7 @@
     "health": 4,
     "race": "Factotum",
     "keywords": [],
-    "text": ""
+    "text": "Assemble: Choose two: +2/+0, +0/+2, deal 2 damage to your opponent, or you gain 2 health."
   },
   {
     "id": "7f74e516-d2e1-11e6-bf26-cec0c932ce01",
