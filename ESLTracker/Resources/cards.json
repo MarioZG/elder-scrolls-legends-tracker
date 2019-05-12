@@ -1,7 +1,7 @@
 {
 "Version": "2.9.1",
 "VersionInfo": "April 2019 monthly reward",
-"VersionDate": "2019-05-01T00:00:00Z",
+"VersionDate": "2019-05-12T00:00:00Z",
 "CardSets": [
   {
     "name": "Core",
@@ -267,7 +267,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Give your Activated supports add:390390,1 extra use.\r\nEmpower: +1 use."
+    "text": "Give your Activated supports 1 extra use.\r\nEmpower: +1 use."
   },
   {
     "id": "aca5d2ab-8dc0-49b6-b275-16a21c767ec8",
@@ -1094,7 +1094,7 @@
     "health": 3,
     "race": "Factotum",
     "keywords": [],
-    "text": "Assemble: +1/+0 and Breakthrough or +0/+1 and Regenerate."
+    "text": ""
   },
   {
     "id": "cf96405c-509e-4b83-a82c-14137f16c622",
@@ -1111,7 +1111,7 @@
     "health": 2,
     "race": "Factotum",
     "keywords": [],
-    "text": "Assemble: +2/+0 or Lethal."
+    "text": ""
   },
   {
     "id": "39f3f543-2336-4a88-a810-f889aac57425",
@@ -1128,7 +1128,7 @@
     "health": 1,
     "race": "Factotum",
     "keywords": [],
-    "text": "Assemble: +0/+2 or Guard."
+    "text": ""
   },
   {
     "id": "204e1580-c284-4347-bb56-e985f6d5ac11",
@@ -1145,7 +1145,7 @@
     "health": 4,
     "race": "Factotum",
     "keywords": [],
-    "text": "Assemble: Choose two: +2/+0, +0/+2, deal 2 damage to your opponent, or you gain 2 health."
+    "text": ""
   },
   {
     "id": "7f74e516-d2e1-11e6-bf26-cec0c932ce01",
@@ -1311,7 +1311,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Summon a add:390390,1]/[add:390390,1 Recruit in each lane and give them Guard.\r\nEmpower: +1/+1."
+    "text": "Summon a 1/1 Recruit in each lane and give them Guard.\r\nEmpower: +1/+1."
   },
   {
     "id": "8e0d6f6c-f400-11e4-b939-0800200c9a66",
@@ -2963,7 +2963,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Deal add:390390,3 damage to a creature.\r\nEmpower: +1 damage."
+    "text": "Deal 3 damage to a creature.\r\nEmpower: +1 damage."
   },
   {
     "id": "751b50a0-b11c-11e6-80f5-76304dec7eb7",
@@ -3848,7 +3848,7 @@
     "keywords": [
       "Mobilize"
     ],
-    "text": "Mobilize\r\nif:103490>0, +0/+0\r\nSummon: +1/+1 for each enemy creature in this lane."
+    "text": "Mobilize\r\nSummon: +1/+1 for each enemy creature in this lane."
   },
   {
     "id": "51f3170b-300a-11e5-a2cb-0800200c9a66",
@@ -10015,7 +10015,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Destroy a creature with add:390390,1 power or less.\r\nEmpower: +1 power."
+    "text": "Destroy a creature with 1 power or less.\r\nEmpower: +1 power."
   },
   {
     "id": "62a40f7a-5be2-4ee6-b8fe-47678157e81b",
@@ -10205,7 +10205,7 @@
     "health": 3,
     "race": "Breton",
     "keywords": [],
-    "text": "Expertise: Summon a  then upgrade the Atronach Mages Guild Conjurer summons."
+    "text": "Expertise: Summon a  Flame Atronach, then upgrade the Atronach Mages Guild Conjurer summons."
   },
   {
     "id": "74359887-ae89-44eb-a1e8-6e6cd645eaf6",
@@ -11958,7 +11958,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Uses: 3.\r\nActivate: Equip a creature with a +add:1000135,1]/+[add:1000135,1 Orsinium Plate. Then increase the power and health of Orsinium Plates this equips by 1."
+    "text": "Uses: 3.\r\nActivate: Equip a creature with a +1/+1 Orsinium Plate. Then increase the power and health of Orsinium Plates this equips by 1."
   },
   {
     "id": "f4c020e0-12b6-11e8-b566-0800200c9a66",
@@ -14897,7 +14897,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "For each attribute your opponent is playing, Banish the top add:390390,2 cards of your opponent's deck.\r\nEmpower: +1 card per attribute."
+    "text": "For each attribute your opponent is playing, Banish the top 2 cards of your opponent's deck.\r\nEmpower: +1 card per attribute."
   },
   {
     "id": "0e06fa5d-1112-11e5-b939-0800200c9a66",
@@ -15570,7 +15570,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "if:103490>0, +0/+0\r\nSummon: Double the wielder's power and health.\r\nThe wielder can only attack creatures."
+    "text": "Summon: Double the wielder's power and health.\r\nThe wielder can only attack creatures."
   },
   {
     "id": "87363a42-d565-4d76-867e-21b1f2a0cdfa",
@@ -18069,7 +18069,7 @@
     "attack": 0,
     "health": 0,
     "keywords": [],
-    "text": "Summon a random add:390390,2-cost creature.\r\nEmpower: +1 cost creature."
+    "text": "Summon a random 2-cost creature.\r\nEmpower: +1 cost creature."
   },
   {
     "id": "3a751800-e810-11e3-ac10-0800200c9a66",
@@ -18362,7 +18362,7 @@
     "keywords": [
       "Guard"
     ],
-    "text": "Guard\r\nif:103490>0, +0/+0\r\nSummon: +1/+1 for each enemy creature in this lane."
+    "text": "Guard\r\nSummon: +1/+1 for each enemy creature in this lane."
   },
   {
     "id": "105c88ed-c6fa-41dd-b69a-df10f66daf3d",
