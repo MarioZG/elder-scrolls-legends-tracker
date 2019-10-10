@@ -386,9 +386,7 @@
       "race": "Dragon",
       "keywords": [],
       "text": "Costs 2 less for each Dragon in your discard pile.\r\nSummon: Destroy all other creatures.\r\nAt the start of your turn, summon a random Dragon from your discard pile." 
-      "spcodealternates": [
-        "ap"
-      ]
+ 
     },
     {
       "id": "2cabbd4e-0000-0000-0000-000000000000",
@@ -1002,9 +1000,7 @@
       "health": 0,
       "keywords": [],
       "text": "Destroy all enemy creatures with 2 power or less in a lane." 
-      "spcodealternates": [
-        "zN"
-      ]
+ 
     },
     {
       "id": "beaff3be-4596-11e3-8f96-0800200c9a66",
@@ -1111,9 +1107,7 @@
       "race": "Ash Creature",
       "keywords": [],
       "text": "Summon: Deal 2 damage to a creature." 
-      "spcodealternates": [
-        "aY"
-      ]
+ 
     },
     {
       "id": "b1e030fa-ffff-ffff-0000-000000000000",
@@ -1854,9 +1848,7 @@
       "health": 0,
       "keywords": [],
       "text": "Trade a card in your hand for a random card in your opponent's hand." 
-      "spcodealternates": [
-        "Ai"
-      ]
+ 
     },
     {
       "id": "d3cb3d34-ffff-ffff-0000-000000000000",
@@ -1928,9 +1920,7 @@
         "Charge"
       ],
       "text": "Charge" 
-      "spcodealternates": [
-        "zH"
-      ]
+ 
     },
     {
       "id": "36eb2738-c160-11e5-a837-0800200c9a66",
@@ -2018,9 +2008,7 @@
         "Breakthrough"
       ],
       "text": "Breakthrough\r\nSummon: Unsummon a creature in this lane, or destroy an enemy support." 
-      "spcodealternates": [
-        "zE"
-      ]
+ 
     },
     {
       "id": "acaa4d35-179a-4a3f-81e2-3702b490c849",
@@ -2320,9 +2308,7 @@
         "Guard"
       ],
       "text": "Prophecy, Guard" 
-      "spcodealternates": [
-        "bV"
-      ]
+ 
     },
     {
       "id": "55febcfd-0000-0000-0000-000000000000",
@@ -2965,9 +2951,7 @@
       "health": 0,
       "keywords": [],
       "text": "When a friendly creature Slays, it receives its reward an extra time." 
-      "spcodealternates": [
-        "zu"
-      ]
+ 
     },
     {
       "id": "751b4dc6-b11c-11e6-80f5-76304dec7eb7",
@@ -3038,9 +3022,7 @@
       "race": "Imperial",
       "keywords": [],
       "text": "When you summon another creature, give it +0/+2." 
-      "spcodealternates": [
-        "zJ"
-      ]
+ 
     },
     {
       "id": "6223886c-0000-0000-0000-000000000000",
@@ -3075,9 +3057,7 @@
       "race": "Imperial",
       "keywords": [],
       "text": "When you summon another creature, you gain 1 health." 
-      "spcodealternates": [
-        "sq"
-      ]
+ 
     },
     {
       "id": "8e0d6f70-f400-11e4-b939-0800200c9a66",
@@ -3095,9 +3075,7 @@
       "race": "Dark Elf",
       "keywords": [],
       "text": "Last Gasp: Deal 3 damage to a random enemy." 
-      "spcodealternates": [
-        "zm"
-      ]
+ 
     },
     {
       "id": "f98d9a66-4d53-11e6-bdf4-0800200c9a66",
@@ -4531,9 +4509,7 @@
       "race": "Redguard",
       "keywords": [],
       "text": "Summon: Put a Steel Dagger into your hand." 
-      "spcodealternates": [
-        "Ag"
-      ]
+ 
     },
     {
       "id": "fb946274-ffff-ffff-0000-000000000000",
@@ -4602,9 +4578,7 @@
       "health": 0,
       "keywords": [],
       "text": "Give a creature +2/+0, Breakthrough and “Slay and Pilfer: Draw a card” this turn." 
-      "spcodealternates": [
-        "zr"
-      ]
+ 
     },
     {
       "id": "086621f9-ff5d-11e4-b939-0800200c9a66",
@@ -4621,9 +4595,7 @@
       "health": 0,
       "keywords": [],
       "text": "Deal 3 damage." 
-      "spcodealternates": [
-        "dN"
-      ]
+ 
     },
     {
       "id": "00f37240-52f0-11e3-8f96-0800200c9a66",
@@ -4658,9 +4630,7 @@
       "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Put a Firebolt into your hand if the top card of your deck is (Intelligence)." 
-      "spcodealternates": [
-        "zS"
-      ]
+ 
     },
     {
       "id": "69e88f6b-87a1-11e3-baa7-0800200c9a66",
@@ -5038,9 +5008,7 @@
         "Guard"
       ],
       "text": "Prophecy, Guard\r\nSummon: Gain 4 health." 
-      "spcodealternates": [
-        "sr"
-      ]
+ 
     },
     {
       "id": "188eee04-0000-0000-0000-000000000000",
@@ -5075,9 +5043,7 @@
       "health": 0,
       "keywords": [],
       "text": "Sacrifice a creature to summon a copy of it." 
-      "spcodealternates": [
-        "zR"
-      ]
+ 
     },
     {
       "id": "e2a07ba2-b3a9-11e3-a5e2-0800200c9a66",
@@ -5214,9 +5180,7 @@
         "Lethal"
       ],
       "text": "Lethal" 
-      "spcodealternates": [
-        "zh"
-      ]
+ 
     },
     {
       "id": "3a94e5f3-0000-0000-0000-000000000000",
@@ -5661,9 +5625,7 @@
       "health": 0,
       "keywords": [],
       "text": "Friendly creatures have +1/+1." 
-      "spcodealternates": [
-        "yZ"
-      ]
+ 
     },
     {
       "id": "b421ecb6-ffff-ffff-0000-000000000000",
@@ -5772,9 +5734,7 @@
       "race": "Daedra",
       "keywords": [],
       "text": "Summon: Transform Doppelganger into a copy of another friendly creature." 
-      "spcodealternates": [
-        "Af"
-      ]
+ 
     },
     {
       "id": "012376f0-e95b-4048-9414-5a6c30199dd7",
@@ -6009,9 +5969,7 @@
       "health": 0,
       "keywords": [],
       "text": "Give an enemy creature -1/-1." 
-      "spcodealternates": [
-        "Ae"
-      ]
+ 
     },
     {
       "id": "8e0d6f62-f400-11e4-b939-0800200c9a66",
@@ -6631,9 +6589,7 @@
       "race": "Nord",
       "keywords": [],
       "text": "Summon: Draw a card if your opponent has a destroyed rune." 
-      "spcodealternates": [
-        "zI"
-      ]
+ 
     },
     {
       "id": "0b531500-8bb3-4ada-a8f2-7cf316494fa8",
@@ -6705,9 +6661,7 @@
       "race": "Dark Elf",
       "keywords": [],
       "text": "Summon and Last Gasp: Draw a card and reduce its cost by 2." 
-      "spcodealternates": [
-        "zU"
-      ]
+ 
     },
     {
       "id": "fa4ffc66-d4b2-11e3-9c1a-0800200c9a66",
@@ -6905,9 +6859,7 @@
       "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Draw a card.\r\nLast Gasp: Shuffle a 0-cost Elusive Schemer into your deck." 
-      "spcodealternates": [
-        "zL"
-      ]
+ 
     },
     {
       "id": "05ebb48a-2528-4821-8265-d1fb61e353c8",
@@ -7319,9 +7271,7 @@
       "health": 0,
       "keywords": [],
       "text": "Destroy a creature with 2 power or less." 
-      "spcodealternates": [
-        "zg"
-      ]
+ 
     },
     {
       "id": "e967a7f5-a458-11e5-a837-0800200c9a66",
@@ -7794,9 +7744,7 @@
         "Lethal"
       ],
       "text": "Prophecy, Guard, Lethal" 
-      "spcodealternates": [
-        "xf"
-      ]
+ 
     },
     {
       "id": "cbca9c81-1a1b-47b9-92ad-8bc84f3d6ea9",
@@ -7846,9 +7794,7 @@
       "health": 0,
       "keywords": [],
       "text": "Destroy a Wounded enemy creature." 
-      "spcodealternates": [
-        "zd"
-      ]
+ 
     },
     {
       "id": "49d6f5f0-81d0-11e6-ae22-56b6b6499611",
@@ -7915,9 +7861,7 @@
       "health": 0,
       "keywords": [],
       "text": "Deal 2 damage to a creature." 
-      "spcodealternates": [
-        "zT"
-      ]
+ 
     },
     {
       "id": "73178c8b-73d4-45e1-b662-f525c33d2845",
@@ -8580,9 +8524,7 @@
         "Charge"
       ],
       "text": "Drain, Charge" 
-      "spcodealternates": [
-        "zz"
-      ]
+ 
     },
     {
       "id": "5b0a7312-0000-0000-0000-000000000000",
@@ -8861,9 +8803,7 @@
         "Guard"
       ],
       "text": "Guard\r\nSummon: If you have more health than your opponent, summon a Golden Saint in the other lane." 
-      "spcodealternates": [
-        "hp"
-      ]
+ 
     },
     {
       "id": "00f3724c-52f0-11e3-8f96-0800200c9a66",
@@ -9002,9 +8942,7 @@
       "race": "Imperial",
       "keywords": [],
       "text": "At the start of your turn, summon the highest cost creature from your discard pile and give it Charge. At the end of the turn, put it on the bottom of your deck." 
-      "spcodealternates": [
-        "zY"
-      ]
+ 
     },
     {
       "id": "36a5e83b-0000-0000-0000-000000000000",
@@ -9041,9 +8979,7 @@
         "Prophecy"
       ],
       "text": "Prophecy" 
-      "spcodealternates": [
-        "Aa"
-      ]
+ 
     },
     {
       "id": "48ebc443-0000-0000-0000-000000000000",
@@ -9188,9 +9124,7 @@
       "race": "Nord",
       "keywords": [],
       "text": "Summon: Draw a random Shout from your deck." 
-      "spcodealternates": [
-        "zx"
-      ]
+ 
     },
     {
       "id": "69e88f61-87a1-11e3-baa7-0800200c9a66",
@@ -9242,9 +9176,7 @@
       "race": "Nord",
       "keywords": [],
       "text": "Summon: Transform an enemy creature with 2 power or less into a Sweet Roll." 
-      "spcodealternates": [
-        "hG"
-      ]
+ 
     },
     {
       "id": "751b62f2-b11c-11e6-80f5-76304dec7eb7",
@@ -9475,9 +9407,7 @@
       "race": "Nord",
       "keywords": [],
       "text": "When a friendly creature destroys an enemy rune, equip it with a random item." 
-      "spcodealternates": [
-        "zX"
-      ]
+ 
     },
     {
       "id": "0cd2564c-e227-11e3-8b68-0800200c9a66",
@@ -9656,9 +9586,7 @@
       "race": "Spirit",
       "keywords": [],
       "text": "Last Gasp: Give a random friendly creature +3/+3." 
-      "spcodealternates": [
-        "zj"
-      ]
+ 
     },
     {
       "id": "2c8e4850-0000-0000-0000-000000000000",
@@ -10000,9 +9928,7 @@
         "Guard"
       ],
       "text": "Guard" 
-      "spcodealternates": [
-        "in"
-      ]
+ 
     },
     {
       "id": "fbcc5efb-78b7-11e3-981f-0800200c9a66",
@@ -10474,9 +10400,7 @@
       "health": 0,
       "keywords": [],
       "text": "Destroy all creatures except for one random creature on both sides of each lane." 
-      "spcodealternates": [
-        "Ac"
-      ]
+ 
     },
     {
       "id": "d0d41307-a8a0-11e3-a5e2-0800200c9a66",
@@ -10575,9 +10499,7 @@
       "health": 0,
       "keywords": [],
       "text": "Fill a lane with 1/1 Imperial Grunts." 
-      "spcodealternates": [
-        "zW"
-      ]
+ 
     },
     {
       "id": "33acb183-300a-11e5-a2cb-0800200c9a66",
@@ -11420,9 +11342,7 @@
       "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Draw a card of your choice from your deck." 
-      "spcodealternates": [
-        "ju"
-      ]
+ 
     },
     {
       "id": "70cdc3c9-0000-0000-0000-000000000000",
@@ -11489,9 +11409,7 @@
       "race": "Wood Elf",
       "keywords": [],
       "text": "Summon: Destroy a Wounded creature." 
-      "spcodealternates": [
-        "jz"
-      ]
+ 
     },
     {
       "id": "de25cc72-7a23-11e3-981f-0800200c9a66",
@@ -11595,9 +11513,7 @@
       "health": 0,
       "keywords": [],
       "text": "Give a creature a Ward." 
-      "spcodealternates": [
-        "zK"
-      ]
+ 
     },
     {
       "id": "c9923952-243e-41f4-9008-98f8b3eae2b6",
@@ -11649,9 +11565,7 @@
         "Prophecy"
       ],
       "text": "Prophecy\r\nDeal 4 damage." 
-      "spcodealternates": [
-        "jI"
-      ]
+ 
     },
     {
       "id": "fbcc5ef8-78b7-11e3-981f-0800200c9a66",
@@ -11810,9 +11724,7 @@
         "Prophecy"
       ],
       "text": "Prophecy\r\nSummon: Give a creature +2/+2 and Guard." 
-      "spcodealternates": [
-        "Aj"
-      ]
+ 
     },
     {
       "id": "33acb17f-300a-11e5-a2cb-0800200c9a66",
@@ -12279,9 +12191,7 @@
       "health": 3,
       "keywords": [],
       "text": "+0/+3" 
-      "spcodealternates": [
-        "zZ"
-      ]
+ 
     },
     {
       "id": "921191db-ffff-ffff-0000-000000000000",
@@ -12368,9 +12278,7 @@
       "race": "Redguard",
       "keywords": [],
       "text": "Summon: Master of Arms equips the two highest cost items from your discard pile." 
-      "spcodealternates": [
-        "km"
-      ]
+ 
     },
     {
       "id": "55f86058-0000-0000-0000-000000000000",
@@ -12656,9 +12564,7 @@
         "Guard"
       ],
       "text": "Prophecy, Guard\r\nLast Gasp: Reduce the cost of a random Dragon in your hand by 1." 
-      "spcodealternates": [
-        "zO"
-      ]
+ 
     },
     {
       "id": "beb01ab2-4596-11e3-8f96-0800200c9a66",
@@ -13097,9 +13003,7 @@
         "Guard"
       ],
       "text": "Prophecy, Guard\r\nSummon: Give a creature +2/+0." 
-      "spcodealternates": [
-        "kO"
-      ]
+ 
     },
     {
       "id": "8e99191f-73d0-441a-a89d-cb3d7ef7ae0d",
@@ -13294,9 +13198,7 @@
       "race": "Mudcrab",
       "keywords": [],
       "text": "Summon: Deal 1 damage to your opponent." 
-      "spcodealternates": [
-        "zw"
-      ]
+ 
     },
     {
       "id": "b7e58e5d-06ad-4915-81e0-ea69801c3725",
@@ -13467,9 +13369,7 @@
       "race": "Goblin",
       "keywords": [],
       "text": "At the start of your turn, put a Curse into your hand." 
-      "spcodealternates": [
-        "zn"
-      ]
+ 
     },
     {
       "id": "5e26d8db-f451-11e4-b939-0800200c9a66",
@@ -13506,9 +13406,7 @@
         "Guard"
       ],
       "text": "Guard\r\nSummon: Give a creature \r\n-1/-1." 
-      "spcodealternates": [
-        "zo"
-      ]
+ 
     },
     {
       "id": "a8439940-e2d0-434b-a830-76226810e99d",
@@ -14000,9 +13898,7 @@
         "Charge"
       ],
       "text": "Charge" 
-      "spcodealternates": [
-        "su"
-      ]
+ 
     },
     {
       "id": "beaff3a7-4596-11e3-8f96-0800200c9a66",
@@ -14120,9 +14016,7 @@
       "race": "Dark Elf",
       "keywords": [],
       "text": "Summon: Summon a creature  from your discard pile with less power than Odirniran Necromancer." 
-      "spcodealternates": [
-        "zG"
-      ]
+ 
     },
     {
       "id": "7db7e76e-0000-0000-0000-000000000000",
@@ -14575,9 +14469,7 @@
         "Prophecy"
       ],
       "text": "Prophecy\r\nDestroy a creature." 
-      "spcodealternates": [
-        "mb"
-      ]
+ 
     },
     {
       "id": "73313e1a-0000-0000-0000-000000000000",
@@ -15167,9 +15059,7 @@
       "health": 0,
       "keywords": [],
       "text": "Put two 1/1 Nord Firebrands with Charge into your hand." 
-      "spcodealternates": [
-        "st"
-      ]
+ 
     },
     {
       "id": "8e0d6f6a-f400-11e4-b939-0800200c9a66",
@@ -15241,9 +15131,7 @@
       "health": 0,
       "keywords": [],
       "text": "Deal 1 damage to a creature. If it survives, draw a card." 
-      "spcodealternates": [
-        "ze"
-      ]
+ 
     },
     {
       "id": "0e194b3e-cfc3-4dff-9b90-beceed0eb765",
@@ -15553,9 +15441,7 @@
         "Ward"
       ],
       "text": "Drain, Charge, Ward" 
-      "spcodealternates": [
-        "Ad"
-      ]
+ 
     },
     {
       "id": "0cbfd0fd-6a38-475b-9a3b-8f7f4d6f856a",
@@ -15761,9 +15647,7 @@
       "health": 0,
       "keywords": [],
       "text": "Put two random actions into your hand." 
-      "spcodealternates": [
-        "Al"
-      ]
+ 
     },
     {
       "id": "9ccb932a-05f5-4d08-8e38-5e9d3f54f089",
@@ -15887,9 +15771,7 @@
       "race": "Redguard",
       "keywords": [],
       "text": "+0/+3 and Guard while equipped with an item." 
-      "spcodealternates": [
-        "zV"
-      ]
+ 
     },
     {
       "id": "0dadeaf4-0efb-11e5-b939-0800200c9a66",
@@ -16093,9 +15975,7 @@
       "race": "High Elf",
       "keywords": [],
       "text": "Summon: If you have more health than your opponent, give each friendly creature a random Keyword." 
-      "spcodealternates": [
-        "zF"
-      ]
+ 
     },
     {
       "id": "d68fdfdc-3518-44b4-839b-f465a602f23a",
@@ -16236,9 +16116,7 @@
         "Lethal"
       ],
       "text": "Lethal\r\nSummon: Shackle an enemy creature in this lane." 
-      "spcodealternates": [
-        "zv"
-      ]
+ 
     },
     {
       "id": "751b60b8-b11c-11e6-80f5-76304dec7eb7",
@@ -16640,9 +16518,7 @@
       "health": 0,
       "keywords": [],
       "text": "Move a friendly creature.\r\nDraw a card." 
-      "spcodealternates": [
-        "zc"
-      ]
+ 
     },
     {
       "id": "4cde7090-e289-11e3-8b68-0800200c9a66",
@@ -16660,9 +16536,7 @@
       "race": "Argonian",
       "keywords": [],
       "text": "Summon: Silence another creature, or destroy an enemy support." 
-      "spcodealternates": [
-        "za"
-      ]
+ 
     },
     {
       "id": "62123716-a81e-4d40-b4a4-a905a4cfc423",
@@ -16823,9 +16697,7 @@
         "Prophecy"
       ],
       "text": "Prophecy\r\nSummon: Deal 1 damage." 
-      "spcodealternates": [
-        "nW"
-      ]
+ 
     },
     {
       "id": "49d6fd16-81d0-11e6-ae22-56b6b6499611",
@@ -16984,9 +16856,7 @@
         "Prophecy"
       ],
       "text": "Prophecy\r\nSummon: Shackle an enemy creature." 
-      "spcodealternates": [
-        "ss"
-      ]
+ 
     },
     {
       "id": "2df9a76c-6e47-40be-a4d5-ea53a2776dc6",
@@ -18118,9 +17988,7 @@
       "health": 0,
       "keywords": [],
       "text": "A friendly creature Battles an enemy creature." 
-      "spcodealternates": [
-        "zt"
-      ]
+ 
     },
     {
       "id": "cbbc728b-ffff-ffff-0000-000000000000",
@@ -18498,9 +18366,7 @@
       "race": "Orc",
       "keywords": [],
       "text": "" 
-      "spcodealternates": [
-        "pA"
-      ]
+ 
     },
     {
       "id": "a9d2eda5-260e-11e7-9598-0800200c9a66",
@@ -18859,9 +18725,7 @@
       "health": 0,
       "keywords": [],
       "text": "Silence a creature." 
-      "spcodealternates": [
-        "zf"
-      ]
+ 
     },
     {
       "id": "04bffff1-673b-11e3-949a-0800200c9a66",
@@ -18966,9 +18830,7 @@
       "health": 0,
       "keywords": [],
       "text": "Give a creature an extra attack this turn." 
-      "spcodealternates": [
-        "zl"
-      ]
+ 
     },
     {
       "id": "2180a296-8f53-11e6-ae22-56b6b6499611",
@@ -19005,9 +18867,7 @@
       "race": "Argonian",
       "keywords": [],
       "text": "Summon: Put a random 0-cost card into your hand.\r\nAfter you play a 0-cost card, Swims-at-Night gains +1/+1." 
-      "spcodealternates": [
-        "pY"
-      ]
+ 
     },
     {
       "id": "e62d3cc4-6650-11e6-bdf4-0800200c9a66",
@@ -19024,9 +18884,7 @@
       "health": 0,
       "keywords": [],
       "text": "When you play a 0-cost card, deal 1 damage to your opponent and gain 1 health." 
-      "spcodealternates": [
-        "An"
-      ]
+ 
     },
     {
       "id": "640a2386-0000-0000-0000-000000000000",
@@ -19362,9 +19220,7 @@
       "race": "Imperial",
       "keywords": [],
       "text": "Immune to Lethal.\r\nSlay: Discard all creatures from your opponent's deck with the same name as the slain creature." 
-      "spcodealternates": [
-        "zq"
-      ]
+ 
     },
     {
       "id": "e1ebc4e5-ffff-ffff-0000-000000000000",
@@ -19616,9 +19472,7 @@
       "race": "Argonian",
       "keywords": [],
       "text": "Summon: Draw a card. If it costs 7 or more, reduce its cost by 1." 
-      "spcodealternates": [
-        "zi"
-      ]
+ 
     },
     {
       "id": "5b56ab78-f88f-11e6-bc64-92361f002671",
@@ -19876,9 +19730,7 @@
       "health": 1,
       "keywords": [],
       "text": "+1/+1\r\nSummon: Draw a card. If the wielder has Treasure Hunt, draw something they are hunting for instead." 
-      "spcodealternates": [
-        "Ah"
-      ]
+ 
     },
     {
       "id": "33acb181-300a-11e5-a2cb-0800200c9a66",
@@ -19915,9 +19767,7 @@
         "Guard"
       ],
       "text": "Guard\r\nSummon: Gain +1 max magicka." 
-      "spcodealternates": [
-        "zb"
-      ]
+ 
     },
     {
       "id": "0f47d99c-fb04-4a35-9ada-c7cb5ab44c11",
@@ -19984,9 +19834,7 @@
       "race": "Nord",
       "keywords": [],
       "text": "Summon: If you have more health than your opponent, draw two cards." 
-      "spcodealternates": [
-        "zM"
-      ]
+ 
     },
     {
       "id": "fd619ac3-645e-41e2-b642-b43a9853cfb9",
@@ -20417,9 +20265,7 @@
       "health": 0,
       "keywords": [],
       "text": "A friendly creature deals damage equal to its power to all other creatures in its lane." 
-      "spcodealternates": [
-        "zs"
-      ]
+ 
     },
     {
       "id": "377112f2-dfb5-46b9-b24b-a104c085e0f3",
@@ -20548,9 +20394,7 @@
         "Guard"
       ],
       "text": "Guard\r\nLast Gasp: Draw a card." 
-      "spcodealternates": [
-        "zQ"
-      ]
+ 
     },
     {
       "id": "162eca8d-0000-0000-0000-000000000000",
